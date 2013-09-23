@@ -9,6 +9,10 @@ module Types ( Class(..)
              , Type(..)
              , RetType(..)
              , Static(..)
+             , hsType
+             , hsType'
+             , ffiType
+             , ffiType'
              , cppType
              , cType
              , toCName
@@ -21,8 +25,8 @@ data RetType = SimpleType Type
              | NewRef Type deriving Show
 
 data Type = CInt
-          | VectorSXMat
-          | StdStr
+          | SXMatrixVector
+          | StdString
           | FX
           | MX
           | SXMatrix
@@ -34,10 +38,42 @@ data Type = CInt
 casadiNs :: String -> String
 casadiNs = ("CasADi::" ++)
 
+hsType :: Type -> String
+hsType = hsType' False
+
+hsType' :: Bool -> Type -> String
+hsType' _ CInt = "Int"
+hsType' _ StdString = "String"
+hsType' _ FX = "FX"
+hsType' _ SXFunction = "SXFunction"
+hsType' _ MX = "MX"
+hsType' _ SXMatrix = "SXMatrix"
+hsType' _ SXMatrixVector = "SXMatrixVector"
+hsType' p (Ref x) = hsType' p x
+hsType' p (Ptr x) = hsType' p x
+
+maybeParens :: Bool -> String -> String
+maybeParens False x = x
+maybeParens True x = "(" ++ x ++ ")"
+
+ffiType :: Type -> String
+ffiType = ffiType' False
+
+ffiType' :: Bool -> Type -> String
+ffiType' _ CInt = "CInt"
+ffiType' _ StdString = "StdString"
+ffiType' _ FX = "FX"
+ffiType' _ SXFunction = "SXFunction"
+ffiType' _ MX = "MX"
+ffiType' _ SXMatrix = "SXMatrix"
+ffiType' _ SXMatrixVector = "SXMatrixVector"
+ffiType' p (Ref x) = maybeParens p $ "Ptr " ++ ffiType' True x
+ffiType' p (Ptr x) = maybeParens p $ "Ptr " ++ ffiType' True x
+
 cppType :: Type -> String
-cppType VectorSXMat = "std::vector<CasADi::SXMatrix>"
+cppType SXMatrixVector = "std::vector<CasADi::SXMatrix>"
 cppType CInt = "int"
-cppType StdStr = "std::string"
+cppType StdString = "std::string"
 cppType FX = casadiNs "FX"
 cppType SXFunction = casadiNs "SXFunction"
 cppType MX = casadiNs "MX"
