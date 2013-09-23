@@ -80,6 +80,12 @@ writeClass (Class classType methods) =
   , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ ")"
   , "instance " ++ hsClass ++ " " ++ hsName ++ " where"
   , "    coerce_" ++ hsName ++ " = id"
+  , "instance Marshall " ++ hsName ++ " (ForeignPtr " ++ hsName ++ ") where"
+  , "    withMarshall ("++ hsName ++ " x) f = f x"
+  , "instance Marshall (ForeignPtr " ++ hsName ++ ") (Ptr " ++ hsName ++ ") where"
+  , "    withMarshall x f = withForeignPtr x f"
+  , "instance Marshall " ++ hsName ++ " (Ptr " ++ hsName ++ ") where"
+  , "    withMarshall ("++ hsName ++ " x) f = withMarshall x f"
   ]
   where
     hsClass = hsName ++ "_Class"
@@ -133,7 +139,7 @@ writeMethod classType fcn = (method, ffiWrapper)
     hsMethodName = toLower' methodName
     ffiWrapper
       | static = writeFunction (Function (Name cppName) (fType fcn) (fArgs fcn))
-      | otherwise = writeFunction (Function (Name cppName) (fType fcn) (classType:(fArgs fcn)))
+      | otherwise = writeFunction (Function (Name cppName) (fType fcn) (Ptr classType:(fArgs fcn)))
 
     proto = concat (intersperse " -> " ("a":map hsType (fArgs fcn) ++ [writeRetType (fType fcn)]))
 
@@ -172,14 +178,16 @@ writeModule moduleName classes functions =
   init $ unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language ForeignFunctionInterface #-}"
+  , "{-# Language FlexibleInstances #-}"
+  , "{-# Language MultiParamTypeClasses #-}"
   , ""
   , "module Gen." ++ moduleName ++ " where"
   , ""
   , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
-  , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
-  , "import Marshall ( withMarshall, StdString )"
+  , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr, withForeignPtr )"
+  , "import Marshall ( Marshall(..), StdString )"
   , ""
   , "foreign import ccall unsafe \"&casadi_bindings_delete\" c_delete :: FunPtr (Ptr a -> IO ())"
   , ""
