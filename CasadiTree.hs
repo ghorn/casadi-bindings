@@ -4,34 +4,24 @@ module CasadiTree ( fx, sxfun, tools ) where
 
 import Types
 
-vectorSXMat :: Type
-vectorSXMat = Ref (Type "std::vector<CasADi::SXMatrix>")
-
-int :: Type
-int = Type "int"
-
-stdStrRef :: Type
-stdStrRef = Ref (Type "std::string")
-
-
 fx :: Class
-fx = Class (Name "CasADi::FX") methods
+fx = Class FX methods
   where
     methods =
-      [ Method (Name "getNumScalarInputs") (SimpleType int) [] (Const False) (Static False)
+      [ Method (Name "getNumScalarInputs") (SimpleType CInt) [] (Const False) (Static False)
       ]
 
 sxfun :: Class
-sxfun = Class (Name "CasADi::SXFunction") methods
+sxfun = Class SXFunction methods
   where
     methods =
-      [ Method (Name "SXFunction") (NewRef (Type "CasADi::SXFunction")) [vectorSXMat, vectorSXMat] (Const False) (Static True)
-      , Method (Name "jac") (NewRef (Type "CasADi::SXMatrix")) [int, int] (Const False) (Static False)
+      [ Method (Name "SXFunction") (NewRef SXFunction) [Ref VectorSXMat, Ref VectorSXMat] (Const False) (Static True)
+      , Method (Name "jac") (NewRef SXMatrix) [CInt, CInt] (Const False) (Static False)
       ]
 
 tools :: [Function]
 tools =
-  [ Function (Name "CasADi::ssym") (NewRef (Type "CasADi::SXMatrix")) [stdStrRef, int, int]
-  , Function (Name "CasADi::msym") (NewRef (Type "CasADi::MX")) [stdStrRef, int, int]
+  [ Function (Name "CasADi::ssym") (NewRef SXMatrix) [StdStr, CInt, CInt]
+  , Function (Name "CasADi::msym") (NewRef MX) [Ref StdStr, CInt, CInt]
   ]
 

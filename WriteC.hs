@@ -4,94 +4,93 @@
 module WriteC ( writeFunction
               , writeClass
               , writeMethod
-              , toCName
               ) where
 
 import Data.List ( intercalate )
-import qualified Data.Text as T
 
 import Types
 
 writeFunction :: Function -> String
-writeFunction (Function (Name cppName) retType params) = 
+writeFunction (Function (Name functionName) retType params) =
   unlines
-  [ "extern \"C\"\n    " ++ proto ++ ";"
+  [ "// ================== function " ++ show functionName ++ " ==============="
+  , "// cppName: " ++ show cppName
+  , "// cName: " ++ show cName
+  , "// protoArgs: " ++ show protoArgs
+  , "// args: " ++ show args
+  , "// rettype: " ++ show retType
+  , "// rettype-cpp: " ++ show cppRetType
+  , "// proto: " ++ show proto
+  , "// call: " ++ show call
+  , ""
+  , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
-  , writeReturn retType $ cppName ++
-    "(" ++ intercalate ", " (map (paramName . fst) args) ++ ")"
+  , writeReturn retType call
   , "}"
+  , ""
   ]
   where
-    args = zip [0..] params
-    proto = cdecl ++ "(" ++ intercalate ", " (map (uncurry paramProto) args) ++ ")"
-    shownType = showRetType retType
-    cdecl = shownType ++ " " ++ toCName cppName
-
-toCName :: String -> String
-toCName cppName = T.unpack (replaces [(":","_"),(" >","_"),("< ","_")] (T.pack cppName))
-
-replaces :: [(T.Text,T.Text)] -> T.Text -> T.Text
-replaces ((find',replace'):xs) = replaces xs . T.replace find' replace'
-replaces [] = id
+    proto = cppRetType ++ " " ++ cName ++ protoArgs
+    cppRetType = cppType $ fromRetType retType
+    cName = toCName cppName
+    cppName = functionName
+    protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
+    nonSelfProtoArgs = map (uncurry paramProto) $ zip [0..] params
+    allProtoArgs = nonSelfProtoArgs
+    args = "(" ++ intercalate ", " (map (paramName . fst) $ zip [0..] params) ++ ")"
+    call = cppName ++ args
 
 writeClass :: Class -> [String]
-writeClass (Class name methods) = map (writeMethod name) methods
-
-paramProto :: Int -> Type -> String
-paramProto k t = showType t ++ " " ++ paramName k
+writeClass (Class classType methods) = map (writeMethod classType) methods
 
 paramName :: Int -> String
 paramName k = "x" ++ show k
 
-showType :: Type -> String
-showType (Type x) = x
-showType (Ptr x) = showType x ++ "*"
-showType (Ref x) = showType x ++ "&"
+fromRetType :: RetType -> Type
+fromRetType (SimpleType x) = x
+fromRetType (NewRef x) = Ptr x
 
-showRetType :: RetType -> String
-showRetType (SimpleType x) = showType x
-showRetType (NewRef x) = showType (Ptr x)
+paramProto :: Int -> Type -> String
+paramProto k t = cppType t ++ " " ++ paramName k
 
-writeMethod :: Name -> Method -> String
-writeMethod (Name classname) fcn
-  | fStatic fcn == Static True =
-    staticMethod cdecl classname name args (fType fcn)
-  | otherwise = nonStaticMethod cdecl classname name args (fType fcn)
+writeMethod :: Type -> Method -> String
+writeMethod class' fcn =
+  unlines
+  [ "// ================== " ++ static ++ "method: " ++ show methodName ++ " ==============="
+  , "// class: " ++ show classname
+  , "// cppName: " ++ show cppName
+  , "// cName: " ++ show cName
+  , "// protoArgs: " ++ show protoArgs
+  , "// args: " ++ show args
+  , "// rettype: " ++ show (fType fcn)
+  , "// rettype-cpp: " ++ show cppRetType
+  , "// proto: " ++ show proto
+  , "// call: " ++ show call
+  , ""
+  , "extern \"C\"\n    " ++ proto ++ ";"
+  , proto ++ "{"
+  , writeReturn (fType fcn) call
+  , "}"
+  , ""
+  ]
   where
-    cppName = classname ++ "::" ++ name
-    maybeConst = if fConst fcn == Const True then "const__" else ""
-    shownType = showRetType (fType fcn)
-    cdecl = shownType ++ " " ++ maybeConst ++ toCName cppName
-    args = zip [0..] (fArgs fcn)
-    Name name = fName fcn
-
+    proto = cppRetType ++ " " ++ cName ++ protoArgs
+    cppRetType = cppType $ fromRetType (fType fcn)
+    cName = toCName cppName
+    static = if fStatic fcn == Static True then "static " else ""
+    cppName = classname ++ "::" ++ methodName
+    Name methodName = fName fcn
+    classname = cppType class'
+    protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
+    nonSelfProtoArgs = map (uncurry paramProto) $ zip [0..] (fArgs fcn)
+    allProtoArgs
+      | fStatic fcn == Static True = nonSelfProtoArgs
+      | otherwise = (cppType (Ptr class') ++ " obj") : nonSelfProtoArgs
+    args = "(" ++ intercalate ", " (map (paramName . fst) $ zip [0..] (fArgs fcn)) ++ ")"
+    call
+      | fStatic fcn == Static True = cppName ++ args
+      | otherwise = "obj->" ++ methodName ++ args
+    
 writeReturn :: RetType -> String -> String
 writeReturn (SimpleType _) x = "    return " ++ x ++ ";"
-writeReturn (NewRef retType) x = "    return new " ++ showType retType ++ "( " ++ x ++ " );"
-
-staticMethod :: String -> String -> String -> [(Int,Type)] -> RetType -> String
-staticMethod cname classname name args retType =
-  unlines
-  [ "extern \"C\"\n    " ++ proto ++ ";"
-  , proto ++ "{"
-  , writeReturn retType $ classname ++ "::" ++ name ++
-    "(" ++ intercalate ", " (map (paramName . fst) args) ++ ")"
-  , "}"
-  ]
-  where
-    proto = cname ++ "(" ++ intercalate ", " (map (uncurry paramProto) args) ++ ")"
-
-nonStaticMethod :: String -> String -> String -> [(Int,Type)] -> RetType -> String
-nonStaticMethod cdef classname name args retType =
-  unlines
-  [ "extern \"C\"\n    " ++ proto ++ ";"
-  , proto ++ "{"
-  , writeReturn retType $ "obj->" ++ name ++
-    "(" ++ intercalate ", " (map (paramName . fst) args) ++ ")"
-  , "}"
-  ]
-  where
-    proto = cdef ++ "(" ++ intercalate ", " (selfname : argnames) ++ ")"
-    selfname = classname ++ "* obj" :: String
-    argnames = (map (uncurry paramProto) args) :: [String]
-
+writeReturn (NewRef retType) x = "    return new " ++ cppType retType ++ "( " ++ x ++ " );"
