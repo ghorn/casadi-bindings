@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module CasadiTree ( fx, sxfun, sxmat, sxmatvec, tools ) where
+module CasadiTree ( fx, mx, sxfun, sxmat, sxmatvec, tools ) where
 
 import Types
 
@@ -10,6 +10,9 @@ fx = Class FX methods
     methods =
       [ Method (Name "getNumScalarInputs") (SimpleType CInt) [] (Const False) (Static False)
       ]
+
+mx :: Class
+mx = Class MX []
 
 sxmat :: Class
 sxmat = Class SXMatrix []

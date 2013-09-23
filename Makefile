@@ -13,10 +13,10 @@ cbits/gen/test.o : cbits/gen/test.cpp
 	@echo "no clang errors"
 
 dist-src/Gen/Test.o : dist-src/Gen/Test.hs dist-src/Marshall.hs
-	ghc --make dist-src/Gen/Test.hs
+	cd dist-src && ghc --make Gen/Test.hs
 
 cbits/gen/test.cpp dist-src/Gen/Test.hs : src/*.hs
 	cd src && runhaskell WriteSomeCasadi.hs
 
 clean :
-	rm -f cbits/gen/test.cpp cbits/gen/test.o dist-src/Gen/*
+	rm -f cbits/gen/* dist-src/Gen/*
