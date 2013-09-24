@@ -85,8 +85,10 @@ cType :: Type -> String
 cType = toCName . cppType
 
 toCName :: String -> String
-toCName cppName = T.unpack (replaces [(":","_"),(" >","_"),("< ","_")] (T.pack cppName))
+toCName cppName = T.unpack (replaces replacements (T.pack cppName))
   where
+    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_")]
+
     replaces :: [(T.Text,T.Text)] -> T.Text -> T.Text
     replaces ((find',replace'):xs) = replaces xs . T.replace find' replace'
     replaces [] = id

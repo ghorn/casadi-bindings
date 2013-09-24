@@ -4,6 +4,7 @@
 module WriteC ( writeFunction
               , writeClass
               , writeMethod
+              , deleteName
               ) where
 
 import Data.List ( intercalate )
@@ -43,6 +44,9 @@ writeClass :: Class -> [String]
 writeClass c@(Class classType methods) =
   writeClassDelete c : map (writeMethod classType) methods
 
+deleteName :: Type -> String
+deleteName classType = "delete_" ++ toCName (cppType classType)
+
 writeClassDelete :: Class -> String
 writeClassDelete (Class classType _) =
   unlines
@@ -59,7 +63,7 @@ writeClassDelete (Class classType _) =
   ]
   where
     proto = "void " ++ cName ++ protoArgs
-    cName = "delete_" ++ toCName classname
+    cName = deleteName classType
     classname = cppType classType
     protoArgs = "(" ++ cppType (Ptr classType) ++ " obj)"
 

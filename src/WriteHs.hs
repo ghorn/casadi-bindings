@@ -9,6 +9,7 @@ import Data.Char ( toLower )
 import Data.List ( intersperse )
 import Types
 import CasadiTree
+import WriteC ( deleteName )
 
 -- haskell functions can't have capital leading letter
 beautifulHaskellName :: String -> String
@@ -59,7 +60,7 @@ writeFunction (Function (Name functionName) retType params) =
 
     newFinalizer = case retType of
       (SimpleType _)-> ""
-      (NewRef x) -> " >>= ((fmap "++ hsType x++ ") . (newForeignPtr c_delete))"
+      (NewRef x) -> " >>= ((fmap "++ hsType x++ ") . (newForeignPtr " ++ c_deleteName x ++ "))"
     
     retType' :: String
     retType' = case retType of
@@ -71,6 +72,9 @@ writeFunction (Function (Name functionName) retType params) =
       (SimpleType x) -> "IO " ++ ffiType' True x
       (NewRef x) -> "IO " ++ ffiType' True (Ptr x)
 
+c_deleteName :: Type -> String
+c_deleteName = ("c_" ++) .  deleteName
+
 writeClass :: Class -> String
 writeClass (Class classType methods) =
   unlines $
@@ -80,6 +84,8 @@ writeClass (Class classType methods) =
   , "    coerce_" ++ hsName ++ " :: a -> " ++ hsName
   ] ++ classMethods ++
   [ ""
+  , "foreign import ccall unsafe \"&" ++ deleteName classType ++ "\" "
+    ++ c_deleteName classType ++ " :: FunPtr (Ptr a -> IO ())"
   , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ ")"
   , "instance " ++ hsClass ++ " " ++ hsName ++ " where"
   , "    coerce_" ++ hsName ++ " = id"
@@ -189,8 +195,6 @@ writeModule moduleName classes functions =
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
   , "import Marshall ( Marshall(..), StdString )"
-  , ""
-  , "foreign import ccall unsafe \"&casadi_bindings_delete\" c_delete :: FunPtr (Ptr a -> IO ())"
   , ""
   ]
   ++ map writeClass classes ++ map writeFunction functions
