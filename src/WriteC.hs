@@ -5,6 +5,7 @@ module WriteC ( writeFunction
               , writeClass
               , writeMethod
               , deleteName
+              , getCppName
               ) where
 
 import Data.List ( intercalate )
@@ -83,10 +84,17 @@ marshall k t = "    " ++ cppMarshallType t ++ " " ++ paramName k ++
                "_ = marshall(" ++
                paramName k ++ ");"
 
+getCppName :: CasadiPrimitive -> Method -> String
+getCppName classType fcn = case fMethodType fcn of
+  Constructor -> cppType (Prim (CP classType))
+  _ -> cppType (Prim (CP classType)) ++ "::" ++ methodName
+  where
+    Name methodName = fName fcn
+
 writeMethod :: CasadiPrimitive -> Method -> String
 writeMethod classType fcn =
   unlines
-  [ "// ================== " ++ static ++ "method: " ++ show methodName ++ " ==============="
+  [ "// ================== " ++ show (fMethodType fcn) ++ " method: " ++ show methodName ++ " ==============="
   , "// class: " ++ show (cppType (Prim (CP classType)))
   , "// cppName: " ++ show cppName
   , "// cName: " ++ show cName
@@ -108,18 +116,17 @@ writeMethod classType fcn =
     proto = cppRetType ++ " " ++ cName ++ protoArgs
     cppRetType = fromRetType (fType fcn)
     cName = toCName cppName
-    static = if fStatic fcn == Static True then "static " else ""
-    cppName = cppType (Prim (CP classType)) ++ "::" ++ methodName
+    cppName = getCppName classType fcn
     Name methodName = fName fcn
     protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
     nonSelfProtoArgs = map (uncurry paramProto) $ zip [0..] (fArgs fcn)
-    allProtoArgs
-      | fStatic fcn == Static True = nonSelfProtoArgs
-      | otherwise = (cppType (Ptr (CP classType)) ++ " obj") : nonSelfProtoArgs
+    allProtoArgs = case fMethodType fcn of
+      Normal -> (cppType (Ptr (CP classType)) ++ " obj") : nonSelfProtoArgs
+      _ -> nonSelfProtoArgs
     args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] (fArgs fcn)) ++ ")"
-    call
-      | fStatic fcn == Static True = cppName ++ args
-      | otherwise = "obj->" ++ methodName ++ args
+    call = case fMethodType fcn of
+      Normal -> "obj->" ++ methodName ++ args
+      _ -> cppName ++ args
     
 writeReturn :: RetType -> String -> String
 writeReturn (SimpleType _) x = "    return " ++ x ++ ";"

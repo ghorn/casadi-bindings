@@ -13,7 +13,7 @@ fx :: Class
 fx = Class FX methods
   where
     methods =
-      [ Method (Name "getNumScalarInputs") (SimpleType cint) [] (Const False) (Static False)
+      [ Method (Name "getNumScalarInputs") (SimpleType cint) [] (Const False) Normal
       ]
 
 mx :: Class
@@ -27,8 +27,8 @@ sxfun :: Class
 sxfun = Class SXFunction methods
   where
     methods =
-      [ Method (Name "SXFunction") (NewRef SXFunction) [constSXMatVec, constSXMatVec] (Const False) (Static True)
-      , Method (Name "jac") (NewRef SXMatrix) [cint,cint] (Const False) (Static False)
+      [ Method (Name "SXFunction") (NewRef SXFunction) [constSXMatVec, constSXMatVec] (Const False) Constructor
+      , Method (Name "jac") (NewRef SXMatrix) [cint,cint] (Const False) Normal
       ]
 
 tools :: [Function]

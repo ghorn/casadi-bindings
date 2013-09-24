@@ -8,7 +8,7 @@ module Types ( Class(..)
              , Name(..)
              , Type(..)
              , RetType(..)
-             , Static(..)
+             , MethodType(..)
              , CasadiPrimitive(..)
              , SimplePrimitive(..)
              , Primitive(..)
@@ -148,11 +148,11 @@ data Method = Method { fName :: Name
                      , fType :: RetType
                      , fArgs :: [Type]
                      , fConst :: Const
-                     , fStatic :: Static
+                     , fMethodType :: MethodType
                      } deriving Show
+data MethodType = Constructor | Static | Normal deriving Show
 
 newtype Const = Const Bool deriving (Show, Eq)
-newtype Static = Static Bool deriving (Show, Eq)
 
 data Class = Class CasadiPrimitive [Method] deriving Show
 data Function = Function Name RetType [Type] deriving Show

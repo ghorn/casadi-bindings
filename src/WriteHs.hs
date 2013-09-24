@@ -111,7 +111,8 @@ writeMethod classType fcn = (method, ffiWrapper)
   where
     method =
       unlines $ map ("    " ++) $
-      [ "-- ================== " ++ static' ++ "method: " ++ show methodName ++ " ==============="
+      [ "-- ================== " ++ show (fMethodType fcn) ++ " method: "
+        ++ show methodName ++ " ==============="
       , "-- class: " ++ show hsClass
       , "-- hsname: " ++ show hsName
       , "-- cppName: " ++ show cppName
@@ -137,12 +138,12 @@ writeMethod classType fcn = (method, ffiWrapper)
 
 --    default' = hsMethodName ++ " " ++ patternMatchArgs ++ " = " ++ c_hsName ++ " " ++ appArgs
     nonSelfArgs = take (length (fArgs fcn)) ["x" ++ show k | k <- [(0::Int)..]]
-    appArgs
-      | static = concat (intersperse " " nonSelfArgs)
-      | otherwise = concat (intersperse " " ("self" : nonSelfArgs))
-    patternMatchArgs = concat (intersperse " " (self : nonSelfArgs))
-      where
-        self = if static then "_" else "self"
+    appArgs = case fMethodType fcn of
+      Normal -> concat (intersperse " " ("self" : nonSelfArgs))
+      _ -> concat (intersperse " " nonSelfArgs)
+--    patternMatchArgs = concat (intersperse " " (self : nonSelfArgs))
+--      where
+--        self = if static then "_" else "self"
 
     hsClass = hsName ++ "_Class"
     hsName = beautifulHaskellName $ hsType (Prim (CP classType))
@@ -150,9 +151,9 @@ writeMethod classType fcn = (method, ffiWrapper)
     cName = toCName cppName
 
     hsMethodName = beautifulHaskellName methodName
-    ffiWrapper
-      | static = writeFunction (Function (Name cppName) (fType fcn) (fArgs fcn))
-      | otherwise = writeFunction (Function (Name cppName) (fType fcn) (Ptr (CP classType):(fArgs fcn)))
+    ffiWrapper = case fMethodType fcn of
+      Normal -> writeFunction (Function (Name cppName) (fType fcn) (Ptr (CP classType):(fArgs fcn)))
+      _ -> writeFunction (Function (Name cppName) (fType fcn) (fArgs fcn))
 
     proto = concat (intersperse " -> " ("a":map hsType (fArgs fcn) ++ [writeRetType (fType fcn)]))
 
@@ -172,8 +173,6 @@ writeMethod classType fcn = (method, ffiWrapper)
 --     proto = cppRetType ++ " " ++ cName ++ protoArgs
 --     cppRetType = cppType $ fromRetType (fType fcn)
 --     cName = toCName cppName
-    static = if fStatic fcn == Static True then True else False
-    static' = if static then "static " else ""
     Name methodName = fName fcn
 --    classname = cppType classType
 --    protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
