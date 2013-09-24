@@ -1,38 +1,53 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# Language ForeignFunctionInterface #-}
 {-# Language MultiParamTypeClasses #-}
+-- {-# Language FunctionalDependencies #-}
 {-# Language TypeSynonymInstances #-}
 {-# Language FlexibleInstances #-}
-{-# Language FunctionalDependencies #-}
 
-module Marshall ( Marshall(..)
-                , StdString
+module Marshall ( ForeignPtrWrapper(..)
+                , Marshall(..)
                 ) where
 
-import qualified Foreign.C.Types as C
-import qualified Foreign.C.String as C
+import qualified Data.Vector as V
+import Foreign.C.Types
+import Foreign.C.String
 import Foreign.Ptr ( Ptr )
-import Foreign.ForeignPtr ( ForeignPtr, withForeignPtr )
-
-data StdString
+import Foreign.ForeignPtr ( ForeignPtr, withForeignPtr, touchForeignPtr )
+import Foreign.ForeignPtr.Unsafe ( unsafeForeignPtrToPtr )
+import Foreign.Marshal -- ( mallocArray )
 
 class Marshall a b where
   withMarshall :: a -> (b -> IO c) -> IO c
 
-instance Marshall Int C.CInt where
+instance Marshall Int CInt where
   withMarshall x f = f (fromIntegral x)
 
-foreign import ccall unsafe "marshall_stdstr" c_marshallStdString
-  :: C.CString -> IO (Ptr StdString)
-foreign import ccall unsafe "free_stdstr" c_freeStdString
-  :: Ptr StdString -> IO ()
+instance Marshall String CString where
+  withMarshall = withCString
 
-instance Marshall String (Ptr StdString) where
-  withMarshall x f = do
-    C.withCString x $ \cstr -> do
-      stdStr <- c_marshallStdString cstr
-      ret <- f stdStr
-      c_freeStdString stdStr
-      return ret
 instance Marshall (ForeignPtr a) (Ptr a) where
-    withMarshall x f = withForeignPtr x f
+  withMarshall = withForeignPtr
+
+class ForeignPtrWrapper a b where
+  unwrapForeignPtr :: a -> ForeignPtr b
+
+withForeignPtrs :: [ForeignPtr a] -> ([Ptr a] -> IO b) -> IO b
+withForeignPtrs xs f = do
+  ret <- f (map unsafeForeignPtrToPtr xs)
+  mapM_ touchForeignPtr xs
+  return ret
+
+foreign import ccall unsafe "get_void_ptr" c_voidPtr :: IO (Ptr a)
+
+instance ForeignPtrWrapper a b => Marshall (V.Vector a) (Ptr (Ptr b)) where
+  withMarshall vec f = do
+    voidPtr <- c_voidPtr
+    let vec' = V.toList vec
+        vec'' = map unwrapForeignPtr vec'
+        runMe vec''' = do
+          ptr <- newArray (vec''' ++ [voidPtr])
+          ret <- f ptr
+          free ptr
+          return ret
+    withForeignPtrs vec'' runMe

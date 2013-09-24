@@ -25,27 +25,28 @@ writeFunction (Function (Name functionName) retType params) =
   , "// call: " ++ show call
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
+  , unlines marshalls
   , writeReturn retType call
   , "}"
   , ""
   ]
   where
+    marshalls = map (uncurry marshall) $ zip [0..] params
     proto = cppRetType ++ " " ++ cName ++ protoArgs
-    cppRetType = cppType $ fromRetType retType
+    cppRetType = fromRetType retType
     cName = toCName cppName
     cppName = functionName
     protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
-    nonSelfProtoArgs = map (uncurry paramProto) $ zip [0..] params
-    allProtoArgs = nonSelfProtoArgs
-    args = "(" ++ intercalate ", " (map (paramName . fst) $ zip [0..] params) ++ ")"
+    allProtoArgs = map (uncurry paramProto) $ zip [0..] params
+    args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] params) ++ ")"
     call = cppName ++ args
 
 writeClass :: Class -> [String]
 writeClass c@(Class classType methods) =
   writeClassDelete c : map (writeMethod classType) methods
 
-deleteName :: Type -> String
-deleteName classType = "delete_" ++ toCName (cppType classType)
+deleteName :: CasadiPrimitive -> String
+deleteName classType = "delete_" ++ cType (Prim (CP classType))
 
 writeClassDelete :: Class -> String
 writeClassDelete (Class classType _) =
@@ -64,24 +65,29 @@ writeClassDelete (Class classType _) =
   where
     proto = "void " ++ cName ++ protoArgs
     cName = deleteName classType
-    classname = cppType classType
-    protoArgs = "(" ++ cppType (Ptr classType) ++ " obj)"
+    classname = cppType (Ptr (CP classType))
+    protoArgs = "(" ++ classname ++ " obj)"
 
 paramName :: Int -> String
 paramName k = "x" ++ show k
 
-fromRetType :: RetType -> Type
-fromRetType (SimpleType x) = x
-fromRetType (NewRef x) = Ptr x
+fromRetType :: RetType -> String
+fromRetType (SimpleType x) = cppType x
+fromRetType (NewRef x) = cppType (Ptr (CP x))
 
 paramProto :: Int -> Type -> String
-paramProto k t = cppType t ++ " " ++ paramName k
+paramProto k t = cWrapperType t ++ " " ++ paramName k
 
-writeMethod :: Type -> Method -> String
-writeMethod class' fcn =
+marshall :: Int -> Type -> String
+marshall k t = "    " ++ cppMarshallType t ++ " " ++ paramName k ++
+               "_ = marshall(" ++
+               paramName k ++ ");"
+
+writeMethod :: CasadiPrimitive -> Method -> String
+writeMethod classType fcn =
   unlines
   [ "// ================== " ++ static ++ "method: " ++ show methodName ++ " ==============="
-  , "// class: " ++ show classname
+  , "// class: " ++ show (cppType (Prim (CP classType)))
   , "// cppName: " ++ show cppName
   , "// cName: " ++ show cName
   , "// protoArgs: " ++ show protoArgs
@@ -92,28 +98,29 @@ writeMethod class' fcn =
   , "// call: " ++ show call
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
+  , unlines marshalls
   , writeReturn (fType fcn) call
   , "}"
   , ""
   ]
   where
+    marshalls = map (uncurry marshall) $ zip [0..] (fArgs fcn)
     proto = cppRetType ++ " " ++ cName ++ protoArgs
-    cppRetType = cppType $ fromRetType (fType fcn)
+    cppRetType = fromRetType (fType fcn)
     cName = toCName cppName
     static = if fStatic fcn == Static True then "static " else ""
-    cppName = classname ++ "::" ++ methodName
+    cppName = cppType (Prim (CP classType)) ++ "::" ++ methodName
     Name methodName = fName fcn
-    classname = cppType class'
     protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
     nonSelfProtoArgs = map (uncurry paramProto) $ zip [0..] (fArgs fcn)
     allProtoArgs
       | fStatic fcn == Static True = nonSelfProtoArgs
-      | otherwise = (cppType (Ptr class') ++ " obj") : nonSelfProtoArgs
-    args = "(" ++ intercalate ", " (map (paramName . fst) $ zip [0..] (fArgs fcn)) ++ ")"
+      | otherwise = (cppType (Ptr (CP classType)) ++ " obj") : nonSelfProtoArgs
+    args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] (fArgs fcn)) ++ ")"
     call
       | fStatic fcn == Static True = cppName ++ args
       | otherwise = "obj->" ++ methodName ++ args
     
 writeReturn :: RetType -> String -> String
 writeReturn (SimpleType _) x = "    return " ++ x ++ ";"
-writeReturn (NewRef retType) x = "    return new " ++ cppType retType ++ "( " ++ x ++ " );"
+writeReturn (NewRef retType) x = "    return new " ++ cppType (Prim (CP retType)) ++ "( " ++ x ++ " );"

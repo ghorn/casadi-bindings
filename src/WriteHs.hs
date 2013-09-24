@@ -41,6 +41,9 @@ writeFunction (Function (Name functionName) retType params) =
   , "-- hsFunctionName: " ++ show hsFunctionName
   , "-- c_hsFunctionName: " ++ show c_hsFunctionName
   , "-- retType': " ++ show retType'
+  , "-- retType: " ++ show retType
+  , "-- params: " ++ show params
+  , "-- map ffiType params: " ++ show (map ffiType params)
   , "-- ffiRetType: " ++ show ffiRetType
   , foreignImport
   , hsFunctionName ++ "\n  :: " ++ proto
@@ -60,19 +63,19 @@ writeFunction (Function (Name functionName) retType params) =
 
     newFinalizer = case retType of
       (SimpleType _)-> ""
-      (NewRef x) -> " >>= ((fmap "++ hsType x++ ") . (newForeignPtr " ++ c_deleteName x ++ "))"
+      (NewRef x) -> " >>= ((fmap "++ hsType (Prim (CP x)) ++ ") . (newForeignPtr " ++ c_deleteName x ++ "))"
     
     retType' :: String
     retType' = case retType of
       (SimpleType x) -> "IO " ++ hsType' True x
-      (NewRef x) -> "IO " ++ hsType' True (Ptr x)
+      (NewRef x) -> "IO " ++ hsType' True (Ptr (CP x))
 
     ffiRetType :: String
     ffiRetType = case retType of
       (SimpleType x) -> "IO " ++ ffiType' True x
-      (NewRef x) -> "IO " ++ ffiType' True (Ptr x)
+      (NewRef x) -> "IO " ++ ffiType' True (Prim (CP x))
 
-c_deleteName :: Type -> String
+c_deleteName :: CasadiPrimitive -> String
 c_deleteName = ("c_" ++) .  deleteName
 
 writeClass :: Class -> String
@@ -85,22 +88,25 @@ writeClass (Class classType methods) =
   ] ++ classMethods ++
   [ ""
   , "foreign import ccall unsafe \"&" ++ deleteName classType ++ "\" "
-    ++ c_deleteName classType ++ " :: FunPtr (Ptr a -> IO ())"
-  , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ ")"
-  , "instance " ++ hsClass ++ " " ++ hsName ++ " where"
-  , "    coerce_" ++ hsName ++ " = id"
-  , "instance Marshall " ++ hsName ++ " (ForeignPtr " ++ hsName ++ ") where"
+    ++ c_deleteName classType ++ " :: FunPtr ("++ ffiType (Prim (CP classType)) ++ " -> IO ())"
+  , "data " ++ hsName ++ "'"
+  , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "')"
+  , "instance Marshall " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "') where"
   , "    withMarshall ("++ hsName ++ " x) f = f x"
-  , "instance Marshall " ++ hsName ++ " (Ptr " ++ hsName ++ ") where"
+  , "instance Marshall " ++ hsName ++ " (Ptr " ++ hsName ++ "') where"
   , "    withMarshall ("++ hsName ++ " x) f = withMarshall x f"
+  , "instance ForeignPtrWrapper " ++ hsName ++ " " ++ hsName ++ "' where"
+  , "    unwrapForeignPtr ("++ hsName ++ " x) = x"
+  , "--instance " ++ hsClass ++ " " ++ hsName ++ " where"
+  , "--    coerce_" ++ hsName ++ " = id"
   ]
   where
     hsClass = hsName ++ "_Class"
-    hsName = hsType classType
+    hsName = hsType (Prim (CP classType))
 
     (classMethods, ffiWrappers) = unzip $ map (writeMethod classType) methods
 
-writeMethod :: Type -> Method -> (String, String)
+writeMethod :: CasadiPrimitive -> Method -> (String, String)
 writeMethod classType fcn = (method, ffiWrapper)
   where
     method =
@@ -139,20 +145,20 @@ writeMethod classType fcn = (method, ffiWrapper)
         self = if static then "_" else "self"
 
     hsClass = hsName ++ "_Class"
-    hsName = beautifulHaskellName $ hsType classType
-    cppName = cppType classType ++ "::" ++ methodName
+    hsName = beautifulHaskellName $ hsType (Prim (CP classType))
+    cppName = cppType (Prim (CP classType)) ++ "::" ++ methodName
     cName = toCName cppName
 
     hsMethodName = beautifulHaskellName methodName
     ffiWrapper
       | static = writeFunction (Function (Name cppName) (fType fcn) (fArgs fcn))
-      | otherwise = writeFunction (Function (Name cppName) (fType fcn) (Ptr classType:(fArgs fcn)))
+      | otherwise = writeFunction (Function (Name cppName) (fType fcn) (Ptr (CP classType):(fArgs fcn)))
 
     proto = concat (intersperse " -> " ("a":map hsType (fArgs fcn) ++ [writeRetType (fType fcn)]))
 
     writeRetType :: RetType -> String
     writeRetType (SimpleType x) = "IO " ++ hsType' True x
-    writeRetType (NewRef x) = "IO " ++ hsType' True (Ptr x)
+    writeRetType (NewRef x) = "IO " ++ hsType' True (Ptr (CP x))
 
 --    hsArgs
 --      | fStatic fcn == Static True = [map hsType (fParams f)]
@@ -190,11 +196,12 @@ writeModule moduleName classes functions =
   , ""
   , "module Gen." ++ moduleName ++ " where"
   , ""
-  , "-- import Data.Vector ( Vector )"
+  , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
+  , "import Foreign.C.String"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
-  , "import Marshall ( Marshall(..), StdString )"
+  , "import Marshall ( ForeignPtrWrapper(..), Marshall(..) )"
   , ""
   ]
   ++ map writeClass classes ++ map writeFunction functions

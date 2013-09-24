@@ -9,6 +9,9 @@ module Types ( Class(..)
              , Type(..)
              , RetType(..)
              , Static(..)
+             , CasadiPrimitive(..)
+             , SimplePrimitive(..)
+             , Primitive(..)
              , hsType
              , hsType'
              , ffiType
@@ -16,70 +19,118 @@ module Types ( Class(..)
              , cppType
              , cType
              , toCName
+             , cWrapperType
+             , cppMarshallType
              ) where
 
 import qualified Data.Text as T
 
 data Name = Name String deriving Show
 data RetType = SimpleType Type
-             | NewRef Type deriving Show
+             | NewRef CasadiPrimitive deriving Show
 
-data Type = CInt
-          | SXMatrixVector
-          | StdString
-          | FX
-          | MX
-          | SXMatrix
-          | SXFunction
-          | Ref Type
-          | Ptr Type
+data CasadiPrimitive = SXMatrix
+                     | FX
+                     | MX
+                     | SXFunction
+                     | Vec Primitive
+                     deriving Show
+
+data SimplePrimitive = CInt
+                     | CDouble
+                     | StdString
+                     deriving Show
+
+data Primitive = SP SimplePrimitive
+               | CP CasadiPrimitive
+               deriving Show
+
+data Type = Prim Primitive
+          | Ref Primitive
+          | Ptr Primitive
+          | ConstRef Primitive
           deriving Show
 
 casadiNs :: String -> String
 casadiNs = ("CasADi::" ++)
 
+-- haskell type which end-user sees
 hsType :: Type -> String
 hsType = hsType' False
 
 hsType' :: Bool -> Type -> String
-hsType' _ CInt = "Int"
-hsType' _ StdString = "String"
-hsType' _ FX = "FX"
-hsType' _ SXFunction = "SXFunction"
-hsType' _ MX = "MX"
-hsType' _ SXMatrix = "SXMatrix"
-hsType' _ SXMatrixVector = "SXMatrixVector"
-hsType' p (Ref x) = hsType' p x
-hsType' p (Ptr x) = hsType' p x
+hsType' _ (Prim (SP CInt)) = "Int"
+hsType' _ (Prim (SP CDouble)) = "Double"
+hsType' _ (Prim (SP StdString)) = "String"
+hsType' _ (Prim (CP FX)) = "FX"
+hsType' _ (Prim (CP SXFunction)) = "SXFunction"
+hsType' _ (Prim (CP MX)) = "MX"
+hsType' _ (Prim (CP SXMatrix)) = "SXMatrix"
+hsType' p (Prim (CP (Vec x))) = maybeParens p $ "Vector " ++ hsType' True (Prim x)
+hsType' p (Ref x) = hsType' p (Prim x)
+hsType' p (Ptr x) = hsType' p (Prim x)
+hsType' p (ConstRef x) = hsType' p (Prim x)
 
 maybeParens :: Bool -> String -> String
 maybeParens False x = x
 maybeParens True x = "(" ++ x ++ ")"
 
+-- haskell type that appears in foreign import
 ffiType :: Type -> String
 ffiType = ffiType' False
 
 ffiType' :: Bool -> Type -> String
-ffiType' _ CInt = "CInt"
-ffiType' _ StdString = "StdString"
-ffiType' _ FX = "FX"
-ffiType' _ SXFunction = "SXFunction"
-ffiType' _ MX = "MX"
-ffiType' _ SXMatrix = "SXMatrix"
-ffiType' _ SXMatrixVector = "SXMatrixVector"
-ffiType' p (Ref x) = maybeParens p $ "Ptr " ++ ffiType' True x
-ffiType' p (Ptr x) = maybeParens p $ "Ptr " ++ ffiType' True x
+ffiType' _ (Prim (SP CInt)) = "CInt"
+ffiType' _ (Prim (SP CDouble)) = "CDouble"
+ffiType' _ (Prim (SP StdString)) = "CString"
+ffiType' p (Prim (CP (Vec x))) = maybeParens p $ "Ptr " ++ ffiType' True (Prim x)
+ffiType' p (Prim (CP x)) = maybeParens p $ "Ptr " ++ show x ++ "'"
+
+ffiType' p (Ptr (CP (Vec x)))      = maybeParens p $ "Ptr " ++ ffiType' True (Ptr x)
+ffiType' p (Ref (CP (Vec x)))      = maybeParens p $ "Ptr " ++ ffiType' True (Ref x)
+ffiType' p (ConstRef (CP (Vec x))) = maybeParens p $ "Ptr " ++ ffiType' True (ConstRef x)
+
+ffiType' p (Ptr (CP x)) = ffiType' p (Prim (CP x))
+ffiType' p (Ref (CP x)) = ffiType' p (Prim (CP x))
+ffiType' p (ConstRef (CP x)) = ffiType' p (Prim (CP x))
+
+ffiType' p (Ptr (SP StdString)) = ffiType' p (Prim (SP StdString))
+ffiType' p (Ref (SP StdString)) = ffiType' p (Prim (SP StdString))
+ffiType' p (ConstRef (SP StdString)) = ffiType' p (Prim (SP StdString))
+
+ffiType' p (Ptr x@(SP _)) = maybeParens p $ "Ptr " ++ ffiType' True (Prim x)
+ffiType' p (Ref x@(SP _)) = maybeParens p $ "Ptr " ++ ffiType' True (Prim x)
+ffiType' p (ConstRef x@(SP _)) = maybeParens p $ "Ptr " ++ ffiType' True (Prim x)
+
+cWrapperType :: Type -> String
+cWrapperType (Prim (SP CInt)) = "int"
+cWrapperType (Prim (SP CDouble)) = "double"
+cWrapperType (Prim (SP StdString)) = "char*"
+cWrapperType (Prim (CP SXFunction)) = casadiNs "SXFunction"
+cWrapperType (Prim (CP MX)) = casadiNs "MX"
+cWrapperType (Prim (CP SXMatrix)) = casadiNs "SXMatrix"
+cWrapperType (Prim (CP FX)) = casadiNs "FX"
+cWrapperType (Ref (SP StdString)) = "char*"
+cWrapperType (ConstRef (SP StdString)) = "char*"
+cWrapperType (Prim (CP (Vec x))) = cWrapperType (Prim x) ++ "*"
+cWrapperType (Ptr x) = cWrapperType (Prim x) ++ "*"
+cWrapperType (Ref x) = cWrapperType (Prim x) ++ "&"
+cWrapperType (ConstRef x) = cWrapperType (Prim x) ++ " const &"
+
+cppMarshallType :: Type -> String
+cppMarshallType (Ref x) = cppType (Prim x)
+cppMarshallType (ConstRef x) = cppType (Prim x)
+cppMarshallType x = cppType x
 
 cppType :: Type -> String
-cppType SXMatrixVector = "std::vector<CasADi::SXMatrix>"
-cppType CInt = "int"
-cppType StdString = "std::string"
-cppType FX = casadiNs "FX"
-cppType SXFunction = casadiNs "SXFunction"
-cppType MX = casadiNs "MX"
-cppType SXMatrix = casadiNs "SXMatrix"
-cppType (Ref x) = cppType x ++ "&"
-cppType (Ptr x) = cppType x ++ "*"
+cppType (Prim (SP CInt)) = "int"
+cppType (Prim (SP CDouble)) = "double"
+cppType (Prim (SP StdString)) = "std::string"
+cppType (Prim (CP (Vec x))) = "std::vector<" ++ cppType (Prim x) ++ ">"
+cppType (Prim (CP x)) = casadiNs (show x)
+cppType (Ptr x) = cppType (Prim x) ++ "*"
+cppType (Ref x) = cppType (Prim x) ++ "&"
+cppType (ConstRef x) = cppType (Prim x) ++ " const &"
 
 cType :: Type -> String
 cType = toCName . cppType
@@ -99,10 +150,9 @@ data Method = Method { fName :: Name
                      , fConst :: Const
                      , fStatic :: Static
                      } deriving Show
---data Variable = Variable Name Type
+
 newtype Const = Const Bool deriving (Show, Eq)
 newtype Static = Static Bool deriving (Show, Eq)
 
-data Class = Class Type [Method] deriving Show --[Variable]
+data Class = Class CasadiPrimitive [Method] deriving Show
 data Function = Function Name RetType [Type] deriving Show
-

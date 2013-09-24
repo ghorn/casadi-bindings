@@ -1,14 +1,19 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module CasadiTree ( fx, mx, sxfun, sxmat, sxmatvec, tools ) where
+module CasadiTree ( fx, mx, sxfun, sxmat, tools ) where
 
 import Types
+
+cint,constSXMatVec,constString :: Type
+cint = Prim (SP CInt)
+constSXMatVec = ConstRef (CP (Vec (CP SXMatrix)))
+constString = ConstRef (SP StdString)
 
 fx :: Class
 fx = Class FX methods
   where
     methods =
-      [ Method (Name "getNumScalarInputs") (SimpleType CInt) [] (Const False) (Static False)
+      [ Method (Name "getNumScalarInputs") (SimpleType cint) [] (Const False) (Static False)
       ]
 
 mx :: Class
@@ -17,19 +22,17 @@ mx = Class MX []
 sxmat :: Class
 sxmat = Class SXMatrix []
 
-sxmatvec :: Class
-sxmatvec = Class SXMatrixVector []
 
 sxfun :: Class
 sxfun = Class SXFunction methods
   where
     methods =
-      [ Method (Name "SXFunction") (NewRef SXFunction) [Ref SXMatrixVector, Ref SXMatrixVector] (Const False) (Static True)
-      , Method (Name "jac") (NewRef SXMatrix) [CInt, CInt] (Const False) (Static False)
+      [ Method (Name "SXFunction") (NewRef SXFunction) [constSXMatVec, constSXMatVec] (Const False) (Static True)
+      , Method (Name "jac") (NewRef SXMatrix) [cint,cint] (Const False) (Static False)
       ]
 
 tools :: [Function]
 tools =
-  [ Function (Name "CasADi::ssym") (NewRef SXMatrix) [Ref StdString, CInt, CInt]
-  , Function (Name "CasADi::msym") (NewRef MX) [Ref StdString, CInt, CInt]
+  [ Function (Name "CasADi::ssym") (NewRef SXMatrix) [constString, cint, cint]
+  , Function (Name "CasADi::msym") (NewRef MX) [constString, cint, cint]
   ]

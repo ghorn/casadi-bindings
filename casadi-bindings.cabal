@@ -33,14 +33,11 @@ library
                   /home/ghorn/casadi/symbolic
   Ghc-options: -pgml g++
 
-  cc-options: -Wall -Wextra
-
   Ghc-options: -pgml g++
---  cc-options: -Wall -Wextra
+  cc-options: -Wall -Werror -Wno-delete-non-virtual-dtor
 
   C-sources:         cbits/marshall.cpp
-                     --cbits/nlp.cpp
-                     --cbits/integrator.cpp
+                     cbits/gen/test.cpp
 
-  Install-includes:  cbits/marshall.hpp
+--  Install-includes:  cbits/marshall.hpp
 

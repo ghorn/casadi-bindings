@@ -8,11 +8,11 @@ emit-hs : dist-src/Gen/Test.hs
 	clear
 	@pygmentize -f terminal -g dist-src/Gen/Test.hs
 
-cbits/gen/test.o : cbits/gen/test.cpp
+cbits/gen/test.o : cbits/gen/test.cpp cbits/marshall.hpp
 	clang++ -Wall -Werror -Wno-delete-non-virtual-dtor -I/home/ghorn/casadi/symbolic -c cbits/gen/test.cpp -o cbits/gen/test.o
 	@echo "test.o: no clang errors"
 
-cbits/marshall.o : cbits/marshall.cpp
+cbits/marshall.o : cbits/marshall.cpp cbits/marshall.hpp
 	clang++ -Wall -Werror -I/home/ghorn/casadi/symbolic -c cbits/marshall.cpp -o cbits/marshall.o
 	@echo "marshall.o: no clang errors"
 
