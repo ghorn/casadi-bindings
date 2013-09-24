@@ -33,4 +33,3 @@ tools =
   [ Function (Name "CasADi::ssym") (NewRef SXMatrix) [Ref StdString, CInt, CInt]
   , Function (Name "CasADi::msym") (NewRef MX) [Ref StdString, CInt, CInt]
   ]
-

@@ -10,9 +10,12 @@ import Data.List ( intersperse )
 import Types
 import CasadiTree
 
-toLower' :: String -> String
-toLower' [] = []
-toLower' (x:xs) = toLower x:xs
+-- haskell functions can't have capital leading letter
+beautifulHaskellName :: String -> String
+beautifulHaskellName [] = error "beautifulHaskellName: empty string will never be beautiful :'("
+beautifulHaskellName "SXFunction" = "sxFunction"
+-- fall back on just making just the first letter lowercase
+beautifulHaskellName (x:xs) = toLower x:xs
 
 marshallFun :: Int -> String -> String -> String
 marshallFun n fun wrappedFun =
@@ -44,7 +47,7 @@ writeFunction (Function (Name functionName) retType params) =
   ]
   where
     args = take (length params) ["x"++show k ++ "'" | k <- [(0::Int)..]]
-    hsFunctionName = toLower' cFunctionName
+    hsFunctionName = beautifulHaskellName cFunctionName
     cFunctionName = toCName functionName
     c_hsFunctionName = "c_" ++ cFunctionName
     foreignImport = 
@@ -82,8 +85,6 @@ writeClass (Class classType methods) =
   , "    coerce_" ++ hsName ++ " = id"
   , "instance Marshall " ++ hsName ++ " (ForeignPtr " ++ hsName ++ ") where"
   , "    withMarshall ("++ hsName ++ " x) f = f x"
-  , "instance Marshall (ForeignPtr " ++ hsName ++ ") (Ptr " ++ hsName ++ ") where"
-  , "    withMarshall x f = withForeignPtr x f"
   , "instance Marshall " ++ hsName ++ " (Ptr " ++ hsName ++ ") where"
   , "    withMarshall ("++ hsName ++ " x) f = withMarshall x f"
   ]
@@ -132,11 +133,11 @@ writeMethod classType fcn = (method, ffiWrapper)
         self = if static then "_" else "self"
 
     hsClass = hsName ++ "_Class"
-    hsName = toLower' $ hsType classType
+    hsName = beautifulHaskellName $ hsType classType
     cppName = cppType classType ++ "::" ++ methodName
     cName = toCName cppName
 
-    hsMethodName = toLower' methodName
+    hsMethodName = beautifulHaskellName methodName
     ffiWrapper
       | static = writeFunction (Function (Name cppName) (fType fcn) (fArgs fcn))
       | otherwise = writeFunction (Function (Name cppName) (fType fcn) (Ptr classType:(fArgs fcn)))
@@ -183,10 +184,10 @@ writeModule moduleName classes functions =
   , ""
   , "module Gen." ++ moduleName ++ " where"
   , ""
-  , "import Data.Vector ( Vector )"
+  , "-- import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
-  , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr, withForeignPtr )"
+  , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
   , "import Marshall ( Marshall(..), StdString )"
   , ""
   , "foreign import ccall unsafe \"&casadi_bindings_delete\" c_delete :: FunPtr (Ptr a -> IO ())"

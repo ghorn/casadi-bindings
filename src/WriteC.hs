@@ -22,7 +22,6 @@ writeFunction (Function (Name functionName) retType params) =
   , "// rettype-cpp: " ++ show cppRetType
   , "// proto: " ++ show proto
   , "// call: " ++ show call
-  , ""
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
   , writeReturn retType call
@@ -41,7 +40,28 @@ writeFunction (Function (Name functionName) retType params) =
     call = cppName ++ args
 
 writeClass :: Class -> [String]
-writeClass (Class classType methods) = map (writeMethod classType) methods
+writeClass c@(Class classType methods) =
+  writeClassDelete c : map (writeMethod classType) methods
+
+writeClassDelete :: Class -> String
+writeClassDelete (Class classType _) =
+  unlines
+  [ "// ================== delete "++ show classname ++"==============="
+  , "// classname: " ++ show classname
+  , "// cName: " ++ show cName
+  , "// protoArgs: " ++ show protoArgs
+  , "// proto: " ++ show proto
+  , "extern \"C\"\n    " ++ proto ++ ";"
+  , proto ++ "{"
+  , "    delete obj;"
+  , "}"
+  , ""
+  ]
+  where
+    proto = "void " ++ cName ++ protoArgs
+    cName = "delete_" ++ toCName classname
+    classname = cppType classType
+    protoArgs = "(" ++ cppType (Ptr classType) ++ " obj)"
 
 paramName :: Int -> String
 paramName k = "x" ++ show k
@@ -66,7 +86,6 @@ writeMethod class' fcn =
   , "// rettype-cpp: " ++ show cppRetType
   , "// proto: " ++ show proto
   , "// call: " ++ show call
-  , ""
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
   , writeReturn (fType fcn) call

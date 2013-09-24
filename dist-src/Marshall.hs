@@ -12,10 +12,9 @@ module Marshall ( Marshall(..)
 import qualified Foreign.C.Types as C
 import qualified Foreign.C.String as C
 import Foreign.Ptr ( Ptr )
-import qualified Foreign.ForeignPtr as F
-import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr, withForeignPtr )
+import Foreign.ForeignPtr ( ForeignPtr, withForeignPtr )
 
-data StdString = StdString
+data StdString
 
 class Marshall a b where
   withMarshall :: a -> (b -> IO c) -> IO c
@@ -35,3 +34,5 @@ instance Marshall String (Ptr StdString) where
       ret <- f stdStr
       c_freeStdString stdStr
       return ret
+instance Marshall (ForeignPtr a) (Ptr a) where
+    withMarshall x f = withForeignPtr x f
