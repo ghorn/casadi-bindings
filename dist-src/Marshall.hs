@@ -7,6 +7,7 @@
 
 module Marshall ( ForeignPtrWrapper(..)
                 , Marshall(..)
+                , WrapReturn(..)
                 , CppVec
                 , CppVecVec
                 , CppVecVecVec
@@ -41,20 +42,6 @@ withForeignPtrs xs f = do
   mapM_ touchForeignPtr xs
   return ret
 
-foreign import ccall unsafe "get_null_ptr" c_nullPtr :: IO (Ptr a)
-
-instance ForeignPtrWrapper a b => Marshall (V.Vector a) (Ptr (Ptr b)) where
-  withMarshall vec f = do
-    nullPtr <- c_nullPtr
-    let vec' = V.toList vec
-        vec'' = map unwrapForeignPtr vec'
-        runMe vec''' = do
-          ptr <- newArray (vec''' ++ [nullPtr])
-          ret <- f ptr
-          free ptr
-          return ret
-    withForeignPtrs vec'' runMe
-
 foreign import ccall unsafe "hs_delete_vec" c_hsDeleteVec
   :: Ptr (CppVec (Ptr a)) -> IO ()
 foreign import ccall unsafe "hs_marshall_vec" c_hsMarshallVec
@@ -73,3 +60,19 @@ instance ForeignPtrWrapper a b => Marshall (V.Vector a) (Ptr (CppVec (Ptr b))) w
 data CppVec a
 data CppVecVec a
 data CppVecVecVec a
+
+class WrapReturn a b where
+    wrapReturn :: a -> IO b
+
+foreign import ccall unsafe "vec_size" c_vecSize
+  :: Ptr (CppVec CInt) -> IO CInt
+foreign import ccall unsafe "hs_unmarshall_vec" c_hsUnmarshallVec
+  :: Ptr (CppVec CInt) -> Ptr CInt -> IO ()
+instance WrapReturn (Ptr (CppVec CInt)) (V.Vector Int) where
+  wrapReturn vecPtr = do
+    n <- fmap fromIntegral (c_vecSize vecPtr)
+    arr <- mallocArray n
+    c_hsUnmarshallVec vecPtr arr
+    ret <- peekArray n arr
+    free arr
+    return (V.fromList (map fromIntegral ret))

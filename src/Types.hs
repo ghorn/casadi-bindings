@@ -204,16 +204,21 @@ toCName cppName = T.unpack (replaces replacements (T.pack cppName))
 cWrapperRetType :: Type -> String
 cWrapperRetType (Val (NonVec (CasadiClass cc))) = cppClassName cc ++ "*"
 cWrapperRetType (Val x) = cppTypeTV x
-cWrapperRetType (Ref x) = cppTypeTV x ++ "&"
-cWrapperRetType (ConstRef x) = cppTypeTV x ++ " const &"
+cWrapperRetType (Ref x) = cppTypeTV x ++ "*"
+cWrapperRetType (ConstRef x) = cppTypeTV x ++ " const *"
 
 writeReturn :: Type -> String -> String
 writeReturn t x = case makesNewRef t of
-  Nothing -> "    return " ++ x ++ ";"
+  Nothing -> "    return " ++ maybeAddress x ++ ";"
   Just (NonVec (CasadiClass cc)) ->
     "    return new " ++ cppClassName cc ++ "( " ++ x ++ " );"
   Just v ->
     "    return new " ++ cppTypeTV v ++ "( " ++ x ++ " );"
+  where
+    maybeAddress y = case t of
+      Val _ -> y
+      Ref _ -> "&( " ++ y ++ " )"
+      ConstRef _ -> "&( " ++ y ++ " )"
 
 makesNewRef :: Type -> Maybe ThreeVectors
 makesNewRef (Val v@(NonVec (CasadiClass _))) = Just v

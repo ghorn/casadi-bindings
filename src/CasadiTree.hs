@@ -27,7 +27,7 @@ mx :: Class
 mx = Class MX []
 
 sxmat :: Class
-sxmat = Class SXMatrix []
+sxmat = Class SXMatrix [Method (Name "col") (ConstRef (Vec (NonVec CInt))) [] Normal]
 
 
 sxfun :: Class

@@ -16,10 +16,10 @@ beautifulHaskellName "SXFunction" = "sxFunction"
 -- fall back on just making just the first letter lowercase
 beautifulHaskellName (x:xs) = toLower x:xs
 
-marshallFun :: Int -> String -> String -> String
+marshallFun :: Int -> String -> String -> (String, String)
 marshallFun n fun wrappedFun =
-  fun ++ " " ++ concat (intersperse " " args) ++ " =\n" ++
-  marshalls ++ "  " ++ wrappedFun ++ " " ++ concat (intersperse " " args')
+  (fun ++ " " ++ concat (intersperse " " args) ++ " =\n" ++ marshalls,
+   wrappedFun ++ " " ++ concat (intersperse " " args'))
   where
     ks = take n [(0::Int)..]
     marshalls = unlines $ blah args
@@ -45,9 +45,16 @@ writeFunction (Function (Name functionName) retType params) =
   , "-- ffiRetType: " ++ show ffiRetType
   , foreignImport
   , hsFunctionName ++ "\n  :: " ++ proto
-  , marshallFun (length args) hsFunctionName c_hsFunctionName ++ newFinalizer
+  , marshalls ++ "  " ++ call
   ]
   where
+    (marshalls, call') = marshallFun (length args) hsFunctionName c_hsFunctionName
+    call = case makesNewRef retType of
+      Nothing -> call' ++ " >>= wrapReturn"
+      Just (NonVec (CasadiClass cc)) ->
+        call' ++ " >>= ((fmap "++ show cc ++ ") . (newForeignPtr " ++ c_deleteName cc ++ "))"
+      Just v -> error $ "writeFunction: don't know how to marshall Vector return type: " ++ show v
+
     args = take (length params) ["x"++show k ++ "'" | k <- [(0::Int)..]]
     hsFunctionName = beautifulHaskellName cFunctionName
     cFunctionName = toCName functionName
@@ -59,10 +66,6 @@ writeFunction (Function (Name functionName) retType params) =
     proto = concat $ intersperse " -> " $
             map (hsType False) params ++ [retType']
 
-    newFinalizer = case makesNewRef retType of
-      Nothing -> ""
-      Just (NonVec (CasadiClass cc)) -> " >>= ((fmap "++ show cc ++ ") . (newForeignPtr " ++ c_deleteName cc ++ "))"
-      Just v -> error $ "writeFunction: don't know how to marshall Vector return type: " ++ show v
 
     retType' :: String
     retType' = "IO " ++ hsType True retType
@@ -151,7 +154,7 @@ writeModule moduleName classes functions =
   , "import Foreign.C.String"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
-  , "import Marshall ( ForeignPtrWrapper(..), Marshall(..), CppVec, CppVecVec, CppVecVecVec )"
+  , "import Marshall ( ForeignPtrWrapper(..), Marshall(..), WrapReturn(..), CppVec, CppVecVec, CppVecVecVec )"
   , ""
   ]
   ++ map writeClass classes ++ map writeFunction functions
