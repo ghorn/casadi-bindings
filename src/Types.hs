@@ -16,10 +16,16 @@ module Types ( Class(..)
              , ffiType
 --             , ffiType'
              , cppType
---             , cType
---             , toCName
              , cWrapperType
---             , cppMarshallType
+             , cWrapperRetType
+               -- * bonus stuff, doesn't belong here really
+             , cppMarshallType
+             , cppClassName
+             , cppMethodName
+             , cType
+             , toCName
+             , writeReturn
+             , deleteName
              ) where
 
 import qualified Data.Text as T
@@ -120,7 +126,7 @@ ffiTypePrim p (CasadiClass x) = maybeParens p $ "Ptr " ++ show x ++ raw
 cppType :: Type -> String
 cppType (Val x) = cppTypeTV x
 cppType (Ref x) = cppTypeTV x ++ "&"
-cppType (ConstRef x) = "const " ++ cppTypeTV x ++ "&"
+cppType (ConstRef x) = cppTypeTV x ++ " const &"
 
 cppTypeTV :: ThreeVectors -> String
 cppTypeTV (NonVec x) = cppTypePrim x
@@ -137,15 +143,17 @@ cppTypePrim CInt = "int"
 cppTypePrim CDouble = "double"
 cppTypePrim StdString = "std::string"
 cppTypePrim (CasadiClass MX) = "CasADi::MX"
-cppTypePrim (CasadiClass FX) = "CasADi::MX"
+cppTypePrim (CasadiClass FX) = "CasADi::FX"
 cppTypePrim (CasadiClass SXMatrix) = "CasADi::SXMatrix"
 cppTypePrim (CasadiClass SXFunction) = "CasADi::SXFunction"
 
 -- type which appears in the C++ wrapper
 cWrapperType :: Type -> String
+cWrapperType (Val x@(NonVec (CasadiClass _))) = cWrapperTypeTV x ++ "*"
+cWrapperType (Val x@(NonVec _)) = cWrapperTypeTV x
 cWrapperType (Val x) = cWrapperTypeTV x ++ "*"
 cWrapperType (Ref x) = cWrapperTypeTV x ++ "&"
-cWrapperType (ConstRef x) = "const " ++ cWrapperTypeTV x ++ "&"
+cWrapperType (ConstRef x) = cWrapperTypeTV x ++ " const &"
 
 cWrapperTypeTV :: ThreeVectors -> String
 cWrapperTypeTV (NonVec x) = cWrapperTypePrim x
@@ -158,33 +166,56 @@ cWrapperTypeTV (Vec (Vec (Vec (NonVec x)))) =
 cWrapperTypeTV (Vec (Vec (Vec (Vec ())))) = error $ "cWrapperTypeTV: Vec (Vec (Vec (Vec ())))"
 
 cWrapperTypePrim :: Primitive -> String
-cWrapperTypePrim StdString = "char *"
+cWrapperTypePrim StdString = "char*"
 cWrapperTypePrim x = cppTypePrim x
 
+-- output type of the cpp marshall function, usually same as cppType except for references
+cppMarshallType :: Type -> String
+cppMarshallType (Ref x) = cppTypeTV x
+cppMarshallType (ConstRef x) = cppTypeTV x
+cppMarshallType (Val x) = cppTypeTV x
 
---cppMarshallType :: Type -> String
---cppMarshallType (Ref x) = cppType (Prim x)
---cppMarshallType (ConstRef x) = cppType (Prim x)
---cppMarshallType x = cppType x
---
---cppType :: Type -> String
---cppType (Prim (SP CInt)) = "int"
---cppType (Prim (SP CDouble)) = "double"
---cppType (Prim (SP StdString)) = "std::string"
---cppType (Prim (CP (Vec x))) = "std::vector<" ++ cppType (Prim x) ++ ">"
---cppType (Prim (CP x)) = casadiNs (show x)
---cppType (Ptr x) = cppType (Prim x) ++ "*"
---cppType (Ref x) = cppType (Prim x) ++ "&"
---cppType (ConstRef x) = cppType (Prim x) ++ " const &"
---
---cType :: Type -> String
---cType = toCName . cppType
---
---toCName :: String -> String
---toCName cppName = T.unpack (replaces replacements (T.pack cppName))
---  where
---    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_")]
---
---    replaces :: [(T.Text,T.Text)] -> T.Text -> T.Text
---    replaces ((find',replace'):xs) = replaces xs . T.replace find' replace'
---    replaces [] = id
+cppClassName :: CasadiClass -> String
+cppClassName = cppTypePrim . CasadiClass
+
+cType :: Type -> String
+cType = toCName . cppType
+
+-- the thing to call in casadi, like CasADi::SXFunction::jac
+cppMethodName :: CasadiClass -> Method -> String
+cppMethodName classType fcn = case fMethodType fcn of
+  Constructor -> cppClassName classType
+  _ -> cppClassName classType ++ "::" ++ methodName
+  where
+    Name methodName = fName fcn
+
+
+
+toCName :: String -> String
+toCName cppName = T.unpack (replaces replacements (T.pack cppName))
+  where
+    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_")]
+
+    replaces :: [(T.Text,T.Text)] -> T.Text -> T.Text
+    replaces ((find',replace'):xs) = replaces xs . T.replace find' replace'
+    replaces [] = id
+
+cWrapperRetType :: Type -> String
+cWrapperRetType (Val (NonVec (CasadiClass cc))) = cppClassName cc ++ "*"
+cWrapperRetType (Val x) = cppTypeTV x
+cWrapperRetType (Ref x) = cppTypeTV x ++ "&"
+cWrapperRetType (ConstRef x) = cppTypeTV x ++ " const &"
+
+writeReturn :: Type -> String -> String
+writeReturn (Val (NonVec (CasadiClass cc))) x =
+  "    return new " ++ cppClassName cc ++ "( " ++ x ++ " );"
+writeReturn (Val (NonVec _)) x =
+ "    return " ++ x ++ ";"
+writeReturn (Val v) x =
+  "    return new " ++ cppTypeTV v ++ "( " ++ x ++ " );"
+writeReturn (Ref _) x = "    return " ++ x ++ ";"
+writeReturn (ConstRef _) x = "    return " ++ x ++ ";"
+
+deleteName :: CasadiClass -> String
+deleteName classType = "delete_" ++ toCName (cppClassName classType)
+

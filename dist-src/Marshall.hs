@@ -38,15 +38,15 @@ withForeignPtrs xs f = do
   mapM_ touchForeignPtr xs
   return ret
 
-foreign import ccall unsafe "get_void_ptr" c_voidPtr :: IO (Ptr a)
+foreign import ccall unsafe "get_null_ptr" c_nullPtr :: IO (Ptr a)
 
 instance ForeignPtrWrapper a b => Marshall (V.Vector a) (Ptr (Ptr b)) where
   withMarshall vec f = do
-    voidPtr <- c_voidPtr
+    nullPtr <- c_nullPtr
     let vec' = V.toList vec
         vec'' = map unwrapForeignPtr vec'
         runMe vec''' = do
-          ptr <- newArray (vec''' ++ [voidPtr])
+          ptr <- newArray (vec''' ++ [nullPtr])
           ret <- f ptr
           free ptr
           return ret

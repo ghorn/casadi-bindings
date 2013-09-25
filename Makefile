@@ -1,4 +1,5 @@
 all : cbits/gen/test.o cbits/marshall.o dist-src/Gen/Test.o
+cpp : cbits/gen/test.o cbits/marshall.o
 
 emit-c : cbits/gen/test.cpp
 	clear

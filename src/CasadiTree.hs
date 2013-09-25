@@ -13,8 +13,8 @@ vec x = Vec (NonVec x)
 constSXMatVec :: Type
 constSXMatVec = ConstRef (vec (CasadiClass SXMatrix))
 
-constString :: Type
-constString = ConstRef (vec StdString)
+constStringRef :: Type
+constStringRef = ConstRef (NonVec StdString)
 
 fx :: Class
 fx = Class FX methods
@@ -40,6 +40,6 @@ sxfun = Class SXFunction methods
 
 tools :: [Function]
 tools =
-  [ Function (Name "CasADi::ssym") (Val (NonVec (CasadiClass SXMatrix))) [constString, cint, cint]
-  , Function (Name "CasADi::msym") (Val (NonVec (CasadiClass MX))) [constString, cint, cint]
+  [ Function (Name "CasADi::ssym") (Val (NonVec (CasadiClass SXMatrix))) [constStringRef, cint, cint]
+  , Function (Name "CasADi::msym") (Val (NonVec (CasadiClass MX))) [constStringRef, cint, cint]
   ]
