@@ -169,8 +169,8 @@ cWrapperTypePrim x = cppTypePrim x
 
 -- output type of the cpp marshall function, usually same as cppType except for references
 cppMarshallType :: Type -> String
-cppMarshallType (Ref x) = cppTypeTV x
-cppMarshallType (ConstRef x) = cppTypeTV x
+cppMarshallType (Ref x) = cppTypeTV x ++ "&"
+cppMarshallType (ConstRef x) = "const " ++ cppTypeTV x ++ "&"
 cppMarshallType (Val x) = cppTypeTV x
 
 cppClassName :: CasadiClass -> String
@@ -200,7 +200,8 @@ toCName cppName = T.unpack (replaces replacements (T.pack cppName))
 
 cWrapperRetType :: Type -> String
 cWrapperRetType (Val (NonVec (CasadiClass cc))) = cppClassName cc ++ "*"
-cWrapperRetType (Val x) = cppTypeTV x
+cWrapperRetType (Val (NonVec x)) = cppTypePrim x
+cWrapperRetType (Val x) = cppTypeTV x ++ "*"
 cWrapperRetType (Ref x) = cppTypeTV x ++ "*"
 cWrapperRetType (ConstRef x) = cppTypeTV x ++ " const *"
 

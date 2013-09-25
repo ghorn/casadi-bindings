@@ -42,4 +42,5 @@ tools :: [Function]
 tools =
   [ Function (Name "CasADi::ssym") (Val (NonVec (CasadiClass SXMatrix))) [constStringRef, cint, cint]
   , Function (Name "CasADi::msym") (Val (NonVec (CasadiClass MX))) [constStringRef, cint, cint]
+  , Function (Name "CasADi::getSymbols") (Val (Vec (NonVec (CasadiClass MX)))) [ConstRef (NonVec (CasadiClass MX))]
   ]
