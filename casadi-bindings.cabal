@@ -37,6 +37,7 @@ library
   cc-options: -Wall -Werror -Wno-delete-non-virtual-dtor
 
   C-sources:         cbits/marshall.cpp
+                     cbits/hs_tools.cpp
                      cbits/gen/test.cpp
 
 --  Install-includes:  cbits/marshall.hpp

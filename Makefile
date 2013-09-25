@@ -1,5 +1,5 @@
-all : cbits/gen/test.o cbits/marshall.o dist-src/Gen/Test.o
-cpp : cbits/gen/test.o cbits/marshall.o
+all : cbits/gen/test.o cbits/marshall.o cbits/hs_tools.o dist-src/Gen/Test.o
+cpp : cbits/gen/test.o cbits/marshall.o cbits/hs_tools.o
 
 emit-c : cbits/gen/test.cpp
 	clear
@@ -17,6 +17,10 @@ cbits/marshall.o : cbits/marshall.cpp cbits/marshall.hpp
 	clang++ -Wall -Werror -I/home/ghorn/casadi/symbolic -c cbits/marshall.cpp -o cbits/marshall.o
 	@echo "marshall.o: no clang errors"
 
+cbits/hs_tools.o : cbits/hs_tools.cpp cbits/hs_tools.hpp
+	clang++ -Wall -Werror -I/home/ghorn/casadi/symbolic -c cbits/hs_tools.cpp -o cbits/hs_tools.o
+	@echo "hs_tools.o: no clang errors"
+
 dist-src/Gen/Test.o : dist-src/Gen/Test.hs dist-src/Marshall.hs
 	cd dist-src && ghc --make Gen/Test.hs
 
@@ -24,4 +28,4 @@ cbits/gen/test.cpp dist-src/Gen/Test.hs : src/*.hs
 	cd src && runhaskell WriteSomeCasadi.hs
 
 clean :
-	rm -f cbits/marshall.o cbits/gen/* dist-src/Marshall.hi dist-src/Marshall.o dist-src/Gen/*
+	rm -f cbits/*.o cbits/gen/* dist-src/Marshall.hi dist-src/Marshall.o dist-src/Gen/*
