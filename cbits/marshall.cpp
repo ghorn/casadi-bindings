@@ -25,3 +25,5 @@ vector<void*> * hs_marshall_vec(void * inputs[], int length){
         vec.push_back(inputs[k]);
     return new vector<void*>(vec);
 }
+void hs_delete_vec(vector<void*> * vec){ delete vec; }
+

@@ -12,9 +12,9 @@ module Types ( Class(..)
              , CasadiClass(..)
              , ThreeVectors
              , hsType
---             , hsType'
+             , hsTypePrim
              , ffiType
---             , ffiType'
+             , ffiTypePrim
              , cppType
              , cWrapperType
              , cWrapperRetType
@@ -26,6 +26,7 @@ module Types ( Class(..)
              , toCName
              , writeReturn
              , deleteName
+             , makesNewRef
              ) where
 
 import qualified Data.Text as T
@@ -109,11 +110,11 @@ ffiType p (ConstRef x) = ffiTypeTV p x
 ffiTypeTV :: Bool -> ThreeVectors -> String
 ffiTypeTV p (NonVec x) = ffiTypePrim p x
 ffiTypeTV p (Vec (NonVec x)) =
-  maybeParens p $ "Ptr " ++ ffiTypePrim True x
+  maybeParens p $ "Ptr (CppVec " ++ ffiTypePrim True x ++ ")"
 ffiTypeTV p (Vec (Vec (NonVec x))) =
-  maybeParens p $ "Ptr (Ptr " ++ ffiTypePrim True x ++ ")"
+  maybeParens p $ "Ptr (CppVecVec " ++ ffiTypePrim True x ++ ")"
 ffiTypeTV p (Vec (Vec (Vec (NonVec x)))) =
-  maybeParens p $ "Ptr (Ptr (Ptr " ++ ffiTypePrim True x ++ "))"
+  maybeParens p $ "Ptr (CppVecVecVec " ++ ffiTypePrim True x ++ ")"
 ffiTypeTV _ (Vec (Vec (Vec (Vec ())))) = error $ "ffiTypeTV: Vec (Vec (Vec (Vec ())))"
 
 ffiTypePrim :: Bool -> Primitive -> String
@@ -207,15 +208,19 @@ cWrapperRetType (Ref x) = cppTypeTV x ++ "&"
 cWrapperRetType (ConstRef x) = cppTypeTV x ++ " const &"
 
 writeReturn :: Type -> String -> String
-writeReturn (Val (NonVec (CasadiClass cc))) x =
-  "    return new " ++ cppClassName cc ++ "( " ++ x ++ " );"
-writeReturn (Val (NonVec _)) x =
- "    return " ++ x ++ ";"
-writeReturn (Val v) x =
-  "    return new " ++ cppTypeTV v ++ "( " ++ x ++ " );"
-writeReturn (Ref _) x = "    return " ++ x ++ ";"
-writeReturn (ConstRef _) x = "    return " ++ x ++ ";"
+writeReturn t x = case makesNewRef t of
+  Nothing -> "    return " ++ x ++ ";"
+  Just (NonVec (CasadiClass cc)) ->
+    "    return new " ++ cppClassName cc ++ "( " ++ x ++ " );"
+  Just v ->
+    "    return new " ++ cppTypeTV v ++ "( " ++ x ++ " );"
+
+makesNewRef :: Type -> Maybe ThreeVectors
+makesNewRef (Val v@(NonVec (CasadiClass _))) = Just v
+makesNewRef (Val (NonVec _)) = Nothing
+makesNewRef (Val v) = Just v
+makesNewRef (Ref _) = Nothing
+makesNewRef (ConstRef _) = Nothing
 
 deleteName :: CasadiClass -> String
 deleteName classType = "delete_" ++ toCName (cppClassName classType)
-

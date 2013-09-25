@@ -8,8 +8,6 @@ module WriteHs ( writeModule
 import Data.Char ( toLower )
 import Data.List ( intersperse )
 import Types
-import CasadiTree
-import WriteC ( deleteName )
 
 -- haskell functions can't have capital leading letter
 beautifulHaskellName :: String -> String
@@ -43,7 +41,7 @@ writeFunction (Function (Name functionName) retType params) =
   , "-- retType': " ++ show retType'
   , "-- retType: " ++ show retType
   , "-- params: " ++ show params
-  , "-- map ffiType params: " ++ show (map ffiType params)
+  , "-- map ffiType params: " ++ show (map (ffiType False) params)
   , "-- ffiRetType: " ++ show ffiRetType
   , foreignImport
   , hsFunctionName ++ "\n  :: " ++ proto
@@ -54,28 +52,25 @@ writeFunction (Function (Name functionName) retType params) =
     hsFunctionName = beautifulHaskellName cFunctionName
     cFunctionName = toCName functionName
     c_hsFunctionName = "c_" ++ cFunctionName
-    foreignImport = 
+    foreignImport =
       "foreign import ccall unsafe \"" ++ cFunctionName ++ "\" " ++ c_hsFunctionName ++ "\n  :: " ++ ffiProto
     ffiProto = concat $ intersperse " -> " $
-               map ffiType params ++ [ffiRetType]
+               map (ffiType False) params ++ [ffiRetType]
     proto = concat $ intersperse " -> " $
-            map hsType params ++ [retType']
+            map (hsType False) params ++ [retType']
 
-    newFinalizer = case retType of
-      (SimpleType _)-> ""
-      (NewRef x) -> " >>= ((fmap "++ hsType (Prim (CP x)) ++ ") . (newForeignPtr " ++ c_deleteName x ++ "))"
-    
+    newFinalizer = case makesNewRef retType of
+      Nothing -> ""
+      Just (NonVec (CasadiClass cc)) -> " >>= ((fmap "++ show cc ++ ") . (newForeignPtr " ++ c_deleteName cc ++ "))"
+      Just v -> error $ "writeFunction: don't know how to marshall Vector return type: " ++ show v
+
     retType' :: String
-    retType' = case retType of
-      (SimpleType x) -> "IO " ++ hsType' True x
-      (NewRef x) -> "IO " ++ hsType' True (Ptr (CP x))
+    retType' = "IO " ++ hsType True retType
 
     ffiRetType :: String
-    ffiRetType = case retType of
-      (SimpleType x) -> "IO " ++ ffiType' True x
-      (NewRef x) -> "IO " ++ ffiType' True (Prim (CP x))
+    ffiRetType = "IO " ++ ffiType True retType
 
-c_deleteName :: CasadiPrimitive -> String
+c_deleteName :: CasadiClass -> String
 c_deleteName = ("c_" ++) .  deleteName
 
 writeClass :: Class -> String
@@ -83,12 +78,12 @@ writeClass (Class classType methods) =
   unlines $
   ffiWrappers ++
   [ ""
-  , "class " ++ hsClass ++ " a where"
-  , "    coerce_" ++ hsName ++ " :: a -> " ++ hsName
-  ] ++ classMethods ++
+  , "--class " ++ hsClass ++ " a where"
+--  , "--    coerce_" ++ hsName ++ " :: a -> " ++ hsName
+  ] ++ -- classMethods ++
   [ ""
   , "foreign import ccall unsafe \"&" ++ deleteName classType ++ "\" "
-    ++ c_deleteName classType ++ " :: FunPtr ("++ ffiType (Prim (CP classType)) ++ " -> IO ())"
+    ++ c_deleteName classType ++ " :: FunPtr ("++ ffiTypePrim False (CasadiClass classType) ++ " -> IO ())"
   , "data " ++ hsName ++ "'"
   , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "')"
   , "instance Marshall " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "') where"
@@ -97,16 +92,16 @@ writeClass (Class classType methods) =
   , "    withMarshall ("++ hsName ++ " x) f = withMarshall x f"
   , "instance ForeignPtrWrapper " ++ hsName ++ " " ++ hsName ++ "' where"
   , "    unwrapForeignPtr ("++ hsName ++ " x) = x"
-  , "--instance " ++ hsClass ++ " " ++ hsName ++ " where"
-  , "--    coerce_" ++ hsName ++ " = id"
+--  , "--instance " ++ hsClass ++ " " ++ hsName ++ " where"
+--  , "--    coerce_" ++ hsName ++ " = id"
   ]
   where
     hsClass = hsName ++ "_Class"
-    hsName = hsType (Prim (CP classType))
+    hsName = hsTypePrim (CasadiClass classType)
 
-    (classMethods, ffiWrappers) = unzip $ map (writeMethod classType) methods
+    (_, ffiWrappers) = unzip $ map (writeMethod classType) methods
 
-writeMethod :: CasadiPrimitive -> Method -> (String, String)
+writeMethod :: CasadiClass -> Method -> (String, String)
 writeMethod classType fcn = (method, ffiWrapper)
   where
     method =
@@ -119,71 +114,27 @@ writeMethod classType fcn = (method, ffiWrapper)
       , "-- cName: " ++ show cName
       , "-- methodName: " ++ show methodName
       , "-- hsMethodName: " ++ show hsMethodName
---      , "-- protoArgs: " ++ show protoArgs
---      , "-- args: " ++ show args
---      , "-- rettype: " ++ show (fType fcn)
---      , "-- rettype-cpp: " ++ show cppRetType
       , "-- proto: " ++ show proto
---      , "-- call: " ++ show call
---      , ""
---      , "extern \"C\"\n    " ++ proto ++ ";"
---      , proto ++ "{"
---      , writeReturn (fType fcn) call
---      , "}"
---      , ""
       , hsMethodName ++ "\n      :: " ++ proto
---      , default'
---              --  , show (name, retType, args, const', static)
       ]
-
---    default' = hsMethodName ++ " " ++ patternMatchArgs ++ " = " ++ c_hsName ++ " " ++ appArgs
-    nonSelfArgs = take (length (fArgs fcn)) ["x" ++ show k | k <- [(0::Int)..]]
-    appArgs = case fMethodType fcn of
-      Normal -> concat (intersperse " " ("self" : nonSelfArgs))
-      _ -> concat (intersperse " " nonSelfArgs)
---    patternMatchArgs = concat (intersperse " " (self : nonSelfArgs))
---      where
---        self = if static then "_" else "self"
-
     hsClass = hsName ++ "_Class"
-    hsName = beautifulHaskellName $ hsType (Prim (CP classType))
-    cppName = cppType (Prim (CP classType)) ++ "::" ++ methodName
+    hsName = beautifulHaskellName $ hsTypePrim (CasadiClass classType)
+    cppName = cppMethodName classType fcn
     cName = toCName cppName
 
     hsMethodName = beautifulHaskellName methodName
     ffiWrapper = case fMethodType fcn of
-      Normal -> writeFunction (Function (Name cppName) (fType fcn) (Ptr (CP classType):(fArgs fcn)))
+      Normal -> writeFunction $ Function (Name cppName) (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn))
       _ -> writeFunction (Function (Name cppName) (fType fcn) (fArgs fcn))
 
-    proto = concat (intersperse " -> " ("a":map hsType (fArgs fcn) ++ [writeRetType (fType fcn)]))
+    proto = concat (intersperse " -> " ("a":map (hsType False) (fArgs fcn) ++ [retType']))
+    retType' = "IO " ++ hsType True (fType fcn)
 
-    writeRetType :: RetType -> String
-    writeRetType (SimpleType x) = "IO " ++ hsType' True x
-    writeRetType (NewRef x) = "IO " ++ hsType' True (Ptr (CP x))
-
---    hsArgs
---      | fStatic fcn == Static True = [map hsType (fParams f)]
---      | otherwise = "a"
---      | otherwise = concat (intersperse " -> " (("Ptr "++classname):hsargs))
---    hsargs = map hsType args ++ [hsType' retType]
-
---    defaultMethod = "    " ++ methodName ++ " = i'm a default method, wooo"
-   
--- 
---     proto = cppRetType ++ " " ++ cName ++ protoArgs
---     cppRetType = cppType $ fromRetType (fType fcn)
---     cName = toCName cppName
     Name methodName = fName fcn
---    classname = cppType classType
---    protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
---    nonSelfProtoArgs = map (uncurry paramProto) $ zip [0..] (fArgs fcn)
---    allProtoArgs
---      | fStatic fcn == Static True = nonSelfProtoArgs
---      | otherwise = (cppType (Ptr class') ++ " obj") : nonSelfProtoArgs
---    args = "(" ++ intercalate ", " (map (paramName . fst) $ zip [0..] (fArgs fcn)) ++ ")"
---    call
---      | fStatic fcn == Static True = cppName ++ args
---      | otherwise = "obj->" ++ methodName ++ args
+
+
+
+
 
 writeModule :: String -> [Class] -> [Function] -> String
 writeModule moduleName classes functions =
@@ -200,13 +151,7 @@ writeModule moduleName classes functions =
   , "import Foreign.C.String"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
-  , "import Marshall ( ForeignPtrWrapper(..), Marshall(..) )"
+  , "import Marshall ( ForeignPtrWrapper(..), Marshall(..), CppVec, CppVecVec, CppVecVecVec )"
   , ""
   ]
   ++ map writeClass classes ++ map writeFunction functions
-
-main :: IO ()
-main = do
-  putStrLn $ writeModule "Test" [sxfun, sxmat] tools
---  mapM_ putStrLn $ map writeClass [fx]
-

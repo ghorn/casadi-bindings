@@ -12,7 +12,7 @@ double marshall(double x);
 std::vector<CasADi::SXMatrix> marshall(std::vector<CasADi::SXMatrix*> const & inputs);
 
 std::vector<void*> * hs_marshall_vec(void * inputs[], int length);
-
+void hs_delete_vec(std::vector<void*> * vec);
 
 
 #endif // __MARSHALL_THEM_BINDINGS_H__

@@ -7,6 +7,9 @@
 
 module Marshall ( ForeignPtrWrapper(..)
                 , Marshall(..)
+                , CppVec
+                , CppVecVec
+                , CppVecVecVec
                 ) where
 
 import qualified Data.Vector as V
@@ -51,3 +54,22 @@ instance ForeignPtrWrapper a b => Marshall (V.Vector a) (Ptr (Ptr b)) where
           free ptr
           return ret
     withForeignPtrs vec'' runMe
+
+foreign import ccall unsafe "hs_delete_vec" c_hsDeleteVec
+  :: Ptr (CppVec (Ptr a)) -> IO ()
+foreign import ccall unsafe "hs_marshall_vec" c_hsMarshallVec
+  :: Ptr (Ptr a) -> CInt -> IO (Ptr (CppVec (Ptr a)))
+
+instance ForeignPtrWrapper a b => Marshall (V.Vector a) (Ptr (CppVec (Ptr b))) where
+  withMarshall vec f = do
+    let foreignPtrList = map unwrapForeignPtr (V.toList vec)
+    withForeignPtrs foreignPtrList $ \ptrList -> do
+      withArrayLen ptrList $ \num ptrArray -> do
+        ptrCppVec <- c_hsMarshallVec ptrArray (fromIntegral num)
+        ret <- f ptrCppVec
+        c_hsDeleteVec ptrCppVec
+        return ret
+
+data CppVec a
+data CppVecVec a
+data CppVecVecVec a
