@@ -68,8 +68,8 @@ foreign import ccall unsafe "vec_size" c_vecSize
   :: Ptr (CppVec CInt) -> IO CInt
 foreign import ccall unsafe "hs_unmarshall_vec" c_hsUnmarshallVec
   :: Ptr (CppVec CInt) -> Ptr CInt -> IO ()
-instance WrapReturn (Ptr (CppVec CInt)) (V.Vector Int) where
-  wrapReturn vecPtr = do
+instance WrapReturn (ForeignPtr (CppVec CInt)) (V.Vector Int) where
+  wrapReturn vecPtr' = withForeignPtr vecPtr' $ \vecPtr -> do
     n <- fmap fromIntegral (c_vecSize vecPtr)
     arr <- mallocArray n
     c_hsUnmarshallVec vecPtr arr

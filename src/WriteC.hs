@@ -2,6 +2,7 @@
 
 module WriteC ( writeFunction
               , writeClass
+              , writeDeletes
               ) where
 
 import Data.List ( intercalate )
@@ -50,28 +51,32 @@ writeFunction (Function (Name functionName) retType params) =
     call = cppName ++ args
 
 writeClass :: Class -> [String]
-writeClass c@(Class classType methods) =
-  writeClassDelete c : map (writeMethod classType) methods
+writeClass (Class classType methods) =
+  writeDeletes (CasadiClass classType) : map (writeMethod classType) methods
 
-writeClassDelete :: Class -> String
-writeClassDelete (Class classType _) =
+writeDeletes :: Primitive -> String
+writeDeletes classType =
   unlines
   [ "// ================== delete "++ show classname ++"==============="
   , "// classname: " ++ show classname
-  , "// cName: " ++ show cName
-  , "// protoArgs: " ++ show protoArgs
-  , "// proto: " ++ show proto
-  , "extern \"C\"\n    " ++ proto ++ ";"
-  , proto ++ "{"
-  , "    delete obj;"
-  , "}"
-  , ""
-  ]
+  ] ++ concatMap writeIt types
   where
-    proto = "void " ++ cName ++ protoArgs
-    cName = deleteName classType
-    classname = cppClassName classType
-    protoArgs = "(" ++ classname ++ "* obj)"
+    classname = cppTypePrim classType
+
+    types = [ NonVec classType
+            , Vec (NonVec classType)
+            , Vec (Vec (NonVec classType))
+            , Vec (Vec (Vec (NonVec classType)))
+            ]
+    writeIt c =
+      unlines $
+      [ "extern \"C\"\n    " ++ proto ++ ";"
+      , proto ++ "{"
+      , "    delete obj;"
+      , "}"
+      ]
+      where
+        proto = "void " ++ (deleteName c) ++ "(" ++ cppTypeTV c ++ "* obj)"
 
 writeMethod :: CasadiClass -> Method -> String
 writeMethod classType fcn =

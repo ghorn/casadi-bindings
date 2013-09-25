@@ -14,8 +14,11 @@ module Types ( Class(..)
              , hsType
              , hsTypePrim
              , ffiType
+             , ffiTypeTV
              , ffiTypePrim
              , cppType
+             , cppTypeTV
+             , cppTypePrim
              , cWrapperType
              , cWrapperRetType
                -- * bonus stuff, doesn't belong here really
@@ -65,12 +68,6 @@ data Type = Val ThreeVectors
           | Ref ThreeVectors
           | ConstRef ThreeVectors
           deriving Show
-
---getMethods :: CasadiClass -> [Method]
---
---getConstructors :: CasadiClass -> [Constructor]
---
---allFunctions :: [Function]
 
 raw :: String
 raw = "'"
@@ -134,9 +131,9 @@ cppTypeTV (NonVec x) = cppTypePrim x
 cppTypeTV (Vec (NonVec x)) =
   "std::vector<"++cppTypePrim x ++ ">"
 cppTypeTV (Vec (Vec (NonVec x))) =
-  "std::vector<std::vector<"++cppTypePrim x ++ ">>"
+  "std::vector<std::vector<"++cppTypePrim x ++ "> >"
 cppTypeTV (Vec (Vec (Vec (NonVec x)))) =
-  "std::vector<std::vector<std::vector<"++cppTypePrim x ++ ">>>"
+  "std::vector<std::vector<std::vector<"++cppTypePrim x ++ "> > >"
 cppTypeTV (Vec (Vec (Vec (Vec ())))) = error $ "cppTypeTV: Vec (Vec (Vec (Vec ())))"
 
 cppTypePrim :: Primitive -> String
@@ -224,8 +221,8 @@ makesNewRef :: Type -> Maybe ThreeVectors
 makesNewRef (Val v@(NonVec (CasadiClass _))) = Just v
 makesNewRef (Val (NonVec _)) = Nothing
 makesNewRef (Val v) = Just v
-makesNewRef (Ref _) = Nothing
-makesNewRef (ConstRef _) = Nothing
+makesNewRef (Ref v) = Just v
+makesNewRef (ConstRef v) = Just v
 
-deleteName :: CasadiClass -> String
-deleteName classType = "delete_" ++ toCName (cppClassName classType)
+deleteName :: ThreeVectors -> String
+deleteName v = "delete_" ++ toCName (cppTypeTV v)

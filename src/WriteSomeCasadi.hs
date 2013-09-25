@@ -12,11 +12,11 @@ main = do
   let cOut = init $ unlines $
              "#include <casadi.hpp>\n#include \"../marshall.hpp\"\n" :
              concatMap C.writeClass classes ++
-             map C.writeFunction tools
+             map C.writeFunction tools ++ map C.writeDeletes [CInt,CDouble,StdString]
       hsOut = HS.writeModule "Test" classes tools
 
-  writeFile "../cbits/gen/test.cpp" cOut
-  writeFile "../dist-src/Gen/Test.hs" hsOut
+  length  cOut `seq` writeFile "../cbits/gen/test.cpp" cOut
+  length hsOut `seq` writeFile "../dist-src/Gen/Test.hs" hsOut
 
 classes :: [Types.Class]
 classes = [sxfun, sxmat, mx]

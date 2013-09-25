@@ -51,9 +51,7 @@ writeFunction (Function (Name functionName) retType params) =
     (marshalls, call') = marshallFun (length args) hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
       Nothing -> call' ++ " >>= wrapReturn"
-      Just (NonVec (CasadiClass cc)) ->
-        call' ++ " >>= ((fmap "++ show cc ++ ") . (newForeignPtr " ++ c_deleteName cc ++ "))"
-      Just v -> error $ "writeFunction: don't know how to marshall Vector return type: " ++ show v
+      Just v -> call' ++ " >>= (newForeignPtr " ++ c_deleteName v ++ ") >>= wrapReturn"
 
     args = take (length params) ["x"++show k ++ "'" | k <- [(0::Int)..]]
     hsFunctionName = beautifulHaskellName cFunctionName
@@ -73,8 +71,23 @@ writeFunction (Function (Name functionName) retType params) =
     ffiRetType :: String
     ffiRetType = "IO " ++ ffiType True retType
 
-c_deleteName :: CasadiClass -> String
+c_deleteName :: ThreeVectors -> String
 c_deleteName = ("c_" ++) .  deleteName
+
+deleteForeignImports :: Primitive -> String
+deleteForeignImports classType = concatMap writeIt types
+  where
+    types = [ NonVec classType
+            , Vec (NonVec classType)
+            , Vec (Vec (NonVec classType))
+            , Vec (Vec (Vec (NonVec classType)))
+            ]
+    writeIt c =
+      unlines $
+      [ "foreign import ccall unsafe \"&" ++ deleteName c ++ "\" "
+      , "  " ++ c_deleteName c ++ " :: FunPtr ("++ ffiTypeTV False c ++ " -> IO ())"
+      ]
+
 
 writeClass :: Class -> String
 writeClass (Class classType methods) =
@@ -85,8 +98,7 @@ writeClass (Class classType methods) =
 --  , "--    coerce_" ++ hsName ++ " :: a -> " ++ hsName
   ] ++ -- classMethods ++
   [ ""
-  , "foreign import ccall unsafe \"&" ++ deleteName classType ++ "\" "
-    ++ c_deleteName classType ++ " :: FunPtr ("++ ffiTypePrim False (CasadiClass classType) ++ " -> IO ())"
+  , deleteForeignImports (CasadiClass classType)
   , "data " ++ hsName ++ "'"
   , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "')"
   , "instance Marshall " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "') where"
@@ -95,8 +107,8 @@ writeClass (Class classType methods) =
   , "    withMarshall ("++ hsName ++ " x) f = withMarshall x f"
   , "instance ForeignPtrWrapper " ++ hsName ++ " " ++ hsName ++ "' where"
   , "    unwrapForeignPtr ("++ hsName ++ " x) = x"
---  , "--instance " ++ hsClass ++ " " ++ hsName ++ " where"
---  , "--    coerce_" ++ hsName ++ " = id"
+  , "instance WrapReturn (ForeignPtr " ++ hsName ++ "') " ++ hsName ++ " where"
+  , "    wrapReturn = return . " ++ hsName
   ]
   where
     hsClass = hsName ++ "_Class"
@@ -156,5 +168,5 @@ writeModule moduleName classes functions =
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
   , "import Marshall ( ForeignPtrWrapper(..), Marshall(..), WrapReturn(..), CppVec, CppVecVec, CppVecVecVec )"
   , ""
-  ]
-  ++ map writeClass classes ++ map writeFunction functions
+  ] ++ map deleteForeignImports [CInt,CDouble,StdString] ++
+  map writeClass classes ++ map writeFunction functions
