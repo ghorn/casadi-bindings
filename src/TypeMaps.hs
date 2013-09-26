@@ -54,7 +54,7 @@ hsTypePrim :: Primitive -> String
 hsTypePrim CInt = "Int"
 hsTypePrim CDouble = "Double"
 hsTypePrim StdString = "String"
-hsTypePrim StdOstream = "StdOstream"
+hsTypePrim StdOstream = "String"
 hsTypePrim CBool = "Bool"
 hsTypePrim CVoid = "()"
 hsTypePrim CSize = "CSize"
@@ -82,13 +82,13 @@ ffiTypeTV _ (Vec (Vec (Vec (Vec ())))) = error $ "ffiTypeTV: Vec (Vec (Vec (Vec 
 ffiTypePrim :: Bool -> Primitive -> String
 ffiTypePrim _ CInt = "CInt"
 ffiTypePrim _ CDouble = "CDouble"
-ffiTypePrim p StdString = maybeParens p $ "Ptr StdString'"
 ffiTypePrim _ CBool = "CInt"
 ffiTypePrim _ CVoid = "()"
 ffiTypePrim _ CSize = "CSize"
 ffiTypePrim _ CLong = "CLong"
 ffiTypePrim _ CUChar = "CUChar"
-ffiTypePrim _ StdOstream = "StdOstream"
+ffiTypePrim p StdString = maybeParens p $ "Ptr StdString'"
+ffiTypePrim p StdOstream = maybeParens p $ "Ptr StdOstream'"
 ffiTypePrim p (CasadiClass x) = maybeParens p $ "Ptr " ++ show x ++ raw
 
 -- type which appears in the casadi library

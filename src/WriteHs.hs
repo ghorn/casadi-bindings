@@ -170,7 +170,7 @@ writeModule moduleName classes functions =
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
   , "import Marshal ( ForeignPtrWrapper(..), Marshal(..), WrapReturn(..),"
-  , "                 CppVec, CppVecVec, CppVecVecVec, StdString' )"
+  , "                 CppVec, CppVecVec, CppVecVecVec, StdString', StdOstream' )"
   , ""
   ] ++ map deleteForeignImports [CInt,CDouble,StdString] ++
   map writeClass classes ++ map writeFunction functions
