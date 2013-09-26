@@ -7,13 +7,15 @@ void * get_null_ptr(void){
     return 0;
 }
 
+///////////// scalars /////////////
+// bool
 int hs_read_bool(bool * x){
     if (*x == false)
         return 0;
     else
         return 1;
 }
-bool * hs_marshall_bool(int x){
+bool * hs_new_bool(int x){
     if (x == 0)
         return new bool(false);
     else
@@ -21,8 +23,22 @@ bool * hs_marshall_bool(int x){
 }
 void hs_delete_bool(bool * x){ delete x; }
 
+// string
+int hs_string_length(string * str){
+    return str->length();
+}
+void hs_string_copy(string * str, char outputs[]){
+    strcpy(outputs, str->c_str());
+}
+string * hs_new_string(char x[]){
+    return new string(x);
+}
+void hs_delete_string(string * x){
+    delete x;
+}
 
-// copying vectors to arrays
+
+////////////////////////// copying vectors to arrays /////////////////////
 int vec_int_size(vector<int> * vec){
     return vec->size();
 }
@@ -53,31 +69,49 @@ void vec_vec_voidp_copy(vector<vector<void*> > * vec, void** outputs[]){
     }
 }
 
-int string_length(string * str){
-    return str->length();
-}
-void string_copy(string * str, char outputs[]){
-    strcpy(outputs, str->c_str());
-}
-string * new_string(char x[]){
-    return new string(x);
-}
-void delete_string(string * x){
-    delete x;
-}
 
-// converting arrays to vectors
-// void pointers
-vector<void*> * hs_marshal_vec_void_ptrs(void * inputs[], int length){
+//////////////////////    CREATING VECTORS FROM ARRAYS ///////////////////////////////////
+// 1-dimensional
+vector<void*> * hs_new_vec_voidp(void * inputs[], int length){
     vector<void*> vec;
     for (int k=0; k<length; k++)
         vec.push_back(inputs[k]);
     return new vector<void*>(vec);
 }
-void hs_delete_vec_void_ptrs(vector<void*> * vec){ delete vec; }
+vector<int8_t> * hs_new_vec_8(int8_t inputs[], int length){
+    vector<int8_t> vec;
+    for (int k=0; k<length; k++)
+        vec.push_back(inputs[k]);
+    return new vector<int8_t>(vec);
+}
+vector<int16_t> * hs_new_vec_16(int16_t inputs[], int length){
+    vector<int16_t> vec;
+    for (int k=0; k<length; k++)
+        vec.push_back(inputs[k]);
+    return new vector<int16_t>(vec);
+}
+vector<int32_t> * hs_new_vec_32(int32_t inputs[], int length){
+    vector<int32_t> vec;
+    for (int k=0; k<length; k++)
+        vec.push_back(inputs[k]);
+    return new vector<int32_t>(vec);
+}
+vector<int64_t> * hs_new_vec_64(int64_t inputs[], int length){
+    vector<int64_t> vec;
+    for (int k=0; k<length; k++)
+        vec.push_back(inputs[k]);
+    return new vector<int64_t>(vec);
+}
 
-// 2-dimensional void pointers
-vector<vector<void*> > * hs_marshal_vec_vec_void_ptrs(void * inputs[], int length_outer, int lengths_inner[]){
+void hs_delete_vec_voidp(vector<void*> * vec){ delete vec; }
+void hs_delete_vec_8(vector<int8_t> * vec){ delete vec; }
+void hs_delete_vec_16(vector<int16_t> * vec){ delete vec; }
+void hs_delete_vec_32(vector<int32_t> * vec){ delete vec; }
+void hs_delete_vec_64(vector<int64_t> * vec){ delete vec; }
+
+
+// 2-dimensional
+vector<vector<void*> > * hs_new_vvec_voidp(void * inputs[], int length_outer, int lengths_inner[]){
     vector<vector<void*> > vec;
     int counter = 0;
     for (int k=0; k<length_outer; k++){
@@ -90,38 +124,62 @@ vector<vector<void*> > * hs_marshal_vec_vec_void_ptrs(void * inputs[], int lengt
     }
     return new vector<vector<void*> >(vec);
 }
-
-void hs_delete_vec_vec_void_ptrs(vector<vector<void*> > * vec){ delete vec; }
-
-
-vector<unsigned char> * hs_marshal_vec_uchar(unsigned char inputs[], int length){
-    vector<unsigned char> vec;
-    for (int k=0; k<length; k++)
-        vec.push_back(inputs[k]);
-    return new vector<unsigned char>(vec);
+vector<vector<int8_t> > * hs_new_vvec_8(int8_t inputs[], int length_outer, int lengths_inner[]){
+    vector<vector<int8_t> > vec;
+    int counter = 0;
+    for (int k=0; k<length_outer; k++){
+        vector<int8_t> inner;
+        for (int j=0; j<lengths_inner[k]; j++){
+            inner.push_back( inputs[counter] );
+            counter++;
+        }
+        vec.push_back(inner);
+    }
+    return new vector<vector<int8_t> >(vec);
 }
-void hs_delete_vec_uchar(vector<unsigned char> * vec){ delete vec; }
-
-vector<double> * hs_marshal_vec_double(double inputs[], int length){
-    vector<double> vec;
-    for (int k=0; k<length; k++)
-        vec.push_back(inputs[k]);
-    return new vector<double>(vec);
+vector<vector<int16_t> > * hs_new_vvec_16(int16_t inputs[], int length_outer, int lengths_inner[]){
+    vector<vector<int16_t> > vec;
+    int counter = 0;
+    for (int k=0; k<length_outer; k++){
+        vector<int16_t> inner;
+        for (int j=0; j<lengths_inner[k]; j++){
+            inner.push_back( inputs[counter] );
+            counter++;
+        }
+        vec.push_back(inner);
+    }
+    return new vector<vector<int16_t> >(vec);
 }
-void hs_delete_vec_double(vector<double> * vec){ delete vec; }
-
-vector<int> * hs_marshal_vec_int(int inputs[], int length){
-    vector<int> vec;
-    for (int k=0; k<length; k++)
-        vec.push_back(inputs[k]);
-    return new vector<int>(vec);
+vector<vector<int32_t> > * hs_new_vvec_32(int32_t inputs[], int length_outer, int lengths_inner[]){
+    vector<vector<int32_t> > vec;
+    int counter = 0;
+    for (int k=0; k<length_outer; k++){
+        vector<int32_t> inner;
+        for (int j=0; j<lengths_inner[k]; j++){
+            inner.push_back( inputs[counter] );
+            counter++;
+        }
+        vec.push_back(inner);
+    }
+    return new vector<vector<int32_t> >(vec);
 }
-void hs_delete_vec_int(vector<int> * vec){ delete vec; }
-
-vector<size_t> * hs_marshal_vec_size_t(size_t inputs[], int length){
-    vector<size_t> vec;
-    for (int k=0; k<length; k++)
-        vec.push_back(inputs[k]);
-    return new vector<size_t>(vec);
+vector<vector<int64_t> > * hs_new_vvec_64(int64_t inputs[], int length_outer, int lengths_inner[]){
+    vector<vector<int64_t> > vec;
+    int counter = 0;
+    for (int k=0; k<length_outer; k++){
+        vector<int64_t> inner;
+        for (int j=0; j<lengths_inner[k]; j++){
+            inner.push_back( inputs[counter] );
+            counter++;
+        }
+        vec.push_back(inner);
+    }
+    return new vector<vector<int64_t> >(vec);
 }
-void hs_delete_vec_size_t(vector<size_t> * vec){ delete vec; }
+
+void hs_delete_vvec_voidp(vector<vector<void*> > * vec){ delete vec; }
+void hs_delete_vvec_8(vector<vector<int8_t> > * vec){ delete vec; }
+void hs_delete_vvec_16(vector<vector<int16_t> > * vec){ delete vec; }
+void hs_delete_vvec_32(vector<vector<int32_t> > * vec){ delete vec; }
+void hs_delete_vvec_64(vector<vector<int64_t> > * vec){ delete vec; }
+
