@@ -2,10 +2,10 @@
 
 module Main ( main ) where
 
-import qualified WriteC as C
-import qualified WriteHs as HS
-import CasadiTree
-import Types
+import qualified WriteCasadiBindings.WriteC as C
+import qualified WriteCasadiBindings.WriteHs as HS
+import WriteCasadiBindings.CasadiTree
+import WriteCasadiBindings.Types
 
 main :: IO ()
 main = do
@@ -17,8 +17,8 @@ main = do
              map (C.writeFunction . addNamespace) tools ++ map C.writeDeletes [CInt,CDouble,StdString,CBool]
       hsOut = HS.writeModule "Test" classes tools
 
-  length  cOut `seq` writeFile "../cbits/gen/test.cpp" cOut
-  length hsOut `seq` writeFile "../dist-src/Gen/Test.hs" hsOut
+  length  cOut `seq` writeFile "cbits/gen/test.cpp" cOut
+  length hsOut `seq` writeFile "CasadiBindings/Gen/Test.hs" hsOut
 
 addNamespace :: Function -> Function
 addNamespace (Function (Name name) x y) = Function (Name ("CasADi::"++name)) x y

@@ -1,4 +1,4 @@
-all : cbits/gen/test.o cbits/marshal.o cbits/hs_tools.o dist-src/Gen/Test.o
+all : cbits/gen/test.o cbits/marshal.o cbits/hs_tools.o CasadiBindings/Gen/Test.o
 cpp : cbits/gen/test.o cbits/marshal.o cbits/hs_tools.o
 
 CASADI_PATH = /home/ghorn/casadi
@@ -9,9 +9,9 @@ emit-c : cbits/gen/test.cpp
 	clear
 	@pygmentize -f terminal -g cbits/gen/test.cpp
 
-emit-hs : dist-src/Gen/Test.hs
+emit-hs : CasadiBindings/Gen/Test.hs
 	clear
-	@pygmentize -f terminal -g dist-src/Gen/Test.hs
+	@pygmentize -f terminal -g CasadiBindings/Gen/Test.hs
 
 cbits/gen/test.o : cbits/gen/test.cpp cbits/marshal.hpp
 	clang++ -Wall -Werror -Wno-delete-non-virtual-dtor $(CASADI_INCLUDES) -c cbits/gen/test.cpp -o cbits/gen/test.o
@@ -25,16 +25,17 @@ cbits/hs_tools.o : cbits/hs_tools.cpp cbits/hs_tools.hpp
 	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/hs_tools.cpp -o cbits/hs_tools.o
 	@echo "hs_tools.o: no clang errors"
 
-dist-src/Gen/Test.o : dist-src/Gen/Test.hs dist-src/Marshal.hs
-	cd dist-src && ghc --make Gen/Test.hs
+CasadiBindings/Gen/Test.o : CasadiBindings/Gen/Test.hs CasadiBindings/Marshal.hs
+	ghc --make CasadiBindings/Gen/Test.hs
 
-cbits/gen/test.cpp dist-src/Gen/Test.hs : src/WriteSomeCasadi
-	cd src && ./WriteSomeCasadi
+cbits/gen/test.cpp CasadiBindings/Gen/Test.hs : WriteBindings
+	./WriteBindings
 
-src/WriteSomeCasadi : src/*.hs
-	cd src && ghc --make -O2 WriteSomeCasadi
+WriteBindings : WriteCasadiBindings/*.hs WriteBindings.hs
+	ghc --make -O2 WriteBindings
 
 clean :
-	rm -f src/*.hi src/*.o src/WriteSomeCasadi
+	rm -f WriteCasadiBindings/*.hi WriteCasadiBindings/*.o
+	rm -f WriteBindings WriteBindings.hi WriteBindings.o
 	rm -f cbits/*.o cbits/gen/*
-	rm -f dist-src/Marshal.hi dist-src/Marshal.o dist-src/Gen/*
+	rm -f CasadiBindings/*.hi CasadiBindings/*.o CasadiBindings/Gen/*

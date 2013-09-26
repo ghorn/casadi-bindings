@@ -1,15 +1,15 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteHs ( writeModule
-               , writeFunction
-               , writeClass
-               ) where
+module WriteCasadiBindings.WriteHs ( writeModule
+                                   , writeFunction
+                                   , writeClass
+                                   ) where
 
 import Data.Char ( toLower )
 import Data.List ( intersperse )
 
-import Types
-import TypeMaps
+import WriteCasadiBindings.Types
+import WriteCasadiBindings.TypeMaps
 
 -- haskell functions can't have capital leading letter
 beautifulHaskellName :: String -> String
@@ -162,15 +162,17 @@ writeModule moduleName classes functions =
   , "{-# Language FlexibleInstances #-}"
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
-  , "module Gen." ++ moduleName ++ " where"
+  , "module CasadiBindings.Gen." ++ moduleName ++ " where"
   , ""
   , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
   , "import Foreign.C.String"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
-  , "import Marshal ( ForeignPtrWrapper(..), Marshal(..), WrapReturn(..),"
-  , "                 CppVec, CppVecVec, CppVecVecVec, StdString', StdOstream', CppBool' )"
+  , "import CasadiBindings.MarshalTypes ( ForeignPtrWrapper(..), CppVec, CppVecVec, CppVecVecVec,"
+  , "                                     StdString', StdOstream', CppBool' )"
+  , "import CasadiBindings.Marshal (  Marshal(..) )"
+  , "import CasadiBindings.WrapReturn ( WrapReturn(..) )"
   , ""
   ] ++ map deleteForeignImports [CInt,CDouble,StdString,CBool] ++
   map writeClass classes ++ map writeFunction functions

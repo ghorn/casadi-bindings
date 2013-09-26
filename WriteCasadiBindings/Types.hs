@@ -1,18 +1,18 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module Types ( Class(..)
-             , Function(..)
-             , Method(..)
-             , Name(..)
-             , Type(..)
-             , MethodType(..)
-             , Primitive(..)
-             , Primitive'(..)
-             , CasadiClass(..)
-             , ThreeVectors
-             ) where
+module WriteCasadiBindings.Types ( Class(..)
+                                 , Function(..)
+                                 , Method(..)
+                                 , Name(..)
+                                 , Type(..)
+                                 , MethodType(..)
+                                 , Primitive(..)
+                                 , Primitive'(..)
+                                 , CasadiClass(..)
+                                 , ThreeVectors
+                                 ) where
 
-import CasadiClasses ( CasadiClass(..) )
+import WriteCasadiBindings.CasadiClasses ( CasadiClass(..) )
 
 data Method = Method { fName :: Name
                      , fType :: Type

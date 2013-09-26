@@ -1,31 +1,31 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# Language OverloadedStrings #-}
 
-module TypeMaps ( hsType
-                , hsTypePrim
-                , ffiType
-                , ffiTypeTV
-                , ffiTypePrim
-                , cppType
-                , cppTypeTV
-                , cppTypePrim
-                , cWrapperType
-                , cWrapperRetType
-                  -- * bonus stuff, doesn't belong here really
-                , cppMarshalType
-                , cppClassName
-                , cWrapperName
-                , cWrapperName'
-                , cppMethodName
-                , cType
-                , writeReturn
-                , deleteName
-                , makesNewRef
-                ) where
+module WriteCasadiBindings.TypeMaps ( hsType
+                                    , hsTypePrim
+                                    , ffiType
+                                    , ffiTypeTV
+                                    , ffiTypePrim
+                                    , cppType
+                                    , cppTypeTV
+                                    , cppTypePrim
+                                    , cWrapperType
+                                    , cWrapperRetType
+                                      -- * bonus stuff, doesn't belong here really
+                                    , cppMarshalType
+                                    , cppClassName
+                                    , cWrapperName
+                                    , cWrapperName'
+                                    , cppMethodName
+                                    , cType
+                                    , writeReturn
+                                    , deleteName
+                                    , makesNewRef
+                                    ) where
 
 import qualified Data.Text as T
-import CasadiClasses ( cppTypeCasadiPrim )
-import Types
+import WriteCasadiBindings.CasadiClasses ( cppTypeCasadiPrim )
+import WriteCasadiBindings.Types
 
 raw :: String
 raw = "'"

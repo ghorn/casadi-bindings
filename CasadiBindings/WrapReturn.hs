@@ -6,16 +6,16 @@
 {-# Language FlexibleInstances #-}
 {-# Language FlexibleContexts #-}
 
-module Marshal ( ForeignPtrWrapper(..)
-               , Marshal(..)
-               , WrapReturn(..)
-               , CppVec
-               , CppVecVec
-               , CppVecVecVec
-               , StdString'
-               , StdOstream'
-               , CppBool'
-               ) where
+module CasadiBindings.WrapReturn ( ForeignPtrWrapper(..)
+                                 , Marshal(..)
+                                 , WrapReturn(..)
+                                 , CppVec
+                                 , CppVecVec
+                                 , CppVecVecVec
+                                 , StdString'
+                                 , StdOstream'
+                                 , CppBool'
+                                 ) where
 
 import Control.Monad ( zipWithM )
 import qualified Data.Vector as V

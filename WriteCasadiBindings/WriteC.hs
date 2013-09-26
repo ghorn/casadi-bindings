@@ -1,14 +1,14 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteC ( writeFunction
-              , writeClass
-              , writeDeletes
-              ) where
+module WriteCasadiBindings.WriteC ( writeFunction
+                                  , writeClass
+                                  , writeDeletes
+                                  ) where
 
 import Data.List ( intercalate )
 
-import Types
-import TypeMaps
+import WriteCasadiBindings.Types
+import WriteCasadiBindings.TypeMaps
 
 paramName :: Int -> String
 paramName k = "x" ++ show k

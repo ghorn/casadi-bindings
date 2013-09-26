@@ -1,1 +1,4 @@
 dist
+WriteBindings
+WriteBindings.o
+WriteBindings.hi
