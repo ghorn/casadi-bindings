@@ -14,7 +14,7 @@ main = do
              , "#include \"../marshal.hpp\""
              ] ++
              concatMap C.writeClass classes ++
-             map (C.writeFunction . addNamespace) tools ++ map C.writeDeletes [CInt,CDouble,StdString]
+             map (C.writeFunction . addNamespace) tools ++ map C.writeDeletes [CInt,CDouble,StdString,CBool]
       hsOut = HS.writeModule "Test" classes tools
 
   length  cOut `seq` writeFile "../cbits/gen/test.cpp" cOut
