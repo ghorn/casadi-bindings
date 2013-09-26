@@ -24,9 +24,10 @@ module Types ( Class(..)
                -- * bonus stuff, doesn't belong here really
              , cppMarshallType
              , cppClassName
+             , cWrapperName
+             , cWrapperName'
              , cppMethodName
              , cType
-             , toCName
              , writeReturn
              , deleteName
              , makesNewRef
@@ -186,10 +187,10 @@ cWrapperTypePrim x = cppTypePrim x
 
 -- output type of the cpp marshall function, usually same as cppType except for references
 cppMarshallType :: Type -> String
-cppMarshallType (Ref (NonVec x)) = cppTypePrim x ++ "&" 
-cppMarshallType (Ref x) = cppTypeTV x 
-cppMarshallType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x 
-cppMarshallType (ConstRef x) = "const " ++ cppTypeTV x 
+cppMarshallType (Ref (NonVec x)) = cppTypePrim x ++ "&"
+cppMarshallType (Ref x) = cppTypeTV x
+cppMarshallType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
+cppMarshallType (ConstRef x) = "const " ++ cppTypeTV x
 cppMarshallType (Val x) = cppTypeTV x
 
 cppClassName :: CasadiClass -> String
@@ -197,6 +198,17 @@ cppClassName = cppTypePrim . CasadiClass
 
 cType :: Type -> String
 cType = toCName . cppType
+
+cWrapperName' :: Function -> String
+cWrapperName' (Function (Name functionName) _ _) = toCName functionName
+
+cWrapperName :: CasadiClass -> Method -> String
+cWrapperName classType fcn = case fMethodType fcn of
+  Constructor -> toCName (cppClassName classType ++ "::" ++ methodName)
+    where
+      Name methodName = fName fcn
+  _ -> toCName (cppMethodName classType fcn)
+
 
 -- the thing to call in casadi, like CasADi::SXFunction::jac
 cppMethodName :: CasadiClass -> Method -> String

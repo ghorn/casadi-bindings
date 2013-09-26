@@ -25,11 +25,11 @@ marshall k t = "    " ++ cppMarshallType t ++ " " ++ paramName k ++
 
 
 writeFunction :: Function -> String
-writeFunction (Function (Name functionName) retType params) =
+writeFunction fcn@(Function (Name functionName) retType params) =
   unlines
   [ "// ================== function " ++ show functionName ++ " ==============="
   , "// cppName: " ++ show cppName
-  , "// cName: " ++ show cName
+  , "// cWrapperName: " ++ show cWrapperName''
   , "// protoArgs: " ++ show protoArgs
   , "// params: " ++ show params
   , "// args: " ++ show args
@@ -45,8 +45,8 @@ writeFunction (Function (Name functionName) retType params) =
   ]
   where
     marshalls = map (uncurry marshall) $ zip [0..] params
-    proto = cWrapperRetType retType ++ " " ++ cName ++ protoArgs
-    cName = toCName cppName
+    proto = cWrapperRetType retType ++ " " ++ cWrapperName'' ++ protoArgs
+    cWrapperName'' = cWrapperName' fcn
     cppName = functionName
     protoArgs = "(" ++ intercalate ", " protoArgList ++ ")"
     protoArgList = map (uncurry paramProto) $ zip [0..] params
@@ -93,7 +93,7 @@ writeMethod classType fcn =
   [ "// ================== " ++ show (fMethodType fcn) ++ " method: " ++ show methodName ++ " ==============="
   , "// class: " ++ show (cppClassName classType)
   , "// cppName: " ++ show cppName
-  , "// cName: " ++ show cName
+  , "// cWrapperName: " ++ show cWrapperName''
   , "// protoArgs: " ++ show protoArgs
   , "// args: " ++ show args
   , "// rettype: " ++ show retType
@@ -110,8 +110,8 @@ writeMethod classType fcn =
   where
     retType = fType fcn
     marshalls = map (uncurry marshall) $ zip [0..] (fArgs fcn)
-    proto = cWrapperRetType retType ++ " " ++ cName ++ protoArgs
-    cName = toCName cppName
+    proto = cWrapperRetType retType ++ " " ++ cWrapperName'' ++ protoArgs
+    cWrapperName'' = cWrapperName classType fcn
     cppName = cppMethodName classType fcn
     Name methodName = fName fcn
     protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"

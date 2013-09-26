@@ -31,7 +31,7 @@ marshallFun n fun wrappedFun =
     blah [] = []
 
 writeFunction :: Function -> String
-writeFunction (Function (Name functionName) retType params) =
+writeFunction fcn@(Function (Name functionName) retType params) =
   unlines $
   [ "-- ================== " ++ "function: " ++ show functionName ++ " ==============="
   , "-- functionName: " ++ show functionName
@@ -55,7 +55,7 @@ writeFunction (Function (Name functionName) retType params) =
 
     args = take (length params) ["x"++show k ++ "'" | k <- [(0::Int)..]]
     hsFunctionName = beautifulHaskellName cFunctionName
-    cFunctionName = toCName functionName
+    cFunctionName = cWrapperName' fcn
     c_hsFunctionName = "c_" ++ cFunctionName
     foreignImport =
       "foreign import ccall unsafe \"" ++ cFunctionName ++ "\" " ++ c_hsFunctionName ++ "\n  :: " ++ ffiProto
@@ -126,7 +126,7 @@ writeMethod classType fcn = (method, ffiWrapper)
       , "-- class: " ++ show hsClass
       , "-- hsname: " ++ show hsName
       , "-- cppName: " ++ show cppName
-      , "-- cName: " ++ show cName
+      , "-- cWrapperName: " ++ show cWrapperName''
       , "-- methodName: " ++ show methodName
       , "-- hsMethodName: " ++ show hsMethodName
       , "-- proto: " ++ show proto
@@ -135,12 +135,13 @@ writeMethod classType fcn = (method, ffiWrapper)
     hsClass = hsName ++ "_Class"
     hsName = beautifulHaskellName $ hsTypePrim (CasadiClass classType)
     cppName = cppMethodName classType fcn
-    cName = toCName cppName
+    cWrapperName'' = cWrapperName classType fcn
 
     hsMethodName = beautifulHaskellName methodName
+    -- this hack might not quite give the right name
     ffiWrapper = case fMethodType fcn of
-      Normal -> writeFunction $ Function (Name cppName) (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn))
-      _ -> writeFunction (Function (Name cppName) (fType fcn) (fArgs fcn))
+      Normal -> writeFunction $ Function (Name cWrapperName'') (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn))
+      _ -> writeFunction (Function (Name cWrapperName'') (fType fcn) (fArgs fcn))
 
     proto = concat (intersperse " -> " ("a":map (hsType False) (fArgs fcn) ++ [retType']))
     retType' = "IO " ++ hsType True (fType fcn)
