@@ -125,7 +125,7 @@ ffiTypeTV _ (Vec (Vec (Vec (Vec ())))) = error $ "ffiTypeTV: Vec (Vec (Vec (Vec 
 ffiTypePrim :: Bool -> Primitive -> String
 ffiTypePrim _ CInt = "CInt"
 ffiTypePrim _ CDouble = "CDouble"
-ffiTypePrim _ StdString = "CString"
+ffiTypePrim p StdString = maybeParens p $ "Ptr StdString'"
 ffiTypePrim _ CBool = "CInt"
 ffiTypePrim _ CVoid = "()"
 ffiTypePrim _ CSize = "CSize"
@@ -217,6 +217,7 @@ toCName cppName = T.unpack (replaces replacements (T.pack cppName))
 
 cWrapperRetType :: Type -> String
 cWrapperRetType (Val (NonVec (CasadiClass cc))) = cppClassName cc ++ "*"
+cWrapperRetType (Val (NonVec x@StdString)) = cppTypePrim x ++ "*"
 cWrapperRetType (Val (NonVec x)) = cppTypePrim x
 cWrapperRetType (Val x) = cppTypeTV x ++ "*"
 cWrapperRetType (Ref x) = cppTypeTV x ++ "*"
@@ -237,6 +238,7 @@ writeReturn t x = case makesNewRef t of
 
 makesNewRef :: Type -> Maybe ThreeVectors
 makesNewRef (Val v@(NonVec (CasadiClass _))) = Just v
+makesNewRef (Val v@(NonVec StdString)) = Just v
 makesNewRef (Val (NonVec _)) = Nothing
 makesNewRef (Val v) = Just v
 makesNewRef (Ref v) = Just v
