@@ -8,6 +8,7 @@ module WriteC ( writeFunction
 import Data.List ( intercalate )
 
 import Types
+import TypeMaps
 
 paramName :: Int -> String
 paramName k = "x" ++ show k

@@ -7,7 +7,9 @@ module WriteHs ( writeModule
 
 import Data.Char ( toLower )
 import Data.List ( intersperse )
+
 import Types
+import TypeMaps
 
 -- haskell functions can't have capital leading letter
 beautifulHaskellName :: String -> String
