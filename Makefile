@@ -1,8 +1,9 @@
 all : cbits/gen/test.o cbits/marshall.o cbits/hs_tools.o dist-src/Gen/Test.o
 cpp : cbits/gen/test.o cbits/marshall.o cbits/hs_tools.o
 
-CASADI_INCLUDES= \
-	-I/home/ghorn/casadi
+CASADI_PATH = ~/casadi
+
+CASADI_INCLUDES = -I$(CASADI_PATH)
 
 emit-c : cbits/gen/test.cpp
 	clear
