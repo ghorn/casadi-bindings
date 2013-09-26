@@ -10,13 +10,12 @@ import Types
 main :: IO ()
 main = do
   let cOut = init $ unlines $
-             "#include <casadi.hpp>\n#include \"../marshall.hpp\"\n" :
+             [ "#include <build/swig/swiginclude.hpp>"
+             , "#include \"../marshall.hpp\""
+             ] ++
              concatMap C.writeClass classes ++
              map C.writeFunction tools ++ map C.writeDeletes [CInt,CDouble,StdString]
       hsOut = HS.writeModule "Test" classes tools
 
   length  cOut `seq` writeFile "../cbits/gen/test.cpp" cOut
   length hsOut `seq` writeFile "../dist-src/Gen/Test.hs" hsOut
-
-classes :: [Types.Class]
-classes = [sxfun, sxmat, mx]

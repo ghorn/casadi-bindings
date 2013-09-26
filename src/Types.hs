@@ -33,6 +33,7 @@ module Types ( Class(..)
              ) where
 
 import qualified Data.Text as T
+import CasadiClasses ( CasadiClass(..), cppTypeCasadiPrim )
 
 data Method = Method { fName :: Name
                      , fType :: Type
@@ -46,14 +47,14 @@ data Function = Function Name Type [Type] deriving Show
 
 data Name = Name String deriving Show
 
-data CasadiClass = SXMatrix
-                 | FX
-                 | MX
-                 | SXFunction
-                 deriving Show
-
 data Primitive = CInt
                | CDouble
+               | CBool
+               | CVoid
+               | CSize
+               | CLong
+               | CUChar
+               | StdOstream
                | StdString
                | CasadiClass CasadiClass
                deriving Show
@@ -96,6 +97,13 @@ hsTypePrim :: Primitive -> String
 hsTypePrim CInt = "Int"
 hsTypePrim CDouble = "Double"
 hsTypePrim StdString = "String"
+hsTypePrim StdOstream = "StdOstream"
+hsTypePrim CBool = "Bool"
+hsTypePrim CVoid = "()"
+hsTypePrim CSize = "CSize"
+hsTypePrim CUChar = "CUChar"
+hsTypePrim CLong = "Int"
+
 hsTypePrim (CasadiClass x) = show x
 
 ---- haskell type that appears in foreign import
@@ -118,6 +126,12 @@ ffiTypePrim :: Bool -> Primitive -> String
 ffiTypePrim _ CInt = "CInt"
 ffiTypePrim _ CDouble = "CDouble"
 ffiTypePrim _ StdString = "CString"
+ffiTypePrim _ CBool = "CInt"
+ffiTypePrim _ CVoid = "()"
+ffiTypePrim _ CSize = "CSize"
+ffiTypePrim _ CLong = "CLong"
+ffiTypePrim _ CUChar = "CUChar"
+ffiTypePrim _ StdOstream = "StdOstream"
 ffiTypePrim p (CasadiClass x) = maybeParens p $ "Ptr " ++ show x ++ raw
 
 -- type which appears in the casadi library
@@ -129,21 +143,24 @@ cppType (ConstRef x) = cppTypeTV x ++ " const &"
 cppTypeTV :: ThreeVectors -> String
 cppTypeTV (NonVec x) = cppTypePrim x
 cppTypeTV (Vec (NonVec x)) =
-  "std::vector<"++cppTypePrim x ++ ">"
+  "std::vector<"++cppTypePrim x ++ " >"
 cppTypeTV (Vec (Vec (NonVec x))) =
-  "std::vector<std::vector<"++cppTypePrim x ++ "> >"
+  "std::vector<std::vector<"++cppTypePrim x ++ " > >"
 cppTypeTV (Vec (Vec (Vec (NonVec x)))) =
-  "std::vector<std::vector<std::vector<"++cppTypePrim x ++ "> > >"
+  "std::vector<std::vector<std::vector<"++cppTypePrim x ++ " > > >"
 cppTypeTV (Vec (Vec (Vec (Vec ())))) = error $ "cppTypeTV: Vec (Vec (Vec (Vec ())))"
 
 cppTypePrim :: Primitive -> String
 cppTypePrim CInt = "int"
 cppTypePrim CDouble = "double"
 cppTypePrim StdString = "std::string"
-cppTypePrim (CasadiClass MX) = "CasADi::MX"
-cppTypePrim (CasadiClass FX) = "CasADi::FX"
-cppTypePrim (CasadiClass SXMatrix) = "CasADi::SXMatrix"
-cppTypePrim (CasadiClass SXFunction) = "CasADi::SXFunction"
+cppTypePrim CBool = "bool"
+cppTypePrim CVoid = "void"
+cppTypePrim CSize = "size_t"
+cppTypePrim CLong = "long"
+cppTypePrim CUChar = "unsigned_char"
+cppTypePrim StdOstream = "std::ostream"
+cppTypePrim (CasadiClass x) = cppTypeCasadiPrim x
 
 -- type which appears in the C++ wrapper
 cWrapperType :: Type -> String
@@ -158,9 +175,9 @@ cWrapperTypeTV (NonVec x) = cWrapperTypePrim x
 cWrapperTypeTV (Vec (NonVec x)) =
   "std::vector<"++cWrapperTypePrim x ++ "*>"
 cWrapperTypeTV (Vec (Vec (NonVec x))) =
-  "std::vector<std::vector<"++cWrapperTypePrim x ++ "*>>"
+  "std::vector<std::vector<"++cWrapperTypePrim x ++ "*> >"
 cWrapperTypeTV (Vec (Vec (Vec (NonVec x)))) =
-  "std::vector<std::vector<std::vector<"++cWrapperTypePrim x ++ "*>>>"
+  "std::vector<std::vector<std::vector<"++cWrapperTypePrim x ++ "*> > >"
 cWrapperTypeTV (Vec (Vec (Vec (Vec ())))) = error $ "cWrapperTypeTV: Vec (Vec (Vec (Vec ())))"
 
 cWrapperTypePrim :: Primitive -> String
@@ -169,7 +186,9 @@ cWrapperTypePrim x = cppTypePrim x
 
 -- output type of the cpp marshall function, usually same as cppType except for references
 cppMarshallType :: Type -> String
+cppMarshallType (Ref (NonVec x)) = cppTypePrim x
 cppMarshallType (Ref x) = cppTypeTV x ++ "&"
+cppMarshallType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
 cppMarshallType (ConstRef x) = "const " ++ cppTypeTV x ++ "&"
 cppMarshallType (Val x) = cppTypeTV x
 
@@ -187,12 +206,10 @@ cppMethodName classType fcn = case fMethodType fcn of
   where
     Name methodName = fName fcn
 
-
-
 toCName :: String -> String
 toCName cppName = T.unpack (replaces replacements (T.pack cppName))
   where
-    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_")]
+    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC")]
 
     replaces :: [(T.Text,T.Text)] -> T.Text -> T.Text
     replaces ((find',replace'):xs) = replaces xs . T.replace find' replace'

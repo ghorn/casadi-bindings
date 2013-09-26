@@ -48,7 +48,7 @@ writeFunction (Function (Name functionName) retType params) =
     protoArgs = "(" ++ intercalate ", " protoArgList ++ ")"
     protoArgList = map (uncurry paramProto) $ zip [0..] params
     args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] params) ++ ")"
-    call = cppName ++ args
+    call = removeTics cppName ++ args
 
 writeClass :: Class -> [String]
 writeClass (Class classType methods) =
@@ -77,6 +77,12 @@ writeDeletes classType =
       ]
       where
         proto = "void " ++ (deleteName c) ++ "(" ++ cppTypeTV c ++ "* obj)"
+
+removeTics :: String -> String
+removeTics = reverse . removeTics' . reverse
+  where
+    removeTics' ('\'':xs) = removeTics' xs
+    removeTics' x = x
 
 writeMethod :: CasadiClass -> Method -> String
 writeMethod classType fcn =
@@ -112,5 +118,5 @@ writeMethod classType fcn =
       _ -> nonSelfProtoArgs
     args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] (fArgs fcn)) ++ ")"
     call = case fMethodType fcn of
-      Normal -> "obj->" ++ methodName ++ args
-      _ -> cppName ++ args
+      Normal -> "obj->" ++ removeTics methodName ++ args
+      _ -> removeTics cppName ++ args
