@@ -1,7 +1,7 @@
 all : cbits/gen/test.o cbits/marshall.o cbits/hs_tools.o dist-src/Gen/Test.o
 cpp : cbits/gen/test.o cbits/marshall.o cbits/hs_tools.o
 
-CASADI_PATH = ~/casadi
+CASADI_PATH = /home/ghorn/casadi
 
 CASADI_INCLUDES = -I$(CASADI_PATH)
 
