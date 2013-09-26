@@ -158,7 +158,7 @@ cppTypePrim CBool = "bool"
 cppTypePrim CVoid = "void"
 cppTypePrim CSize = "size_t"
 cppTypePrim CLong = "long"
-cppTypePrim CUChar = "unsigned_char"
+cppTypePrim CUChar = "unsigned char"
 cppTypePrim StdOstream = "std::ostream"
 cppTypePrim (CasadiClass x) = cppTypeCasadiPrim x
 
@@ -186,10 +186,10 @@ cWrapperTypePrim x = cppTypePrim x
 
 -- output type of the cpp marshall function, usually same as cppType except for references
 cppMarshallType :: Type -> String
-cppMarshallType (Ref (NonVec x)) = cppTypePrim x
-cppMarshallType (Ref x) = cppTypeTV x ++ "&"
-cppMarshallType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
-cppMarshallType (ConstRef x) = "const " ++ cppTypeTV x ++ "&"
+cppMarshallType (Ref (NonVec x)) = cppTypePrim x ++ "&" 
+cppMarshallType (Ref x) = cppTypeTV x 
+cppMarshallType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x 
+cppMarshallType (ConstRef x) = "const " ++ cppTypeTV x 
 cppMarshallType (Val x) = cppTypeTV x
 
 cppClassName :: CasadiClass -> String
@@ -209,7 +209,7 @@ cppMethodName classType fcn = case fMethodType fcn of
 toCName :: String -> String
 toCName cppName = T.unpack (replaces replacements (T.pack cppName))
   where
-    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC")]
+    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus")]
 
     replaces :: [(T.Text,T.Text)] -> T.Text -> T.Text
     replaces ((find',replace'):xs) = replaces xs . T.replace find' replace'

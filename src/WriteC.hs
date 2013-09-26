@@ -15,10 +15,13 @@ paramName k = "x" ++ show k
 paramProto :: Int -> Type -> String
 paramProto k t = cWrapperType t ++ " " ++ paramName k
 
+
+-- todo: preserve constref if cWrapperType and cppMarshallType are the same
 marshall :: Int -> Type -> String
 marshall k t = "    " ++ cppMarshallType t ++ " " ++ paramName k ++
-               "_ = marshall(" ++
+               "_ = Marshalling<" ++ cppMarshallType t ++ "," ++ cWrapperType t ++ ">::marshall(" ++
                paramName k ++ ");"
+
 
 
 writeFunction :: Function -> String
@@ -48,7 +51,7 @@ writeFunction (Function (Name functionName) retType params) =
     protoArgs = "(" ++ intercalate ", " protoArgList ++ ")"
     protoArgList = map (uncurry paramProto) $ zip [0..] params
     args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] params) ++ ")"
-    call = removeTics cppName ++ args
+    call = "CasADi::" ++ (removeTics cppName) ++ args
 
 writeClass :: Class -> [String]
 writeClass (Class classType methods) =
