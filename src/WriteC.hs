@@ -51,7 +51,7 @@ writeFunction (Function (Name functionName) retType params) =
     protoArgs = "(" ++ intercalate ", " protoArgList ++ ")"
     protoArgList = map (uncurry paramProto) $ zip [0..] params
     args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] params) ++ ")"
-    call = "CasADi::" ++ (removeTics cppName) ++ args
+    call = removeTics cppName ++ args
 
 writeClass :: Class -> [String]
 writeClass (Class classType methods) =
