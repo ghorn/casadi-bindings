@@ -17,6 +17,7 @@ module Marshal ( ForeignPtrWrapper(..)
                , CppBool'
                ) where
 
+import Control.Monad ( zipWithM )
 import qualified Data.Vector as V
 import Foreign.C.Types
 import Foreign.C.String
@@ -112,10 +113,28 @@ instance ForeignPtrWrapper a b => Marshal (V.Vector a) (Ptr (CppVec (Ptr b))) wh
   withMarshal vec f = do
     let foreignPtrList = map unwrapForeignPtr (V.toList vec)
     withForeignPtrs foreignPtrList $ \ptrList -> do
-      withArrayLen ptrList $ \num ptrArray -> do
-        ptrCppVec <- c_hsMarshalVecVoidPtrs ptrArray (fromIntegral num)
-        ret <- f ptrCppVec
-        c_hsDeleteVecVoidPtrs ptrCppVec
+      ptrCppVec <- withArrayLen ptrList $ \num ptrArray ->
+        c_hsMarshalVecVoidPtrs ptrArray (fromIntegral num)
+      ret <- f ptrCppVec
+      c_hsDeleteVecVoidPtrs ptrCppVec
+      return ret
+
+foreign import ccall unsafe "hs_delete_vec_vec_void_ptrs" c_hsDeleteVecVecVoidPtrs
+  :: Ptr (CppVecVec (Ptr a)) -> IO ()
+foreign import ccall unsafe "hs_marshal_vec_vec_void_ptrs" c_hsMarshalVecVecVoidPtrs
+  :: Ptr (Ptr a) -> CInt -> Ptr CInt -> IO (Ptr (CppVecVec (Ptr a)))
+
+instance ForeignPtrWrapper a b => Marshal (V.Vector (V.Vector a)) (Ptr (CppVecVec (Ptr b))) where
+  withMarshal vec f = do
+    let innerLengths = map (fromIntegral . V.length) (V.toList vec)
+        outerLength = length innerLengths
+        foreignPtrList = concatMap (map unwrapForeignPtr . V.toList) (V.toList vec)
+    withForeignPtrs foreignPtrList $ \ptrList -> do
+      withArray ptrList $ \ptrArray -> do
+        ptrCppVecVec <- withArray innerLengths $ \innerLengthsArray ->
+          c_hsMarshalVecVecVoidPtrs ptrArray (fromIntegral outerLength) innerLengthsArray
+        ret <- f ptrCppVecVec
+        c_hsDeleteVecVecVoidPtrs ptrCppVecVec
         return ret
 
 foreign import ccall unsafe "hs_marshal_vec_uchar" c_hsMarshalVecUChar
@@ -222,3 +241,28 @@ instance WrapReturn (ForeignPtr a) b =>
     free ptrArray
     foreignPtrList <- mapM newForeignPtr_ ptrList -- :: IO [ForeignPtr StdString']
     fmap V.fromList $ mapM wrapReturn foreignPtrList
+
+foreign import ccall unsafe "vec_vec_voidp_size" c_vecVecVoidPSize
+  :: Ptr (CppVecVec (Ptr a)) -> IO CInt
+foreign import ccall unsafe "vec_vec_voidp_sizes" c_vecVecVoidPSizes
+  :: Ptr (CppVecVec (Ptr a)) -> Ptr CInt -> IO ()
+foreign import ccall unsafe "vec_vec_voidp_copy" c_vecVecVoidPCopy
+  :: Ptr (CppVecVec (Ptr a)) -> Ptr (Ptr (Ptr a)) -> IO ()
+instance WrapReturn (ForeignPtr a) b =>
+         WrapReturn (ForeignPtr (CppVecVec (Ptr a))) (V.Vector (V.Vector b)) where
+  wrapReturn foreignVecPtr = withForeignPtr foreignVecPtr $ \vecPtr -> do
+    outerLength <- fmap fromIntegral $ c_vecVecVoidPSize vecPtr
+    innerLengthArray <- mallocArray outerLength
+    c_vecVecVoidPSizes vecPtr innerLengthArray
+    innerLengths <- fmap (map fromIntegral) $ peekArray outerLength innerLengthArray
+    free innerLengthArray
+
+    outputs <- mapM mallocArray innerLengths -- :: IO [Ptr (Ptr a)]
+    withArray outputs $ \outputArray ->
+      c_vecVecVoidPCopy vecPtr outputArray
+    outputLists <- zipWithM peekArray innerLengths outputs -- :: IO [[Ptr a]]
+    mapM_ free outputs
+    let f ptrList = do
+          foreignPtrList <- mapM newForeignPtr_ ptrList -- :: IO [ForeignPtr StdString']
+          fmap V.fromList $ mapM wrapReturn foreignPtrList
+    fmap V.fromList $ mapM f outputLists

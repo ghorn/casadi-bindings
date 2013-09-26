@@ -30,11 +30,27 @@ void vec_int_copy(vector<int> * vec, int outputs[]){
     memcpy(outputs, &(vec[0]), vec->size()*sizeof(int));
 }
 
+// void pointers
 int vec_voidp_size(vector<void*> * vec){
     return vec->size();
 }
 void vec_voidp_copy(vector<void*> * vec, void* outputs[]){
     memcpy(outputs, &(vec[0]), vec->size()*sizeof(void*));
+}
+
+// 2d void pointers
+int vec_vec_voidp_size(vector<vector<void*> > * vec){
+    return vec->size();
+}
+void vec_vec_voidp_sizes(vector<vector<void*> > * vec, int sizes[]){
+    for (int k=0; k<vec->size(); k++){
+        sizes[k] = (*vec)[k].size();
+    }
+}
+void vec_vec_voidp_copy(vector<vector<void*> > * vec, void** outputs[]){
+    for (int k=0; k<vec->size(); k++){
+        memcpy(outputs[k], &(vec[k][0]), vec[k].size()*sizeof(void*));
+    }
 }
 
 int string_length(string * str){
@@ -51,6 +67,7 @@ void delete_string(string * x){
 }
 
 // converting arrays to vectors
+// void pointers
 vector<void*> * hs_marshal_vec_void_ptrs(void * inputs[], int length){
     vector<void*> vec;
     for (int k=0; k<length; k++)
@@ -58,6 +75,24 @@ vector<void*> * hs_marshal_vec_void_ptrs(void * inputs[], int length){
     return new vector<void*>(vec);
 }
 void hs_delete_vec_void_ptrs(vector<void*> * vec){ delete vec; }
+
+// 2-dimensional void pointers
+vector<vector<void*> > * hs_marshal_vec_vec_void_ptrs(void * inputs[], int length_outer, int lengths_inner[]){
+    vector<vector<void*> > vec;
+    int counter = 0;
+    for (int k=0; k<length_outer; k++){
+        vector<void*> inner;
+        for (int j=0; j<lengths_inner[k]; j++){
+            inner.push_back( inputs[counter] );
+            counter++;
+        }
+        vec.push_back(inner);
+    }
+    return new vector<vector<void*> >(vec);
+}
+
+void hs_delete_vec_vec_void_ptrs(vector<vector<void*> > * vec){ delete vec; }
+
 
 vector<unsigned char> * hs_marshal_vec_uchar(unsigned char inputs[], int length){
     vector<unsigned char> vec;
