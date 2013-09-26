@@ -18,18 +18,18 @@ beautifulHaskellName "SXFunction" = "sxFunction"
 -- fall back on just making just the first letter lowercase
 beautifulHaskellName (x:xs) = toLower x:xs
 
-marshallFun :: Int -> String -> String -> (String, String)
-marshallFun n fun wrappedFun =
-  (fun ++ " " ++ concat (intersperse " " args) ++ " =\n" ++ marshalls,
+marshalFun :: Int -> String -> String -> (String, String)
+marshalFun n fun wrappedFun =
+  (fun ++ " " ++ concat (intersperse " " args) ++ " =\n" ++ marshals,
    wrappedFun ++ " " ++ concat (intersperse " " args'))
   where
     ks = take n [(0::Int)..]
-    marshalls = unlines $ blah args
+    marshals = unlines $ blah args
     args = ["x"++show k | k <- ks]
     args' = ["x"++show k++"'" | k <- ks]
 
     blah :: [String] -> [String]
-    blah (x:xs) = ("  withMarshall " ++ x ++ " $ \\" ++ x ++ "' ->"):blah xs
+    blah (x:xs) = ("  withMarshal " ++ x ++ " $ \\" ++ x ++ "' ->"):blah xs
     blah [] = []
 
 writeFunction :: Function -> String
@@ -47,10 +47,10 @@ writeFunction fcn@(Function (Name functionName) retType params) =
   , "-- ffiRetType: " ++ show ffiRetType
   , foreignImport
   , hsFunctionName ++ "\n  :: " ++ proto
-  , marshalls ++ "  " ++ call
+  , marshals ++ "  " ++ call
   ]
   where
-    (marshalls, call') = marshallFun (length args) hsFunctionName c_hsFunctionName
+    (marshals, call') = marshalFun (length args) hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
       Nothing -> call' ++ " >>= wrapReturn"
       Just v -> call' ++ " >>= (newForeignPtr " ++ c_deleteName v ++ ") >>= wrapReturn"
@@ -103,10 +103,10 @@ writeClass (Class classType methods) =
   , deleteForeignImports (CasadiClass classType)
   , "data " ++ hsName ++ "'"
   , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "')"
-  , "instance Marshall " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "') where"
-  , "    withMarshall ("++ hsName ++ " x) f = f x"
-  , "instance Marshall " ++ hsName ++ " (Ptr " ++ hsName ++ "') where"
-  , "    withMarshall ("++ hsName ++ " x) f = withMarshall x f"
+  , "instance Marshal " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "') where"
+  , "    withMarshal ("++ hsName ++ " x) f = f x"
+  , "instance Marshal " ++ hsName ++ " (Ptr " ++ hsName ++ "') where"
+  , "    withMarshal ("++ hsName ++ " x) f = withMarshal x f"
   , "instance ForeignPtrWrapper " ++ hsName ++ " " ++ hsName ++ "' where"
   , "    unwrapForeignPtr ("++ hsName ++ " x) = x"
   , "instance WrapReturn (ForeignPtr " ++ hsName ++ "') " ++ hsName ++ " where"
@@ -169,7 +169,8 @@ writeModule moduleName classes functions =
   , "import Foreign.C.String"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
-  , "import Marshall ( ForeignPtrWrapper(..), Marshall(..), WrapReturn(..), CppVec, CppVecVec, CppVecVecVec )"
+  , "import Marshal ( ForeignPtrWrapper(..), Marshal(..), WrapReturn(..),"
+  , "                 CppVec, CppVecVec, CppVecVecVec, StdString' )"
   , ""
   ] ++ map deleteForeignImports [CInt,CDouble,StdString] ++
   map writeClass classes ++ map writeFunction functions

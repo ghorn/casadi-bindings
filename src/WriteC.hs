@@ -17,11 +17,11 @@ paramProto :: Int -> Type -> String
 paramProto k t = cWrapperType t ++ " " ++ paramName k
 
 
--- todo: preserve constref if cWrapperType and cppMarshallType are the same
-marshall :: Int -> Type -> String
-marshall k t = "    " ++ cppMarshallType t ++ " " ++ paramName k ++
-               "_ = Marshalling<" ++ cppMarshallType t ++ "," ++ cWrapperType t ++ ">::marshall(" ++
-               paramName k ++ ");"
+-- todo: preserve constref if cWrapperType and cppMarshalType are the same
+marshal :: Int -> Type -> String
+marshal k t = "    " ++ cppMarshalType t ++ " " ++ paramName k ++
+              "_ = Marshaling<" ++ cppMarshalType t ++ "," ++ cWrapperType t ++ ">::marshal(" ++
+              paramName k ++ ");"
 
 
 
@@ -39,13 +39,13 @@ writeFunction fcn@(Function (Name functionName) retType params) =
   , "// call: " ++ show call
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
-  , unlines marshalls
+  , unlines marshals
   , writeReturn retType call
   , "}"
   , ""
   ]
   where
-    marshalls = map (uncurry marshall) $ zip [0..] params
+    marshals = map (uncurry marshal) $ zip [0..] params
     proto = cWrapperRetType retType ++ " " ++ cWrapperName'' ++ protoArgs
     cWrapperName'' = cWrapperName' fcn
     cppName = functionName
@@ -103,14 +103,14 @@ writeMethod classType fcn =
   , "// call: " ++ show call
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
-  , unlines marshalls
+  , unlines marshals
   , writeReturn (fType fcn) call
   , "}"
   , ""
   ]
   where
     retType = fType fcn
-    marshalls = map (uncurry marshall) $ zip [0..] (fArgs fcn)
+    marshals = map (uncurry marshal) $ zip [0..] (fArgs fcn)
     proto = cWrapperRetType retType ++ " " ++ cWrapperName'' ++ protoArgs
     cWrapperName'' = cWrapperName classType fcn
     cppName = cppMethodName classType fcn

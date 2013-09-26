@@ -16,7 +16,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     Marshall,
+  exposed-modules:     Marshal,
                        Gen.Test
   -- other-modules:       
   -- other-extensions:    
@@ -36,9 +36,9 @@ library
   Ghc-options: -pgml g++
   cc-options: -Wall -Werror -Wno-delete-non-virtual-dtor
 
-  C-sources:         cbits/marshall.cpp
+  C-sources:         cbits/marshal.cpp
                      cbits/hs_tools.cpp
                      cbits/gen/test.cpp
 
---  Install-includes:  cbits/marshall.hpp
+--  Install-includes:  cbits/marshal.hpp
 

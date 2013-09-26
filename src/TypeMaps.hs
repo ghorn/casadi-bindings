@@ -12,7 +12,7 @@ module TypeMaps ( hsType
                 , cWrapperType
                 , cWrapperRetType
                   -- * bonus stuff, doesn't belong here really
-                , cppMarshallType
+                , cppMarshalType
                 , cppClassName
                 , cWrapperName
                 , cWrapperName'
@@ -141,13 +141,13 @@ cWrapperTypePrim :: Primitive -> String
 cWrapperTypePrim StdString = "char*"
 cWrapperTypePrim x = cppTypePrim x
 
--- output type of the cpp marshall function, usually same as cppType except for references
-cppMarshallType :: Type -> String
-cppMarshallType (Ref (NonVec x)) = cppTypePrim x ++ "&"
-cppMarshallType (Ref x) = cppTypeTV x
-cppMarshallType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
-cppMarshallType (ConstRef x) = "const " ++ cppTypeTV x
-cppMarshallType (Val x) = cppTypeTV x
+-- output type of the cpp marshal function, usually same as cppType except for references
+cppMarshalType :: Type -> String
+cppMarshalType (Ref (NonVec x)) = cppTypePrim x ++ "&"
+cppMarshalType (Ref x) = cppTypeTV x
+cppMarshalType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
+cppMarshalType (ConstRef x) = "const " ++ cppTypeTV x
+cppMarshalType (Val x) = cppTypeTV x
 
 cppClassName :: CasadiClass -> String
 cppClassName = cppTypePrim . CasadiClass

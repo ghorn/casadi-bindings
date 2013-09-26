@@ -11,7 +11,7 @@ main :: IO ()
 main = do
   let cOut = init $ unlines $
              [ "#include <build/swig/swiginclude.hpp>"
-             , "#include \"../marshall.hpp\""
+             , "#include \"../marshal.hpp\""
              ] ++
              concatMap C.writeClass classes ++
              map (C.writeFunction . addNamespace) tools ++ map C.writeDeletes [CInt,CDouble,StdString]
