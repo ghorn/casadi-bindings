@@ -169,14 +169,39 @@ writeModule moduleName classes functions =
   , ""
   , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
-  , "import Foreign.C.String"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
   , "import CasadiBindings.MarshalTypes ( ForeignPtrWrapper(..), CppVec, CppVecVec, CppVecVecVec,"
-  , "                                     StdString', StdOstream', CppBool' )"
+  , "                                     StdString', CppBool' ) -- StdOstream'"
   , "import CasadiBindings.Marshal (  CornerCase(..), Marshal(..) )"
   , "import CasadiBindings.WrapReturn ( WrapReturn(..) )"
-  , "import CasadiBindings.Gen.ForeignToolsInstances"
+  , "import CasadiBindings.Gen.ForeignToolsInstances ( )"
   , ""
   ] ++ map deleteForeignImports [CInt,CDouble,StdString,CBool] ++
-  map writeClass classes ++ map writeFunction functions
+  map writeClass (map filterStdOstreams classes) ++
+  map writeFunction (filter (not . hasStdOstream) functions)
+
+filterStdOstreams :: Class -> Class
+filterStdOstreams (Class cc methods) = Class cc methods'
+  where
+    methods' = filter (not . hasStdOstream') methods
+
+-- remove methods with StdOStrea'
+hasStdOstream' :: Method -> Bool
+hasStdOstream' (Method _ ret params _) = StdOstream `elem` (map getPrim (ret:params))
+
+-- remove methods with StdOStrea'
+hasStdOstream :: Function -> Bool
+hasStdOstream (Function _ _ params) = StdOstream `elem` (map getPrim params)
+
+getPrim :: Type -> Primitive
+getPrim (Val x) = getPrimTV x
+getPrim (Ref x) = getPrimTV x
+getPrim (ConstRef x) = getPrimTV x
+
+getPrimTV :: ThreeVectors -> Primitive
+getPrimTV (NonVec x) = x
+getPrimTV (Vec (NonVec x)) = x
+getPrimTV (Vec (Vec (NonVec x))) = x
+getPrimTV (Vec (Vec (Vec (NonVec x)))) = x
+getPrimTV (Vec (Vec (Vec (Vec ())))) = error "getPrimTV: Vec (Vec (Vec (Vec ())))"

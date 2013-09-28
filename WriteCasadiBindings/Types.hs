@@ -36,7 +36,7 @@ data Primitive = CInt
                | StdOstream
                | StdString
                | CasadiClass CasadiClass
-               deriving Show
+               deriving (Show, Eq)
 
 data Primitive' a = NonVec Primitive
                   | Vec a

@@ -15,7 +15,7 @@ import Foreign.C.Types
 import Foreign.C.String
 import Foreign.Ptr ( Ptr )
 import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr_, withForeignPtr )
-import Foreign.Marshal -- ( mallocArray )
+import Foreign.Marshal ( mallocArray, free, peekArray, withArray )
 
 import CasadiBindings.MarshalTypes
 
