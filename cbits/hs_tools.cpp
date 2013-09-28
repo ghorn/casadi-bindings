@@ -59,12 +59,12 @@ int vec_vec_voidp_size(vector<vector<void*> > * vec){
     return vec->size();
 }
 void vec_vec_voidp_sizes(vector<vector<void*> > * vec, int sizes[]){
-    for (int k=0; k<vec->size(); k++){
+    for (unsigned int k=0; k<vec->size(); k++){
         sizes[k] = (*vec)[k].size();
     }
 }
 void vec_vec_voidp_copy(vector<vector<void*> > * vec, void** outputs[]){
-    for (int k=0; k<vec->size(); k++){
+    for (unsigned int k=0; k<vec->size(); k++){
         memcpy(outputs[k], &(vec[k][0]), vec[k].size()*sizeof(void*));
     }
 }

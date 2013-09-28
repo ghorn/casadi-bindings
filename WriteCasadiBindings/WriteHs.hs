@@ -171,6 +171,7 @@ writeModule moduleName classes functions =
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
+  , ""
   , "import CasadiBindings.MarshalTypes ( ForeignPtrWrapper(..), CppVec, CppVecVec, CppVecVecVec,"
   , "                                     StdString', CppBool' ) -- StdOstream'"
   , "import CasadiBindings.Marshal (  CornerCase(..), Marshal(..) )"

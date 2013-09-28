@@ -16,34 +16,29 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     CasadiBindings.ForeignTools,
-                       CasadiBindings.Marshal,
+  exposed-modules:     CasadiBindings.Gen.Test
+  other-modules:       CasadiBindings.Marshal,
                        CasadiBindings.MarshalTypes,
                        CasadiBindings.WrapReturn,
-                       CasadiBindings.Gen.Test
---  other-modules:       CasadiClasses,
---                       Types,
---                       WriteHs,
---                       CasadiTree,
---                       WriteC,
---                       WriteSomeCasadi
+                       CasadiBindings.Gen.ForeignToolsImports,
+                       CasadiBindings.Gen.ForeignToolsInstances
 
   -- other-extensions:    
-  build-depends:       base >=4.6 && <4.7, text >=0.11 && <0.12, vector >=0.10 && <0.11
+  build-depends:       base >=4.6 && <4.7, vector >=0.10 && <0.11
+
   -- hs-source-dirs:      
   default-language:    Haskell2010
 
 --  hs-source-dirs:
-  Include-dirs: 
+  Include-dirs:   /home/ghorn/casadi
 --                cbits
 --                /home/ghorn/casadi/deploy-static/include/casadi
 --                /home/ghorn/casadi/deploy-shared/include/casadi
 --                /usr/local/include/casadi
-                  /home/ghorn/casadi/symbolic
-  Ghc-options: -pgml g++
 
   Ghc-options: -pgml g++
-  cc-options: -Wall -Werror -Wno-delete-non-virtual-dtor
+
+  cc-options: -Wall -Wno-delete-non-virtual-dtor
 
   C-sources:         cbits/marshal.cpp
                      cbits/hs_tools.cpp

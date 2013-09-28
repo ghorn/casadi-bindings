@@ -81,5 +81,5 @@ foreignToolsInstances =
 
 main :: IO ()
 main = do
-  writeFile "Gen/ForeignToolsImports.hs" foreignToolsImports
-  writeFile "Gen/ForeignToolsInstances.hs" foreignToolsInstances
+  writeFile "../CasadiBindings/Gen/ForeignToolsImports.hs" foreignToolsImports
+  writeFile "../CasadiBindings/Gen/ForeignToolsInstances.hs" foreignToolsInstances
