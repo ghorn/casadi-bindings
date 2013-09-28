@@ -39,9 +39,9 @@ instance WrapReturn (ForeignPtr CppBool') Bool where
                          _ -> True
     
 
-foreign import ccall unsafe "string_length" c_stringLength
+foreign import ccall unsafe "hs_string_length" c_stringLength
   :: Ptr StdString' -> IO CInt
-foreign import ccall unsafe "string_copy" c_stringCopy
+foreign import ccall unsafe "hs_string_copy" c_stringCopy
   :: Ptr StdString' -> Ptr CChar -> IO ()
 instance WrapReturn (ForeignPtr StdString') String where
   wrapReturn stdStr' = withForeignPtr stdStr' $ \stdStr -> do
@@ -53,13 +53,13 @@ instance WrapReturn (ForeignPtr StdString') String where
     return ret
 
 
-foreign import ccall unsafe "vec_size_int" c_vecSizeCInt
+foreign import ccall unsafe "hs_vec_size_int" c_vecSizeCInt
   :: Ptr (CppVec CInt) -> IO CInt
-foreign import ccall unsafe "vec_copy_int" c_vecCopyCInt
+foreign import ccall unsafe "hs_vec_copy_int" c_vecCopyCInt
   :: Ptr (CppVec CInt) -> Ptr CInt -> IO ()
-foreign import ccall unsafe "vec_size_double" c_vecSizeCDouble
+foreign import ccall unsafe "hs_vec_size_double" c_vecSizeCDouble
   :: Ptr (CppVec CDouble) -> IO CInt
-foreign import ccall unsafe "vec_copy_double" c_vecCopyCDouble
+foreign import ccall unsafe "hs_vec_copy_double" c_vecCopyCDouble
   :: Ptr (CppVec CDouble) -> Ptr CDouble -> IO ()
 instance WrapReturn (ForeignPtr (CppVec CInt)) (V.Vector Int) where
   wrapReturn vecPtr' = withForeignPtr vecPtr' $ \vecPtr -> do
@@ -80,9 +80,9 @@ instance WrapReturn (ForeignPtr (CppVec CDouble)) (V.Vector Double) where
     return (V.fromList (map realToFrac ret))
 
 
-foreign import ccall unsafe "vec_size_voidp" c_vecSizeVoidP
+foreign import ccall unsafe "hs_vec_size_voidp" c_vecSizeVoidP
   :: Ptr (CppVec (Ptr a)) -> IO CInt
-foreign import ccall unsafe "vec_copy_voidp" c_vecCopyVoidP
+foreign import ccall unsafe "hs_vec_copy_voidp" c_vecCopyVoidP
   :: Ptr (CppVec (Ptr a)) -> Ptr (Ptr a) -> IO ()
 instance WrapReturn (ForeignPtr a) b =>
          WrapReturn (ForeignPtr (CppVec (Ptr a))) (V.Vector b) where
@@ -95,11 +95,11 @@ instance WrapReturn (ForeignPtr a) b =>
     foreignPtrList <- mapM newForeignPtr_ ptrList -- :: IO [ForeignPtr StdString']
     fmap V.fromList $ mapM wrapReturn foreignPtrList
 
-foreign import ccall unsafe "vec_vec_voidp_size" c_vecVecVoidPSize
+foreign import ccall unsafe "hs_vec_vec_voidp_size" c_vecVecVoidPSize
   :: Ptr (CppVecVec (Ptr a)) -> IO CInt
-foreign import ccall unsafe "vec_vec_voidp_sizes" c_vecVecVoidPSizes
+foreign import ccall unsafe "hs_vec_vec_voidp_sizes" c_vecVecVoidPSizes
   :: Ptr (CppVecVec (Ptr a)) -> Ptr CInt -> IO ()
-foreign import ccall unsafe "vec_vec_voidp_copy" c_vecVecVoidPCopy
+foreign import ccall unsafe "hs_vec_vec_voidp_copy" c_vecVecVoidPCopy
   :: Ptr (CppVecVec (Ptr a)) -> Ptr (Ptr (Ptr a)) -> IO ()
 instance WrapReturn (ForeignPtr a) b =>
          WrapReturn (ForeignPtr (CppVecVec (Ptr a))) (V.Vector (V.Vector b)) where

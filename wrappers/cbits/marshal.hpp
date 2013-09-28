@@ -5,8 +5,6 @@
 #include <symbolic/casadi.hpp>
 
 
-void * get_null_ptr(void);
-
 template<class T1, class T2>
 class Marshaling {
  public:

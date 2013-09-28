@@ -1,5 +1,5 @@
-all : Casadi/Wrappers/Autogen/All.o all-cpp
-all-cpp : cbits/autogen/all.o cbits/marshal.o cbits/hs_tools.o
+all : Casadi/Wrappers/Autogen/All.o allcpp
+allcpp : cbits/autogen/all.o cbits/hs_tools.o
 
 CASADI_PATH = /home/ghorn/casadi
 
@@ -13,11 +13,7 @@ emit-hs : Casadi/Wrappers/Autogen/All.hs
 	clear
 	@pygmentize -f terminal -g Casadi/Wrappers/Autogen/All.hs
 
-cbits/marshal.o : cbits/marshal.cpp cbits/marshal.hpp
-	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/marshal.cpp -o cbits/marshal.o
-	@echo "marshal.o: no clang errors"
-
-cbits/hs_tools.o : cbits/hs_tools.cpp cbits/hs_tools.hpp
+cbits/hs_tools.o : cbits/hs_tools.cpp
 	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/hs_tools.cpp -o cbits/hs_tools.o
 	@echo "hs_tools.o: no clang errors"
 

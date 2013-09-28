@@ -36,24 +36,26 @@ marshalFun params fun wrappedFun =
           Just ntw -> "  withMarshal (" ++ ntw ++ " " ++ x ++ ") $ \\" ++ x ++ "' ->"
     blah [] = []
 
-writeFunction :: Function -> String
-writeFunction fcn@(Function (Name functionName) retType params) =
-  unlines $
-  [ "-- ================== " ++ "function: " ++ show functionName ++ " ==============="
-  , "-- functionName: " ++ show functionName
-  , "-- cFunctionName: " ++ show cFunctionName
-  , "-- hsFunctionName: " ++ show hsFunctionName
-  , "-- c_hsFunctionName: " ++ show c_hsFunctionName
-  , "-- retType': " ++ show retType'
-  , "-- retType: " ++ show retType
-  , "-- params: " ++ show params
-  , "-- map ffiType params: " ++ show (map (ffiType False) params)
-  , "-- ffiRetType: " ++ show ffiRetType
-  , foreignImport
-  , hsFunctionName ++ "\n  :: " ++ proto
-  , marshals ++ "  " ++ call
-  ]
+writeFunction :: Function -> (String,String)
+writeFunction fcn@(Function (Name functionName) retType params) = (hsFunctionName, function)
   where
+    function =
+      unlines $
+      [ "-- ================== " ++ "function: " ++ show functionName ++ " ==============="
+      , "-- functionName: " ++ show functionName
+      , "-- cFunctionName: " ++ show cFunctionName
+      , "-- hsFunctionName: " ++ show hsFunctionName
+      , "-- c_hsFunctionName: " ++ show c_hsFunctionName
+      , "-- retType': " ++ show retType'
+      , "-- retType: " ++ show retType
+      , "-- params: " ++ show params
+      , "-- map ffiType params: " ++ show (map (ffiType False) params)
+      , "-- ffiRetType: " ++ show ffiRetType
+      , foreignImport
+      , hsFunctionName ++ "\n  :: " ++ proto
+      , marshals ++ "  " ++ call
+      ]
+
     (marshals, call') = marshalFun params hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
       Nothing -> call' ++ " >>= wrapReturn"
@@ -94,32 +96,35 @@ deleteForeignImports classType = concatMap writeIt types
       ]
 
 
-writeClass :: Class -> String
-writeClass (Class classType methods) =
-  unlines $
-  ffiWrappers ++
-  [ ""
-  , "--class " ++ hsClass ++ " a where"
---  , "--    coerce_" ++ hsName ++ " :: a -> " ++ hsName
-  ] ++ -- classMethods ++
-  [ ""
-  , deleteForeignImports (CasadiClass classType)
-  , "data " ++ hsName ++ "'"
-  , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "')"
-  , "instance Marshal " ++ hsName ++ " (Ptr " ++ hsName ++ "') where"
-  , "    withMarshal ("++ hsName ++ " x) f = withForeignPtr x f"
-  , "instance ForeignPtrWrapper " ++ hsName ++ " " ++ hsName ++ "' where"
-  , "    unwrapForeignPtr ("++ hsName ++ " x) = x"
-  , "instance WrapReturn (ForeignPtr " ++ hsName ++ "') " ++ hsName ++ " where"
-  , "    wrapReturn = return . " ++ hsName
-  ]
+writeClass :: Class -> ([String],String)
+writeClass (Class classType methods) = (ffiNames, theRest)
   where
+    theRest =
+      unlines $
+      ffiWrappers ++
+      [ ""
+      , "--class " ++ hsClass ++ " a where"
+--      , "--    coerce_" ++ hsName ++ " :: a -> " ++ hsName
+      ] ++ -- classMethods ++
+      [ ""
+      , deleteForeignImports (CasadiClass classType)
+      , "data " ++ hsName ++ "'"
+      , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "')"
+      , "instance Marshal " ++ hsName ++ " (Ptr " ++ hsName ++ "') where"
+      , "    withMarshal ("++ hsName ++ " x) f = withForeignPtr x f"
+      , "instance ForeignPtrWrapper " ++ hsName ++ " " ++ hsName ++ "' where"
+      , "    unwrapForeignPtr ("++ hsName ++ " x) = x"
+      , "instance WrapReturn (ForeignPtr " ++ hsName ++ "') " ++ hsName ++ " where"
+      , "    wrapReturn = return . " ++ hsName
+      ]
+
     hsClass = hsName ++ "_Class"
     hsName = hsTypePrim (CasadiClass classType)
 
-    (_, ffiWrappers) = unzip $ map (writeMethod classType) methods
+    (ffiNames,ffiWrappers) = unzip ffiWrappers'
+    (_, ffiWrappers') = unzip $ map (writeMethod classType) methods
 
-writeMethod :: CasadiClass -> Method -> (String, String)
+writeMethod :: CasadiClass -> Method -> (String, (String,String))
 writeMethod classType fcn = (method, ffiWrapper)
   where
     method =
@@ -152,9 +157,6 @@ writeMethod classType fcn = (method, ffiWrapper)
     Name methodName = fName fcn
 
 
-
-
-
 writeModule :: String -> [Class] -> [Function] -> String
 writeModule moduleName classes functions =
   init $ unlines $
@@ -163,7 +165,8 @@ writeModule moduleName classes functions =
   , "{-# Language FlexibleInstances #-}"
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
-  , "module Casadi.Wrappers.Autogen." ++ moduleName ++ " where"
+  , "module Casadi.Wrappers.Autogen." ++ moduleName
+  , exports
   , ""
   , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
@@ -177,8 +180,21 @@ writeModule moduleName classes functions =
   , "import Casadi.Wrappers.Autogen.ForeignToolsInstances ( )"
   , ""
   ] ++ map deleteForeignImports [CInt,CDouble,StdString,CBool] ++
-  map writeClass (map filterStdOstreams classes) ++
-  map writeFunction (filter (not . hasStdOstream) functions)
+  map (snd . writeClass) (map filterStdOstreams classes) ++
+  map (snd . writeFunction) (filter (not . hasStdOstream) functions)
+  where
+    methodNames :: [String]
+    methodNames = concat $ fst $ unzip $ map writeClass (map filterStdOstreams classes)
+
+    functionNames :: [String]
+    functionNames = map (fst . writeFunction) (filter (not . hasStdOstream) functions)
+
+    exports :: String
+    exports =
+      unlines $
+      "       (" :
+      map (\x -> "         " ++ x ++ ",") (methodNames ++ functionNames) ++
+      ["       ) where"]
 
 filterStdOstreams :: Class -> Class
 filterStdOstreams (Class cc methods) = Class cc methods'
