@@ -5,12 +5,12 @@
 {-# Language FlexibleInstances #-}
 {-# Language FlexibleContexts #-}
 
-module CasadiBindings.Marshal ( Marshal(..)
-                              , HsToC(..)
-                              , CornerCase(..)
-                              , withMarshalStorableVec
-                              , withMarshalStorableVecVec
-                              ) where
+module Casadi.Wrappers.Marshal ( Marshal(..)
+                               , HsToC(..)
+                               , CornerCase(..)
+                               , withMarshalStorableVec
+                               , withMarshalStorableVecVec
+                               ) where
 
 import qualified Data.Vector as V
 import Foreign.C.Types
@@ -19,8 +19,8 @@ import Foreign.Ptr ( Ptr )
 import Foreign.Marshal ( withArray, withArrayLen )
 import Foreign.Storable ( Storable )
 
-import CasadiBindings.MarshalTypes
-import CasadiBindings.Gen.ForeignToolsImports
+import Casadi.Wrappers.MarshalTypes
+import Casadi.Wrappers.Autogen.ForeignToolsImports
 
 class Marshal a b where
   withMarshal :: a -> (b -> IO c) -> IO c

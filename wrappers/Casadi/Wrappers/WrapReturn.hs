@@ -6,8 +6,8 @@
 {-# Language FlexibleInstances #-}
 {-# Language FlexibleContexts #-}
 
-module CasadiBindings.WrapReturn ( WrapReturn(..)
-                                 ) where
+module Casadi.Wrappers.WrapReturn ( WrapReturn(..)
+                                  ) where
 
 import Control.Monad ( zipWithM )
 import qualified Data.Vector as V
@@ -17,7 +17,7 @@ import Foreign.Ptr ( Ptr )
 import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr_, withForeignPtr )
 import Foreign.Marshal ( mallocArray, free, peekArray, withArray )
 
-import CasadiBindings.MarshalTypes
+import Casadi.Wrappers.MarshalTypes
 
 class WrapReturn a b where
   wrapReturn :: a -> IO b

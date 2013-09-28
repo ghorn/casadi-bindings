@@ -52,12 +52,12 @@ foreignToolsImports =
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language ForeignFunctionInterface #-}"
   , ""
-  , "module CasadiBindings.Gen.ForeignToolsImports where"
+  , "module Casadi.Wrappers.Autogen.ForeignToolsImports where"
   , ""
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( Ptr )"
   , ""
-  , "import CasadiBindings.MarshalTypes"
+  , "import Casadi.Wrappers.MarshalTypes"
   ] ++ concat foreignImports
 
 foreignToolsInstances :: String
@@ -67,19 +67,19 @@ foreignToolsInstances =
   , "{-# Language FlexibleInstances #-}"
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
-  , "module CasadiBindings.Gen.ForeignToolsInstances where"
+  , "module Casadi.Wrappers.Autogen.ForeignToolsInstances where"
   , ""
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( Ptr )"
   , "import qualified Data.Vector as V"
   , ""
-  , "import CasadiBindings.MarshalTypes"
-  , "import CasadiBindings.Marshal"
-  , "import CasadiBindings.Gen.ForeignToolsImports"
+  , "import Casadi.Wrappers.MarshalTypes"
+  , "import Casadi.Wrappers.Marshal"
+  , "import Casadi.Wrappers.Autogen.ForeignToolsImports"
   , ""
   ] ++ concat instances
 
 main :: IO ()
 main = do
-  writeFile "../CasadiBindings/Gen/ForeignToolsImports.hs" foreignToolsImports
-  writeFile "../CasadiBindings/Gen/ForeignToolsInstances.hs" foreignToolsInstances
+  writeFile "../Casadi/Wrappers/Autogen/ForeignToolsImports.hs" foreignToolsImports
+  writeFile "../Casadi/Wrappers/Autogen/ForeignToolsInstances.hs" foreignToolsInstances

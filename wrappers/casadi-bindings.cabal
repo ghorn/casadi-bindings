@@ -16,12 +16,12 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     CasadiBindings.Gen.Test
-  other-modules:       CasadiBindings.Marshal,
-                       CasadiBindings.MarshalTypes,
-                       CasadiBindings.WrapReturn,
-                       CasadiBindings.Gen.ForeignToolsImports,
-                       CasadiBindings.Gen.ForeignToolsInstances
+  exposed-modules:     Casadi.Wrappers.Autogen.All
+  other-modules:       Casadi.Wrappers.Marshal,
+                       Casadi.Wrappers.MarshalTypes,
+                       Casadi.Wrappers.WrapReturn,
+                       Casadi.Wrappers.Autogen.ForeignToolsImports,
+                       Casadi.Wrappers.Autogen.ForeignToolsInstances
 
   -- other-extensions:    
   build-depends:       base >=4.6 && <4.7, vector >=0.10 && <0.11
@@ -42,7 +42,7 @@ library
 
   C-sources:         cbits/marshal.cpp
                      cbits/hs_tools.cpp
-                     cbits/gen/test.cpp
+                     cbits/autogen/all.cpp
 
 --  Install-includes:  cbits/marshal.hpp
 

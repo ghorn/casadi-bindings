@@ -2,16 +2,16 @@
 {-# Language MultiParamTypeClasses #-}
 {-# Language FunctionalDependencies #-}
 
-module CasadiBindings.MarshalTypes ( ForeignPtrWrapper(..)
-                                   , CppVec
-                                   , CppVecVec
-                                   , CppVecVecVec
-                                   , StdString'
-                                   , StdOstream'
-                                   , CppBool'
-                                   , withForeignPtrs
-                                   , withForeignPtrsVV
-                                   ) where
+module Casadi.Wrappers.MarshalTypes ( ForeignPtrWrapper(..)
+                                    , CppVec
+                                    , CppVecVec
+                                    , CppVecVecVec
+                                    , StdString'
+                                    , StdOstream'
+                                    , CppBool'
+                                    , withForeignPtrs
+                                    , withForeignPtrsVV
+                                    ) where
 
 import qualified Data.Vector as V
 import Foreign.Ptr ( Ptr )

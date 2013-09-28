@@ -15,10 +15,10 @@ main = do
              ] ++
              concatMap C.writeClass classes ++
              map (C.writeFunction . addNamespace) tools ++ map C.writeDeletes [CInt,CDouble,StdString,CBool]
-      hsOut = HS.writeModule "Test" classes tools
+      hsOut = HS.writeModule "All" classes tools
 
-  length  cOut `seq` writeFile "cbits/gen/test.cpp" cOut
-  length hsOut `seq` writeFile "CasadiBindings/Gen/Test.hs" hsOut
+  length  cOut `seq` writeFile "cbits/autogen/all.cpp" cOut
+  length hsOut `seq` writeFile "Casadi/Wrappers/Autogen/All.hs" hsOut
 
 addNamespace :: Function -> Function
 addNamespace (Function (Name name) x y) = Function (Name ("CasADi::"++name)) x y
