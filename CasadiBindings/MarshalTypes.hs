@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# Language MultiParamTypeClasses #-}
+{-# Language FunctionalDependencies #-}
 
 module CasadiBindings.MarshalTypes ( ForeignPtrWrapper(..)
                                    , CppVec
@@ -9,9 +10,10 @@ module CasadiBindings.MarshalTypes ( ForeignPtrWrapper(..)
                                    , StdOstream'
                                    , CppBool'
                                    , withForeignPtrs
+                                   , withForeignPtrsVV
                                    ) where
 
-import Foreign.C.Types
+import qualified Data.Vector as V
 import Foreign.Ptr ( Ptr )
 import Foreign.ForeignPtr ( ForeignPtr, touchForeignPtr )
 import Foreign.ForeignPtr.Unsafe ( unsafeForeignPtrToPtr )
@@ -24,25 +26,17 @@ data StdString'
 data StdOstream'
 data CppBool'
 
-class HsToC a b where
-  hsToC :: a -> b
-instance HsToC Int CInt where
-  hsToC = fromIntegral -- really should check min/max bounds here
-instance HsToC Int CLong where
-  hsToC = fromIntegral
-instance HsToC Bool CInt where
-  hsToC True = 1
-  hsToC False = 0
-instance HsToC Double CDouble where
-  hsToC = realToFrac
-instance HsToC CUChar CUChar where
-  hsToC = id
-
-class ForeignPtrWrapper a b where
+class ForeignPtrWrapper a b | a -> b, b -> a where
   unwrapForeignPtr :: a -> ForeignPtr b
 
 withForeignPtrs :: [ForeignPtr a] -> ([Ptr a] -> IO b) -> IO b
 withForeignPtrs xs f = do
   ret <- f (map unsafeForeignPtrToPtr xs)
   mapM_ touchForeignPtr xs
+  return ret
+
+withForeignPtrsVV :: V.Vector (V.Vector (ForeignPtr a)) -> (V.Vector (V.Vector (Ptr a)) -> IO b) -> IO b
+withForeignPtrsVV vv f = do
+  ret <- f (V.map (V.map unsafeForeignPtrToPtr) vv)
+  V.mapM_ (V.mapM_ touchForeignPtr) vv
   return ret

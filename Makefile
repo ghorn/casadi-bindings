@@ -25,8 +25,11 @@ cbits/hs_tools.o : cbits/hs_tools.cpp cbits/hs_tools.hpp
 	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/hs_tools.cpp -o cbits/hs_tools.o
 	@echo "hs_tools.o: no clang errors"
 
-CasadiBindings/Gen/Test.o : CasadiBindings/Gen/Test.hs CasadiBindings/Marshal.hs
+CasadiBindings/Gen/Test.o : CasadiBindings/Gen/Test.hs CasadiBindings/Gen/ForeignToolsImports.hs CasadiBindings/Gen/ForeignToolsInstances.hs CasadiBindings/*.hs
 	ghc --make CasadiBindings/Gen/Test.hs
+
+CasadiBindings/Gen/ForeignToolsImports.hs CasadiBindings/Gen/ForeignToolsInstances.hs : CasadiBindings/WriteForeignTools.hs
+	cd CasadiBindings && runhaskell WriteForeignTools.hs
 
 cbits/gen/test.cpp CasadiBindings/Gen/Test.hs : WriteBindings
 	./WriteBindings

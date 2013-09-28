@@ -16,7 +16,8 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     CasadiBindings.Marshal,
+  exposed-modules:     CasadiBindings.ForeignTools,
+                       CasadiBindings.Marshal,
                        CasadiBindings.MarshalTypes,
                        CasadiBindings.WrapReturn,
                        CasadiBindings.Gen.Test

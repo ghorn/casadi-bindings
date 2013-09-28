@@ -18,18 +18,22 @@ beautifulHaskellName "SXFunction" = "sxFunction"
 -- fall back on just making just the first letter lowercase
 beautifulHaskellName (x:xs) = toLower x:xs
 
-marshalFun :: Int -> String -> String -> (String, String)
-marshalFun n fun wrappedFun =
-  (fun ++ " " ++ concat (intersperse " " args) ++ " =\n" ++ marshals,
-   wrappedFun ++ " " ++ concat (intersperse " " args'))
+marshalFun :: [Type] -> String -> String -> (String, String)
+marshalFun params fun wrappedFun =
+  (fun ++ " " ++ concat (intersperse " " patternMatchArgs) ++ " =\n" ++ marshals,
+   wrappedFun ++ " " ++ concat (intersperse " " appArgs))
   where
-    ks = take n [(0::Int)..]
-    marshals = unlines $ blah args
-    args = ["x"++show k | k <- ks]
-    args' = ["x"++show k++"'" | k <- ks]
+    marshals = unlines $ blah $ args
+    args = zipWith (\k p -> ("x"++show k, p)) [(0::Int)..] params
+    patternMatchArgs = map fst args
+    appArgs = map (++ "'") patternMatchArgs
 
-    blah :: [String] -> [String]
-    blah (x:xs) = ("  withMarshal " ++ x ++ " $ \\" ++ x ++ "' ->"):blah xs
+    blah :: [(String,Type)] -> [String]
+    blah ((x,t):xs) = arg:blah xs
+      where
+        arg = case hsMarshalNewtypeWrapper t of
+          Nothing -> "  withMarshal " ++ x ++ " $ \\" ++ x ++ "' ->"
+          Just ntw -> "  withMarshal (" ++ ntw ++ " " ++ x ++ ") $ \\" ++ x ++ "' ->"
     blah [] = []
 
 writeFunction :: Function -> String
@@ -50,12 +54,11 @@ writeFunction fcn@(Function (Name functionName) retType params) =
   , marshals ++ "  " ++ call
   ]
   where
-    (marshals, call') = marshalFun (length args) hsFunctionName c_hsFunctionName
+    (marshals, call') = marshalFun params hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
       Nothing -> call' ++ " >>= wrapReturn"
       Just v -> call' ++ " >>= (newForeignPtr " ++ c_deleteName v ++ ") >>= wrapReturn"
 
-    args = take (length params) ["x"++show k ++ "'" | k <- [(0::Int)..]]
     hsFunctionName = beautifulHaskellName cFunctionName
     cFunctionName = cWrapperName' fcn
     c_hsFunctionName = "c_" ++ cFunctionName
@@ -171,8 +174,9 @@ writeModule moduleName classes functions =
   , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr )"
   , "import CasadiBindings.MarshalTypes ( ForeignPtrWrapper(..), CppVec, CppVecVec, CppVecVecVec,"
   , "                                     StdString', StdOstream', CppBool' )"
-  , "import CasadiBindings.Marshal (  Marshal(..) )"
+  , "import CasadiBindings.Marshal (  CornerCase(..), Marshal(..) )"
   , "import CasadiBindings.WrapReturn ( WrapReturn(..) )"
+  , "import CasadiBindings.Gen.ForeignToolsInstances"
   , ""
   ] ++ map deleteForeignImports [CInt,CDouble,StdString,CBool] ++
   map writeClass classes ++ map writeFunction functions

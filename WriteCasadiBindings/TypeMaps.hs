@@ -3,6 +3,7 @@
 
 module WriteCasadiBindings.TypeMaps ( hsType
                                     , hsTypePrim
+                                    , hsMarshalNewtypeWrapper
                                     , ffiType
                                     , ffiTypeTV
                                     , ffiTypePrim
@@ -60,10 +61,22 @@ hsTypePrim CVoid = "()"
 hsTypePrim CSize = "CSize"
 hsTypePrim CUChar = "CUChar"
 hsTypePrim CLong = "Int"
-
 hsTypePrim (CasadiClass x) = show x
 
----- haskell type that appears in foreign import
+-- this optionally wraps a newtype around the marshal call, so that
+-- we can handle corner cases of Marshal without overlapping instances
+hsMarshalNewtypeWrapper :: Type -> Maybe String
+hsMarshalNewtypeWrapper (Val x) = hsMarshalNewtypeWrapperTV x
+hsMarshalNewtypeWrapper (Ref x) = hsMarshalNewtypeWrapperTV x
+hsMarshalNewtypeWrapper (ConstRef x) = hsMarshalNewtypeWrapperTV x
+
+
+hsMarshalNewtypeWrapperTV :: ThreeVectors -> Maybe String
+hsMarshalNewtypeWrapperTV (Vec (NonVec StdString)) = Just "CornerCase"
+hsMarshalNewtypeWrapperTV (Vec (NonVec CBool)) = Just "CornerCase"
+hsMarshalNewtypeWrapperTV _ = Nothing
+
+-- haskell type that appears in foreign import
 ffiType :: Bool -> Type -> String
 ffiType p (Val x) = ffiTypeTV p x
 ffiType p (Ref x) = ffiTypeTV p x
