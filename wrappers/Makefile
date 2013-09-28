@@ -37,7 +37,7 @@ cbits/gen/test.cpp CasadiBindings/Gen/Test.hs : WriteBindings
 	./WriteBindings
 
 WriteBindings : WriteCasadiBindings/*.hs WriteBindings.hs
-	ghc --make -O2 WriteBindings
+	ghc --make WriteBindings
 
 clean :
 	rm -f WriteCasadiBindings/*.hi WriteCasadiBindings/*.o
