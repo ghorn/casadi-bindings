@@ -14,10 +14,9 @@ module CasadiBindings.Marshal ( Marshal(..)
 
 import qualified Data.Vector as V
 import Foreign.C.Types
-import Foreign.C.String
+import Foreign.C.String ( withCString )
 import Foreign.Ptr ( Ptr )
-import Foreign.ForeignPtr ( ForeignPtr, withForeignPtr )
-import Foreign.Marshal -- ( mallocArray )
+import Foreign.Marshal ( withArray, withArrayLen )
 import Foreign.Storable ( Storable )
 
 import CasadiBindings.MarshalTypes
@@ -100,9 +99,6 @@ instance Marshal (CornerCase (V.Vector Bool)) (Ptr (CppVec (Ptr CppBool'))) wher
     V.mapM_ c_deleteBool stdBools
     return ret
       
-instance Marshal (ForeignPtr a) (Ptr a) where
-  withMarshal = withForeignPtr
-
 instance ForeignPtrWrapper a b => Marshal (V.Vector a) (Ptr (CppVec (Ptr b))) where
   withMarshal vec f =
     let foreignPtrList = map unwrapForeignPtr (V.toList vec)
