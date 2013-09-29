@@ -22,16 +22,16 @@ main = do
       hsClassModules = HS.writeClassModules inheritance classes'
       hsToolsModule = HS.writeToolsModule tools'
 
-  writeFile "Casadi/Wrappers/Autogen/ForeignToolsImports.hs" foreignToolsImports
-  writeFile "Casadi/Wrappers/Autogen/ForeignToolsInstances.hs" foreignToolsInstances
+  writeFile "Casadi/Wrappers/ForeignToolsImports.hs" foreignToolsImports
+  writeFile "Casadi/Wrappers/ForeignToolsInstances.hs" foreignToolsInstances
 
   writeFile "cbits/autogen/all.cpp" cOut
-  writeFile "Casadi/Wrappers/Autogen/Data.hs" hsData
-  writeFile "Casadi/Wrappers/Autogen/Deleters.hs" hsDeleters
-  mapM_ (\(dataname, src) -> writeFile ("Casadi/Wrappers/Autogen/" ++ dataname ++ ".hs") src)  hsClassModules
-  writeFile "Casadi/Wrappers/Autogen/Tools.hs" hsToolsModule
-  writeFile "Casadi/Wrappers/Autogen/modules.txt" $
-    unlines $ map ((\(dataname,_) -> "Casadi.Wrappers.Autogen." ++ dataname)) hsClassModules
+  writeFile "Casadi/Wrappers/Data.hs" hsData
+  writeFile "Casadi/Wrappers/Deleters.hs" hsDeleters
+  mapM_ (\(dataname, src) -> writeFile ("Casadi/Wrappers/" ++ dataname ++ ".hs") src)  hsClassModules
+  writeFile "Casadi/Wrappers/Tools.hs" hsToolsModule
+  writeFile "Casadi/Wrappers/modules.txt" $
+    unlines $ map ((\(dataname,_) -> "Casadi.Wrappers." ++ dataname)) hsClassModules
 
 tools' :: [Function]
 tools' = map addNamespace $ filter (not . hasStdOstream) tools

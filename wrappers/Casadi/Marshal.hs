@@ -1,16 +1,15 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# Language MultiParamTypeClasses #-}
--- {-# Language FunctionalDependencies #-}
 {-# Language TypeSynonymInstances #-}
 {-# Language FlexibleInstances #-}
 {-# Language FlexibleContexts #-}
 
-module Casadi.Wrappers.Marshal ( Marshal(..)
-                               , HsToC(..)
-                               , CornerCase(..)
-                               , withMarshalStorableVec
-                               , withMarshalStorableVecVec
-                               ) where
+module Casadi.Marshal ( Marshal(..)
+                      , HsToC(..)
+                      , CornerCase(..)
+                      , withMarshalStorableVec
+                      , withMarshalStorableVecVec
+                      ) where
 
 import qualified Data.Vector as V
 import Foreign.C.Types
@@ -19,8 +18,8 @@ import Foreign.Ptr ( Ptr )
 import Foreign.Marshal ( withArray, withArrayLen )
 import Foreign.Storable ( Storable )
 
-import Casadi.Wrappers.MarshalTypes
-import Casadi.Wrappers.Autogen.ForeignToolsImports
+import Casadi.Wrappers.ForeignToolsImports
+import Casadi.MarshalTypes
 
 class Marshal a b where
   withMarshal :: a -> (b -> IO c) -> IO c

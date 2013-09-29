@@ -1,4 +1,4 @@
-all : Casadi/Wrappers/Autogen/All.o allcpp
+all : Casadi/Wrappers/Tools.o allcpp
 allcpp : cbits/autogen/all.o cbits/hs_tools.o
 
 CASADI_PATH = /home/ghorn/casadi
@@ -13,12 +13,12 @@ cbits/autogen/all.o : cbits/autogen/all.cpp cbits/marshal.hpp
 	clang++ -Wall -Werror -Wno-delete-non-virtual-dtor $(CASADI_INCLUDES) -c cbits/autogen/all.cpp -o cbits/autogen/all.o
 	@echo "all.o: no clang errors"
 
-gen_hs : Casadi/Wrappers/Autogen/Data.hs
+gen_hs : Casadi/Wrappers/Tools.hs
 
-Casadi/Wrappers/Autogen/*.o : gen_hs Casadi/Wrappers/*.hs
-	ghc --make Casadi/Wrappers/Autogen/*.hs
+Casadi/Wrappers/Tools.o : gen_hs Casadi/*.hs
+	ghc --make Casadi/Wrappers/*.hs
 
-cbits/autogen/all.cpp Casadi/Wrappers/Autogen/Data.hs : WriteBindings
+cbits/autogen/all.cpp Casadi/Wrappers/Tools.hs : WriteBindings
 	./WriteBindings
 
 WriteBindings : WriteCasadiBindings/*.hs WriteBindings.hs
@@ -26,10 +26,10 @@ WriteBindings : WriteCasadiBindings/*.hs WriteBindings.hs
 
 clean_gen :
 	rm -f cbits/autogen/*
-	rm -f Casadi/Wrappers/Autogen/*
+	rm -f Casadi/Wrappers/*
 
 clean :
 	rm -f WriteCasadiBindings/*.hi WriteCasadiBindings/*.o
 	rm -f WriteBindings WriteBindings.hi WriteBindings.o
 	rm -f cbits/*.o cbits/autogen/*
-	rm -f Casadi/Wrappers/*.hi Casadi/Wrappers/*.o Casadi/Wrappers/Autogen/*
+	rm -f Casadi/*.hi Casadi/*.o Casadi/Wrappers/*

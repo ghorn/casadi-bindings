@@ -199,13 +199,13 @@ writeDeleterModule classes =
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language ForeignFunctionInterface #-}"
   , ""
-  , "module Casadi.Wrappers.Autogen.Deleters where"
+  , "module Casadi.Wrappers.Deleters where"
   , ""
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( FunPtr, Ptr )"
   , ""
-  , "import Casadi.Wrappers.MarshalTypes"
-  , "import Casadi.Wrappers.Autogen.Data"
+  , "import Casadi.Wrappers.Data"
+  , "import Casadi.MarshalTypes"
   , ""
   ] ++ deleters classes
 
@@ -220,7 +220,7 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       , "{-# Language FlexibleInstances #-}"
       , "{-# Language MultiParamTypeClasses #-}"
       , ""
-      , "module Casadi.Wrappers.Autogen." ++ dataName c
+      , "module Casadi.Wrappers." ++ dataName c
       , exportDecl $ [dataName c, typeclassName c] ++ sort names
       , ""
       , "import Data.Vector ( Vector )"
@@ -228,13 +228,13 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       , "import Foreign.Ptr ( Ptr )"
       , "import Foreign.ForeignPtr ( newForeignPtr )"
       , ""
-      , "import Casadi.Wrappers.MarshalTypes ( CppVec, CppVecVec, CppVecVecVec,"
-      , "                                      StdString', CppBool' ) -- StdOstream'"
-      , "import Casadi.Wrappers.Marshal ( CornerCase(..), Marshal(..) )"
-      , "import Casadi.Wrappers.WrapReturn ( WrapReturn(..) )"
-      , "import Casadi.Wrappers.Autogen.ForeignToolsInstances ( )"
-      , "import Casadi.Wrappers.Autogen.Deleters"
-      , "import Casadi.Wrappers.Autogen.Data"
+      , "import Casadi.Wrappers.ForeignToolsInstances ( )"
+      , "import Casadi.Wrappers.Deleters"
+      , "import Casadi.Wrappers.Data"
+      , "import Casadi.MarshalTypes ( CppVec, CppVecVec, CppVecVecVec,"
+      , "                             StdString', CppBool' ) -- StdOstream'"
+      , "import Casadi.Marshal ( CornerCase(..), Marshal(..) )"
+      , "import Casadi.WrapReturn ( WrapReturn(..) )"
       , ""
       ] ++ map f methods
       where
@@ -255,14 +255,14 @@ writeDataModule classes inheritance =
   , "{-# Language FlexibleInstances #-}"
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
-  , "module Casadi.Wrappers.Autogen.Data where"
+  , "module Casadi.Wrappers.Data where"
   , ""
   , "import Foreign.Ptr ( Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, castForeignPtr, withForeignPtr )"
   , ""
-  , "import Casadi.Wrappers.MarshalTypes ( ForeignPtrWrapper(..) )"
-  , "import Casadi.Wrappers.Marshal (  Marshal(..) )"
-  , "import Casadi.Wrappers.WrapReturn ( WrapReturn(..) )"
+  , "import Casadi.MarshalTypes ( ForeignPtrWrapper(..) )"
+  , "import Casadi.Marshal (  Marshal(..) )"
+  , "import Casadi.WrapReturn ( WrapReturn(..) )"
   , ""
   ] ++ map writeData classes
   where
@@ -293,7 +293,7 @@ writeToolsModule functions =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
   , ""
-  , "module Casadi.Wrappers.Autogen.Tools"
+  , "module Casadi.Wrappers.Tools"
   , exportDecl (sort funNames)
   , ""
   , "import Data.Vector ( Vector )"
@@ -301,12 +301,12 @@ writeToolsModule functions =
   , "import Foreign.Ptr ( Ptr )"
   , "import Foreign.ForeignPtr ( newForeignPtr )"
   , ""
-  , "import Casadi.Wrappers.MarshalTypes ( CppVec, CppVecVec, CppBool', StdString' )"
-  , "import Casadi.Wrappers.Marshal (  CornerCase(..), Marshal(..) )"
-  , "import Casadi.Wrappers.WrapReturn ( WrapReturn(..) )"
-  , "import Casadi.Wrappers.Autogen.Data"
-  , "import Casadi.Wrappers.Autogen.Deleters"
-  , "import Casadi.Wrappers.Autogen.ForeignToolsInstances ( )"
+  , "import Casadi.Wrappers.Data"
+  , "import Casadi.Wrappers.Deleters"
+  , "import Casadi.Wrappers.ForeignToolsInstances ( )"
+  , "import Casadi.MarshalTypes ( CppVec, CppVecVec, CppBool', StdString' )"
+  , "import Casadi.Marshal (  CornerCase(..), Marshal(..) )"
+  , "import Casadi.WrapReturn ( WrapReturn(..) )"
   , ""
   ] ++ funDecls
   where

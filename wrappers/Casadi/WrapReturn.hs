@@ -1,13 +1,12 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# Language ForeignFunctionInterface #-}
 {-# Language MultiParamTypeClasses #-}
--- {-# Language FunctionalDependencies #-}
 {-# Language TypeSynonymInstances #-}
 {-# Language FlexibleInstances #-}
 {-# Language FlexibleContexts #-}
 
-module Casadi.Wrappers.WrapReturn ( WrapReturn(..)
-                                  ) where
+module Casadi.WrapReturn ( WrapReturn(..)
+                         ) where
 
 import Control.Monad ( zipWithM )
 import qualified Data.Vector as V
@@ -17,7 +16,7 @@ import Foreign.Ptr ( Ptr )
 import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr_, withForeignPtr )
 import Foreign.Marshal ( mallocArray, free, peekArray, withArray )
 
-import Casadi.Wrappers.MarshalTypes
+import Casadi.MarshalTypes
 
 class WrapReturn a b where
   wrapReturn :: a -> IO b

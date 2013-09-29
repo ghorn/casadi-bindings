@@ -52,12 +52,12 @@ foreignToolsImports =
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language ForeignFunctionInterface #-}"
   , ""
-  , "module Casadi.Wrappers.Autogen.ForeignToolsImports where"
+  , "module Casadi.Wrappers.ForeignToolsImports where"
   , ""
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( Ptr )"
   , ""
-  , "import Casadi.Wrappers.MarshalTypes"
+  , "import Casadi.MarshalTypes"
   ] ++ concat foreignImports
 
 foreignToolsInstances :: String
@@ -67,14 +67,14 @@ foreignToolsInstances =
   , "{-# Language FlexibleInstances #-}"
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
-  , "module Casadi.Wrappers.Autogen.ForeignToolsInstances where"
+  , "module Casadi.Wrappers.ForeignToolsInstances where"
   , ""
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( Ptr )"
   , "import qualified Data.Vector as V"
   , ""
-  , "import Casadi.Wrappers.MarshalTypes"
-  , "import Casadi.Wrappers.Marshal"
-  , "import Casadi.Wrappers.Autogen.ForeignToolsImports"
+  , "import Casadi.MarshalTypes"
+  , "import Casadi.Marshal"
+  , "import Casadi.Wrappers.ForeignToolsImports"
   , ""
   ] ++ concat instances
