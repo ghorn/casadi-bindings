@@ -1,5 +1,4 @@
 {-# OPTIONS_GHC -Wall #-}
-{-# Language OverloadedStrings #-}
 
 module WriteCasadiBindings.TypeMaps ( hsType
                                     , hsTypePrim
@@ -12,7 +11,6 @@ module WriteCasadiBindings.TypeMaps ( hsType
                                     , cppTypePrim
                                     , cWrapperType
                                     , cWrapperRetType
-                                      -- * bonus stuff, doesn't belong here really
                                     , cppMarshalType
                                     , cppClassName
                                     , cWrapperName
@@ -22,6 +20,9 @@ module WriteCasadiBindings.TypeMaps ( hsType
                                     , writeReturn
                                     , deleteName
                                     , makesNewRef
+                                    , hsDataName
+                                    , hsClassName
+                                    , toCName
                                     ) where
 
 import qualified Data.Text as T
@@ -188,12 +189,12 @@ cppMethodName classType fcn = case fMethodType fcn of
     Name methodName = fName fcn
 
 toCName :: String -> String
-toCName cppName = T.unpack (replaces replacements (T.pack cppName))
+toCName cppName = replaces replacements cppName
   where
     replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus")]
 
-    replaces :: [(T.Text,T.Text)] -> T.Text -> T.Text
-    replaces ((find',replace'):xs) = replaces xs . T.replace find' replace'
+    replaces :: [(String,String)] -> String -> String
+    replaces ((find',replace'):xs) = replaces xs . T.unpack . T.replace (T.pack find') (T.pack replace') . T.pack
     replaces [] = id
 
 cWrapperRetType :: Type -> String
@@ -229,3 +230,9 @@ makesNewRef (ConstRef v) = Just v
 
 deleteName :: ThreeVectors -> String
 deleteName v = "delete_" ++ toCName (cppTypeTV v)
+
+hsDataName :: CasadiClass -> String
+hsDataName classType = hsTypePrim (CasadiClass classType)
+
+hsClassName :: CasadiClass -> String
+hsClassName classType = hsDataName classType  ++ "Class"

@@ -1,22 +1,27 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteCasadiBindings.WriteHs ( writeModule
-                                   , writeFunction
-                                   , writeClass
+module WriteCasadiBindings.WriteHs ( writeClassModules
+                                   , writeDeleterModule
+                                   , writeDataModule
+                                   , writeToolsModule
                                    ) where
 
 import Data.Char ( toLower )
-import Data.List ( intersperse )
+import Data.List ( intersperse, sort )
+import Data.Maybe ( fromMaybe )
+import qualified Data.Map as M
+import qualified Data.Text as T
 
 import WriteCasadiBindings.Types
 import WriteCasadiBindings.TypeMaps
 
--- haskell functions can't have capital leading letter
-beautifulHaskellName :: String -> String
-beautifulHaskellName [] = error "beautifulHaskellName: empty string will never be beautiful :'("
-beautifulHaskellName "SXFunction" = "sxFunction"
--- fall back on just making just the first letter lowercase
-beautifulHaskellName (x:xs) = toLower x:xs
+replaces :: [(String,String)] -> String -> String
+replaces ((find',replace'):xs) = replaces xs . (T.unpack . T.replace (T.pack find') (T.pack replace') . T.pack)
+replaces [] = id
+
+prettyTics :: String -> String
+prettyTics = replaces [("_TIC","'")]
+
 
 marshalFun :: [Type] -> String -> String -> (String, String)
 marshalFun params fun wrappedFun =
@@ -36,32 +41,143 @@ marshalFun params fun wrappedFun =
           Just ntw -> "  withMarshal (" ++ ntw ++ " " ++ x ++ ") $ \\" ++ x ++ "' ->"
     blah [] = []
 
-writeFunction :: Function -> (String,String)
-writeFunction fcn@(Function (Name functionName) retType params) = (hsFunctionName, function)
+c_deleteName :: ThreeVectors -> String
+c_deleteName = ("c_" ++) .  deleteName
+
+exportDecl :: [String] -> String
+exportDecl names =
+  unlines $
+  "       (" :
+  map (\x -> "         " ++ x ++ ",") names ++
+  ["       ) where"]
+
+
+deleters :: [Class] -> [String]
+deleters classes = map deleteForeignImports typesToDelete
   where
-    function =
+    typesToDelete =
+      [CInt,CDouble,StdString,CBool] ++
+      map (\(Class classType _) -> (CasadiClass classType)) classes
+
+    deleteForeignImports :: Primitive -> String
+    deleteForeignImports classType = concatMap writeIt types
+      where
+        types = [ NonVec classType
+                , Vec (NonVec classType)
+                , Vec (Vec (NonVec classType))
+                , Vec (Vec (Vec (NonVec classType)))
+                ]
+        writeIt c =
+          unlines $
+          [ "foreign import ccall unsafe \"&" ++ deleteName c ++ "\" "
+          , "  " ++ c_deleteName c ++ " :: FunPtr ("++ ffiTypeTV False c ++ " -> IO ())"
+          ]
+
+
+newtype FFIWrapper = FFIWrapper String
+data ClassFunction = ClassFunction String String
+
+rawName :: Class -> String
+rawName c = dataName c ++ "'"
+
+dataName :: Class -> String
+dataName (Class classType _) = hsDataName classType
+
+dataDecl :: Class -> String
+dataDecl c = "newtype " ++ dataName c ++ " = " ++ dataName c ++ " (ForeignPtr " ++ rawName c ++ ")"
+
+rawDecl :: Class -> String
+rawDecl c = "data " ++ rawName c
+
+
+writeClassMethods :: Class -> [(FFIWrapper, ClassFunction)]
+writeClassMethods c@(Class classType methods')= methods
+  where
+    className = hsClassName classType
+
+    methods = map writeMethod' methods'
+
+    writeMethod' :: Method -> (FFIWrapper, ClassFunction)
+    writeMethod' fcn = (FFIWrapper ffiWrapper, ClassFunction hsMethodName method)
+      where
+        method =
+          unlines $
+          [ hsMethodName ++ " :: " ++ typeDef
+          , hsCall
+          ]
+        hsCall = case fMethodType fcn of
+          Normal -> hsMethodName ++ " x = " ++ wrapperName ++ " (cast" ++ dataName c ++ " x)"
+          _ -> hsMethodName ++ " = " ++ wrapperName
+        cWrapperName'' = cWrapperName classType fcn
+
+        hsMethodName = case fMethodType fcn of
+          Constructor -> lowerCase $ prettyTics (toCName methodName)
+          _ -> lowerCase (show classType) ++ "_" ++ prettyTics (toCName methodName)
+
+        (wrapperName, ffiWrapper) = case fMethodType fcn of
+          Normal -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn))
+          _ -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) (fArgs fcn)
+
+        typeDef = case fMethodType fcn of
+          Normal -> className ++ " a => " ++ concat (intersperse " -> " ("a":map (hsType False) (fArgs fcn) ++ [retType']))
+          _ -> concat (intersperse " -> " (map (hsType False) (fArgs fcn) ++ [retType']))
+        retType' = "IO " ++ hsType True (fType fcn)
+
+        Name methodName = fName fcn
+
+
+lowerCase :: String -> String
+lowerCase [] = error "lowerCase: empty string"
+lowerCase (x:xs) = toLower x : xs
+
+typeclassName :: Class -> String
+typeclassName (Class classType _ ) = hsClassName classType
+
+typeclassDecl :: Class -> String
+typeclassDecl c =
+  unlines
+  [ "class " ++ typeclassName c ++ " a where"
+  , "  cast" ++ dataName c ++ " :: a -> " ++ dataName c
+  , "instance " ++ typeclassName c ++ " " ++ dataName c ++ " where"
+  , "  cast" ++ dataName c ++ " = id"
+  ]
+
+helperInstances :: Class -> String
+helperInstances c =
+  unlines
+  [ "instance Marshal " ++ dataName c ++ " (Ptr " ++ dataName c ++ "') where"
+  , "  withMarshal ("++ dataName c ++ " x) f = withForeignPtr x f"
+  , "instance ForeignPtrWrapper " ++ dataName c ++ " " ++ dataName c ++ "' where"
+  , "  unwrapForeignPtr ("++ dataName c ++ " x) = x"
+  , "instance WrapReturn (ForeignPtr " ++ dataName c ++ "') " ++ dataName c ++ " where"
+  , "  wrapReturn = return . " ++ dataName c
+  ]
+
+baseclassInstances :: Class -> [Class] -> String
+baseclassInstances c bcs = unlines $ map writeInstance' bcs
+  where
+    writeInstance' :: Class -> String
+    writeInstance' bc =
+      unlines
+      [ "instance " ++ typeclassName bc ++ " " ++ dataName c ++ " where"
+      , "  cast" ++ dataName bc ++ " (" ++ dataName c ++ " x) = " ++ dataName bc ++ " (castForeignPtr x)"
+      ]
+
+writeFunction :: Maybe String -> Function -> (String, String)
+writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params) = (hsFunctionName, ffiWrapper)
+  where
+    ffiWrapper =
       unlines $
-      [ "-- ================== " ++ "function: " ++ show functionName ++ " ==============="
-      , "-- functionName: " ++ show functionName
-      , "-- cFunctionName: " ++ show cFunctionName
-      , "-- hsFunctionName: " ++ show hsFunctionName
-      , "-- c_hsFunctionName: " ++ show c_hsFunctionName
-      , "-- retType': " ++ show retType'
-      , "-- retType: " ++ show retType
-      , "-- params: " ++ show params
-      , "-- map ffiType params: " ++ show (map (ffiType False) params)
-      , "-- ffiRetType: " ++ show ffiRetType
-      , foreignImport
+      [ foreignImport
       , hsFunctionName ++ "\n  :: " ++ proto
       , marshals ++ "  " ++ call
       ]
-
+    hsFunctionName = lowerCase $ prettyTics $ fromMaybe (toCName hsFunctionName') maybeName
     (marshals, call') = marshalFun params hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
       Nothing -> call' ++ " >>= wrapReturn"
       Just v -> call' ++ " >>= (newForeignPtr " ++ c_deleteName v ++ ") >>= wrapReturn"
 
-    hsFunctionName = beautifulHaskellName cFunctionName
     cFunctionName = cWrapperName' fcn
     c_hsFunctionName = "c_" ++ cFunctionName
     foreignImport =
@@ -71,152 +187,137 @@ writeFunction fcn@(Function (Name functionName) retType params) = (hsFunctionNam
     proto = concat $ intersperse " -> " $
             map (hsType False) params ++ [retType']
 
-
     retType' :: String
     retType' = "IO " ++ hsType True retType
 
     ffiRetType :: String
     ffiRetType = "IO " ++ ffiType True retType
 
-c_deleteName :: ThreeVectors -> String
-c_deleteName = ("c_" ++) .  deleteName
-
-deleteForeignImports :: Primitive -> String
-deleteForeignImports classType = concatMap writeIt types
-  where
-    types = [ NonVec classType
-            , Vec (NonVec classType)
-            , Vec (Vec (NonVec classType))
-            , Vec (Vec (Vec (NonVec classType)))
-            ]
-    writeIt c =
-      unlines $
-      [ "foreign import ccall unsafe \"&" ++ deleteName c ++ "\" "
-      , "  " ++ c_deleteName c ++ " :: FunPtr ("++ ffiTypeTV False c ++ " -> IO ())"
-      ]
-
-
-writeClass :: Class -> ([String],String)
-writeClass (Class classType methods) = (ffiNames, theRest)
-  where
-    theRest =
-      unlines $
-      ffiWrappers ++
-      [ ""
-      , "--class " ++ hsClass ++ " a where"
---      , "--    coerce_" ++ hsName ++ " :: a -> " ++ hsName
-      ] ++ -- classMethods ++
-      [ ""
-      , deleteForeignImports (CasadiClass classType)
-      , "data " ++ hsName ++ "'"
-      , "newtype " ++ hsName ++ " = " ++ hsName ++ " (ForeignPtr " ++ hsName ++ "')"
-      , "instance Marshal " ++ hsName ++ " (Ptr " ++ hsName ++ "') where"
-      , "    withMarshal ("++ hsName ++ " x) f = withForeignPtr x f"
-      , "instance ForeignPtrWrapper " ++ hsName ++ " " ++ hsName ++ "' where"
-      , "    unwrapForeignPtr ("++ hsName ++ " x) = x"
-      , "instance WrapReturn (ForeignPtr " ++ hsName ++ "') " ++ hsName ++ " where"
-      , "    wrapReturn = return . " ++ hsName
-      ]
-
-    hsClass = hsName ++ "_Class"
-    hsName = hsTypePrim (CasadiClass classType)
-
-    (ffiNames,ffiWrappers) = unzip ffiWrappers'
-    (_, ffiWrappers') = unzip $ map (writeMethod classType) methods
-
-writeMethod :: CasadiClass -> Method -> (String, (String,String))
-writeMethod classType fcn = (method, ffiWrapper)
-  where
-    method =
-      unlines $ map ("    " ++) $
-      [ "-- ================== " ++ show (fMethodType fcn) ++ " method: "
-        ++ show methodName ++ " ==============="
-      , "-- class: " ++ show hsClass
-      , "-- hsname: " ++ show hsName
-      , "-- cppName: " ++ show cppName
-      , "-- cWrapperName: " ++ show cWrapperName''
-      , "-- methodName: " ++ show methodName
-      , "-- hsMethodName: " ++ show hsMethodName
-      , "-- proto: " ++ show proto
-      , hsMethodName ++ "\n      :: " ++ proto
-      ]
-    hsClass = hsName ++ "_Class"
-    hsName = beautifulHaskellName $ hsTypePrim (CasadiClass classType)
-    cppName = cppMethodName classType fcn
-    cWrapperName'' = cWrapperName classType fcn
-
-    hsMethodName = beautifulHaskellName methodName
-    -- this hack might not quite give the right name
-    ffiWrapper = case fMethodType fcn of
-      Normal -> writeFunction $ Function (Name cWrapperName'') (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn))
-      _ -> writeFunction (Function (Name cWrapperName'') (fType fcn) (fArgs fcn))
-
-    proto = concat (intersperse " -> " ("a":map (hsType False) (fArgs fcn) ++ [retType']))
-    retType' = "IO " ++ hsType True (fType fcn)
-
-    Name methodName = fName fcn
-
-
-writeModule :: String -> [Class] -> [Function] -> String
-writeModule moduleName classes functions =
+writeDeleterModule :: [Class] -> String
+writeDeleterModule classes =
   init $ unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language ForeignFunctionInterface #-}"
+  , ""
+  , "module Casadi.Wrappers.Autogen.Deleters where"
+  , ""
+  , "import Foreign.C.Types"
+  , "import Foreign.Ptr ( FunPtr, Ptr )"
+  , ""
+  , "import Casadi.Wrappers.MarshalTypes"
+  , "import Casadi.Wrappers.Autogen.Data"
+  , ""
+  ] ++ deleters classes
+
+writeClassModules :: [(CasadiClass, [CasadiClass])] -> [Class] -> [(String, String)]
+writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
+  where
+    writeOneModule c = 
+      init $ unlines $
+      [ "{-# OPTIONS_GHC -Wall #-}"
+      , "{-# OPTIONS_GHC -fno-warn-unused-imports #-}"
+      , "{-# Language ForeignFunctionInterface #-}"
+      , "{-# Language FlexibleInstances #-}"
+      , "{-# Language MultiParamTypeClasses #-}"
+      , ""
+      , "module Casadi.Wrappers.Autogen." ++ dataName c
+      , exportDecl $ [dataName c, typeclassName c] ++ sort names
+      , ""
+      , "import Data.Vector ( Vector )"
+      , "import Foreign.C.Types"
+      , "import Foreign.Ptr ( Ptr )"
+      , "import Foreign.ForeignPtr ( newForeignPtr )"
+      , ""
+      , "import Casadi.Wrappers.MarshalTypes ( CppVec, CppVecVec, CppVecVecVec,"
+      , "                                      StdString', CppBool' ) -- StdOstream'"
+      , "import Casadi.Wrappers.Marshal ( CornerCase(..), Marshal(..) )"
+      , "import Casadi.Wrappers.WrapReturn ( WrapReturn(..) )"
+      , "import Casadi.Wrappers.Autogen.ForeignToolsInstances ( )"
+      , "import Casadi.Wrappers.Autogen.Deleters"
+      , "import Casadi.Wrappers.Autogen.Data"
+      , ""
+      ] ++ map f methods
+      where
+        methods = writeClassMethods c
+        names = map (\(_, ClassFunction name _) -> name) methods
+        f (FFIWrapper ffiw, ClassFunction _ cf) =
+          unlines
+          [ "-- direct wrapper"
+          , ffiw
+          , "-- classy wrapper"
+          , cf
+          ]
+
+writeDataModule :: [Class] -> [(CasadiClass, [CasadiClass])] -> String
+writeDataModule classes inheritance =
+  unlines $
+  [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language FlexibleInstances #-}"
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
-  , "module Casadi.Wrappers.Autogen." ++ moduleName
-  , exports
+  , "module Casadi.Wrappers.Autogen.Data where"
+  , ""
+  , "import Foreign.Ptr ( Ptr )"
+  , "import Foreign.ForeignPtr ( ForeignPtr, castForeignPtr, withForeignPtr )"
+  , ""
+  , "import Casadi.Wrappers.MarshalTypes ( ForeignPtrWrapper(..) )"
+  , "import Casadi.Wrappers.Marshal (  Marshal(..) )"
+  , "import Casadi.Wrappers.WrapReturn ( WrapReturn(..) )"
+  , ""
+  ] ++ map writeData classes
+  where
+    baseClasses :: Class -> [Class]
+    baseClasses (Class classType _) = case lookup classType inheritance of
+      Nothing -> []
+      Just xs -> map (classMap M.!) xs
+    classMap :: M.Map CasadiClass Class
+    classMap = M.fromList $ map (\c@(Class cc _) -> (cc,c)) classes
+    
+    writeData c =
+      unlines $
+      [ "-- draw decl"
+      , rawDecl c
+      , "-- data decl"
+      , dataDecl c
+      , "-- typeclass decl"
+      , typeclassDecl c
+      , "-- helper instances"
+      , helperInstances c
+      , "-- baseclass instances"
+      , baseclassInstances c (baseClasses c)
+      ]
+
+
+writeToolsModule :: [Function] -> String
+writeToolsModule functions =
+  unlines $
+  [ "{-# OPTIONS_GHC -Wall #-}"
+  , ""
+  , "module Casadi.Wrappers.Autogen.Tools"
+  , exportDecl (sort funNames)
   , ""
   , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
-  , "import Foreign.Ptr ( FunPtr, Ptr )"
-  , "import Foreign.ForeignPtr ( ForeignPtr, newForeignPtr, withForeignPtr )"
+  , "import Foreign.Ptr ( Ptr )"
+  , "import Foreign.ForeignPtr ( newForeignPtr )"
   , ""
-  , "import Casadi.Wrappers.MarshalTypes ( ForeignPtrWrapper(..), CppVec, CppVecVec, CppVecVecVec,"
-  , "                                      StdString', CppBool' ) -- StdOstream'"
+  , "import Casadi.Wrappers.MarshalTypes ( CppVec, CppVecVec, CppBool', StdString' )"
   , "import Casadi.Wrappers.Marshal (  CornerCase(..), Marshal(..) )"
   , "import Casadi.Wrappers.WrapReturn ( WrapReturn(..) )"
+  , "import Casadi.Wrappers.Autogen.Data"
+  , "import Casadi.Wrappers.Autogen.Deleters"
   , "import Casadi.Wrappers.Autogen.ForeignToolsInstances ( )"
   , ""
-  ] ++ map deleteForeignImports [CInt,CDouble,StdString,CBool] ++
-  map (snd . writeClass) (map filterStdOstreams classes) ++
-  map (snd . writeFunction) (filter (not . hasStdOstream) functions)
+  ] ++ funDecls
   where
-    methodNames :: [String]
-    methodNames = concat $ fst $ unzip $ map writeClass (map filterStdOstreams classes)
+    (funNames, funDecls) = unzip $ map (\f -> writeFunction (Just (rename f)) f) functions
+    rename (Function (Name uglyName) _ _) = beautifulHaskellName uglyName
 
-    functionNames :: [String]
-    functionNames = map (fst . writeFunction) (filter (not . hasStdOstream) functions)
+    -- haskell functions can't have capital leading letter
+    beautifulHaskellName :: String -> String
+    beautifulHaskellName uglyName = case replaces [("_TIC","'"),("CasADi::",""),(":","_")] uglyName of
+      [] -> error "beautifulHaskellName: empty string will never be beautiful :'("
+      -- fall back on just making just the first letter lowercase
+      "data" -> "data_"
+      x -> x
 
-    exports :: String
-    exports =
-      unlines $
-      "       (" :
-      map (\x -> "         " ++ x ++ ",") (methodNames ++ functionNames) ++
-      ["       ) where"]
-
-filterStdOstreams :: Class -> Class
-filterStdOstreams (Class cc methods) = Class cc methods'
-  where
-    methods' = filter (not . hasStdOstream') methods
-
--- remove methods with StdOStrea'
-hasStdOstream' :: Method -> Bool
-hasStdOstream' (Method _ ret params _) = StdOstream `elem` (map getPrim (ret:params))
-
--- remove methods with StdOStrea'
-hasStdOstream :: Function -> Bool
-hasStdOstream (Function _ _ params) = StdOstream `elem` (map getPrim params)
-
-getPrim :: Type -> Primitive
-getPrim (Val x) = getPrimTV x
-getPrim (Ref x) = getPrimTV x
-getPrim (ConstRef x) = getPrimTV x
-
-getPrimTV :: ThreeVectors -> Primitive
-getPrimTV (NonVec x) = x
-getPrimTV (Vec (NonVec x)) = x
-getPrimTV (Vec (Vec (NonVec x))) = x
-getPrimTV (Vec (Vec (Vec (NonVec x)))) = x
-getPrimTV (Vec (Vec (Vec (Vec ())))) = error "getPrimTV: Vec (Vec (Vec (Vec ())))"

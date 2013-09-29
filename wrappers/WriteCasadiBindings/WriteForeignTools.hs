@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module CasadiBindings.WriteForeignTools
-       ( main
-       ) where
+module WriteCasadiBindings.WriteForeignTools ( foreignToolsImports
+                                             , foreignToolsInstances
+                                             ) where
 
 writeStuff :: (String, String, Maybe String, [String]) -> (String,String)
 writeStuff woo@(cname, hsname, hstype', hsToCs) = (foreignImports', instances')
@@ -78,8 +78,3 @@ foreignToolsInstances =
   , "import Casadi.Wrappers.Autogen.ForeignToolsImports"
   , ""
   ] ++ concat instances
-
-main :: IO ()
-main = do
-  writeFile "../Casadi/Wrappers/Autogen/ForeignToolsImports.hs" foreignToolsImports
-  writeFile "../Casadi/Wrappers/Autogen/ForeignToolsInstances.hs" foreignToolsInstances
