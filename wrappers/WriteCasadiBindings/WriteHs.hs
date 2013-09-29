@@ -10,6 +10,7 @@ import Data.Char ( toLower )
 import Data.List ( intersperse, sort )
 import Data.Maybe ( fromMaybe )
 import qualified Data.Map as M
+import qualified Data.Set as S
 import qualified Data.Text as T
 
 import WriteCasadiBindings.Types
@@ -212,7 +213,7 @@ writeDeleterModule classes =
 writeClassModules :: [(CasadiClass, [CasadiClass])] -> [Class] -> [(String, String)]
 writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
   where
-    writeOneModule c = 
+    writeOneModule c =
       init $ unlines $
       [ "{-# OPTIONS_GHC -Wall #-}"
       , "{-# OPTIONS_GHC -fno-warn-unused-imports #-}"
@@ -248,6 +249,9 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
           , cf
           ]
 
+unique :: Ord a => [a] -> [a]
+unique = sort . S.toList . S.fromList
+
 writeDataModule :: [Class] -> [(CasadiClass, [CasadiClass])] -> String
 writeDataModule classes inheritance =
   unlines $
@@ -267,12 +271,16 @@ writeDataModule classes inheritance =
   ] ++ map writeData classes
   where
     baseClasses :: Class -> [Class]
-    baseClasses (Class classType _) = case lookup classType inheritance of
-      Nothing -> []
-      Just xs -> map (classMap M.!) xs
+    baseClasses (Class classType _) = map (classMap M.!) (baseClasses' classType)
+
     classMap :: M.Map CasadiClass Class
     classMap = M.fromList $ map (\c@(Class cc _) -> (cc,c)) classes
-    
+
+    baseClasses' :: CasadiClass -> [CasadiClass]
+    baseClasses' classType = case lookup classType inheritance of
+      Nothing -> []
+      Just xs -> unique $ xs ++ concatMap baseClasses' xs
+
     writeData c =
       unlines $
       [ "-- draw decl"
@@ -281,10 +289,10 @@ writeDataModule classes inheritance =
       , dataDecl c
       , "-- typeclass decl"
       , typeclassDecl c
-      , "-- helper instances"
-      , helperInstances c
       , "-- baseclass instances"
       , baseclassInstances c (baseClasses c)
+      , "-- helper instances"
+      , helperInstances c
       ]
 
 
@@ -320,4 +328,3 @@ writeToolsModule functions =
       -- fall back on just making just the first letter lowercase
       "data" -> "data_"
       x -> x
-
