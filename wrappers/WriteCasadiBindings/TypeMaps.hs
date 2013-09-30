@@ -18,6 +18,7 @@ module WriteCasadiBindings.TypeMaps ( hsType
                                     , hsDataName
                                     , hsClassName
                                     , toCName
+                                    , usedAsPtr
                                     ) where
 
 import qualified Data.Text as T
@@ -198,17 +199,14 @@ cppMethodName classType fcn = case fMethodType fcn of
 toCName :: String -> String
 toCName cppName = replaces replacements cppName
   where
-    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus"),("&","_")]
+    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus")]
 
-    replaces :: [(String,String)] -> String -> String
-    replaces ((find',replace'):xs) = replaces xs . T.unpack . T.replace (T.pack find') (T.pack replace') . T.pack
-    replaces [] = id
+replaces :: [(String,String)] -> String -> String
+replaces ((find',replace'):xs) = replaces xs . T.unpack . T.replace (T.pack find') (T.pack replace') . T.pack
+replaces [] = id
 
 cWrapperRetType :: Type -> String
-cWrapperRetType (Val (NonVec (CasadiClass cc))) = cppClassName cc ++ "*"
-cWrapperRetType (Val (NonVec x@StdString)) = cppTypePrim x ++ "*"
-cWrapperRetType (Val (NonVec x@CBool)) = cppTypePrim x ++ "*"
-cWrapperRetType (Val (NonVec x)) = cppTypePrim x
+cWrapperRetType (Val (NonVec x)) = cppTypePrim x ++ (if usedAsPtr x then "*" else "")
 cWrapperRetType (Val x) = cppTypeTV x ++ "*"
 cWrapperRetType (Ref x) = cppTypeTV x ++ "*"
 cWrapperRetType (ConstRef x) = cppTypeTV x ++ " const *"
@@ -227,16 +225,13 @@ writeReturn t x = case makesNewRef t of
       ConstRef _ -> "&( " ++ y ++ " )"
 
 makesNewRef :: Type -> Maybe ThreeVectors
-makesNewRef (Val v@(NonVec (CasadiClass _))) = Just v
-makesNewRef (Val v@(NonVec StdString)) = Just v
-makesNewRef (Val v@(NonVec CBool)) = Just v
-makesNewRef (Val (NonVec _)) = Nothing
-makesNewRef (Val v) = Just v
+makesNewRef (Val v@(NonVec x)) = if usedAsPtr x then Just v else Nothing
+makesNewRef (Val v@(Vec _)) = Just v
 makesNewRef (Ref v) = Just v
 makesNewRef (ConstRef v) = Just v
 
 deleteName :: Type -> String
-deleteName v = "delete_" ++ toCName (cppType v)
+deleteName v = "delete_" ++ replaces [("&","")] (toCName (cppType v))
 
 hsDataName :: CasadiClass -> String
 hsDataName classType = hsTypePrim (CasadiClass classType)

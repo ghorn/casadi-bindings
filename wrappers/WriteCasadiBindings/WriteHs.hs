@@ -63,8 +63,9 @@ deleters classes = map deleteForeignImports typesToDelete
     deleteForeignImports :: Primitive -> String
     deleteForeignImports classType = concatMap writeIt types
       where
-        types = [ Val (NonVec classType)
-                , Ref (Vec (NonVec classType))
+        primType = if usedAsPtr classType then [Val (NonVec classType)] else []
+        types = primType ++
+                [ Ref (Vec (NonVec classType))
                 , Ref (Vec (Vec (NonVec classType)))
                 , Ref (Vec (Vec (Vec (NonVec classType))))
                 ]
@@ -177,7 +178,7 @@ writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params _) =
     (marshals, call') = marshalFun params hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
       Nothing -> call' ++ " >>= wrapReturn"
-      Just v -> call' ++ " >>= (newForeignPtr " ++ c_deleteName (Val v) ++ ") >>= wrapReturn"
+      Just _ -> call' ++ " >>= (newForeignPtr " ++ c_deleteName retType ++ ") >>= wrapReturn"
 
     cFunctionName = cWrapperName' fcn
     c_hsFunctionName = "c_" ++ cFunctionName

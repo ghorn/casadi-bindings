@@ -65,10 +65,7 @@ writeDeletes classType =
   , "// classType: " ++ show classType
   ] ++ concatMap writeIt types
   where
-    primType = case classType of
-      CInt -> []
-      CDouble -> []
-      _ -> [Val (NonVec classType)]
+    primType = if usedAsPtr classType then [Val (NonVec classType)] else []
     types = primType ++
             [ Ref (Vec (NonVec classType))
             , Ref (Vec (Vec (NonVec classType)))
