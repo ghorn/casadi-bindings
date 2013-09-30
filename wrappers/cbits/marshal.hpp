@@ -13,8 +13,6 @@ class Marshaling {
   }
 }; 
 
-
-
 template<class T>
 class Marshaling< T, T* > {
   public:
@@ -22,15 +20,6 @@ class Marshaling< T, T* > {
     return *x;
   }
 };
-
-template<>
-class Marshaling< std::string , char** > {
-  public:
-  static std::string marshal(char ** x) {
-    return *x;
-  }
-};
-
 
 template<class T1, class T2>
 class Marshaling< std::vector< T1 >,std::vector< T2* > &> {
@@ -43,6 +32,15 @@ class Marshaling< std::vector< T1 >,std::vector< T2* > &> {
     return vec;
   }
 };
+// pointer to ref
+template<class T1, class T2>
+class Marshaling< std::vector< T1 >,std::vector< T2* > *> {
+  public:
+  static std::vector< T1 > marshal(const std::vector< T2* > * inputs){
+      return Marshaling< std::vector<T1>, std::vector<T2*>& >::marshal(*inputs);
+  }
+};
+
 
 template<class T1, class T2>
 class Marshaling< const std::vector< T1 >,const std::vector< T2* > & > {
@@ -55,6 +53,15 @@ class Marshaling< const std::vector< T1 >,const std::vector< T2* > & > {
     return vec;
   }
 };
+// pointer to ref
+template<class T1, class T2>
+class Marshaling< const std::vector< T1 >,const std::vector< T2* > *> {
+  public:
+  static const std::vector< T1 > marshal(const std::vector< T2* > * inputs){
+      return Marshaling< const std::vector<T1>, const std::vector<T2> & >::marshal(*inputs);
+  }
+};
+
 
 template<class T1, class T2>
 class Marshaling< std::vector< std::vector< T1 > >,std::vector< std::vector< T2*> > &> {
@@ -67,6 +74,14 @@ class Marshaling< std::vector< std::vector< T1 > >,std::vector< std::vector< T2*
     return vec;
   }
 };
+// pointer to ref
+template<class T1, class T2>
+class Marshaling< std::vector< std::vector< T1 > >,std::vector< std::vector< T2*> > *> {
+  public:
+  static std::vector< std::vector< T1 > > marshal(const std::vector< std::vector< T2* > > * inputs){
+    return Marshaling< std::vector< std::vector< T1 > >,std::vector< std::vector< T2*> > & >::marshal(*inputs);
+  }
+};
 
 template<class T1, class T2>
 class Marshaling< const std::vector< std::vector< T1 > >,const std::vector< std::vector< T2* > > & > {
@@ -77,6 +92,14 @@ class Marshaling< const std::vector< std::vector< T1 > >,const std::vector< std:
         vec.push_back( Marshaling< const std::vector< T1 >, const std::vector< T2* > &>::marshal(inputs[k]) );
     }
     return vec;
+  }
+};
+// pointer to ref
+template<class T1, class T2>
+class Marshaling< const std::vector< std::vector< T1 > >,const std::vector< std::vector< T2*> > *> {
+  public:
+  static const std::vector< std::vector< T1 > > marshal(const std::vector< std::vector< T2* > > * inputs){
+    return Marshaling< const std::vector< std::vector< T1 > >,const std::vector< std::vector< T2*> > & >::marshal(*inputs);
   }
 };
 
