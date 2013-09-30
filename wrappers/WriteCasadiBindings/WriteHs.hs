@@ -42,7 +42,7 @@ marshalFun params fun wrappedFun =
           Just ntw -> "  withMarshal (" ++ ntw ++ " " ++ x ++ ") $ \\" ++ x ++ "' ->"
     blah [] = []
 
-c_deleteName :: ThreeVectors -> String
+c_deleteName :: Type -> String
 c_deleteName = ("c_" ++) .  deleteName
 
 exportDecl :: [String] -> String
@@ -63,15 +63,15 @@ deleters classes = map deleteForeignImports typesToDelete
     deleteForeignImports :: Primitive -> String
     deleteForeignImports classType = concatMap writeIt types
       where
-        types = [ NonVec classType
-                , Vec (NonVec classType)
-                , Vec (Vec (NonVec classType))
-                , Vec (Vec (Vec (NonVec classType)))
+        types = [ Val (NonVec classType)
+                , Ref (Vec (NonVec classType))
+                , Ref (Vec (Vec (NonVec classType)))
+                , Ref (Vec (Vec (Vec (NonVec classType))))
                 ]
         writeIt c =
           unlines $
           [ "foreign import ccall unsafe \"&" ++ deleteName c ++ "\" "
-          , "  " ++ c_deleteName c ++ " :: FunPtr ("++ ffiTypeTV False c ++ " -> IO ())"
+          , "  " ++ c_deleteName c ++ " :: FunPtr ("++ ffiType False c ++ " -> IO ())"
           ]
 
 
@@ -177,7 +177,7 @@ writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params _) =
     (marshals, call') = marshalFun params hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
       Nothing -> call' ++ " >>= wrapReturn"
-      Just v -> call' ++ " >>= (newForeignPtr " ++ c_deleteName v ++ ") >>= wrapReturn"
+      Just v -> call' ++ " >>= (newForeignPtr " ++ c_deleteName (Val v) ++ ") >>= wrapReturn"
 
     cFunctionName = cWrapperName' fcn
     c_hsFunctionName = "c_" ++ cFunctionName

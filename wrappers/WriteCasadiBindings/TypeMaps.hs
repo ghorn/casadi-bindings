@@ -1,14 +1,9 @@
 {-# OPTIONS_GHC -Wall #-}
 
 module WriteCasadiBindings.TypeMaps ( hsType
-                                    , hsTypePrim
                                     , hsMarshalNewtypeWrapper
                                     , ffiType
-                                    , ffiTypeTV
-                                    , ffiTypePrim
                                     , cppType
-                                    , cppTypeTV
-                                    , cppTypePrim
                                     , cWrapperType
                                     , cWrapperRetType
                                     , cppMarshalType
@@ -78,6 +73,8 @@ hsMarshalNewtypeWrapperTV (Vec (NonVec CBool)) = Just "CornerCase"
 hsMarshalNewtypeWrapperTV _ = Nothing
 
 -- haskell type that appears in foreign import
+-- this should never do anything except unwrap and pass the TV to ffiTypeTV
+-- or c_deleteName will be wrong
 ffiType :: Bool -> Type -> String
 ffiType p (Val x) = ffiTypeTV p x
 ffiType p (Ref x) = ffiTypeTV p x
@@ -133,34 +130,49 @@ cppTypePrim CUChar = "unsigned char"
 cppTypePrim StdOstream = "std::ostream"
 cppTypePrim (CasadiClass x) = cppTypeCasadiPrim x
 
+usedAsPtr :: Primitive -> Bool
+usedAsPtr CInt = False
+usedAsPtr CDouble = False
+usedAsPtr CVoid = False
+usedAsPtr CSize = False
+usedAsPtr CLong = False
+usedAsPtr CUChar = False
+usedAsPtr StdOstream = True
+usedAsPtr StdString = True
+usedAsPtr CBool = True
+usedAsPtr (CasadiClass _) = True
+
 -- type which appears in the C++ wrapper
 cWrapperType :: Type -> String
-cWrapperType (Val x@(NonVec (CasadiClass _))) = cWrapperTypeTV x ++ "*"
-cWrapperType (Val x@(NonVec _)) = cWrapperTypeTV x
-cWrapperType (Val x) = cWrapperTypeTV x ++ "*"
-cWrapperType (Ref x) = cWrapperTypeTV x ++ "&"
-cWrapperType (ConstRef x) = cWrapperTypeTV x ++ " const &"
+cWrapperType (Val x) = cWrapperTypeTV x
+cWrapperType (Ref x@(NonVec x')) = cWrapperTypeTV x ++ (if usedAsPtr x' then "" else "*")
+cWrapperType (Ref x) = cWrapperTypeTV x ++ "*"
+cWrapperType (ConstRef x@(NonVec x')) =
+  cWrapperTypeTV x ++ if usedAsPtr x' then "" else "*"
+cWrapperType (ConstRef x) = cWrapperTypeTV x ++ " *"
 
 cWrapperTypeTV :: ThreeVectors -> String
 cWrapperTypeTV (NonVec x) = cWrapperTypePrim x
 cWrapperTypeTV (Vec (NonVec x)) =
-  "std::vector<"++cWrapperTypePrim x ++ "*>"
+  "std::vector<"++cWrapperTypePrim x ++ " >"
 cWrapperTypeTV (Vec (Vec (NonVec x))) =
-  "std::vector<std::vector<"++cWrapperTypePrim x ++ "*> >"
+  "std::vector<std::vector<"++cWrapperTypePrim x ++ " > >"
 cWrapperTypeTV (Vec (Vec (Vec (NonVec x)))) =
-  "std::vector<std::vector<std::vector<"++cWrapperTypePrim x ++ "*> > >"
+  "std::vector<std::vector<std::vector<"++cWrapperTypePrim x ++ " > > >"
 cWrapperTypeTV (Vec (Vec (Vec (Vec ())))) = error $ "cWrapperTypeTV: Vec (Vec (Vec (Vec ())))"
 
 cWrapperTypePrim :: Primitive -> String
-cWrapperTypePrim StdString = "char*"
-cWrapperTypePrim x = cppTypePrim x
+cWrapperTypePrim x = cppTypePrim x ++ (if usedAsPtr x then "*" else "")
 
 -- output type of the cpp marshal function, usually same as cppType except for references
 cppMarshalType :: Type -> String
-cppMarshalType (Ref (NonVec x)) = cppTypePrim x ++ "&"
+--cppMarshalType (Ref (NonVec x)) = cppTypePrim x ++ "&"
+cppMarshalType (Ref (NonVec x)) = cppTypePrim x
 cppMarshalType (Ref x) = cppTypeTV x
-cppMarshalType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
-cppMarshalType (ConstRef x) = "const " ++ cppTypeTV x
+--cppMarshalType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
+--cppMarshalType (ConstRef x) = "const " ++ cppTypeTV x
+cppMarshalType (ConstRef (NonVec x)) = cppTypePrim x
+cppMarshalType (ConstRef x) = cppTypeTV x
 cppMarshalType (Val x) = cppTypeTV x
 
 cppClassName :: CasadiClass -> String
@@ -191,7 +203,7 @@ cppMethodName classType fcn = case fMethodType fcn of
 toCName :: String -> String
 toCName cppName = replaces replacements cppName
   where
-    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus")]
+    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus"),("&","_")]
 
     replaces :: [(String,String)] -> String -> String
     replaces ((find',replace'):xs) = replaces xs . T.unpack . T.replace (T.pack find') (T.pack replace') . T.pack
@@ -228,8 +240,8 @@ makesNewRef (Val v) = Just v
 makesNewRef (Ref v) = Just v
 makesNewRef (ConstRef v) = Just v
 
-deleteName :: ThreeVectors -> String
-deleteName v = "delete_" ++ toCName (cppTypeTV v)
+deleteName :: Type -> String
+deleteName v = "delete_" ++ toCName (cppType v)
 
 hsDataName :: CasadiClass -> String
 hsDataName classType = hsTypePrim (CasadiClass classType)

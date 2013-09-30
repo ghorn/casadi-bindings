@@ -61,16 +61,18 @@ writeClass (Class classType methods _) =
 writeDeletes :: Primitive -> String
 writeDeletes classType =
   unlines
-  [ "// ================== delete "++ show classname ++"==============="
-  , "// classname: " ++ show classname
+  [ "// ================== delete "++ show classType ++"==============="
+  , "// classType: " ++ show classType
   ] ++ concatMap writeIt types
   where
-    classname = cppTypePrim classType
-
-    types = [ NonVec classType
-            , Vec (NonVec classType)
-            , Vec (Vec (NonVec classType))
-            , Vec (Vec (Vec (NonVec classType)))
+    primType = case classType of
+      CInt -> []
+      CDouble -> []
+      _ -> [Val (NonVec classType)]
+    types = primType ++
+            [ Ref (Vec (NonVec classType))
+            , Ref (Vec (Vec (NonVec classType)))
+            , Ref (Vec (Vec (Vec (NonVec classType))))
             ]
     writeIt c =
       unlines $
@@ -80,7 +82,7 @@ writeDeletes classType =
       , "}"
       ]
       where
-        proto = "void " ++ (deleteName c) ++ "(" ++ cppTypeTV c ++ "* obj)"
+        proto = "void " ++ deleteName c ++ "(" ++ cWrapperType c ++ " obj)"
 
 removeTics :: String -> String
 removeTics = reverse . removeTics' . reverse

@@ -13,9 +13,9 @@ cbits/autogen/all.o : cbits/autogen/all.cpp cbits/marshal.hpp
 	clang++ -Wall -Werror -Wno-delete-non-virtual-dtor $(CASADI_INCLUDES) -c cbits/autogen/all.cpp -o cbits/autogen/all.o
 	@echo "all.o: no clang errors"
 
-gen_hs : Casadi/Wrappers/Tools.hs
+gen : Casadi/Wrappers/Tools.hs cbits/autogen/all.cpp
 
-Casadi/Wrappers/Tools.o : gen_hs Casadi/*.hs
+Casadi/Wrappers/Tools.o : gen Casadi/*.hs
 	ghc --make Casadi/Wrappers/*.hs
 
 cbits/autogen/all.cpp Casadi/Wrappers/Tools.hs : WriteBindings
