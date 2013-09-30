@@ -6,7 +6,7 @@ module WriteCasadiBindings.WriteHs ( writeClassModules
                                    , writeToolsModule
                                    ) where
 
-import Data.Char ( toLower )
+import Data.Char ( toLower, isLower )
 import Data.List ( intersperse, sort )
 import Data.Maybe ( fromMaybe )
 import qualified Data.Map as M
@@ -112,9 +112,16 @@ writeClassMethods c@(Class classType methods' _)= methods
           _ -> hsMethodName ++ " = " ++ wrapperName
         cWrapperName'' = cWrapperName classType fcn
 
+        betterCamelCase :: String -> String
+        betterCamelCase input = case break isLower input of
+          (x,[]) -> map toLower x
+          ([x],xs) -> toLower x : xs
+          ([x,y],xs) -> toLower x : toLower y : xs
+          (xs,ys) -> map toLower (init xs) ++ [last xs] ++ ys
+
         hsMethodName = case fMethodType fcn of
-          Constructor -> lowerCase $ prettyTics (toCName methodName)
-          _ -> lowerCase (show classType) ++ "_" ++ prettyTics (toCName methodName)
+          Constructor -> betterCamelCase $ prettyTics (toCName methodName)
+          _ -> betterCamelCase (show classType) ++ "_" ++ prettyTics (toCName methodName)
 
         (wrapperName, ffiWrapper) = case fMethodType fcn of
           Normal -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn)) (Doc "")
@@ -174,6 +181,7 @@ writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params _) =
       , hsFunctionName ++ "\n  :: " ++ proto
       , marshals ++ "  " ++ call
       ]
+
     hsFunctionName = lowerCase $ prettyTics $ fromMaybe (toCName hsFunctionName') maybeName
     (marshals, call') = marshalFun params hsFunctionName c_hsFunctionName
     call = case makesNewRef retType of
