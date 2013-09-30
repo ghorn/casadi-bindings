@@ -9,6 +9,7 @@ module WriteCasadiBindings.Types ( Class(..)
                                  , Primitive(..)
                                  , Primitive'(..)
                                  , CasadiClass(..)
+                                 , Doc(..)
                                  , ThreeVectors
                                  ) where
 
@@ -18,11 +19,13 @@ data Method = Method { fName :: Name
                      , fType :: Type
                      , fArgs :: [Type]
                      , fMethodType :: MethodType
+                     , fDoc :: Doc
                      } deriving Show
 data MethodType = Constructor | Static | Normal deriving Show
 
-data Class = Class CasadiClass [Method] deriving Show
-data Function = Function Name Type [Type] deriving Show
+newtype Doc = Doc String deriving Show
+data Class = Class CasadiClass [Method] Doc deriving Show
+data Function = Function Name Type [Type] Doc deriving Show
 
 data Name = Name String deriving Show
 

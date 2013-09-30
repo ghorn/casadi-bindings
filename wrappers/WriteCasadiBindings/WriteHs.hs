@@ -58,7 +58,7 @@ deleters classes = map deleteForeignImports typesToDelete
   where
     typesToDelete =
       [CInt,CDouble,StdString,CBool] ++
-      map (\(Class classType _) -> (CasadiClass classType)) classes
+      map (\(Class classType _ _) -> (CasadiClass classType)) classes
 
     deleteForeignImports :: Primitive -> String
     deleteForeignImports classType = concatMap writeIt types
@@ -82,7 +82,7 @@ rawName :: Class -> String
 rawName c = dataName c ++ "'"
 
 dataName :: Class -> String
-dataName (Class classType _) = hsDataName classType
+dataName (Class classType _ _) = hsDataName classType
 
 dataDecl :: Class -> String
 dataDecl c = "newtype " ++ dataName c ++ " = " ++ dataName c ++ " (ForeignPtr " ++ rawName c ++ ")"
@@ -92,7 +92,7 @@ rawDecl c = "data " ++ rawName c
 
 
 writeClassMethods :: Class -> [(FFIWrapper, ClassFunction)]
-writeClassMethods c@(Class classType methods')= methods
+writeClassMethods c@(Class classType methods' _)= methods
   where
     className = hsClassName classType
 
@@ -116,8 +116,8 @@ writeClassMethods c@(Class classType methods')= methods
           _ -> lowerCase (show classType) ++ "_" ++ prettyTics (toCName methodName)
 
         (wrapperName, ffiWrapper) = case fMethodType fcn of
-          Normal -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn))
-          _ -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) (fArgs fcn)
+          Normal -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn)) (Doc "")
+          _ -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) (fArgs fcn) (Doc "")
 
         typeDef = case fMethodType fcn of
           Normal -> className ++ " a => " ++ concat (intersperse " -> " ("a":map (hsType False) (fArgs fcn) ++ [retType']))
@@ -132,7 +132,7 @@ lowerCase [] = error "lowerCase: empty string"
 lowerCase (x:xs) = toLower x : xs
 
 typeclassName :: Class -> String
-typeclassName (Class classType _ ) = hsClassName classType
+typeclassName (Class classType _ _) = hsClassName classType
 
 typeclassDecl :: Class -> String
 typeclassDecl c =
@@ -165,7 +165,7 @@ baseclassInstances c bcs = unlines $ map writeInstance' bcs
       ]
 
 writeFunction :: Maybe String -> Function -> (String, String)
-writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params) = (hsFunctionName, ffiWrapper)
+writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params _) = (hsFunctionName, ffiWrapper)
   where
     ffiWrapper =
       unlines $
@@ -271,10 +271,10 @@ writeDataModule classes inheritance =
   ] ++ map writeData classes
   where
     baseClasses :: Class -> [Class]
-    baseClasses (Class classType _) = map (classMap M.!) (baseClasses' classType)
+    baseClasses (Class classType _ _) = map (classMap M.!) (baseClasses' classType)
 
     classMap :: M.Map CasadiClass Class
-    classMap = M.fromList $ map (\c@(Class cc _) -> (cc,c)) classes
+    classMap = M.fromList $ map (\c@(Class cc _ _) -> (cc,c)) classes
 
     baseClasses' :: CasadiClass -> [CasadiClass]
     baseClasses' classType = case lookup classType inheritance of
@@ -319,7 +319,7 @@ writeToolsModule functions =
   ] ++ funDecls
   where
     (funNames, funDecls) = unzip $ map (\f -> writeFunction (Just (rename f)) f) functions
-    rename (Function (Name uglyName) _ _) = beautifulHaskellName uglyName
+    rename (Function (Name uglyName) _ _ _) = beautifulHaskellName uglyName
 
     -- haskell functions can't have capital leading letter
     beautifulHaskellName :: String -> String

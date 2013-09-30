@@ -37,24 +37,24 @@ tools' :: [Function]
 tools' = map addNamespace $ filter (not . hasStdOstream) tools
   where
     addNamespace :: Function -> Function
-    addNamespace (Function (Name name) x y) = Function (Name ("CasADi::"++name)) x y
+    addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
 
 
 classes' :: [Class]
 classes' = map filterStdOstreams classes
 
 filterStdOstreams :: Class -> Class
-filterStdOstreams (Class cc methods) = Class cc methods'
+filterStdOstreams (Class cc methods docs) = Class cc methods' docs
   where
     methods' = filter (not . hasStdOstream') methods
 
 -- remove methods with StdOStrea'
 hasStdOstream' :: Method -> Bool
-hasStdOstream' (Method _ ret params _) = StdOstream `elem` (map getPrim (ret:params))
+hasStdOstream' (Method _ ret params _ _) = StdOstream `elem` (map getPrim (ret:params))
 
 -- remove methods with StdOStrea'
 hasStdOstream :: Function -> Bool
-hasStdOstream (Function _ _ params) = StdOstream `elem` (map getPrim params)
+hasStdOstream (Function _ _ params _) = StdOstream `elem` (map getPrim params)
 
 getPrim :: Type -> Primitive
 getPrim (Val x) = getPrimTV x

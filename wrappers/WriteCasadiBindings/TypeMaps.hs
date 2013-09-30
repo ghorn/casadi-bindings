@@ -170,7 +170,7 @@ cType :: Type -> String
 cType = toCName . cppType
 
 cWrapperName' :: Function -> String
-cWrapperName' (Function (Name functionName) _ _) = toCName functionName
+cWrapperName' (Function (Name functionName) _ _ _) = toCName functionName
 
 cWrapperName :: CasadiClass -> Method -> String
 cWrapperName classType fcn = case fMethodType fcn of

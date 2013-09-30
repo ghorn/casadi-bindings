@@ -26,7 +26,7 @@ marshal k t = "    " ++ cppMarshalType t ++ " " ++ paramName k ++
 
 
 writeFunction :: Function -> String
-writeFunction fcn@(Function (Name functionName) retType params) =
+writeFunction fcn@(Function (Name functionName) retType params _) =
   unlines
   [ "// ================== function " ++ show functionName ++ " ==============="
   , "// cppName: " ++ show cppName
@@ -55,7 +55,7 @@ writeFunction fcn@(Function (Name functionName) retType params) =
     call = removeTics cppName ++ args
 
 writeClass :: Class -> [String]
-writeClass (Class classType methods) =
+writeClass (Class classType methods _) =
   writeDeletes (CasadiClass classType) : map (writeMethod classType) methods
 
 writeDeletes :: Primitive -> String
