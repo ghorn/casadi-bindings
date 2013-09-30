@@ -167,12 +167,12 @@ cWrapperTypePrim x = cppTypePrim x ++ (if usedAsPtr x then "*" else "")
 -- output type of the cpp marshal function, usually same as cppType except for references
 cppMarshalType :: Type -> String
 --cppMarshalType (Ref (NonVec x)) = cppTypePrim x ++ "&"
-cppMarshalType (Ref (NonVec x)) = cppTypePrim x
-cppMarshalType (Ref x) = cppTypeTV x
+--cppMarshalType (Ref (NonVec x)) = cppTypePrim x
+cppMarshalType (Ref x) = cppTypeTV x ++ "&"
 --cppMarshalType (ConstRef (NonVec x)) = "const " ++ cppTypePrim x
 --cppMarshalType (ConstRef x) = "const " ++ cppTypeTV x
-cppMarshalType (ConstRef (NonVec x)) = cppTypePrim x
-cppMarshalType (ConstRef x) = cppTypeTV x
+--cppMarshalType (ConstRef (NonVec x)) = cppTypePrim x
+cppMarshalType (ConstRef x) = "const " ++ cppTypeTV x ++ "&"
 cppMarshalType (Val x) = cppTypeTV x
 
 cppClassName :: CasadiClass -> String
