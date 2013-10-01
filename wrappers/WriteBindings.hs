@@ -21,6 +21,7 @@ main = do
       hsData = HS.writeDataModule classes' inheritance
       hsClassModules = HS.writeClassModules inheritance classes'
       hsToolsModule = HS.writeToolsModule tools'
+      hsIOSchemeHelpersModule = HS.writeIOSchemeHelpersModule ioschemeHelpers'
 
   writeFile "Casadi/Wrappers/ForeignToolsImports.hs" foreignToolsImports
   writeFile "Casadi/Wrappers/ForeignToolsInstances.hs" foreignToolsInstances
@@ -30,11 +31,18 @@ main = do
   writeFile "Casadi/Wrappers/Deleters.hs" hsDeleters
   mapM_ (\(dataname, src) -> writeFile ("Casadi/Wrappers/" ++ dataname ++ ".hs") src)  hsClassModules
   writeFile "Casadi/Wrappers/Tools.hs" hsToolsModule
+  writeFile "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
   writeFile "Casadi/Wrappers/modules.txt" $
     unlines $ map ((\(dataname,_) -> "Casadi.Wrappers." ++ dataname)) hsClassModules
 
 tools' :: [Function]
 tools' = map addNamespace $ filter (not . hasStdOstream) tools
+  where
+    addNamespace :: Function -> Function
+    addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
+
+ioschemeHelpers' :: [Function]
+ioschemeHelpers' = map addNamespace $ filter (not . hasStdOstream) ioschemehelpers
   where
     addNamespace :: Function -> Function
     addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z

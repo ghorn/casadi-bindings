@@ -4,6 +4,7 @@ module WriteCasadiBindings.WriteHs ( writeClassModules
                                    , writeDeleterModule
                                    , writeDataModule
                                    , writeToolsModule
+                                   , writeIOSchemeHelpersModule
                                    ) where
 
 import Data.Char ( toLower, isLower )
@@ -341,6 +342,39 @@ writeToolsModule functions =
   , "import Casadi.Wrappers.ForeignToolsInstances ( )"
   , "import Casadi.MarshalTypes ( CppVec, CppVecVec, CppBool', StdString' )"
   , "import Casadi.Marshal (  CornerCase(..), Marshal(..) )"
+  , "import Casadi.WrapReturn ( WrapReturn(..) )"
+  , ""
+  ] ++ funDecls
+  where
+    (funNames, funDecls) = unzip $ map (\f -> writeFunction (Just (rename f)) f) functions
+    rename (Function (Name uglyName) _ _ _) = beautifulHaskellName uglyName
+
+    -- haskell functions can't have capital leading letter
+    beautifulHaskellName :: String -> String
+    beautifulHaskellName uglyName = case replaces [("_TIC","'"),("CasADi::",""),(":","_")] uglyName of
+      [] -> error "beautifulHaskellName: empty string will never be beautiful :'("
+      -- fall back on just making just the first letter lowercase
+      "data" -> "data_"
+      x -> x
+
+
+writeIOSchemeHelpersModule :: [Function] -> String
+writeIOSchemeHelpersModule functions =
+  unlines $
+  [ "{-# OPTIONS_GHC -Wall #-}"
+  , ""
+  , "module Casadi.Wrappers.IOSchemeHelpers"
+  , exportDecl (sort funNames)
+  , ""
+  , "import Data.Vector ( Vector )"
+  , "import Foreign.Ptr ( Ptr )"
+  , "import Foreign.ForeignPtr ( newForeignPtr )"
+  , ""
+  , "import Casadi.Wrappers.Data"
+  , "import Casadi.Wrappers.Deleters"
+  , "import Casadi.Wrappers.ForeignToolsInstances ( )"
+  , "import Casadi.MarshalTypes ( CppVec, StdString' )"
+  , "import Casadi.Marshal (  Marshal(..) )"
   , "import Casadi.WrapReturn ( WrapReturn(..) )"
   , ""
   ] ++ funDecls

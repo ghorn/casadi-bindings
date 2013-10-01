@@ -57,83 +57,211 @@ library
                        Casadi.Wrappers.Deleters
 
   exposed-modules:     Casadi.Wrappers.Tools
+                       Casadi.Wrappers.IOSchemeHelpers
+                       Casadi.Wrappers.IOSchemeVectorIntegratorInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorHessLagInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorNLPOutputMX
                        Casadi.Wrappers.SXFunction
+                       Casadi.Wrappers.IOSchemeVectorMayerInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorACADO_FCN_InputMX
                        Casadi.Wrappers.RKIntegrator
                        Casadi.Wrappers.SharedObject
                        Casadi.Wrappers.MXFunction
+                       Casadi.Wrappers.IOSchemeVectorQCQPSolverOutputMX
                        Casadi.Wrappers.StabilizedQPSolver
                        Casadi.Wrappers.ExpSX
                        Casadi.Wrappers.SymbolicNLP
+                       Casadi.Wrappers.IOSchemeVectorACADO_InputSXMatrix
                        Casadi.Wrappers.PrintableObject
                        Casadi.Wrappers.ExpDMatrix
+                       Casadi.Wrappers.IOSchemeVectorLPSolverInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorLPSolverInputSXMatrix
+                       Casadi.Wrappers.QCQPStructure
                        Casadi.Wrappers.CRSSparsity
                        Casadi.Wrappers.FunctionIO
+                       Casadi.Wrappers.IOSchemeVectorOCPInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorQPSolverOutputMX
                        Casadi.Wrappers.QCQPSolver
-                       Casadi.Wrappers.Variable
                        Casadi.Wrappers.NLPSolver
+                       Casadi.Wrappers.IOSchemeVectorMX
                        Casadi.Wrappers.GenericType
+                       Casadi.Wrappers.IOSchemeVectorACADO_OutputMX
+                       Casadi.Wrappers.IOSchemeVectorLinsolInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorSDPOutputMX
+                       Casadi.Wrappers.IOSchemeVectorQCQPSolverOutputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorHessLagInputMX
                        Casadi.Wrappers.IOInterfaceFX
+                       Casadi.Wrappers.IOSchemeVectorHessLagOutputSXMatrix
+                       Casadi.Wrappers.Variable
+                       Casadi.Wrappers.CSparseCholesky
+                       Casadi.Wrappers.NLPQPSolver
+                       Casadi.Wrappers.IOSchemeVectorControlSimulatorInputMX
+                       Casadi.Wrappers.LPStructure
                        Casadi.Wrappers.SDPSOCPSolver
                        Casadi.Wrappers.OptionsFunctionality
-                       Casadi.Wrappers.NLPQPSolver
-                       Casadi.Wrappers.CollocationIntegrator
-                       Casadi.Wrappers.LapackLUDense
+                       Casadi.Wrappers.IOSchemeVectorGradFInputSXMatrix
+                       Casadi.Wrappers.KinsolSolver
+                       Casadi.Wrappers.IOSchemeVectorRDAEInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorGradFInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorQPSolverOutputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorSDQPInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorJacGInputSXMatrix
                        Casadi.Wrappers.QPStabilizer
                        Casadi.Wrappers.SXMatrix
+                       Casadi.Wrappers.IOSchemeVectorDAEInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorIntegratorOutputCRSSparsity
                        Casadi.Wrappers.DMatrix
+                       Casadi.Wrappers.IOSchemeVectorSDQPInputMX
                        Casadi.Wrappers.SOCPQCQPSolver
+                       Casadi.Wrappers.IOSchemeVectorJacGInputMX
                        Casadi.Wrappers.GenSXMatrix
                        Casadi.Wrappers.QPOasesSolver
+                       Casadi.Wrappers.IOSchemeVectorLinsolInputMX
+                       Casadi.Wrappers.IOSchemeVectorACADO_OutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorQCQPSolverInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorQPSolverOutputCRSSparsity
                        Casadi.Wrappers.ExpMX
                        Casadi.Wrappers.MX
+                       Casadi.Wrappers.IOSchemeVectorStabilizedQPSolverInputSXMatrix
+                       Casadi.Wrappers.SDQPStructure
+                       Casadi.Wrappers.GenericIntegrator
+                       Casadi.Wrappers.IOSchemeVectorLPSolverOutputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorLPSolverInputMX
+                       Casadi.Wrappers.IOSchemeVectorOCPOutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorControlSimulatorInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorSDPInputSXMatrix
                        Casadi.Wrappers.SQPMethod
+                       Casadi.Wrappers.IOSchemeVectorACADO_OutputSXMatrix
                        Casadi.Wrappers.SDQPSolver
                        Casadi.Wrappers.QPLPSolver
                        Casadi.Wrappers.SDPSDQPSolver
+                       Casadi.Wrappers.IOSchemeVectorDAEOutputSXMatrix
                        Casadi.Wrappers.SDPSolver
+                       Casadi.Wrappers.IOSchemeVectorQCQPSolverInputMX
                        Casadi.Wrappers.IOScheme
+                       Casadi.Wrappers.IOSchemeVectorOCPOutputSXMatrix
                        Casadi.Wrappers.CasadiOptions
+                       Casadi.Wrappers.IOSchemeVectorNLPSolverInputCRSSparsity
+                       Casadi.Wrappers.LapackLUDense
+                       Casadi.Wrappers.IOSchemeVectorSDPOutputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorHessLagOutputCRSSparsity
                        Casadi.Wrappers.Slice
                        Casadi.Wrappers.FX
+                       Casadi.Wrappers.IOSchemeVectorNLPInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorLinsolInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorNLPSolverOutputMX
                        Casadi.Wrappers.GenMX
                        Casadi.Wrappers.ControlSimulator
-                       Casadi.Wrappers.IMatrix
-                       Casadi.Wrappers.ExternalFunction
-                       Casadi.Wrappers.DirectCollocation
+                       Casadi.Wrappers.IOSchemeVectorControlledDAEInputSXMatrix
                        Casadi.Wrappers.LapackQRDense
+                       Casadi.Wrappers.IOSchemeVectorQPSolverInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorRDAEOutputCRSSparsity
+                       Casadi.Wrappers.IMatrix
+                       Casadi.Wrappers.IOSchemeVectorLPSolverOutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorLinsolOutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorLinsolOutputSXMatrix
+                       Casadi.Wrappers.NewtonImplicitSolver
+                       Casadi.Wrappers.ExternalFunction
+                       Casadi.Wrappers.IOSchemeVectorGradFOutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorDAEInputMX
+                       Casadi.Wrappers.IOSchemeVectorSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorGradFOutputMX
+                       Casadi.Wrappers.IOSchemeVectorRDAEOutputMX
+                       Casadi.Wrappers.DirectCollocation
+                       Casadi.Wrappers.IOSchemeVectorSOCPInputMX
                        Casadi.Wrappers.CSparse
+                       Casadi.Wrappers.IOSchemeVectorJacGOutputMX
                        Casadi.Wrappers.GenIMatrix
+                       Casadi.Wrappers.IOSchemeVectorLinsolOutputMX
                        Casadi.Wrappers.NLPImplicitSolver
-                       Casadi.Wrappers.KinsolSolver
+                       Casadi.Wrappers.QCQPQPSolver
+                       Casadi.Wrappers.IOSchemeVectorSOCPOutputMX
+                       Casadi.Wrappers.CollocationIntegrator
+                       Casadi.Wrappers.IOSchemeVectorNLPSolverInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorJacGInputCRSSparsity
                        Casadi.Wrappers.Integrator
-                       Casadi.Wrappers.CSparseCholesky
+                       Casadi.Wrappers.IOSchemeVectorMayerInputMX
+                       Casadi.Wrappers.SDPStructure
+                       Casadi.Wrappers.IOSchemeVectorHessLagOutputMX
+                       Casadi.Wrappers.IOSchemeVectorIntegratorOutputMX
+                       Casadi.Wrappers.IOSchemeVectorSDQPOutputSXMatrix
                        Casadi.Wrappers.WeakRef
                        Casadi.Wrappers.Simulator
+                       Casadi.Wrappers.IOSchemeVectorGradFOutputSXMatrix
                        Casadi.Wrappers.Parallelizer
+                       Casadi.Wrappers.IOSchemeVectorNLPInputMX
                        Casadi.Wrappers.SundialsIntegrator
+                       Casadi.Wrappers.IOSchemeVectorNLPOutputCRSSparsity
                        Casadi.Wrappers.QPSolver
                        Casadi.Wrappers.IdasIntegrator
+                       Casadi.Wrappers.IOSchemeVectorControlSimulatorInputCRSSparsity
                        Casadi.Wrappers.MXAlgEl
                        Casadi.Wrappers.CFunction
                        Casadi.Wrappers.SCPgen
+                       Casadi.Wrappers.SOCPStructure
                        Casadi.Wrappers.DSDPSolver
+                       Casadi.Wrappers.IOSchemeVectorACADO_InputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorIntegratorInputCRSSparsity
                        Casadi.Wrappers.CVodesIntegrator
                        Casadi.Wrappers.CasadiMeta
                        Casadi.Wrappers.SymbolicQR
                        Casadi.Wrappers.DirectSingleShooting
+                       Casadi.Wrappers.IOSchemeVectorControlledDAEInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorSDQPOutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorQCQPSolverOutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorNLPOutputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorDAEOutputCRSSparsity
                        Casadi.Wrappers.DirectMultipleShooting
-                       Casadi.Wrappers.QCQPQPSolver
+                       Casadi.Wrappers.IOSchemeVectorNLPSolverOutputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorControlledDAEInputMX
                        Casadi.Wrappers.ExpSXMatrix
-                       Casadi.Wrappers.NewtonImplicitSolver
+                       Casadi.Wrappers.IOSchemeVectorDAEOutputMX
+                       Casadi.Wrappers.IOSchemeVectorSDQPOutputMX
+                       Casadi.Wrappers.IOSchemeVectorOCPInputMX
+                       Casadi.Wrappers.IOSchemeVectorCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorSOCPOutputSXMatrix
                        Casadi.Wrappers.GenDMatrix
+                       Casadi.Wrappers.IOSchemeVectorStabilizedQPSolverInputMX
+                       Casadi.Wrappers.IOSchemeVectorDAEInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorACADO_InputMX
                        Casadi.Wrappers.ExpIMatrix
+                       Casadi.Wrappers.IOSchemeVectorQPSolverInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorIntegratorOutputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorACADO_FCN_InputCRSSparsity
                        Casadi.Wrappers.LPSolver
                        Casadi.Wrappers.OCPSolver
+                       Casadi.Wrappers.IOSchemeVectorLPSolverOutputMX
+                       Casadi.Wrappers.IOSchemeVectorRDAEInputSXMatrix
                        Casadi.Wrappers.LinearSolver
+                       Casadi.Wrappers.IOSchemeVectorRDAEInputMX
+                       Casadi.Wrappers.IOSchemeVectorGradFInputMX
+                       Casadi.Wrappers.IOSchemeVectorOCPOutputMX
                        Casadi.Wrappers.SymbolicOCP
+                       Casadi.Wrappers.IOSchemeVectorSDPInputMX
+                       Casadi.Wrappers.IOSchemeVectorNLPSolverInputMX
+                       Casadi.Wrappers.IOSchemeVectorNLPInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorNLPSolverOutputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorSDPOutputCRSSparsity
                        Casadi.Wrappers.SOCPSolver
+                       Casadi.Wrappers.IOSchemeVectorSOCPInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorMayerInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorStabilizedQPSolverInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorSOCPOutputCRSSparsity
                        Casadi.Wrappers.ImplicitFunction
+                       Casadi.Wrappers.IOSchemeVectorQCQPSolverInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorQPSolverInputMX
+                       Casadi.Wrappers.IOSchemeVectorRDAEOutputSXMatrix
                        Casadi.Wrappers.IndexSet
+                       Casadi.Wrappers.IOSchemeVectorJacGOutputCRSSparsity
                        Casadi.Wrappers.SX
                        Casadi.Wrappers.StabilizedSQPMethod
+                       Casadi.Wrappers.IOSchemeVectorOCPInputCRSSparsity
+                       Casadi.Wrappers.IOSchemeVectorHessLagInputCRSSparsity
+                       Casadi.Wrappers.QPStructure
+                       Casadi.Wrappers.IOSchemeVectorSOCPInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorSDQPInputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorIntegratorInputMX
+                       Casadi.Wrappers.IOSchemeVectorACADO_FCN_InputSXMatrix
+                       Casadi.Wrappers.IOSchemeVectorJacGOutputSXMatrix
                        Casadi.Wrappers.IndexList
+                       Casadi.Wrappers.IOSchemeVectorSDPInputCRSSparsity
