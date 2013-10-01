@@ -77,7 +77,7 @@ deleters classes = map deleteForeignImports typesToDelete
 
 
 newtype FFIWrapper = FFIWrapper String
-data ClassFunction = ClassFunction String String
+data ClassFunction = ClassFunction String String Doc
 
 rawName :: Class -> String
 rawName c = dataName c ++ "'"
@@ -100,7 +100,7 @@ writeClassMethods c@(Class classType methods' _)= methods
     methods = map writeMethod' methods'
 
     writeMethod' :: Method -> (FFIWrapper, ClassFunction)
-    writeMethod' fcn = (FFIWrapper ffiWrapper, ClassFunction hsMethodName method)
+    writeMethod' fcn = (FFIWrapper ffiWrapper, ClassFunction hsMethodName method (fDoc fcn))
       where
         method =
           unlines $
@@ -173,12 +173,12 @@ baseclassInstances c bcs = unlines $ map writeInstance' bcs
       ]
 
 writeFunction :: Maybe String -> Function -> (String, String)
-writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params _) = (hsFunctionName, ffiWrapper)
+writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params doc) = (hsFunctionName, ffiWrapper)
   where
     ffiWrapper =
       unlines $
-      [ foreignImport
-      , hsFunctionName ++ "\n  :: " ++ proto
+      foreignImport : maybeDoc hsFunctionName' doc ++
+      [ hsFunctionName ++ "\n  :: " ++ proto
       , marshals ++ "  " ++ call
       ]
 
@@ -222,6 +222,7 @@ writeDeleterModule classes =
 writeClassModules :: [(CasadiClass, [CasadiClass])] -> [Class] -> [(String, String)]
 writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
   where
+    writeOneModule :: Class -> String
     writeOneModule c =
       init $ unlines $
       [ "{-# OPTIONS_GHC -Wall #-}"
@@ -249,14 +250,28 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       ] ++ map f methods
       where
         methods = writeClassMethods c
-        names = map (\(_, ClassFunction name _) -> name) methods
-        f (FFIWrapper ffiw, ClassFunction _ cf) =
-          unlines
+        names = map (\(_, ClassFunction name _ _) -> name) methods
+        f (FFIWrapper ffiw, ClassFunction name cf doc) =
+          unlines $
           [ "-- direct wrapper"
           , ffiw
           , "-- classy wrapper"
-          , cf
-          ]
+          ] ++ maybeDoc name doc ++ [ cf ]
+
+maybeDoc :: String -> Doc -> [String]
+maybeDoc name (Doc doc)
+  | stripEmpty (lines doc) == [] = []
+  | '\'' `elem` name = []
+  | otherwise = "{-|" : map ("> "++) (stripEmpty (lines doc)) ++ ["-}"]
+
+stripEmpty :: [String] -> [String]
+stripEmpty = reverse . stripLeading . reverse . stripLeading
+  where
+    stripLeading :: [String] -> [String]
+    stripLeading [] = []
+    stripLeading ret@(x:xs)
+      | all (== ' ') x = stripLeading xs
+      | otherwise = ret
 
 unique :: Ord a => [a] -> [a]
 unique = sort . S.toList . S.fromList
@@ -290,12 +305,15 @@ writeDataModule classes inheritance =
       Nothing -> []
       Just xs -> unique $ xs ++ concatMap baseClasses' xs
 
-    writeData c =
+    writeData c@(Class _ _ (Doc classDoc)) =
       unlines $
       [ "-- draw decl"
       , rawDecl c
       , "-- data decl"
-      , dataDecl c
+      , "{-|"
+      ] ++ map ("> " ++) (stripEmpty (lines classDoc)) ++
+      [ "-}"
+        , dataDecl c
       , "-- typeclass decl"
       , typeclassDecl c
       , "-- baseclass instances"
