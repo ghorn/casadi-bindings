@@ -263,7 +263,7 @@ maybeDoc :: String -> Doc -> [String]
 maybeDoc name (Doc doc)
   | stripEmpty (lines doc) == [] = []
   | '\'' `elem` name = []
-  | otherwise = "{-|" : map ("> "++) (stripEmpty (lines doc)) ++ ["-}"]
+  | otherwise = "{-|" : map (">"++) (stripEmpty (lines doc)) ++ ["-}"]
 
 stripEmpty :: [String] -> [String]
 stripEmpty = reverse . stripLeading . reverse . stripLeading
@@ -312,7 +312,7 @@ writeDataModule classes inheritance =
       , rawDecl c
       , "-- data decl"
       , "{-|"
-      ] ++ map ("> " ++) (stripEmpty (lines classDoc)) ++
+      ] ++ map (">" ++) (stripEmpty (lines classDoc)) ++
       [ "-}"
         , dataDecl c
       , "-- typeclass decl"
