@@ -296,7 +296,11 @@ writeDataModule classes inheritance =
   ] ++ map writeData classes
   where
     baseClasses :: Class -> [Class]
-    baseClasses (Class classType _ _) = map (classMap M.!) (baseClasses' classType)
+    baseClasses (Class classType _ _) = map (lookup' classMap) (baseClasses' classType)
+      where
+        lookup' cm x = case M.lookup x cm of
+          Just y -> y
+          Nothing -> error $ "baseClasses lookup: can't find \"" ++ show x ++ "\" in:\n" ++ show (M.keys cm)
 
     classMap :: M.Map CasadiClass Class
     classMap = M.fromList $ map (\c@(Class cc _ _) -> (cc,c)) classes
