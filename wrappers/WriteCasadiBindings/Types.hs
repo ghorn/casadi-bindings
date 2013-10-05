@@ -10,6 +10,8 @@ module WriteCasadiBindings.Types ( Class(..)
                                  , Primitive'(..)
                                  , CasadiClass(..)
                                  , Doc(..)
+                                 , CEnum(..)
+                                 , EnumType(..)
                                  , ThreeVectors
                                  ) where
 
@@ -51,3 +53,6 @@ data Type = Val ThreeVectors
           | Ref ThreeVectors
           | ConstRef ThreeVectors
           deriving Show
+
+data EnumType = EnumInt | EnumUInt
+data CEnum = CEnum String Doc EnumType [(String,Doc,Integer)]

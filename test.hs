@@ -3,13 +3,13 @@
 module Main ( main ) where
 
 import qualified Data.Vector as V
-import Casadi.Wrappers.SXFunction
 import Casadi.Wrappers.Tools
-import Casadi.Wrappers.SharedObject
-import Casadi.Wrappers.IOInterfaceFX
-import Casadi.Wrappers.FX
-import Casadi.Wrappers.PrintableObject
-import Casadi.Wrappers.CasadiMeta
+import Casadi.Wrappers.Classes.SXFunction
+import Casadi.Wrappers.Classes.SharedObject
+import Casadi.Wrappers.Classes.IOInterfaceFX
+import Casadi.Wrappers.Classes.FX
+import Casadi.Wrappers.Classes.PrintableObject
+import Casadi.Wrappers.Classes.CasadiMeta
 
 main :: IO ()
 main = do

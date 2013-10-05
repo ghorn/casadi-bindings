@@ -1,6 +1,5 @@
 all : Casadi/Wrappers/Tools.o allcpp
 allcpp : cbits/autogen/all.o cbits/hs_tools.o
-
 CASADI_PATH = /home/ghorn/casadi
 
 CASADI_INCLUDES = -I$(CASADI_PATH)
@@ -17,6 +16,7 @@ gen : Casadi/Wrappers/Tools.hs cbits/autogen/all.cpp
 
 Casadi/Wrappers/Tools.o : gen Casadi/*.hs
 	ghc --make Casadi/Wrappers/*.hs
+	ghc --make Casadi/Wrappers/Classes/*.hs
 
 cbits/autogen/all.cpp Casadi/Wrappers/Tools.hs : WriteBindings
 	./WriteBindings
@@ -32,4 +32,5 @@ clean :
 	rm -f WriteCasadiBindings/*.hi WriteCasadiBindings/*.o
 	rm -f WriteBindings WriteBindings.hi WriteBindings.o
 	rm -f cbits/*.o cbits/autogen/*
-	rm -f Casadi/*.hi Casadi/*.o Casadi/Wrappers/*
+	rm -f Casadi/*.hi Casadi/*.o Casadi/Wrappers/Classes/*
+	rm -f Casadi/Wrappers/*.hs Casadi/Wrappers/*.hi Casadi/Wrappers/*.o Casadi/Wrappers/*.txt

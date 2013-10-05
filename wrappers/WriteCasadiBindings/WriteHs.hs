@@ -5,6 +5,7 @@ module WriteCasadiBindings.WriteHs ( writeClassModules
                                    , writeDataModule
                                    , writeToolsModule
                                    , writeIOSchemeHelpersModule
+                                   , writeEnumsModule
                                    ) where
 
 import Data.Char ( toLower, isLower )
@@ -13,6 +14,8 @@ import Data.Maybe ( fromMaybe )
 import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Text as T
+import Language.Haskell.Syntax
+import Language.Haskell.Pretty
 
 import WriteCasadiBindings.Types
 import WriteCasadiBindings.TypeMaps
@@ -232,7 +235,7 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       , "{-# Language FlexibleInstances #-}"
       , "{-# Language MultiParamTypeClasses #-}"
       , ""
-      , "module Casadi.Wrappers." ++ dataName c
+      , "module Casadi.Wrappers.Classes." ++ dataName c
       , exportDecl $ [dataName c, typeclassName c] ++ sort names
       , ""
       , "import Data.Vector ( Vector )"
@@ -393,3 +396,51 @@ writeIOSchemeHelpersModule functions =
       -- fall back on just making just the first letter lowercase
       "data" -> "data_"
       x -> x
+
+writeEnumsModule :: [CEnum] -> String
+writeEnumsModule enums =
+  unlines $
+  [ "{-# OPTIONS_GHC -Wall #-}"
+  , ""
+  , "module Casadi.Wrappers.Enums"
+  , exportDecl (sort (map (\(CEnum name _ _ _) -> name ++ "(..)") enums))
+  , ""
+  ] ++ enumDecls
+  where
+    enumDecls = map writeEnumDecl enums
+
+    makeEnumDecl :: String -> [String] -> String
+    makeEnumDecl name fields =
+      strip $ prettyPrint $
+      HsDataDecl src0 [] (HsIdent name) [] (map (\f -> HsConDecl src0 (HsIdent f) []) fields)
+      [UnQual (HsIdent "Show"),UnQual (HsIdent "Eq")]
+
+    makeEnumInstance :: String -> [(String, Integer)] -> String
+    makeEnumInstance name elems =
+      strip $ prettyPrint $
+      HsInstDecl src0 [] (UnQual (HsIdent "Enum")) [HsTyCon (UnQual (HsIdent name))]
+      [HsFunBind (map f elems)
+      ,HsFunBind $ map g elems ++ [err]
+      ]
+      where
+        f (fld,k) = HsMatch src0 (HsIdent "fromEnum") [HsPParen (HsPApp (UnQual (HsIdent fld)) [])] (HsUnGuardedRhs (HsLit (HsInt k))) []
+        g (fld,k) = HsMatch src0 (HsIdent "toEnum") [HsPParen (HsPLit (HsInt k))] (HsUnGuardedRhs (HsCon (UnQual (HsIdent fld)))) []
+        err = HsMatch src0 (HsIdent "toEnum") [HsPVar (HsIdent "k")] (HsUnGuardedRhs (HsInfixApp (HsInfixApp (HsVar (UnQual (HsIdent "error"))) (HsQVarOp (UnQual (HsSymbol "$"))) (HsLit (HsString (name ++ ": toEnum: got unhandled number: ")))) (HsQVarOp (UnQual (HsSymbol "++"))) (HsApp (HsVar (UnQual (HsIdent "show"))) (HsVar (UnQual (HsIdent "k")))))) []
+
+
+    writeEnumDecl :: CEnum -> String
+    writeEnumDecl (CEnum name _ _ xs) = hssrc
+      where
+        hssrc = init $ unlines [ "-- EnumDecl: " ++ name
+                               , hsEnum
+                               , hsEnumInstance
+                               , ""
+                               ]
+        hsEnum = makeEnumDecl name (map (\(x,_,_) -> x) xs)
+        hsEnumInstance = makeEnumInstance name (map (\(x,_,y) -> (x,y)) xs)
+
+    strip :: String -> String
+    strip = T.unpack . T.strip . T.pack
+
+    src0 :: SrcLoc
+    src0 = SrcLoc {srcFilename = "<unknown>", srcLine = 1, srcColumn = 1}
