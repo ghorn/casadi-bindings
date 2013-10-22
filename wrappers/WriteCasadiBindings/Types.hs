@@ -15,7 +15,7 @@ module WriteCasadiBindings.Types ( Class(..)
                                  , ThreeVectors
                                  ) where
 
-import WriteCasadiBindings.CasadiClasses ( CasadiClass(..) )
+import WriteCasadiBindings.Buildbot.CasadiClasses ( CasadiClass(..) )
 
 data Method = Method { fName :: Name
                      , fType :: Type

@@ -22,7 +22,7 @@ module WriteCasadiBindings.TypeMaps ( hsType
                                     ) where
 
 import qualified Data.Text as T
-import WriteCasadiBindings.CasadiClasses ( cppTypeCasadiPrim )
+import WriteCasadiBindings.Buildbot.CasadiClasses ( cppTypeCasadiPrim )
 import WriteCasadiBindings.Types
 
 raw :: String

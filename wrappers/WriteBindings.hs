@@ -3,10 +3,10 @@
 module Main ( main ) where
 
 import Data.Char ( toUpper )
+import WriteCasadiBindings.Buildbot.CasadiTree
+import WriteCasadiBindings.Buildbot.CasadiClasses
 import qualified WriteCasadiBindings.WriteC as C
 import qualified WriteCasadiBindings.WriteHs as HS
-import WriteCasadiBindings.CasadiTree
-import WriteCasadiBindings.CasadiClasses
 import WriteCasadiBindings.Types
 import WriteCasadiBindings.WriteForeignTools
 
