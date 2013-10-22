@@ -13,7 +13,7 @@ import WriteCasadiBindings.WriteForeignTools
 main :: IO ()
 main = do
   let cOut = init $ unlines $
-             [ "#include <build/swig/swiginclude.hpp>"
+             [ "#include <swiginclude.hpp>"
              , "#include \"../marshal.hpp\""
              ] ++
              concatMap C.writeClass classes' ++
@@ -36,7 +36,7 @@ main = do
   writeFile "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
   writeFile "Casadi/Wrappers/Enums.hs" hsEnumsModule
   writeFile "Casadi/Wrappers/modules.txt" $
-    unlines $ map ((\(dataname,_) -> "Casadi.Wrappers.Classes" ++ dataname)) hsClassModules
+    unlines $ map ((\(dataname,_) -> "Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
 
 tools' :: [Function]
 tools' = map addNamespace $ filter (not . hasStdOstream) tools

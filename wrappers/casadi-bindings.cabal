@@ -20,21 +20,27 @@ library
   default-language:    Haskell2010
 
 --  hs-source-dirs:
-  Include-dirs:   /home/ghorn/casadi
+  Include-dirs:   /usr/include/casadi
+                  /usr/share/casadi
 
-  extra-lib-dirs:   /home/ghorn/casadi/build/lib
+  extra-lib-dirs:   /usr/lib
   extra-libraries:  stdc++
+                    casadi_ipopt_interface
+                    casadi_ipopt
+                    dl
+                    casadi_coinmumps
+                    pthread
+                    casadi_coinlapack
+                    casadi_coinmetis
+                    casadi_coinblas
+                    gfortran
+                    m
+                    gcc_s
+                    quadmath
                     casadi_sundials_interface
                     casadi_sundials
-                    casadi_qpoases_interface
-                    casadi_qpoases
-                    casadi_dsdp_interface
-                    casadi_dsdp
                     casadi_csparse_interface
                     casadi_csparse
-                    casadi_lapack_interface
-                    lapack
-                    blas
                     casadi_optimal_control
                     casadi_tinyxml
                     casadi_integration
@@ -42,6 +48,7 @@ library
                     casadi_nonlinear_programming
                     casadi
                     dl
+--                    /usr/lib/x86_64-linux-gnu/librt.so
 
   cc-options: -Wall -Wno-delete-non-virtual-dtor
 
@@ -107,6 +114,7 @@ library
                        Casadi.Wrappers.Classes.IOSchemeVectorQPSolverOutputSXMatrix
                        Casadi.Wrappers.Classes.IOSchemeVectorSDQPInputCRSSparsity
                        Casadi.Wrappers.Classes.IOSchemeVectorJacGInputSXMatrix
+                       Casadi.Wrappers.Classes.IpoptSolver
                        Casadi.Wrappers.Classes.QPStabilizer
                        Casadi.Wrappers.Classes.SXMatrix
                        Casadi.Wrappers.Classes.IOSchemeVectorDAEInputCRSSparsity
@@ -116,7 +124,6 @@ library
                        Casadi.Wrappers.Classes.SOCPQCQPSolver
                        Casadi.Wrappers.Classes.IOSchemeVectorJacGInputMX
                        Casadi.Wrappers.Classes.GenSXMatrix
-                       Casadi.Wrappers.Classes.QPOasesSolver
                        Casadi.Wrappers.Classes.IOSchemeVectorLinsolInputMX
                        Casadi.Wrappers.Classes.IOSchemeVectorACADO_OutputCRSSparsity
                        Casadi.Wrappers.Classes.IOSchemeVectorQCQPSolverInputCRSSparsity
@@ -143,7 +150,6 @@ library
                        Casadi.Wrappers.Classes.IOSchemeVectorOCPOutputSXMatrix
                        Casadi.Wrappers.Classes.CasadiOptions
                        Casadi.Wrappers.Classes.IOSchemeVectorNLPSolverInputCRSSparsity
-                       Casadi.Wrappers.Classes.LapackLUDense
                        Casadi.Wrappers.Classes.IOSchemeVectorSDPOutputSXMatrix
                        Casadi.Wrappers.Classes.IOSchemeVectorHessLagOutputCRSSparsity
                        Casadi.Wrappers.Classes.Slice
@@ -154,7 +160,6 @@ library
                        Casadi.Wrappers.Classes.GenMX
                        Casadi.Wrappers.Classes.ControlSimulator
                        Casadi.Wrappers.Classes.IOSchemeVectorControlledDAEInputSXMatrix
-                       Casadi.Wrappers.Classes.LapackQRDense
                        Casadi.Wrappers.Classes.IOSchemeVectorQPSolverInputCRSSparsity
                        Casadi.Wrappers.Classes.IOSchemeVectorRDAEOutputCRSSparsity
                        Casadi.Wrappers.Classes.IMatrix
@@ -200,7 +205,6 @@ library
                        Casadi.Wrappers.Classes.CFunction
                        Casadi.Wrappers.Classes.SCPgen
                        Casadi.Wrappers.Classes.SOCPStructure
-                       Casadi.Wrappers.Classes.DSDPSolver
                        Casadi.Wrappers.Classes.IOSchemeVectorACADO_InputCRSSparsity
                        Casadi.Wrappers.Classes.IOSchemeVectorIntegratorInputCRSSparsity
                        Casadi.Wrappers.Classes.CVodesIntegrator
