@@ -246,6 +246,7 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       , "import Casadi.Wrappers.ForeignToolsInstances ( )"
       , "import Casadi.Wrappers.Deleters"
       , "import Casadi.Wrappers.Data"
+      , "import Casadi.Wrappers.Enums"
       , "import Casadi.MarshalTypes ( CppVec, CppVecVec, CppVecVecVec,"
       , "                             StdString', CppBool' ) -- StdOstream'"
       , "import Casadi.Marshal ( CornerCase(..), Marshal(..) )"
@@ -345,6 +346,7 @@ writeToolsModule functions =
   , "import Foreign.ForeignPtr ( newForeignPtr )"
   , ""
   , "import Casadi.Wrappers.Data"
+  , "import Casadi.Wrappers.Enums"
   , "import Casadi.Wrappers.Deleters"
   , "import Casadi.Wrappers.ForeignToolsInstances ( )"
   , "import Casadi.MarshalTypes ( CppVec, CppVecVec, CppBool', StdString' )"
@@ -401,9 +403,14 @@ writeEnumsModule :: [CEnum] -> String
 writeEnumsModule enums =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
+  , "{-# LANGUAGE MultiParamTypeClasses #-}"
   , ""
   , "module Casadi.Wrappers.Enums"
   , exportDecl (sort (map (\(CEnum name _ _ _) -> show name ++ "(..)") enums))
+  , ""
+  , "import Foreign.C.Types ( CInt(..) )"
+  , "import Casadi.Marshal ( Marshal(..) )"
+  , "import Casadi.WrapReturn ( WrapReturn(..) )"
   , ""
   ] ++ enumDecls
   where
@@ -414,6 +421,16 @@ writeEnumsModule enums =
       strip $ prettyPrint $
       HsDataDecl src0 [] (HsIdent (show name)) [] (map (\f -> HsConDecl src0 (HsIdent f) []) fields)
       [UnQual (HsIdent "Show"),UnQual (HsIdent "Eq")]
+
+    makeMarshalInstance :: CasadiEnum -> String
+    makeMarshalInstance name =
+      strip $ prettyPrint $
+      HsInstDecl src0 [] (UnQual (HsIdent "Marshal")) [HsTyCon (UnQual (HsIdent (show name))), HsTyCon (UnQual (HsIdent "CInt"))] [HsFunBind [HsMatch src0 (HsIdent "withMarshal") [HsPVar (HsIdent "x"),HsPVar (HsIdent "f")] (HsUnGuardedRhs (HsApp (HsVar (UnQual (HsIdent "f"))) (HsParen (HsApp (HsVar (UnQual (HsIdent "fromIntegral"))) (HsParen (HsApp (HsVar (UnQual (HsIdent "fromEnum"))) (HsVar (UnQual (HsIdent "x"))))))))) []]]
+
+    makeWrapReturnInstance :: CasadiEnum -> String
+    makeWrapReturnInstance name =
+      strip $ prettyPrint $
+      HsInstDecl src0 [] (UnQual (HsIdent "WrapReturn")) [HsTyCon (UnQual (HsIdent "CInt")), HsTyCon (UnQual (HsIdent (show name)))] [HsPatBind (SrcLoc {srcFilename = "<unknown>", srcLine = 2, srcColumn = 3}) (HsPVar (HsIdent "wrapReturn")) (HsUnGuardedRhs (HsInfixApp (HsInfixApp (HsVar (UnQual (HsIdent "return"))) (HsQVarOp (UnQual (HsSymbol "."))) (HsVar (UnQual (HsIdent "toEnum")))) (HsQVarOp (UnQual (HsSymbol "."))) (HsVar (UnQual (HsIdent "fromIntegral"))))) []]
 
     makeEnumInstance :: CasadiEnum -> [(String, Integer)] -> String
     makeEnumInstance name elems =
@@ -434,10 +451,14 @@ writeEnumsModule enums =
         hssrc = init $ unlines [ "-- EnumDecl: " ++ show name
                                , hsEnum
                                , hsEnumInstance
+                               , hsMarshalInstance
+                               , hsWrapReturnInstance
                                , ""
                                ]
         hsEnum = makeEnumDecl name (map (\(x,_,_) -> x) xs)
         hsEnumInstance = makeEnumInstance name (map (\(x,_,y) -> (x,y)) xs)
+        hsMarshalInstance = makeMarshalInstance name
+        hsWrapReturnInstance = makeWrapReturnInstance name
 
     strip :: String -> String
     strip = T.unpack . T.strip . T.pack
