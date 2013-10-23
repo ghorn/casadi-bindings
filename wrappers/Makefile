@@ -1,8 +1,7 @@
 all : Casadi/Wrappers/Tools.o allcpp
 allcpp : cbits/autogen/all.o cbits/hs_tools.o
-CASADI_PATH = /home/ghorn/casadi
 
-CASADI_INCLUDES = -I$(CASADI_PATH)
+CASADI_INCLUDES = -I/usr/include/casadi -I/usr/share/casadi
 
 cbits/hs_tools.o : cbits/hs_tools.cpp
 	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/hs_tools.cpp -o cbits/hs_tools.o

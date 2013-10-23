@@ -52,7 +52,7 @@ ioschemeHelpers' = map addNamespace $ filter (not . hasStdOstream) ioschemehelpe
 
 
 classes' :: [Class]
-classes' = map filterStdOstreams classes
+classes' = map filterStdOstreams (classes ++ ioschemeclasses)
 
 filterStdOstreams :: Class -> Class
 filterStdOstreams (Class cc methods docs) = Class cc methods' docs
