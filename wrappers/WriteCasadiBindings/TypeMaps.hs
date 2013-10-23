@@ -22,7 +22,7 @@ module WriteCasadiBindings.TypeMaps ( hsType
                                     ) where
 
 import qualified Data.Text as T
-import WriteCasadiBindings.Buildbot.CasadiClasses ( cppTypeCasadiPrim )
+import WriteCasadiBindings.Buildbot.CasadiClasses ( cppTypeCasadiPrimClass, cppTypeCasadiPrimEnum )
 import WriteCasadiBindings.Types
 
 raw :: String
@@ -59,6 +59,7 @@ hsTypePrim CSize = "CSize"
 hsTypePrim CUChar = "CUChar"
 hsTypePrim CLong = "Int"
 hsTypePrim (CasadiClass x) = show x
+hsTypePrim (CasadiEnum x) = show x
 
 -- this optionally wraps a newtype around the marshal call, so that
 -- we can handle corner cases of Marshal without overlapping instances
@@ -102,6 +103,7 @@ ffiTypePrim p CBool = maybeParens p $ "Ptr CppBool'"
 ffiTypePrim p StdString = maybeParens p $ "Ptr StdString'"
 ffiTypePrim p StdOstream = maybeParens p $ "Ptr StdOstream'"
 ffiTypePrim p (CasadiClass x) = maybeParens p $ "Ptr " ++ show x ++ raw
+ffiTypePrim _ (CasadiEnum _) = "CInt"
 
 -- type which appears in the casadi library
 cppType :: Type -> String
@@ -129,7 +131,8 @@ cppTypePrim CSize = "size_t"
 cppTypePrim CLong = "long"
 cppTypePrim CUChar = "unsigned char"
 cppTypePrim StdOstream = "std::ostream"
-cppTypePrim (CasadiClass x) = cppTypeCasadiPrim x
+cppTypePrim (CasadiClass x) = cppTypeCasadiPrimClass x
+cppTypePrim (CasadiEnum x) = cppTypeCasadiPrimEnum x
 
 usedAsPtr :: Primitive -> Bool
 usedAsPtr CInt = False
@@ -142,6 +145,7 @@ usedAsPtr StdOstream = True
 usedAsPtr StdString = True
 usedAsPtr CBool = True
 usedAsPtr (CasadiClass _) = True
+usedAsPtr (CasadiEnum _) = False
 
 -- type which appears in the C++ wrapper
 cWrapperType :: Type -> String

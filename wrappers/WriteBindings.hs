@@ -2,7 +2,6 @@
 
 module Main ( main ) where
 
-import Data.Char ( toUpper )
 import WriteCasadiBindings.Buildbot.CasadiTree
 import WriteCasadiBindings.Buildbot.CasadiClasses
 import qualified WriteCasadiBindings.WriteC as C
@@ -23,7 +22,7 @@ main = do
       hsClassModules = HS.writeClassModules inheritance classes'
       hsToolsModule = HS.writeToolsModule tools'
       hsIOSchemeHelpersModule = HS.writeIOSchemeHelpersModule ioschemeHelpers'
-      hsEnumsModule = HS.writeEnumsModule enums'
+      hsEnumsModule = HS.writeEnumsModule enums
 
   writeFile "Casadi/Wrappers/ForeignToolsImports.hs" foreignToolsImports
   writeFile "Casadi/Wrappers/ForeignToolsInstances.hs" foreignToolsInstances
@@ -36,7 +35,7 @@ main = do
   writeFile "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
   writeFile "Casadi/Wrappers/Enums.hs" hsEnumsModule
   writeFile "Casadi/Wrappers/modules.txt" $
-    unlines $ map ((\(dataname,_) -> "Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
+    unlines $ map ((\(dataname,_) -> "                       Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
 
 tools' :: [Function]
 tools' = map addNamespace $ filter (not . hasStdOstream) tools
@@ -78,9 +77,3 @@ getPrimTV (Vec (NonVec x)) = x
 getPrimTV (Vec (Vec (NonVec x))) = x
 getPrimTV (Vec (Vec (Vec (NonVec x)))) = x
 getPrimTV (Vec (Vec (Vec (Vec ())))) = error "getPrimTV: Vec (Vec (Vec (Vec ())))"
-
-enums' :: [CEnum]
-enums' = map (\(CEnum name x y z) -> CEnum (upperCase name) x y z) enums
-  where
-    upperCase [] = []
-    upperCase (x:xs) = toUpper x : xs

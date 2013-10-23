@@ -236,7 +236,7 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       , "{-# Language MultiParamTypeClasses #-}"
       , ""
       , "module Casadi.Wrappers.Classes." ++ dataName c
-      , exportDecl $ [dataName c, typeclassName c] ++ sort names
+      , exportDecl $ [dataName c, typeclassName c ++ "(..)"] ++ sort names
       , ""
       , "import Data.Vector ( Vector )"
       , "import Foreign.C.Types"
@@ -403,35 +403,35 @@ writeEnumsModule enums =
   [ "{-# OPTIONS_GHC -Wall #-}"
   , ""
   , "module Casadi.Wrappers.Enums"
-  , exportDecl (sort (map (\(CEnum name _ _ _) -> name ++ "(..)") enums))
+  , exportDecl (sort (map (\(CEnum name _ _ _) -> show name ++ "(..)") enums))
   , ""
   ] ++ enumDecls
   where
     enumDecls = map writeEnumDecl enums
 
-    makeEnumDecl :: String -> [String] -> String
+    makeEnumDecl :: CasadiEnum -> [String] -> String
     makeEnumDecl name fields =
       strip $ prettyPrint $
-      HsDataDecl src0 [] (HsIdent name) [] (map (\f -> HsConDecl src0 (HsIdent f) []) fields)
+      HsDataDecl src0 [] (HsIdent (show name)) [] (map (\f -> HsConDecl src0 (HsIdent f) []) fields)
       [UnQual (HsIdent "Show"),UnQual (HsIdent "Eq")]
 
-    makeEnumInstance :: String -> [(String, Integer)] -> String
+    makeEnumInstance :: CasadiEnum -> [(String, Integer)] -> String
     makeEnumInstance name elems =
       strip $ prettyPrint $
-      HsInstDecl src0 [] (UnQual (HsIdent "Enum")) [HsTyCon (UnQual (HsIdent name))]
+      HsInstDecl src0 [] (UnQual (HsIdent "Enum")) [HsTyCon (UnQual (HsIdent (show name)))]
       [HsFunBind (map f elems)
       ,HsFunBind $ map g elems ++ [err]
       ]
       where
         f (fld,k) = HsMatch src0 (HsIdent "fromEnum") [HsPParen (HsPApp (UnQual (HsIdent fld)) [])] (HsUnGuardedRhs (HsLit (HsInt k))) []
         g (fld,k) = HsMatch src0 (HsIdent "toEnum") [HsPParen (HsPLit (HsInt k))] (HsUnGuardedRhs (HsCon (UnQual (HsIdent fld)))) []
-        err = HsMatch src0 (HsIdent "toEnum") [HsPVar (HsIdent "k")] (HsUnGuardedRhs (HsInfixApp (HsInfixApp (HsVar (UnQual (HsIdent "error"))) (HsQVarOp (UnQual (HsSymbol "$"))) (HsLit (HsString (name ++ ": toEnum: got unhandled number: ")))) (HsQVarOp (UnQual (HsSymbol "++"))) (HsApp (HsVar (UnQual (HsIdent "show"))) (HsVar (UnQual (HsIdent "k")))))) []
+        err = HsMatch src0 (HsIdent "toEnum") [HsPVar (HsIdent "k")] (HsUnGuardedRhs (HsInfixApp (HsInfixApp (HsVar (UnQual (HsIdent "error"))) (HsQVarOp (UnQual (HsSymbol "$"))) (HsLit (HsString (show name ++ ": toEnum: got unhandled number: ")))) (HsQVarOp (UnQual (HsSymbol "++"))) (HsApp (HsVar (UnQual (HsIdent "show"))) (HsVar (UnQual (HsIdent "k")))))) []
 
 
     writeEnumDecl :: CEnum -> String
     writeEnumDecl (CEnum name _ _ xs) = hssrc
       where
-        hssrc = init $ unlines [ "-- EnumDecl: " ++ name
+        hssrc = init $ unlines [ "-- EnumDecl: " ++ show name
                                , hsEnum
                                , hsEnumInstance
                                , ""
