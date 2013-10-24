@@ -2,6 +2,10 @@
 
 module Main ( main ) where
 
+import qualified Data.Map as M
+import qualified Data.Set as S
+import Data.List ( sort )
+
 import WriteCasadiBindings.Buildbot.CasadiTree
 import WriteCasadiBindings.Buildbot.CasadiClasses
 import qualified WriteCasadiBindings.WriteC as C
@@ -18,8 +22,8 @@ main = do
              concatMap C.writeClass classes' ++
              map C.writeFunction tools' ++ map C.writeDeletes [CInt,CDouble,StdString,CBool]
       hsDeleters = HS.writeDeleterModule classes'
-      hsData = HS.writeDataModule classes' inheritance
-      hsClassModules = HS.writeClassModules inheritance classes'
+      hsData = HS.writeDataModule classes' baseClasses
+      hsClassModules = HS.writeClassModules baseClasses classes'
       hsToolsModule = HS.writeToolsModule tools'
       hsIOSchemeHelpersModule = HS.writeIOSchemeHelpersModule ioschemeHelpers'
       hsEnumsModule = HS.writeEnumsModule enums
@@ -77,3 +81,22 @@ getPrimTV (Vec (NonVec x)) = x
 getPrimTV (Vec (Vec (NonVec x))) = x
 getPrimTV (Vec (Vec (Vec (NonVec x)))) = x
 getPrimTV (Vec (Vec (Vec (Vec ())))) = error "getPrimTV: Vec (Vec (Vec (Vec ())))"
+
+
+baseClasses :: Class -> [Class]
+baseClasses (Class classType _ _) = map (lookup' classMap) (baseClasses' classType)
+  where
+    lookup' cm x = case M.lookup x cm of
+      Just y -> y
+      Nothing -> error $ "baseClasses lookup: can't find \"" ++ show x ++ "\" in:\n" ++ show (M.keys cm)
+
+classMap :: M.Map CasadiClass Class
+classMap = M.fromList $ map (\c@(Class cc _ _) -> (cc,c)) (classes ++ ioschemeclasses)
+
+baseClasses' :: CasadiClass -> [CasadiClass]
+baseClasses' classType = case lookup classType inheritance of
+  Nothing -> error $ "baseClasses': " ++ show classType ++ " missing from inheritance graph"
+  Just xs -> unique $ xs ++ concatMap baseClasses' xs
+
+unique :: Ord a => [a] -> [a]
+unique = sort . S.toList . S.fromList

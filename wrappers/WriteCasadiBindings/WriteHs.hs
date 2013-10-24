@@ -11,8 +11,6 @@ module WriteCasadiBindings.WriteHs ( writeClassModules
 import Data.Char ( toLower, isLower )
 import Data.List ( intersperse, sort )
 import Data.Maybe ( fromMaybe )
-import qualified Data.Map as M
-import qualified Data.Set as S
 import qualified Data.Text as T
 import Language.Haskell.Syntax
 import Language.Haskell.Pretty
@@ -223,14 +221,15 @@ writeDeleterModule classes =
   , ""
   ] ++ deleters classes
 
-writeClassModules :: [(CasadiClass, [CasadiClass])] -> [Class] -> [(String, String)]
-writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
+writeClassModules :: (Class -> [Class]) -> [Class] -> [(String, String)]
+writeClassModules inheritance classes = map (\x -> (dataName x,writeOneModule x)) classes
   where
     writeOneModule :: Class -> String
     writeOneModule c =
       init $ unlines $
       [ "{-# OPTIONS_GHC -Wall #-}"
       , "{-# OPTIONS_GHC -fno-warn-unused-imports #-}"
+      , "{-# OPTIONS_GHC -fno-warn-orphans #-}"
       , "{-# Language ForeignFunctionInterface #-}"
       , "{-# Language FlexibleInstances #-}"
       , "{-# Language MultiParamTypeClasses #-}"
@@ -242,8 +241,10 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       , "import Foreign.C.Types"
       , "import Foreign.Ptr ( Ptr )"
       , "import Foreign.ForeignPtr ( newForeignPtr )"
+      , "import System.IO.Unsafe ( unsafePerformIO ) -- for show instances"
       , ""
-      , "import Casadi.Wrappers.ForeignToolsInstances ( )"
+      ] ++ printableObjectImport ++
+      [ "import Casadi.Wrappers.ForeignToolsInstances ( )"
       , "import Casadi.Wrappers.Deleters"
       , "import Casadi.Wrappers.Data"
       , "import Casadi.Wrappers.Enums"
@@ -252,7 +253,7 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
       , "import Casadi.Marshal ( CornerCase(..), Marshal(..) )"
       , "import Casadi.WrapReturn ( WrapReturn(..) )"
       , ""
-      ] ++ map f methods
+      ] ++ showInstance ++ map f methods
       where
         methods = writeClassMethods c
         names = map (\(_, ClassFunction name _ _) -> name) methods
@@ -262,6 +263,19 @@ writeClassModules _ classes = map (\x -> (dataName x,writeOneModule x)) classes
           , ffiw
           , "-- classy wrapper"
           ] ++ maybeDoc name doc ++ [ cf ]
+        showInstance
+          | any isPrintableObject (c : inheritance c) =
+            [ "instance Show " ++ dataName c ++ " where"
+            , "  show = unsafePerformIO . printableObject_getDescription"
+            ]
+          | otherwise = []
+        printableObjectImport
+          | any isPrintableObject (inheritance c) =
+            ["import Casadi.Wrappers.Classes.PrintableObject"]
+          | otherwise = []
+
+        isPrintableObject (Class PrintableObject _ _) = True
+        isPrintableObject _ = False
 
 maybeDoc :: String -> Doc -> [String]
 maybeDoc name (Doc doc)
@@ -278,11 +292,8 @@ stripEmpty = reverse . stripLeading . reverse . stripLeading
       | all (== ' ') x = stripLeading xs
       | otherwise = ret
 
-unique :: Ord a => [a] -> [a]
-unique = sort . S.toList . S.fromList
-
-writeDataModule :: [Class] -> [(CasadiClass, [CasadiClass])] -> String
-writeDataModule classes inheritance =
+writeDataModule :: [Class] -> (Class -> [Class]) -> String
+writeDataModule classes baseClasses =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language FlexibleInstances #-}"
@@ -299,20 +310,6 @@ writeDataModule classes inheritance =
   , ""
   ] ++ map writeData classes
   where
-    baseClasses :: Class -> [Class]
-    baseClasses (Class classType _ _) = map (lookup' classMap) (baseClasses' classType)
-      where
-        lookup' cm x = case M.lookup x cm of
-          Just y -> y
-          Nothing -> error $ "baseClasses lookup: can't find \"" ++ show x ++ "\" in:\n" ++ show (M.keys cm)
-
-    classMap :: M.Map CasadiClass Class
-    classMap = M.fromList $ map (\c@(Class cc _ _) -> (cc,c)) classes
-
-    baseClasses' :: CasadiClass -> [CasadiClass]
-    baseClasses' classType = case lookup classType inheritance of
-      Nothing -> []
-      Just xs -> unique $ xs ++ concatMap baseClasses' xs
 
     writeData c@(Class _ _ (Doc classDoc)) =
       unlines $
