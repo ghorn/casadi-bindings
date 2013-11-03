@@ -53,6 +53,7 @@ library
   cc-options: -Wall -Wno-delete-non-virtual-dtor
 
   C-sources:        cbits/hs_tools.cpp
+                    cbits/cfunction.cpp
                     cbits/autogen/all.cpp
 
   other-modules:       Casadi.Marshal
@@ -63,7 +64,8 @@ library
                        Casadi.Wrappers.Data
                        Casadi.Wrappers.Deleters
 
-  exposed-modules:     Casadi.Wrappers.Enums
+  exposed-modules:     Casadi.Callback
+                       Casadi.Wrappers.Enums
                        Casadi.Wrappers.Tools
                        Casadi.Wrappers.IOSchemeHelpers
                        Casadi.Wrappers.Classes.SXFunction

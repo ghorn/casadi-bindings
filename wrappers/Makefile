@@ -7,6 +7,10 @@ cbits/hs_tools.o : cbits/hs_tools.cpp
 	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/hs_tools.cpp -o cbits/hs_tools.o
 	@echo "hs_tools.o: no clang errors"
 
+cbits/cfunction.o : cbits/cfunction.cpp
+	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/cfunction.cpp -o cbits/cfunction.o
+	@echo "cfunction.o: no clang errors"
+
 cbits/autogen/all.o : cbits/autogen/all.cpp cbits/marshal.hpp
 	clang++ -Wall -Werror -Wno-delete-non-virtual-dtor $(CASADI_INCLUDES) -c cbits/autogen/all.cpp -o cbits/autogen/all.o
 	@echo "all.o: no clang errors"
@@ -14,6 +18,7 @@ cbits/autogen/all.o : cbits/autogen/all.cpp cbits/marshal.hpp
 gen : Casadi/Wrappers/Tools.hs cbits/autogen/all.cpp
 
 Casadi/Wrappers/Tools.o : gen Casadi/*.hs
+	ghc --make Casadi/*.hs
 	ghc --make Casadi/Wrappers/*.hs
 	ghc --make Casadi/Wrappers/Classes/*.hs
 
