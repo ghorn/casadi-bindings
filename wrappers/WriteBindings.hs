@@ -2,9 +2,11 @@
 
 module Main ( main ) where
 
+import Control.Monad ( when )
 import qualified Data.Map as M
 import qualified Data.Set as S
 import Data.List ( sort )
+import System.Directory ( doesFileExist )
 
 import WriteCasadiBindings.Buildbot.CasadiTree
 import WriteCasadiBindings.Buildbot.CasadiClasses
@@ -12,6 +14,14 @@ import qualified WriteCasadiBindings.WriteC as C
 import qualified WriteCasadiBindings.WriteHs as HS
 import WriteCasadiBindings.Types
 import WriteCasadiBindings.WriteForeignTools
+
+writeFile' :: FilePath -> String -> IO ()
+writeFile' path txt = do
+  exist <- doesFileExist path
+  if exist
+    then do txt0 <- readFile path
+            when (txt0 /= txt) $ writeFile path txt
+    else writeFile path txt
 
 main :: IO ()
 main = do
@@ -28,17 +38,17 @@ main = do
       hsIOSchemeHelpersModule = HS.writeIOSchemeHelpersModule ioschemeHelpers'
       hsEnumsModule = HS.writeEnumsModule enums
 
-  writeFile "Casadi/Wrappers/ForeignToolsImports.hs" foreignToolsImports
-  writeFile "Casadi/Wrappers/ForeignToolsInstances.hs" foreignToolsInstances
+  writeFile' "Casadi/Wrappers/ForeignToolsImports.hs" foreignToolsImports
+  writeFile' "Casadi/Wrappers/ForeignToolsInstances.hs" foreignToolsInstances
 
-  writeFile "cbits/autogen/all.cpp" cOut
-  writeFile "Casadi/Wrappers/Data.hs" hsData
-  writeFile "Casadi/Wrappers/Deleters.hs" hsDeleters
-  mapM_ (\(dataname, src) -> writeFile ("Casadi/Wrappers/Classes/" ++ dataname ++ ".hs") src)  hsClassModules
-  writeFile "Casadi/Wrappers/Tools.hs" hsToolsModule
-  writeFile "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
-  writeFile "Casadi/Wrappers/Enums.hs" hsEnumsModule
-  writeFile "Casadi/Wrappers/modules.txt" $
+  writeFile' "cbits/autogen/all.cpp" cOut
+  writeFile' "Casadi/Wrappers/Data.hs" hsData
+  writeFile' "Casadi/Wrappers/Deleters.hs" hsDeleters
+  mapM_ (\(dataname, src) -> writeFile' ("Casadi/Wrappers/Classes/" ++ dataname ++ ".hs") src)  hsClassModules
+  writeFile' "Casadi/Wrappers/Tools.hs" hsToolsModule
+  writeFile' "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
+  writeFile' "Casadi/Wrappers/Enums.hs" hsEnumsModule
+  writeFile' "Casadi/Wrappers/modules.txt" $
     unlines $ map ((\(dataname,_) -> "                       Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
 
 tools' :: [Function]
