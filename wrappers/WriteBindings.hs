@@ -55,7 +55,7 @@ ioschemeHelpers' = map addNamespace $ filter (not . hasStdOstream) ioschemehelpe
 
 
 classes' :: [Class]
-classes' = map filterStdOstreams (classes ++ ioschemeclasses)
+classes' = map (addGenerics . filterStdOstreams) (classes ++ ioschemeclasses)
 
 filterStdOstreams :: Class -> Class
 filterStdOstreams (Class cc methods docs) = Class cc methods' docs
@@ -100,3 +100,53 @@ baseClasses' classType = case lookup classType inheritance of
 
 unique :: Ord a => [a] -> [a]
 unique = sort . S.toList . S.fromList
+
+--    GenericType(bool b);
+--    GenericType(int i);
+--    GenericType(double d);
+--    GenericType(const std::string& s);
+--    GenericType(const std::vector<bool>& iv);
+--    GenericType(const std::vector<int>& iv);
+--    GenericType(const std::vector<double>& dv);
+--    GenericType(const std::vector<std::string>& sv);
+--    GenericType(const char s[]);
+--    GenericType(const FX& f);
+
+addGenerics :: Class -> Class
+addGenerics (Class GenericType methods docs) = Class GenericType (methods ++ moreGenerics) docs
+addGenerics x = x
+
+moreGenerics :: [Method]
+moreGenerics =
+  [ Method (Name "GenericTypeBool") valGenericType [valCBool] Constructor (Doc "")
+  , Method (Name "GenericTypeInt") valGenericType [valCInt] Constructor (Doc "")
+  , Method (Name "GenericTypeDouble") valGenericType [valCDouble] Constructor (Doc "")
+  , Method (Name "GenericTypeString") valGenericType [constrefStdString] Constructor (Doc "")
+  , Method (Name "GenericTypeBoolVec") valGenericType [refCBoolVec] Constructor (Doc "")
+  , Method (Name "GenericTypeIntVec") valGenericType [constrefCIntVec] Constructor (Doc "")
+  , Method (Name "GenericTypeDoubleVec") valGenericType [constrefCDoubleVec] Constructor (Doc "")
+  , Method (Name "GenericTypeStringVec") valGenericType [constrefStdStringVec] Constructor (Doc "")
+  , Method (Name "GenericTypeFX") valGenericType [constrefFX] Constructor (Doc "")
+  ]
+
+valGenericType :: Type
+valGenericType = Val (NonVec (CasadiClass GenericType))
+
+valCBool :: Type
+valCBool = Val (NonVec CBool)
+valCInt :: Type
+valCInt = Val (NonVec CInt)
+valCDouble :: Type
+valCDouble = Val (NonVec CDouble)
+constrefStdString :: Type
+constrefStdString = ConstRef (NonVec StdString)
+refCBoolVec :: Type
+refCBoolVec = Ref (Vec (NonVec CBool))
+constrefCIntVec :: Type
+constrefCIntVec = ConstRef (Vec (NonVec CInt))
+constrefCDoubleVec :: Type
+constrefCDoubleVec = ConstRef (Vec (NonVec CDouble))
+constrefStdStringVec :: Type
+constrefStdStringVec = ConstRef (Vec (NonVec StdString))
+constrefFX :: Type
+constrefFX = ConstRef (NonVec (CasadiClass FX))
