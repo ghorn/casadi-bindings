@@ -237,6 +237,8 @@ writeClassModules inheritance classes = map (\x -> (dataName x,writeOneModule x)
       , "module Casadi.Wrappers.Classes." ++ dataName c
       , exportDecl $ [dataName c, typeclassName c ++ "(..)"] ++ sort names
       , ""
+      , "import Prelude hiding ( Functor )"
+      , ""
       , "import Data.Vector ( Vector )"
       , "import Foreign.C.Types"
       , "import Foreign.Ptr ( Ptr )"
@@ -300,6 +302,8 @@ writeDataModule classes baseClasses =
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
   , "module Casadi.Wrappers.Data where"
+  , ""
+  , "import Prelude hiding ( Functor )"
   , ""
   , "import Foreign.Ptr ( Ptr )"
   , "import Foreign.ForeignPtr ( ForeignPtr, castForeignPtr, withForeignPtr )"

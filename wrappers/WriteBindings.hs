@@ -6,10 +6,12 @@ import Control.Monad ( when )
 import qualified Data.Map as M
 import qualified Data.Set as S
 import Data.List ( sort )
+import Data.Maybe ( catMaybes )
 import System.Directory ( doesFileExist )
 import System.IO ( openFile, hClose, IOMode(..), hGetContents )
 
-import WriteCasadiBindings.Buildbot.CasadiTree
+--import qualified WriteCasadiBindings.Buildbot.CasadiTree as Buildbot
+import WriteCasadiBindings.MyCasadiTree ( enums, tools, classes )
 import WriteCasadiBindings.Buildbot.CasadiClasses
 import qualified WriteCasadiBindings.WriteC as C
 import qualified WriteCasadiBindings.WriteHs as HS
@@ -31,6 +33,8 @@ main = do
   let cOut = init $ unlines $
              [ "#include <swiginclude.hpp>"
              , "#include \"../marshal.hpp\""
+             , "#include <symbolic/functor_internal.hpp>"
+             , "#include <symbolic/fx/custom_function.hpp>"
              ] ++
              concatMap C.writeClass classes' ++
              map C.writeFunction tools' ++ map C.writeDeletes [CInt,CDouble,StdString,CBool]
@@ -38,7 +42,7 @@ main = do
       hsData = HS.writeDataModule classes' baseClasses
       hsClassModules = HS.writeClassModules baseClasses classes'
       hsToolsModule = HS.writeToolsModule tools'
-      hsIOSchemeHelpersModule = HS.writeIOSchemeHelpersModule ioschemeHelpers'
+      --hsIOSchemeHelpersModule = HS.writeIOSchemeHelpersModule ioschemeHelpers'
       hsEnumsModule = HS.writeEnumsModule enums
 
   writeFile' "Casadi/Wrappers/ForeignToolsImports.hs" foreignToolsImports
@@ -49,7 +53,7 @@ main = do
   writeFile' "Casadi/Wrappers/Deleters.hs" hsDeleters
   mapM_ (\(dataname, src) -> writeFile' ("Casadi/Wrappers/Classes/" ++ dataname ++ ".hs") src)  hsClassModules
   writeFile' "Casadi/Wrappers/Tools.hs" hsToolsModule
-  writeFile' "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
+  --writeFile' "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
   writeFile' "Casadi/Wrappers/Enums.hs" hsEnumsModule
   writeFile' "Casadi/Wrappers/modules.txt" $
     unlines $ map ((\(dataname,_) -> "                       Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
@@ -60,15 +64,18 @@ tools' = map addNamespace $ filter (not . hasStdOstream) tools
     addNamespace :: Function -> Function
     addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
 
-ioschemeHelpers' :: [Function]
-ioschemeHelpers' = map addNamespace $ filter (not . hasStdOstream) ioschemehelpers
-  where
-    addNamespace :: Function -> Function
-    addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
+--ioschemeHelpers' :: [Function]
+--ioschemeHelpers' = map addNamespace $ filter (not . hasStdOstream) ioschemehelpers
+--  where
+--    addNamespace :: Function -> Function
+--    addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
 
 
 classes' :: [Class]
-classes' = map (addGenerics . filterStdOstreams) (classes ++ ioschemeclasses)
+classes' = map (addDocs . filterStdOstreams) classes -- ++ ioschemeclasses)
+
+addDocs :: Class -> Class
+addDocs = id
 
 filterStdOstreams :: Class -> Class
 filterStdOstreams (Class cc methods docs) = Class cc methods' docs
@@ -97,14 +104,17 @@ getPrimTV (Vec (Vec (Vec (Vec ())))) = error "getPrimTV: Vec (Vec (Vec (Vec ()))
 
 
 baseClasses :: Class -> [Class]
-baseClasses (Class classType _ _) = map (lookup' classMap) (baseClasses' classType)
+baseClasses (Class classType _ _) = catMaybes $ map (lookup' classMap) (baseClasses' classType)
   where
-    lookup' cm x = case M.lookup x cm of
-      Just y -> y
-      Nothing -> error $ "baseClasses lookup: can't find \"" ++ show x ++ "\" in:\n" ++ show (M.keys cm)
+    lookup' :: M.Map CasadiClass Class -> CasadiClass -> Maybe Class
+    lookup' = flip M.lookup
+--    lookup' :: M.Map CasadiClass Class -> CasadiClass -> Class
+--    lookup' cm x = case M.lookup x cm of
+--      Just y -> y
+--      Nothing -> error $ "baseClasses lookup: can't find \"" ++ show x ++ "\" in:\n" ++ show (M.keys cm)
 
 classMap :: M.Map CasadiClass Class
-classMap = M.fromList $ map (\c@(Class cc _ _) -> (cc,c)) (classes ++ ioschemeclasses)
+classMap = M.fromList $ map (\c@(Class cc _ _) -> (cc,c)) classes --  ++ ioschemeclasses)
 
 baseClasses' :: CasadiClass -> [CasadiClass]
 baseClasses' classType = case lookup classType inheritance of
@@ -113,53 +123,3 @@ baseClasses' classType = case lookup classType inheritance of
 
 unique :: Ord a => [a] -> [a]
 unique = sort . S.toList . S.fromList
-
---    GenericType(bool b);
---    GenericType(int i);
---    GenericType(double d);
---    GenericType(const std::string& s);
---    GenericType(const std::vector<bool>& iv);
---    GenericType(const std::vector<int>& iv);
---    GenericType(const std::vector<double>& dv);
---    GenericType(const std::vector<std::string>& sv);
---    GenericType(const char s[]);
---    GenericType(const FX& f);
-
-addGenerics :: Class -> Class
-addGenerics (Class GenericType methods docs) = Class GenericType (methods ++ moreGenerics) docs
-addGenerics x = x
-
-moreGenerics :: [Method]
-moreGenerics =
-  [ Method (Name "GenericTypeBool") valGenericType [valCBool] Constructor (Doc "")
-  , Method (Name "GenericTypeInt") valGenericType [valCInt] Constructor (Doc "")
-  , Method (Name "GenericTypeDouble") valGenericType [valCDouble] Constructor (Doc "")
-  , Method (Name "GenericTypeString") valGenericType [constrefStdString] Constructor (Doc "")
-  , Method (Name "GenericTypeBoolVec") valGenericType [refCBoolVec] Constructor (Doc "")
-  , Method (Name "GenericTypeIntVec") valGenericType [constrefCIntVec] Constructor (Doc "")
-  , Method (Name "GenericTypeDoubleVec") valGenericType [constrefCDoubleVec] Constructor (Doc "")
-  , Method (Name "GenericTypeStringVec") valGenericType [constrefStdStringVec] Constructor (Doc "")
-  , Method (Name "GenericTypeFX") valGenericType [constrefFX] Constructor (Doc "")
-  ]
-
-valGenericType :: Type
-valGenericType = Val (NonVec (CasadiClass GenericType))
-
-valCBool :: Type
-valCBool = Val (NonVec CBool)
-valCInt :: Type
-valCInt = Val (NonVec CInt)
-valCDouble :: Type
-valCDouble = Val (NonVec CDouble)
-constrefStdString :: Type
-constrefStdString = ConstRef (NonVec StdString)
-refCBoolVec :: Type
-refCBoolVec = Ref (Vec (NonVec CBool))
-constrefCIntVec :: Type
-constrefCIntVec = ConstRef (Vec (NonVec CInt))
-constrefCDoubleVec :: Type
-constrefCDoubleVec = ConstRef (Vec (NonVec CDouble))
-constrefStdStringVec :: Type
-constrefStdStringVec = ConstRef (Vec (NonVec StdString))
-constrefFX :: Type
-constrefFX = ConstRef (NonVec (CasadiClass FX))
