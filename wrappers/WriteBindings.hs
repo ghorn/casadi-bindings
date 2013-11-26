@@ -7,6 +7,7 @@ import qualified Data.Map as M
 import qualified Data.Set as S
 import Data.List ( sort )
 import System.Directory ( doesFileExist )
+import System.IO ( openFile, hClose, IOMode(..), hGetContents )
 
 import WriteCasadiBindings.Buildbot.CasadiTree
 import WriteCasadiBindings.Buildbot.CasadiClasses
@@ -19,7 +20,9 @@ writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
   exist <- doesFileExist path
   if exist
-    then do txt0 <- readFile path
+    then do fileHandle <- openFile path ReadMode
+            txt0 <- hGetContents fileHandle
+            hClose fileHandle
             when (txt0 /= txt) $ writeFile path txt
     else writeFile path txt
 
