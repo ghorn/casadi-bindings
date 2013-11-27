@@ -5,10 +5,11 @@ module Main ( main ) where
 import Control.Monad ( when )
 import qualified Data.Map as M
 import qualified Data.Set as S
+import qualified Data.Text as T
+import qualified Data.Text.IO as TIO
 import Data.List ( sort )
 import Data.Maybe ( catMaybes )
 import System.Directory ( doesFileExist )
-import System.IO ( openFile, hClose, IOMode(..), hGetContents )
 
 --import qualified WriteCasadiBindings.Buildbot.CasadiTree as Buildbot
 import WriteCasadiBindings.MyCasadiTree ( enums, tools, classes )
@@ -23,9 +24,7 @@ writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
   exist <- doesFileExist path
   if exist
-    then do fileHandle <- openFile path ReadMode
-            txt0 <- hGetContents fileHandle
-            hClose fileHandle
+    then do txt0 <- fmap T.unpack $ TIO.readFile path
             when (txt0 /= txt) $ writeFile path txt
     else writeFile path txt
 
