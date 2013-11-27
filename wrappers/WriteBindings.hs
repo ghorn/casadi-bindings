@@ -13,6 +13,7 @@ import System.IO ( openFile, hClose, IOMode(..), hGetContents )
 --import qualified WriteCasadiBindings.Buildbot.CasadiTree as Buildbot
 import WriteCasadiBindings.MyCasadiTree ( enums, tools, classes )
 import WriteCasadiBindings.Buildbot.CasadiClasses
+import qualified WriteCasadiBindings.Buildbot.CasadiTree as Buildbot
 import qualified WriteCasadiBindings.WriteC as C
 import qualified WriteCasadiBindings.WriteHs as HS
 import WriteCasadiBindings.Types
@@ -59,17 +60,27 @@ main = do
     unlines $ map ((\(dataname,_) -> "                       Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
 
 tools' :: [Function]
-tools' = map addNamespace $ filter (not . hasStdOstream) tools
+tools' = map addNamespace $ filter okTool tools
   where
+    okTool :: Function -> Bool
+    okTool x
+      | hasType StdOstream x = False
+      | hasType StdOstream x = False
+      | any (flip hasType x) badClasses' = False
+      | otherwise = True
+
     addNamespace :: Function -> Function
     addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
 
---ioschemeHelpers' :: [Function]
---ioschemeHelpers' = map addNamespace $ filter (not . hasStdOstream) ioschemehelpers
---  where
---    addNamespace :: Function -> Function
---    addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
+-- all classes in Buildbot classes, but not in classes'
+badClasses' :: [Primitive]
+badClasses' = map CasadiClass (S.toList badClasses)
 
+badClasses :: S.Set CasadiClass
+badClasses = S.difference buildbotClasses goodClasses
+  where
+    goodClasses = S.fromList $ map (\(Class cc _ _) -> cc) classes'
+    buildbotClasses = S.fromList $ map (\(Class cc _ _) -> cc) Buildbot.classes
 
 classes' :: [Class]
 classes' = map (addDocs . filterStdOstreams) classes -- ++ ioschemeclasses)
@@ -80,15 +91,13 @@ addDocs = id
 filterStdOstreams :: Class -> Class
 filterStdOstreams (Class cc methods docs) = Class cc methods' docs
   where
-    methods' = filter (not . hasStdOstream') methods
+    methods' = filter (not . (hasType' StdOstream)) methods
 
--- remove methods with StdOStrea'
-hasStdOstream' :: Method -> Bool
-hasStdOstream' (Method _ ret params _ _) = StdOstream `elem` (map getPrim (ret:params))
+hasType' :: Primitive -> Method -> Bool
+hasType' typ (Method _ ret params _ _) = typ `elem` (map getPrim (ret:params))
 
--- remove methods with StdOStrea'
-hasStdOstream :: Function -> Bool
-hasStdOstream (Function _ _ params _) = StdOstream `elem` (map getPrim params)
+hasType :: Primitive -> Function -> Bool
+hasType typ (Function _ ret params _) = typ `elem` (map getPrim (ret:params))
 
 getPrim :: Type -> Primitive
 getPrim (Val x) = getPrimTV x

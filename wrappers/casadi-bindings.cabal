@@ -66,6 +66,7 @@ library
 
   exposed-modules:     
 --                       Casadi.Callback
+                       Casadi.Wrappers.Tools
                        Casadi.Wrappers.Classes.SXFunction
                        Casadi.Wrappers.Classes.MXFunction
                        Casadi.Wrappers.Classes.FX
