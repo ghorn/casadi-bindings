@@ -811,22 +811,14 @@ generictype = Class GenericType methods docs
         Method (Name "GenericTypeInt") valGenericType [valCInt] Constructor (Doc "") ,
         Method (Name "GenericTypeDouble") valGenericType [valCDouble] Constructor (Doc "") ,
         Method (Name "GenericTypeString") valGenericType [constrefStdString] Constructor (Doc "") ,
-        Method (Name "GenericTypeBoolVec") valGenericType [refCBoolVec] Constructor (Doc "") ,
+        Method (Name "GenericTypeBoolVec") valGenericType [constrefCBoolVec] Constructor (Doc "") ,
         Method (Name "GenericTypeIntVec") valGenericType [constrefCIntVec] Constructor (Doc "") ,
         Method (Name "GenericTypeDoubleVec") valGenericType [constrefCDoubleVec] Constructor (Doc "") ,
         Method (Name "GenericTypeStringVec") valGenericType [constrefStdStringVec] Constructor (Doc "") ,
         Method (Name "GenericTypeFX") valGenericType [constrefFX] Constructor (Doc "") ,
-        Method (Name "GenericType") valGenericType [] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType'") valGenericType [valCBool] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType''") valGenericType [valCInt] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType'''") valGenericType [valCDouble] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType''''") valGenericType [constrefStdString] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType'''''") valGenericType [constrefCBoolVec] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType''''''") valGenericType [constrefCIntVec] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType'''''''") valGenericType [constrefCDoubleVec] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType''''''''") valGenericType [constrefStdStringVec] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType'''''''''") valGenericType [constrefFX] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
-        Method (Name "GenericType''''''''''") valGenericType [constrefSharedObject] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") 
+        Method (Name "GenericTypeCallback") valGenericType [constrefCallback] Constructor (Doc "") ,
+        Method (Name "GenericType") valGenericType [] Constructor (Doc "")
+        --Method (Name "GenericType''''''''''") valGenericType [constrefSharedObject] Constructor (Doc "") ,
 --        Method (Name "GenericType'''''''''''") valGenericType [constrefJacobianGenerator] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
 --        Method (Name "GenericType''''''''''''") valGenericType [constrefSparsityGenerator] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") ,
 --        Method (Name "GenericType'''''''''''''") valGenericType [constrefCallback] Constructor (Doc "\n\n>  CasADi::GenericType::GenericType(NLPSolverCreator ptr)\n------------------------------------------------------------------------\n\nCreator functions.\n\n") 
@@ -1001,7 +993,8 @@ crssparsity = Class CRSSparsity methods docs
         Method (Name "spy'") valCVoid [] Normal (Doc "\n\nPrint a textual representation of sparsity.\n\n") ,
         Method (Name "spyMatlab") valCVoid [constrefStdString] Normal (Doc "\n\nGenerate a script for Matlab or Octave which visualizes the sparsity using\nthe spy command.\n\n") ,
         Method (Name "hash") valCSize [] Normal (Doc "") ,
-        Method (Name "CRSSparsity") valCRSSparsity [valCInt,valCInt,constrefCIntVec,constrefCIntVec] Constructor (Doc "\n\n>  CasADi::CRSSparsity::CRSSparsity(int dummy=0)\n------------------------------------------------------------------------\n\nDefault constructor.\n\n>  CasADi::CRSSparsity::CRSSparsity(int nrow, int ncol, bool dense=false)\n------------------------------------------------------------------------\n\nConstruct a sparsity pattern (sparse/dense)\n\n>  CasADi::CRSSparsity::CRSSparsity(int nrow, int ncol, const std::vector< int > &col, const std::vector< int > &rowind)\n------------------------------------------------------------------------\n\nConstruct a sparsity pattern from vectors.\n\n") 
+        Method (Name "CRSSparsity") valCRSSparsity [valCInt,valCInt,constrefCIntVec,constrefCIntVec] Constructor (Doc "\n\n>  CasADi::CRSSparsity::CRSSparsity(int dummy=0)\n------------------------------------------------------------------------\n\nDefault constructor.\n\n>  CasADi::CRSSparsity::CRSSparsity(int nrow, int ncol, bool dense=false)\n------------------------------------------------------------------------\n\nConstruct a sparsity pattern (sparse/dense)\n\n>  CasADi::CRSSparsity::CRSSparsity(int nrow, int ncol, const std::vector< int > &col, const std::vector< int > &rowind)\n------------------------------------------------------------------------\n\nConstruct a sparsity pattern from vectors.\n\n") ,
+        Method (Name "CRSSparsity'") valCRSSparsity [] Constructor (Doc "\n\n>  CasADi::CRSSparsity::CRSSparsity(int dummy=0)\n------------------------------------------------------------------------\n\nDefault constructor.\n\n>  CasADi::CRSSparsity::CRSSparsity(int nrow, int ncol, bool dense=false)\n------------------------------------------------------------------------\n\nConstruct a sparsity pattern (sparse/dense)\n\n>  CasADi::CRSSparsity::CRSSparsity(int nrow, int ncol, const std::vector< int > &col, const std::vector< int > &rowind)\n------------------------------------------------------------------------\n\nConstruct a sparsity pattern from vectors.\n\n")
       ]
     docs = Doc "\n\nGeneral sparsity class.\n\nThe storage format is a compressed row storage (CRS) format.\n\nIn this format, the structural non-zero elements are stored in row- major\norder, starting from the upper left corner of the matrix and ending in the\nlower right corner.\n\nIn addition to the dimension ( size1(), size2()), (i.e. the number of rows\nand the number of columns respectively), there are also two vectors of\nintegers:\n\n\"rowind\" [length size1()+1], which contains the index to the first non-\nzero element on or after the corresponding row. All the non-zero elements of\na particular i are thus the elements with index el that fulfils: rowind[i]\n<= el < rowind[i+1].\n\n\"col\" [same length as the number of non-zero elements, size()] The columns\nfor each of the structural non-zeros.\n\nNote that with this format, it is cheap to loop over all the non-zero\nelements of a particular row, constant time per elment, but expensive to\njump to access a location (i,j).\n\nIf the matrix is dense, i.e. length(col) == size1()*size2(), the format\nreduces to standard dense row major format, which allows access to an\narbitrary element in constant time.\n\nSince the object is reference counted (it inherits from SharedObject),\nseveral matrices are allowed to share the same sparsity pattern.\n\nThe implementations of some methods of this class has been taken from the\nCSparse package and modified to use STL and CasADi data structures.\n\nSee:   Matrix\n\nJoel Andersson\n\nC++ includes: crs_sparsity.hpp "
 
@@ -1190,8 +1183,8 @@ constrefDMatrix :: Type
 constrefDMatrix = ConstRef (NonVec (CasadiClass DMatrix))
 -- valIOSchemeVectorSDQPOutputMX :: Type
 -- valIOSchemeVectorSDQPOutputMX = Val (NonVec (CasadiClass IOSchemeVectorSDQPOutputMX))
-constrefSharedObject :: Type
-constrefSharedObject = ConstRef (NonVec (CasadiClass SharedObject))
+--constrefSharedObject :: Type
+--constrefSharedObject = ConstRef (NonVec (CasadiClass SharedObject))
 -- valIOSchemeVectorQCQPSolverOutputSXMatrix :: Type
 -- valIOSchemeVectorQCQPSolverOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverOutputSXMatrix))
 valSXMatrix :: Type
@@ -1568,8 +1561,8 @@ valCLong :: Type
 valCLong = Val (NonVec CLong)
 -- valIOSchemeVectorACADO_InputCRSSparsity :: Type
 -- valIOSchemeVectorACADO_InputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorACADO_InputCRSSparsity))
-refCBoolVec :: Type
-refCBoolVec = Ref (Vec (NonVec CBool))
+--refCBoolVec :: Type
+--refCBoolVec = Ref (Vec (NonVec CBool))
 --valQPStabilizer :: Type
 --valQPStabilizer = Val (NonVec (CasadiClass QPStabilizer))
 -- valIOSchemeVectorMX :: Type
@@ -1586,8 +1579,8 @@ valMX = Val (NonVec (CasadiClass MX))
 --valCIntVecVec = Val (Vec (Vec (NonVec CInt)))
 -- valIOSchemeVectorSOCPInputCRSSparsity :: Type
 -- valIOSchemeVectorSOCPInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorSOCPInputCRSSparsity))
---constrefCallback :: Type
---constrefCallback = ConstRef (NonVec (CasadiClass Callback))
+constrefCallback :: Type
+constrefCallback = ConstRef (NonVec (CasadiClass Callback))
 -- valIOSchemeVectorIntegratorOutputCRSSparsity :: Type
 -- valIOSchemeVectorIntegratorOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorIntegratorOutputCRSSparsity))
 valDMatrix :: Type
