@@ -317,7 +317,7 @@ writeDataModule classes baseClasses =
 
     writeData c@(Class _ _ (Doc classDoc)) =
       unlines $
-      [ "-- draw decl"
+      [ "-- raw decl"
       , rawDecl c
       , "-- data decl"
       , "{-|"
