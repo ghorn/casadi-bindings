@@ -50,7 +50,8 @@ library
                     dl
 --                    /usr/lib/x86_64-linux-gnu/librt.so
 
-  cc-options: -Wall -Wno-delete-non-virtual-dtor
+  ghc-options: -O2
+  cc-options: -O2 -Wall -Wno-delete-non-virtual-dtor
 
   C-sources:        cbits/hs_tools.cpp
                     cbits/callback.cpp
