@@ -7,12 +7,10 @@ module Casadi.Callback ( makeCallback
 
 
 import Foreign.C.Types
-import Foreign.Ptr --( Ptr )
-import Foreign.ForeignPtr --( newForeignPtr )
---import qualified Foreign.Concurrent as FC
+import Foreign.Ptr ( Ptr, FunPtr )
+import Foreign.ForeignPtr ( newForeignPtr, newForeignPtr_ )
 
 import Casadi.Wrappers.ForeignToolsInstances ( )
---import Casadi.Wrappers.Deleters
 import Casadi.Wrappers.Data
 import Casadi.Marshal ( Marshal(..) )
 import Casadi.WrapReturn ( WrapReturn(..) )
@@ -51,15 +49,7 @@ makeCallback callback = do
         callback (FX foreignCFun)
 
   -- turn the callback into a FunPtr
-  putStrLn "making funptr"
   callbackFunPtr <- mkCallback callback' :: IO (FunPtr CasadiCallback')
 
+  -- create the callback object
   c_newCallbackHaskell callbackFunPtr >>= (newForeignPtr c_deleteCallbackHaskell) >>= wrapReturn
-
-  -- add a finalizer to the NLPSolver so that it frees the haskell FunPtr
-  -- this is an unsafe solution if the NLPSolver is called after it is finalized
-  --
-  -- Apparently, this is illegal. I got this runtime error:
-  -- > GHC.ForeignPtr: attempt to mix Haskell and C finalizers in the same ForeignPtr
-  -- So comment this out and add a memory leak ;(
-  -- FC.addForeignPtrFinalizer nlpSolverForeignPtr (freeHaskellFunPtr callbackFunPtr)

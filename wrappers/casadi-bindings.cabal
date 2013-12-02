@@ -57,7 +57,8 @@ library
                     cbits/callback.cpp
                     cbits/autogen/all.cpp
 
-  other-modules:       Casadi.Marshal
+  other-modules:
+                       Casadi.Marshal
                        Casadi.MarshalTypes
                        Casadi.WrapReturn
                        Casadi.Wrappers.ForeignToolsImports
