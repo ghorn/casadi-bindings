@@ -33,6 +33,14 @@ classes = [ sxfunction
           ]
 
 
+matrixMethods :: [Method]
+matrixMethods =
+  [ Method (Name "size1") valCInt [] Normal (Doc "")
+  , Method (Name "size2") valCInt [] Normal (Doc "")
+  , Method (Name "size") valCInt [] Normal (Doc "")
+  , Method (Name "numel") valCInt [] Normal (Doc "")
+  ]
+
 customfunction :: Class
 customfunction = Class CustomFunction methods docs
   where
@@ -237,7 +245,7 @@ mx :: Class
 mx = Class MX methods docs
   where
     methods =
-      [
+      matrixMethods ++ [
         Method (Name "__nonzero__") valCBool [] Normal (Doc "\n\nReturns the truth value of an MX expression.\n\n") ,
         Method (Name "sparsityRef") valCRSSparsity [] Normal (Doc "\n\nAccess the sparsity, make a copy if there are multiple references to it.\n\n") ,
         Method (Name "erase") valCVoid [constrefCIntVec,constrefCIntVec] Normal (Doc "\n\nErase a submatrix.\n\n") ,
@@ -378,7 +386,7 @@ dmatrix :: Class
 dmatrix = Class DMatrix methods docs
   where
     methods =
-      [
+      matrixMethods ++ [
         Method (Name "sanityCheck") valCVoid [valCBool] Normal (Doc "\n\nCheck if the dimensions and rowind,col vectors are compatible.\n\nParameters:\n-----------\n\ncomplete:  set to true to also check elementwise throws an error as possible\nresult\n\n") ,
         Method (Name "sanityCheck'") valCVoid [] Normal (Doc "\n\nCheck if the dimensions and rowind,col vectors are compatible.\n\nParameters:\n-----------\n\ncomplete:  set to true to also check elementwise throws an error as possible\nresult\n\n") ,
         Method (Name "vector") valCBool [] Normal (Doc "\n\nublas vector\n\nCheck type of matrix\n\n") ,
@@ -555,7 +563,7 @@ sxmatrix :: Class
 sxmatrix = Class SXMatrix methods docs
   where
     methods =
-      [
+      matrixMethods ++ [
         Method (Name "sanityCheck") valCVoid [valCBool] Normal (Doc "\n\nCheck if the dimensions and rowind,col vectors are compatible.\n\nParameters:\n-----------\n\ncomplete:  set to true to also check elementwise throws an error as possible\nresult\n\n") ,
         Method (Name "sanityCheck'") valCVoid [] Normal (Doc "\n\nCheck if the dimensions and rowind,col vectors are compatible.\n\nParameters:\n-----------\n\ncomplete:  set to true to also check elementwise throws an error as possible\nresult\n\n") ,
         Method (Name "vector") valCBool [] Normal (Doc "\n\nublas vector\n\nCheck type of matrix\n\n") ,
