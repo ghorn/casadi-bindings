@@ -40,8 +40,6 @@ foreign import ccall safe "&delete_callback_haskell" c_deleteCallbackHaskell
 -- | add a callback to an NLPSolver
 makeCallback :: (FX -> IO CInt) -> IO Callback
 makeCallback callback = do
-  putStrLn "adding the callback"
-
   -- safely wrap the callback into the C-friendly version
   let callback' :: CasadiCallback'
       callback' ptrFx = do
