@@ -12,7 +12,6 @@ classes = [ sxfunction
           , sharedobject
           , printableobject
           , crssparsity
-          , functionio
           , generictype
           , iointerfacefx
           , optionsfunctionality
@@ -860,22 +859,6 @@ sxfunction = Class SXFunction methods docs
 
 
 
-
-
-functionio :: Class
-functionio = Class FunctionIO methods docs
-  where
-    methods =
-      [
-        Method (Name "FunctionIO") valFunctionIO [] Constructor (Doc "") 
-      ]
-    docs = Doc "\n\nStructure that contains the numerical values for the inputs or outputs of a\nfunction.\n\nJoel Andersson\n\nC++ includes: io_interface.hpp "
-
-
-
-
-
-
 fx :: Class
 fx = Class FX methods docs
   where
@@ -883,10 +866,6 @@ fx = Class FX methods docs
       [
         Method (Name "inputScheme") valIOScheme [] Normal (Doc "\n\nAccess input/output scheme.\n\n") ,
         Method (Name "outputScheme") valIOScheme [] Normal (Doc "\n\nAccess input/output scheme.\n\n") ,
-        Method (Name "input_struct") valFunctionIOVec [] Normal (Doc "\n\nInput/output structures of the function */.\n\n") ,
-        Method (Name "output_struct") valFunctionIOVec [] Normal (Doc "\n\nInput/output structures of the function */.\n\n") ,
-        Method (Name "getNumScalarInputs") valCInt [] Normal (Doc "\n\nGet total number of scalar inputs (i.e. the number of nonzeros in all of the\nmatrix-valued inputs)\n\n") ,
-        Method (Name "getNumScalarOutputs") valCInt [] Normal (Doc "\n\nGet total number of scalar outputs (i.e. the number of nonzeros in all of\nthe matrix-valued outputs)\n\n") ,
         Method (Name "setInputScheme") valCVoid [constrefIOScheme] Normal (Doc "\n\nSet input scheme.\n\n") ,
         Method (Name "setOutputScheme") valCVoid [constrefIOScheme] Normal (Doc "\n\nSet output scheme.\n\n") ,
         Method (Name "getInputScheme") valIOScheme [] Normal (Doc "\n\nGet input scheme.\n\n") ,
@@ -1224,8 +1203,6 @@ valCBool :: Type
 valCBool = Val (NonVec CBool)
 --constrefIMatrixVec :: Type
 --constrefIMatrixVec = ConstRef (Vec (NonVec (CasadiClass IMatrix)))
-valFunctionIO :: Type
-valFunctionIO = Val (NonVec (CasadiClass FunctionIO))
 --constrefIOSchemeVectorMX :: Type
 --constrefIOSchemeVectorMX = ConstRef (NonVec (CasadiClass IOSchemeVectorMX))
 valCSparse :: Type
@@ -1448,8 +1425,6 @@ valSXFunction :: Type
 valSXFunction = Val (NonVec (CasadiClass SXFunction))
 -- valIOSchemeVectorQCQPSolverOutputMX :: Type
 -- valIOSchemeVectorQCQPSolverOutputMX = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverOutputMX))
-valFunctionIOVec :: Type
-valFunctionIOVec = Val (Vec (NonVec (CasadiClass FunctionIO)))
 -- valIOSchemeVectorNLPSolverOutputSXMatrix :: Type
 -- valIOSchemeVectorNLPSolverOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorNLPSolverOutputSXMatrix))
 --valSundialsIntegrator :: Type
