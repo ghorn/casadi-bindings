@@ -1,25 +1,23 @@
 name:                casadi-bindings
-version:             0.1.0.0
+version:             1.8.0.0
 synopsis:            low level bindings to CasADi
--- description:
+description:         See the readme on github for installation instructions. Version numbers correspond to the C++ library version numbers. This only works on Debian/Ubuntu at the moment (sorry).
 license:             LGPL-3
 license-file:        LICENSE
+copyright:           (c) 2013-2014 Greg Horn
 author:              Greg Horn
 maintainer:          gregmainland@gmail.com
--- copyright:
--- category:
 build-type:          Simple
--- extra-source-files:
 cabal-version:       >=1.10
 
-library
-  -- other-extensions:
-  build-depends:       base >=4.6 && <4.8, vector >=0.10 && <0.11
+extra-source-files:  cbits/marshal.hpp
+extra-tmp-files:     Casadi/Callback_stub.h
 
-  -- hs-source-dirs:
+library
+  build-depends:       base >=4.6 && <5, vector >=0.10
+
   default-language:    Haskell2010
 
---  hs-source-dirs:
   Include-dirs:   /usr/include/casadi
                   /usr/share/casadi
 
@@ -42,6 +40,7 @@ library
                     casadi_csparse_interface
                     casadi_csparse
                     casadi_optimal_control
+                    casadi_control
                     casadi_tinyxml
                     casadi_integration
                     casadi_convex_programming
@@ -92,3 +91,7 @@ library
                        Casadi.Wrappers.Classes.CasadiMeta
                        Casadi.Wrappers.Classes.Functor
                        Casadi.Wrappers.Classes.CustomFunction
+
+source-repository head
+  type: git
+  location: git://github.com/ghorn/casadi-bindings.git

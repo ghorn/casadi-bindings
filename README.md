@@ -3,20 +3,17 @@ casadi-bindings
 
 haskell bindings to the CasADi algorithmic differentiation and optimal control library
 
+# Debian/Ubuntu instructions
 
-A hackage release is immenent. If you're impatient, here are the Debian/Ubuntu instructions:
+- Install libcasadi from a .deb package here: https://github.com/casadi/casadi/releases, I use libcasadi-static. (Get the version corresponding to the current casadi-bindings version, for example casadi-bindings-1.8.0.0 is libcasadi 1.8.0)
 
-- Install casadi from a .deb package here: https://github.com/casadi/casadi/releases, I use libcasadi-static.
+- `cabal update; cabal install casadi-bindings`
 
-- clone this repo and `cd wrappers`
+
+These wrappers are generated using:
+
+- `cd wrappers`
 
 - `make gen`
 
-- `cabal install`
-
-
-After the hackage release, the instructions will be:
-
-- Install casadi from a .deb package here: https://github.com/casadi/casadi/releases, I use libcasadi-static.
-
-- `cabal update; cabal install casadi-bindings`
+I have managed to get this working on OSX, but it requires hacking the .cabal file and changing dependencies. This is totally unsupported and unrecommended for now.
