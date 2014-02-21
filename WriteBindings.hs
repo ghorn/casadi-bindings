@@ -11,14 +11,14 @@ import Data.List ( sort )
 import Data.Maybe ( catMaybes )
 import System.Directory ( doesFileExist )
 
---import qualified WriteCasadiBindings.Buildbot.CasadiTree as Buildbot
-import WriteCasadiBindings.MyCasadiTree ( enums, tools, classes )
-import WriteCasadiBindings.Buildbot.CasadiClasses
-import qualified WriteCasadiBindings.Buildbot.CasadiTree as Buildbot
-import qualified WriteCasadiBindings.WriteC as C
-import qualified WriteCasadiBindings.WriteHs as HS
-import WriteCasadiBindings.Types
-import WriteCasadiBindings.WriteForeignTools
+--import qualified WriteBindings.Buildbot.CasadiTree as Buildbot
+import WriteBindings.MyCasadiTree ( enums, tools, classes )
+import WriteBindings.Buildbot.CasadiClasses
+import qualified WriteBindings.Buildbot.CasadiTree as Buildbot
+import qualified WriteBindings.WriteC as C
+import qualified WriteBindings.WriteHs as HS
+import WriteBindings.Types
+import WriteBindings.WriteForeignTools
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do

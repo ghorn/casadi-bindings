@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteCasadiBindings.MyCasadiTree ( classes, tools, enums ) where
+module WriteBindings.MyCasadiTree ( classes, tools, enums ) where
 
-import WriteCasadiBindings.Types
-import WriteCasadiBindings.Buildbot.CasadiTree ( tools, enums )
+import WriteBindings.Types
+import WriteBindings.Buildbot.CasadiTree ( tools, enums )
 
 classes :: [Class]
 classes = [ sxfunction

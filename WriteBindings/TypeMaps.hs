@@ -1,29 +1,30 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteCasadiBindings.TypeMaps ( hsType
-                                    , hsMarshalNewtypeWrapper
-                                    , ffiType
-                                    , cppType
-                                    , cWrapperType
-                                    , cWrapperRetType
-                                    , cppMarshalType
-                                    , cppClassName
-                                    , cWrapperName
-                                    , cWrapperName'
-                                    , cppMethodName
-                                    , cType
-                                    , writeReturn
-                                    , deleteName
-                                    , makesNewRef
-                                    , hsDataName
-                                    , hsClassName
-                                    , toCName
-                                    , usedAsPtr
-                                    ) where
+module WriteBindings.TypeMaps
+       ( hsType
+       , hsMarshalNewtypeWrapper
+       , ffiType
+       , cppType
+       , cWrapperType
+       , cWrapperRetType
+       , cppMarshalType
+       , cppClassName
+       , cWrapperName
+       , cWrapperName'
+       , cppMethodName
+       , cType
+       , writeReturn
+       , deleteName
+       , makesNewRef
+       , hsDataName
+       , hsClassName
+       , toCName
+       , usedAsPtr
+       ) where
 
 import qualified Data.Text as T
-import WriteCasadiBindings.Buildbot.CasadiClasses ( cppTypeCasadiPrimClass, cppTypeCasadiPrimEnum )
-import WriteCasadiBindings.Types
+import WriteBindings.Buildbot.CasadiClasses ( cppTypeCasadiPrimClass, cppTypeCasadiPrimEnum )
+import WriteBindings.Types
 
 raw :: String
 raw = "'"

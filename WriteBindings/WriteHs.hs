@@ -1,12 +1,13 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteCasadiBindings.WriteHs ( writeClassModules
-                                   , writeDeleterModule
-                                   , writeDataModule
-                                   , writeToolsModule
-                                   , writeIOSchemeHelpersModule
-                                   , writeEnumsModule
-                                   ) where
+module WriteBindings.WriteHs
+       ( writeClassModules
+       , writeDeleterModule
+       , writeDataModule
+       , writeToolsModule
+       , writeIOSchemeHelpersModule
+       , writeEnumsModule
+       ) where
 
 import Data.Char ( toLower, isLower )
 import Data.List ( intersperse, sort )
@@ -15,8 +16,8 @@ import qualified Data.Text as T
 import Language.Haskell.Syntax
 import Language.Haskell.Pretty
 
-import WriteCasadiBindings.Types
-import WriteCasadiBindings.TypeMaps
+import WriteBindings.Types
+import WriteBindings.TypeMaps
 
 replaces :: [(String,String)] -> String -> String
 replaces ((find',replace'):xs) = replaces xs . (T.unpack . T.replace (T.pack find') (T.pack replace') . T.pack)

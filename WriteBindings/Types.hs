@@ -1,22 +1,23 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteCasadiBindings.Types ( Class(..)
-                                 , Function(..)
-                                 , Method(..)
-                                 , Name(..)
-                                 , Type(..)
-                                 , MethodType(..)
-                                 , Primitive(..)
-                                 , Primitive'(..)
-                                 , CasadiClass(..)
-                                 , CasadiEnum(..)
-                                 , Doc(..)
-                                 , CEnum(..)
-                                 , EnumType(..)
-                                 , ThreeVectors
-                                 ) where
+module WriteBindings.Types
+       ( Class(..)
+       , Function(..)
+       , Method(..)
+       , Name(..)
+       , Type(..)
+       , MethodType(..)
+       , Primitive(..)
+       , Primitive'(..)
+       , CasadiClass(..)
+       , CasadiEnum(..)
+       , Doc(..)
+       , CEnum(..)
+       , EnumType(..)
+       , ThreeVectors
+       ) where
 
-import WriteCasadiBindings.Buildbot.CasadiClasses ( CasadiClass(..), CasadiEnum(..) )
+import WriteBindings.Buildbot.CasadiClasses ( CasadiClass(..), CasadiEnum(..) )
 
 data Method = Method { fName :: Name
                      , fType :: Type

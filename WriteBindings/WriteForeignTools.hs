@@ -1,8 +1,9 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module WriteCasadiBindings.WriteForeignTools ( foreignToolsImports
-                                             , foreignToolsInstances
-                                             ) where
+module WriteBindings.WriteForeignTools
+       ( foreignToolsImports
+       , foreignToolsInstances
+       ) where
 
 writeStuff :: (String, String, Maybe String, [String]) -> (String,String)
 writeStuff woo@(cname, hsname, hstype', hsToCs) = (foreignImports', instances')
