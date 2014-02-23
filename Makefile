@@ -22,11 +22,11 @@ Casadi/Wrappers/Tools.o : gen Casadi/*.hs
 	ghc --make Casadi/Wrappers/*.hs
 	ghc --make Casadi/Wrappers/Classes/*.hs
 
-cbits/autogen/all.cpp Casadi/Wrappers/Tools.hs : writeBindings
-	./writeBindings
+cbits/autogen/all.cpp Casadi/Wrappers/Tools.hs : writeThemBindings
+	./writeThemBindings
 
-writeBindings :  WriteBindings.hs WriteBindings/*.hs WriteBindings/Buildbot/*.hs
-	ghc --make -O2 WriteBindings -o writeBindings
+writeThemBindings :  WriteBindings.hs WriteBindings/*.hs WriteBindings/Buildbot/*.hs
+	ghc --make -O2 WriteBindings -o writeThemBindings
 
 clean_gen :
 	rm -f cbits/autogen/*
@@ -35,7 +35,7 @@ clean_gen :
 clean :
 	rm -f WriteBindings/Buildbot/*.hi WriteBindings/Buildbot/*.o
 	rm -f WriteBindings/*.hi WriteBindings/*.o
-	rm -f writeBindings WriteBindings.hi WriteBindings.o
+	rm -f writeThemBindings WriteBindings.hi WriteBindings.o
 	rm -f cbits/*.o cbits/autogen/*
 	rm -f Casadi/*.hi Casadi/*.o Casadi/Wrappers/Classes/*
 	rm -f Casadi/Wrappers/*.hs Casadi/Wrappers/*.hi Casadi/Wrappers/*.o Casadi/Wrappers/*.txt
