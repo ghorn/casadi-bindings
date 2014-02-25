@@ -1,5 +1,4 @@
 {-# OPTIONS_GHC -Wall #-}
-{-# Language ForeignFunctionInterface #-}
 
 module Casadi.Callback ( makeCallback
                        , fxSolveSafe
@@ -8,11 +7,11 @@ module Casadi.Callback ( makeCallback
 
 import Foreign.C.Types
 import Foreign.Ptr ( Ptr, FunPtr )
-import Foreign.ForeignPtr ( newForeignPtr, newForeignPtr_ )
+import Foreign.ForeignPtr ( newForeignPtr_ )
 
-import Casadi.Wrappers.ForeignToolsInstances ( )
+import Casadi.Wrappers.CToolsInstances ( )
 import Casadi.Wrappers.Data
-import Casadi.Marshal ( Marshal(..) )
+import Casadi.Marshal ( withMarshal )
 import Casadi.WrapReturn ( WrapReturn(..) )
 
 -- direct wrapper to a safe version of "solve"
@@ -34,9 +33,6 @@ foreign import ccall "wrapper" mkCallback :: CasadiCallback' -> IO (FunPtr Casad
 foreign import ccall safe "new_callback_haskell" c_newCallbackHaskell
   :: FunPtr CasadiCallback' -> IO (Ptr Callback')
 
-foreign import ccall safe "&delete_callback_haskell" c_deleteCallbackHaskell
-  :: FunPtr (Ptr Callback' -> IO ())
-
 -- | add a callback to an NLPSolver
 makeCallback :: (FX -> IO CInt) -> IO Callback
 makeCallback callback = do
@@ -50,4 +46,4 @@ makeCallback callback = do
   callbackFunPtr <- mkCallback callback' :: IO (FunPtr CasadiCallback')
 
   -- create the callback object
-  c_newCallbackHaskell callbackFunPtr >>= (newForeignPtr c_deleteCallbackHaskell) >>= wrapReturn
+  c_newCallbackHaskell callbackFunPtr >>= wrapReturn

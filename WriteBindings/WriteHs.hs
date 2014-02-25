@@ -2,7 +2,6 @@
 
 module WriteBindings.WriteHs
        ( writeClassModules
-       , writeDeleterModule
        , writeDataModule
        , writeToolsModule
        , writeIOSchemeHelpersModule
@@ -38,11 +37,7 @@ marshalFun params fun wrappedFun =
     appArgs = map (++ "'") patternMatchArgs
 
     blah :: [(String,Type)] -> [String]
-    blah ((x,t):xs) = arg:blah xs
-      where
-        arg = case hsMarshalNewtypeWrapper t of
-          Nothing -> "  withMarshal " ++ x ++ " $ \\" ++ x ++ "' ->"
-          Just ntw -> "  withMarshal (" ++ ntw ++ " " ++ x ++ ") $ \\" ++ x ++ "' ->"
+    blah ((x,_type):xs) = ("  withMarshal " ++ x ++ " $ \\" ++ x ++ "' ->") : (blah xs)
     blah [] = []
 
 c_deleteName :: Type -> String
@@ -54,30 +49,6 @@ exportDecl names =
   "       (" :
   map (\x -> "         " ++ x ++ ",") names ++
   ["       ) where"]
-
-
-deleters :: [Class] -> [String]
-deleters classes = map deleteForeignImports typesToDelete
-  where
-    typesToDelete =
-      [CInt,CDouble,StdString,CBool] ++
-      map (\(Class classType _ _) -> (CasadiClass classType)) classes
-
-    deleteForeignImports :: Primitive -> String
-    deleteForeignImports classType = concatMap writeIt types
-      where
-        primType = if usedAsPtr classType then [Val (NonVec classType)] else []
-        types = primType ++
-                [ Ref (Vec (NonVec classType))
-                , Ref (Vec (Vec (NonVec classType)))
-                , Ref (Vec (Vec (Vec (NonVec classType))))
-                ]
-        writeIt c =
-          unlines $
-          [ "foreign import ccall unsafe \"&" ++ deleteName c ++ "\" "
-          , "  " ++ c_deleteName c ++ " :: FunPtr ("++ ffiType False c ++ " -> IO ())"
-          ]
-
 
 newtype FFIWrapper = FFIWrapper String
 data ClassFunction = ClassFunction String String Doc
@@ -127,7 +98,7 @@ writeClassMethods c@(Class classType methods' _)= methods
           _ -> betterCamelCase (show classType) ++ "_" ++ prettyTics (toCName methodName)
 
         (wrapperName, ffiWrapper) = case fMethodType fcn of
-          Normal -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) ((Ref (NonVec (CasadiClass classType))):(fArgs fcn)) (Doc "")
+          Normal -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) ((Ref (CasadiClass classType)):(fArgs fcn)) (Doc "")
           _ -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) (fArgs fcn) (Doc "")
 
         typeDef = case fMethodType fcn of
@@ -155,15 +126,19 @@ typeclassDecl c =
   ]
 
 helperInstances :: Class -> String
-helperInstances c =
+helperInstances c@(Class cc' _ _) =
   unlines
-  [ "instance Marshal " ++ dataName c ++ " (Ptr " ++ dataName c ++ "') where"
-  , "  withMarshal ("++ dataName c ++ " x) f = withForeignPtr x f"
-  , "instance ForeignPtrWrapper " ++ dataName c ++ " " ++ dataName c ++ "' where"
-  , "  unwrapForeignPtr ("++ dataName c ++ " x) = x"
-  , "instance WrapReturn (ForeignPtr " ++ dataName c ++ "') " ++ dataName c ++ " where"
-  , "  wrapReturn = return . " ++ dataName c
+  [ "instance Marshal " ++ dn ++ " (Ptr " ++ dn ++ "') where"
+  , "  marshal (" ++ dn ++ " x) = return (unsafeForeignPtrToPtr x)"
+  , "  marshalFree (" ++ dn ++ " x) _ = touchForeignPtr x"
+  , "foreign import ccall unsafe \"&" ++ deleteName cc ++ "\" "
+  , "  " ++ c_deleteName cc ++ " :: FunPtr ("++ ffiType False cc ++ " -> IO ())"
+  , "instance WrapReturn (Ptr " ++ dn ++ "') " ++ dn ++ " where"
+  , "  wrapReturn = (fmap " ++ dn ++ ") . (newForeignPtr " ++ c_deleteName cc ++ ")"
   ]
+  where
+    cc = CasadiClass cc'
+    dn = dataName c
 
 baseclassInstances :: Class -> [Class] -> String
 baseclassInstances c bcs = unlines $ map writeInstance' bcs
@@ -182,14 +157,11 @@ writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params doc)
       unlines $
       foreignImport : maybeDoc hsFunctionName' doc ++
       [ hsFunctionName ++ "\n  :: " ++ proto
-      , marshals ++ "  " ++ call
+      , marshals ++ "  " ++ call ++ " >>= wrapReturn"
       ]
 
     hsFunctionName = lowerCase $ prettyTics $ fromMaybe (toCName hsFunctionName') maybeName
-    (marshals, call') = marshalFun params hsFunctionName c_hsFunctionName
-    call = case makesNewRef retType of
-      Nothing -> call' ++ " >>= wrapReturn"
-      Just _ -> call' ++ " >>= (newForeignPtr " ++ c_deleteName retType ++ ") >>= wrapReturn"
+    (marshals, call) = marshalFun params hsFunctionName c_hsFunctionName
 
     cFunctionName = cWrapperName' fcn
     c_hsFunctionName = "c_" ++ cFunctionName
@@ -205,22 +177,6 @@ writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params doc)
 
     ffiRetType :: String
     ffiRetType = "IO " ++ ffiType True retType
-
-writeDeleterModule :: [Class] -> String
-writeDeleterModule classes =
-  init $ unlines $
-  [ "{-# OPTIONS_GHC -Wall #-}"
-  , "{-# Language ForeignFunctionInterface #-}"
-  , ""
-  , "module Casadi.Wrappers.Deleters where"
-  , ""
-  , "import Foreign.C.Types"
-  , "import Foreign.Ptr ( FunPtr, Ptr )"
-  , ""
-  , "import Casadi.Wrappers.Data"
-  , "import Casadi.MarshalTypes"
-  , ""
-  ] ++ deleters classes
 
 writeClassModules :: (Class -> [Class]) -> [Class] -> [(String, String)]
 writeClassModules inheritance classes = map (\x -> (dataName x,writeOneModule x)) classes
@@ -247,13 +203,11 @@ writeClassModules inheritance classes = map (\x -> (dataName x,writeOneModule x)
       , "import System.IO.Unsafe ( unsafePerformIO ) -- for show instances"
       , ""
       ] ++ printableObjectImport ++
-      [ "import Casadi.Wrappers.ForeignToolsInstances ( )"
-      , "import Casadi.Wrappers.Deleters"
+      [ "import Casadi.Wrappers.CToolsInstances ( )"
       , "import Casadi.Wrappers.Data"
       , "import Casadi.Wrappers.Enums"
-      , "import Casadi.MarshalTypes ( CppVec, CppVecVec, CppVecVecVec,"
-      , "                             StdString', CppBool' ) -- StdOstream'"
-      , "import Casadi.Marshal ( CornerCase(..), Marshal(..) )"
+      , "import Casadi.MarshalTypes ( CppVec, StdString' ) -- StdOstream'"
+      , "import Casadi.Marshal ( Marshal(..), withMarshal )"
       , "import Casadi.WrapReturn ( WrapReturn(..) )"
       , ""
       ] ++ showInstance ++ map f methods
@@ -306,10 +260,10 @@ writeDataModule classes baseClasses =
   , ""
   , "import Prelude hiding ( Functor )"
   , ""
-  , "import Foreign.Ptr ( Ptr )"
-  , "import Foreign.ForeignPtr ( ForeignPtr, castForeignPtr, withForeignPtr )"
+  , "import Foreign.Ptr ( Ptr, FunPtr )"
+  , "import Foreign.ForeignPtr ( ForeignPtr, castForeignPtr, newForeignPtr, touchForeignPtr )"
+  , "import Foreign.ForeignPtr.Unsafe ( unsafeForeignPtrToPtr )"
   , ""
-  , "import Casadi.MarshalTypes ( ForeignPtrWrapper(..) )"
   , "import Casadi.Marshal (  Marshal(..) )"
   , "import Casadi.WrapReturn ( WrapReturn(..) )"
   , ""
@@ -345,14 +299,12 @@ writeToolsModule functions =
   , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
   , "import Foreign.Ptr ( Ptr )"
-  , "import Foreign.ForeignPtr ( newForeignPtr )"
   , ""
   , "import Casadi.Wrappers.Data"
   , "import Casadi.Wrappers.Enums"
-  , "import Casadi.Wrappers.Deleters"
-  , "import Casadi.Wrappers.ForeignToolsInstances ( )"
-  , "import Casadi.MarshalTypes ( CppVec, CppVecVec, CppBool', StdString' )"
-  , "import Casadi.Marshal (  CornerCase(..), Marshal(..) )"
+  , "import Casadi.Wrappers.CToolsInstances ( )"
+  , "import Casadi.MarshalTypes ( CppVec, StdString' )"
+  , "import Casadi.Marshal ( withMarshal )"
   , "import Casadi.WrapReturn ( WrapReturn(..) )"
   , ""
   ] ++ funDecls
@@ -382,10 +334,9 @@ writeIOSchemeHelpersModule functions =
   , "import Foreign.ForeignPtr ( newForeignPtr )"
   , ""
   , "import Casadi.Wrappers.Data"
-  , "import Casadi.Wrappers.Deleters"
-  , "import Casadi.Wrappers.ForeignToolsInstances ( )"
+  , "import Casadi.Wrappers.CToolsInstances ( )"
   , "import Casadi.MarshalTypes ( CppVec, StdString' )"
-  , "import Casadi.Marshal (  Marshal(..) )"
+  , "import Casadi.Marshal (  Marshal(..), withMarshal )"
   , "import Casadi.WrapReturn ( WrapReturn(..) )"
   , ""
   ] ++ funDecls
@@ -427,7 +378,9 @@ writeEnumsModule enums =
     makeMarshalInstance :: CasadiEnum -> String
     makeMarshalInstance name =
       strip $ prettyPrint $
-      HsInstDecl src0 [] (UnQual (HsIdent "Marshal")) [HsTyCon (UnQual (HsIdent (show name))), HsTyCon (UnQual (HsIdent "CInt"))] [HsFunBind [HsMatch src0 (HsIdent "withMarshal") [HsPVar (HsIdent "x"),HsPVar (HsIdent "f")] (HsUnGuardedRhs (HsApp (HsVar (UnQual (HsIdent "f"))) (HsParen (HsApp (HsVar (UnQual (HsIdent "fromIntegral"))) (HsParen (HsApp (HsVar (UnQual (HsIdent "fromEnum"))) (HsVar (UnQual (HsIdent "x"))))))))) []]]
+      HsInstDecl src0 [] (UnQual (HsIdent "Marshal")) [HsTyCon (UnQual (HsIdent (show name))), HsTyCon (UnQual (HsIdent "CInt"))]
+      [ HsFunBind [HsMatch src0 (HsIdent "marshal") [] (HsUnGuardedRhs (HsInfixApp (HsInfixApp (HsVar (UnQual (HsIdent "return"))) (HsQVarOp (UnQual (HsSymbol "."))) (HsVar (UnQual (HsIdent "fromIntegral")))) (HsQVarOp (UnQual (HsSymbol "."))) (HsVar (UnQual (HsIdent "fromEnum"))))) []]
+      ]
 
     makeWrapReturnInstance :: CasadiEnum -> String
     makeWrapReturnInstance name =

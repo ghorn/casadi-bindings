@@ -3,7 +3,6 @@
 module WriteBindings.WriteC
        ( writeFunction
        , writeClass
-       , writeDeletes
        ) where
 
 import Data.List ( intercalate )
@@ -59,28 +58,18 @@ writeClass :: Class -> [String]
 writeClass (Class classType methods _) =
   writeDeletes (CasadiClass classType) : map (writeMethod classType) methods
 
-writeDeletes :: Primitive -> String
+writeDeletes :: Type -> String
 writeDeletes classType =
   unlines
   [ "// ================== delete "++ show classType ++"==============="
   , "// classType: " ++ show classType
-  ] ++ concatMap writeIt types
+  , "extern \"C\"\n    " ++ proto ++ ";"
+  , proto ++ "{"
+  , "    delete obj;"
+  , "}"
+  ]
   where
-    primType = if usedAsPtr classType then [Val (NonVec classType)] else []
-    types = primType ++
-            [ Ref (Vec (NonVec classType))
-            , Ref (Vec (Vec (NonVec classType)))
-            , Ref (Vec (Vec (Vec (NonVec classType))))
-            ]
-    writeIt c =
-      unlines $
-      [ "extern \"C\"\n    " ++ proto ++ ";"
-      , proto ++ "{"
-      , "    delete obj;"
-      , "}"
-      ]
-      where
-        proto = "void " ++ deleteName c ++ "(" ++ cWrapperType c ++ " obj)"
+    proto = "void " ++ deleteName classType ++ "(" ++ cWrapperType classType ++ " obj)"
 
 removeTics :: String -> String
 removeTics = reverse . removeTics' . reverse

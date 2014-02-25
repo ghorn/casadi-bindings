@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             1.8.2.0
+version:             1.8.2.1
 synopsis:            low level bindings to CasADi
 description:         See the readme on github for installation instructions. Version numbers correspond to the C++ library version numbers. This only works on Debian/Ubuntu at the moment (sorry).
 license:             LGPL-3
@@ -60,10 +60,10 @@ library
   other-modules:       Casadi.Marshal
                        Casadi.MarshalTypes
                        Casadi.WrapReturn
-                       Casadi.Wrappers.ForeignToolsImports
-                       Casadi.Wrappers.ForeignToolsInstances
+                       Casadi.CppHelpers
+                       Casadi.Wrappers.CToolsImports
+                       Casadi.Wrappers.CToolsInstances
                        Casadi.Wrappers.Data
-                       Casadi.Wrappers.Deleters
 
   exposed-modules:     Casadi.Callback
                        Casadi.Wrappers.Tools

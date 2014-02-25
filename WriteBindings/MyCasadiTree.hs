@@ -994,608 +994,608 @@ crssparsity = Class CRSSparsity methods docs
 
 
 -- valIOSchemeVectorGradFOutputSXMatrix :: Type
--- valIOSchemeVectorGradFOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorGradFOutputSXMatrix))
+-- valIOSchemeVectorGradFOutputSXMatrix = ((CasadiClass IOSchemeVectorGradFOutputSXMatrix))
 -- valIOSchemeVectorOCPInputCRSSparsity :: Type
--- valIOSchemeVectorOCPInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorOCPInputCRSSparsity))
+-- valIOSchemeVectorOCPInputCRSSparsity = ((CasadiClass IOSchemeVectorOCPInputCRSSparsity))
 valenumopt_type :: Type
-valenumopt_type = Val (NonVec (CasadiEnum Opt_type))
+valenumopt_type = ((CasadiEnum Opt_type))
 --valVariableVec :: Type
---valVariableVec = Val (Vec (NonVec (CasadiClass Variable)))
+--valVariableVec = (StdVec ((CasadiClass Variable)))
 --constrefCInt :: Type
---constrefCInt = ConstRef (NonVec CInt)
+--constrefCInt = ConstRef (CInt)
 -- valIOSchemeVectorRDAEOutputCRSSparsity :: Type
--- valIOSchemeVectorRDAEOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorRDAEOutputCRSSparsity))
+-- valIOSchemeVectorRDAEOutputCRSSparsity = ((CasadiClass IOSchemeVectorRDAEOutputCRSSparsity))
 -- valIOSchemeVectorMayerInputMX :: Type
--- valIOSchemeVectorMayerInputMX = Val (NonVec (CasadiClass IOSchemeVectorMayerInputMX))
+-- valIOSchemeVectorMayerInputMX = ((CasadiClass IOSchemeVectorMayerInputMX))
 -- valIOSchemeVectorQPSolverInputCRSSparsity :: Type
--- valIOSchemeVectorQPSolverInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorQPSolverInputCRSSparsity))
+-- valIOSchemeVectorQPSolverInputCRSSparsity = ((CasadiClass IOSchemeVectorQPSolverInputCRSSparsity))
 --valNLPQPSolver :: Type
---valNLPQPSolver = Val (NonVec (CasadiClass NLPQPSolver))
+--valNLPQPSolver = ((CasadiClass NLPQPSolver))
 --refSymbolicOCP :: Type
---refSymbolicOCP = Ref (NonVec (CasadiClass SymbolicOCP))
+--refSymbolicOCP = Ref ((CasadiClass SymbolicOCP))
 --valIMatrixVec :: Type
---valIMatrixVec = Val (Vec (NonVec (CasadiClass IMatrix)))
+--valIMatrixVec = (StdVec ((CasadiClass IMatrix)))
 -- valIOSchemeVectorHessLagOutputSXMatrix :: Type
--- valIOSchemeVectorHessLagOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorHessLagOutputSXMatrix))
+-- valIOSchemeVectorHessLagOutputSXMatrix = ((CasadiClass IOSchemeVectorHessLagOutputSXMatrix))
 -- valIOSchemeVectorStabilizedQPSolverInputCRSSparsity :: Type
--- valIOSchemeVectorStabilizedQPSolverInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorStabilizedQPSolverInputCRSSparsity))
+-- valIOSchemeVectorStabilizedQPSolverInputCRSSparsity = ((CasadiClass IOSchemeVectorStabilizedQPSolverInputCRSSparsity))
 constrefOptionsFunctionality :: Type
-constrefOptionsFunctionality = ConstRef (NonVec (CasadiClass OptionsFunctionality))
+constrefOptionsFunctionality = ConstRef ((CasadiClass OptionsFunctionality))
 -- valIOSchemeVectorOCPOutputMX :: Type
--- valIOSchemeVectorOCPOutputMX = Val (NonVec (CasadiClass IOSchemeVectorOCPOutputMX))
+-- valIOSchemeVectorOCPOutputMX = ((CasadiClass IOSchemeVectorOCPOutputMX))
 refMXFunction :: Type
-refMXFunction = Ref (NonVec (CasadiClass MXFunction))
+refMXFunction = Ref ((CasadiClass MXFunction))
 valCustomFunction :: Type
-valCustomFunction = Val (NonVec (CasadiClass CustomFunction))
+valCustomFunction = ((CasadiClass CustomFunction))
 --valLPStructure :: Type
---valLPStructure = Val (NonVec (CasadiClass LPStructure))
+--valLPStructure = ((CasadiClass LPStructure))
 -- valIOSchemeVectorSOCPInputMX :: Type
--- valIOSchemeVectorSOCPInputMX = Val (NonVec (CasadiClass IOSchemeVectorSOCPInputMX))
+-- valIOSchemeVectorSOCPInputMX = ((CasadiClass IOSchemeVectorSOCPInputMX))
 -- valIOSchemeVectorControlSimulatorInputSXMatrix :: Type
--- valIOSchemeVectorControlSimulatorInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorControlSimulatorInputSXMatrix))
+-- valIOSchemeVectorControlSimulatorInputSXMatrix = ((CasadiClass IOSchemeVectorControlSimulatorInputSXMatrix))
 valCVoid :: Type
-valCVoid = Val (NonVec CVoid)
+valCVoid = (CVoid)
 -- valIOSchemeVectorNLPSolverInputSXMatrix :: Type
--- valIOSchemeVectorNLPSolverInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorNLPSolverInputSXMatrix))
+-- valIOSchemeVectorNLPSolverInputSXMatrix = ((CasadiClass IOSchemeVectorNLPSolverInputSXMatrix))
 constrefCDoubleVecVec :: Type
-constrefCDoubleVecVec = ConstRef (Vec (Vec (NonVec CDouble)))
+constrefCDoubleVecVec = ConstRef (StdVec (StdVec (CDouble)))
 --valSOCPSolver :: Type
---valSOCPSolver = Val (NonVec (CasadiClass SOCPSolver))
+--valSOCPSolver = ((CasadiClass SOCPSolver))
 --valSQPMethod :: Type
---valSQPMethod = Val (NonVec (CasadiClass SQPMethod))
+--valSQPMethod = ((CasadiClass SQPMethod))
 --valIMatrix :: Type
---valIMatrix = Val (NonVec (CasadiClass IMatrix))
+--valIMatrix = ((CasadiClass IMatrix))
 -- valIOSchemeVectorDAEOutputMX :: Type
--- valIOSchemeVectorDAEOutputMX = Val (NonVec (CasadiClass IOSchemeVectorDAEOutputMX))
+-- valIOSchemeVectorDAEOutputMX = ((CasadiClass IOSchemeVectorDAEOutputMX))
 --constrefSXFunction :: Type
---constrefSXFunction = ConstRef (NonVec (CasadiClass SXFunction))
+--constrefSXFunction = ConstRef ((CasadiClass SXFunction))
 valCIntVec :: Type
-valCIntVec = Val (Vec (NonVec CInt))
+valCIntVec = (StdVec (CInt))
 -- valIOSchemeVectorControlSimulatorInputCRSSparsity :: Type
--- valIOSchemeVectorControlSimulatorInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorControlSimulatorInputCRSSparsity))
+-- valIOSchemeVectorControlSimulatorInputCRSSparsity = ((CasadiClass IOSchemeVectorControlSimulatorInputCRSSparsity))
 -- valIOSchemeVectorSDQPOutputCRSSparsity :: Type
--- valIOSchemeVectorSDQPOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorSDQPOutputCRSSparsity))
+-- valIOSchemeVectorSDQPOutputCRSSparsity = ((CasadiClass IOSchemeVectorSDQPOutputCRSSparsity))
 --constrefQCQPStructure :: Type
---constrefQCQPStructure = ConstRef (NonVec (CasadiClass QCQPStructure))
+--constrefQCQPStructure = ConstRef ((CasadiClass QCQPStructure))
 --valenumAlias :: Type
---valenumAlias = Val (NonVec (CasadiEnum Alias))
+--valenumAlias = ((CasadiEnum Alias))
 -- valIOSchemeVectorOCPInputMX :: Type
--- valIOSchemeVectorOCPInputMX = Val (NonVec (CasadiClass IOSchemeVectorOCPInputMX))
+-- valIOSchemeVectorOCPInputMX = ((CasadiClass IOSchemeVectorOCPInputMX))
 -- valIOSchemeVectorACADO_OutputSXMatrix :: Type
--- valIOSchemeVectorACADO_OutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorACADO_OutputSXMatrix))
+-- valIOSchemeVectorACADO_OutputSXMatrix = ((CasadiClass IOSchemeVectorACADO_OutputSXMatrix))
 valCSize :: Type
-valCSize = Val (NonVec CSize)
+valCSize = (CSize)
 -- valIOSchemeVectorHessLagOutputMX :: Type
--- valIOSchemeVectorHessLagOutputMX = Val (NonVec (CasadiClass IOSchemeVectorHessLagOutputMX))
+-- valIOSchemeVectorHessLagOutputMX = ((CasadiClass IOSchemeVectorHessLagOutputMX))
 -- valIOSchemeVectorQCQPSolverInputCRSSparsity :: Type
--- valIOSchemeVectorQCQPSolverInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverInputCRSSparsity))
+-- valIOSchemeVectorQCQPSolverInputCRSSparsity = ((CasadiClass IOSchemeVectorQCQPSolverInputCRSSparsity))
 -- valIOSchemeVectorIntegratorInputMX :: Type
--- valIOSchemeVectorIntegratorInputMX = Val (NonVec (CasadiClass IOSchemeVectorIntegratorInputMX))
+-- valIOSchemeVectorIntegratorInputMX = ((CasadiClass IOSchemeVectorIntegratorInputMX))
 -- valIOSchemeVectorQCQPSolverInputMX :: Type
--- valIOSchemeVectorQCQPSolverInputMX = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverInputMX))
+-- valIOSchemeVectorQCQPSolverInputMX = ((CasadiClass IOSchemeVectorQCQPSolverInputMX))
 --valDMatrixVec :: Type
---valDMatrixVec = Val (Vec (NonVec (CasadiClass DMatrix)))
+--valDMatrixVec = (StdVec ((CasadiClass DMatrix)))
 valGenericType :: Type
-valGenericType = Val (NonVec (CasadiClass GenericType))
+valGenericType = ((CasadiClass GenericType))
 valMXVecVec :: Type
-valMXVecVec = Val (Vec (Vec (NonVec (CasadiClass MX))))
+valMXVecVec = (StdVec (StdVec ((CasadiClass MX))))
 -- valIOSchemeVectorGradFInputSXMatrix :: Type
--- valIOSchemeVectorGradFInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorGradFInputSXMatrix))
+-- valIOSchemeVectorGradFInputSXMatrix = ((CasadiClass IOSchemeVectorGradFInputSXMatrix))
 -- valIOSchemeVectorLinsolOutputSXMatrix :: Type
--- valIOSchemeVectorLinsolOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorLinsolOutputSXMatrix))
+-- valIOSchemeVectorLinsolOutputSXMatrix = ((CasadiClass IOSchemeVectorLinsolOutputSXMatrix))
 -- valIOSchemeVectorLPSolverInputCRSSparsity :: Type
--- valIOSchemeVectorLPSolverInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorLPSolverInputCRSSparsity))
+-- valIOSchemeVectorLPSolverInputCRSSparsity = ((CasadiClass IOSchemeVectorLPSolverInputCRSSparsity))
 -- valIOSchemeVectorJacGOutputCRSSparsity :: Type
--- valIOSchemeVectorJacGOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorJacGOutputCRSSparsity))
+-- valIOSchemeVectorJacGOutputCRSSparsity = ((CasadiClass IOSchemeVectorJacGOutputCRSSparsity))
 -- valIOSchemeVectorMayerInputSXMatrix :: Type
--- valIOSchemeVectorMayerInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorMayerInputSXMatrix))
+-- valIOSchemeVectorMayerInputSXMatrix = ((CasadiClass IOSchemeVectorMayerInputSXMatrix))
 --valSOCPStructure :: Type
---valSOCPStructure = Val (NonVec (CasadiClass SOCPStructure))
+--valSOCPStructure = ((CasadiClass SOCPStructure))
 -- valIOSchemeVectorIntegratorOutputSXMatrix :: Type
--- valIOSchemeVectorIntegratorOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorIntegratorOutputSXMatrix))
+-- valIOSchemeVectorIntegratorOutputSXMatrix = ((CasadiClass IOSchemeVectorIntegratorOutputSXMatrix))
 --valOCPSolver :: Type
---valOCPSolver = Val (NonVec (CasadiClass OCPSolver))
+--valOCPSolver = ((CasadiClass OCPSolver))
 --refCUCharVec :: Type
---refCUCharVec = Ref (Vec (NonVec CUChar))
+--refCUCharVec = Ref (StdVec (CUChar))
 --valQPLPSolver :: Type
---valQPLPSolver = Val (NonVec (CasadiClass QPLPSolver))
+--valQPLPSolver = ((CasadiClass QPLPSolver))
 --constrefSlice :: Type
---constrefSlice = ConstRef (NonVec (CasadiClass Slice))
+--constrefSlice = ConstRef ((CasadiClass Slice))
 -- valIOSchemeVectorGradFInputMX :: Type
--- valIOSchemeVectorGradFInputMX = Val (NonVec (CasadiClass IOSchemeVectorGradFInputMX))
+-- valIOSchemeVectorGradFInputMX = ((CasadiClass IOSchemeVectorGradFInputMX))
 valGenericTypeVec :: Type
-valGenericTypeVec = Val (Vec (NonVec (CasadiClass GenericType)))
+valGenericTypeVec = (StdVec ((CasadiClass GenericType)))
 refSXVec :: Type
-refSXVec = Ref (Vec (NonVec (CasadiClass SX)))
+refSXVec = Ref (StdVec ((CasadiClass SX)))
 valSX :: Type
-valSX = Val (NonVec (CasadiClass SX))
+valSX = ((CasadiClass SX))
 -- valIOSchemeVectorSDPOutputMX :: Type
--- valIOSchemeVectorSDPOutputMX = Val (NonVec (CasadiClass IOSchemeVectorSDPOutputMX))
+-- valIOSchemeVectorSDPOutputMX = ((CasadiClass IOSchemeVectorSDPOutputMX))
 -- valIOSchemeVectorLPSolverOutputSXMatrix :: Type
--- valIOSchemeVectorLPSolverOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorLPSolverOutputSXMatrix))
+-- valIOSchemeVectorLPSolverOutputSXMatrix = ((CasadiClass IOSchemeVectorLPSolverOutputSXMatrix))
 -- valIOSchemeVectorControlledDAEInputMX :: Type
--- valIOSchemeVectorControlledDAEInputMX = Val (NonVec (CasadiClass IOSchemeVectorControlledDAEInputMX))
+-- valIOSchemeVectorControlledDAEInputMX = ((CasadiClass IOSchemeVectorControlledDAEInputMX))
 -- valIOSchemeVectorACADO_FCN_InputCRSSparsity :: Type
--- valIOSchemeVectorACADO_FCN_InputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorACADO_FCN_InputCRSSparsity))
+-- valIOSchemeVectorACADO_FCN_InputCRSSparsity = ((CasadiClass IOSchemeVectorACADO_FCN_InputCRSSparsity))
 --refCInt :: Type
---refCInt = Ref (NonVec CInt)
+--refCInt = Ref (CInt)
 constrefenumopt_type :: Type
-constrefenumopt_type = ConstRef (NonVec (CasadiEnum Opt_type))
+constrefenumopt_type = ConstRef ((CasadiEnum Opt_type))
 constrefCustomEvaluate :: Type
-constrefCustomEvaluate = ConstRef (NonVec (CasadiClass CustomEvaluate))
+constrefCustomEvaluate = ConstRef ((CasadiClass CustomEvaluate))
 -- valIOSchemeVectorDAEInputCRSSparsity :: Type
--- valIOSchemeVectorDAEInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorDAEInputCRSSparsity))
+-- valIOSchemeVectorDAEInputCRSSparsity = ((CasadiClass IOSchemeVectorDAEInputCRSSparsity))
 --refSlice :: Type
---refSlice = Ref (NonVec (CasadiClass Slice))
+--refSlice = Ref ((CasadiClass Slice))
 -- valIOSchemeVectorNLPInputCRSSparsity :: Type
--- valIOSchemeVectorNLPInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorNLPInputCRSSparsity))
+-- valIOSchemeVectorNLPInputCRSSparsity = ((CasadiClass IOSchemeVectorNLPInputCRSSparsity))
 -- valIOSchemeVectorNLPInputSXMatrix :: Type
--- valIOSchemeVectorNLPInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorNLPInputSXMatrix))
+-- valIOSchemeVectorNLPInputSXMatrix = ((CasadiClass IOSchemeVectorNLPInputSXMatrix))
 -- valIOSchemeVectorLPSolverOutputMX :: Type
--- valIOSchemeVectorLPSolverOutputMX = Val (NonVec (CasadiClass IOSchemeVectorLPSolverOutputMX))
+-- valIOSchemeVectorLPSolverOutputMX = ((CasadiClass IOSchemeVectorLPSolverOutputMX))
 -- valIOSchemeVectorJacGOutputMX :: Type
--- valIOSchemeVectorJacGOutputMX = Val (NonVec (CasadiClass IOSchemeVectorJacGOutputMX))
+-- valIOSchemeVectorJacGOutputMX = ((CasadiClass IOSchemeVectorJacGOutputMX))
 -- valIOSchemeVectorRDAEInputSXMatrix :: Type
--- valIOSchemeVectorRDAEInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorRDAEInputSXMatrix))
+-- valIOSchemeVectorRDAEInputSXMatrix = ((CasadiClass IOSchemeVectorRDAEInputSXMatrix))
 --valSOCPQCQPSolver :: Type
---valSOCPQCQPSolver = Val (NonVec (CasadiClass SOCPQCQPSolver))
+--valSOCPQCQPSolver = ((CasadiClass SOCPQCQPSolver))
 -- valIOSchemeVectorACADO_FCN_InputMX :: Type
--- valIOSchemeVectorACADO_FCN_InputMX = Val (NonVec (CasadiClass IOSchemeVectorACADO_FCN_InputMX))
+-- valIOSchemeVectorACADO_FCN_InputMX = ((CasadiClass IOSchemeVectorACADO_FCN_InputMX))
 --valVariable :: Type
---valVariable = Val (NonVec (CasadiClass Variable))
+--valVariable = ((CasadiClass Variable))
 -- valIOSchemeVectorSDPInputMX :: Type
--- valIOSchemeVectorSDPInputMX = Val (NonVec (CasadiClass IOSchemeVectorSDPInputMX))
+-- valIOSchemeVectorSDPInputMX = ((CasadiClass IOSchemeVectorSDPInputMX))
 -- valIOSchemeVectorHessLagOutputCRSSparsity :: Type
--- valIOSchemeVectorHessLagOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorHessLagOutputCRSSparsity))
+-- valIOSchemeVectorHessLagOutputCRSSparsity = ((CasadiClass IOSchemeVectorHessLagOutputCRSSparsity))
 --constrefSXMatrixVecVec :: Type
---constrefSXMatrixVecVec = ConstRef (Vec (Vec (NonVec (CasadiClass SXMatrix))))
+--constrefSXMatrixVecVec = ConstRef (StdVec (StdVec ((CasadiClass SXMatrix))))
 valIpoptSolver :: Type
-valIpoptSolver = Val (NonVec (CasadiClass IpoptSolver))
+valIpoptSolver = ((CasadiClass IpoptSolver))
 --valLinearSolver :: Type
---valLinearSolver = Val (NonVec (CasadiClass LinearSolver))
+--valLinearSolver = ((CasadiClass LinearSolver))
 valStdString :: Type
-valStdString = Val (NonVec StdString)
+valStdString = (StdString)
 constrefMXFunction :: Type
-constrefMXFunction = ConstRef (NonVec (CasadiClass MXFunction))
+constrefMXFunction = ConstRef ((CasadiClass MXFunction))
 -- valIOSchemeVectorQPSolverInputMX :: Type
--- valIOSchemeVectorQPSolverInputMX = Val (NonVec (CasadiClass IOSchemeVectorQPSolverInputMX))
+-- valIOSchemeVectorQPSolverInputMX = ((CasadiClass IOSchemeVectorQPSolverInputMX))
 refCIntVec :: Type
-refCIntVec = Ref (Vec (NonVec CInt))
+refCIntVec = Ref (StdVec (CInt))
 valenumSparsity :: Type
-valenumSparsity = Val (NonVec (CasadiEnum Sparsity))
+valenumSparsity = ((CasadiEnum Sparsity))
 --valSDPSDQPSolver :: Type
---valSDPSDQPSolver = Val (NonVec (CasadiClass SDPSDQPSolver))
+--valSDPSDQPSolver = ((CasadiClass SDPSDQPSolver))
 constrefIOScheme :: Type
-constrefIOScheme = ConstRef (NonVec (CasadiClass IOScheme))
+constrefIOScheme = ConstRef ((CasadiClass IOScheme))
 constrefDMatrix :: Type
-constrefDMatrix = ConstRef (NonVec (CasadiClass DMatrix))
+constrefDMatrix = ConstRef ((CasadiClass DMatrix))
 -- valIOSchemeVectorSDQPOutputMX :: Type
--- valIOSchemeVectorSDQPOutputMX = Val (NonVec (CasadiClass IOSchemeVectorSDQPOutputMX))
+-- valIOSchemeVectorSDQPOutputMX = ((CasadiClass IOSchemeVectorSDQPOutputMX))
 --constrefSharedObject :: Type
---constrefSharedObject = ConstRef (NonVec (CasadiClass SharedObject))
+--constrefSharedObject = ConstRef ((CasadiClass SharedObject))
 -- valIOSchemeVectorQCQPSolverOutputSXMatrix :: Type
--- valIOSchemeVectorQCQPSolverOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverOutputSXMatrix))
+-- valIOSchemeVectorQCQPSolverOutputSXMatrix = ((CasadiClass IOSchemeVectorQCQPSolverOutputSXMatrix))
 valSXMatrix :: Type
-valSXMatrix = Val (NonVec (CasadiClass SXMatrix))
+valSXMatrix = ((CasadiClass SXMatrix))
 --valIndexList :: Type
---valIndexList = Val (NonVec (CasadiClass IndexList))
+--valIndexList = ((CasadiClass IndexList))
 valSXMatrixVec :: Type
-valSXMatrixVec = Val (Vec (NonVec (CasadiClass SXMatrix)))
+valSXMatrixVec = (StdVec ((CasadiClass SXMatrix)))
 --valenumCausality :: Type
---valenumCausality = Val (NonVec (CasadiEnum Causality))
+--valenumCausality = ((CasadiEnum Causality))
 --constrefLPStructure :: Type
---constrefLPStructure = ConstRef (NonVec (CasadiClass LPStructure))
+--constrefLPStructure = ConstRef ((CasadiClass LPStructure))
 -- valIOSchemeVectorRDAEOutputMX :: Type
--- valIOSchemeVectorRDAEOutputMX = Val (NonVec (CasadiClass IOSchemeVectorRDAEOutputMX))
+-- valIOSchemeVectorRDAEOutputMX = ((CasadiClass IOSchemeVectorRDAEOutputMX))
 -- valIOSchemeVectorSOCPOutputCRSSparsity :: Type
--- valIOSchemeVectorSOCPOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorSOCPOutputCRSSparsity))
+-- valIOSchemeVectorSOCPOutputCRSSparsity = ((CasadiClass IOSchemeVectorSOCPOutputCRSSparsity))
 --valSCPgen :: Type
---valSCPgen = Val (NonVec (CasadiClass SCPgen))
+--valSCPgen = ((CasadiClass SCPgen))
 --valQPStructure :: Type
---valQPStructure = Val (NonVec (CasadiClass QPStructure))
+--valQPStructure = ((CasadiClass QPStructure))
 valExternalFunction :: Type
-valExternalFunction = Val (NonVec (CasadiClass ExternalFunction))
+valExternalFunction = ((CasadiClass ExternalFunction))
 --valSDPStructure :: Type
---valSDPStructure = Val (NonVec (CasadiClass SDPStructure))
+--valSDPStructure = ((CasadiClass SDPStructure))
 --valSymbolicOCP :: Type
---valSymbolicOCP = Val (NonVec (CasadiClass SymbolicOCP))
+--valSymbolicOCP = ((CasadiClass SymbolicOCP))
 valCBool :: Type
-valCBool = Val (NonVec CBool)
+valCBool = (CBool)
 --constrefIMatrixVec :: Type
---constrefIMatrixVec = ConstRef (Vec (NonVec (CasadiClass IMatrix)))
+--constrefIMatrixVec = ConstRef (StdVec ((CasadiClass IMatrix)))
 --constrefIOSchemeVectorMX :: Type
---constrefIOSchemeVectorMX = ConstRef (NonVec (CasadiClass IOSchemeVectorMX))
+--constrefIOSchemeVectorMX = ConstRef ((CasadiClass IOSchemeVectorMX))
 valCSparse :: Type
-valCSparse = Val (NonVec (CasadiClass CSparse))
+valCSparse = ((CasadiClass CSparse))
 constrefStdString :: Type
-constrefStdString = ConstRef (NonVec StdString)
+constrefStdString = ConstRef (StdString)
 valMXVec :: Type
-valMXVec = Val (Vec (NonVec (CasadiClass MX)))
+valMXVec = (StdVec ((CasadiClass MX)))
 --valenumSymbolicOCPVariables :: Type
---valenumSymbolicOCPVariables = Val (NonVec (CasadiEnum SymbolicOCPVariables))
+--valenumSymbolicOCPVariables = ((CasadiEnum SymbolicOCPVariables))
 -- valIOSchemeVectorControlledDAEInputCRSSparsity :: Type
--- valIOSchemeVectorControlledDAEInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorControlledDAEInputCRSSparsity))
+-- valIOSchemeVectorControlledDAEInputCRSSparsity = ((CasadiClass IOSchemeVectorControlledDAEInputCRSSparsity))
 -- valIOSchemeVectorLinsolOutputMX :: Type
--- valIOSchemeVectorLinsolOutputMX = Val (NonVec (CasadiClass IOSchemeVectorLinsolOutputMX))
+-- valIOSchemeVectorLinsolOutputMX = ((CasadiClass IOSchemeVectorLinsolOutputMX))
 -- valIOSchemeVectorStabilizedQPSolverInputMX :: Type
--- valIOSchemeVectorStabilizedQPSolverInputMX = Val (NonVec (CasadiClass IOSchemeVectorStabilizedQPSolverInputMX))
+-- valIOSchemeVectorStabilizedQPSolverInputMX = ((CasadiClass IOSchemeVectorStabilizedQPSolverInputMX))
 -- valIOSchemeVectorLPSolverInputSXMatrix :: Type
--- valIOSchemeVectorLPSolverInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorLPSolverInputSXMatrix))
+-- valIOSchemeVectorLPSolverInputSXMatrix = ((CasadiClass IOSchemeVectorLPSolverInputSXMatrix))
 --valQCQPQPSolver :: Type
---valQCQPQPSolver = Val (NonVec (CasadiClass QCQPQPSolver))
+--valQCQPQPSolver = ((CasadiClass QCQPQPSolver))
 valIOScheme :: Type
-valIOScheme = Val (NonVec (CasadiClass IOScheme))
+valIOScheme = ((CasadiClass IOScheme))
 --constrefIMatrixVecVec :: Type
---constrefIMatrixVecVec = ConstRef (Vec (Vec (NonVec (CasadiClass IMatrix))))
+--constrefIMatrixVecVec = ConstRef (StdVec (StdVec ((CasadiClass IMatrix))))
 -- valIOSchemeVectorIntegratorInputCRSSparsity :: Type
--- valIOSchemeVectorIntegratorInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorIntegratorInputCRSSparsity))
+-- valIOSchemeVectorIntegratorInputCRSSparsity = ((CasadiClass IOSchemeVectorIntegratorInputCRSSparsity))
 --refSXMatrixVec :: Type
---refSXMatrixVec = Ref (Vec (NonVec (CasadiClass SXMatrix)))
+--refSXMatrixVec = Ref (StdVec ((CasadiClass SXMatrix)))
 -- valIOSchemeVectorDAEOutputSXMatrix :: Type
--- valIOSchemeVectorDAEOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorDAEOutputSXMatrix))
+-- valIOSchemeVectorDAEOutputSXMatrix = ((CasadiClass IOSchemeVectorDAEOutputSXMatrix))
 -- valIOSchemeVectorSDPOutputSXMatrix :: Type
--- valIOSchemeVectorSDPOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorSDPOutputSXMatrix))
+-- valIOSchemeVectorSDPOutputSXMatrix = ((CasadiClass IOSchemeVectorSDPOutputSXMatrix))
 --valLPSolver :: Type
---valLPSolver = Val (NonVec (CasadiClass LPSolver))
+--valLPSolver = ((CasadiClass LPSolver))
 -- valIOSchemeVectorDAEOutputCRSSparsity :: Type
--- valIOSchemeVectorDAEOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorDAEOutputCRSSparsity))
+-- valIOSchemeVectorDAEOutputCRSSparsity = ((CasadiClass IOSchemeVectorDAEOutputCRSSparsity))
 --valGenericIntegrator :: Type
---valGenericIntegrator = Val (NonVec (CasadiClass GenericIntegrator))
+--valGenericIntegrator = ((CasadiClass GenericIntegrator))
 --refCSize :: Type
---refCSize = Ref (NonVec CSize)
+--refCSize = Ref (CSize)
 --valSDPSolver :: Type
---valSDPSolver = Val (NonVec (CasadiClass SDPSolver))
+--valSDPSolver = ((CasadiClass SDPSolver))
 --valSDQPSolver :: Type
---valSDQPSolver = Val (NonVec (CasadiClass SDQPSolver))
+--valSDQPSolver = ((CasadiClass SDQPSolver))
 --valImplicitFunction :: Type
---valImplicitFunction = Val (NonVec (CasadiClass ImplicitFunction))
+--valImplicitFunction = ((CasadiClass ImplicitFunction))
 -- valIOSchemeVectorJacGOutputSXMatrix :: Type
--- valIOSchemeVectorJacGOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorJacGOutputSXMatrix))
+-- valIOSchemeVectorJacGOutputSXMatrix = ((CasadiClass IOSchemeVectorJacGOutputSXMatrix))
 -- valIOSchemeVectorACADO_OutputMX :: Type
--- valIOSchemeVectorACADO_OutputMX = Val (NonVec (CasadiClass IOSchemeVectorACADO_OutputMX))
+-- valIOSchemeVectorACADO_OutputMX = ((CasadiClass IOSchemeVectorACADO_OutputMX))
 --constrefGenMX :: Type
---constrefGenMX = ConstRef (NonVec (CasadiClass GenMX))
+--constrefGenMX = ConstRef ((CasadiClass GenMX))
 --valQCQPStructure :: Type
---valQCQPStructure = Val (NonVec (CasadiClass QCQPStructure))
+--valQCQPStructure = ((CasadiClass QCQPStructure))
 -- valIOSchemeVectorJacGInputCRSSparsity :: Type
--- valIOSchemeVectorJacGInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorJacGInputCRSSparsity))
+-- valIOSchemeVectorJacGInputCRSSparsity = ((CasadiClass IOSchemeVectorJacGInputCRSSparsity))
 -- valIOSchemeVectorGradFOutputCRSSparsity :: Type
--- valIOSchemeVectorGradFOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorGradFOutputCRSSparsity))
+-- valIOSchemeVectorGradFOutputCRSSparsity = ((CasadiClass IOSchemeVectorGradFOutputCRSSparsity))
 --valDirectCollocation :: Type
---valDirectCollocation = Val (NonVec (CasadiClass DirectCollocation))
+--valDirectCollocation = ((CasadiClass DirectCollocation))
 -- valIOSchemeVectorNLPSolverOutputMX :: Type
--- valIOSchemeVectorNLPSolverOutputMX = Val (NonVec (CasadiClass IOSchemeVectorNLPSolverOutputMX))
+-- valIOSchemeVectorNLPSolverOutputMX = ((CasadiClass IOSchemeVectorNLPSolverOutputMX))
 -- valIOSchemeVectorNLPInputMX :: Type
--- valIOSchemeVectorNLPInputMX = Val (NonVec (CasadiClass IOSchemeVectorNLPInputMX))
+-- valIOSchemeVectorNLPInputMX = ((CasadiClass IOSchemeVectorNLPInputMX))
 constrefCRSSparsityVec :: Type
-constrefCRSSparsityVec = ConstRef (Vec (NonVec (CasadiClass CRSSparsity)))
+constrefCRSSparsityVec = ConstRef (StdVec ((CasadiClass CRSSparsity)))
 --valNLPImplicitSolver :: Type
---valNLPImplicitSolver = Val (NonVec (CasadiClass NLPImplicitSolver))
+--valNLPImplicitSolver = ((CasadiClass NLPImplicitSolver))
 constrefCIntVec :: Type
-constrefCIntVec = ConstRef (Vec (NonVec CInt))
+constrefCIntVec = ConstRef (StdVec (CInt))
 
 constrefFX :: Type
-constrefFX = ConstRef (NonVec (CasadiClass FX))
+constrefFX = ConstRef ((CasadiClass FX))
 
 -- valIOSchemeVectorSDQPOutputSXMatrix :: Type
--- valIOSchemeVectorSDQPOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorSDQPOutputSXMatrix))
+-- valIOSchemeVectorSDQPOutputSXMatrix = ((CasadiClass IOSchemeVectorSDQPOutputSXMatrix))
 --valDirectSingleShooting :: Type
---valDirectSingleShooting = Val (NonVec (CasadiClass DirectSingleShooting))
+--valDirectSingleShooting = ((CasadiClass DirectSingleShooting))
 --valQPSolver :: Type
---valQPSolver = Val (NonVec (CasadiClass QPSolver))
+--valQPSolver = ((CasadiClass QPSolver))
 --valSimulator :: Type
---valSimulator = Val (NonVec (CasadiClass Simulator))
+--valSimulator = ((CasadiClass Simulator))
 --constrefIntegrator :: Type
---constrefIntegrator = ConstRef (NonVec (CasadiClass Integrator))
+--constrefIntegrator = ConstRef ((CasadiClass Integrator))
 constrefCBoolVec :: Type
-constrefCBoolVec = ConstRef (Vec (NonVec CBool))
+constrefCBoolVec = ConstRef (StdVec (CBool))
 --valSymbolicQR :: Type
---valSymbolicQR = Val (NonVec (CasadiClass SymbolicQR))
+--valSymbolicQR = ((CasadiClass SymbolicQR))
 --valKinsolSolver :: Type
---valKinsolSolver = Val (NonVec (CasadiClass KinsolSolver))
+--valKinsolSolver = ((CasadiClass KinsolSolver))
 --valIMatrixVecVec :: Type
---valIMatrixVecVec = Val (Vec (Vec (NonVec (CasadiClass IMatrix))))
+--valIMatrixVecVec = (StdVec (StdVec ((CasadiClass IMatrix))))
 -- valIOSchemeVectorACADO_FCN_InputSXMatrix :: Type
--- valIOSchemeVectorACADO_FCN_InputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorACADO_FCN_InputSXMatrix))
+-- valIOSchemeVectorACADO_FCN_InputSXMatrix = ((CasadiClass IOSchemeVectorACADO_FCN_InputSXMatrix))
 -- valIOSchemeVectorSDQPInputSXMatrix :: Type
--- valIOSchemeVectorSDQPInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorSDQPInputSXMatrix))
+-- valIOSchemeVectorSDQPInputSXMatrix = ((CasadiClass IOSchemeVectorSDQPInputSXMatrix))
 --constrefIOSchemeVectorCRSSparsity :: Type
---constrefIOSchemeVectorCRSSparsity = ConstRef (NonVec (CasadiClass IOSchemeVectorCRSSparsity))
+--constrefIOSchemeVectorCRSSparsity = ConstRef ((CasadiClass IOSchemeVectorCRSSparsity))
 --constrefQPStructure :: Type
---constrefQPStructure = ConstRef (NonVec (CasadiClass QPStructure))
+--constrefQPStructure = ConstRef ((CasadiClass QPStructure))
 --valParallelizer :: Type
---valParallelizer = Val (NonVec (CasadiClass Parallelizer))
+--valParallelizer = ((CasadiClass Parallelizer))
 --valSDQPStructure :: Type
---valSDQPStructure = Val (NonVec (CasadiClass SDQPStructure))
+--valSDQPStructure = ((CasadiClass SDQPStructure))
 --valenumCategory :: Type
---valenumCategory = Val (NonVec (CasadiEnum Category))
+--valenumCategory = ((CasadiEnum Category))
 -- valIOSchemeVectorLinsolOutputCRSSparsity :: Type
--- valIOSchemeVectorLinsolOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorLinsolOutputCRSSparsity))
+-- valIOSchemeVectorLinsolOutputCRSSparsity = ((CasadiClass IOSchemeVectorLinsolOutputCRSSparsity))
 -- valIOSchemeVectorMayerInputCRSSparsity :: Type
--- valIOSchemeVectorMayerInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorMayerInputCRSSparsity))
+-- valIOSchemeVectorMayerInputCRSSparsity = ((CasadiClass IOSchemeVectorMayerInputCRSSparsity))
 --constrefFXVec :: Type
---constrefFXVec = ConstRef (Vec (NonVec (CasadiClass FX)))
+--constrefFXVec = ConstRef (StdVec ((CasadiClass FX)))
 refStdOstream :: Type
-refStdOstream = Ref (NonVec StdOstream)
+refStdOstream = Ref (StdOstream)
 --valSparsityGenerator :: Type
---valSparsityGenerator = Val (NonVec (CasadiClass SparsityGenerator))
+--valSparsityGenerator = ((CasadiClass SparsityGenerator))
 --constrefSOCPStructure :: Type
---constrefSOCPStructure = ConstRef (NonVec (CasadiClass SOCPStructure))
+--constrefSOCPStructure = ConstRef ((CasadiClass SOCPStructure))
 valenumInputOutputScheme :: Type
-valenumInputOutputScheme = Val (NonVec (CasadiEnum InputOutputScheme))
+valenumInputOutputScheme = ((CasadiEnum InputOutputScheme))
 constrefSX :: Type
-constrefSX = ConstRef (NonVec (CasadiClass SX))
+constrefSX = ConstRef ((CasadiClass SX))
 --refSXMatrixVecVec :: Type
---refSXMatrixVecVec = Ref (Vec (Vec (NonVec (CasadiClass SXMatrix))))
+--refSXMatrixVecVec = Ref (StdVec (StdVec ((CasadiClass SXMatrix))))
 -- valIOSchemeVectorHessLagInputCRSSparsity :: Type
--- valIOSchemeVectorHessLagInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorHessLagInputCRSSparsity))
+-- valIOSchemeVectorHessLagInputCRSSparsity = ((CasadiClass IOSchemeVectorHessLagInputCRSSparsity))
 valCInt :: Type
-valCInt = Val (NonVec CInt)
+valCInt = (CInt)
 valMXFunction :: Type
-valMXFunction = Val (NonVec (CasadiClass MXFunction))
+valMXFunction = ((CasadiClass MXFunction))
 -- valIOSchemeVectorCRSSparsity :: Type
--- valIOSchemeVectorCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorCRSSparsity))
+-- valIOSchemeVectorCRSSparsity = ((CasadiClass IOSchemeVectorCRSSparsity))
 --valControlSimulator :: Type
---valControlSimulator = Val (NonVec (CasadiClass ControlSimulator))
+--valControlSimulator = ((CasadiClass ControlSimulator))
 -- valIOSchemeVectorGradFOutputMX :: Type
--- valIOSchemeVectorGradFOutputMX = Val (NonVec (CasadiClass IOSchemeVectorGradFOutputMX))
+-- valIOSchemeVectorGradFOutputMX = ((CasadiClass IOSchemeVectorGradFOutputMX))
 --constrefLinearSolver :: Type
---constrefLinearSolver = ConstRef (NonVec (CasadiClass LinearSolver))
+--constrefLinearSolver = ConstRef ((CasadiClass LinearSolver))
 --valRKIntegrator :: Type
---valRKIntegrator = Val (NonVec (CasadiClass RKIntegrator))
+--valRKIntegrator = ((CasadiClass RKIntegrator))
 -- valIOSchemeVectorGradFInputCRSSparsity :: Type
--- valIOSchemeVectorGradFInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorGradFInputCRSSparsity))
+-- valIOSchemeVectorGradFInputCRSSparsity = ((CasadiClass IOSchemeVectorGradFInputCRSSparsity))
 --valIntegrator :: Type
---valIntegrator = Val (NonVec (CasadiClass Integrator))
+--valIntegrator = ((CasadiClass Integrator))
 -- valIOSchemeVectorSDQPInputMX :: Type
--- valIOSchemeVectorSDQPInputMX = Val (NonVec (CasadiClass IOSchemeVectorSDQPInputMX))
+-- valIOSchemeVectorSDQPInputMX = ((CasadiClass IOSchemeVectorSDQPInputMX))
 -- valIOSchemeVectorHessLagInputSXMatrix :: Type
--- valIOSchemeVectorHessLagInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorHessLagInputSXMatrix))
+-- valIOSchemeVectorHessLagInputSXMatrix = ((CasadiClass IOSchemeVectorHessLagInputSXMatrix))
 valCRSSparsity :: Type
-valCRSSparsity = Val (NonVec (CasadiClass CRSSparsity))
+valCRSSparsity = ((CasadiClass CRSSparsity))
 -- valIOSchemeVectorJacGInputSXMatrix :: Type
--- valIOSchemeVectorJacGInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorJacGInputSXMatrix))
+-- valIOSchemeVectorJacGInputSXMatrix = ((CasadiClass IOSchemeVectorJacGInputSXMatrix))
 valCallback :: Type
-valCallback = Val (NonVec (CasadiClass Callback))
+valCallback = ((CasadiClass Callback))
 --valCSparseCholesky :: Type
---valCSparseCholesky = Val (NonVec (CasadiClass CSparseCholesky))
+--valCSparseCholesky = ((CasadiClass CSparseCholesky))
 --constrefSDQPStructure :: Type
---constrefSDQPStructure = ConstRef (NonVec (CasadiClass SDQPStructure))
+--constrefSDQPStructure = ConstRef ((CasadiClass SDQPStructure))
 --valWeakRef :: Type
---valWeakRef = Val (NonVec (CasadiClass WeakRef))
+--valWeakRef = ((CasadiClass WeakRef))
 refSX :: Type
-refSX = Ref (NonVec (CasadiClass SX))
+refSX = Ref ((CasadiClass SX))
 --constrefVariable :: Type
---constrefVariable = ConstRef (NonVec (CasadiClass Variable))
+--constrefVariable = ConstRef ((CasadiClass Variable))
 --valIdasIntegrator :: Type
---valIdasIntegrator = Val (NonVec (CasadiClass IdasIntegrator))
+--valIdasIntegrator = ((CasadiClass IdasIntegrator))
 -- valIOSchemeVectorLPSolverInputMX :: Type
--- valIOSchemeVectorLPSolverInputMX = Val (NonVec (CasadiClass IOSchemeVectorLPSolverInputMX))
+-- valIOSchemeVectorLPSolverInputMX = ((CasadiClass IOSchemeVectorLPSolverInputMX))
 -- valIOSchemeVectorACADO_InputMX :: Type
--- valIOSchemeVectorACADO_InputMX = Val (NonVec (CasadiClass IOSchemeVectorACADO_InputMX))
+-- valIOSchemeVectorACADO_InputMX = ((CasadiClass IOSchemeVectorACADO_InputMX))
 -- valIOSchemeVectorNLPSolverOutputCRSSparsity :: Type
--- valIOSchemeVectorNLPSolverOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorNLPSolverOutputCRSSparsity))
+-- valIOSchemeVectorNLPSolverOutputCRSSparsity = ((CasadiClass IOSchemeVectorNLPSolverOutputCRSSparsity))
 --valSDPSOCPSolver :: Type
---valSDPSOCPSolver = Val (NonVec (CasadiClass SDPSOCPSolver))
+--valSDPSOCPSolver = ((CasadiClass SDPSOCPSolver))
 constrefStdStringVec :: Type
-constrefStdStringVec = ConstRef (Vec (NonVec StdString))
+constrefStdStringVec = ConstRef (StdVec (StdString))
 -- valIOSchemeVectorIntegratorInputSXMatrix :: Type
--- valIOSchemeVectorIntegratorInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorIntegratorInputSXMatrix))
+-- valIOSchemeVectorIntegratorInputSXMatrix = ((CasadiClass IOSchemeVectorIntegratorInputSXMatrix))
 --refMX :: Type
---refMX = Ref (NonVec (CasadiClass MX))
+--refMX = Ref ((CasadiClass MX))
 --refMXVecVec :: Type
---refMXVecVec = Ref (Vec (Vec (NonVec (CasadiClass MX))))
+--refMXVecVec = Ref (StdVec (StdVec ((CasadiClass MX))))
 -- valIOSchemeVectorOCPInputSXMatrix :: Type
--- valIOSchemeVectorOCPInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorOCPInputSXMatrix))
+-- valIOSchemeVectorOCPInputSXMatrix = ((CasadiClass IOSchemeVectorOCPInputSXMatrix))
 constrefSXMatrix :: Type
-constrefSXMatrix = ConstRef (NonVec (CasadiClass SXMatrix))
+constrefSXMatrix = ConstRef ((CasadiClass SXMatrix))
 -- valIOSchemeVectorControlSimulatorInputMX :: Type
--- valIOSchemeVectorControlSimulatorInputMX = Val (NonVec (CasadiClass IOSchemeVectorControlSimulatorInputMX))
+-- valIOSchemeVectorControlSimulatorInputMX = ((CasadiClass IOSchemeVectorControlSimulatorInputMX))
 -- valIOSchemeVectorJacGInputMX :: Type
--- valIOSchemeVectorJacGInputMX = Val (NonVec (CasadiClass IOSchemeVectorJacGInputMX))
+-- valIOSchemeVectorJacGInputMX = ((CasadiClass IOSchemeVectorJacGInputMX))
 -- valIOSchemeVectorNLPSolverInputCRSSparsity :: Type
--- valIOSchemeVectorNLPSolverInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorNLPSolverInputCRSSparsity))
+-- valIOSchemeVectorNLPSolverInputCRSSparsity = ((CasadiClass IOSchemeVectorNLPSolverInputCRSSparsity))
 -- valIOSchemeVectorLinsolInputMX :: Type
--- valIOSchemeVectorLinsolInputMX = Val (NonVec (CasadiClass IOSchemeVectorLinsolInputMX))
+-- valIOSchemeVectorLinsolInputMX = ((CasadiClass IOSchemeVectorLinsolInputMX))
 valSXVec :: Type
-valSXVec = Val (Vec (NonVec (CasadiClass SX)))
+valSXVec = (StdVec ((CasadiClass SX)))
 -- valIOSchemeVectorRDAEOutputSXMatrix :: Type
--- valIOSchemeVectorRDAEOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorRDAEOutputSXMatrix))
+-- valIOSchemeVectorRDAEOutputSXMatrix = ((CasadiClass IOSchemeVectorRDAEOutputSXMatrix))
 -- valIOSchemeVectorSDPInputSXMatrix :: Type
--- valIOSchemeVectorSDPInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorSDPInputSXMatrix))
+-- valIOSchemeVectorSDPInputSXMatrix = ((CasadiClass IOSchemeVectorSDPInputSXMatrix))
 --valSXMatrixVecVec :: Type
---valSXMatrixVecVec = Val (Vec (Vec (NonVec (CasadiClass SXMatrix))))
+--valSXMatrixVecVec = (StdVec (StdVec ((CasadiClass SXMatrix))))
 -- valIOSchemeVectorQPSolverOutputCRSSparsity :: Type
--- valIOSchemeVectorQPSolverOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorQPSolverOutputCRSSparsity))
+-- valIOSchemeVectorQPSolverOutputCRSSparsity = ((CasadiClass IOSchemeVectorQPSolverOutputCRSSparsity))
 --refFX :: Type
---refFX = Ref (NonVec (CasadiClass FX))
+--refFX = Ref ((CasadiClass FX))
 --constrefJacobianGenerator :: Type
---constrefJacobianGenerator = ConstRef (NonVec (CasadiClass JacobianGenerator))
+--constrefJacobianGenerator = ConstRef ((CasadiClass JacobianGenerator))
 -- valIOSchemeVectorControlledDAEInputSXMatrix :: Type
--- valIOSchemeVectorControlledDAEInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorControlledDAEInputSXMatrix))
+-- valIOSchemeVectorControlledDAEInputSXMatrix = ((CasadiClass IOSchemeVectorControlledDAEInputSXMatrix))
 valCDouble :: Type
-valCDouble = Val (NonVec CDouble)
+valCDouble = (CDouble)
 refSXMatrix :: Type
-refSXMatrix = Ref (NonVec (CasadiClass SXMatrix))
+refSXMatrix = Ref ((CasadiClass SXMatrix))
 -- valIOSchemeVectorStabilizedQPSolverInputSXMatrix :: Type
--- valIOSchemeVectorStabilizedQPSolverInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorStabilizedQPSolverInputSXMatrix))
+-- valIOSchemeVectorStabilizedQPSolverInputSXMatrix = ((CasadiClass IOSchemeVectorStabilizedQPSolverInputSXMatrix))
 -- valIOSchemeVectorLPSolverOutputCRSSparsity :: Type
--- valIOSchemeVectorLPSolverOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorLPSolverOutputCRSSparsity))
+-- valIOSchemeVectorLPSolverOutputCRSSparsity = ((CasadiClass IOSchemeVectorLPSolverOutputCRSSparsity))
 valSXFunction :: Type
-valSXFunction = Val (NonVec (CasadiClass SXFunction))
+valSXFunction = ((CasadiClass SXFunction))
 -- valIOSchemeVectorQCQPSolverOutputMX :: Type
--- valIOSchemeVectorQCQPSolverOutputMX = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverOutputMX))
+-- valIOSchemeVectorQCQPSolverOutputMX = ((CasadiClass IOSchemeVectorQCQPSolverOutputMX))
 -- valIOSchemeVectorNLPSolverOutputSXMatrix :: Type
--- valIOSchemeVectorNLPSolverOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorNLPSolverOutputSXMatrix))
+-- valIOSchemeVectorNLPSolverOutputSXMatrix = ((CasadiClass IOSchemeVectorNLPSolverOutputSXMatrix))
 --valSundialsIntegrator :: Type
---valSundialsIntegrator = Val (NonVec (CasadiClass SundialsIntegrator))
+--valSundialsIntegrator = ((CasadiClass SundialsIntegrator))
 -- valIOSchemeVectorSXMatrix :: Type
--- valIOSchemeVectorSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorSXMatrix))
+-- valIOSchemeVectorSXMatrix = ((CasadiClass IOSchemeVectorSXMatrix))
 constrefMXVecVec :: Type
-constrefMXVecVec = ConstRef (Vec (Vec (NonVec (CasadiClass MX))))
+constrefMXVecVec = ConstRef (StdVec (StdVec ((CasadiClass MX))))
 --refCDoubleVecVec :: Type
---refCDoubleVecVec = Ref (Vec (Vec (NonVec CDouble)))
+--refCDoubleVecVec = Ref (StdVec (StdVec (CDouble)))
 --valJacobianGenerator :: Type
---valJacobianGenerator = Val (NonVec (CasadiClass JacobianGenerator))
+--valJacobianGenerator = ((CasadiClass JacobianGenerator))
 --valCVodesIntegrator :: Type
---valCVodesIntegrator = Val (NonVec (CasadiClass CVodesIntegrator))
+--valCVodesIntegrator = ((CasadiClass CVodesIntegrator))
 valOptionsFunctionality :: Type
-valOptionsFunctionality = Val (NonVec (CasadiClass OptionsFunctionality))
+valOptionsFunctionality = ((CasadiClass OptionsFunctionality))
 --refIMatrix :: Type
---refIMatrix = Ref (NonVec (CasadiClass IMatrix))
+--refIMatrix = Ref ((CasadiClass IMatrix))
 constrefSXVecVec :: Type
-constrefSXVecVec = ConstRef (Vec (Vec (NonVec (CasadiClass SX))))
+constrefSXVecVec = ConstRef (StdVec (StdVec ((CasadiClass SX))))
 valCustomEvaluate :: Type
-valCustomEvaluate = Val (NonVec (CasadiClass CustomEvaluate))
+valCustomEvaluate = ((CasadiClass CustomEvaluate))
 --valDirectMultipleShooting :: Type
---valDirectMultipleShooting = Val (NonVec (CasadiClass DirectMultipleShooting))
+--valDirectMultipleShooting = ((CasadiClass DirectMultipleShooting))
 --constrefIndexList :: Type
---constrefIndexList = ConstRef (NonVec (CasadiClass IndexList))
+--constrefIndexList = ConstRef ((CasadiClass IndexList))
 constrefSXVec :: Type
-constrefSXVec = ConstRef (Vec (NonVec (CasadiClass SX)))
+constrefSXVec = ConstRef (StdVec ((CasadiClass SX)))
 -- valIOSchemeVectorNLPOutputSXMatrix :: Type
--- valIOSchemeVectorNLPOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorNLPOutputSXMatrix))
+-- valIOSchemeVectorNLPOutputSXMatrix = ((CasadiClass IOSchemeVectorNLPOutputSXMatrix))
 --constrefGenSXMatrix :: Type
---constrefGenSXMatrix = ConstRef (NonVec (CasadiClass GenSXMatrix))
+--constrefGenSXMatrix = ConstRef ((CasadiClass GenSXMatrix))
 --valNewtonImplicitSolver :: Type
---valNewtonImplicitSolver = Val (NonVec (CasadiClass NewtonImplicitSolver))
+--valNewtonImplicitSolver = ((CasadiClass NewtonImplicitSolver))
 -- valIOSchemeVectorSDQPInputCRSSparsity :: Type
--- valIOSchemeVectorSDQPInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorSDQPInputCRSSparsity))
+-- valIOSchemeVectorSDQPInputCRSSparsity = ((CasadiClass IOSchemeVectorSDQPInputCRSSparsity))
 -- valIOSchemeVectorOCPOutputSXMatrix :: Type
--- valIOSchemeVectorOCPOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorOCPOutputSXMatrix))
+-- valIOSchemeVectorOCPOutputSXMatrix = ((CasadiClass IOSchemeVectorOCPOutputSXMatrix))
 valCDoubleVec :: Type
-valCDoubleVec = Val (Vec (NonVec CDouble))
+valCDoubleVec = (StdVec (CDouble))
 --constrefIMatrix :: Type
---constrefIMatrix = ConstRef (NonVec (CasadiClass IMatrix))
+--constrefIMatrix = ConstRef ((CasadiClass IMatrix))
 -- valIOSchemeVectorRDAEInputCRSSparsity :: Type
--- valIOSchemeVectorRDAEInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorRDAEInputCRSSparsity))
+-- valIOSchemeVectorRDAEInputCRSSparsity = ((CasadiClass IOSchemeVectorRDAEInputCRSSparsity))
 --valenumVariability :: Type
---valenumVariability = Val (NonVec (CasadiEnum Variability))
+--valenumVariability = ((CasadiEnum Variability))
 --refSharedObject :: Type
---refSharedObject = Ref (NonVec (CasadiClass SharedObject))
+--refSharedObject = Ref ((CasadiClass SharedObject))
 -- valIOSchemeVectorQPSolverOutputSXMatrix :: Type
--- valIOSchemeVectorQPSolverOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorQPSolverOutputSXMatrix))
+-- valIOSchemeVectorQPSolverOutputSXMatrix = ((CasadiClass IOSchemeVectorQPSolverOutputSXMatrix))
 -- valIOSchemeVectorRDAEInputMX :: Type
--- valIOSchemeVectorRDAEInputMX = Val (NonVec (CasadiClass IOSchemeVectorRDAEInputMX))
+-- valIOSchemeVectorRDAEInputMX = ((CasadiClass IOSchemeVectorRDAEInputMX))
 --valCRSSparsityVec :: Type
---valCRSSparsityVec = Val (Vec (NonVec (CasadiClass CRSSparsity)))
+--valCRSSparsityVec = (StdVec ((CasadiClass CRSSparsity)))
 -- valIOSchemeVectorQPSolverInputSXMatrix :: Type
--- valIOSchemeVectorQPSolverInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorQPSolverInputSXMatrix))
+-- valIOSchemeVectorQPSolverInputSXMatrix = ((CasadiClass IOSchemeVectorQPSolverInputSXMatrix))
 constrefMXVec :: Type
-constrefMXVec = ConstRef (Vec (NonVec (CasadiClass MX)))
+constrefMXVec = ConstRef (StdVec ((CasadiClass MX)))
 valFX :: Type
-valFX = Val (NonVec (CasadiClass FX))
+valFX = ((CasadiClass FX))
 --valSlice :: Type
---valSlice = Val (NonVec (CasadiClass Slice))
+--valSlice = ((CasadiClass Slice))
 constrefGenericType :: Type
-constrefGenericType = ConstRef (NonVec (CasadiClass GenericType))
+constrefGenericType = ConstRef ((CasadiClass GenericType))
 --constrefCIntVecVec :: Type
---constrefCIntVecVec = ConstRef (Vec (Vec (NonVec CInt)))
+--constrefCIntVecVec = ConstRef (StdVec (StdVec (CInt)))
 -- valIOSchemeVectorHessLagInputMX :: Type
--- valIOSchemeVectorHessLagInputMX = Val (NonVec (CasadiClass IOSchemeVectorHessLagInputMX))
+-- valIOSchemeVectorHessLagInputMX = ((CasadiClass IOSchemeVectorHessLagInputMX))
 -- valIOSchemeVectorNLPSolverInputMX :: Type
--- valIOSchemeVectorNLPSolverInputMX = Val (NonVec (CasadiClass IOSchemeVectorNLPSolverInputMX))
+-- valIOSchemeVectorNLPSolverInputMX = ((CasadiClass IOSchemeVectorNLPSolverInputMX))
 --refMXVec :: Type
---refMXVec = Ref (Vec (NonVec (CasadiClass MX)))
+--refMXVec = Ref (StdVec ((CasadiClass MX)))
 -- valIOSchemeVectorNLPOutputCRSSparsity :: Type
--- valIOSchemeVectorNLPOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorNLPOutputCRSSparsity))
+-- valIOSchemeVectorNLPOutputCRSSparsity = ((CasadiClass IOSchemeVectorNLPOutputCRSSparsity))
 -- valIOSchemeVectorQPSolverOutputMX :: Type
--- valIOSchemeVectorQPSolverOutputMX = Val (NonVec (CasadiClass IOSchemeVectorQPSolverOutputMX))
+-- valIOSchemeVectorQPSolverOutputMX = ((CasadiClass IOSchemeVectorQPSolverOutputMX))
 -- valIOSchemeVectorOCPOutputCRSSparsity :: Type
--- valIOSchemeVectorOCPOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorOCPOutputCRSSparsity))
+-- valIOSchemeVectorOCPOutputCRSSparsity = ((CasadiClass IOSchemeVectorOCPOutputCRSSparsity))
 -- valIOSchemeVectorLinsolInputSXMatrix :: Type
--- valIOSchemeVectorLinsolInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorLinsolInputSXMatrix))
+-- valIOSchemeVectorLinsolInputSXMatrix = ((CasadiClass IOSchemeVectorLinsolInputSXMatrix))
 -- valIOSchemeVectorLinsolInputCRSSparsity :: Type
--- valIOSchemeVectorLinsolInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorLinsolInputCRSSparsity))
+-- valIOSchemeVectorLinsolInputCRSSparsity = ((CasadiClass IOSchemeVectorLinsolInputCRSSparsity))
 -- valIOSchemeVectorQCQPSolverOutputCRSSparsity :: Type
--- valIOSchemeVectorQCQPSolverOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverOutputCRSSparsity))
+-- valIOSchemeVectorQCQPSolverOutputCRSSparsity = ((CasadiClass IOSchemeVectorQCQPSolverOutputCRSSparsity))
 --constrefSparsityGenerator :: Type
---constrefSparsityGenerator = ConstRef (NonVec (CasadiClass SparsityGenerator))
+--constrefSparsityGenerator = ConstRef ((CasadiClass SparsityGenerator))
 -- valIOSchemeVectorDAEInputMX :: Type
--- valIOSchemeVectorDAEInputMX = Val (NonVec (CasadiClass IOSchemeVectorDAEInputMX))
+-- valIOSchemeVectorDAEInputMX = ((CasadiClass IOSchemeVectorDAEInputMX))
 --valCollocationIntegrator :: Type
---valCollocationIntegrator = Val (NonVec (CasadiClass CollocationIntegrator))
+--valCollocationIntegrator = ((CasadiClass CollocationIntegrator))
 --constrefDMatrixVecVec :: Type
---constrefDMatrixVecVec = ConstRef (Vec (Vec (NonVec (CasadiClass DMatrix))))
+--constrefDMatrixVecVec = ConstRef (StdVec (StdVec ((CasadiClass DMatrix))))
 --valDMatrixVecVec :: Type
---valDMatrixVecVec = Val (Vec (Vec (NonVec (CasadiClass DMatrix))))
+--valDMatrixVecVec = (StdVec (StdVec ((CasadiClass DMatrix))))
 -- valIOSchemeVectorACADO_OutputCRSSparsity :: Type
--- valIOSchemeVectorACADO_OutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorACADO_OutputCRSSparsity))
+-- valIOSchemeVectorACADO_OutputCRSSparsity = ((CasadiClass IOSchemeVectorACADO_OutputCRSSparsity))
 -- valIOSchemeVectorSOCPOutputMX :: Type
--- valIOSchemeVectorSOCPOutputMX = Val (NonVec (CasadiClass IOSchemeVectorSOCPOutputMX))
+-- valIOSchemeVectorSOCPOutputMX = ((CasadiClass IOSchemeVectorSOCPOutputMX))
 -- valIOSchemeVectorDAEInputSXMatrix :: Type
--- valIOSchemeVectorDAEInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorDAEInputSXMatrix))
+-- valIOSchemeVectorDAEInputSXMatrix = ((CasadiClass IOSchemeVectorDAEInputSXMatrix))
 constrefCRSSparsity :: Type
-constrefCRSSparsity = ConstRef (NonVec (CasadiClass CRSSparsity))
+constrefCRSSparsity = ConstRef ((CasadiClass CRSSparsity))
 -- valIOSchemeVectorSDPOutputCRSSparsity :: Type
--- valIOSchemeVectorSDPOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorSDPOutputCRSSparsity))
+-- valIOSchemeVectorSDPOutputCRSSparsity = ((CasadiClass IOSchemeVectorSDPOutputCRSSparsity))
 --valNLPSolver :: Type
---valNLPSolver = Val (NonVec (CasadiClass NLPSolver))
+--valNLPSolver = ((CasadiClass NLPSolver))
 --valQCQPSolver :: Type
---valQCQPSolver = Val (NonVec (CasadiClass QCQPSolver))
+--valQCQPSolver = ((CasadiClass QCQPSolver))
 --constrefDMatrixVec :: Type
---constrefDMatrixVec = ConstRef (Vec (NonVec (CasadiClass DMatrix)))
+--constrefDMatrixVec = ConstRef (StdVec ((CasadiClass DMatrix)))
 -- valIOSchemeVectorIntegratorOutputMX :: Type
--- valIOSchemeVectorIntegratorOutputMX = Val (NonVec (CasadiClass IOSchemeVectorIntegratorOutputMX))
+-- valIOSchemeVectorIntegratorOutputMX = ((CasadiClass IOSchemeVectorIntegratorOutputMX))
 -- valIOSchemeVectorSOCPInputSXMatrix :: Type
--- valIOSchemeVectorSOCPInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorSOCPInputSXMatrix))
+-- valIOSchemeVectorSOCPInputSXMatrix = ((CasadiClass IOSchemeVectorSOCPInputSXMatrix))
 constrefMX :: Type
-constrefMX = ConstRef (NonVec (CasadiClass MX))
+constrefMX = ConstRef ((CasadiClass MX))
 valCLong :: Type
-valCLong = Val (NonVec CLong)
+valCLong = (CLong)
 -- valIOSchemeVectorACADO_InputCRSSparsity :: Type
--- valIOSchemeVectorACADO_InputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorACADO_InputCRSSparsity))
+-- valIOSchemeVectorACADO_InputCRSSparsity = ((CasadiClass IOSchemeVectorACADO_InputCRSSparsity))
 --refCBoolVec :: Type
---refCBoolVec = Ref (Vec (NonVec CBool))
+--refCBoolVec = Ref (StdVec (CBool))
 --valQPStabilizer :: Type
---valQPStabilizer = Val (NonVec (CasadiClass QPStabilizer))
+--valQPStabilizer = ((CasadiClass QPStabilizer))
 -- valIOSchemeVectorMX :: Type
--- valIOSchemeVectorMX = Val (NonVec (CasadiClass IOSchemeVectorMX))
+-- valIOSchemeVectorMX = ((CasadiClass IOSchemeVectorMX))
 -- valIOSchemeVectorSDPInputCRSSparsity :: Type
--- valIOSchemeVectorSDPInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorSDPInputCRSSparsity))
+-- valIOSchemeVectorSDPInputCRSSparsity = ((CasadiClass IOSchemeVectorSDPInputCRSSparsity))
 valStdStringVec :: Type
-valStdStringVec = Val (Vec (NonVec StdString))
+valStdStringVec = (StdVec (StdString))
 -- valIOSchemeVectorACADO_InputSXMatrix :: Type
--- valIOSchemeVectorACADO_InputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorACADO_InputSXMatrix))
+-- valIOSchemeVectorACADO_InputSXMatrix = ((CasadiClass IOSchemeVectorACADO_InputSXMatrix))
 valMX :: Type
-valMX = Val (NonVec (CasadiClass MX))
+valMX = ((CasadiClass MX))
 --valCIntVecVec :: Type
---valCIntVecVec = Val (Vec (Vec (NonVec CInt)))
+--valCIntVecVec = (StdVec (StdVec (CInt)))
 -- valIOSchemeVectorSOCPInputCRSSparsity :: Type
--- valIOSchemeVectorSOCPInputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorSOCPInputCRSSparsity))
+-- valIOSchemeVectorSOCPInputCRSSparsity = ((CasadiClass IOSchemeVectorSOCPInputCRSSparsity))
 constrefCallback :: Type
-constrefCallback = ConstRef (NonVec (CasadiClass Callback))
+constrefCallback = ConstRef ((CasadiClass Callback))
 -- valIOSchemeVectorIntegratorOutputCRSSparsity :: Type
--- valIOSchemeVectorIntegratorOutputCRSSparsity = Val (NonVec (CasadiClass IOSchemeVectorIntegratorOutputCRSSparsity))
+-- valIOSchemeVectorIntegratorOutputCRSSparsity = ((CasadiClass IOSchemeVectorIntegratorOutputCRSSparsity))
 valDMatrix :: Type
-valDMatrix = Val (NonVec (CasadiClass DMatrix))
+valDMatrix = ((CasadiClass DMatrix))
 -- valIOSchemeVectorQCQPSolverInputSXMatrix :: Type
--- valIOSchemeVectorQCQPSolverInputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorQCQPSolverInputSXMatrix))
+-- valIOSchemeVectorQCQPSolverInputSXMatrix = ((CasadiClass IOSchemeVectorQCQPSolverInputSXMatrix))
 -- valIOSchemeVectorNLPOutputMX :: Type
--- valIOSchemeVectorNLPOutputMX = Val (NonVec (CasadiClass IOSchemeVectorNLPOutputMX))
+-- valIOSchemeVectorNLPOutputMX = ((CasadiClass IOSchemeVectorNLPOutputMX))
 refCDouble :: Type
-refCDouble = Ref (NonVec CDouble)
+refCDouble = Ref (CDouble)
 refCDoubleVec :: Type
-refCDoubleVec = Ref (Vec (NonVec CDouble))
+refCDoubleVec = Ref (StdVec (CDouble))
 --constrefGenIMatrix :: Type
---constrefGenIMatrix = ConstRef (NonVec (CasadiClass GenIMatrix))
+--constrefGenIMatrix = ConstRef ((CasadiClass GenIMatrix))
 refDMatrix :: Type
-refDMatrix = Ref (NonVec (CasadiClass DMatrix))
+refDMatrix = Ref ((CasadiClass DMatrix))
 --valStabilizedSQPMethod :: Type
---valStabilizedSQPMethod = Val (NonVec (CasadiClass StabilizedSQPMethod))
+--valStabilizedSQPMethod = ((CasadiClass StabilizedSQPMethod))
 -- valIOSchemeVectorSOCPOutputSXMatrix :: Type
--- valIOSchemeVectorSOCPOutputSXMatrix = Val (NonVec (CasadiClass IOSchemeVectorSOCPOutputSXMatrix))
+-- valIOSchemeVectorSOCPOutputSXMatrix = ((CasadiClass IOSchemeVectorSOCPOutputSXMatrix))
 --valIndexSet :: Type
---valIndexSet = Val (NonVec (CasadiClass IndexSet))
+--valIndexSet = ((CasadiClass IndexSet))
 --constrefGenDMatrix :: Type
---constrefGenDMatrix = ConstRef (NonVec (CasadiClass GenDMatrix))
+--constrefGenDMatrix = ConstRef ((CasadiClass GenDMatrix))
 --valSharedObject :: Type
---valSharedObject = Val (NonVec (CasadiClass SharedObject))
+--valSharedObject = ((CasadiClass SharedObject))
 constrefSXMatrixVec :: Type
-constrefSXMatrixVec = ConstRef (Vec (NonVec (CasadiClass SXMatrix)))
+constrefSXMatrixVec = ConstRef (StdVec ((CasadiClass SXMatrix)))
 constrefCDouble :: Type
-constrefCDouble = ConstRef (NonVec CDouble)
+constrefCDouble = ConstRef (CDouble)
 --valStabilizedQPSolver :: Type
---valStabilizedQPSolver = Val (NonVec (CasadiClass StabilizedQPSolver))
+--valStabilizedQPSolver = ((CasadiClass StabilizedQPSolver))
 constrefCDoubleVec :: Type
-constrefCDoubleVec = ConstRef (Vec (NonVec CDouble))
+constrefCDoubleVec = ConstRef (StdVec (CDouble))

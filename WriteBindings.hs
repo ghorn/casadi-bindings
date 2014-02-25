@@ -11,14 +11,14 @@ import Data.List ( sort )
 import Data.Maybe ( catMaybes )
 import System.Directory ( doesFileExist )
 
---import qualified WriteBindings.Buildbot.CasadiTree as Buildbot
+--import WriteBindings.Buildbot.CasadiTree ( enums, tools, classes )
 import WriteBindings.MyCasadiTree ( enums, tools, classes )
 import WriteBindings.Buildbot.CasadiClasses
 import qualified WriteBindings.Buildbot.CasadiTree as Buildbot
 import qualified WriteBindings.WriteC as C
 import qualified WriteBindings.WriteHs as HS
 import WriteBindings.Types
-import WriteBindings.WriteForeignTools
+import WriteBindings.WriteCTools
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -37,20 +37,18 @@ main = do
              , "#include <symbolic/fx/custom_function.hpp>"
              ] ++
              concatMap C.writeClass classes' ++
-             map C.writeFunction tools' ++ map C.writeDeletes [CInt,CDouble,StdString,CBool]
-      hsDeleters = HS.writeDeleterModule classes'
+             map C.writeFunction tools'
       hsData = HS.writeDataModule classes' baseClasses
       hsClassModules = HS.writeClassModules baseClasses classes'
       hsToolsModule = HS.writeToolsModule tools'
       --hsIOSchemeHelpersModule = HS.writeIOSchemeHelpersModule ioschemeHelpers'
       hsEnumsModule = HS.writeEnumsModule enums
 
-  writeFile' "Casadi/Wrappers/ForeignToolsImports.hs" foreignToolsImports
-  writeFile' "Casadi/Wrappers/ForeignToolsInstances.hs" foreignToolsInstances
+  writeFile' "Casadi/Wrappers/CToolsImports.hs" cToolsImports
+  writeFile' "Casadi/Wrappers/CToolsInstances.hs" cToolsInstances
 
   writeFile' "cbits/autogen/all.cpp" cOut
   writeFile' "Casadi/Wrappers/Data.hs" hsData
-  writeFile' "Casadi/Wrappers/Deleters.hs" hsDeleters
   mapM_ (\(dataname, src) -> writeFile' ("Casadi/Wrappers/Classes/" ++ dataname ++ ".hs") src)  hsClassModules
   writeFile' "Casadi/Wrappers/Tools.hs" hsToolsModule
   --writeFile' "Casadi/Wrappers/IOSchemeHelpers.hs" hsIOSchemeHelpersModule
@@ -64,7 +62,7 @@ tools' = map addNamespace $ filter okTool tools
     okTool :: Function -> Bool
     okTool x
       | hasType StdOstream x = False
-      | hasType StdOstream x = False
+      | hasType (Ref StdOstream) x = False
       | any (flip hasType x) badClasses' = False
       | otherwise = True
 
@@ -72,8 +70,10 @@ tools' = map addNamespace $ filter okTool tools
     addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
 
 -- all classes in Buildbot classes, but not in classes'
-badClasses' :: [Primitive]
-badClasses' = map CasadiClass (S.toList badClasses)
+badClasses' :: [Type]
+badClasses' = bc0 ++ (map Ref bc0) ++ (map ConstRef bc0)
+  where
+    bc0 = map CasadiClass (S.toList badClasses)
 
 badClasses :: S.Set CasadiClass
 badClasses = S.difference buildbotClasses goodClasses
@@ -90,26 +90,16 @@ addDocs = id
 filterStdOstreams :: Class -> Class
 filterStdOstreams (Class cc methods docs) = Class cc methods' docs
   where
-    methods' = filter (not . (hasType' StdOstream)) methods
+    methods' = filter (not . (hasTypes' [StdOstream, Ref StdOstream, ConstRef StdOstream])) methods
 
-hasType' :: Primitive -> Method -> Bool
-hasType' typ (Method _ ret params _ _) = typ `elem` (map getPrim (ret:params))
+hasTypes' :: [Type] -> Method -> Bool
+hasTypes' tps method = any (flip hasType' method) tps
 
-hasType :: Primitive -> Function -> Bool
-hasType typ (Function _ ret params _) = typ `elem` (map getPrim (ret:params))
+hasType' :: Type -> Method -> Bool
+hasType' typ (Method _ ret params _ _) = typ `elem` (ret:params)
 
-getPrim :: Type -> Primitive
-getPrim (Val x) = getPrimTV x
-getPrim (Ref x) = getPrimTV x
-getPrim (ConstRef x) = getPrimTV x
-
-getPrimTV :: ThreeVectors -> Primitive
-getPrimTV (NonVec x) = x
-getPrimTV (Vec (NonVec x)) = x
-getPrimTV (Vec (Vec (NonVec x))) = x
-getPrimTV (Vec (Vec (Vec (NonVec x)))) = x
-getPrimTV (Vec (Vec (Vec (Vec ())))) = error "getPrimTV: Vec (Vec (Vec (Vec ())))"
-
+hasType :: Type -> Function -> Bool
+hasType typ (Function _ ret params _) = typ `elem` (ret:params)
 
 baseClasses :: Class -> [Class]
 baseClasses (Class classType _ _) = catMaybes $ map (lookup' classMap) (baseClasses' classType)
