@@ -150,7 +150,7 @@ cppMethodName classType fcn = case fMethodType fcn of
 toCName :: String -> String
 toCName cppName = replaces replacements cppName
   where
-    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus")]
+    replacements = [(":","_"),(" >","_"),("< ","_"),("<","_"),(">","_"),("'","_TIC"),(" ==","_equals"),(" !=","_nequals"),(" +","_plus"),(" *","_mul"),(" -","_minus"),(" ()","_call")]
 
 replaces :: [(String,String)] -> String -> String
 replaces ((find',replace'):xs) = replaces xs . T.unpack . T.replace (T.pack find') (T.pack replace') . T.pack
