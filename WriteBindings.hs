@@ -57,49 +57,58 @@ main = do
     unlines $ map ((\(dataname,_) -> "                       Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
 
 tools' :: [Function]
-tools' = map addNamespace $ filter okTool tools
+tools' = map addNamespace $ filter (not . functionHasBadTypes) tools
   where
-    okTool :: Function -> Bool
-    okTool x
-      | hasType StdOstream x = False
-      | hasType (Ref StdOstream) x = False
-      | any (flip hasType x) badClasses' = False
-      | otherwise = True
-
     addNamespace :: Function -> Function
     addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
 
+typeHasType :: Type -> Type -> Bool
+typeHasType x y
+  | x == y = True
+typeHasType x (StdVec y) = typeHasType x y
+typeHasType x (Ref y) = typeHasType x y
+typeHasType x (ConstRef y) = typeHasType x y
+typeHasType _ _ = False
+
+
+
 -- all classes in Buildbot classes, but not in classes'
-badClasses' :: [Type]
-badClasses' = bc0 ++ (map Ref bc0) ++ (map ConstRef bc0)
+badTypes :: [Type]
+badTypes = bc0 ++ (map Ref bc0) ++ (map ConstRef bc0)
   where
-    bc0 = map CasadiClass (S.toList badClasses)
+    bc0 = [StdOstream] ++ map CasadiClass (S.toList badClasses)
 
 badClasses :: S.Set CasadiClass
 badClasses = S.difference buildbotClasses goodClasses
   where
-    goodClasses = S.fromList $ map (\(Class cc _ _) -> cc) classes'
-    buildbotClasses = S.fromList $ map (\(Class cc _ _) -> cc) Buildbot.classes
+    goodClasses = S.fromList $ map (\(Class cc _ _) -> cc) (classes' ++ ioscheme)
+    buildbotClasses = S.fromList $ map (\(Class cc _ _) -> cc) (Buildbot.classes ++ Buildbot.ioschemeclasses)
+
+ioscheme :: [Class]
+ioscheme = (filter (\(Class cc _ _) -> cc == IOScheme) Buildbot.ioschemeclasses)
 
 classes' :: [Class]
-classes' = map (addDocs . filterStdOstreams) classes -- ++ ioschemeclasses)
+classes' = map (addDocs . filterMethods) (classes ++ ioscheme)
 
 addDocs :: Class -> Class
 addDocs = id
 
-filterStdOstreams :: Class -> Class
-filterStdOstreams (Class cc methods docs) = Class cc methods' docs
+filterMethods :: Class -> Class
+filterMethods (Class ct methods docs) = Class ct methods' docs
   where
-    methods' = filter (not . (hasTypes' [StdOstream, Ref StdOstream, ConstRef StdOstream])) methods
+    methods' = filter (not . methodHasBadTypes) methods
+    methodHasBadTypes :: Method -> Bool
+    methodHasBadTypes method = any (flip methodHasType method) badTypes
+      where
+        methodHasType :: Type -> Method -> Bool
+        methodHasType typ (Method _ ret params _ _) = any (typeHasType typ) (ret:params)
 
-hasTypes' :: [Type] -> Method -> Bool
-hasTypes' tps method = any (flip hasType' method) tps
+functionHasBadTypes :: Function -> Bool
+functionHasBadTypes function = any (flip functionHasType function) badTypes
+  where
+    functionHasType :: Type -> Function -> Bool
+    functionHasType typ (Function _ ret params _) = any (typeHasType typ) (ret:params)
 
-hasType' :: Type -> Method -> Bool
-hasType' typ (Method _ ret params _ _) = typ `elem` (ret:params)
-
-hasType :: Type -> Function -> Bool
-hasType typ (Function _ ret params _) = typ `elem` (ret:params)
 
 baseClasses :: Class -> [Class]
 baseClasses (Class classType _ _) = catMaybes $ map (lookup' classMap) (baseClasses' classType)
