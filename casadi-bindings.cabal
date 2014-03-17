@@ -20,8 +20,13 @@ library
 
   Include-dirs:   /usr/include/casadi
                   /usr/share/casadi
+--  Include-dirs:   /home/ghorn/casadi
+--                  /home/ghorn/casadi/build/swig
 
   extra-lib-dirs:   /usr/lib
+--  extra-lib-dirs:   /home/ghorn/casadi/build/lib
+--  Extra-lib-dirs:  /home/ghorn/snopt7/install_here_pls/lib
+
   extra-libraries:  stdc++
                     gfortran
                     casadi_snopt_interface

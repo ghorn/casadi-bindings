@@ -2,6 +2,7 @@ all : Casadi/Wrappers/Tools.o allcpp
 allcpp : cbits/autogen/all.o cbits/hs_tools.o cbits/callback.o
 
 CASADI_INCLUDES = -I/usr/include/casadi -I/usr/share/casadi
+#CASADI_INCLUDES = -I/home/ghorn/casadi -I/home/ghorn/casadi/build/swig
 
 cbits/hs_tools.o : cbits/hs_tools.cpp
 	clang++ -Wall -Werror $(CASADI_INCLUDES) -c cbits/hs_tools.cpp -o cbits/hs_tools.o
