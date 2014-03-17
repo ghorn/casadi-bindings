@@ -23,23 +23,18 @@ library
 
   extra-lib-dirs:   /usr/lib
   extra-libraries:  stdc++
-                    casadi_ipopt_interface
-                    casadi_ipopt
-                    dl
-                    casadi_coinmumps
-                    pthread
-                    casadi_coinlapack
-                    casadi_coinmetis
-                    casadi_coinblas
                     gfortran
                     casadi_snopt_interface
                     snopt_fortran_c_bridge
                     snopt7
                     snprint7
                     snblas
+                    casadi_ipopt_interface
+                    ipopt
+                    dmumps
+                    blas
                     m
-                    gcc_s
-                    quadmath
+                    dl
                     casadi_sundials_interface
                     casadi_sundials
                     casadi_qpoases_interface
@@ -57,7 +52,6 @@ library
                     casadi_nonlinear_programming
                     casadi
                     dl
---                    /usr/lib/x86_64-linux-gnu/librt.so
 
   ghc-prof-options: -O2 -prof -fprof-auto -fprof-cafs -rtsopts
   ghc-options: -O2
