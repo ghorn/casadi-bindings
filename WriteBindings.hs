@@ -11,8 +11,7 @@ import Data.List ( sort )
 import Data.Maybe ( catMaybes )
 import System.Directory ( doesFileExist )
 
---import WriteBindings.Buildbot.CasadiTree ( enums, tools, classes )
-import WriteBindings.MyCasadiTree ( enums, tools, classes )
+import WriteBindings.Buildbot.CasadiTree ( enums, tools, classes )
 import WriteBindings.Buildbot.CasadiClasses
 import qualified WriteBindings.Buildbot.CasadiTree as Buildbot
 import qualified WriteBindings.WriteC as C

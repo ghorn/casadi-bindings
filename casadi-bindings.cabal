@@ -32,13 +32,23 @@ library
                     casadi_coinmetis
                     casadi_coinblas
                     gfortran
+                    casadi_snopt_interface
+                    snopt_fortran_c_bridge
+                    snopt7
+                    snprint7
+                    snblas
                     m
                     gcc_s
                     quadmath
                     casadi_sundials_interface
                     casadi_sundials
+                    casadi_qpoases_interface
+                    casadi_qpoases
+                    casadi_dsdp_interface
+                    casadi_dsdp
                     casadi_csparse_interface
                     casadi_csparse
+                    casadi_lapack_interface
                     casadi_optimal_control
                     casadi_control
                     casadi_tinyxml
@@ -68,30 +78,102 @@ library
   exposed-modules:     Casadi.Callback
                        Casadi.Wrappers.Tools
                        Casadi.Wrappers.Enums
-                       Casadi.Wrappers.Classes.SXFunction
-                       Casadi.Wrappers.Classes.MXFunction
-                       Casadi.Wrappers.Classes.FX
-                       Casadi.Wrappers.Classes.SharedObject
-                       Casadi.Wrappers.Classes.PrintableObject
-                       Casadi.Wrappers.Classes.CRSSparsity
-                       Casadi.Wrappers.Classes.GenericType
-                       Casadi.Wrappers.Classes.IOInterfaceFX
-                       Casadi.Wrappers.Classes.OptionsFunctionality
-                       Casadi.Wrappers.Classes.IpoptSolver
-                       Casadi.Wrappers.Classes.SXMatrix
-                       Casadi.Wrappers.Classes.IOScheme
-                       Casadi.Wrappers.Classes.DMatrix
-                       Casadi.Wrappers.Classes.MX
-                       Casadi.Wrappers.Classes.CasadiOptions
-                       Casadi.Wrappers.Classes.Callback
-                       Casadi.Wrappers.Classes.CustomEvaluate
-                       Casadi.Wrappers.Classes.ExternalFunction
-                       Casadi.Wrappers.Classes.CSparse
-                       Casadi.Wrappers.Classes.SX
-                       Casadi.Wrappers.Classes.CasadiMeta
-                       Casadi.Wrappers.Classes.Functor
-                       Casadi.Wrappers.Classes.CustomFunction
 
+                       Casadi.Wrappers.Classes.SXFunction
+                       Casadi.Wrappers.Classes.RKIntegrator
+                       Casadi.Wrappers.Classes.SQPMethod
+                       Casadi.Wrappers.Classes.SharedObject
+                       Casadi.Wrappers.Classes.MXFunction
+                       Casadi.Wrappers.Classes.StabilizedQPSolver
+                       Casadi.Wrappers.Classes.SymbolicNLP
+                       Casadi.Wrappers.Classes.CSparse
+                       Casadi.Wrappers.Classes.PrintableObject
+                       Casadi.Wrappers.Classes.ExpDMatrix
+                       Casadi.Wrappers.Classes.QCQPSolver
+                       Casadi.Wrappers.Classes.NLPSolver
+                       Casadi.Wrappers.Classes.GenericType
+                       Casadi.Wrappers.Classes.NLPQPSolver
+                       Casadi.Wrappers.Classes.IOInterfaceFX
+                       Casadi.Wrappers.Classes.Variable
+                       Casadi.Wrappers.Classes.LPStructure
+                       Casadi.Wrappers.Classes.ImplicitFixedStepIntegrator
+                       Casadi.Wrappers.Classes.CSparseCholesky
+                       Casadi.Wrappers.Classes.SDPSOCPSolver
+                       Casadi.Wrappers.Classes.OptionsFunctionality
+                       Casadi.Wrappers.Classes.OldCollocationIntegrator
+                       Casadi.Wrappers.Classes.FixedStepIntegrator
+                       Casadi.Wrappers.Classes.CollocationIntegrator
+                       Casadi.Wrappers.Classes.SOCPStructure
+                       Casadi.Wrappers.Classes.GenSX
+                       Casadi.Wrappers.Classes.IpoptSolver
+                       Casadi.Wrappers.Classes.DMatrix
+                       Casadi.Wrappers.Classes.QPOasesSolver
+                       Casadi.Wrappers.Classes.Sparsity
+                       Casadi.Wrappers.Classes.ExpMX
+                       Casadi.Wrappers.Classes.MX
+                       Casadi.Wrappers.Classes.QCQPStructure
+                       Casadi.Wrappers.Classes.DpleSolver
+                       Casadi.Wrappers.Classes.SDQPSolver
+                       Casadi.Wrappers.Classes.QPLPSolver
+                       Casadi.Wrappers.Classes.SDPSDQPSolver
+                       Casadi.Wrappers.Classes.DSDPSolver
+                       Casadi.Wrappers.Classes.SDPSolver
+                       Casadi.Wrappers.Classes.CasadiOptions
+                       Casadi.Wrappers.Classes.Slice
+                       Casadi.Wrappers.Classes.FX
+                       Casadi.Wrappers.Classes.CustomEvaluate
+                       Casadi.Wrappers.Classes.GenMX
+                       Casadi.Wrappers.Classes.ControlSimulator
+                       Casadi.Wrappers.Classes.LapackQRDense
+                       Casadi.Wrappers.Classes.IMatrix
+                       Casadi.Wrappers.Classes.SXElement
+                       Casadi.Wrappers.Classes.SCPgen
+                       Casadi.Wrappers.Classes.NLPImplicitSolver
+                       Casadi.Wrappers.Classes.ExternalFunction
+                       Casadi.Wrappers.Classes.SimpleIndefDpleSolver
+                       Casadi.Wrappers.Classes.DirectCollocation
+                       Casadi.Wrappers.Classes.QPStabilizer
+                       Casadi.Wrappers.Classes.GenIMatrix
+                       Casadi.Wrappers.Classes.Callback
+                       Casadi.Wrappers.Classes.SOCPQCQPSolver
+                       Casadi.Wrappers.Classes.QCQPQPSolver
+                       Casadi.Wrappers.Classes.ExpSX
+                       Casadi.Wrappers.Classes.Integrator
+                       Casadi.Wrappers.Classes.WeakRef
+                       Casadi.Wrappers.Classes.Simulator
+                       Casadi.Wrappers.Classes.Parallelizer
+                       Casadi.Wrappers.Classes.SundialsIntegrator
+                       Casadi.Wrappers.Classes.QPSolver
+                       Casadi.Wrappers.Classes.Nullspace
+                       Casadi.Wrappers.Classes.IdasIntegrator
+                       Casadi.Wrappers.Classes.ExpSXElement
+                       Casadi.Wrappers.Classes.NewtonImplicitSolver
+                       Casadi.Wrappers.Classes.SnoptSolver
+                       Casadi.Wrappers.Classes.KinsolSolver
+                       Casadi.Wrappers.Classes.QPStructure
+                       Casadi.Wrappers.Classes.CasadiMeta
+                       Casadi.Wrappers.Classes.SymbolicQR
+                       Casadi.Wrappers.Classes.DirectSingleShooting
+                       Casadi.Wrappers.Classes.SX
+                       Casadi.Wrappers.Classes.DirectMultipleShooting
+                       Casadi.Wrappers.Classes.SDQPStructure
+                       Casadi.Wrappers.Classes.SDPStructure
+                       Casadi.Wrappers.Classes.GenDMatrix
+                       Casadi.Wrappers.Classes.ExpIMatrix
+                       Casadi.Wrappers.Classes.CustomFunction
+                       Casadi.Wrappers.Classes.LPSolver
+                       Casadi.Wrappers.Classes.OCPSolver
+                       Casadi.Wrappers.Classes.LinearSolver
+                       Casadi.Wrappers.Classes.SymbolicOCP
+                       Casadi.Wrappers.Classes.LapackLUDense
+                       Casadi.Wrappers.Classes.SOCPSolver
+                       Casadi.Wrappers.Classes.DerivativeGenerator
+                       Casadi.Wrappers.Classes.ImplicitFunction
+                       Casadi.Wrappers.Classes.IndexSet
+                       Casadi.Wrappers.Classes.CVodesIntegrator
+                       Casadi.Wrappers.Classes.IndexList
+                       Casadi.Wrappers.Classes.StabilizedSQPMethod
+                       Casadi.Wrappers.Classes.IOScheme
 source-repository head
   type: git
   location: git://github.com/ghorn/casadi-bindings.git
