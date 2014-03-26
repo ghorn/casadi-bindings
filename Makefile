@@ -27,7 +27,7 @@ cbits/autogen/all.cpp Casadi/Wrappers/Tools.hs : writeThemBindings
 	./writeThemBindings
 
 writeThemBindings :  WriteBindings.hs WriteBindings/*.hs WriteBindings/Buildbot/*.hs
-	ghc --make -O2 WriteBindings -o writeThemBindings
+	ghc --make WriteBindings -o writeThemBindings
 
 clean_gen :
 	rm -f cbits/autogen/*
