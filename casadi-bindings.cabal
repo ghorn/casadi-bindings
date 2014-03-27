@@ -83,6 +83,7 @@ library
                        Casadi.Wrappers.Classes.SQPMethod
                        Casadi.Wrappers.Classes.SharedObject
                        Casadi.Wrappers.Classes.MXFunction
+                       Casadi.Wrappers.Classes.HomotopyNLPSolver
                        Casadi.Wrappers.Classes.StabilizedQPSolver
                        Casadi.Wrappers.Classes.SymbolicNLP
                        Casadi.Wrappers.Classes.CSparse
@@ -92,7 +93,6 @@ library
                        Casadi.Wrappers.Classes.NLPSolver
                        Casadi.Wrappers.Classes.GenericType
                        Casadi.Wrappers.Classes.NLPQPSolver
-                       Casadi.Wrappers.Classes.IOInterfaceFX
                        Casadi.Wrappers.Classes.Variable
                        Casadi.Wrappers.Classes.LPStructure
                        Casadi.Wrappers.Classes.ImplicitFixedStepIntegrator
@@ -102,7 +102,6 @@ library
                        Casadi.Wrappers.Classes.OldCollocationIntegrator
                        Casadi.Wrappers.Classes.FixedStepIntegrator
                        Casadi.Wrappers.Classes.CollocationIntegrator
-                       Casadi.Wrappers.Classes.SOCPStructure
                        Casadi.Wrappers.Classes.GenSX
                        Casadi.Wrappers.Classes.IpoptSolver
                        Casadi.Wrappers.Classes.DMatrix
@@ -119,7 +118,6 @@ library
                        Casadi.Wrappers.Classes.SDPSolver
                        Casadi.Wrappers.Classes.CasadiOptions
                        Casadi.Wrappers.Classes.Slice
-                       Casadi.Wrappers.Classes.FX
                        Casadi.Wrappers.Classes.CustomEvaluate
                        Casadi.Wrappers.Classes.GenMX
                        Casadi.Wrappers.Classes.ControlSimulator
@@ -141,6 +139,7 @@ library
                        Casadi.Wrappers.Classes.WeakRef
                        Casadi.Wrappers.Classes.Simulator
                        Casadi.Wrappers.Classes.Parallelizer
+                       Casadi.Wrappers.Classes.SimpleHomotopyNLPSolver
                        Casadi.Wrappers.Classes.SundialsIntegrator
                        Casadi.Wrappers.Classes.QPSolver
                        Casadi.Wrappers.Classes.Nullspace
@@ -155,6 +154,7 @@ library
                        Casadi.Wrappers.Classes.DirectSingleShooting
                        Casadi.Wrappers.Classes.SX
                        Casadi.Wrappers.Classes.DirectMultipleShooting
+                       Casadi.Wrappers.Classes.IOInterfaceFunction
                        Casadi.Wrappers.Classes.SDQPStructure
                        Casadi.Wrappers.Classes.SDPStructure
                        Casadi.Wrappers.Classes.GenDMatrix
@@ -164,15 +164,17 @@ library
                        Casadi.Wrappers.Classes.OCPSolver
                        Casadi.Wrappers.Classes.LinearSolver
                        Casadi.Wrappers.Classes.SymbolicOCP
+                       Casadi.Wrappers.Classes.Function
                        Casadi.Wrappers.Classes.LapackLUDense
                        Casadi.Wrappers.Classes.SOCPSolver
                        Casadi.Wrappers.Classes.DerivativeGenerator
+                       Casadi.Wrappers.Classes.SOCPStructure
                        Casadi.Wrappers.Classes.ImplicitFunction
-                       Casadi.Wrappers.Classes.IndexSet
                        Casadi.Wrappers.Classes.CVodesIntegrator
                        Casadi.Wrappers.Classes.IndexList
                        Casadi.Wrappers.Classes.StabilizedSQPMethod
                        Casadi.Wrappers.Classes.IOScheme
+
 source-repository head
   type: git
   location: git://github.com/ghorn/casadi-bindings.git

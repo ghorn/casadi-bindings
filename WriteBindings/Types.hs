@@ -2,7 +2,7 @@
 
 module WriteBindings.Types
        ( Class(..)
-       , Function(..)
+       , CppFunction(..)
        , Method(..)
        , Name(..)
        , Type(..)
@@ -26,7 +26,7 @@ data MethodType = Constructor | Static | Normal deriving Show
 
 newtype Doc = Doc String deriving (Show, Eq)
 data Class = Class CasadiClass [Method] Doc deriving Show
-data Function = Function Name Type [Type] Doc deriving Show
+data CppFunction = CppFunction Name Type [Type] Doc deriving Show
 
 data Name = Name String deriving Show
 

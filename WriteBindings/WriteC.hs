@@ -25,8 +25,8 @@ marshal k t = "    " ++ cppMarshalType t ++ " " ++ paramName k ++
 
 
 
-writeFunction :: Function -> String
-writeFunction fcn@(Function (Name functionName) retType params _) =
+writeFunction :: CppFunction -> String
+writeFunction fcn@(CppFunction (Name functionName) retType params _) =
   unlines
   [ "// ================== function " ++ show functionName ++ " ==============="
   , "// cppName: " ++ show cppName

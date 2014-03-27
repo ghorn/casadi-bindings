@@ -1,6 +1,6 @@
 #include <iostream>
 #include <symbolic/casadi.hpp>
-#include "symbolic/fx/custom_function.hpp"
+#include "symbolic/function/custom_function.hpp"
 #include "symbolic/functor_internal.hpp"
 
 #include "HsFFI.h"
@@ -9,7 +9,7 @@ using namespace std;
 using namespace CasADi;
 
 extern "C" {
-typedef int (*hs_callback_t)(FX &f);
+typedef int (*hs_callback_t)(Function &f);
 }
 
 namespace CasADi {
@@ -31,7 +31,7 @@ namespace CasADi {
     friend class CallbackHaskell;
 
       CallbackHaskellInternal(hs_callback_t hscb) : FunctorHaskellInternal(hscb) {}
-    virtual int call(FX& fcn, void* user_data);
+    virtual int call(Function& fcn, void* user_data);
     virtual CallbackHaskellInternal* clone() const { return new CallbackHaskellInternal(hs_callback); }
   };
 
@@ -40,7 +40,7 @@ namespace CasADi {
       CallbackHaskell(hs_callback_t hscb) { assignNode(new CallbackHaskellInternal(hscb)); }
   };
 
-  int CallbackHaskellInternal::call(FX& fcn, void* user_data) {
+  int CallbackHaskellInternal::call(Function& fcn, void* user_data) {
       return hs_callback(fcn);
   }
 }

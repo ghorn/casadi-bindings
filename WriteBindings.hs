@@ -33,7 +33,7 @@ main = do
              [ "#include <swiginclude.hpp>"
              , "#include \"../marshal.hpp\""
              , "#include <symbolic/functor_internal.hpp>"
-             , "#include <symbolic/fx/custom_function.hpp>"
+             , "#include <symbolic/function/custom_function.hpp>"
              ] ++
              concatMap C.writeClass classes' ++
              map C.writeFunction tools'
@@ -55,11 +55,11 @@ main = do
   writeFile' "Casadi/Wrappers/modules.txt" $
     unlines $ map ((\(dataname,_) -> "                       Casadi.Wrappers.Classes." ++ dataname)) hsClassModules
 
-tools' :: [Function]
+tools' :: [CppFunction]
 tools' = map addNamespace $ filter (not . functionHasBadTypes) tools
   where
-    addNamespace :: Function -> Function
-    addNamespace (Function (Name name) x y z) = Function (Name ("CasADi::"++name)) x y z
+    addNamespace :: CppFunction -> CppFunction
+    addNamespace (CppFunction (Name name) x y z) = CppFunction (Name ("CasADi::"++name)) x y z
 
 typeHasType :: Type -> Type -> Bool
 typeHasType x y
@@ -102,11 +102,11 @@ filterMethods (Class ct methods docs) = Class ct methods' docs
         methodHasType :: Type -> Method -> Bool
         methodHasType typ (Method _ ret params _ _) = any (typeHasType typ) (ret:params)
 
-functionHasBadTypes :: Function -> Bool
+functionHasBadTypes :: CppFunction -> Bool
 functionHasBadTypes function = any (flip functionHasType function) badTypes
   where
-    functionHasType :: Type -> Function -> Bool
-    functionHasType typ (Function _ ret params _) = any (typeHasType typ) (ret:params)
+    functionHasType :: Type -> CppFunction -> Bool
+    functionHasType typ (CppFunction _ ret params _) = any (typeHasType typ) (ret:params)
 
 
 baseClasses :: Class -> [Class]

@@ -98,8 +98,8 @@ writeClassMethods c@(Class classType methods' _)= methods
           _ -> betterCamelCase (show classType) ++ "_" ++ prettyTics (toCName methodName)
 
         (wrapperName, ffiWrapper) = case fMethodType fcn of
-          Normal -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) ((Ref (CasadiClass classType)):(fArgs fcn)) (Doc "")
-          _ -> writeFunction Nothing $ Function (Name cWrapperName'') (fType fcn) (fArgs fcn) (Doc "")
+          Normal -> writeFunction Nothing $ CppFunction (Name cWrapperName'') (fType fcn) ((Ref (CasadiClass classType)):(fArgs fcn)) (Doc "")
+          _ -> writeFunction Nothing $ CppFunction (Name cWrapperName'') (fType fcn) (fArgs fcn) (Doc "")
 
         typeDef = case fMethodType fcn of
           Normal -> className ++ " a => " ++ concat (intersperse " -> " ("a":map (hsType False) (fArgs fcn) ++ [retType']))
@@ -150,8 +150,8 @@ baseclassInstances c bcs = unlines $ map writeInstance' bcs
       , "  cast" ++ dataName bc ++ " (" ++ dataName c ++ " x) = " ++ dataName bc ++ " (castForeignPtr x)"
       ]
 
-writeFunction :: Maybe String -> Function -> (String, String)
-writeFunction maybeName fcn@(Function (Name hsFunctionName') retType params doc) = (hsFunctionName, ffiWrapper)
+writeFunction :: Maybe String -> CppFunction -> (String, String)
+writeFunction maybeName fcn@(CppFunction (Name hsFunctionName') retType params doc) = (hsFunctionName, ffiWrapper)
   where
     ffiWrapper =
       unlines $
@@ -288,7 +288,7 @@ writeDataModule classes baseClasses =
       ]
 
 
-writeToolsModule :: [Function] -> String
+writeToolsModule :: [CppFunction] -> String
 writeToolsModule functions =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
@@ -310,7 +310,7 @@ writeToolsModule functions =
   ] ++ funDecls
   where
     (funNames, funDecls) = unzip $ map (\f -> writeFunction (Just (rename f)) f) functions
-    rename (Function (Name uglyName) _ _ _) = beautifulHaskellName uglyName
+    rename (CppFunction (Name uglyName) _ _ _) = beautifulHaskellName uglyName
 
     -- haskell functions can't have capital leading letter
     beautifulHaskellName :: String -> String
@@ -321,7 +321,7 @@ writeToolsModule functions =
       x -> x
 
 
-writeIOSchemeHelpersModule :: [Function] -> String
+writeIOSchemeHelpersModule :: [CppFunction] -> String
 writeIOSchemeHelpersModule functions =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
@@ -342,7 +342,7 @@ writeIOSchemeHelpersModule functions =
   ] ++ funDecls
   where
     (funNames, funDecls) = unzip $ map (\f -> writeFunction (Just (rename f)) f) functions
-    rename (Function (Name uglyName) _ _ _) = beautifulHaskellName uglyName
+    rename (CppFunction (Name uglyName) _ _ _) = beautifulHaskellName uglyName
 
     -- haskell functions can't have capital leading letter
     beautifulHaskellName :: String -> String
