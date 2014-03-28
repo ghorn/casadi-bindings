@@ -24,8 +24,10 @@ writeFile' path txt = do
   exist <- doesFileExist path
   if exist
     then do txt0 <- fmap T.unpack $ TIO.readFile path
-            when (txt0 /= txt) $ writeFile path txt
-    else writeFile path txt
+            when (txt0 /= txt) $ do putStrLn $ "(changed) " ++ path
+                                    writeFile path txt
+    else do putStrLn $ "(new)     " ++ path
+            writeFile path txt
 
 main :: IO ()
 main = do
