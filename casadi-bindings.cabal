@@ -1,7 +1,5 @@
 name:                casadi-bindings
-version:             1.8.2.1
-synopsis:            low level bindings to CasADi
-description:         See the readme on github for installation instructions. Version numbers correspond to the C++ library version numbers. This only works on Debian/Ubuntu at the moment (sorry).
+version:             1.9.0.0
 license:             LGPL-3
 license-file:        LICENSE
 copyright:           (c) 2013-2014 Greg Horn
@@ -9,6 +7,22 @@ author:              Greg Horn
 maintainer:          gregmainland@gmail.com
 build-type:          Simple
 cabal-version:       >=1.10
+synopsis:            low level bindings to CasADi
+description:
+    Debian/Ubuntu instructions
+    .
+    Version numbers correspond to the C++ library version numbers except the very last number which may indicate breaking changes.
+    .
+    This only works on Debian/Ubuntu at the moment (sorry).
+    .
+    Install libcasadi from a .deb package here: https://github.com/casadi/casadi/releases, I use libcasadi-shared. (Get the version corresponding to the current casadi-bindings version, for example casadi-bindings-1.9.0.0 is libcasadi 1.9.0)
+    .
+    Then,
+    - `cabal update; cabal install casadi-bindings`
+    .
+    Temporary note: there is something wrong with casadi and ipopt related to http://list.coin-or.org/pipermail/ipopt/2014-April/003670.html, and https://github.com/casadi/casadi/issues/1075. At the moment this .cabal package works for me as is, but YMMV
+
+
 
 extra-source-files:  cbits/marshal.hpp
 extra-tmp-files:     Casadi/Callback_stub.h
@@ -27,28 +41,24 @@ library
 --  extra-lib-dirs:   /home/ghorn/casadi/build/lib
 --  Extra-lib-dirs:  /home/ghorn/snopt7/install_here_pls/lib
 
+
   extra-libraries:  stdc++
-                    gfortran
-                    casadi_snopt_interface
-                    snopt_fortran_c_bridge
-                    snopt7
-                    snprint7
-                    snblas
+--                    gfortran
+--                    casadi_snopt_interface
+--                    snopt_fortran_c_bridge
+--                    snopt7
+--                    snprint7
+--                    snblas
                     casadi_ipopt_interface
-                    ipopt
-                    dmumps
-                    blas
-                    m
-                    dl
                     casadi_sundials_interface
                     casadi_sundials
-                    casadi_qpoases_interface
-                    casadi_qpoases
-                    casadi_dsdp_interface
-                    casadi_dsdp
+--                    casadi_qpoases_interface
+--                    casadi_qpoases
+--                    casadi_dsdp_interface
+--                    casadi_dsdp
                     casadi_csparse_interface
                     casadi_csparse
-                    casadi_lapack_interface
+--                    casadi_lapack_interface
                     casadi_optimal_control
                     casadi_control
                     casadi_tinyxml
@@ -58,9 +68,11 @@ library
                     casadi
                     dl
 
+  pkgconfig-depends: ipopt
+
   ghc-prof-options: -O2 -prof -fprof-auto -fprof-cafs -rtsopts
   ghc-options: -O2
-  cc-options: -O2 -Wall -Wno-delete-non-virtual-dtor
+  cc-options: -Wall -Wno-delete-non-virtual-dtor
 
   C-sources:        cbits/hs_tools.cpp
                     cbits/callback.cpp
@@ -105,7 +117,7 @@ library
                        Casadi.Wrappers.Classes.GenSX
                        Casadi.Wrappers.Classes.IpoptSolver
                        Casadi.Wrappers.Classes.DMatrix
-                       Casadi.Wrappers.Classes.QPOasesSolver
+--                       Casadi.Wrappers.Classes.QPOasesSolver
                        Casadi.Wrappers.Classes.Sparsity
                        Casadi.Wrappers.Classes.ExpMX
                        Casadi.Wrappers.Classes.MX
@@ -114,14 +126,14 @@ library
                        Casadi.Wrappers.Classes.SDQPSolver
                        Casadi.Wrappers.Classes.QPLPSolver
                        Casadi.Wrappers.Classes.SDPSDQPSolver
-                       Casadi.Wrappers.Classes.DSDPSolver
+--                       Casadi.Wrappers.Classes.DSDPSolver
                        Casadi.Wrappers.Classes.SDPSolver
                        Casadi.Wrappers.Classes.CasadiOptions
                        Casadi.Wrappers.Classes.Slice
                        Casadi.Wrappers.Classes.CustomEvaluate
                        Casadi.Wrappers.Classes.GenMX
                        Casadi.Wrappers.Classes.ControlSimulator
-                       Casadi.Wrappers.Classes.LapackQRDense
+--                       Casadi.Wrappers.Classes.LapackQRDense
                        Casadi.Wrappers.Classes.IMatrix
                        Casadi.Wrappers.Classes.SXElement
                        Casadi.Wrappers.Classes.SCPgen
@@ -146,7 +158,7 @@ library
                        Casadi.Wrappers.Classes.IdasIntegrator
                        Casadi.Wrappers.Classes.ExpSXElement
                        Casadi.Wrappers.Classes.NewtonImplicitSolver
-                       Casadi.Wrappers.Classes.SnoptSolver
+--                       Casadi.Wrappers.Classes.SnoptSolver
                        Casadi.Wrappers.Classes.KinsolSolver
                        Casadi.Wrappers.Classes.QPStructure
                        Casadi.Wrappers.Classes.CasadiMeta
@@ -165,7 +177,7 @@ library
                        Casadi.Wrappers.Classes.LinearSolver
                        Casadi.Wrappers.Classes.SymbolicOCP
                        Casadi.Wrappers.Classes.Function
-                       Casadi.Wrappers.Classes.LapackLUDense
+--                       Casadi.Wrappers.Classes.LapackLUDense
                        Casadi.Wrappers.Classes.SOCPSolver
                        Casadi.Wrappers.Classes.DerivativeGenerator
                        Casadi.Wrappers.Classes.SOCPStructure
