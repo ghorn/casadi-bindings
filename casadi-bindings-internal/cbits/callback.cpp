@@ -1,18 +1,18 @@
 #include <iostream>
-#include <symbolic/casadi.hpp>
-#include "symbolic/function/custom_function.hpp"
-#include "symbolic/functor_internal.hpp"
+#include "casadi/symbolic/casadi.hpp"
+#include "casadi/symbolic/function/custom_function.hpp"
+#include "casadi/symbolic/functor_internal.hpp"
 
 #include "HsFFI.h"
 
 using namespace std;
-using namespace CasADi;
+using namespace casadi;
 
 extern "C" {
 typedef int (*hs_callback_t)(Function &f);
 }
 
-namespace CasADi {
+namespace casadi {
   class FunctorHaskellInternal {
     public:
       FunctorHaskellInternal(hs_callback_t hscb)
@@ -50,7 +50,7 @@ CallbackHaskell * new_callback_haskell(hs_callback_t hs_callback){
     return new CallbackHaskell(hs_callback);
 }
 
-extern "C" void delete_callback_haskell(CasADi::CallbackHaskell* obj);
-void delete_callback_haskell(CasADi::CallbackHaskell* obj){
+extern "C" void delete_callback_haskell(casadi::CallbackHaskell* obj);
+void delete_callback_haskell(casadi::CallbackHaskell* obj){
     delete obj;
 }

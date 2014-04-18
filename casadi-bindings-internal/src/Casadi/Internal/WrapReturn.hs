@@ -4,8 +4,9 @@
 {-# Language FlexibleContexts #-}
 {-# Language ScopedTypeVariables #-}
 
-module Casadi.WrapReturn ( WrapReturn(..)
-                         ) where
+module Casadi.Internal.WrapReturn
+       ( WrapReturn(..)
+       ) where
 
 import qualified Data.Vector as V
 import Foreign.C.Types
@@ -14,10 +15,10 @@ import Foreign.Ptr ( Ptr )
 import Foreign.Storable ( Storable )
 import Foreign.Marshal ( mallocArray, free, peekArray )
 
-import Casadi.MarshalTypes ( CppVec, StdString' )
+import Casadi.Internal.MarshalTypes ( StdVec, StdString )
 
-import Casadi.CppHelpers ( readCppVec, c_lengthStdString, c_copyStdString, c_deleteStdString )
-import Casadi.Wrappers.CToolsImports
+import Casadi.Internal.CppHelpers ( readStdVec, c_lengthStdString, c_copyStdString, c_deleteStdString )
+import Casadi.Internal.CToolsImports
 
 class WrapReturn a b where
   wrapReturn :: a -> IO b
@@ -34,13 +35,13 @@ instance WrapReturn CInt Bool where
   wrapReturn _ = return True
 
 
-instance WrapReturn (Ptr a) b => WrapReturn (Ptr (CppVec (Ptr a))) (V.Vector b) where
+instance WrapReturn (Ptr a) b => WrapReturn (Ptr (StdVec (Ptr a))) (V.Vector b) where
   wrapReturn cppvec = do
-    vec <- readCppVec cppvec >>= (V.mapM wrapReturn) :: IO (V.Vector b)
+    vec <- readStdVec cppvec >>= (V.mapM wrapReturn) :: IO (V.Vector b)
     c_deleteVecVoidP cppvec
     return vec
 
-instance WrapReturn (Ptr StdString') String where
+instance WrapReturn (Ptr StdString) String where
   wrapReturn stdStr = do
     len <- fmap fromIntegral $ c_lengthStdString stdStr
     cstring <- mallocArray (len + 1)
@@ -52,11 +53,11 @@ instance WrapReturn (Ptr StdString') String where
 
 wrapReturnVec ::
   Storable a =>
-  (Ptr (CppVec a) -> IO CInt) ->
-  (Ptr (CppVec a) -> Ptr a -> IO ()) ->
-  (Ptr (CppVec a) -> IO ()) ->
+  (Ptr (StdVec a) -> IO CInt) ->
+  (Ptr (StdVec a) -> Ptr a -> IO ()) ->
+  (Ptr (StdVec a) -> IO ()) ->
   (a -> IO b) ->
-  Ptr (CppVec a) -> IO (V.Vector b)
+  Ptr (StdVec a) -> IO (V.Vector b)
 wrapReturnVec vecSize vecCopy vecDel cToHs vecPtr = do
   n <- fmap fromIntegral (vecSize vecPtr)
   arr <- mallocArray n
@@ -66,8 +67,8 @@ wrapReturnVec vecSize vecCopy vecDel cToHs vecPtr = do
   vecDel vecPtr
   fmap V.fromList (mapM cToHs ret)
 
-instance WrapReturn (Ptr (CppVec CInt)) (V.Vector Int) where
+instance WrapReturn (Ptr (StdVec CInt)) (V.Vector Int) where
   wrapReturn = wrapReturnVec c_sizeVecCInt c_copyVecCInt c_deleteVecCInt wrapReturn
 
-instance WrapReturn (Ptr (CppVec CDouble)) (V.Vector Double) where
+instance WrapReturn (Ptr (StdVec CDouble)) (V.Vector Double) where
   wrapReturn = wrapReturnVec c_sizeVecCDouble c_copyVecCDouble c_deleteVecCDouble wrapReturn

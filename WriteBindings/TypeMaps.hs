@@ -17,11 +17,13 @@ module WriteBindings.TypeMaps
        , hsDataName
        , hsClassName
        , toCName
+       , replaces
        ) where
 
+import Data.Char ( toUpper )
 import qualified Data.Text as T
-import WriteBindings.Buildbot.CasadiClasses ( cppTypeCasadiPrimClass, cppTypeCasadiPrimEnum )
-import WriteBindings.Types
+import Data.List ( intercalate )
+import WriteBindings.ParseJSON
 
 raw :: String
 raw = "'"
@@ -30,8 +32,15 @@ maybeParens :: Bool -> String -> String
 maybeParens False x = x
 maybeParens True x = "(" ++ x ++ ")"
 
+uppercase :: String -> String
+uppercase (x:xs) = toUpper x : xs
+uppercase [] = error "uppercase got empty string"
+
 -- haskell type which end-user sees
 hsType :: Bool -> Type -> String
+hsType p (CArray t) = maybeParens p $ "Vector " ++ hsType True t
+hsType _ (IOInterface t) = "IOInterface" ++ hsType False t
+hsType _ (CEnum _ (Name n)) = uppercase n
 hsType _ CInt = "Int"
 hsType _ CDouble = "Double"
 hsType _ StdString = "String"
@@ -40,12 +49,15 @@ hsType _ CBool = "Bool"
 hsType _ CVoid = "()"
 hsType _ CSize = "CSize"
 hsType _ CUChar = "CUChar"
+hsType _ CChar = "CChar"
 hsType _ CLong = "Int"
-hsType _ (CasadiClass x) = show x
-hsType _ (CasadiEnum x) = show x
+hsType _ (UserType _ (Name x)) = uppercase x
 hsType p (StdVec x) = maybeParens p ("Vector " ++ hsType True x)
 hsType p (Ref x) = hsType p x
-hsType p (ConstRef x) = hsType p x
+hsType p (Pointer x) = hsType p x
+hsType _ (IOSchemeVec {}) = error "hsType: IOSchemeVec undefined"
+hsType _ (StdPair x y) = "(" ++ hsType False x ++ ", " ++ hsType False y ++ ")"
+hsType p (Const x) = hsType p x
 
 -- haskell type that appears in foreign import
 -- this should never do anything except unwrap and pass the TV to ffiTypeTV
@@ -57,18 +69,32 @@ ffiType _ CVoid = "()"
 ffiType _ CSize = "CSize"
 ffiType _ CLong = "CLong"
 ffiType _ CUChar = "CUChar"
+ffiType _ CChar = "CChar"
 ffiType _ CBool = "CInt"
-ffiType p StdString = maybeParens p $ "Ptr StdString'"
-ffiType p StdOstream = maybeParens p $ "Ptr StdOstream'"
-ffiType p (CasadiClass x) = maybeParens p $ "Ptr " ++ show x ++ raw
-ffiType _ (CasadiEnum _) = "CInt"
-ffiType p (StdVec x) = maybeParens p $ "Ptr (CppVec " ++ ffiType True x ++ ")"
+ffiType _ (CEnum {}) = "CInt"
+ffiType p (CArray t) = maybeParens p $ "Ptr " ++ ffiType True t
+ffiType p StdString = maybeParens p $ "Ptr StdString"
+ffiType p StdOstream = maybeParens p $ "Ptr StdOstream"
+ffiType p (StdVec x) = maybeParens p $ "Ptr (StdVec " ++ ffiType True x ++ ")"
 ffiType p (Ref x) = ffiType p x
-ffiType p (ConstRef x) = ffiType p x
+ffiType p (Pointer x) = ffiType p x
+--ffiType p (ConstRef x) = ffiType p x
+ffiType p (UserType _ (Name x)) = maybeParens p $ "Ptr " ++ uppercase x ++ raw
+ffiType _ (IOSchemeVec {}) = error "ffiType: IOSchemeVec undefined"
+ffiType p (IOInterface x) = maybeParens p $ "Ptr IOInterface" ++ hsType False x ++ raw
+ffiType p (StdPair x y) = maybeParens p $ "Ptr (StdPair " ++ ffiType True x ++ " " ++ ffiType True y ++ ")"
+ffiType p (Const x) = ffiType p x
+
+namespace :: Namespace -> Name -> String
+namespace (Namespace ns) (Name x) = case intercalate "::" ns of
+  [] -> x
+  ns' -> ns' ++ "::" ++ x
 
 -- the C++ syntax
 cppType :: Type -> String
 cppType CInt = "int"
+cppType (CArray t) = cppType t ++ "[]"
+cppType (CEnum ns t) = namespace ns t
 cppType CDouble = "double"
 cppType StdString = "std::string"
 cppType CBool = "bool"
@@ -76,76 +102,90 @@ cppType CVoid = "void"
 cppType CSize = "size_t"
 cppType CLong = "long"
 cppType CUChar = "unsigned char"
+cppType CChar = "char"
 cppType StdOstream = "std::ostream"
-cppType (CasadiClass x) = cppTypeCasadiPrimClass x
-cppType (CasadiEnum x) = cppTypeCasadiPrimEnum x
 cppType (StdVec x) = "std::vector< " ++ cppType x ++ " >"
 cppType (Ref x) = cppType x ++ "&"
---cppType (ConstRef x) = cppType x ++ " &"
-cppType (ConstRef x) = cppType x ++ " const &"
+cppType (Pointer x) = cppType x ++ "*"
+cppType (UserType ns x) = namespace ns x
+cppType (StdPair x y) = "std::pair< " ++ cppType x ++ ", " ++ cppType y ++ " >"
+cppType (IOInterface x) = "casadi::IOInterface< " ++ cppType x ++ " >"
+cppType (IOSchemeVec {}) = error "cppType: IOSchemeVec undefined"
+cppType (Const x) = cppType x
 
 -- type C type which the FFI uses
 cWrapperType :: Type -> String
 cWrapperType CInt = "int"
+cWrapperType (CArray t) = cWrapperType t ++ "[]"
 cWrapperType CDouble = "double"
 cWrapperType CBool = "int"
+cWrapperType (CEnum {}) = "int"
 cWrapperType CVoid = "void"
 cWrapperType CSize = "size_t"
 cWrapperType CLong = "long"
 cWrapperType CUChar = "unsigned char"
-cWrapperType (CasadiEnum x) = cppTypeCasadiPrimEnum x
-cWrapperType (CasadiClass x) = cppTypeCasadiPrimClass x ++ "*"
+cWrapperType CChar = "char"
+cWrapperType x@(UserType {}) = cppType x ++ "*"
+cWrapperType (Const x) = cWrapperType x
 cWrapperType StdString = "std::string*"
 cWrapperType StdOstream = "std::ostream*"
 cWrapperType (StdVec x) = "std::vector< " ++ cWrapperType x ++ " >*"
---cWrapperType (Ref x) = cWrapperType x ++ "*"
---cWrapperType (ConstRef x) = cWrapperType x ++ " const *"
 cWrapperType (Ref x)
-  | usedAsPtr x = cWrapperType x
+  | addPtr x = cWrapperType x
   | otherwise = cWrapperType x ++ "*"
-cWrapperType (ConstRef x)
-  | usedAsPtr x = cWrapperType x
---  | otherwise = cWrapperType x ++ " *"
-  | otherwise = cWrapperType x ++ " const *"
+cWrapperType (Pointer x)
+  | addPtr x = cWrapperType x
+  | otherwise = cWrapperType x ++ "*"
+cWrapperType (StdPair x y) = "std::pair< " ++ cWrapperType x ++ ", " ++ cWrapperType y ++ " >*"
+cWrapperType (IOInterface x) = "casadi::IOInterface< " ++ cWrapperType x ++ " >*"
+cWrapperType (IOSchemeVec {}) = error "cWrapperType: IOSchemeVec undefined"
 
-usedAsPtr :: Type -> Bool
-usedAsPtr (CasadiClass _) = True
-usedAsPtr (StdString) = True
-usedAsPtr (StdOstream) = True
-usedAsPtr (StdVec _) = True
-usedAsPtr _ = False
+addPtr :: Type -> Bool
+addPtr (UserType {}) = True
+addPtr (StdString) = True
+addPtr (StdOstream) = True
+addPtr (StdVec _) = True
+addPtr (StdPair {}) = True
+addPtr (IOInterface {}) = True
+addPtr (Const x) = addPtr x
+addPtr _ = False
 
 
 ---- output type of the cpp marshal function, usually same as cppType except for references
 cppMarshalType :: Type -> String
-cppMarshalType (ConstRef x@(StdVec _)) = cppType x
-cppMarshalType (Ref x@(StdVec _)) = cppType x
+cppMarshalType (Const x) = cppMarshalType x
+cppMarshalType (Ref x) = cppMarshalType x
 cppMarshalType x = cppType x
 
-cppClassName :: CasadiClass -> String
-cppClassName = cppType . CasadiClass
+cppClassName :: Type -> String
+cppClassName = cppType
 
 cType :: Type -> String
 cType = toCName . cppType
 
 cWrapperName' :: CppFunction -> String
-cWrapperName' (CppFunction (Name functionName) _ _ _) = toCName functionName
+cWrapperName' f = case fOthers f of
+  Nothing -> toCName (fName f)
+  Just k -> toCName $ fName f ++ "__" ++ show k
 
-cWrapperName :: CasadiClass -> Method -> String
-cWrapperName classType fcn = case fMethodType fcn of
-  Constructor -> toCName (cppClassName classType ++ "::" ++ methodName)
-    where
-      Name methodName = fName fcn
-  _ -> toCName (cppMethodName classType fcn)
+cWrapperName :: Type -> Method -> String
+cWrapperName t fcn = case mKind fcn of
+  Constructor -> toCName (cppClassName t ++ "::" ++ name) ++ number
+  _ -> toCName (cppMethodName t fcn) ++ number
+  where
+    Name name = mName fcn
+    number = case mOthers fcn of
+      Nothing -> ""
+      Just k -> "__" ++ show k
 
 
 -- the thing to call in casadi, like CasADi::SXFunction::jac
-cppMethodName :: CasadiClass -> Method -> String
-cppMethodName classType fcn = case fMethodType fcn of
-  Constructor -> cppClassName classType
-  _ -> cppClassName classType ++ "::" ++ methodName
+cppMethodName :: Type -> Method -> String
+cppMethodName t fcn = case mKind fcn of
+  Constructor -> cppClassName t
+  _ -> cppClassName t ++ "::" ++ name
   where
-    Name methodName = fName fcn
+    Name name = mName fcn
 
 toCName :: String -> String
 toCName cppName = replaces replacements cppName
@@ -158,23 +198,20 @@ replaces [] = id
 
 cWrapperRetType :: Type -> String
 cWrapperRetType = cWrapperType
---cWrapperRetType (Val (NonVec x)) = cppTypePrim x ++ (if usedAsPtr x then "*" else "")
---cWrapperRetType (Val x) = cppTypeTV x ++ "*"
---cWrapperRetType (Ref x) = cppTypeTV x ++ "*"
---cWrapperRetType (ConstRef x) = cppTypeTV x ++ " const *"
 
 writeReturn :: Type -> String -> String
 writeReturn CVoid x = "    " ++ x ++ ";"
-writeReturn (Ref _) _ = error "writeReturn: can't return a reference"
-writeReturn (ConstRef _) _ = error "writeReturn: can't return a const reference"
 writeReturn t x =
-  "    return WrapReturn< " ++ cWrapperType t ++ ", " ++ cppType t ++ " >::wrapReturn( " ++ x ++ " );"
+  init $ unlines
+  [ "    " ++ cppType t ++ " ret = " ++ x ++ ";"
+  , "    return WrapReturn< " ++ cWrapperType t ++ ", " ++ cppType t ++ " >::wrapReturn( ret );"
+  ]
 
 deleteName :: Type -> String
 deleteName v = "delete_" ++ replaces [("&","")] (toCName (cppType v))
 
-hsDataName :: CasadiClass -> String
-hsDataName classType = hsType False (CasadiClass classType)
+hsDataName :: Type -> String
+hsDataName t = hsType False t
 
-hsClassName :: CasadiClass -> String
-hsClassName classType = hsDataName classType  ++ "Class"
+hsClassName :: Type -> String
+hsClassName t = hsDataName t  ++ "Class"

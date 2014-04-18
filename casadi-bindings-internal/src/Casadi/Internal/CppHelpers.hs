@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module Casadi.CppHelpers
-       ( newCppVec
-       , readCppVec
+module Casadi.Internal.CppHelpers
+       ( newStdVec
+       , readStdVec
        , c_newStdString
        , c_deleteStdString
        , c_lengthStdString
@@ -14,16 +14,16 @@ import Foreign.C.Types
 import Foreign.Ptr ( Ptr )
 import Foreign.Marshal ( mallocArray, free, peekArray, withArrayLen )
 
-import Casadi.MarshalTypes
-import Casadi.Wrappers.CToolsImports
+import Casadi.Internal.MarshalTypes
+import Casadi.Internal.CToolsImports
 
-newCppVec :: V.Vector (Ptr a) -> IO (Ptr (CppVec (Ptr a)))
-newCppVec vec = do
+newStdVec :: V.Vector (Ptr a) -> IO (Ptr (StdVec (Ptr a)))
+newStdVec vec = do
   withArrayLen (V.toList vec) $ \num array ->
     c_newVecVoidP array (fromIntegral num)
 
-readCppVec :: Ptr (CppVec (Ptr a)) -> IO (V.Vector (Ptr a))
-readCppVec vecPtr = do
+readStdVec :: Ptr (StdVec (Ptr a)) -> IO (V.Vector (Ptr a))
+readStdVec vecPtr = do
   n <- fmap fromIntegral (c_sizeVecVoidP vecPtr)
   arr <- mallocArray n
   c_copyVecVoidP vecPtr arr
@@ -32,10 +32,10 @@ readCppVec vecPtr = do
   return (V.fromList ret)
 
 foreign import ccall unsafe "hs_new_string" c_newStdString
-  :: Ptr CChar -> IO (Ptr StdString')
+  :: Ptr CChar -> IO (Ptr StdString)
 foreign import ccall unsafe "hs_delete_string" c_deleteStdString
-  :: Ptr StdString' -> IO ()
+  :: Ptr StdString -> IO ()
 foreign import ccall unsafe "hs_length_string" c_lengthStdString
-  :: Ptr StdString' -> IO CInt
+  :: Ptr StdString -> IO CInt
 foreign import ccall unsafe "hs_copy_string" c_copyStdString
-  :: Ptr StdString' -> Ptr CChar -> IO ()
+  :: Ptr StdString -> Ptr CChar -> IO ()

@@ -4,12 +4,13 @@
 {-# Language FlexibleInstances #-}
 {-# Language FlexibleContexts #-}
 
-module Casadi.Marshal ( Marshal(..)
-                      , withMarshal
-                      , newStorableVec
-                      , HsToC(..)
-                      , withMarshalStorableVec
-                      ) where
+module Casadi.Internal.Marshal
+       ( Marshal(..)
+       , withMarshal
+       , newStorableVec
+       , HsToC(..)
+       , withMarshalStorableVec
+       ) where
 
 import Control.Monad ( when )
 import qualified Data.Vector as V
@@ -19,9 +20,9 @@ import Foreign.Ptr ( Ptr )
 import Foreign.Marshal ( withArrayLen )
 import Foreign.Storable ( Storable )
 
-import Casadi.Wrappers.CToolsImports ( c_deleteVecVoidP )
-import Casadi.CppHelpers ( newCppVec, readCppVec, c_newStdString, c_deleteStdString )
-import Casadi.MarshalTypes ( CppVec, StdString' )
+import Casadi.Internal.CToolsImports ( c_deleteVecVoidP )
+import Casadi.Internal.CppHelpers ( newStdVec, readStdVec, c_newStdString, c_deleteStdString )
+import Casadi.Internal.MarshalTypes ( StdVec, StdString, StdPair )
 
 class Marshal a b where
   marshal :: a -> IO b
@@ -65,11 +66,11 @@ instance Marshal CUChar CUChar where
 instance Marshal CSize CSize where
   marshal = return . hsToC
 
-instance Marshal String (Ptr StdString') where
+instance Marshal String (Ptr StdString) where
   marshal str = newStdString str
   marshalFree _ stdStr = c_deleteStdString stdStr
 
-newStdString :: String -> IO (Ptr StdString')
+newStdString :: String -> IO (Ptr StdString)
 newStdString x = withCString x $ \cstring -> c_newStdString cstring
 
 --instance Marshal String (Ptr CChar) where
@@ -77,12 +78,12 @@ newStdString x = withCString x $ \cstring -> c_newStdString cstring
 
 
 
-instance Marshal a (Ptr b) => Marshal (V.Vector a) (Ptr (CppVec (Ptr b))) where
+instance Marshal a (Ptr b) => Marshal (V.Vector a) (Ptr (StdVec (Ptr b))) where
   marshal vec = do
     ptrs <- V.mapM marshal vec :: IO (V.Vector (Ptr b))
-    newCppVec ptrs
+    newStdVec ptrs
   marshalFree vec0 cppvec = do
-    ptrs <- readCppVec cppvec :: IO (V.Vector (Ptr b))
+    ptrs <- readStdVec cppvec :: IO (V.Vector (Ptr b))
     when (V.length vec0 /= V.length ptrs) $
       error "unmarshal: Marshal (Vector a) (Ptr (CooVec (Ptr b))) length mismatch"
     V.zipWithM_ marshalFree vec0 ptrs
@@ -90,20 +91,20 @@ instance Marshal a (Ptr b) => Marshal (V.Vector a) (Ptr (CppVec (Ptr b))) where
 
 newStorableVec ::
   Storable a =>
-  (Ptr a -> CInt -> IO (Ptr (CppVec a))) ->
-  V.Vector a -> IO (Ptr (CppVec a))
+  (Ptr a -> CInt -> IO (Ptr (StdVec a))) ->
+  V.Vector a -> IO (Ptr (StdVec a))
 newStorableVec newVec vec = do
   withArrayLen (V.toList vec) $ \num array ->
     newVec array (fromIntegral num)
 
 withMarshalStorableVec ::
   Storable a =>
-  (Ptr a -> CInt -> IO (Ptr (CppVec a))) ->
-  (Ptr (CppVec a) -> IO ()) ->
-  V.Vector a -> (Ptr (CppVec a) -> IO b) -> IO b
+  (Ptr a -> CInt -> IO (Ptr (StdVec a))) ->
+  (Ptr (StdVec a) -> IO ()) ->
+  V.Vector a -> (Ptr (StdVec a) -> IO b) -> IO b
 withMarshalStorableVec newVec deleteVec vec f = do
-  ptrCppVec <- withArrayLen (V.toList vec) $ \num array ->
+  ptrStdVec <- withArrayLen (V.toList vec) $ \num array ->
     newVec array (fromIntegral num)
-  ret <- f ptrCppVec
-  deleteVec ptrCppVec
+  ret <- f ptrStdVec
+  deleteVec ptrStdVec
   return ret

@@ -6,7 +6,7 @@
 template<class T1, class T2>
 class Marshaling {
 public:
-    static T1 marshal(T2 x){ return x; }
+    static T1 marshal(T2 x){ return static_cast<T1>(x); }
 };
 
 template<class T>
