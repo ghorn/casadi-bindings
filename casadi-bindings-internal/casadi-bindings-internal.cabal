@@ -33,7 +33,7 @@ library
 
   extra-libraries:  stdc++
 
-  pkgconfig-depends: casadi_symbolic
+  pkgconfig-depends: casadi_core
 
   ghc-prof-options: -O2 -prof -fprof-auto -fprof-cafs -rtsopts
   ghc-options: -O2

@@ -1,7 +1,7 @@
 #include <iostream>
-#include "casadi/symbolic/casadi.hpp"
-#include "casadi/symbolic/function/custom_function.hpp"
-#include "casadi/symbolic/functor_internal.hpp"
+#include "casadi/core/casadi.hpp"
+#include "casadi/core/function/custom_function.hpp"
+#include "casadi/core/functor_internal.hpp"
 
 #include "HsFFI.h"
 

@@ -266,7 +266,7 @@ writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),
       , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
       , "import Casadi." ++ modname ++ ".Data"
       , "import Casadi." ++ modname ++ ".Enums"
-      , if modname == "Symbolic" then "" else "import Casadi.Symbolic.Data\n"
+      , if modname == "Core" then "" else "import Casadi.Core.Data\n"
       ] ++ showInstance ++ map f methods
       where
         ct = clType c
@@ -325,10 +325,10 @@ writeDataModule modname classes baseClasses =
   , ""
   , "import Casadi.Internal.Marshal (  Marshal(..) )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
-  , symbolicImport
+  , coreImport
   ] ++ map writeData classes
   where
-    symbolicImport = if modname == "Symbolic" then "" else "import Casadi.Symbolic.Data\n"
+    coreImport = if modname == "Core" then "" else "import Casadi.Core.Data\n"
     writeData c =
       unlines $
       [ "-- raw decl"
@@ -371,7 +371,7 @@ writeToolsModule modname functions =
   , "import Casadi.Internal.MarshalTypes ( StdVec, StdString )"
   , "import Casadi.Internal.Marshal ( withMarshal )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
-  , if modname == "Symbolic" then "" else "import Casadi.Symbolic.Data\n"
+  , if modname == "Core" then "" else "import Casadi.Core.Data\n"
   ] ++ funDecls
   where
     (funNames, funDecls) = unzip $ concatMap writeFunctions functions
