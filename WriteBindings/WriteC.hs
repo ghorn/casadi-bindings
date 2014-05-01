@@ -18,13 +18,16 @@ paramProto k t = TM.cWrapperType t ++ " " ++ paramName k
 
 -- todo: preserve constref if cWrapperType and cppMarshalType are the same
 marshal :: Int -> Type -> String
-marshal k t = "    " ++ TM.cppMarshalType t ++ " " ++ paramName k ++
+marshal k t = "        " ++ TM.cppMarshalType t ++ " " ++ paramName k ++
               "_ = Marshaling<" ++ TM.cppMarshalType t ++ "," ++ TM.cWrapperType t ++ ">::marshal(" ++
               paramName k ++ ");"
 
 writeFunctions :: CppFunctions -> [String]
 writeFunctions (Left fs) = map writeFunction fs
 writeFunctions (Right f) = [writeFunction f]
+
+errArg :: String
+errArg = "std::string ** err_msg"
 
 writeFunction :: CppFunction -> String
 writeFunction fcn =
@@ -41,8 +44,13 @@ writeFunction fcn =
   , "// call: " ++ show call
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
+  , "    try {"
   , unlines marshals
   , TM.writeReturn retType call
+  , "    } catch (std::exception& ex) {"
+  , "         *err_msg = new std::string(ex.what());"
+  , "         " ++ errorReturn retType
+  , "    }"
   , "}"
   , ""
   ]
@@ -53,7 +61,7 @@ writeFunction fcn =
     marshals = map (uncurry marshal) $ zip [0..] params
     proto = TM.cWrapperRetType retType ++ " " ++ cWrapperName'' ++ protoArgs
     cWrapperName'' = TM.cWrapperName' fcn
-    protoArgs = "(" ++ intercalate ", " protoArgList ++ ")"
+    protoArgs = "(" ++ intercalate ", " (errArg : protoArgList) ++ ")"
     protoArgList = map (uncurry paramProto) $ zip [0..] params
     args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] params) ++ ")"
     call = removeTics cppName ++ args
@@ -86,6 +94,10 @@ writeMethods :: Type -> Methods -> [String]
 writeMethods t (Left fs) = map (writeMethod t) fs
 writeMethods t (Right f) = [writeMethod t f]
 
+errorReturn :: Type -> String
+errorReturn CVoid = "return;"
+errorReturn _ = "return 0;"
+
 writeMethod :: Type -> Method -> String
 writeMethod ut fcn =
   unlines
@@ -102,8 +114,13 @@ writeMethod ut fcn =
   , "// params: " ++ show (mParams fcn)
   , "extern \"C\"\n    " ++ proto ++ ";"
   , proto ++ "{"
+  , "    try {"
   , unlines marshals
   , TM.writeReturn retType call
+  , "    } catch (std::exception& ex) {"
+  , "         *err_msg = new std::string(ex.what());"
+  , "         " ++ errorReturn retType
+  , "    }"
   , "}"
   , ""
   ]
@@ -114,7 +131,7 @@ writeMethod ut fcn =
     cWrapperName'' = TM.cWrapperName ut fcn
     cppName = TM.cppMethodName ut fcn
     Name methodName' = mName fcn
-    protoArgs = "(" ++ intercalate ", " allProtoArgs ++ ")"
+    protoArgs = "(" ++ intercalate ", " (errArg : allProtoArgs) ++ ")"
     nonSelfProtoArgs = map (uncurry paramProto) $ zip [0..] (mParams fcn)
     allProtoArgs = case mKind fcn of
       Normal -> (TM.cppClassName ut ++ "* obj") : nonSelfProtoArgs

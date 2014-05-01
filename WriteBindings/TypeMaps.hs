@@ -203,8 +203,8 @@ writeReturn :: Type -> String -> String
 writeReturn CVoid x = "    " ++ x ++ ";"
 writeReturn t x =
   init $ unlines
-  [ "    " ++ cppType t ++ " ret = " ++ x ++ ";"
-  , "    return WrapReturn< " ++ cWrapperType t ++ ", " ++ cppType t ++ " >::wrapReturn( ret );"
+  [ "        " ++ cppType t ++ " ret = " ++ x ++ ";"
+  , "        return WrapReturn< " ++ cWrapperType t ++ ", " ++ cppType t ++ " >::wrapReturn( ret );"
   ]
 
 deleteName :: Type -> String

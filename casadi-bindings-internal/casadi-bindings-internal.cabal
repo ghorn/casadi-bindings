@@ -49,6 +49,7 @@ library
                     Casadi.Internal.CToolsImports
                     Casadi.Internal.CToolsInstances
                     Casadi.Internal.Callback
+                    Casadi.Internal.FormatException
 
 
 source-repository head

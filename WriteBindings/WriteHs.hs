@@ -19,12 +19,25 @@ import Language.Haskell.Pretty
 import WriteBindings.ParseJSON
 import qualified WriteBindings.TypeMaps as TM
 
-marshalFun :: [Type] -> String -> String -> (String, String)
+rstrip :: String -> String
+rstrip xs = case reverse xs of
+  '\n':ys -> reverse ys
+  _ -> xs
+
+marshalFun :: [Type] -> String -> String -> String
 marshalFun params fun wrappedFun =
-  (fun ++ " " ++ concat (intersperse " " patternMatchArgs) ++ " =\n" ++ marshals,
-   wrappedFun ++ " " ++ concat (intersperse " " appArgs))
+  unlines $
+  [ fun ++ " " ++ concat (intersperse " " patternMatchArgs) ++ " ="
+  , marshals
+  , "  do"
+  , "    errStrPtrP <- new nullPtr"
+  , "    ret <- " ++ wrappedFun ++ " errStrPtrP " ++  concat (intersperse " " appArgs)
+  , "    errStrPtr <- peek errStrPtrP"
+  , "    free errStrPtrP"
+  , "    if errStrPtr == nullPtr then wrapReturn ret else wrapReturn errStrPtr >>= (error . formatException)"
+  ]
   where
-    marshals = unlines $ blah $ args
+    marshals = rstrip $ unlines $ blah $ args
     args = zipWith (\k p -> ("x"++show k, p)) [(0::Int)..] params
     patternMatchArgs = map fst args
     appArgs = map (++ "'") patternMatchArgs
@@ -76,7 +89,7 @@ writeClassMethods c = methods
   where
     ct = clType c
     ClassType classType' = ct
-      
+
     methods' = clMethods c
     className' = TM.hsClassName classType'
 
@@ -111,7 +124,7 @@ writeClassMethods c = methods
         hsMethodName = case mKind fcn of
           Constructor -> betterCamelCase hsname ++ number
           _ -> betterCamelCase hsname ++ "_" ++ TM.toCName methodName' ++ number
-            
+
 
         (wrapperName, ffiWrapper) = case mKind fcn of
           Normal -> writeFunction
@@ -193,14 +206,13 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
       unlines $
       foreignImport : maybeDoc hsFunctionName (fDocs fun) ++
       [ hsFunctionName ++ "\n  :: " ++ proto
-      , marshals ++ "  " ++ call ++ " >>= wrapReturn"
+      , marshalFun params hsFunctionName c_hsFunctionName
       ]
 
     params = fParams fun
     retType = fReturn fun
-    
+
     hsFunctionName = lowerCase (TM.toCName (TM.cWrapperName' fun))
-    (marshals, call) = marshalFun params hsFunctionName c_hsFunctionName
 
     cFunctionName = TM.cWrapperName' fun
     c_hsFunctionName = "c_" ++ cFunctionName
@@ -210,7 +222,7 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
       "foreign import ccall " ++ safeunsafe ++ " \"" ++ cFunctionName ++ "\" " ++
       c_hsFunctionName ++ "\n  :: " ++ ffiProto
     ffiProto = concat $ intersperse " -> " $
-               map (TM.ffiType False) params ++ [ffiRetType]
+               "Ptr (Ptr StdString)" : map (TM.ffiType False) params ++ [ffiRetType]
     proto = concat $ intersperse " -> " $
             map (TM.hsType False) params ++ [retType']
 
@@ -240,12 +252,15 @@ writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),
       , ""
       , "import Data.Vector ( Vector )"
       , "import Foreign.C.Types"
-      , "import Foreign.Ptr ( Ptr )"
+      , "import Foreign.Marshal ( new, free )"
+      , "import Foreign.Storable ( peek )"
+      , "import Foreign.Ptr ( Ptr, nullPtr )"
       , "import Foreign.ForeignPtr ( newForeignPtr )"
       , "import System.IO.Unsafe ( unsafePerformIO ) -- for show instances"
       , ""
       ] ++ printableObjectImport ++
       [ "import Casadi.Internal.CToolsInstances ( )"
+      , "import Casadi.Internal.FormatException ( formatException )"
       , "import Casadi.Internal.MarshalTypes ( StdVec, StdString) -- StdPair StdOstream'"
       , "import Casadi.Internal.Marshal ( Marshal(..), withMarshal )"
       , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
@@ -345,11 +360,14 @@ writeToolsModule modname functions =
   , ""
   , "import Data.Vector ( Vector )"
   , "import Foreign.C.Types"
-  , "import Foreign.Ptr ( Ptr )"
+  , "import Foreign.Marshal ( new, free )"
+  , "import Foreign.Storable ( peek )"
+  , "import Foreign.Ptr ( Ptr, nullPtr )"
   , ""
   , "import Casadi." ++ modname ++ ".Data"
   , "import Casadi." ++ modname ++ ".Enums"
   , "import Casadi.Internal.CToolsInstances ( )"
+  , "import Casadi.Internal.FormatException ( formatException )"
   , "import Casadi.Internal.MarshalTypes ( StdVec, StdString )"
   , "import Casadi.Internal.Marshal ( withMarshal )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"

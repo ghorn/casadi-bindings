@@ -159,7 +159,7 @@ toPackage mod' =
 
     hsClassModules :: [(String,String)]
     hsClassModules = HS.writeClassModules ucname inherit (M.elems (moduleClasses mod'))
-  
+
 
 main :: IO ()
 main = do
@@ -167,6 +167,7 @@ main = do
   trees <- readModules rootpath
   let writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
       pkgs = map toPackage trees
+  createDirectoryIfMissing True writepath
 
   mapM_ (writePackage writepath) pkgs
   mapM_ (\p -> sdist (writepath </> pModuleName p)) pkgs
