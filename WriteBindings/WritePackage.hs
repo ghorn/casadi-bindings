@@ -53,10 +53,12 @@ writePackage rootDir pkg = do
       wf (fp,contents) = writeFile' (rootDir </> pModuleName pkg </> fp) contents
 
   license <- readFile (rootDir </> ".." </> "casadi-bindings-internal" </> "LICENSE")
+  setupFile <- readFile (rootDir </> ".." </> "casadi-bindings-internal" </> "Setup.hs")
   marshallHpp <- readFile (rootDir </> ".." </> "WriteBindings" </> "marshal.hpp")
 
   wf ("LICENSE",license)
   wf ("cbits" </> "marshal.hpp",marshallHpp)
+  wf ("Setup.hs",setupFile)
   wf (pCabal pkg)
   wf (pCClasses pkg)
   wf (pCFunctions pkg)
@@ -97,12 +99,14 @@ toPackage mod' =
               , "version:             " ++ version
               , "license:             LGPL-3"
               , "license-file:        LICENSE"
+              , "category:            Numerical, Math"
               , "copyright:           (c) 2013-2014 Greg Horn"
               , "author:              Greg Horn"
               , "maintainer:          gregmainland@gmail.com"
               , "build-type:          Simple"
               , "cabal-version:       >=1.10"
-              , "synopsis:            low level bindings to CasADi"
+              , "synopsis:            low level bindings to casadi-" ++ modname
+              , "description:         see http://hackage.haskell.org/package/casadi-bindings for instructions"
               , "extra-source-files:  cbits/marshal.hpp"
               , "extra-tmp-files:     Casadi/Callback_stub.h"
               , ""
