@@ -20,7 +20,7 @@ import qualified WriteBindings.TypeMaps as TM
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "1.9.0.1"
+version = "1.9.0.2"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -106,7 +106,7 @@ toPackage mod' =
               , "build-type:          Simple"
               , "cabal-version:       >=1.10"
               , "synopsis:            low level bindings to casadi-" ++ modname
-              , "description:         see http://hackage.haskell.org/package/casadi-bindings for instructions"
+              , "description:         see <http://hackage.haskell.org/package/casadi-bindings http://hackage.haskell.org/package/casadi-bindings> for all instructions"
               , "extra-source-files:  cbits/marshal.hpp"
               , "extra-tmp-files:     Casadi/Callback_stub.h"
               , ""
