@@ -216,7 +216,7 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
 
     cFunctionName = TM.cWrapperName' fun
     c_hsFunctionName = "c_" ++ cFunctionName
-    safeunsafe = if cFunctionName `elem` ["casadi__Function__solve","casadi__Function__evaluate"]
+    safeunsafe = if cFunctionName `elem` ["casadi__Function__evaluate"]
                  then "safe" else "unsafe"
     foreignImport =
       "foreign import ccall " ++ safeunsafe ++ " \"" ++ cFunctionName ++ "\" " ++
