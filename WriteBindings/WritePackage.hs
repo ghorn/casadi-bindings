@@ -177,7 +177,7 @@ main = do
   mapM_ (\p -> sdist (writepath </> pModuleName p)) pkgs
 
   writeFile' (writepath </> "unregister.sh")
-    (unlines $ map (("ghc-pkg unregister casadi-bindings-" ++) . pHSModuleName) pkgs)
+    (unlines $ "ghc-pkg unregister casadi-bindings" : map (("ghc-pkg unregister casadi-bindings-" ++) . pHSModuleName) pkgs)
   return ()
 
 
