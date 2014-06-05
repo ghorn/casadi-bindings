@@ -41,7 +41,7 @@ description:
     .
     For the snopt interface, you may have to do something like
     .
-    > cabal install casadi-bindings-snopt-interface --extra-libs-dir='/home/me/snopt/lib'
+    > cabal install casadi-bindings-snopt-interface --extra-lib-dirs='/home/me/snopt/lib'
     .
     to find the snopt libraries
     .
