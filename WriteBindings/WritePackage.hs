@@ -20,7 +20,7 @@ import qualified WriteBindings.TypeMaps as TM
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "1.9.0.4"
+version = "1.9.0.5"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
