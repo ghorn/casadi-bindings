@@ -20,7 +20,7 @@ import qualified WriteBindings.TypeMaps as TM
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "1.9.0.5"
+version = "2.0.0.1"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -116,7 +116,7 @@ toPackage mod' =
               , if modname == "core"
                 then ""
                 else "                       casadi-bindings-core,"
-              , "                       casadi-bindings-internal"
+              , "                       casadi-bindings-internal == 0.1.1"
               , ""
               , "  default-language:    Haskell2010"
               , ""
@@ -167,7 +167,7 @@ toPackage mod' =
 
 main :: IO ()
 main = do
-  let rootpath = "/home/ghorn/casadi/build/swig"
+  let rootpath = "/home/ghorn/casadi_master/build/swig"
   trees <- readModules rootpath
   let writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
       pkgs = map toPackage trees

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "casadi/core/casadi.hpp"
+#include "casadi/core/core.hpp"
 #include "casadi/core/function/custom_function.hpp"
 #include "casadi/core/functor_internal.hpp"
 
