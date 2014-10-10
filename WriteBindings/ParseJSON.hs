@@ -47,6 +47,7 @@ instance FromJSON ClassType where
       Right x@(StdVec _)       -> return (ClassType x)
       Right x@(StdPair {})     -> return (ClassType x)
       Right x@(IOInterface {}) -> return (ClassType x)
+      Right x@(PrintableObject {}) -> return (ClassType x)
       Right y -> fail $ "\nParsec parser returned wrong class type: " ++ str ++ "\n" ++ show y
       Left x -> fail $ "\nParsec parser failed on " ++ str ++ "\n" ++ show x
     where
@@ -116,7 +117,7 @@ ioschemevecp :: IsEnum -> Parsec String u Type
 ioschemevecp isEnum =
   try $ do
     ns <- namespace
-    name <- manyTill alphaNum $ (try (string "IOSchemeVector"))
+    name <- manyTill (choice [alphaNum, char '_']) $ (try (string "IOSchemeVector"))
     inside <- between (string "<(") (string ")>") (typeParser isEnum)
     return (IOSchemeVec ns name inside)
 
@@ -180,6 +181,7 @@ typeParser isEnum = do
        , templatep isEnum "casadi::GenericExpression" id
        , templatep isEnum "casadi::GenericMatrix" id
        , templatep isEnum "casadi::IOInterface" IOInterface
+       , templatep isEnum "casadi::PrintableObject" PrintableObject
        , pairp isEnum
        , ioschemevecp isEnum
        , classp isEnum
@@ -220,6 +222,7 @@ data Type = CInt
           | Pointer Type
           | Const Type
           | StdVec Type
+          | PrintableObject Type
           | IOSchemeVec Namespace String Type
           | IOInterface Type
           deriving (Eq, Ord, Show)
@@ -388,6 +391,7 @@ getAllTypes x = [x]
 hasBadType :: GetTypes a => a -> Bool
 hasBadType x = any badType $ concatMap getAllTypes (getTypes x)
   where
+    badType :: Type -> Bool
     badType (IOSchemeVec {}) = True
     badType (IOInterface (UserType (Namespace ["casadi"]) (Name "Function"))) = False
     badType (IOInterface {}) = True
@@ -396,7 +400,7 @@ hasBadType x = any badType $ concatMap getAllTypes (getTypes x)
     badType (Pointer {}) = True
     badType (CArray {}) = True
     badType (UserType _ (Name name))
-      | name `elem` ["Dictionary"] = True
+      | name `elem` ["Dictionary", "DpleStructure", "LrDpleStructure"] = True
     badType _ = False
 
 startsWith :: String -> String -> Bool
@@ -453,6 +457,7 @@ readModules rootpath = do
   let isEnum :: String -> Bool
       isEnum = (`S.member` (S.fromList (concatMap (M.keys . treeEnums . snd) trees0)))
 
+      trees :: [(String, Tree Type)]
       trees = map (\(x,y) -> (x, fmap (parseType isEnum) y)) trees0
 
       treeToModule :: (String, Tree Type) -> Module
@@ -460,17 +465,52 @@ readModules rootpath = do
         Module
         { moduleName = modname
         , moduleFunctions = map f2fs (M.toList functions0) :: [CppFunctions]
-        , moduleClasses = M.map (overloadMethods . filterMethods)
+        , moduleClasses = M.mapWithKey addPrint
+                          $ M.map (overloadMethods . filterMethods)
                           $ M.fromListWith classUnion
+                          $ filter (not . isPrintableObject . fst)
                           $ filter (not . hasBadType . fst)
                           $ map (\c -> (classType c, c)) $ treeClasses tree
         , moduleEnums        = M.fromList $ map (first Name) $ M.toList $ treeEnums tree
         , moduleIncludes     = treeIncludes tree
-        , moduleInheritance  = newInheritance
+        , moduleInheritance  = M.filterWithKey (\k _ -> not (isPrintableObject k)) newInheritance
         }
         where
+          printableObjects = M.keysSet $ M.filter hasPrintableObject newInheritance
+
+          addPrint :: ClassType -> Class -> Class
+          addPrint ct c
+            | S.member ct printableObjects = c { clMethods = clMethods c ++ printMethods
+                                               }
+            | otherwise = c
+            where
+              printMethods :: [Methods]
+              printMethods = [ ms "getRepresentation"
+                             , ms "getDescription"
+                             ]
+                where
+                  ms :: String -> Methods
+                  ms n = Right $
+                         Method
+                         { mName = Name n
+                         , mOthers = Nothing
+                         , mReturn = StdString
+                         , mParams = []
+                         , mKind = Normal
+                         , mDocs = Doc ""
+                         , mDocslink = DocLink ""
+                         }
+
+          isPrintableObject (ClassType (PrintableObject {})) = True
+          isPrintableObject _ = False
+
+          hasPrintableObject :: S.Set ClassType -> Bool
+          hasPrintableObject = any isPrintableObject . S.toList
+
+          newInheritance :: M.Map ClassType (S.Set ClassType)
           newInheritance =
-            M.map (S.filter (not . hasBadType) . S.fromList)
+            M.map (S.filter (not . isPrintableObject))
+            $ M.map (S.filter (not . hasBadType) . S.fromList)
             $ M.fromListWith (++)
             $ filter (not . hasBadType . fst)
             $ map (\(k,v) -> (ClassType (parseType isEnum k), map ClassType v))
@@ -514,6 +554,6 @@ readModules rootpath = do
 
 main :: IO ()
 main = do
-  let rootpath = "/home/ghorn/casadi/build/swig"
+  let rootpath = "/home/ghorn/casadi_debian/casadi/build/swig"
   _ <- readModules rootpath
   return ()

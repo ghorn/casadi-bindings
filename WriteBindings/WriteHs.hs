@@ -258,8 +258,7 @@ writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),
       , "import Foreign.ForeignPtr ( newForeignPtr )"
       , "import System.IO.Unsafe ( unsafePerformIO ) -- for show instances"
       , ""
-      ] ++ printableObjectImport ++
-      [ "import Casadi.Internal.CToolsInstances ( )"
+      , "import Casadi.Internal.CToolsInstances ( )"
       , "import Casadi.Internal.FormatException ( formatException )"
       , "import Casadi.Internal.MarshalTypes ( StdVec, StdString) -- StdPair StdOstream'"
       , "import Casadi.Internal.Marshal ( Marshal(..), withMarshal )"
@@ -267,7 +266,7 @@ writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),
       , "import Casadi." ++ modname ++ ".Data"
       , "import Casadi." ++ modname ++ ".Enums"
       , if modname == "Core" then "" else "import Casadi.Core.Data\n"
-      ] ++ showInstance ++ map f methods
+      ] ++ map f methods
       where
         ct = clType c
         methods = writeClassMethods c
@@ -278,20 +277,6 @@ writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),
           , ffiw
           , "-- classy wrapper"
           ] ++ maybeDoc name doc ++ [ cf ]
-        showInstance
-          | any isPrintableObject (ct : F.toList (inheritance ct)) =
-            [ "instance Show " ++ dataName ct ++ " where"
-            , "  show = unsafePerformIO . printableObject_getDescription"
-            ]
-          | otherwise = []
-        printableObjectImport
-          | any isPrintableObject (F.toList (inheritance ct)) =
-            ["import Casadi." ++ modname ++ ".Classes.PrintableObject"]
-          | otherwise = []
-
-        isPrintableObject =
-          (`elem` [ (UserType (Namespace ["casadi"]) (Name "PrintableObject")) ])
-          . unClassType
 
 maybeDoc :: String -> Doc -> [String]
 maybeDoc name (Doc doc)

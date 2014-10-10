@@ -20,7 +20,7 @@ import qualified WriteBindings.TypeMaps as TM
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "2.0.0.1"
+version = "2.1.0.0"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -127,7 +127,7 @@ toPackage mod' =
               , ""
               , "  ghc-prof-options: -prof -fprof-auto -fprof-cafs -rtsopts"
               , "  ghc-options: "
-              , "  cc-options: -Wall -Wno-delete-non-virtual-dtor"
+              , "  cc-options: -Wall -Wno-sign-compare"
               , ""
               , "  C-sources:        cbits/autogen/"++modname++"_classes.cpp"
               , "                    cbits/autogen/"++modname++"_functions.cpp"
@@ -167,7 +167,7 @@ toPackage mod' =
 
 main :: IO ()
 main = do
-  let rootpath = "/home/ghorn/casadi_master/build/swig"
+  let rootpath = "/home/ghorn/casadi_debian/casadi/build/swig"
   trees <- readModules rootpath
   let writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
       pkgs = map toPackage trees

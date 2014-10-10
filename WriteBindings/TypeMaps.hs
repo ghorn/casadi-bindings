@@ -58,6 +58,7 @@ hsType p (Pointer x) = hsType p x
 hsType _ (IOSchemeVec {}) = error "hsType: IOSchemeVec undefined"
 hsType _ (StdPair x y) = "(" ++ hsType False x ++ ", " ++ hsType False y ++ ")"
 hsType p (Const x) = hsType p x
+hsType _ (PrintableObject _) = error "PrintableObject should be internal"
 
 -- haskell type that appears in foreign import
 -- this should never do anything except unwrap and pass the TV to ffiTypeTV
@@ -84,6 +85,7 @@ ffiType _ (IOSchemeVec {}) = error "ffiType: IOSchemeVec undefined"
 ffiType p (IOInterface x) = maybeParens p $ "Ptr IOInterface" ++ hsType False x ++ raw
 ffiType p (StdPair x y) = maybeParens p $ "Ptr (StdPair " ++ ffiType True x ++ " " ++ ffiType True y ++ ")"
 ffiType p (Const x) = ffiType p x
+ffiType _ (PrintableObject _) = error "PrintableObject should be internal"
 
 namespace :: Namespace -> Name -> String
 namespace (Namespace ns) (Name x) = case intercalate "::" ns of
@@ -112,6 +114,7 @@ cppType (StdPair x y) = "std::pair< " ++ cppType x ++ ", " ++ cppType y ++ " >"
 cppType (IOInterface x) = "casadi::IOInterface< " ++ cppType x ++ " >"
 cppType (IOSchemeVec {}) = error "cppType: IOSchemeVec undefined"
 cppType (Const x) = cppType x
+cppType (PrintableObject _) = error "PrintableObject should be internal"
 
 -- type C type which the FFI uses
 cWrapperType :: Type -> String
@@ -139,6 +142,7 @@ cWrapperType (Pointer x)
 cWrapperType (StdPair x y) = "std::pair< " ++ cWrapperType x ++ ", " ++ cWrapperType y ++ " >*"
 cWrapperType (IOInterface x) = "casadi::IOInterface< " ++ cWrapperType x ++ " >*"
 cWrapperType (IOSchemeVec {}) = error "cWrapperType: IOSchemeVec undefined"
+cWrapperType (PrintableObject _) = error "PrintableObject should be internal"
 
 addPtr :: Type -> Bool
 addPtr (UserType {}) = True
