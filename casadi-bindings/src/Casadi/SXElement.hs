@@ -1,20 +1,20 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.SXElement
-       ( SXElement(), sxElement_sym
+       ( SXElement, sxElement_sym
        ) where
 
---import qualified Data.Vector as V
+import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Linear.Conjugate ( Conjugate(..) )
 
 import Casadi.Core.Classes.SXElement
 
---import Casadi.SX ( svector )
+import Casadi.SX ( svector )
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
 
---instance Show SXElement where
---  show = show . svector . V.singleton
+instance Show SXElement where
+  show x = show (svector (V.singleton x))
 
 instance Conjugate SXElement where
   conjugate = id

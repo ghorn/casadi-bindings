@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wall #-}
+{-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans#-}
 
 module Casadi.SXFunction
        ( C.SXFunction
@@ -12,7 +12,13 @@ import Data.Vector ( Vector )
 import qualified Casadi.Core.Classes.Function as C
 import qualified Casadi.Core.Classes.SXFunction as C
 import qualified Casadi.Core.Classes.MXFunction as C
+
 import Casadi.SX ( SX )
+import Casadi.SharedObject ( castSharedObject )
+
+instance Show C.SXFunction where
+  show x = show (castSharedObject x)
+  {-# NOINLINE show #-}
 
 sxFunction :: Vector SX -> Vector SX -> IO C.SXFunction
 sxFunction = C.sxFunction__0

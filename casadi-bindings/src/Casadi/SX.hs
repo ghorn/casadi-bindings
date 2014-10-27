@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.SX
-       ( SX(), ssym, ssymV, ssymM, smm, strans
+       ( SX, ssym, ssymV, ssymM, smm, strans
        , sgradient, sjacobian, shessian, svector, sdiag
        , ssolve
        , sdata
@@ -25,6 +25,10 @@ import Casadi.Core.Classes.Sparsity ( Sparsity )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
+
+instance Show SX where
+  show x = unsafePerformIO (sx_getDescription x)
+  {-# NOINLINE show #-}
 
 instance Conjugate SX where
   conjugate = id

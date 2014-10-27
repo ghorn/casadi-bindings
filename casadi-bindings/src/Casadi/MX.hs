@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.MX
-       ( MX(), sym, symV, symM, mm, trans, diag
+       ( MX, sym, symV, symM, mm, trans, diag
        , gradient, jacobian -- , hessian
        , solve
        , expand
@@ -25,9 +25,14 @@ import Casadi.Core.Classes.Sparsity ( Sparsity )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
+import Casadi.SharedObject ( castSharedObject )
 
 instance Conjugate MX where
   conjugate = id
+
+instance Show MX where
+  show x = show (castSharedObject x)
+  {-# NOINLINE show #-}
 
 sym :: String -> IO MX
 sym x = fmap castMX (mx_sym__5 x)

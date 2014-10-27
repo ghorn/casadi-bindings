@@ -20,7 +20,7 @@ import qualified WriteBindings.TypeMaps as TM
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "2.1.0.0"
+version = "2.1.3.0"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -167,7 +167,7 @@ toPackage mod' =
 
 main :: IO ()
 main = do
-  let rootpath = "/home/ghorn/casadi_debian/casadi/build/swig"
+  let rootpath = "/home/ghorn/casadi-2.1.3/build/swig"
   trees <- readModules rootpath
   let writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
       pkgs = map toPackage trees

@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wall #-}
+{-# OPTIONS_GHC -Wall -fno-warn-orphans -fno-cse #-}
 {-# Language FlexibleInstances #-}
 
 module Casadi.GenericC
@@ -9,6 +9,12 @@ module Casadi.GenericC
 import Data.Vector ( Vector )
 import Casadi.Core.Classes.Function ( Function )
 import Casadi.Core.Classes.GenericType
+
+import Casadi.SharedObject ( castSharedObject )
+
+instance Show GenericType where
+  show x = show (castSharedObject x)
+  {-# NOINLINE show #-}
 
 class GenericC a where
   mkGeneric :: a -> IO GenericType

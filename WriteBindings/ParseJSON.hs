@@ -476,12 +476,15 @@ readModules rootpath = do
         , moduleInheritance  = M.filterWithKey (\k _ -> not (isPrintableObject k)) newInheritance
         }
         where
-          printableObjects = M.keysSet $ M.filter hasPrintableObject newInheritance
+          printableObjects :: S.Set ClassType
+          printableObjects = S.fromList $
+                             map (\(ClassType (PrintableObject x)) -> ClassType x) $
+                             filter isPrintableObject $
+                             map classType (treeClasses tree)
 
           addPrint :: ClassType -> Class -> Class
           addPrint ct c
-            | S.member ct printableObjects = c { clMethods = clMethods c ++ printMethods
-                                               }
+            | S.member ct printableObjects = c { clMethods = clMethods c ++ printMethods }
             | otherwise = c
             where
               printMethods :: [Methods]
@@ -503,9 +506,6 @@ readModules rootpath = do
 
           isPrintableObject (ClassType (PrintableObject {})) = True
           isPrintableObject _ = False
-
-          hasPrintableObject :: S.Set ClassType -> Bool
-          hasPrintableObject = any isPrintableObject . S.toList
 
           newInheritance :: M.Map ClassType (S.Set ClassType)
           newInheritance =
@@ -554,6 +554,6 @@ readModules rootpath = do
 
 main :: IO ()
 main = do
-  let rootpath = "/home/ghorn/casadi_debian/casadi/build/swig"
+  let rootpath = "/home/ghorn/casadi-2.1.3/build/swig"
   _ <- readModules rootpath
   return ()

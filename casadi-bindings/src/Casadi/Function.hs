@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.Function
-       ( C.MXFunction, C.Function, callMX, callSX, evalDMatrix
+       ( C.Function, callMX, callSX, evalDMatrix
        , jacobian, gradient, derivative
        , generateCode, externalFunction
        ) where
@@ -11,7 +11,6 @@ import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Control.Monad ( zipWithM_ )
 
-import qualified Casadi.Core.Classes.MXFunction as C
 import qualified Casadi.Core.Classes.IOInterfaceFunction as C
 import qualified Casadi.Core.Classes.Function as C
 import qualified Casadi.Core.Classes.ExternalFunction as C
@@ -19,6 +18,11 @@ import qualified Casadi.Core.Classes.ExternalFunction as C
 import Casadi.SX ( SX )
 import Casadi.MX ( MX )
 import Casadi.DMatrix ( DMatrix )
+import Casadi.SharedObject ( castSharedObject )
+
+instance Show C.Function where
+  show x = show (castSharedObject x)
+  {-# NOINLINE show #-}
 
 -- | call an MXFunction on symbolic inputs, getting symbolic outputs
 callMX :: C.FunctionClass f => f -> Vector MX -> Vector MX

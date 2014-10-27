@@ -27,4 +27,3 @@ getOption f name = do
   if has
     then optionsFunctionality_getOption f name >>= fromGeneric
     else return Nothing
-

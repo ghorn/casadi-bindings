@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.DMatrix
-       ( DMatrix(), dcrs, dmm, dvector, ddata, ddiag
+       ( DMatrix, dcrs, dmm, dvector, ddata, ddiag
        , ddense, dsparse, dtrans, dtriu, dtril
        , dsize, dsize1, dsize2, dnumel
        , dvertcat, dhorzcat, dveccat, dvertsplit, dhorzsplit
@@ -16,6 +16,10 @@ import Casadi.Core.Classes.DMatrix
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
+
+instance Show DMatrix where
+  show x = unsafePerformIO (dmatrix_getDescription x)
+  {-# NOINLINE show #-}
 
 -- | matrix matrix product
 dmm :: DMatrix -> DMatrix -> DMatrix
