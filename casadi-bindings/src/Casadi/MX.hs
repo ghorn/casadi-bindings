@@ -30,6 +30,10 @@ import Casadi.SharedObject ( castSharedObject )
 instance Conjugate MX where
   conjugate = id
 
+instance Eq MX where
+  x == y = unsafePerformIO (mx_isEqual__0 x y)
+  {-# NOINLINE (==) #-}
+
 instance Show MX where
   show x = show (castSharedObject x)
   {-# NOINLINE show #-}

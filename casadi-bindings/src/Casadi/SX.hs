@@ -30,6 +30,10 @@ instance Show SX where
   show x = unsafePerformIO (sx_getDescription x)
   {-# NOINLINE show #-}
 
+instance Eq SX where
+  x == y = unsafePerformIO (sx_isEqual x y)
+  {-# NOINLINE (==) #-}
+
 instance Conjugate SX where
   conjugate = id
 

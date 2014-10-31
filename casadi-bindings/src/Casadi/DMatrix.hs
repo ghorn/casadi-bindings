@@ -10,6 +10,7 @@ module Casadi.DMatrix
 
 import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
+import Linear.Conjugate ( Conjugate(..) )
 
 import Casadi.Core.Classes.Sparsity
 import Casadi.Core.Classes.DMatrix
@@ -17,9 +18,16 @@ import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
 
+instance Conjugate DMatrix where
+  conjugate = id
+
 instance Show DMatrix where
   show x = unsafePerformIO (dmatrix_getDescription x)
   {-# NOINLINE show #-}
+
+instance Eq DMatrix where
+  x == y = unsafePerformIO (dmatrix_isEqual x y)
+  {-# NOINLINE (==) #-}
 
 -- | matrix matrix product
 dmm :: DMatrix -> DMatrix -> DMatrix
