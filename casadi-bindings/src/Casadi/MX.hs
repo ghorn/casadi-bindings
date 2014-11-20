@@ -12,6 +12,7 @@ module Casadi.MX
        , size, size1, size2, numel
        , crs, vertcat, horzcat, veccat, vertsplit, horzsplit
        , ones, zeros
+       , indexed
        ) where
 
 import Data.Vector ( Vector )
@@ -22,6 +23,7 @@ import Linear.Conjugate ( Conjugate(..) )
 import Casadi.Core.Classes.MX
 import Casadi.Core.Classes.DMatrix ( DMatrix )
 import Casadi.Core.Classes.Sparsity ( Sparsity )
+import Casadi.Core.Classes.Slice ( Slice )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
@@ -152,6 +154,10 @@ ones (r,c) = unsafePerformIO (mx_ones__3 r c)
 zeros :: (Int,Int) -> MX
 zeros (r,c) = unsafePerformIO (mx_zeros__3 r c)
 {-# NOINLINE zeros #-}
+
+indexed :: MX -> Slice -> Slice -> MX
+indexed m sx sy = unsafePerformIO (mx_indexed__6 m sx sy)
+{-# NOINLINE indexed #-}
 
 instance Num MX where
   (+) x y = unsafePerformIO (mx___add__ x y)

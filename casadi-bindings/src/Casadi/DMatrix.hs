@@ -6,6 +6,7 @@ module Casadi.DMatrix
        , dsize, dsize1, dsize2, dnumel
        , dvertcat, dhorzcat, dveccat, dvertsplit, dhorzsplit
        , dones, dzeros
+       , dindexed
        ) where
 
 import qualified Data.Vector as V
@@ -14,6 +15,7 @@ import Linear.Conjugate ( Conjugate(..) )
 
 import Casadi.Core.Classes.Sparsity
 import Casadi.Core.Classes.DMatrix
+import Casadi.Core.Classes.Slice ( Slice )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
@@ -115,6 +117,10 @@ dones (r,c) = unsafePerformIO (dmatrix_ones__3 r c)
 dzeros :: (Int,Int) -> DMatrix
 dzeros (r,c) = unsafePerformIO (dmatrix_zeros__3 r c)
 {-# NOINLINE dzeros #-}
+
+dindexed :: DMatrix -> Slice -> Slice -> DMatrix
+dindexed m sx sy = unsafePerformIO (dmatrix_indexed__5 m sx sy)
+{-# NOINLINE dindexed #-}
 
 instance Num DMatrix where
   (+) x y = unsafePerformIO (dmatrix___add__ x y)

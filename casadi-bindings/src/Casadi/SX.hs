@@ -12,6 +12,7 @@ module Casadi.SX
        , ssize, ssize1, ssize2, snumel
        , scrs, svertcat, shorzcat, sveccat, svertsplit, shorzsplit
        , sones, szeros
+       , sindexed
        ) where
 
 import qualified Data.Vector as V
@@ -22,6 +23,7 @@ import Casadi.Core.Classes.SXElement ( SXElement )
 import Casadi.Core.Classes.SX
 import Casadi.Core.Classes.DMatrix ( DMatrix )
 import Casadi.Core.Classes.Sparsity ( Sparsity )
+import Casadi.Core.Classes.Slice ( Slice )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
@@ -155,6 +157,10 @@ sones (r,c) = unsafePerformIO (sx_ones__3 r c)
 szeros :: (Int,Int) -> SX
 szeros (r,c) = unsafePerformIO (sx_zeros__3 r c)
 {-# NOINLINE szeros #-}
+
+sindexed :: SX -> Slice -> Slice -> SX
+sindexed m sx sy = unsafePerformIO (sx_indexed__5 m sx sy)
+{-# NOINLINE sindexed #-}
 
 instance Num SX where
   (+) x y = unsafePerformIO (sx___add__ x y)
