@@ -20,7 +20,7 @@ module WriteBindings.ParseJSON
        , Enum'(..)
        , EnumEntry(..)
        , Module(..)
-       , readModules
+       , readModule
        ) where
 
 import GHC.Generics ( Generic )
@@ -28,15 +28,11 @@ import Control.Applicative ( Applicative(..) )
 import Control.Arrow ( first )
 import Data.Aeson
 import Data.Aeson.Types ( typeMismatch )
-import Data.List ( sort )
-import Data.Maybe ( catMaybes )
 import qualified Data.ByteString.Lazy as BS
 import qualified Data.Text as Text
 import qualified Data.Map.Strict as M
 import Text.Parsec
 --import Debug.Trace
-import System.FilePath
-import System.Directory ( getDirectoryContents )
 import qualified Data.Set as S
 
 instance FromJSON ClassType where
@@ -345,7 +341,6 @@ data Module =
   , moduleEnums :: M.Map Name Enum'
   , moduleInheritance :: M.Map ClassType (S.Set ClassType)
   , moduleIncludes :: [String]
-  , moduleName :: String
   }
 
 instance FromJSON a => FromJSON (CppFunction' a)
@@ -354,28 +349,6 @@ instance FromJSON EnumEntry
 instance FromJSON a => FromJSON (Tree a)
 instance FromJSON a => FromJSON (Method' a)
 instance FromJSON a => FromJSON (Class' a)
-
-uncasadi :: String -> String
-uncasadi xs
-  | take 7 xs == "casadi_" = drop 7 xs
-  | otherwise = error $ "uncasadi: " ++ xs
-
-getModulePaths :: FilePath -> FilePath -> Maybe (String, FilePath)
-getModulePaths rootpath name
-  | reverse (take 5 (reverse name)) == ".json" = Just (uncasadi modname, treepath)
-  | otherwise = Nothing
-  where
-    modname = reverse $ drop 5 $ reverse name
-    treepath = combine rootpath (modname ++ ".json")
-
-parseModule :: (String, FilePath) -> IO (String, Tree String)
-parseModule (modname, treepath) = do
-  putStrLn $ "parsing " ++ modname
-  tree <- fmap eitherDecode' (BS.readFile treepath) :: IO (Either String (Tree String))
-  tparsed <- case tree of
-    Left err -> error $ "module parsing failure: " ++ err
-    Right ret -> return ret
-  return (modname, tparsed)
 
 getAllTypes :: Type -> [Type]
 getAllTypes x@(CArray t) = x:getAllTypes t
@@ -448,23 +421,24 @@ overloadMethods c =
 
 type CppFunctions = Either [CppFunction] CppFunction
 
-readModules :: FilePath -> IO [Module]
-readModules rootpath = do
-  contents <- getDirectoryContents rootpath
-  let mods = sort $ catMaybes $ map (getModulePaths rootpath) contents
-  trees0 <- mapM parseModule mods :: IO [(String, Tree String)]
+readModule :: FilePath -> IO Module
+readModule jsonpath = do
+  putStrLn $ "parsing " ++ jsonpath
+  eitherTree <- fmap eitherDecode' (BS.readFile jsonpath) :: IO (Either String (Tree String))
+  tree0 <- case eitherTree of
+    Left err -> error $ "module parsing failure: " ++ err
+    Right ret -> return ret
 
   let isEnum :: String -> Bool
-      isEnum = (`S.member` (S.fromList (concatMap (M.keys . treeEnums . snd) trees0)))
+      isEnum = (`S.member` (S.fromList (M.keys (treeEnums (tree0)))))
 
-      trees :: [(String, Tree Type)]
-      trees = map (\(x,y) -> (x, fmap (parseType isEnum) y)) trees0
+      tree' :: Tree Type
+      tree' = fmap (parseType isEnum) tree0
 
-      treeToModule :: (String, Tree Type) -> Module
-      treeToModule (modname, tree) =
+      treeToModule :: Tree Type -> Module
+      treeToModule tree =
         Module
-        { moduleName = modname
-        , moduleFunctions = map f2fs (M.toList functions0) :: [CppFunctions]
+        { moduleFunctions = map f2fs (M.toList functions0) :: [CppFunctions]
         , moduleClasses = M.mapWithKey addPrint
                           $ M.map (overloadMethods . filterMethods)
                           $ M.fromListWith classUnion
@@ -537,7 +511,7 @@ readModules rootpath = do
             , fDocslink = funDocslink f
             }
 
-      modules = map treeToModule trees
+      module' = treeToModule tree'
 
 --      pmi :: M.Map ClassType (S.Set ClassType) -> IO ()
 --      pmi xs = do
@@ -549,11 +523,11 @@ readModules rootpath = do
 --        mapM_ pmi' (M.toList xs)
 --  mapM_ (pmi . moduleInheritance) modules
 
-  return modules
+  return module'
 
 
 main :: IO ()
 main = do
-  let rootpath = "/home/ghorn/casadi-2.1.3/build/swig"
-  _ <- readModules rootpath
+  let jsonpath = "/home/ghorn/casadi_debian/casadi/build/swig/json/casadi.json"
+  _ <- readModule jsonpath
   return ()

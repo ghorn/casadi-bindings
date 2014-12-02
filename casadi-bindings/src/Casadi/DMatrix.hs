@@ -83,7 +83,7 @@ dnumel x = unsafePerformIO (dmatrix_numel x)
 {-# NOINLINE dnumel #-}
 
 dvertcat :: V.Vector DMatrix -> DMatrix
-dvertcat x = unsafePerformIO (C.vertcat__3 x)
+dvertcat x = unsafePerformIO (C.vertcat__2 x)
 {-# NOINLINE dvertcat #-}
 
 dveccat :: V.Vector DMatrix -> DMatrix
@@ -91,23 +91,23 @@ dveccat x = unsafePerformIO (C.veccat__2 x)
 {-# NOINLINE dveccat #-}
 
 dvertsplit :: DMatrix -> V.Vector Int -> V.Vector DMatrix
-dvertsplit x ks = unsafePerformIO (C.vertsplit__9 x ks)
+dvertsplit x ks = unsafePerformIO (C.vertsplit__8 x ks)
 {-# NOINLINE dvertsplit #-}
 
 dhorzsplit :: DMatrix -> V.Vector Int -> V.Vector DMatrix
-dhorzsplit x ks = unsafePerformIO (C.horzsplit__9 x ks)
+dhorzsplit x ks = unsafePerformIO (C.horzsplit__8 x ks)
 {-# NOINLINE dhorzsplit #-}
 
 dhorzcat :: V.Vector DMatrix -> DMatrix
-dhorzcat x = unsafePerformIO (C.horzcat__3 x)
+dhorzcat x = unsafePerformIO (C.horzcat__2 x)
 {-# NOINLINE dhorzcat #-}
 
 dtriu :: DMatrix -> DMatrix
-dtriu x = unsafePerformIO (C.triu__4 (castDMatrix x))
+dtriu x = unsafePerformIO (C.triu__2 (castDMatrix x))
 {-# NOINLINE dtriu #-}
 
 dtril :: DMatrix -> DMatrix
-dtril x = unsafePerformIO (C.tril__4 (castDMatrix x))
+dtril x = unsafePerformIO (C.tril__2 (castDMatrix x))
 {-# NOINLINE dtril #-}
 
 dones :: (Int,Int) -> DMatrix

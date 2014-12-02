@@ -232,8 +232,8 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
     ffiRetType :: String
     ffiRetType = "IO " ++ TM.ffiType True retType
 
-writeClassModules :: String -> (ClassType -> S.Set ClassType) -> [Class] -> [(String, String)]
-writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),writeOneModule x)) classes
+writeClassModules :: (ClassType -> S.Set ClassType) -> [Class] -> [(String, String)]
+writeClassModules inheritance classes = map (\x -> (dataName (clType x),writeOneModule x)) classes
   where
     writeOneModule :: Class -> String
     writeOneModule c =
@@ -245,7 +245,7 @@ writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),
       , "{-# Language FlexibleInstances #-}"
       , "{-# Language MultiParamTypeClasses #-}"
       , ""
-      , "module Casadi." ++ modname ++ ".Classes." ++ dataName ct
+      , "module Casadi.Core.Classes." ++ dataName ct
       , exportDecl $ [dataName ct, typeclassName ct ++ "(..)"] ++ sort names
       , ""
       , "import Prelude hiding ( Functor )"
@@ -263,9 +263,8 @@ writeClassModules modname inheritance classes = map (\x -> (dataName (clType x),
       , "import Casadi.Internal.MarshalTypes ( StdVec, StdString) -- StdPair StdOstream'"
       , "import Casadi.Internal.Marshal ( Marshal(..), withMarshal )"
       , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
-      , "import Casadi." ++ modname ++ ".Data"
-      , "import Casadi." ++ modname ++ ".Enums"
-      , if modname == "Core" then "" else "import Casadi.Core.Data\n"
+      , "import Casadi.Core.Data"
+      , "import Casadi.Core.Enums"
       ] ++ map f methods
       where
         ct = clType c
@@ -293,14 +292,14 @@ stripEmpty = reverse . stripLeading . reverse . stripLeading
       | all (== ' ') x = stripLeading xs
       | otherwise = ret
 
-writeDataModule :: String -> [Class] -> (ClassType -> S.Set ClassType) -> String
-writeDataModule modname classes baseClasses =
+writeDataModule :: [Class] -> (ClassType -> S.Set ClassType) -> String
+writeDataModule classes baseClasses =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# Language FlexibleInstances #-}"
   , "{-# Language MultiParamTypeClasses #-}"
   , ""
-  , "module Casadi." ++ modname ++ ".Data where"
+  , "module Casadi.Core.Data where"
   , ""
   , "import Prelude hiding ( Functor )"
   , ""
@@ -310,10 +309,8 @@ writeDataModule modname classes baseClasses =
   , ""
   , "import Casadi.Internal.Marshal (  Marshal(..) )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
-  , coreImport
   ] ++ map writeData classes
   where
-    coreImport = if modname == "Core" then "" else "import Casadi.Core.Data\n"
     writeData c =
       unlines $
       [ "-- raw decl"
@@ -335,12 +332,12 @@ writeDataModule modname classes baseClasses =
         Doc docs = clDocs c
 
 
-writeToolsModule :: String -> [CppFunctions] -> String
-writeToolsModule modname functions =
+writeToolsModule :: [CppFunctions] -> String
+writeToolsModule functions =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
   , ""
-  , "module Casadi." ++ modname ++ ".Tools"
+  , "module Casadi.Core.Tools"
   , exportDecl (sort funNames)
   , ""
   , "import Data.Vector ( Vector )"
@@ -349,14 +346,13 @@ writeToolsModule modname functions =
   , "import Foreign.Storable ( peek )"
   , "import Foreign.Ptr ( Ptr, nullPtr )"
   , ""
-  , "import Casadi." ++ modname ++ ".Data"
-  , "import Casadi." ++ modname ++ ".Enums"
+  , "import Casadi.Core.Data"
+  , "import Casadi.Core.Enums"
   , "import Casadi.Internal.CToolsInstances ( )"
   , "import Casadi.Internal.FormatException ( formatException )"
   , "import Casadi.Internal.MarshalTypes ( StdVec, StdString )"
   , "import Casadi.Internal.Marshal ( withMarshal )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
-  , if modname == "Core" then "" else "import Casadi.Core.Data\n"
   ] ++ funDecls
   where
     (funNames, funDecls) = unzip $ concatMap writeFunctions functions
@@ -399,14 +395,14 @@ writeToolsModule modname functions =
 enumName :: Name -> String
 enumName n = TM.hsType False (CEnum (Namespace []) n)
 
-writeEnumsModule :: String -> [(Name,Enum')] -> String
-writeEnumsModule modname enums =
+writeEnumsModule :: [(Name,Enum')] -> String
+writeEnumsModule enums =
   unlines $
   [ "{-# OPTIONS_GHC -Wall #-}"
   , "{-# OPTIONS_GHC -fno-warn-unused-imports #-}"
   , "{-# LANGUAGE MultiParamTypeClasses #-}"
   , ""
-  , "module Casadi." ++ modname ++ ".Enums"
+  , "module Casadi.Core.Enums"
   , exportDecl $ sort $ map (\(n,_) -> enumName n ++ "(..)") enums
   , ""
   , "import Foreign.C.Types ( CInt(..) )"

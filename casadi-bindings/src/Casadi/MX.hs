@@ -95,11 +95,11 @@ dense x = unsafePerformIO (C.dense__0 x)
 --{-# NOINLINE sparse #-}
 
 triu :: MX -> MX
-triu x = unsafePerformIO (C.triu__2 (castMX x))
+triu x = unsafePerformIO (C.triu__0 (castMX x))
 {-# NOINLINE triu #-}
 
 tril :: MX -> MX
-tril x = unsafePerformIO (C.tril__2 (castMX x))
+tril x = unsafePerformIO (C.tril__0 (castMX x))
 {-# NOINLINE tril #-}
 
 diag :: MX -> MX

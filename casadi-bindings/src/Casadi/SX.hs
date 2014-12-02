@@ -90,11 +90,11 @@ ssparse x = unsafePerformIO (C.sparse__0 x)
 {-# NOINLINE ssparse #-}
 
 striu :: SX -> SX
-striu x = unsafePerformIO (C.triu__3 (castSX x))
+striu x = unsafePerformIO (C.triu__1 (castSX x))
 {-# NOINLINE striu #-}
 
 stril :: SX -> SX
-stril x = unsafePerformIO (C.tril__3 (castSX x))
+stril x = unsafePerformIO (C.tril__1 (castSX x))
 {-# NOINLINE stril #-}
 
 scrs :: SX -> Sparsity
@@ -127,11 +127,11 @@ snumel x = unsafePerformIO (sx_numel x)
 {-# NOINLINE snumel #-}
 
 svertcat :: V.Vector SX -> SX
-svertcat x = unsafePerformIO (C.vertcat__2 x)
+svertcat x = unsafePerformIO (C.vertcat__1 x)
 {-# NOINLINE svertcat #-}
 
 shorzcat :: V.Vector SX -> SX
-shorzcat x = unsafePerformIO (C.horzcat__2 x)
+shorzcat x = unsafePerformIO (C.horzcat__1 x)
 {-# NOINLINE shorzcat #-}
 
 sveccat :: V.Vector SX -> SX
@@ -139,11 +139,11 @@ sveccat x = unsafePerformIO (C.veccat__1 x)
 {-# NOINLINE sveccat #-}
 
 svertsplit :: SX -> V.Vector Int -> V.Vector SX
-svertsplit x ks = unsafePerformIO (C.vertsplit__6 x ks)
+svertsplit x ks = unsafePerformIO (C.vertsplit__5 x ks)
 {-# NOINLINE svertsplit #-}
 
 shorzsplit :: SX -> V.Vector Int -> V.Vector SX
-shorzsplit x ks = unsafePerformIO (C.horzsplit__6 x ks)
+shorzsplit x ks = unsafePerformIO (C.horzsplit__5 x ks)
 {-# NOINLINE shorzsplit #-}
 
 ssolve :: SX -> SX -> SX
