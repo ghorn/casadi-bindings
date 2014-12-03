@@ -198,6 +198,12 @@ baseclassInstances c bcs = unlines $ map writeInstance' bcs
     ct = clType c
 
 
+startsWith :: String -> String -> Bool
+startsWith _ [] = True
+startsWith (x:xs) (y:ys)
+  | x == y = startsWith xs ys
+  | otherwise = False
+startsWith [] _ = False
 
 writeFunction :: CppFunction -> (String, String)
 writeFunction fun = (hsFunctionName, ffiWrapper)
@@ -216,7 +222,15 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
 
     cFunctionName = TM.cWrapperName' fun
     c_hsFunctionName = "c_" ++ cFunctionName
-    safeunsafe = if cFunctionName `elem` ["casadi__Function__evaluate"]
+    safeunsafe = if any (cFunctionName `startsWith`) [ "casadi__Function__evaluate"
+                                                     , "casadi__Function__jacobian"
+                                                     , "casadi__Function__call"
+                                                     , "casadi__Function__callDerivative"
+                                                     , "casadi__Function__hessian"
+                                                     , "casadi__Function__derivative"
+                                                     , "casadi__Function__gradient"
+                                                     , "casadi__Function__tangent"
+                                                     ]
                  then "safe" else "unsafe"
     foreignImport =
       "foreign import ccall " ++ safeunsafe ++ " \"" ++ cFunctionName ++ "\" " ++
