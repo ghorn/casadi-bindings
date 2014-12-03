@@ -39,7 +39,7 @@ library
 
   ghc-prof-options: -O2 -prof -fprof-auto -fprof-cafs -rtsopts
   ghc-options: -O2
-  cc-options: -Wall -Wno-delete-non-virtual-dtor
+  cc-options: -Wall -Wno-delete-non-virtual-dtor -Wno-sign-compare
 
   C-sources:        cbits/hs_tools.cpp
                     cbits/callback.cpp
