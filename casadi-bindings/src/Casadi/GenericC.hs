@@ -9,6 +9,7 @@ module Casadi.GenericC
 import Data.Vector ( Vector )
 import Casadi.Core.Classes.Function ( Function )
 import Casadi.Core.Classes.GenericType
+import Casadi.Core.Classes.DerivativeGenerator ( DerivativeGenerator )
 
 import Casadi.SharedObject ( castSharedObject )
 
@@ -53,6 +54,9 @@ instance GenericC GenericType where
 instance GenericC Function where
   mkGeneric = genericType__3
   fromGeneric = ifThenGet genericType_isFunction genericType_toFunction
+instance GenericC DerivativeGenerator where
+  mkGeneric = genericType__1
+  fromGeneric = const $ return $ error "no fromGeneric for DerivativeGenerator"
 
 ifThenGet :: (a -> IO Bool) -> (a -> IO b) -> a -> IO (Maybe b)
 ifThenGet isOpt getOpt g = do
