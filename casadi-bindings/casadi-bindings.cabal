@@ -50,6 +50,7 @@ library
                        Casadi.Overloading
                        Casadi.SharedObject
                        Casadi.Slice
+                       Casadi.Sparsity
                        Casadi.SX
                        Casadi.SXElement
                        Casadi.SXFunction
