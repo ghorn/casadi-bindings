@@ -11,7 +11,7 @@ module Casadi.SX
        , d2s
        , ssize, ssize1, ssize2, snumel
        , scrs, svertcat, shorzcat, sveccat, svertsplit, shorzsplit
-       , sones, szeros
+       , seye, sones, szeros
        , sindexed
        ) where
 
@@ -149,6 +149,10 @@ shorzsplit x ks = unsafePerformIO (C.horzsplit__5 x ks)
 ssolve :: SX -> SX -> SX
 ssolve a b = unsafePerformIO (C.solve__2 a b)
 {-# NOINLINE ssolve #-}
+
+seye :: Int -> SX
+seye n = unsafePerformIO (sx_eye n)
+{-# NOINLINE seye #-}
 
 sones :: (Int,Int) -> SX
 sones (r,c) = unsafePerformIO (sx_ones__3 r c)

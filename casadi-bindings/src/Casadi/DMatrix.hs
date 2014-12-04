@@ -5,7 +5,7 @@ module Casadi.DMatrix
        , ddense, dsparse, dtrans, dtriu, dtril
        , dsize, dsize1, dsize2, dnumel
        , dvertcat, dhorzcat, dveccat, dvertsplit, dhorzsplit
-       , dones, dzeros
+       , deye, dones, dzeros
        , dindexed
        ) where
 
@@ -109,6 +109,10 @@ dtriu x = unsafePerformIO (C.triu__2 (castDMatrix x))
 dtril :: DMatrix -> DMatrix
 dtril x = unsafePerformIO (C.tril__2 (castDMatrix x))
 {-# NOINLINE dtril #-}
+
+deye :: Int -> DMatrix
+deye n = unsafePerformIO (dmatrix_eye n)
+{-# NOINLINE deye #-}
 
 dones :: (Int,Int) -> DMatrix
 dones (r,c) = unsafePerformIO (dmatrix_ones__3 r c)

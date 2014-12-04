@@ -11,7 +11,7 @@ module Casadi.MX
        , d2m
        , size, size1, size2, numel
        , crs, vertcat, horzcat, veccat, vertsplit, horzsplit
-       , ones, zeros
+       , eye, ones, zeros
        , indexed
        ) where
 
@@ -146,6 +146,10 @@ horzsplit x ks = unsafePerformIO (C.horzsplit__2 x ks)
 horzcat :: V.Vector MX -> MX
 horzcat x = unsafePerformIO (C.horzcat__0 x)
 {-# NOINLINE horzcat #-}
+
+eye :: Int -> MX
+eye n = unsafePerformIO (mx_eye n)
+{-# NOINLINE eye #-}
 
 ones :: (Int,Int) -> MX
 ones (r,c) = unsafePerformIO (mx_ones__3 r c)
