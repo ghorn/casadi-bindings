@@ -253,11 +253,12 @@ classUnion x y
             , classDocs = docs
             , classDocslink = docslink
             }
+    -- lets go with no docs for now
     docs
-      | classDocs x == classDocs y = classDocs x
+--      | classDocs x == classDocs y = classDocs x
       | otherwise = Doc ""
     docslink
-      | classDocslink x == classDocslink y = classDocslink x
+--      | classDocslink x == classDocslink y = classDocslink x
       | otherwise = DocLink ""
 
     ctx = classType x
@@ -395,8 +396,8 @@ overloadMethods c =
   Class
   { clType = classType c
   , clMethods = map m2ms (M.toList ms)
-  , clDocs = classDocs c
-  , clDocslink = classDocslink c
+  , clDocs = Doc "" -- classDocs c
+  , clDocslink = DocLink "" -- classDocslink c
   }
   where
     ms :: M.Map Name [Method' Type]
@@ -415,8 +416,8 @@ overloadMethods c =
       , mKind = methodKind f
       , mReturn = methodReturn f
       , mParams = methodParams f
-      , mDocs = methodDocs f
-      , mDocslink = methodDocslink f
+      , mDocs = Doc "" -- methodDocs f
+      , mDocslink = DocLink "" -- methodDocslink f
       }
 
 type CppFunctions = Either [CppFunction] CppFunction
@@ -507,8 +508,8 @@ readModule jsonpath = do
             , fOthers = others
             , fReturn = funReturn f
             , fParams = funParams f
-            , fDocs = funDocs f
-            , fDocslink = funDocslink f
+            , fDocs = Doc "" -- funDocs f
+            , fDocslink = DocLink "" -- funDocslink f
             }
 
       module' = treeToModule tree'
