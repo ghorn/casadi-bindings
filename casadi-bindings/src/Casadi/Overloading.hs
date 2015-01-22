@@ -4,6 +4,7 @@ module Casadi.Overloading
        ( Fmod(..)
        , ArcTan2(..)
        , SymOrd(..)
+       , Erf(..)
        ) where
 
 import Data.Fixed ( mod' )
@@ -36,3 +37,8 @@ instance SymOrd Float where
   x `leq` y = if x <= y then 1 else 0
   x `geq` y = if x >= y then 1 else 0
   x  `eq` y = if x == y then 1 else 0
+
+-- | error function
+class Erf a where
+  erf :: a -> a
+  erfinv :: a -> a

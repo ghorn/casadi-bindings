@@ -21,7 +21,7 @@ import Casadi.Core.Classes.Sparsity
 import Casadi.Core.Classes.DMatrix
 import Casadi.Core.Classes.Slice ( Slice )
 
-import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
+import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 
 instance Conjugate DMatrix where
   conjugate = id
@@ -220,3 +220,10 @@ instance SymOrd DMatrix where
   {-# NOINLINE geq #-}
   x  `eq` y = unsafePerformIO (dmatrix_zz_eq x y)
   {-# NOINLINE eq #-}
+
+
+instance Erf DMatrix where
+  erf x = unsafePerformIO (dmatrix_zz_erf x)
+  {-# NOINLINE erf #-}
+  erfinv x = unsafePerformIO (dmatrix_zz_erfinv x)
+  {-# NOINLINE erfinv #-}

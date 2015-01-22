@@ -26,7 +26,7 @@ import Casadi.Core.Classes.Sparsity ( Sparsity )
 import Casadi.Core.Classes.Slice ( Slice )
 import qualified Casadi.Core.Tools as C
 
-import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
+import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 
 instance Show SX where
   show x = unsafePerformIO (sx_getDescription x)
@@ -248,3 +248,9 @@ instance SymOrd SX where
   {-# NOINLINE geq #-}
   x  `eq` y = unsafePerformIO (sx_zz_eq x y)
   {-# NOINLINE eq #-}
+
+instance Erf SX where
+  erf x = unsafePerformIO (sx_zz_erf x)
+  {-# NOINLINE erf #-}
+  erfinv x = unsafePerformIO (sx_zz_erfinv x)
+  {-# NOINLINE erfinv #-}

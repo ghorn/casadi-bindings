@@ -28,7 +28,7 @@ import Casadi.Core.Classes.Sparsity ( Sparsity )
 import Casadi.Core.Classes.Slice ( Slice )
 import qualified Casadi.Core.Tools as C
 
-import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..) )
+import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.SharedObject ( castSharedObject )
 
 instance Conjugate MX where
@@ -257,3 +257,8 @@ instance SymOrd MX where
   x  `eq` y = unsafePerformIO (mx_zz_eq x y)
   {-# NOINLINE eq #-}
 
+instance Erf MX where
+  erf x = unsafePerformIO (mx_zz_erf x)
+  {-# NOINLINE erf #-}
+  erfinv x = unsafePerformIO (mx_zz_erfinv x)
+  {-# NOINLINE erfinv #-}
