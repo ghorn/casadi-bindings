@@ -2,11 +2,15 @@
 
 module Casadi.DMatrix
        ( DMatrix, dcrs, dmm, dvector, ddata, ddiag
-       , ddense, dsparsify, dtrans, dtriu, dtril
+       , ddense, dsparsify, dtrans
+       , dtriu, dtril
+       , dtriu2symm, dtril2symm
        , dsize, dsize1, dsize2, dnumel
        , dvertcat, dhorzcat, dveccat, dvertsplit, dhorzsplit
-       , deye, dones, dzeros
+       , deye, dones, dzeros, dzerosSp
        , dindexed
+       , dgetNZ, dsetNZ
+       , dcopy
        ) where
 
 import qualified Data.Vector as V
@@ -109,6 +113,14 @@ dtril :: DMatrix -> DMatrix
 dtril x = unsafePerformIO (dmatrix_zz_tril__0 x)
 {-# NOINLINE dtril #-}
 
+dtriu2symm :: DMatrix -> DMatrix
+dtriu2symm x = unsafePerformIO (dmatrix_zz_triu2symm x)
+{-# NOINLINE dtriu2symm #-}
+
+dtril2symm :: DMatrix -> DMatrix
+dtril2symm x = unsafePerformIO (dmatrix_zz_tril2symm x)
+{-# NOINLINE dtril2symm #-}
+
 deye :: Int -> DMatrix
 deye n = unsafePerformIO (dmatrix_eye n)
 {-# NOINLINE deye #-}
@@ -121,9 +133,23 @@ dzeros :: (Int,Int) -> DMatrix
 dzeros (r,c) = unsafePerformIO (dmatrix_zeros__3 r c)
 {-# NOINLINE dzeros #-}
 
+dzerosSp :: Sparsity -> DMatrix
+dzerosSp sp = unsafePerformIO (dmatrix_zeros__0 sp)
+{-# NOINLINE dzerosSp #-}
+
 dindexed :: DMatrix -> Slice -> Slice -> DMatrix
 dindexed m sx sy = unsafePerformIO (dmatrix_getSub__3 m False sx sy)
 {-# NOINLINE dindexed #-}
+
+dgetNZ :: DMatrix -> Slice -> DMatrix
+dgetNZ m s = unsafePerformIO (dmatrix_getNZ__1 m False s)
+{-# NOINLINE dgetNZ #-}
+
+dsetNZ :: DMatrix -> DMatrix -> Slice -> IO ()
+dsetNZ m y s = dmatrix_setNZ__1 m y False s
+
+dcopy :: DMatrix -> IO DMatrix
+dcopy m = dmatrix__10 m
 
 instance Num DMatrix where
   (+) x y = unsafePerformIO (dmatrix_zz_plus x y)

@@ -5,14 +5,16 @@ module Casadi.MX
        , gradient, jacobian -- , hessian
        , solve
        , expand
-       , triu
-       , tril
+       , triu, tril
+       , triu2symm, tril2symm
        , dense --, sparse
        , d2m
        , size, size1, size2, numel
        , crs, vertcat, horzcat, veccat, vertsplit, horzsplit
-       , eye, ones, zeros
+       , eye, ones, zeros, zerosSp
        , indexed
+       , getNZ, setNZ
+       , copy
        ) where
 
 import Data.Vector ( Vector )
@@ -102,6 +104,14 @@ tril :: MX -> MX
 tril x = unsafePerformIO (mx_zz_tril__0 x)
 {-# NOINLINE tril #-}
 
+triu2symm :: MX -> MX
+triu2symm x = unsafePerformIO (mx_zz_triu2symm x)
+{-# NOINLINE triu2symm #-}
+
+tril2symm :: MX -> MX
+tril2symm x = unsafePerformIO (mx_zz_tril2symm x)
+{-# NOINLINE tril2symm #-}
+
 diag :: MX -> MX
 diag x = unsafePerformIO (mx_zz_diag x)
 {-# NOINLINE diag #-}
@@ -159,9 +169,23 @@ zeros :: (Int,Int) -> MX
 zeros (r,c) = unsafePerformIO (mx_zeros__3 r c)
 {-# NOINLINE zeros #-}
 
+zerosSp :: Sparsity -> MX
+zerosSp sp = unsafePerformIO (mx_zeros__0 sp)
+{-# NOINLINE zerosSp #-}
+
 indexed :: MX -> Slice -> Slice -> MX
 indexed m sx sy = unsafePerformIO (mx_getSub__3 m False sx sy)
 {-# NOINLINE indexed #-}
+
+getNZ :: MX -> Slice -> MX
+getNZ m s = unsafePerformIO (mx_getNZ__1 m False s)
+{-# NOINLINE getNZ #-}
+
+setNZ :: MX -> MX -> Slice -> IO ()
+setNZ m y s = mx_setNZ__1 m y False s
+
+copy :: MX -> IO MX
+copy m = mx__2 m
 
 instance Num MX where
   (+) x y = unsafePerformIO (mx_zz_plus x y)

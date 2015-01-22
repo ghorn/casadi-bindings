@@ -2,24 +2,24 @@
 
 module Casadi.SX
        ( SX, ssym, ssymV, ssymM, smm, strans
-       , sgradient, sjacobian, shessian, svector, sdiag
+       , sgradient, sjacobian, shessian, sdiag
        , ssolve
-       , sdata
-       , striu
-       , stril
+       , striu, stril
+       , striu2symm, stril2symm
        , sdense, ssparsify
        , d2s
        , ssize, ssize1, ssize2, snumel
        , scrs, svertcat, shorzcat, sveccat, svertsplit, shorzsplit
-       , seye, sones, szeros
+       , seye, sones, szeros, szerosSp
        , sindexed
+       , sgetNZ, ssetNZ
+       , scopy
        ) where
 
 import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Linear.Conjugate ( Conjugate(..) )
 
-import Casadi.Core.Classes.SXElement ( SXElement )
 import Casadi.Core.Classes.SX
 import Casadi.Core.Classes.DMatrix ( DMatrix )
 import Casadi.Core.Classes.Sparsity ( Sparsity )
@@ -97,18 +97,17 @@ stril :: SX -> SX
 stril x = unsafePerformIO (sx_zz_tril__0 x)
 {-# NOINLINE stril #-}
 
+striu2symm :: SX -> SX
+striu2symm x = unsafePerformIO (sx_zz_triu2symm x)
+{-# NOINLINE striu2symm #-}
+
+stril2symm :: SX -> SX
+stril2symm x = unsafePerformIO (sx_zz_tril2symm x)
+{-# NOINLINE stril2symm #-}
+
 scrs :: SX -> Sparsity
 scrs x = unsafePerformIO (sx_sparsityRef__0 x)
 {-# NOINLINE scrs #-}
-
--- | from SXElement vector
-svector :: V.Vector SXElement -> SX
-svector x = unsafePerformIO (sx__7 x)
-{-# NOINLINE svector #-}
-
-sdata :: SX -> V.Vector SXElement
-sdata x = unsafePerformIO (sx_data__0 x)
-{-# NOINLINE sdata #-}
 
 ssize :: SX -> Int
 ssize x = unsafePerformIO (sx_size__1 x)
@@ -162,9 +161,23 @@ szeros :: (Int,Int) -> SX
 szeros (r,c) = unsafePerformIO (sx_zeros__3 r c)
 {-# NOINLINE szeros #-}
 
+szerosSp :: Sparsity -> SX
+szerosSp sp = unsafePerformIO (sx_zeros__0 sp)
+{-# NOINLINE szerosSp #-}
+
 sindexed :: SX -> Slice -> Slice -> SX
 sindexed m sx sy = unsafePerformIO (sx_getSub__3 m False sx sy)
 {-# NOINLINE sindexed #-}
+
+sgetNZ :: SX -> Slice -> SX
+sgetNZ m s = unsafePerformIO (sx_getNZ__1 m False s)
+{-# NOINLINE sgetNZ #-}
+
+ssetNZ :: SX -> SX -> Slice -> IO ()
+ssetNZ m y s = sx_setNZ__1 m y False s
+
+scopy :: SX -> IO SX
+scopy m = sx__12 m
 
 instance Num SX where
   (+) x y = unsafePerformIO (sx_zz_plus x y)

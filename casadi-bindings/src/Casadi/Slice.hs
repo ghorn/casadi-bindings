@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.Slice
-       ( Slice, slice
+       ( Slice, slice, slice'
        ) where
 
 import System.IO.Unsafe ( unsafePerformIO )
@@ -16,3 +16,8 @@ instance Show Slice where
 slice :: Int -> Int -> Int -> Slice
 slice x y z = unsafePerformIO (slice__4 x y z)
 {-# NOINLINE slice #-}
+
+-- | Slice()
+slice' :: Slice
+slice' = unsafePerformIO slice__6
+{-# NOINLINE slice' #-}
