@@ -170,11 +170,15 @@ main = do
 
 sdist :: String -> IO ()
 sdist path = do
-  (_,_,_,p) <- createProcess $ (shell "cabal sdist") { cwd = Just path }
-  _ <- waitForProcess p
+  (_,_,_,p0) <- createProcess $ (shell "cabal clean") { cwd = Just path }
+  _ <- waitForProcess p0
+  (_,_,_,p1) <- createProcess $ (shell "cabal configure") { cwd = Just path }
+  _ <- waitForProcess p1
+  (_,_,_,p2) <- createProcess $ (shell "cabal sdist") { cwd = Just path }
+  _ <- waitForProcess p2
 
-  (_,_,_,p') <- createProcess $ (shell "mv dist/*.tar.gz ..") { cwd = Just path }
-  _ <- waitForProcess p'
+  (_,_,_,p3) <- createProcess $ (shell "mv dist/*.tar.gz ..") { cwd = Just path }
+  _ <- waitForProcess p3
 
   return ()
 
