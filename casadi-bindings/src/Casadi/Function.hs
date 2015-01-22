@@ -14,6 +14,7 @@ import Control.Monad ( zipWithM_ )
 import qualified Casadi.Core.Classes.IOInterfaceFunction as C
 import qualified Casadi.Core.Classes.Function as C
 import qualified Casadi.Core.Classes.ExternalFunction as C
+import qualified Casadi.Core.CustomWrappers as C
 
 import Casadi.SX ( SX )
 import Casadi.MX ( MX )
@@ -61,7 +62,7 @@ derivative :: C.FunctionClass a => a -> Int -> Int -> IO C.Function
 derivative = C.function_derivative
 
 generateCode :: C.FunctionClass a => a -> Bool -> String
-generateCode f x = error "no generate code"
+generateCode f x = unsafePerformIO (C.function_custom_generateCode f x)
 {-# NOINLINE generateCode #-}
 
 externalFunction :: String -> IO C.Function

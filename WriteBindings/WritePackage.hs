@@ -53,9 +53,13 @@ writePackage rootDir pkg = do
   license <- readFile (rootDir </> ".." </> "casadi-bindings-internal" </> "LICENSE")
   setupFile <- readFile (rootDir </> ".." </> "casadi-bindings-internal" </> "Setup.hs")
   marshallHpp <- readFile (rootDir </> ".." </> "WriteBindings" </> "marshal.hpp")
+  customWrappersCpp <- readFile (rootDir </> ".." </> "WriteBindings" </> "custom_wrappers.cpp")
+  customWrappersHs <- readFile (rootDir </> ".." </> "WriteBindings" </> "CustomWrappers.hs")
 
   wf ("LICENSE",license)
   wf ("cbits" </> "marshal.hpp",marshallHpp)
+  wf ("cbits" </> "custom_wrappers.cpp",customWrappersCpp)
+  wf ("Casadi" </> "Core" </> "CustomWrappers.hs",customWrappersHs)
   wf ("Setup.hs",setupFile)
   wf (pCabal pkg)
   wf (pCClasses pkg)
@@ -123,12 +127,14 @@ toPackage mod' =
               , "  ghc-options: "
               , "  cc-options: -Wall -Wno-sign-compare"
               , ""
-              , "  C-sources:        cbits/autogen/casadi_wrap_classes.cpp"
+              , "  C-sources:        cbits/custom_wrappers.cpp"
+              , "                    cbits/autogen/casadi_wrap_classes.cpp"
               , "                    cbits/autogen/casadi_wrap_functions.cpp"
               , ""
               , "  exposed-modules:  Casadi.Core.Data"
               , "                    Casadi.Core.Enums"
               , "                    Casadi.Core.Tools"
+              , "                    Casadi.Core.CustomWrappers"
               ] ++ map (\(n,_) -> "                    " ++
                                 "Casadi.Core.Classes." ++ uppercase n) hsClassModules
               )
