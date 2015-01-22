@@ -52,7 +52,6 @@ library
                        Casadi.Slice
                        Casadi.Sparsity
                        Casadi.SX
-                       Casadi.SXElement
                        Casadi.SXFunction
   build-depends:       base >=4.6 && <5,
                        linear,
