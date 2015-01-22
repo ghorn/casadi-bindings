@@ -25,22 +25,22 @@ getDescription :: GenericType -> IO String
 getDescription = genericType_get_description
 
 instance GenericC Bool where
-  mkGeneric = genericType__11
+  mkGeneric = genericType__12
   fromGeneric = ifThenGet genericType_isBool genericType_toBool
 instance GenericC Int where
-  mkGeneric = genericType__10
+  mkGeneric = genericType__11
   fromGeneric = ifThenGet genericType_isInt genericType_toInt
 instance GenericC Double where
-  mkGeneric = genericType__9
+  mkGeneric = genericType__10
   fromGeneric = ifThenGet genericType_isDouble genericType_toDouble
 instance GenericC String where
-  mkGeneric = genericType__8
+  mkGeneric = genericType__9
   fromGeneric = ifThenGet genericType_isString genericType_toString
 instance GenericC (Vector Bool) where
-  mkGeneric = genericType__7
+  mkGeneric = genericType__8
   fromGeneric = const (return Nothing)
 instance GenericC (Vector Int) where
-  mkGeneric = genericType__6
+  mkGeneric = genericType__7
   fromGeneric = ifThenGet genericType_isIntVector genericType_toIntVector
 instance GenericC (Vector Double) where
   mkGeneric = genericType__5

@@ -2,7 +2,7 @@
 
 module Casadi.Sparsity
        ( Sparsity
-       , triu, tril, spy, spyMatlab
+       , upper, lower, spy, spyMatlab
        , dense, sparse, scalar
        ) where
 
@@ -21,13 +21,13 @@ instance Eq Sparsity where
   x == y = unsafePerformIO (sparsity_isEqual__1 x y)
   {-# NOINLINE (==) #-}
 
-triu :: Int -> Sparsity
-triu k = unsafePerformIO (sparsity_triu k)
-{-# NOINLINE triu #-}
+upper :: Int -> Sparsity
+upper k = unsafePerformIO (sparsity_upper k)
+{-# NOINLINE upper #-}
 
-tril :: Int -> Sparsity
-tril k = unsafePerformIO (sparsity_tril k)
-{-# NOINLINE tril #-}
+lower :: Int -> Sparsity
+lower k = unsafePerformIO (sparsity_lower k)
+{-# NOINLINE lower #-}
 
 spy :: Sparsity -> IO ()
 spy = sparsity_spy

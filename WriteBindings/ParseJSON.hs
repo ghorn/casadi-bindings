@@ -176,6 +176,7 @@ typeParser isEnum = do
        , templatep isEnum "std::vector" StdVec
        , templatep isEnum "casadi::GenericExpression" id
        , templatep isEnum "casadi::GenericMatrix" id
+       , templatep isEnum "casadi::SparsityInterface" id
        , templatep isEnum "casadi::IOInterface" IOInterface
        , templatep isEnum "casadi::PrintableObject" PrintableObject
        , pairp isEnum

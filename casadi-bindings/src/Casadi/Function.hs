@@ -60,8 +60,8 @@ gradient = C.function_gradient__6
 derivative :: C.FunctionClass a => a -> Int -> Int -> IO C.Function
 derivative = C.function_derivative
 
-generateCode :: C.FunctionClass a => a -> String
-generateCode f = unsafePerformIO (C.function_generateCode__0 f)
+generateCode :: C.FunctionClass a => a -> Bool -> String
+generateCode f x = error "no generate code"
 {-# NOINLINE generateCode #-}
 
 externalFunction :: String -> IO C.Function

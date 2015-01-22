@@ -7,7 +7,7 @@ module Casadi.SX
        , sdata
        , striu
        , stril
-       , sdense, ssparse
+       , sdense, ssparsify
        , d2s
        , ssize, ssize1, ssize2, snumel
        , scrs, svertcat, shorzcat, sveccat, svertsplit, shorzsplit
@@ -33,7 +33,7 @@ instance Show SX where
   {-# NOINLINE show #-}
 
 instance Eq SX where
-  x == y = unsafePerformIO (sx_isEqual x y)
+  x == y = unsafePerformIO (sx_zz_isEqual__0 x y)
   {-# NOINLINE (==) #-}
 
 instance Conjugate SX where
@@ -65,7 +65,7 @@ shessian x y = unsafePerformIO (C.hessian__1 x y)
 
 -- | matrix matrix product
 smm :: SX -> SX -> SX
-smm x y = unsafePerformIO (sx_mul__0 x y)
+smm x y = unsafePerformIO (sx_zz_mtimes__1 x y)
 {-# NOINLINE smm #-}
 
 d2s :: DMatrix -> SX
@@ -73,28 +73,28 @@ d2s x = unsafePerformIO (sx__2 x)
 {-# NOINLINE d2s #-}
 
 sdiag :: SX -> SX
-sdiag x = unsafePerformIO (C.diag__1 x)
+sdiag x = unsafePerformIO (sx_zz_diag x)
 {-# NOINLINE sdiag #-}
 
 -- | transpose
 strans :: SX -> SX
-strans x = unsafePerformIO (sx_trans x)
+strans x = unsafePerformIO (sx_T x)
 {-# NOINLINE strans #-}
 
 sdense :: SX -> SX
-sdense x = unsafePerformIO (C.dense__1 x)
+sdense x = unsafePerformIO (sx_zz_dense x)
 {-# NOINLINE sdense #-}
 
-ssparse :: SX -> SX
-ssparse x = unsafePerformIO (C.sparse__0 x)
-{-# NOINLINE ssparse #-}
+ssparsify :: SX -> SX
+ssparsify x = unsafePerformIO (sx_zz_sparsify__0 x)
+{-# NOINLINE ssparsify #-}
 
 striu :: SX -> SX
-striu x = unsafePerformIO (C.triu__1 (castSX x))
+striu x = unsafePerformIO (sx_zz_triu__0 x)
 {-# NOINLINE striu #-}
 
 stril :: SX -> SX
-stril x = unsafePerformIO (C.tril__1 (castSX x))
+stril x = unsafePerformIO (sx_zz_tril__0 x)
 {-# NOINLINE stril #-}
 
 scrs :: SX -> Sparsity
@@ -123,27 +123,27 @@ ssize2 x = unsafePerformIO (sx_size2 x)
 {-# NOINLINE ssize2 #-}
 
 snumel :: SX -> Int
-snumel x = unsafePerformIO (sx_numel x)
+snumel x = unsafePerformIO (sx_numel__1 x)
 {-# NOINLINE snumel #-}
 
 svertcat :: V.Vector SX -> SX
-svertcat x = unsafePerformIO (C.vertcat__1 x)
+svertcat x = unsafePerformIO (sx_zz_vertcat x)
 {-# NOINLINE svertcat #-}
 
 shorzcat :: V.Vector SX -> SX
-shorzcat x = unsafePerformIO (C.horzcat__1 x)
+shorzcat x = unsafePerformIO (sx_zz_horzcat x)
 {-# NOINLINE shorzcat #-}
 
 sveccat :: V.Vector SX -> SX
-sveccat x = unsafePerformIO (C.veccat__1 x)
+sveccat x = unsafePerformIO (sx_zz_veccat x)
 {-# NOINLINE sveccat #-}
 
 svertsplit :: SX -> V.Vector Int -> V.Vector SX
-svertsplit x ks = unsafePerformIO (C.vertsplit__5 x ks)
+svertsplit x ks = unsafePerformIO (sx_zz_vertsplit x ks)
 {-# NOINLINE svertsplit #-}
 
 shorzsplit :: SX -> V.Vector Int -> V.Vector SX
-shorzsplit x ks = unsafePerformIO (C.horzsplit__5 x ks)
+shorzsplit x ks = unsafePerformIO (sx_zz_horzsplit x ks)
 {-# NOINLINE shorzsplit #-}
 
 ssolve :: SX -> SX -> SX
@@ -163,21 +163,21 @@ szeros (r,c) = unsafePerformIO (sx_zeros__3 r c)
 {-# NOINLINE szeros #-}
 
 sindexed :: SX -> Slice -> Slice -> SX
-sindexed m sx sy = unsafePerformIO (sx_indexed__5 m sx sy)
+sindexed m sx sy = unsafePerformIO (sx_getSub__3 m False sx sy)
 {-# NOINLINE sindexed #-}
 
 instance Num SX where
-  (+) x y = unsafePerformIO (sx___add__ x y)
+  (+) x y = unsafePerformIO (sx_zz_plus x y)
   {-# NOINLINE (+) #-}
-  (-) x y = unsafePerformIO (sx___sub__ x y)
+  (-) x y = unsafePerformIO (sx_zz_minus x y)
   {-# NOINLINE (-) #-}
-  (*) x y = unsafePerformIO (sx___mul__ x y)
+  (*) x y = unsafePerformIO (sx_zz_times x y)
   {-# NOINLINE (*) #-}
   fromInteger x = unsafePerformIO (sx__8 (fromInteger x :: Double))
   {-# NOINLINE fromInteger #-}
-  abs x = unsafePerformIO (sx_fabs x)
+  abs x = unsafePerformIO (sx_zz_abs x)
   {-# NOINLINE abs #-}
-  signum x = unsafePerformIO (sx_sign x)
+  signum x = unsafePerformIO (sx_zz_sign x)
   {-# NOINLINE signum #-}
 
 instance Fractional SX where
@@ -189,49 +189,49 @@ instance Fractional SX where
 instance Floating SX where
   pi = unsafePerformIO (sx__8 (pi :: Double))
   {-# NOINLINE pi #-}
-  (**) x y = unsafePerformIO (sx___pow__ x y)
+  (**) x y = unsafePerformIO (sx_zz_power x y)
   {-# NOINLINE (**) #-}
-  exp x   = unsafePerformIO (sx_exp x)
+  exp x   = unsafePerformIO (sx_zz_exp x)
   {-# NOINLINE exp #-}
-  log x   = unsafePerformIO (sx_log x)
+  log x   = unsafePerformIO (sx_zz_log x)
   {-# NOINLINE log #-}
-  sin x   = unsafePerformIO (sx_sin x)
+  sin x   = unsafePerformIO (sx_zz_sin x)
   {-# NOINLINE sin #-}
-  cos x   = unsafePerformIO (sx_cos x)
+  cos x   = unsafePerformIO (sx_zz_cos x)
   {-# NOINLINE cos #-}
-  tan x   = unsafePerformIO (sx_tan x)
+  tan x   = unsafePerformIO (sx_zz_tan x)
   {-# NOINLINE tan #-}
-  asin x  = unsafePerformIO (sx_arcsin x)
+  asin x  = unsafePerformIO (sx_zz_asin x)
   {-# NOINLINE asin #-}
-  atan x  = unsafePerformIO (sx_arctan x)
+  atan x  = unsafePerformIO (sx_zz_atan x)
   {-# NOINLINE atan #-}
-  acos x  = unsafePerformIO (sx_arccos x)
+  acos x  = unsafePerformIO (sx_zz_acos x)
   {-# NOINLINE acos #-}
-  sinh x  = unsafePerformIO (sx_sinh x)
+  sinh x  = unsafePerformIO (sx_zz_sinh x)
   {-# NOINLINE sinh #-}
-  cosh x  = unsafePerformIO (sx_cosh x)
+  cosh x  = unsafePerformIO (sx_zz_cosh x)
   {-# NOINLINE cosh #-}
-  tanh x  = unsafePerformIO (sx_tanh x)
+  tanh x  = unsafePerformIO (sx_zz_tanh x)
   {-# NOINLINE tanh #-}
-  asinh x = unsafePerformIO (sx_arcsinh x)
+  asinh x = unsafePerformIO (sx_zz_asinh x)
   {-# NOINLINE asinh #-}
-  atanh x = unsafePerformIO (sx_arctanh x)
+  atanh x = unsafePerformIO (sx_zz_atanh x)
   {-# NOINLINE atanh #-}
-  acosh x = unsafePerformIO (sx_arccosh x)
+  acosh x = unsafePerformIO (sx_zz_acosh x)
   {-# NOINLINE acosh #-}
 
 instance Fmod SX where
-  fmod x y = unsafePerformIO (sx_fmod x y)
+  fmod x y = unsafePerformIO (sx_zz_mod x y)
   {-# NOINLINE fmod #-}
 
 instance ArcTan2 SX where
-  arctan2 x y = unsafePerformIO (sx_arctan2 x y)
+  arctan2 x y = unsafePerformIO (sx_zz_atan2 x y)
   {-# NOINLINE arctan2 #-}
 
 instance SymOrd SX where
-  x `leq` y = unsafePerformIO (sx___le__ x y)
+  x `leq` y = unsafePerformIO (sx_zz_le x y)
   {-# NOINLINE leq #-}
-  x `geq` y = unsafePerformIO (sx___ge____0 x y)
+  x `geq` y = unsafePerformIO (sx_zz_ge x y)
   {-# NOINLINE geq #-}
-  x  `eq` y = unsafePerformIO (sx___eq__ x y)
+  x  `eq` y = unsafePerformIO (sx_zz_eq x y)
   {-# NOINLINE eq #-}
