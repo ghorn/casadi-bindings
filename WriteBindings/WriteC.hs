@@ -42,7 +42,7 @@ writeFunction fcn =
   , "// cWrapperRetType: " ++ show (TM.cWrapperRetType retType)
   , "// proto: " ++ show proto
   , "// call: " ++ show call
-  , "extern \"C\"\n    " ++ proto ++ ";"
+  , "extern \"C\"\n" ++ proto ++ ";"
   , proto ++ "{"
   , "    try {"
   , unlines marshals
@@ -76,7 +76,7 @@ writeDeletes ut =
   unlines
   [ "// ================== delete "++ show ut ++"==============="
   , "// classType: " ++ show ut
-  , "extern \"C\"\n    " ++ proto ++ ";"
+  , "extern \"C\"\n" ++ proto ++ ";"
   , proto ++ "{"
   , "    delete obj;"
   , "}"
@@ -112,7 +112,7 @@ writeMethod ut fcn =
   , "// proto: " ++ show proto
   , "// call: " ++ show call
   , "// params: " ++ show (mParams fcn)
-  , "extern \"C\"\n    " ++ proto ++ ";"
+  , "extern \"C\"\n" ++ proto ++ ";"
   , proto ++ "{"
   , "    try {"
   , unlines marshals

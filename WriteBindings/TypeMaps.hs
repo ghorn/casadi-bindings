@@ -204,7 +204,7 @@ cWrapperRetType :: Type -> String
 cWrapperRetType = cWrapperType
 
 writeReturn :: Type -> String -> String
-writeReturn CVoid x = "    " ++ x ++ ";"
+writeReturn CVoid x = "        " ++ x ++ ";"
 writeReturn t x =
   init $ unlines
   [ "        " ++ cppType t ++ " ret = " ++ x ++ ";"
