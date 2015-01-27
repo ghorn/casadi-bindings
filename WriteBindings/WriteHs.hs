@@ -230,6 +230,7 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
                                                      , "casadi__Function__derivative"
                                                      , "casadi__Function__gradient"
                                                      , "casadi__Function__tangent"
+                                                     , "casadi__SharedObject__init"
                                                      ]
                  then "safe" else "unsafe"
     foreignImport =

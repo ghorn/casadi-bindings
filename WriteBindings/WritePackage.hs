@@ -19,7 +19,7 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "2.2.0.0"
+version = "2.2.0.1"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
