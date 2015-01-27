@@ -114,7 +114,7 @@ toPackage mod' =
               , "library"
               , "  build-depends:       base >=4.6 && <5,"
               , "                       vector >=0.10,"
-              , "                       casadi-bindings-internal == 0.1.1"
+              , "                       casadi-bindings-internal == 0.1.2"
               , ""
               , "  default-language:    Haskell2010"
               , ""
@@ -156,8 +156,7 @@ toPackage mod' =
 
 main :: IO ()
 main = do
---  let rootpath = "/home/ghorn/casadi-2.1.3/build/swig/json/casadi.json"
-  let jsonpath = "/home/ghorn/casadi-release-2.2.0-rc1/build/swig/json/casadi.json"
+  let jsonpath = "/home/ghorn/casadi-2.2.0/build/swig/json/casadi.json"
   trees <- readModule jsonpath
   let writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
       pkgs = [toPackage trees]
