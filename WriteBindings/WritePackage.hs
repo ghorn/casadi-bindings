@@ -19,7 +19,7 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "2.2.0.1"
+version = "2.2.0.2"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -101,7 +101,7 @@ toPackage mod' =
               , "license:             LGPL-3"
               , "license-file:        LICENSE"
               , "category:            Numerical, Math"
-              , "copyright:           (c) 2013-2014 Greg Horn"
+              , "copyright:           (c) 2013-2015 Greg Horn"
               , "author:              Greg Horn"
               , "maintainer:          gregmainland@gmail.com"
               , "build-type:          Simple"
@@ -114,7 +114,7 @@ toPackage mod' =
               , "library"
               , "  build-depends:       base >=4.6 && <5,"
               , "                       vector >=0.10,"
-              , "                       casadi-bindings-internal == 0.1.2"
+              , "                       casadi-bindings-internal == 0.1.2.1"
               , ""
               , "  default-language:    Haskell2010"
               , ""
