@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.MX
-       ( MX, sym, symV, symM, mm, trans, diag
+       ( MX, sym, symV, symM, mm, innerProd, trans, diag
        , gradient, jacobian -- , hessian
        , solve
        , expand
@@ -82,6 +82,11 @@ d2m x = unsafePerformIO (mx__0 x)
 mm :: MX -> MX -> MX
 mm x y = unsafePerformIO (mx_zz_mtimes__1 x y)
 {-# NOINLINE mm #-}
+
+-- | sumAll(x*y), x and y same dimension
+innerProd :: MX -> MX -> MX
+innerProd x y = unsafePerformIO (mx_zz_inner_prod x y)
+{-# NOINLINE innerProd #-}
 
 -- | transpose
 trans :: MX -> MX

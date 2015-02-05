@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.DMatrix
-       ( DMatrix, dcrs, dmm, dvector, ddata, ddiag
+       ( DMatrix, dcrs, dmm, dinnerProd, dvector, ddata, ddiag
        , ddense, dsparsify, dtrans
        , dtriu, dtril
        , dtriu2symm, dtril2symm
@@ -38,6 +38,11 @@ instance Eq DMatrix where
 dmm :: DMatrix -> DMatrix -> DMatrix
 dmm x y = unsafePerformIO (dmatrix_zz_mtimes__1 x y)
 {-# NOINLINE dmm #-}
+
+-- | sumAll(x*y), x and y same dimension
+dinnerProd :: DMatrix -> DMatrix -> DMatrix
+dinnerProd x y = unsafePerformIO (dmatrix_zz_inner_prod x y)
+{-# NOINLINE dinnerProd #-}
 
 -- | transpose
 dtrans :: DMatrix -> DMatrix

@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.SX
-       ( SX, ssym, ssymV, ssymM, smm, strans
+       ( SX, ssym, ssymV, ssymM, smm, sinnerProd, strans
        , sgradient, sjacobian, shessian, sdiag
        , ssolve
        , striu, stril
@@ -67,6 +67,11 @@ shessian x y = unsafePerformIO (C.hessian__1 x y)
 smm :: SX -> SX -> SX
 smm x y = unsafePerformIO (sx_zz_mtimes__1 x y)
 {-# NOINLINE smm #-}
+
+-- | sumAll(x*y), x and y same dimension
+sinnerProd :: SX -> SX -> SX
+sinnerProd x y = unsafePerformIO (sx_zz_inner_prod x y)
+{-# NOINLINE sinnerProd #-}
 
 d2s :: DMatrix -> SX
 d2s x = unsafePerformIO (sx__2 x)
