@@ -1,32 +1,20 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.SX
-       ( SX, ssym, ssymV, ssymM, smm, sinnerProd, strans
-       , sgradient, sjacobian, shessian, sdiag
-       , ssolve
-       , striu, stril
-       , striu2symm, stril2symm
-       , sdense, ssparsify
-       , d2s
-       , ssize, ssize1, ssize2, snumel
-       , scrs, svertcat, shorzcat, sveccat, svertsplit, shorzsplit
-       , seye, sones, szeros, szerosSp
-       , sindexed
-       , sgetNZ, ssetNZ
-       , scopy
+       ( SX
+       , ssym, ssymV, ssymM, sgradient, sjacobian, shessian
+       , ssparsify
        ) where
 
-import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Linear.Conjugate ( Conjugate(..) )
 
 import Casadi.Core.Classes.SX
-import Casadi.Core.Classes.DMatrix ( DMatrix )
-import Casadi.Core.Classes.Sparsity ( Sparsity )
-import Casadi.Core.Classes.Slice ( Slice )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
+import Casadi.CMatrix ( CMatrix(..) )
+import Casadi.DMatrix ()
 
 instance Show SX where
   show x = unsafePerformIO (sx_getDescription x)
@@ -63,126 +51,70 @@ shessian :: SX -> SX -> SX
 shessian x y = unsafePerformIO (C.hessian__1 x y)
 {-# NOINLINE shessian #-}
 
--- | matrix matrix product
-smm :: SX -> SX -> SX
-smm x y = unsafePerformIO (sx_zz_mtimes__1 x y)
-{-# NOINLINE smm #-}
-
--- | sumAll(x*y), x and y same dimension
-sinnerProd :: SX -> SX -> SX
-sinnerProd x y = unsafePerformIO (sx_zz_inner_prod x y)
-{-# NOINLINE sinnerProd #-}
-
-d2s :: DMatrix -> SX
-d2s x = unsafePerformIO (sx__2 x)
-{-# NOINLINE d2s #-}
-
-sdiag :: SX -> SX
-sdiag x = unsafePerformIO (sx_zz_diag x)
-{-# NOINLINE sdiag #-}
-
--- | transpose
-strans :: SX -> SX
-strans x = unsafePerformIO (sx_T x)
-{-# NOINLINE strans #-}
-
-sdense :: SX -> SX
-sdense x = unsafePerformIO (sx_zz_dense x)
-{-# NOINLINE sdense #-}
-
 ssparsify :: SX -> SX
 ssparsify x = unsafePerformIO (sx_zz_sparsify__0 x)
 {-# NOINLINE ssparsify #-}
 
-striu :: SX -> SX
-striu x = unsafePerformIO (sx_zz_triu__0 x)
-{-# NOINLINE striu #-}
+instance CMatrix SX where
+  veccat x = unsafePerformIO (sx_zz_veccat x)
+  {-# NOINLINE veccat #-}
+  --  vertsplit = vertslice
+  vertsplit x ks = unsafePerformIO (sx_zz_vertsplit x ks)
+  {-# NOINLINE vertsplit #-}
+  vertcat x = unsafePerformIO (sx_zz_vertcat x)
+  {-# NOINLINE vertcat #-}
+  --  horzsplit = horzslice
+  horzsplit x ks = unsafePerformIO (sx_zz_horzsplit x ks)
+  {-# NOINLINE horzsplit #-}
+  horzcat x = unsafePerformIO (sx_zz_horzcat x)
+  {-# NOINLINE horzcat #-}
+  size1 x = unsafePerformIO (sx_size1 x)
+  {-# NOINLINE size1 #-}
+  size2 x = unsafePerformIO (sx_size2 x)
+  {-# NOINLINE size2 #-}
+  numel x = unsafePerformIO (sx_numel__1 x)
+  {-# NOINLINE numel #-}
+  mm x y = unsafePerformIO (sx_zz_mtimes__1 x y)
+  {-# NOINLINE mm #-}
+  innerProd x y = unsafePerformIO (sx_zz_inner_prod x y)
+  {-# NOINLINE innerProd #-}
+  trans x = unsafePerformIO (sx_T x)
+  {-# NOINLINE trans #-}
+  diag x = unsafePerformIO (sx_zz_diag x)
+  {-# NOINLINE diag #-}
+  eye n = unsafePerformIO (sx_eye n)
+  {-# NOINLINE eye #-}
+  ones (r,c) = unsafePerformIO (sx_ones__3 r c)
+  {-# NOINLINE ones #-}
+  zeros (r,c) = unsafePerformIO (sx_zeros__3 r c)
+  {-# NOINLINE zeros #-}
+  zerosSp sp = unsafePerformIO (sx_zeros__0 sp)
+  {-# NOINLINE zerosSp #-}
+  solve a b = unsafePerformIO (C.solve__2 a b)
+  {-# NOINLINE solve #-}
+  indexed m sx sy = unsafePerformIO (sx_getSub__3 m False sx sy)
+  {-# NOINLINE indexed #-}
+  sparsity x = unsafePerformIO (sx_sparsityRef__0 x)
+  {-# NOINLINE sparsity #-}
+  getNZ m s = unsafePerformIO (sx_getNZ__1 m False s)
+  {-# NOINLINE getNZ #-}
+  setNZ m y s = sx_setNZ__1 m y False s
+  triu x = unsafePerformIO (sx_zz_triu__0 x)
+  {-# NOINLINE triu #-}
+  tril x = unsafePerformIO (sx_zz_tril__0 x)
+  {-# NOINLINE tril #-}
+  triu2symm x = unsafePerformIO (sx_zz_triu2symm x)
+  {-# NOINLINE triu2symm #-}
+  tril2symm x = unsafePerformIO (sx_zz_tril2symm x)
+  {-# NOINLINE tril2symm #-}
+  copy m = sx__12 m
+  dense x = unsafePerformIO (sx_zz_dense x)
+  {-# NOINLINE dense #-}
+  fromDMatrix x = unsafePerformIO (sx__2 x)
+  {-# NOINLINE fromDMatrix #-}
+  fromDVector x = fromDMatrix (fromDVector x)
+  {-# NOINLINE fromDVector #-}
 
-stril :: SX -> SX
-stril x = unsafePerformIO (sx_zz_tril__0 x)
-{-# NOINLINE stril #-}
-
-striu2symm :: SX -> SX
-striu2symm x = unsafePerformIO (sx_zz_triu2symm x)
-{-# NOINLINE striu2symm #-}
-
-stril2symm :: SX -> SX
-stril2symm x = unsafePerformIO (sx_zz_tril2symm x)
-{-# NOINLINE stril2symm #-}
-
-scrs :: SX -> Sparsity
-scrs x = unsafePerformIO (sx_sparsityRef__0 x)
-{-# NOINLINE scrs #-}
-
-ssize :: SX -> Int
-ssize x = unsafePerformIO (sx_size__1 x)
-{-# NOINLINE ssize #-}
-
-ssize1 :: SX -> Int
-ssize1 x = unsafePerformIO (sx_size1 x)
-{-# NOINLINE ssize1 #-}
-
-ssize2 :: SX -> Int
-ssize2 x = unsafePerformIO (sx_size2 x)
-{-# NOINLINE ssize2 #-}
-
-snumel :: SX -> Int
-snumel x = unsafePerformIO (sx_numel__1 x)
-{-# NOINLINE snumel #-}
-
-svertcat :: V.Vector SX -> SX
-svertcat x = unsafePerformIO (sx_zz_vertcat x)
-{-# NOINLINE svertcat #-}
-
-shorzcat :: V.Vector SX -> SX
-shorzcat x = unsafePerformIO (sx_zz_horzcat x)
-{-# NOINLINE shorzcat #-}
-
-sveccat :: V.Vector SX -> SX
-sveccat x = unsafePerformIO (sx_zz_veccat x)
-{-# NOINLINE sveccat #-}
-
-svertsplit :: SX -> V.Vector Int -> V.Vector SX
-svertsplit x ks = unsafePerformIO (sx_zz_vertsplit x ks)
-{-# NOINLINE svertsplit #-}
-
-shorzsplit :: SX -> V.Vector Int -> V.Vector SX
-shorzsplit x ks = unsafePerformIO (sx_zz_horzsplit x ks)
-{-# NOINLINE shorzsplit #-}
-
-ssolve :: SX -> SX -> SX
-ssolve a b = unsafePerformIO (C.solve__2 a b)
-{-# NOINLINE ssolve #-}
-
-seye :: Int -> SX
-seye n = unsafePerformIO (sx_eye n)
-{-# NOINLINE seye #-}
-
-sones :: (Int,Int) -> SX
-sones (r,c) = unsafePerformIO (sx_ones__3 r c)
-{-# NOINLINE sones #-}
-
-szeros :: (Int,Int) -> SX
-szeros (r,c) = unsafePerformIO (sx_zeros__3 r c)
-{-# NOINLINE szeros #-}
-
-szerosSp :: Sparsity -> SX
-szerosSp sp = unsafePerformIO (sx_zeros__0 sp)
-{-# NOINLINE szerosSp #-}
-
-sindexed :: SX -> Slice -> Slice -> SX
-sindexed m sx sy = unsafePerformIO (sx_getSub__3 m False sx sy)
-{-# NOINLINE sindexed #-}
-
-sgetNZ :: SX -> Slice -> SX
-sgetNZ m s = unsafePerformIO (sx_getNZ__1 m False s)
-{-# NOINLINE sgetNZ #-}
-
-ssetNZ :: SX -> SX -> Slice -> IO ()
-ssetNZ m y s = sx_setNZ__1 m y False s
-
-scopy :: SX -> IO SX
-scopy m = sx__12 m
 
 instance Num SX where
   (+) x y = unsafePerformIO (sx_zz_plus x y)

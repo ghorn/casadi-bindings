@@ -1,34 +1,21 @@
 {-# OPTIONS_GHC -Wall -fno-cse -fno-warn-orphans #-}
 
 module Casadi.MX
-       ( MX, sym, symV, symM, mm, innerProd, trans, diag
-       , gradient, jacobian -- , hessian
-       , solve
+       ( MX
+       , sym, symV, symM, gradient, jacobian -- , hessian
        , expand
-       , triu, tril
-       , triu2symm, tril2symm
-       , dense --, sparse
-       , d2m
-       , size, size1, size2, numel
-       , crs, vertcat, horzcat, veccat, vertsplit, horzsplit
-       , eye, ones, zeros, zerosSp
-       , indexed
-       , getNZ, setNZ
-       , copy
        ) where
 
 import Data.Vector ( Vector )
-import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Linear.Conjugate ( Conjugate(..) )
 
 import Casadi.Core.Classes.MX
-import Casadi.Core.Classes.DMatrix ( DMatrix )
-import Casadi.Core.Classes.Sparsity ( Sparsity )
-import Casadi.Core.Classes.Slice ( Slice )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
+import Casadi.CMatrix ( CMatrix(..) )
+import Casadi.DMatrix ()
 import Casadi.SharedObject ( castSharedObject )
 
 instance Conjugate MX where
@@ -65,132 +52,74 @@ expand :: Vector MX -> Vector MX
 expand x = unsafePerformIO (C.matrix_expand__0 x)
 {-# NOINLINE expand #-}
 
-solve :: MX -> MX -> MX
-solve a b = unsafePerformIO (C.solve__0 a b)
-{-# NOINLINE solve #-}
-
 ---- | @hessian exp x@ is the jacobian of exp w.r.t. x
 --hessian :: MX -> MX -> MX
 --hessian x y = unsafePerformIO (C.hessian x y)
 --{-# NOINLINE hessian #-}
 
-d2m :: DMatrix -> MX
-d2m x = unsafePerformIO (mx__0 x)
-{-# NOINLINE d2m #-}
-
--- | matrix matrix product
-mm :: MX -> MX -> MX
-mm x y = unsafePerformIO (mx_zz_mtimes__1 x y)
-{-# NOINLINE mm #-}
-
--- | sumAll(x*y), x and y same dimension
-innerProd :: MX -> MX -> MX
-innerProd x y = unsafePerformIO (mx_zz_inner_prod x y)
-{-# NOINLINE innerProd #-}
-
--- | transpose
-trans :: MX -> MX
-trans x = unsafePerformIO (mx_T x)
-{-# NOINLINE trans #-}
-
-dense :: MX -> MX
-dense x = unsafePerformIO (mx_zz_dense x)
-{-# NOINLINE dense #-}
-
 --sparsify :: MX -> MX
 --sparsify x = unsafePerformIO (mx_zz_sparsify__0 x)
 --{-# NOINLINE sparsify #-}
 
-triu :: MX -> MX
-triu x = unsafePerformIO (mx_zz_triu__0 x)
-{-# NOINLINE triu #-}
-
-tril :: MX -> MX
-tril x = unsafePerformIO (mx_zz_tril__0 x)
-{-# NOINLINE tril #-}
-
-triu2symm :: MX -> MX
-triu2symm x = unsafePerformIO (mx_zz_triu2symm x)
-{-# NOINLINE triu2symm #-}
-
-tril2symm :: MX -> MX
-tril2symm x = unsafePerformIO (mx_zz_tril2symm x)
-{-# NOINLINE tril2symm #-}
-
-diag :: MX -> MX
-diag x = unsafePerformIO (mx_zz_diag x)
-{-# NOINLINE diag #-}
-
-crs :: MX -> Sparsity
-crs x = unsafePerformIO (mx_sparsityRef__0 x)
-{-# NOINLINE crs #-}
-
--- | from MXElement vector
-size :: MX -> Int
-size x = unsafePerformIO (mx_size__1 x)
-{-# NOINLINE size #-}
-
-size1 :: MX -> Int
-size1 x = unsafePerformIO (mx_size1 x)
-{-# NOINLINE size1 #-}
-
-size2 :: MX -> Int
-size2 x = unsafePerformIO (mx_size2 x)
-{-# NOINLINE size2 #-}
-
-numel :: MX -> Int
-numel x = unsafePerformIO (mx_numel__1 x)
-{-# NOINLINE numel #-}
-
-vertcat :: V.Vector MX -> MX
-vertcat x = unsafePerformIO (mx_zz_vertcat x)
-{-# NOINLINE vertcat #-}
-
-veccat :: V.Vector MX -> MX
-veccat x = unsafePerformIO (mx_zz_veccat x)
-{-# NOINLINE veccat #-}
-
-vertsplit :: MX -> V.Vector Int -> V.Vector MX
-vertsplit x ks = unsafePerformIO (mx_zz_vertsplit x ks)
-{-# NOINLINE vertsplit #-}
-
-horzsplit :: MX -> V.Vector Int -> V.Vector MX
-horzsplit x ks = unsafePerformIO (mx_zz_horzsplit x ks)
-{-# NOINLINE horzsplit #-}
-
-horzcat :: V.Vector MX -> MX
-horzcat x = unsafePerformIO (mx_zz_horzcat x)
-{-# NOINLINE horzcat #-}
-
-eye :: Int -> MX
-eye n = unsafePerformIO (mx_eye n)
-{-# NOINLINE eye #-}
-
-ones :: (Int,Int) -> MX
-ones (r,c) = unsafePerformIO (mx_ones__3 r c)
-{-# NOINLINE ones #-}
-
-zeros :: (Int,Int) -> MX
-zeros (r,c) = unsafePerformIO (mx_zeros__3 r c)
-{-# NOINLINE zeros #-}
-
-zerosSp :: Sparsity -> MX
-zerosSp sp = unsafePerformIO (mx_zeros__0 sp)
-{-# NOINLINE zerosSp #-}
-
-indexed :: MX -> Slice -> Slice -> MX
-indexed m sx sy = unsafePerformIO (mx_getSub__3 m False sx sy)
-{-# NOINLINE indexed #-}
-
-getNZ :: MX -> Slice -> MX
-getNZ m s = unsafePerformIO (mx_getNZ__1 m False s)
-{-# NOINLINE getNZ #-}
-
-setNZ :: MX -> MX -> Slice -> IO ()
-setNZ m y s = mx_setNZ__1 m y False s
-
-copy :: MX -> IO MX
-copy m = mx__2 m
+instance CMatrix MX where
+  veccat x = unsafePerformIO (mx_zz_veccat x)
+  {-# NOINLINE veccat #-}
+  --  vertsplit = vertslice
+  vertsplit x ks = unsafePerformIO (mx_zz_vertsplit x ks)
+  {-# NOINLINE vertsplit #-}
+  vertcat x = unsafePerformIO (mx_zz_vertcat x)
+  {-# NOINLINE vertcat #-}
+  --  horzsplit = horzslice
+  horzsplit x ks = unsafePerformIO (mx_zz_horzsplit x ks)
+  {-# NOINLINE horzsplit #-}
+  horzcat x = unsafePerformIO (mx_zz_horzcat x)
+  {-# NOINLINE horzcat #-}
+  size1 x = unsafePerformIO (mx_size1 x)
+  {-# NOINLINE size1 #-}
+  size2 x = unsafePerformIO (mx_size2 x)
+  {-# NOINLINE size2 #-}
+  numel x = unsafePerformIO (mx_numel__1 x)
+  {-# NOINLINE numel #-}
+  mm x y = unsafePerformIO (mx_zz_mtimes__1 x y)
+  {-# NOINLINE mm #-}
+  innerProd x y = unsafePerformIO (mx_zz_inner_prod x y)
+  {-# NOINLINE innerProd #-}
+  trans x = unsafePerformIO (mx_T x)
+  {-# NOINLINE trans #-}
+  diag x = unsafePerformIO (mx_zz_diag x)
+  {-# NOINLINE diag #-}
+  eye n = unsafePerformIO (mx_eye n)
+  {-# NOINLINE eye #-}
+  ones (r,c) = unsafePerformIO (mx_ones__3 r c)
+  {-# NOINLINE ones #-}
+  zeros (r,c) = unsafePerformIO (mx_zeros__3 r c)
+  {-# NOINLINE zeros #-}
+  zerosSp sp = unsafePerformIO (mx_zeros__0 sp)
+  {-# NOINLINE zerosSp #-}
+  solve a b = unsafePerformIO (C.solve__0 a b)
+  {-# NOINLINE solve #-}
+  indexed m sx sy = unsafePerformIO (mx_getSub__3 m False sx sy)
+  {-# NOINLINE indexed #-}
+  sparsity x = unsafePerformIO (mx_sparsityRef__0 x)
+  {-# NOINLINE sparsity #-}
+  getNZ m s = unsafePerformIO (mx_getNZ__1 m False s)
+  {-# NOINLINE getNZ #-}
+  setNZ m y s = mx_setNZ__1 m y False s
+  triu x = unsafePerformIO (mx_zz_triu__0 x)
+  {-# NOINLINE triu #-}
+  tril x = unsafePerformIO (mx_zz_tril__0 x)
+  {-# NOINLINE tril #-}
+  triu2symm x = unsafePerformIO (mx_zz_triu2symm x)
+  {-# NOINLINE triu2symm #-}
+  tril2symm x = unsafePerformIO (mx_zz_tril2symm x)
+  {-# NOINLINE tril2symm #-}
+  copy m = mx__2 m
+  dense x = unsafePerformIO (mx_zz_dense x)
+  {-# NOINLINE dense #-}
+  fromDMatrix x = unsafePerformIO (mx__0 x)
+  {-# NOINLINE fromDMatrix #-}
+  fromDVector x = fromDMatrix (fromDVector x)
+  {-# NOINLINE fromDVector #-}
 
 instance Num MX where
   (+) x y = unsafePerformIO (mx_zz_plus x y)

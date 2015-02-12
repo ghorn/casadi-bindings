@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             2.2.0.3
+version:             2.2.0.4
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:
@@ -39,7 +39,8 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Casadi.Callback
+  exposed-modules:     Casadi.CMatrix
+                       Casadi.Callback
                        Casadi.DMatrix
                        Casadi.Function
                        Casadi.GenericC
