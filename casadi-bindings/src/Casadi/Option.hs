@@ -13,9 +13,6 @@ import Casadi.Core.Classes.OptionsFunctionality
     optionsFunctionality_hasOption, optionsFunctionality_getOption)
 import Casadi.GenericC
 
-data Opt where
-  Opt :: GenericC a => a -> Opt
-
 setOption :: (OptionsFunctionalityClass a, GenericC b) => a -> String -> b -> IO ()
 setOption f name val = do
   gval <- mkGeneric val
