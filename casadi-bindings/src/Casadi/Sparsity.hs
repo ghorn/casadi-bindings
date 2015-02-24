@@ -4,14 +4,20 @@ module Casadi.Sparsity
        ( Sparsity
        , upper, lower, spy, spyMatlab
        , dense, sparse, scalar
+       , compress, compressed
        ) where
 
 import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
+import Data.Serialize ( Serialize(..) )
 
 import Casadi.Core.Classes.Sparsity
 
 import Casadi.SharedObject ( castSharedObject )
+
+instance Serialize Sparsity where
+  put = put . V.toList . compress
+  get = fmap (compressed . V.fromList) get
 
 instance Show Sparsity where
   show x = show (castSharedObject x)
@@ -46,3 +52,11 @@ sparse nr nc r c = unsafePerformIO (sparsity__0 nr nc r c)
 dense :: Int -> Int -> Sparsity
 dense nr nc = unsafePerformIO (sparsity_dense__1 nr nc)
 {-# NOINLINE dense #-}
+
+compress :: Sparsity -> V.Vector Int
+compress s = unsafePerformIO (sparsity_compress s)
+{-# NOINLINE compress #-}
+
+compressed :: V.Vector Int -> Sparsity
+compressed v = unsafePerformIO (sparsity_compressed v)
+{-# NOINLINE compressed #-}

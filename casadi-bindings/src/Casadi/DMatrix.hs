@@ -9,15 +9,30 @@ module Casadi.DMatrix
 import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Linear.Conjugate ( Conjugate(..) )
+import Data.Serialize ( Serialize(..) )
 
 import Casadi.Core.Classes.DMatrix
+import Casadi.Core.Classes.Sparsity ( Sparsity )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.CMatrix ( CMatrix(..) )
 
+instance Serialize DMatrix where
+  get = do
+    sp <- get
+    data' <- get
+    return (fromSparseData sp (V.fromList data'))
+  put x = do
+    put (sparsity x)
+    put (V.toList (ddata x))
+
 instance Conjugate DMatrix where
   conjugate = id
+
+fromSparseData :: Sparsity -> V.Vector Double -> DMatrix
+fromSparseData s d = unsafePerformIO (dmatrix__6 s d)
+{-# NOINLINE fromSparseData #-}
 
 dsparsify :: DMatrix -> DMatrix
 dsparsify x = unsafePerformIO (dmatrix_zz_sparsify__0 x)
