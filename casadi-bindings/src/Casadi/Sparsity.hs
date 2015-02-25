@@ -5,6 +5,7 @@ module Casadi.Sparsity
        , upper, lower, spy, spyMatlab
        , dense, sparse, scalar
        , compress, compressed
+       , getRow, getCol
        ) where
 
 import qualified Data.Vector as V
@@ -44,6 +45,14 @@ spyMatlab = sparsity_spyMatlab
 scalar :: Sparsity
 scalar = unsafePerformIO sparsity_scalar__0
 {-# NOINLINE scalar #-}
+
+getRow :: Sparsity -> V.Vector Int
+getRow s = unsafePerformIO (sparsity_row__1 s) -- todo: getRow in 2.3
+{-# NOINLINE getRow #-}
+
+getCol :: Sparsity -> V.Vector Int
+getCol s = unsafePerformIO (sparsity_getCol s)
+{-# NOINLINE getCol #-}
 
 sparse :: Int -> Int -> V.Vector Int -> V.Vector Int -> Sparsity
 sparse nr nc r c = unsafePerformIO (sparsity__0 nr nc r c)
