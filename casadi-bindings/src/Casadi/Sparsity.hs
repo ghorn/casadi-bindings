@@ -10,15 +10,27 @@ module Casadi.Sparsity
 
 import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
-import Data.Serialize ( Serialize(..) )
+import qualified Data.Serialize as S
+import qualified Data.Binary as B
+import Data.Vector.Binary () -- instances
 
 import Casadi.Core.Classes.Sparsity
 
 import Casadi.SharedObject ( castSharedObject )
 
-instance Serialize Sparsity where
-  put = put . V.toList . compress
-  get = fmap (compressed . V.fromList) get
+putWith :: (V.Vector Int -> m ()) -> Sparsity -> m ()
+putWith putVector = putVector . compress
+
+getWith :: Functor f => f (V.Vector Int) -> f Sparsity
+getWith getVector = fmap compressed getVector
+
+-- Data.Vector.Cereal looks deprecated, it's not in master anymore
+instance S.Serialize Sparsity where
+  put = putWith (S.put . V.toList)
+  get = getWith (fmap V.fromList S.get)
+instance B.Binary Sparsity where
+  put = putWith B.put
+  get = getWith B.get
 
 instance Show Sparsity where
   show x = show (castSharedObject x)

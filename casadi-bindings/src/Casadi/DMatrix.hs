@@ -9,7 +9,9 @@ module Casadi.DMatrix
 import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Linear.Conjugate ( Conjugate(..) )
-import Data.Serialize ( Serialize(..) )
+import qualified Data.Serialize as S
+import qualified Data.Binary as B
+import Data.Vector.Binary () -- instances
 
 import Casadi.Core.Classes.DMatrix
 import Casadi.Core.Classes.Sparsity ( Sparsity )
@@ -18,14 +20,23 @@ import qualified Casadi.Core.Tools as C
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.CMatrix ( CMatrix(..) )
 
-instance Serialize DMatrix where
-  get = do
-    sp <- get
-    data' <- get
-    return (fromSparseData sp (V.fromList data'))
-  put x = do
-    put (sparsity x)
-    put (V.toList (ddata x))
+getWith :: Monad m => m Sparsity -> m (V.Vector Double) -> m DMatrix
+getWith get getVector = do
+  sp <- get
+  data' <- getVector
+  return (fromSparseData sp data')
+putWith :: Monad m => (Sparsity -> m ()) -> (V.Vector Double -> m ()) -> DMatrix -> m ()
+putWith put putVector x = do
+  put (sparsity x)
+  putVector (ddata x)
+
+-- Data.Vector.Cereal looks deprecated, it's not in master anymore
+instance S.Serialize DMatrix where
+  put = putWith S.put (S.put . V.toList)
+  get = getWith S.get (fmap V.fromList S.get)
+instance B.Binary DMatrix where
+  put = putWith B.put B.put
+  get = getWith B.get B.get
 
 instance Conjugate DMatrix where
   conjugate = id
