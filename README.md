@@ -1,6 +1,8 @@
 casadi-bindings
 ===============
 
+[![Hackage](https://img.shields.io/hackage/v/casadi-bindings.svg)](https://hackage.haskell.org/package/casadi-bindings)
+
 haskell bindings to the CasADi algorithmic differentiation and optimal control library
 
 This project is mainly a bindings generation tool, which I use to generate
