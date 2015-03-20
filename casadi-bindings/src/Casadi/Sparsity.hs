@@ -59,7 +59,7 @@ scalar = unsafePerformIO sparsity_scalar__0
 {-# NOINLINE scalar #-}
 
 getRow :: Sparsity -> V.Vector Int
-getRow s = unsafePerformIO (sparsity_row__1 s) -- todo: getRow in 2.3
+getRow s = unsafePerformIO (sparsity_getRow s)
 {-# NOINLINE getRow #-}
 
 getCol :: Sparsity -> V.Vector Int

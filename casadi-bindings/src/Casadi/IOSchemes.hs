@@ -54,10 +54,10 @@ mkScheme newEmpty schemeEnum userVals = do
   fmap V.fromList $ mapM getElem entries
 
 mkSchemeSX :: InputOutputScheme -> [(String,SX)] -> IO (V.Vector SX)
-mkSchemeSX = mkScheme sx__13
+mkSchemeSX = mkScheme sx__10
 
 mkSchemeMX :: InputOutputScheme -> [(String,MX)] -> IO (V.Vector MX)
-mkSchemeMX = mkScheme mx__8
+mkSchemeMX = mkScheme mx__7
 
 mkSchemeCRSSparsity :: InputOutputScheme -> [(String,Sparsity)] -> IO (V.Vector Sparsity)
-mkSchemeCRSSparsity = mkScheme sparsity__1
+mkSchemeCRSSparsity = mkScheme sparsity__2

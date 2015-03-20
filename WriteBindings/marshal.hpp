@@ -2,6 +2,7 @@
 #define __MARSHAL_THEM_BINDINGS_H__
 
 #include <iostream>
+#include <vector>
 
 template<class T1, class T2>
 class Marshaling {

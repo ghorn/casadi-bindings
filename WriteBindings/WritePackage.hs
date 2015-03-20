@@ -19,7 +19,13 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "2.2.0.2"
+version = "2.3.0.0"
+
+jsonpath :: FilePath
+jsonpath = "/home/ghorn/casadi-2.3.0-rc1/build/swig/json/casadi.json"
+
+writepath :: FilePath
+writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -114,7 +120,7 @@ toPackage mod' =
               , "library"
               , "  build-depends:       base >=4.6 && <5,"
               , "                       vector >=0.10,"
-              , "                       casadi-bindings-internal == 0.1.2.1"
+              , "                       casadi-bindings-internal == 0.1.3.0"
               , ""
               , "  default-language:    Haskell2010"
               , ""
@@ -156,10 +162,8 @@ toPackage mod' =
 
 main :: IO ()
 main = do
-  let jsonpath = "/home/ghorn/casadi-2.2.0/build/swig/json/casadi.json"
   trees <- readModule jsonpath
-  let writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
-      pkgs = [toPackage trees]
+  let pkgs = [toPackage trees]
   createDirectoryIfMissing True writepath
 
   mapM_ (writePackage writepath) pkgs

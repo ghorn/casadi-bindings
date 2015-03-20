@@ -98,11 +98,17 @@ instance CMatrix MX where
   {-# NOINLINE zerosSp #-}
   solve a b = unsafePerformIO (C.solve__0 a b)
   {-# NOINLINE solve #-}
-  indexed m sx sy = unsafePerformIO (mx_getSub__3 m False sx sy)
+  indexed m spx spy = unsafePerformIO $ do
+    ret <- allocEmpty :: IO MX
+    mx_get__3 m ret False spx spy
+    return ret
   {-# NOINLINE indexed #-}
-  sparsity x = unsafePerformIO (mx_sparsityRef__0 x)
+  sparsity x = unsafePerformIO (mx_sparsityRef x)
   {-# NOINLINE sparsity #-}
-  getNZ m s = unsafePerformIO (mx_getNZ__1 m False s)
+  getNZ m sp = unsafePerformIO $ do
+    ret <- allocEmpty :: IO MX
+    mx_getNZ__1 m ret False sp
+    return ret
   {-# NOINLINE getNZ #-}
   setNZ m y s = mx_setNZ__1 m y False s
   triu x = unsafePerformIO (mx_zz_triu__0 x)
@@ -114,12 +120,14 @@ instance CMatrix MX where
   tril2symm x = unsafePerformIO (mx_zz_tril2symm x)
   {-# NOINLINE tril2symm #-}
   copy m = mx__2 m
-  dense x = unsafePerformIO (mx_zz_dense x)
-  {-# NOINLINE dense #-}
+  densify x = unsafePerformIO (mx_zz_densify x)
+  {-# NOINLINE densify #-}
   fromDMatrix x = unsafePerformIO (mx__0 x)
   {-# NOINLINE fromDMatrix #-}
   fromDVector x = fromDMatrix (fromDVector x)
   {-# NOINLINE fromDVector #-}
+  allocEmpty = mx__7
+
 
 instance Num MX where
   (+) x y = unsafePerformIO (mx_zz_plus x y)

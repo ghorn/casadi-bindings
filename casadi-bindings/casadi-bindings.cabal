@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             2.2.0.8
+version:             2.3.0.0
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:
@@ -61,8 +61,8 @@ library
                        cereal,
                        binary,
                        vector-binary-instances,
-                       casadi-bindings-internal == 0.1.2.1,
-                       casadi-bindings-core     == 2.2.0.2
+                       casadi-bindings-internal == 0.1.3.0,
+                       casadi-bindings-core     == 2.3.0.0
   default-language:    Haskell2010
 
   C-sources:           cbits/handwritten.cpp

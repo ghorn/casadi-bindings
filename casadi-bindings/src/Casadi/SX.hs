@@ -36,6 +36,9 @@ ssymV = sx_sym__6
 ssymM :: String -> Int -> Int -> IO SX
 ssymM = sx_sym__7
 
+sfromDouble :: Double -> IO SX
+sfromDouble = sx__5
+
 -- | @jacobian exp x@ is the jacobian of exp w.r.t. x
 sgradient :: SX -> SX -> SX
 sgradient x y = unsafePerformIO (C.gradient__1 x y)
@@ -54,6 +57,7 @@ shessian x y = unsafePerformIO (C.hessian__1 x y)
 ssparsify :: SX -> SX
 ssparsify x = unsafePerformIO (sx_zz_sparsify__0 x)
 {-# NOINLINE ssparsify #-}
+
 
 instance CMatrix SX where
   veccat x = unsafePerformIO (sx_zz_veccat x)
@@ -92,11 +96,17 @@ instance CMatrix SX where
   {-# NOINLINE zerosSp #-}
   solve a b = unsafePerformIO (C.solve__2 a b)
   {-# NOINLINE solve #-}
-  indexed m sx sy = unsafePerformIO (sx_getSub__3 m False sx sy)
+  indexed m spx spy = unsafePerformIO $ do
+    ret <- allocEmpty :: IO SX
+    sx_get__3 m ret False spx spy
+    return ret
   {-# NOINLINE indexed #-}
-  sparsity x = unsafePerformIO (sx_sparsityRef__0 x)
+  sparsity x = unsafePerformIO (sx_sparsityRef x)
   {-# NOINLINE sparsity #-}
-  getNZ m s = unsafePerformIO (sx_getNZ__1 m False s)
+  getNZ m sp = unsafePerformIO $ do
+    ret <- allocEmpty :: IO SX
+    sx_getNZ__1 m ret False sp
+    return ret
   {-# NOINLINE getNZ #-}
   setNZ m y s = sx_setNZ__1 m y False s
   triu x = unsafePerformIO (sx_zz_triu__0 x)
@@ -107,13 +117,14 @@ instance CMatrix SX where
   {-# NOINLINE triu2symm #-}
   tril2symm x = unsafePerformIO (sx_zz_tril2symm x)
   {-# NOINLINE tril2symm #-}
-  copy m = sx__12 m
-  dense x = unsafePerformIO (sx_zz_dense x)
-  {-# NOINLINE dense #-}
-  fromDMatrix x = unsafePerformIO (sx__2 x)
+  copy m = sx__9 m
+  densify x = unsafePerformIO (sx_zz_densify x)
+  {-# NOINLINE densify #-}
+  fromDMatrix x = unsafePerformIO (sx__1 x)
   {-# NOINLINE fromDMatrix #-}
   fromDVector x = fromDMatrix (fromDVector x)
   {-# NOINLINE fromDVector #-}
+  allocEmpty = sx__10
 
 
 instance Num SX where
@@ -123,7 +134,7 @@ instance Num SX where
   {-# NOINLINE (-) #-}
   (*) x y = unsafePerformIO (sx_zz_times x y)
   {-# NOINLINE (*) #-}
-  fromInteger x = unsafePerformIO (sx__8 (fromInteger x :: Double))
+  fromInteger x = unsafePerformIO (sfromDouble (fromInteger x :: Double))
   {-# NOINLINE fromInteger #-}
   abs x = unsafePerformIO (sx_zz_abs x)
   {-# NOINLINE abs #-}
@@ -133,11 +144,11 @@ instance Num SX where
 instance Fractional SX where
   (/) x y = unsafePerformIO (sx___truediv____0 x y)
   {-# NOINLINE (/) #-}
-  fromRational x = unsafePerformIO (sx__8 (fromRational x :: Double))
+  fromRational x = unsafePerformIO (sfromDouble (fromRational x :: Double))
   {-# NOINLINE fromRational #-}
 
 instance Floating SX where
-  pi = unsafePerformIO (sx__8 (pi :: Double))
+  pi = unsafePerformIO (sfromDouble (pi :: Double))
   {-# NOINLINE pi #-}
   (**) x y = unsafePerformIO (sx_zz_power x y)
   {-# NOINLINE (**) #-}

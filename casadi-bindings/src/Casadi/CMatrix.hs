@@ -43,9 +43,10 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a) => CMatrix 
   triu2symm :: a -> a
   tril2symm :: a -> a
   copy :: a -> IO a
-  dense :: a -> a
+  densify :: a -> a
   fromDMatrix :: DMatrix -> a
   fromDVector :: V.Vector Double -> a
+  allocEmpty :: IO a
 
 
 vertslice :: CMatrix a => a -> V.Vector Int -> V.Vector a

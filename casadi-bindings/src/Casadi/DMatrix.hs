@@ -3,7 +3,7 @@
 module Casadi.DMatrix
        ( DMatrix
        , dsparsify
-       , ddata
+       , dnonzeros
        ) where
 
 import qualified Data.Vector as V
@@ -28,7 +28,7 @@ getWith get getVector = do
 putWith :: Monad m => (Sparsity -> m ()) -> (V.Vector Double -> m ()) -> DMatrix -> m ()
 putWith put putVector x = do
   put (sparsity x)
-  putVector (ddata x)
+  putVector (dnonzeros x)
 
 -- Data.Vector.Cereal looks deprecated, it's not in master anymore
 instance S.Serialize DMatrix where
@@ -42,16 +42,19 @@ instance Conjugate DMatrix where
   conjugate = id
 
 fromSparseData :: Sparsity -> V.Vector Double -> DMatrix
-fromSparseData s d = unsafePerformIO (dmatrix__6 s d)
+fromSparseData s d = unsafePerformIO (dmatrix__1 s d)
 {-# NOINLINE fromSparseData #-}
 
 dsparsify :: DMatrix -> DMatrix
 dsparsify x = unsafePerformIO (dmatrix_zz_sparsify__0 x)
 {-# NOINLINE dsparsify #-}
 
-ddata :: DMatrix -> V.Vector Double
-ddata x = unsafePerformIO (dmatrix_data__0 x)
-{-# NOINLINE ddata #-}
+dnonzeros :: DMatrix -> V.Vector Double
+dnonzeros x = unsafePerformIO (dmatrix_nonzeros x)
+{-# NOINLINE dnonzeros #-}
+
+dfromDouble :: Double -> IO DMatrix
+dfromDouble = dmatrix__5
 
 instance Show DMatrix where
   show x = unsafePerformIO (dmatrix_getDescription x)
@@ -98,11 +101,17 @@ instance CMatrix DMatrix where
   {-# NOINLINE zerosSp #-}
   solve x y = unsafePerformIO (C.solve__3 x y)
   {-# NOINLINE solve #-}
-  indexed m sx sy = unsafePerformIO (dmatrix_getSub__3 m False sx sy)
+  indexed m spx spy = unsafePerformIO $ do
+    ret <- allocEmpty :: IO DMatrix
+    dmatrix_get__3 m ret False spx spy
+    return ret
   {-# NOINLINE indexed #-}
-  sparsity x = unsafePerformIO (dmatrix_sparsityRef__0 x)
+  sparsity x = unsafePerformIO (dmatrix_sparsityRef x)
   {-# NOINLINE sparsity #-}
-  getNZ m s = unsafePerformIO (dmatrix_getNZ__1 m False s)
+  getNZ m sp = unsafePerformIO $ do
+    ret <- allocEmpty :: IO DMatrix
+    dmatrix_getNZ__1 m ret False sp
+    return ret
   {-# NOINLINE getNZ #-}
   setNZ m y s = dmatrix_setNZ__1 m y False s
   triu x = unsafePerformIO (dmatrix_zz_triu__0 x)
@@ -113,12 +122,14 @@ instance CMatrix DMatrix where
   {-# NOINLINE triu2symm #-}
   tril2symm x = unsafePerformIO (dmatrix_zz_tril2symm x)
   {-# NOINLINE tril2symm #-}
-  copy m = dmatrix__10 m
-  dense x = unsafePerformIO (dmatrix_zz_dense x)
-  {-# NOINLINE dense #-}
+  copy m = dmatrix__9 m
+  densify x = unsafePerformIO (dmatrix_zz_densify x)
+  {-# NOINLINE densify #-}
   fromDMatrix = id
-  fromDVector x = unsafePerformIO (dmatrix__4 x)
+  fromDVector x = unsafePerformIO (dmatrix__0 x)
   {-# NOINLINE fromDVector #-}
+  allocEmpty = dmatrix__10
+
 
 instance Num DMatrix where
   (+) x y = unsafePerformIO (dmatrix_zz_plus x y)
@@ -127,7 +138,7 @@ instance Num DMatrix where
   {-# NOINLINE (-) #-}
   (*) x y = unsafePerformIO (dmatrix_zz_times x y)
   {-# NOINLINE (*) #-}
-  fromInteger x = unsafePerformIO (dmatrix__5 (fromInteger x :: Double))
+  fromInteger x = unsafePerformIO (dfromDouble (fromInteger x :: Double))
   {-# NOINLINE fromInteger #-}
   abs x = unsafePerformIO (dmatrix_zz_abs x)
   {-# NOINLINE abs #-}
@@ -137,11 +148,11 @@ instance Num DMatrix where
 instance Fractional DMatrix where
   (/) x y = unsafePerformIO (dmatrix___truediv____0 x y)
   {-# NOINLINE (/) #-}
-  fromRational x = unsafePerformIO (dmatrix__5 (fromRational x :: Double))
+  fromRational x = unsafePerformIO (dfromDouble (fromRational x :: Double))
   {-# NOINLINE fromRational #-}
 
 instance Floating DMatrix where
-  pi = unsafePerformIO (dmatrix__5 (pi :: Double))
+  pi = unsafePerformIO (dfromDouble (pi :: Double))
   {-# NOINLINE pi #-}
   (**) x y = unsafePerformIO (dmatrix_zz_power x y)
   {-# NOINLINE (**) #-}
