@@ -36,7 +36,7 @@ foreign import ccall safe "new_custom_evaluate_haskell" c_newCustomEvaluateHaske
   :: FunPtr (CasadiCustomEvaluate' customFunction) -> IO (Ptr customEvaluate)
 
 
-type CasadiDerivativeGenerator' function = Ptr function -> CInt -> CInt -> IO (Ptr function)
+type CasadiDerivativeGenerator' function = Ptr function -> CInt -> IO (Ptr function)
 foreign import ccall "wrapper" mkDerivativeGenerator
   :: CasadiDerivativeGenerator' function -> IO (FunPtr (CasadiDerivativeGenerator' function))
 foreign import ccall safe "new_derivative_generator_haskell" c_newDerivativeGeneratorHaskell

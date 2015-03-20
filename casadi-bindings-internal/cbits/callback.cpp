@@ -14,7 +14,7 @@ extern "C" {
     //todo: use casadi typedefs in functor.hpp
     typedef int (*hs_callback_t)(Function &f);
     typedef void (*hs_custom_evaluate_t)(CustomFunction &f);
-    typedef Function& (*hs_derivative_generator_t)(Function &f, int nfwd, int nadj);
+    typedef Function& (*hs_derivative_generator_t)(Function &f, int nder);
 }
 
 namespace casadi {
@@ -110,7 +110,7 @@ namespace casadi {
 
         DerivativeGeneratorHaskellInternal(hs_derivative_generator_t hsdg) :
             FunctorHaskellInternal<hs_derivative_generator_t>(hsdg) {}
-        virtual Function call(Function& fcn, int nfwd, int nadj, void* user_data);
+        virtual Function call(Function& fcn, int nder, void* user_data);
         virtual DerivativeGeneratorHaskellInternal* clone() const {
             return new DerivativeGeneratorHaskellInternal(functor_fun_ptr);
         }
@@ -123,11 +123,11 @@ namespace casadi {
         }
     };
 
-    Function DerivativeGeneratorHaskellInternal::call(Function& fcn, int nfwd, int nadj, void* user_data) {
+    Function DerivativeGeneratorHaskellInternal::call(Function& fcn, int nder, void* user_data) {
         #ifdef DEBUG_WOO
         std::cout << "DerivativeGeneratorHaskellInternal::call()\n";
         #endif
-        Function& f = functor_fun_ptr(fcn, nfwd, nadj);
+        Function& f = functor_fun_ptr(fcn, nder);
         #ifdef DEBUG_WOO
         std::cout << "DerivativeGeneratorHaskellInternal::call() finished\n";
         #endif

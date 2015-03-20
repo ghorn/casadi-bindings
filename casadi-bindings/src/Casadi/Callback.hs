@@ -53,13 +53,13 @@ makeCustomEvaluate callback = do
 
 
 -- | add a callback to an NLPSolver
-makeDerivativeGenerator :: (Function -> Int -> Int -> IO Function) -> IO DerivativeGenerator
+makeDerivativeGenerator :: (Function -> Int -> IO Function) -> IO DerivativeGenerator
 makeDerivativeGenerator callback = do
   -- safely wrap the callback into the C-friendly version
-  let callback' :: Ptr Function' -> CInt -> CInt -> IO (Ptr Function')
-      callback' ptrFx nfwd nadj = do
+  let callback' :: Ptr Function' -> CInt -> IO (Ptr Function')
+      callback' ptrFx nder = do
         foreignCFun <- newForeignPtr_ ptrFx
-        Function fun <- callback (Function foreignCFun) (fromIntegral nfwd) (fromIntegral nadj)
+        Function fun <- callback (Function foreignCFun) (fromIntegral nder)
         return (unsafeForeignPtrToPtr fun)
 
   -- turn the callback into a FunPtr
