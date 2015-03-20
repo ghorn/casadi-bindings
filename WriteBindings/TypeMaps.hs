@@ -158,7 +158,11 @@ addPtr _ = False
 ---- output type of the cpp marshal function, usually same as cppType except for references
 cppMarshalType :: Type -> String
 cppMarshalType (Const x) = cppMarshalType x
-cppMarshalType (Ref x) = cppMarshalType x
+cppMarshalType (Ref x@(StdVec {})) = cppMarshalType x
+cppMarshalType (Ref (Const x@(StdVec {}))) = cppMarshalType x
+cppMarshalType (Ref x@(CEnum {})) = cppMarshalType x
+cppMarshalType (Ref (Const x@(CEnum {}))) = cppMarshalType x
+--cppMarshalType (Ref x) = cppMarshalType x
 cppMarshalType x = cppType x
 
 cppClassName :: Type -> String
