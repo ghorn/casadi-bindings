@@ -53,9 +53,6 @@ dnonzeros :: DMatrix -> V.Vector Double
 dnonzeros x = unsafePerformIO (dmatrix_nonzeros x)
 {-# NOINLINE dnonzeros #-}
 
-dfromDouble :: Double -> IO DMatrix
-dfromDouble = dmatrix__5
-
 instance Show DMatrix where
   show x = unsafePerformIO (dmatrix_getDescription x)
   {-# NOINLINE show #-}
@@ -128,6 +125,8 @@ instance CMatrix DMatrix where
   fromDMatrix = id
   fromDVector x = unsafePerformIO (dmatrix__0 x)
   {-# NOINLINE fromDVector #-}
+  fromDouble x = unsafePerformIO (dmatrix__5 x)
+  {-# NOINLINE fromDouble #-}
   allocEmpty = dmatrix__10
 
 
@@ -138,7 +137,7 @@ instance Num DMatrix where
   {-# NOINLINE (-) #-}
   (*) x y = unsafePerformIO (dmatrix_zz_times x y)
   {-# NOINLINE (*) #-}
-  fromInteger x = unsafePerformIO (dfromDouble (fromInteger x :: Double))
+  fromInteger x = fromDouble (fromInteger x :: Double)
   {-# NOINLINE fromInteger #-}
   abs x = unsafePerformIO (dmatrix_zz_abs x)
   {-# NOINLINE abs #-}
@@ -148,11 +147,11 @@ instance Num DMatrix where
 instance Fractional DMatrix where
   (/) x y = unsafePerformIO (dmatrix___truediv____0 x y)
   {-# NOINLINE (/) #-}
-  fromRational x = unsafePerformIO (dfromDouble (fromRational x :: Double))
+  fromRational x = fromDouble (fromRational x :: Double)
   {-# NOINLINE fromRational #-}
 
 instance Floating DMatrix where
-  pi = unsafePerformIO (dfromDouble (pi :: Double))
+  pi = fromDouble (pi :: Double)
   {-# NOINLINE pi #-}
   (**) x y = unsafePerformIO (dmatrix_zz_power x y)
   {-# NOINLINE (**) #-}

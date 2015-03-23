@@ -126,6 +126,8 @@ instance CMatrix MX where
   {-# NOINLINE fromDMatrix #-}
   fromDVector x = fromDMatrix (fromDVector x)
   {-# NOINLINE fromDVector #-}
+  fromDouble x = unsafePerformIO (mx__3 x)
+  {-# NOINLINE fromDouble #-}
   allocEmpty = mx__7
 
 
@@ -136,7 +138,7 @@ instance Num MX where
   {-# NOINLINE (-) #-}
   (*) x y = unsafePerformIO (mx_zz_times x y)
   {-# NOINLINE (*) #-}
-  fromInteger x = unsafePerformIO (mx__3 (fromInteger x :: Double))
+  fromInteger x = fromDouble (fromInteger x :: Double)
   {-# NOINLINE fromInteger #-}
   abs x = unsafePerformIO (mx_zz_abs x)
   {-# NOINLINE abs #-}
@@ -146,11 +148,11 @@ instance Num MX where
 instance Fractional MX where
   (/) x y = unsafePerformIO (mx___truediv____0 x y)
   {-# NOINLINE (/) #-}
-  fromRational x = unsafePerformIO (mx__3 (fromRational x :: Double))
+  fromRational x = fromDouble (fromRational x :: Double)
   {-# NOINLINE fromRational #-}
 
 instance Floating MX where
-  pi = unsafePerformIO (mx__3 (pi :: Double))
+  pi = fromDouble (pi :: Double)
   {-# NOINLINE pi #-}
   (**) x y = unsafePerformIO (mx_zz_power x y)
   {-# NOINLINE (**) #-}

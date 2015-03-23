@@ -46,6 +46,7 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a) => CMatrix 
   densify :: a -> a
   fromDMatrix :: DMatrix -> a
   fromDVector :: V.Vector Double -> a
+  fromDouble :: Double -> a
   allocEmpty :: IO a
 
 

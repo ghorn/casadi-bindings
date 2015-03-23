@@ -36,9 +36,6 @@ ssymV = sx_sym__6
 ssymM :: String -> Int -> Int -> IO SX
 ssymM = sx_sym__7
 
-sfromDouble :: Double -> IO SX
-sfromDouble = sx__5
-
 -- | @jacobian exp x@ is the jacobian of exp w.r.t. x
 sgradient :: SX -> SX -> SX
 sgradient x y = unsafePerformIO (C.gradient__1 x y)
@@ -124,6 +121,8 @@ instance CMatrix SX where
   {-# NOINLINE fromDMatrix #-}
   fromDVector x = fromDMatrix (fromDVector x)
   {-# NOINLINE fromDVector #-}
+  fromDouble x = unsafePerformIO (sx__5 x)
+  {-# NOINLINE fromDouble #-}
   allocEmpty = sx__10
 
 
@@ -134,7 +133,7 @@ instance Num SX where
   {-# NOINLINE (-) #-}
   (*) x y = unsafePerformIO (sx_zz_times x y)
   {-# NOINLINE (*) #-}
-  fromInteger x = unsafePerformIO (sfromDouble (fromInteger x :: Double))
+  fromInteger x = fromDouble (fromInteger x :: Double)
   {-# NOINLINE fromInteger #-}
   abs x = unsafePerformIO (sx_zz_abs x)
   {-# NOINLINE abs #-}
@@ -144,11 +143,11 @@ instance Num SX where
 instance Fractional SX where
   (/) x y = unsafePerformIO (sx___truediv____0 x y)
   {-# NOINLINE (/) #-}
-  fromRational x = unsafePerformIO (sfromDouble (fromRational x :: Double))
+  fromRational x = fromDouble (fromRational x :: Double)
   {-# NOINLINE fromRational #-}
 
 instance Floating SX where
-  pi = unsafePerformIO (sfromDouble (pi :: Double))
+  pi = fromDouble (pi :: Double)
   {-# NOINLINE pi #-}
   (**) x y = unsafePerformIO (sx_zz_power x y)
   {-# NOINLINE (**) #-}
