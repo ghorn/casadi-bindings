@@ -27,21 +27,13 @@ instance Show C.Function where
   {-# NOINLINE show #-}
 
 -- | call an MXFunction on symbolic inputs, getting symbolic outputs
-callMX :: (C.FunctionClass f, C.IOInterfaceFunctionClass f) => f -> Vector MX -> Vector MX
-callMX f ins = unsafePerformIO $ do
-  numOut <- C.ioInterfaceFunction_getNumOutputs f
-  outs <- V.sequence (V.replicate numOut allocEmpty)
-  C.function_call__0 f ins outs
-  return outs
+callMX :: C.FunctionClass f => f -> Vector MX -> Vector MX
+callMX f ins = unsafePerformIO (C.function_operator_call__0 f ins)
 {-# NOINLINE callMX #-}
 
 -- | call an SXFunction on symbolic inputs, getting symbolic outputs
-callSX :: (C.FunctionClass f, C.IOInterfaceFunctionClass f) => f -> Vector SX -> Vector SX
-callSX f ins = unsafePerformIO $ do
-  numOut <- C.ioInterfaceFunction_getNumOutputs f
-  outs <- V.sequence (V.replicate numOut allocEmpty)
-  C.function_call__3 f ins outs
-  return outs
+callSX :: C.FunctionClass f => f -> Vector SX -> Vector SX
+callSX f ins = unsafePerformIO $ (C.function_operator_call__3 f ins)
 {-# NOINLINE callSX #-}
 
 -- | evaluate an SXFunction with 1 input and 1 output

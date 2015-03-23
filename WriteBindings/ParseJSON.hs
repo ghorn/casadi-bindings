@@ -384,7 +384,8 @@ startsWith x y = take n x == y
     n = length y
 
 hasBadMethodName :: String -> Bool
-hasBadMethodName xs = any (xs `startsWith`) ["operator "]
+--hasBadMethodName xs = any (xs `startsWith`) ["operator "]
+hasBadMethodName _ = False
 
 filterMethods :: Class' Type -> Class' Type
 filterMethods c = c { classMethods =
