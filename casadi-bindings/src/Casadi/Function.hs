@@ -20,7 +20,6 @@ import Casadi.SX ( SX )
 import Casadi.MX ( MX )
 import Casadi.DMatrix ( DMatrix )
 import Casadi.SharedObject ( castSharedObject )
-import Casadi.CMatrix ( CMatrix(..) )
 
 instance Show C.Function where
   show x = show (castSharedObject x)

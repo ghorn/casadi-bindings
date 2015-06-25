@@ -48,7 +48,7 @@ sjacobian x y = unsafePerformIO (C.jacobian__1 x y)
 
 -- | @hessian exp x@ is the hessian of exp w.r.t. x
 shessian :: SX -> SX -> SX
-shessian x y = unsafePerformIO (C.hessian__1 x y)
+shessian x y = unsafePerformIO (C.hessian__3 x y)
 {-# NOINLINE shessian #-}
 
 ssparsify :: SX -> SX

@@ -19,7 +19,7 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "2.3.0.0"
+version = "2.3.0.1"
 
 jsonpath :: FilePath
 jsonpath = "/home/ghorn/casadi-2.3.0-rc1/build/swig/json/casadi.json"

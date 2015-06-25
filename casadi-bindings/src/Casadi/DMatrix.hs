@@ -42,7 +42,7 @@ instance Conjugate DMatrix where
   conjugate = id
 
 fromSparseData :: Sparsity -> V.Vector Double -> DMatrix
-fromSparseData s d = unsafePerformIO (dmatrix__1 s d)
+fromSparseData s d = unsafePerformIO (dmatrix__4 s (fromDVector d))
 {-# NOINLINE fromSparseData #-}
 
 dsparsify :: DMatrix -> DMatrix
@@ -119,15 +119,15 @@ instance CMatrix DMatrix where
   {-# NOINLINE triu2symm #-}
   tril2symm x = unsafePerformIO (dmatrix_zz_tril2symm x)
   {-# NOINLINE tril2symm #-}
-  copy m = dmatrix__9 m
+  copy m = dmatrix__7 m
   densify x = unsafePerformIO (dmatrix_zz_densify x)
   {-# NOINLINE densify #-}
   fromDMatrix = id
-  fromDVector x = unsafePerformIO (dmatrix__0 x)
+  fromDVector x = unsafePerformIO (dmatrix__2 (V.singleton x) >>= dmatrix_T)
   {-# NOINLINE fromDVector #-}
-  fromDouble x = unsafePerformIO (dmatrix__5 x)
+  fromDouble x = unsafePerformIO (dmatrix__3 x)
   {-# NOINLINE fromDouble #-}
-  allocEmpty = dmatrix__10
+  allocEmpty = dmatrix__8
 
 
 instance Num DMatrix where
