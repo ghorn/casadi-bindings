@@ -27,7 +27,7 @@ library
 
   ghc-prof-options: -O2 -prof -fprof-auto -fprof-cafs -rtsopts
   ghc-options: -O2
-  cc-options: -Wall -Wno-delete-non-virtual-dtor -Wno-sign-compare
+  cc-options: -Wall -Wno-delete-non-virtual-dtor -Wno-sign-compare -std=c++11
 
   C-sources:        cbits/hs_tools.cpp
                     cbits/callback.cpp
@@ -37,7 +37,6 @@ library
                     Casadi.Internal.WrapReturn
                     Casadi.Internal.CppHelpers
                     Casadi.Internal.CToolsImports
-                    Casadi.Internal.CToolsInstances
                     Casadi.Internal.Callback
                     Casadi.Internal.FormatException
 

@@ -152,6 +152,11 @@ arrayp isEnum = try $ do
 
 typeParser :: IsEnum -> Parsec String u Type
 typeParser isEnum = do
+  let genericType = UserType (Namespace ["casadi"]) (Name "GenericType")
+      sx       = UserType (Namespace ["casadi"]) (Name "SX")
+      mx       = UserType (Namespace ["casadi"]) (Name "MX")
+      dmatrix  = UserType (Namespace ["casadi"]) (Name "DMatrix")
+      sparsity = UserType (Namespace ["casadi"]) (Name "Sparsity")
   x <- choice
        [ p "bool" CBool
        , p "int" CInt
@@ -162,12 +167,19 @@ typeParser isEnum = do
        , p "char" CChar
        , p "std::string" StdString
        , p "std::size_t" CSize
+       , p "size_t" CSize
        , p "std::ostream" StdOstream
        , p "casadi::Dict" (StdMap StdString genericType)
        , p "casadi::GenericType::Dict" (StdMap StdString genericType)
        , p "casadi::DMatrixDict" (StdMap StdString dmatrix)
        , p "casadi::SXDict" (StdMap StdString sx)
        , p "casadi::MXDict" (StdMap StdString mx)
+       , p "casadi::DMatrixVector" (StdVec dmatrix)
+       , p "casadi::DMatrixVectorVector" (StdVec (StdVec dmatrix))
+       , p "casadi::SXVector" (StdVec sx)
+       , p "casadi::SXVectorVector" (StdVec (StdVec sx))
+       , p "casadi::MXVector" (StdVec mx)
+       , p "casadi::MXVectorVector" (StdVec (StdVec mx))
          -- some literals
        , ps [ "casadi::Matrix<(double)>"
             ,         "Matrix<(double)>"
@@ -177,8 +189,7 @@ typeParser isEnum = do
        , ps [ "casadi::Matrix<(casadi::SXElement)>"
             ,         "Matrix<(casadi::SXElement)>"
             ]
-         (UserType (Namespace ["casadi"]) (Name "SX"))
-
+         sx
        , ps [ "casadi::Matrix<(int)>"
             ,         "Matrix<(int)>"
             ]
@@ -314,6 +325,7 @@ data CppFunction' a =
   CppFunction'
   { funName :: String
   , funReturn :: a
+  , funCode :: String
   , funParams :: [a]
   , funDocs :: Doc
   , funDocslink :: DocLink
@@ -326,6 +338,7 @@ data CppFunction =
   { fName :: String
   , fOthers :: Maybe Int
   , fReturn :: Type
+  , fCode :: Maybe String
   , fParams :: [Type]
   , fDocs :: Doc
   , fDocslink :: DocLink
@@ -425,7 +438,7 @@ overloadMethods c =
     ms = M.fromListWith (++) $ map (\m -> (methodName m, [m])) (classMethods c)
 
     m2ms :: (Name, [Method' Type]) -> Methods
-    m2ms (Name name, []) = error $ "method '" ++ name ++ "' has 0 instances"
+    m2ms (Name name, []) = error $ "method '" ++ name ++ "' has zero instances"
     m2ms (_, [f]) = Right (m2m f Nothing)
     m2ms (_, fs) = Left $ zipWith (\f k -> m2m f (Just k)) fs [0..]
 
@@ -464,6 +477,7 @@ readModule jsonpath = do
         , moduleClasses = M.mapWithKey addPrint
                           $ M.map (overloadMethods . filterMethods)
                           $ M.fromListWith classUnion
+--                          $ filter lool
                           $ filter (not . isPrintableObject . fst)
                           $ filter (not . hasBadType . fst)
                           $ map (\c -> (classType c, c)) $ treeClasses tree
@@ -472,6 +486,10 @@ readModule jsonpath = do
         , moduleInheritance  = M.filterWithKey (\k _ -> not (isPrintableObject k)) newInheritance
         }
         where
+--          lool :: (ClassType, Class' Type) -> Bool
+--          lool (ClassType (StdMap {}), _) = False
+--          lool _ = True
+
           printableObjects :: S.Set ClassType
           printableObjects = S.fromList $
                              map (\(ClassType (PrintableObject x)) -> ClassType x) $
@@ -518,7 +536,7 @@ readModule jsonpath = do
             $ M.fromListWith (++) $ map (\x -> (funName x, [x])) $ treeFunctions tree
 
           f2fs :: (String, [CppFunction' Type]) -> CppFunctions
-          f2fs (name, []) = error $ "function '" ++ name ++ "' has 0 instances"
+          f2fs (name, []) = Left [] -- error $ "function '" ++ name ++ "' has zero instances"
           f2fs (_, [f]) = Right (f2f f Nothing)
           f2fs (_, fs) = Left $ zipWith (\f k -> f2f f (Just k)) fs [0..]
 
@@ -528,6 +546,7 @@ readModule jsonpath = do
             { fName = funName f
             , fOthers = others
             , fReturn = funReturn f
+            , fCode = if funCode f == "" then Nothing else Just (funCode f)
             , fParams = funParams f
             , fDocs = Doc "" -- funDocs f
             , fDocslink = DocLink "" -- funDocslink f

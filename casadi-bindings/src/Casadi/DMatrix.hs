@@ -46,7 +46,7 @@ fromSparseData s d = unsafePerformIO (dmatrix__4 s (fromDVector d))
 {-# NOINLINE fromSparseData #-}
 
 dsparsify :: DMatrix -> DMatrix
-dsparsify x = unsafePerformIO (dmatrix_zz_sparsify__0 x)
+dsparsify x = unsafePerformIO (C.casadi_sparsify__2 x)
 {-# NOINLINE dsparsify #-}
 
 dnonzeros :: DMatrix -> V.Vector Double
@@ -58,21 +58,21 @@ instance Show DMatrix where
   {-# NOINLINE show #-}
 
 instance Eq DMatrix where
-  x == y = unsafePerformIO (dmatrix_zz_isEqual__0 x y)
+  x == y = unsafePerformIO (C.casadi_isEqual__2 x y)
   {-# NOINLINE (==) #-}
 
 instance CMatrix DMatrix where
-  veccat x = unsafePerformIO (dmatrix_zz_veccat x)
+  veccat x = unsafePerformIO (C.casadi_veccat__1 x)
   {-# NOINLINE veccat #-}
   ----  vertsplit = vertslice
-  vertsplit x ks = unsafePerformIO (dmatrix_zz_vertsplit x ks)
+  vertsplit x ks = unsafePerformIO (C.casadi_vertsplit__5 x ks)
   {-# NOINLINE vertsplit #-}
-  vertcat x = unsafePerformIO (dmatrix_zz_vertcat x)
+  vertcat x = unsafePerformIO (C.casadi_vertcat__1 x)
   {-# NOINLINE vertcat #-}
   --  horzsplit = horzslice
-  horzsplit x ks = unsafePerformIO (dmatrix_zz_horzsplit x ks)
+  horzsplit x ks = unsafePerformIO (C.casadi_horzsplit__5 x ks)
   {-# NOINLINE horzsplit #-}
-  horzcat x = unsafePerformIO (dmatrix_zz_horzcat x)
+  horzcat x = unsafePerformIO (C.casadi_horzcat__1 x)
   {-# NOINLINE horzcat #-}
   size1 x = unsafePerformIO (dmatrix_size1 x)
   {-# NOINLINE size1 #-}
@@ -80,13 +80,13 @@ instance CMatrix DMatrix where
   {-# NOINLINE size2 #-}
   numel x = unsafePerformIO (dmatrix_numel__1 x)
   {-# NOINLINE numel #-}
-  mm x y = unsafePerformIO (dmatrix_zz_mtimes__1 x y)
+  mm x y = unsafePerformIO (C.casadi_mul__3 x y)
   {-# NOINLINE mm #-}
-  innerProd x y = unsafePerformIO (dmatrix_zz_inner_prod x y)
+  innerProd x y = unsafePerformIO (C.casadi_inner_prod__1 x y)
   {-# NOINLINE innerProd #-}
   trans x = unsafePerformIO (dmatrix_T x)
   {-# NOINLINE trans #-}
-  diag x = unsafePerformIO (dmatrix_zz_diag x)
+  diag x = unsafePerformIO (C.casadi_diag__1 x)
   {-# NOINLINE diag #-}
   eye n = unsafePerformIO (dmatrix_eye n)
   {-# NOINLINE eye #-}
@@ -96,14 +96,16 @@ instance CMatrix DMatrix where
   {-# NOINLINE zeros #-}
   zerosSp sp = unsafePerformIO (dmatrix_zeros__0 sp)
   {-# NOINLINE zerosSp #-}
-  solve x y = unsafePerformIO (C.solve__3 x y)
+  solve x y s m = unsafePerformIO (C.casadi_solve__4 x y s m)
   {-# NOINLINE solve #-}
+  solve' x y = unsafePerformIO (C.casadi_solve__5 x y)
+  {-# NOINLINE solve' #-}
   indexed m spx spy = unsafePerformIO $ do
     ret <- allocEmpty :: IO DMatrix
     dmatrix_get__3 m ret False spx spy
     return ret
   {-# NOINLINE indexed #-}
-  sparsity x = unsafePerformIO (dmatrix_sparsityRef x)
+  sparsity x = unsafePerformIO (dmatrix_getSparsity x)
   {-# NOINLINE sparsity #-}
   getNZ m sp = unsafePerformIO $ do
     ret <- allocEmpty :: IO DMatrix
@@ -111,16 +113,16 @@ instance CMatrix DMatrix where
     return ret
   {-# NOINLINE getNZ #-}
   setNZ m y s = dmatrix_setNZ__1 m y False s
-  triu x = unsafePerformIO (dmatrix_zz_triu__0 x)
+  triu x = unsafePerformIO (C.casadi_triu__2 x)
   {-# NOINLINE triu #-}
-  tril x = unsafePerformIO (dmatrix_zz_tril__0 x)
+  tril x = unsafePerformIO (C.casadi_tril__2 x)
   {-# NOINLINE tril #-}
-  triu2symm  x = unsafePerformIO (dmatrix_zz_triu2symm x)
+  triu2symm x = unsafePerformIO (C.casadi_triu2symm__1 x)
   {-# NOINLINE triu2symm #-}
-  tril2symm x = unsafePerformIO (dmatrix_zz_tril2symm x)
+  tril2symm x = unsafePerformIO (C.casadi_tril2symm__1 x)
   {-# NOINLINE tril2symm #-}
   copy m = dmatrix__7 m
-  densify x = unsafePerformIO (dmatrix_zz_densify x)
+  densify x = unsafePerformIO (C.casadi_densify__1 x)
   {-# NOINLINE densify #-}
   fromDMatrix = id
   fromDVector x = unsafePerformIO (dmatrix__2 (V.singleton x) >>= dmatrix_T)
@@ -131,21 +133,21 @@ instance CMatrix DMatrix where
 
 
 instance Num DMatrix where
-  (+) x y = unsafePerformIO (dmatrix_zz_plus x y)
+  (+) x y = unsafePerformIO (C.casadi_plus__1 x y)
   {-# NOINLINE (+) #-}
-  (-) x y = unsafePerformIO (dmatrix_zz_minus x y)
+  (-) x y = unsafePerformIO (C.casadi_minus__1 x y)
   {-# NOINLINE (-) #-}
-  (*) x y = unsafePerformIO (dmatrix_zz_times x y)
+  (*) x y = unsafePerformIO (C.casadi_times__1 x y)
   {-# NOINLINE (*) #-}
   fromInteger x = fromDouble (fromInteger x :: Double)
   {-# NOINLINE fromInteger #-}
-  abs x = unsafePerformIO (dmatrix_zz_abs x)
+  abs x = unsafePerformIO (C.casadi_abs__1 x)
   {-# NOINLINE abs #-}
-  signum x = unsafePerformIO (dmatrix_zz_sign x)
+  signum x = unsafePerformIO (C.casadi_sign__1 x)
   {-# NOINLINE signum #-}
 
 instance Fractional DMatrix where
-  (/) x y = unsafePerformIO (dmatrix___truediv____0 x y)
+  (/) x y = unsafePerformIO (C.casadi_rdivide__1 x y)
   {-# NOINLINE (/) #-}
   fromRational x = fromDouble (fromRational x :: Double)
   {-# NOINLINE fromRational #-}
@@ -153,55 +155,55 @@ instance Fractional DMatrix where
 instance Floating DMatrix where
   pi = fromDouble (pi :: Double)
   {-# NOINLINE pi #-}
-  (**) x y = unsafePerformIO (dmatrix_zz_power x y)
+  (**) x y = unsafePerformIO (C.casadi_power__1 x y)
   {-# NOINLINE (**) #-}
-  exp x   = unsafePerformIO (dmatrix_zz_exp x)
+  exp x   = unsafePerformIO (C.casadi_exp__1 x)
   {-# NOINLINE exp #-}
-  log x   = unsafePerformIO (dmatrix_zz_log x)
+  log x   = unsafePerformIO (C.casadi_log__1 x)
   {-# NOINLINE log #-}
-  sin x   = unsafePerformIO (dmatrix_zz_sin x)
+  sin x   = unsafePerformIO (C.casadi_sin__1 x)
   {-# NOINLINE sin #-}
-  cos x   = unsafePerformIO (dmatrix_zz_cos x)
+  cos x   = unsafePerformIO (C.casadi_cos__1 x)
   {-# NOINLINE cos #-}
-  tan x   = unsafePerformIO (dmatrix_zz_tan x)
+  tan x   = unsafePerformIO (C.casadi_tan__1 x)
   {-# NOINLINE tan #-}
-  asin x  = unsafePerformIO (dmatrix_zz_asin x)
+  asin x  = unsafePerformIO (C.casadi_asin__1 x)
   {-# NOINLINE asin #-}
-  atan x  = unsafePerformIO (dmatrix_zz_atan x)
+  atan x  = unsafePerformIO (C.casadi_atan__1 x)
   {-# NOINLINE atan #-}
-  acos x  = unsafePerformIO (dmatrix_zz_acos x)
+  acos x  = unsafePerformIO (C.casadi_acos__1 x)
   {-# NOINLINE acos #-}
-  sinh x  = unsafePerformIO (dmatrix_zz_sinh x)
+  sinh x  = unsafePerformIO (C.casadi_sinh__1 x)
   {-# NOINLINE sinh #-}
-  cosh x  = unsafePerformIO (dmatrix_zz_cosh x)
+  cosh x  = unsafePerformIO (C.casadi_cosh__1 x)
   {-# NOINLINE cosh #-}
-  tanh x  = unsafePerformIO (dmatrix_zz_tanh x)
+  tanh x  = unsafePerformIO (C.casadi_tanh__1 x)
   {-# NOINLINE tanh #-}
-  asinh x = unsafePerformIO (dmatrix_zz_asinh x)
+  asinh x = unsafePerformIO (C.casadi_asinh__1 x)
   {-# NOINLINE asinh #-}
-  atanh x = unsafePerformIO (dmatrix_zz_atanh x)
+  atanh x = unsafePerformIO (C.casadi_atanh__1 x)
   {-# NOINLINE atanh #-}
-  acosh x = unsafePerformIO (dmatrix_zz_acosh x)
+  acosh x = unsafePerformIO (C.casadi_acosh__1 x)
   {-# NOINLINE acosh #-}
 
 instance Fmod DMatrix where
-  fmod x y = unsafePerformIO (dmatrix_zz_mod x y)
+  fmod x y = unsafePerformIO (C.casadi_mod__1 x y)
   {-# NOINLINE fmod #-}
 
 instance ArcTan2 DMatrix where
-  arctan2 x y = unsafePerformIO (dmatrix_zz_atan2 x y)
+  arctan2 x y = unsafePerformIO (C.casadi_atan2__1 x y)
   {-# NOINLINE arctan2 #-}
 
 instance SymOrd DMatrix where
-  x `leq` y = unsafePerformIO (dmatrix_zz_le x y)
+  x `leq` y = unsafePerformIO (C.casadi_le__1 x y)
   {-# NOINLINE leq #-}
-  x `geq` y = unsafePerformIO (dmatrix_zz_ge x y)
+  x `geq` y = unsafePerformIO (C.casadi_ge__1 x y)
   {-# NOINLINE geq #-}
-  x  `eq` y = unsafePerformIO (dmatrix_zz_eq x y)
+  x  `eq` y = unsafePerformIO (C.casadi_eq__1 x y)
   {-# NOINLINE eq #-}
 
 instance Erf DMatrix where
-  erf x = unsafePerformIO (dmatrix_zz_erf x)
+  erf x = unsafePerformIO (C.casadi_erf__1 x)
   {-# NOINLINE erf #-}
-  erfinv x = unsafePerformIO (dmatrix_zz_erfinv x)
+  erfinv x = unsafePerformIO (C.casadi_erfinv__1 x)
   {-# NOINLINE erfinv #-}

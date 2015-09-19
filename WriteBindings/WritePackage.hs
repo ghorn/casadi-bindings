@@ -19,13 +19,13 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "2.3.0.1"
+version = "2.4.0.0"
 
 jsonpath :: FilePath
-jsonpath = "/home/ghorn/casadi-2.3.0-rc1/build/swig/json/casadi.json"
+jsonpath = "/home/greghorn/casadi_develop/build/swig/json/casadi.json"
 
 writepath :: FilePath
-writepath = "/home/ghorn/hslibs/casadi-bindings/genpath"
+writepath = "/home/greghorn/hslibs/casadi-bindings/genpath"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -120,7 +120,8 @@ toPackage mod' =
               , "library"
               , "  build-depends:       base >=4.6 && <5,"
               , "                       vector >=0.10,"
-              , "                       casadi-bindings-internal == 0.1.3.0"
+              , "                       containers >= 0.5,"
+              , "                       casadi-bindings-internal == 0.1.3.1"
               , ""
               , "  default-language:    Haskell2010"
               , ""
@@ -131,7 +132,7 @@ toPackage mod' =
               , ""
               , "  ghc-prof-options: -prof -fprof-auto -fprof-cafs -rtsopts"
               , "  ghc-options: "
-              , "  cc-options: -Wall -Wno-sign-compare"
+              , "  cc-options: -Wall -Wno-sign-compare -std=c++11"
               , ""
               , "  C-sources:        cbits/custom_wrappers.cpp"
               , "                    cbits/autogen/casadi_wrap_classes.cpp"
@@ -152,12 +153,16 @@ toPackage mod' =
     inherit = baseClasses (moduleInheritance mod')
 
     cincludes :: [String]
-    cincludes = moduleIncludes mod' ++ [ "#include \"../marshal.hpp\"" ]
+    cincludes =
+      moduleIncludes mod' ++
+      [ "#include \"../marshal.hpp\""
+      ]
 
     allclasses = M.elems (moduleClasses mod')
 
     hsClassModules :: [(String,String)]
     hsClassModules = HS.writeClassModules inherit (M.elems (moduleClasses mod'))
+
 
 
 main :: IO ()

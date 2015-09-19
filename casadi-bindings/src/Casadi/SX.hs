@@ -21,7 +21,7 @@ instance Show SX where
   {-# NOINLINE show #-}
 
 instance Eq SX where
-  x == y = unsafePerformIO (sx_zz_isEqual__0 x y)
+  x == y = unsafePerformIO (C.casadi_isEqual__0 x y)
   {-# NOINLINE (==) #-}
 
 instance Conjugate SX where
@@ -38,36 +38,36 @@ ssymM = sx_sym__7
 
 -- | @jacobian exp x@ is the jacobian of exp w.r.t. x
 sgradient :: SX -> SX -> SX
-sgradient x y = unsafePerformIO (C.gradient__1 x y)
+sgradient x y = unsafePerformIO (C.casadi_gradient__0 x y)
 {-# NOINLINE sgradient #-}
 
 -- | @jacobian exp x@ is the jacobian of exp w.r.t. x
 sjacobian :: SX -> SX -> SX
-sjacobian x y = unsafePerformIO (C.jacobian__1 x y)
+sjacobian x y = unsafePerformIO (C.casadi_jacobian__0 x y)
 {-# NOINLINE sjacobian #-}
 
 -- | @hessian exp x@ is the hessian of exp w.r.t. x
-shessian :: SX -> SX -> SX
-shessian x y = unsafePerformIO (C.hessian__3 x y)
+shessian :: SX -> SX -> SX -> SX
+shessian x y z = unsafePerformIO (C.casadi_hessian__0 x y z)
 {-# NOINLINE shessian #-}
 
 ssparsify :: SX -> SX
-ssparsify x = unsafePerformIO (sx_zz_sparsify__0 x)
+ssparsify x = unsafePerformIO (C.casadi_sparsify__0 x)
 {-# NOINLINE ssparsify #-}
 
 
 instance CMatrix SX where
-  veccat x = unsafePerformIO (sx_zz_veccat x)
+  veccat x = unsafePerformIO (C.casadi_veccat__0 x)
   {-# NOINLINE veccat #-}
   --  vertsplit = vertslice
-  vertsplit x ks = unsafePerformIO (sx_zz_vertsplit x ks)
+  vertsplit x ks = unsafePerformIO (C.casadi_vertsplit__2 x ks)
   {-# NOINLINE vertsplit #-}
-  vertcat x = unsafePerformIO (sx_zz_vertcat x)
+  vertcat x = unsafePerformIO (C.casadi_vertcat__0 x)
   {-# NOINLINE vertcat #-}
   --  horzsplit = horzslice
-  horzsplit x ks = unsafePerformIO (sx_zz_horzsplit x ks)
+  horzsplit x ks = unsafePerformIO (C.casadi_horzsplit__2 x ks)
   {-# NOINLINE horzsplit #-}
-  horzcat x = unsafePerformIO (sx_zz_horzcat x)
+  horzcat x = unsafePerformIO (C.casadi_horzcat__0 x)
   {-# NOINLINE horzcat #-}
   size1 x = unsafePerformIO (sx_size1 x)
   {-# NOINLINE size1 #-}
@@ -75,13 +75,13 @@ instance CMatrix SX where
   {-# NOINLINE size2 #-}
   numel x = unsafePerformIO (sx_numel__1 x)
   {-# NOINLINE numel #-}
-  mm x y = unsafePerformIO (sx_zz_mtimes__1 x y)
+  mm x y = unsafePerformIO (C.casadi_mul__1 x y)
   {-# NOINLINE mm #-}
-  innerProd x y = unsafePerformIO (sx_zz_inner_prod x y)
+  innerProd x y = unsafePerformIO (C.casadi_inner_prod__0 x y)
   {-# NOINLINE innerProd #-}
   trans x = unsafePerformIO (sx_T x)
   {-# NOINLINE trans #-}
-  diag x = unsafePerformIO (sx_zz_diag x)
+  diag x = unsafePerformIO (C.casadi_diag__0 x)
   {-# NOINLINE diag #-}
   eye n = unsafePerformIO (sx_eye n)
   {-# NOINLINE eye #-}
@@ -91,14 +91,16 @@ instance CMatrix SX where
   {-# NOINLINE zeros #-}
   zerosSp sp = unsafePerformIO (sx_zeros__0 sp)
   {-# NOINLINE zerosSp #-}
-  solve a b = unsafePerformIO (C.solve__2 a b)
+  solve x y s m = unsafePerformIO (C.casadi_solve__1 x y s m)
   {-# NOINLINE solve #-}
+  solve' x y = unsafePerformIO (C.casadi_solve__2 x y)
+  {-# NOINLINE solve' #-}
   indexed m spx spy = unsafePerformIO $ do
     ret <- allocEmpty :: IO SX
     sx_get__3 m ret False spx spy
     return ret
   {-# NOINLINE indexed #-}
-  sparsity x = unsafePerformIO (sx_sparsityRef x)
+  sparsity x = unsafePerformIO (sx_getSparsity x)
   {-# NOINLINE sparsity #-}
   getNZ m sp = unsafePerformIO $ do
     ret <- allocEmpty :: IO SX
@@ -106,16 +108,16 @@ instance CMatrix SX where
     return ret
   {-# NOINLINE getNZ #-}
   setNZ m y s = sx_setNZ__1 m y False s
-  triu x = unsafePerformIO (sx_zz_triu__0 x)
+  triu x = unsafePerformIO (C.casadi_triu__0 x)
   {-# NOINLINE triu #-}
-  tril x = unsafePerformIO (sx_zz_tril__0 x)
+  tril x = unsafePerformIO (C.casadi_tril__0 x)
   {-# NOINLINE tril #-}
-  triu2symm x = unsafePerformIO (sx_zz_triu2symm x)
+  triu2symm x = unsafePerformIO (C.casadi_triu2symm__0 x)
   {-# NOINLINE triu2symm #-}
-  tril2symm x = unsafePerformIO (sx_zz_tril2symm x)
+  tril2symm x = unsafePerformIO (C.casadi_tril2symm__0 x)
   {-# NOINLINE tril2symm #-}
   copy m = sx__9 m
-  densify x = unsafePerformIO (sx_zz_densify x)
+  densify x = unsafePerformIO (C.casadi_densify__0 x)
   {-# NOINLINE densify #-}
   fromDMatrix x = unsafePerformIO (sx__1 x)
   {-# NOINLINE fromDMatrix #-}
@@ -127,21 +129,21 @@ instance CMatrix SX where
 
 
 instance Num SX where
-  (+) x y = unsafePerformIO (sx_zz_plus x y)
+  (+) x y = unsafePerformIO (C.casadi_plus__0 x y)
   {-# NOINLINE (+) #-}
-  (-) x y = unsafePerformIO (sx_zz_minus x y)
+  (-) x y = unsafePerformIO (C.casadi_minus__0 x y)
   {-# NOINLINE (-) #-}
-  (*) x y = unsafePerformIO (sx_zz_times x y)
+  (*) x y = unsafePerformIO (C.casadi_times__0 x y)
   {-# NOINLINE (*) #-}
   fromInteger x = fromDouble (fromInteger x :: Double)
   {-# NOINLINE fromInteger #-}
-  abs x = unsafePerformIO (sx_zz_abs x)
+  abs x = unsafePerformIO (C.casadi_abs__0 x)
   {-# NOINLINE abs #-}
-  signum x = unsafePerformIO (sx_zz_sign x)
+  signum x = unsafePerformIO (C.casadi_sign__0 x)
   {-# NOINLINE signum #-}
 
 instance Fractional SX where
-  (/) x y = unsafePerformIO (sx___truediv____0 x y)
+  (/) x y = unsafePerformIO (C.casadi_rdivide__0 x y)
   {-# NOINLINE (/) #-}
   fromRational x = fromDouble (fromRational x :: Double)
   {-# NOINLINE fromRational #-}
@@ -149,55 +151,55 @@ instance Fractional SX where
 instance Floating SX where
   pi = fromDouble (pi :: Double)
   {-# NOINLINE pi #-}
-  (**) x y = unsafePerformIO (sx_zz_power x y)
+  (**) x y = unsafePerformIO (C.casadi_power__0 x y)
   {-# NOINLINE (**) #-}
-  exp x   = unsafePerformIO (sx_zz_exp x)
+  exp x   = unsafePerformIO (C.casadi_exp__0 x)
   {-# NOINLINE exp #-}
-  log x   = unsafePerformIO (sx_zz_log x)
+  log x   = unsafePerformIO (C.casadi_log__0 x)
   {-# NOINLINE log #-}
-  sin x   = unsafePerformIO (sx_zz_sin x)
+  sin x   = unsafePerformIO (C.casadi_sin__0 x)
   {-# NOINLINE sin #-}
-  cos x   = unsafePerformIO (sx_zz_cos x)
+  cos x   = unsafePerformIO (C.casadi_cos__0 x)
   {-# NOINLINE cos #-}
-  tan x   = unsafePerformIO (sx_zz_tan x)
+  tan x   = unsafePerformIO (C.casadi_tan__0 x)
   {-# NOINLINE tan #-}
-  asin x  = unsafePerformIO (sx_zz_asin x)
+  asin x  = unsafePerformIO (C.casadi_asin__0 x)
   {-# NOINLINE asin #-}
-  atan x  = unsafePerformIO (sx_zz_atan x)
+  atan x  = unsafePerformIO (C.casadi_atan__0 x)
   {-# NOINLINE atan #-}
-  acos x  = unsafePerformIO (sx_zz_acos x)
+  acos x  = unsafePerformIO (C.casadi_acos__0 x)
   {-# NOINLINE acos #-}
-  sinh x  = unsafePerformIO (sx_zz_sinh x)
+  sinh x  = unsafePerformIO (C.casadi_sinh__0 x)
   {-# NOINLINE sinh #-}
-  cosh x  = unsafePerformIO (sx_zz_cosh x)
+  cosh x  = unsafePerformIO (C.casadi_cosh__0 x)
   {-# NOINLINE cosh #-}
-  tanh x  = unsafePerformIO (sx_zz_tanh x)
+  tanh x  = unsafePerformIO (C.casadi_tanh__0 x)
   {-# NOINLINE tanh #-}
-  asinh x = unsafePerformIO (sx_zz_asinh x)
+  asinh x = unsafePerformIO (C.casadi_asinh__0 x)
   {-# NOINLINE asinh #-}
-  atanh x = unsafePerformIO (sx_zz_atanh x)
+  atanh x = unsafePerformIO (C.casadi_atanh__0 x)
   {-# NOINLINE atanh #-}
-  acosh x = unsafePerformIO (sx_zz_acosh x)
+  acosh x = unsafePerformIO (C.casadi_acosh__0 x)
   {-# NOINLINE acosh #-}
 
 instance Fmod SX where
-  fmod x y = unsafePerformIO (sx_zz_mod x y)
+  fmod x y = unsafePerformIO (C.casadi_mod__0 x y)
   {-# NOINLINE fmod #-}
 
 instance ArcTan2 SX where
-  arctan2 x y = unsafePerformIO (sx_zz_atan2 x y)
+  arctan2 x y = unsafePerformIO (C.casadi_atan2__0 x y)
   {-# NOINLINE arctan2 #-}
 
 instance SymOrd SX where
-  x `leq` y = unsafePerformIO (sx_zz_le x y)
+  x `leq` y = unsafePerformIO (C.casadi_le__0 x y)
   {-# NOINLINE leq #-}
-  x `geq` y = unsafePerformIO (sx_zz_ge x y)
+  x `geq` y = unsafePerformIO (C.casadi_ge__0 x y)
   {-# NOINLINE geq #-}
-  x  `eq` y = unsafePerformIO (sx_zz_eq x y)
+  x  `eq` y = unsafePerformIO (C.casadi_eq__0 x y)
   {-# NOINLINE eq #-}
 
 instance Erf SX where
-  erf x = unsafePerformIO (sx_zz_erf x)
+  erf x = unsafePerformIO (C.casadi_erf__0 x)
   {-# NOINLINE erf #-}
-  erfinv x = unsafePerformIO (sx_zz_erfinv x)
+  erfinv x = unsafePerformIO (C.casadi_erfinv__0 x)
   {-# NOINLINE erfinv #-}

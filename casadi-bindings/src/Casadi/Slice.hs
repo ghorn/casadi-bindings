@@ -19,5 +19,5 @@ slice x y z = unsafePerformIO (slice__4 x y z)
 
 -- | Slice()
 slice' :: Slice
-slice' = unsafePerformIO slice__6
+slice' = unsafePerformIO slice__7
 {-# NOINLINE slice' #-}

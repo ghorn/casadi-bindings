@@ -59,12 +59,14 @@ writeFunction fcn =
     retType = fReturn fcn
     params = fParams fcn
     marshals = map (uncurry marshal) $ zip [0..] params
-    proto = TM.cWrapperRetType retType ++ " " ++ cWrapperName'' ++ protoArgs
+    proto = TM.cWrapperRetType retType ++ "\n    " ++ cWrapperName'' ++ protoArgs
     cWrapperName'' = TM.cWrapperName' fcn
     protoArgs = "(" ++ intercalate ", " (errArg : protoArgList) ++ ")"
     protoArgList = map (uncurry paramProto) $ zip [0..] params
     args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] params) ++ ")"
-    call = removeTics cppName ++ args
+    call = case fCode fcn of
+      Nothing -> removeTics cppName ++ args
+      Just c -> c
 
 writeClass :: Class -> String
 writeClass c = unlines $ writeDeletes ct : concatMap (writeMethods ct) (clMethods c)
@@ -116,7 +118,9 @@ writeMethod ut fcn =
   , proto ++ "{"
   , "    try {"
   , unlines marshals
-  , TM.writeReturn retType call
+  , case (retType, mKind fcn) of
+     (UserType {}, Constructor) -> "        return new " ++ call ++ ";"
+     _ -> TM.writeReturn retType call
   , "    } catch (std::exception& ex) {"
   , "         *err_msg = new std::string(ex.what());"
   , "         " ++ errorReturn retType
@@ -127,7 +131,7 @@ writeMethod ut fcn =
   where
     retType = mReturn fcn
     marshals = map (uncurry marshal) $ zip [0..] (mParams fcn)
-    proto = TM.cWrapperRetType retType ++ " " ++ cWrapperName'' ++ protoArgs
+    proto = TM.cWrapperRetType retType ++ "\n    " ++ cWrapperName'' ++ protoArgs
     cWrapperName'' = TM.cWrapperName ut fcn
     cppName = TM.cppMethodName ut fcn
     Name methodName' = mName fcn

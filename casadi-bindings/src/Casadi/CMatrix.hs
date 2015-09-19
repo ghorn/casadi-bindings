@@ -6,8 +6,10 @@ module Casadi.CMatrix
        ) where
 
 import qualified Data.Vector as V
+import Data.Map ( Map )
 
 import Casadi.Core.Classes.DMatrix ( DMatrix )
+import Casadi.Core.Classes.GenericType ( GenericType )
 
 import Casadi.Overloading ( Fmod, ArcTan2, SymOrd, Erf )
 import Casadi.Sparsity ( Sparsity )
@@ -33,7 +35,8 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a) => CMatrix 
   ones :: (Int,Int) -> a
   zeros :: (Int,Int) -> a
   zerosSp :: Sparsity -> a
-  solve :: a -> a -> a
+  solve :: a -> a -> String -> Map String GenericType -> a
+  solve' :: a -> a -> a
   indexed :: a -> Slice -> Slice -> a
   sparsity :: a -> Sparsity
   getNZ :: a -> Slice -> a
@@ -48,6 +51,7 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a) => CMatrix 
   fromDVector :: V.Vector Double -> a
   fromDouble :: Double -> a
   allocEmpty :: IO a
+{-# DEPRECATED solve' "use the new solve, this one is going away" #-}
 
 
 vertslice :: CMatrix a => a -> V.Vector Int -> V.Vector a

@@ -1,22 +1,19 @@
 {-# OPTIONS_GHC -Wall #-}
 {-# Language GADTs #-}
 
+-- todo(greg): merge this with Casadi.GenericC
 module Casadi.Option
        ( Opt(..)
        , GenericC(..)
-       , setOption
+       , GenericType
        , getOption
        ) where
 
 import Casadi.Core.Classes.OptionsFunctionality
-  ( OptionsFunctionalityClass, optionsFunctionality_setOption,
-    optionsFunctionality_hasOption, optionsFunctionality_getOption)
+  ( OptionsFunctionalityClass
+  , optionsFunctionality_hasOption, optionsFunctionality_getOption
+  )
 import Casadi.GenericC
-
-setOption :: (OptionsFunctionalityClass a, GenericC b) => a -> String -> b -> IO ()
-setOption f name val = do
-  gval <- mkGeneric val
-  optionsFunctionality_setOption f name gval
 
 getOption :: (OptionsFunctionalityClass a, GenericC b) => a -> String -> IO (Maybe b)
 getOption f name = do

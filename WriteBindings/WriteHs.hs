@@ -132,6 +132,7 @@ writeClassMethods c = methods
                                 , fOthers = Nothing
                                 , fReturn = mReturn fcn
                                 , fParams = Ref classType' : mParams fcn
+                                , fCode = Nothing
                                 , fDocs = mDocs fcn
                                 , fDocslink = mDocslink fcn
                                 }
@@ -140,6 +141,7 @@ writeClassMethods c = methods
                            , fOthers = Nothing
                            , fReturn = mReturn fcn
                            , fParams = mParams fcn
+                           , fCode = Nothing
                            , fDocs = mDocs fcn
                            , fDocslink = mDocslink fcn
                            }
@@ -274,7 +276,6 @@ writeClassModules inheritance classes = map (\x -> (dataName (clType x),writeOne
       , "import Foreign.ForeignPtr ( newForeignPtr )"
       , "import System.IO.Unsafe ( unsafePerformIO ) -- for show instances"
       , ""
-      , "import Casadi.Internal.CToolsInstances ( )"
       , "import Casadi.Internal.FormatException ( formatException )"
       , "import Casadi.Internal.MarshalTypes ( StdVec, StdString, StdMap, StdPair ) -- StdPair StdOstream'"
       , "import Casadi.Internal.Marshal ( Marshal(..), withMarshal )"
@@ -365,7 +366,6 @@ writeToolsModule functions =
   , ""
   , "import Casadi.Core.Data"
   , "import Casadi.Core.Enums"
-  , "import Casadi.Internal.CToolsInstances ( )"
   , "import Casadi.Internal.FormatException ( formatException )"
   , "import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString )"
   , "import Casadi.Internal.Marshal ( withMarshal )"
@@ -391,7 +391,6 @@ writeToolsModule functions =
 --  , "import Foreign.ForeignPtr ( newForeignPtr )"
 --  , ""
 --  , "import Casadi." ++ modname ++ ".Data"
---  , "import Casadi.Internal.CToolsInstances ( )"
 --  , "import Casadi.Internal.MarshalTypes ( StdVec, StdString )"
 --  , "import Casadi.Internal.Marshal (  Marshal(..), withMarshal )"
 --  , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
