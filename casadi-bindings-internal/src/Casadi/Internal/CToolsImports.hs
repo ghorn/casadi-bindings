@@ -8,6 +8,32 @@ import Foreign.Ptr ( Ptr )
 
 import Casadi.Internal.MarshalTypes
 
+--------------------------- stdpair -----------------------------------
+foreign import ccall unsafe "hs_new_stdpair" c_newStdPair
+  :: Ptr a -> Ptr b -> IO (Ptr (StdPair (Ptr a) (Ptr b)))
+foreign import ccall unsafe "hs_stdpair_fst" c_stdPairFst
+  :: Ptr (StdPair (Ptr a) (Ptr b)) -> IO (Ptr a)
+foreign import ccall unsafe "hs_stdpair_snd" c_stdPairSnd
+  :: Ptr (StdPair (Ptr a) (Ptr b)) -> IO (Ptr b)
+foreign import ccall unsafe "hs_delete_stdpair" c_deleteStdPair
+  :: Ptr (StdPair (Ptr a) (Ptr b)) -> IO ()
+
+--------------------------- stdmap -----------------------------------
+foreign import ccall unsafe "hs_new_dict" c_newDict
+  :: Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr a)) -> IO (Ptr (StdMap StdString (Ptr a)))
+
+foreign import ccall unsafe "hs_dict_size" c_dictSize
+  :: Ptr (StdMap StdString (Ptr a)) -> IO CInt
+
+foreign import ccall unsafe "hs_lookup_dict" c_lookupDict
+  :: Ptr (StdMap StdString (Ptr a)) -> Ptr StdString -> IO (Ptr a)
+
+foreign import ccall unsafe "hs_dict_copy" c_dictCopy
+  :: Ptr (StdMap StdString (Ptr a)) -> Ptr (Ptr StdString) -> Ptr (Ptr a) -> IO ()
+
+foreign import ccall unsafe "hs_delete_dict" c_deleteDict
+  :: Ptr (StdMap StdString (Ptr a)) -> IO ()
+
 --------------------------- ("int","CInt",Nothing,["Int","Bool"]) -----------------------------------
 foreign import ccall unsafe "hs_new_vec_int" c_newVecCInt
   :: Ptr CInt -> CInt -> IO (Ptr (StdVec CInt))

@@ -3,6 +3,7 @@
 {-# Language MultiParamTypeClasses #-}
 {-# Language FlexibleInstances #-}
 {-# Language FlexibleContexts #-}
+{-# Language InstanceSigs #-}
 
 module Casadi.Internal.Marshal
        ( Marshal(..)
@@ -14,15 +15,17 @@ module Casadi.Internal.Marshal
 
 import Control.Monad ( when )
 import qualified Data.Vector as V
+import qualified Data.Map as M
 import Foreign.C.Types
 import Foreign.C.String ( withCString )
 import Foreign.Ptr ( Ptr )
 import Foreign.Marshal ( withArrayLen )
 import Foreign.Storable ( Storable )
 
-import Casadi.Internal.CToolsImports ( c_deleteVecVoidP )
+import Casadi.Internal.CToolsImports
+--import Casadi.Internal.CToolsImports ( c_deleteVecVoidP )
 import Casadi.Internal.CppHelpers ( newStdVec, readStdVec, c_newStdString, c_deleteStdString )
-import Casadi.Internal.MarshalTypes ( StdVec, StdString, StdPair )
+import Casadi.Internal.MarshalTypes ( StdMap, StdPair, StdVec, StdString )
 
 class Marshal a b where
   marshal :: a -> IO b
@@ -65,6 +68,83 @@ instance Marshal CUChar CUChar where
   marshal = return . hsToC
 instance Marshal CSize CSize where
   marshal = return . hsToC
+
+-- ("int","CInt",Nothing,["Int","Bool"])
+instance Marshal (V.Vector CInt) (Ptr (StdVec CInt)) where
+  marshal = newStorableVec c_newVecCInt
+  marshalFree = const c_deleteVecCInt
+instance Marshal (V.Vector Int) (Ptr (StdVec CInt)) where
+  marshal = newStorableVec c_newVecCInt . (V.map hsToC)
+  marshalFree = const c_deleteVecCInt
+instance Marshal (V.Vector Bool) (Ptr (StdVec CInt)) where
+  marshal = newStorableVec c_newVecCInt . (V.map hsToC)
+  marshalFree = const c_deleteVecCInt
+
+-- ("voidp","VoidP",Just "(Ptr a)",[])
+instance Marshal (V.Vector (Ptr a)) (Ptr (StdVec (Ptr a))) where
+  marshal = newStorableVec c_newVecVoidP
+  marshalFree = const c_deleteVecVoidP
+
+-- ("uchar","CUChar",Nothing,[])
+instance Marshal (V.Vector CUChar) (Ptr (StdVec CUChar)) where
+  marshal = newStorableVec c_newVecCUChar
+  marshalFree = const c_deleteVecCUChar
+
+-- ("double","CDouble",Nothing,["Double"])
+instance Marshal (V.Vector CDouble) (Ptr (StdVec CDouble)) where
+  marshal = newStorableVec c_newVecCDouble
+  marshalFree = const c_deleteVecCDouble
+instance Marshal (V.Vector Double) (Ptr (StdVec CDouble)) where
+  marshal = newStorableVec c_newVecCDouble . (V.map hsToC)
+  marshalFree = const c_deleteVecCDouble
+
+-- stdpair
+instance (Marshal a (Ptr pa), Marshal b (Ptr pb))
+         => Marshal (a, b) (Ptr (StdPair (Ptr pa) (Ptr pb))) where
+  marshal (x,y) = do
+    px <- marshal x
+    py <- marshal y
+    c_newStdPair px py
+  marshalFree (x,y) stdpair = do
+    px <- c_stdPairFst stdpair
+    py <- c_stdPairSnd stdpair
+    marshalFree x px
+    marshalFree y py
+    c_deleteStdPair stdpair
+
+-- stdmap
+instance (Marshal a (Ptr pa))
+         => Marshal (M.Map String a) (Ptr (StdMap StdString (Ptr pa))) where
+  marshal m = do
+    let (keys, vals) = unzip (M.toAscList m)
+        vecKeys = V.fromList keys
+    vecKeyPtrs <- V.mapM marshal vecKeys :: IO (V.Vector (Ptr StdString))
+    vecValPtrs <- V.mapM marshal (V.fromList vals) :: IO (V.Vector (Ptr pa))
+
+    stdVecKeys <- newStdVec vecKeyPtrs
+                  :: IO (Ptr (StdVec (Ptr StdString)))
+    stdVecVals <- newStdVec vecValPtrs
+                  :: IO (Ptr (StdVec (Ptr pa)))
+
+    dict <- c_newDict stdVecKeys stdVecVals
+
+    c_deleteVecVoidP stdVecKeys
+    c_deleteVecVoidP stdVecVals
+
+    V.zipWithM_ marshalFree vecKeys vecKeyPtrs
+
+    return dict
+
+  marshalFree m dict = do
+    let (keys, vals) = unzip (M.toAscList m)
+        vecKeys = V.fromList keys
+    vecKeyPtrs <- V.mapM marshal vecKeys :: IO (V.Vector (Ptr StdString))
+    vecVals <- V.mapM (c_lookupDict dict) vecKeyPtrs :: IO (V.Vector (Ptr pa))
+
+    V.zipWithM_ marshalFree vecKeys vecKeyPtrs
+    V.zipWithM_ marshalFree (V.fromList vals) vecVals
+    c_deleteDict dict
+
 
 instance Marshal String (Ptr StdString) where
   marshal str = newStdString str

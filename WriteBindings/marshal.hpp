@@ -40,6 +40,21 @@ class Marshaling< std::vector< T1 >, std::vector< T2 > > {
   }
 };
 
+template<class T1, class T2>
+class Marshaling< std::map< std::string, T1 >, std::map< std::string, T2 > > {
+  public:
+  static std::map< std::string, T1 > marshal(const std::map< std::string, T2 > inputs){
+    std::map< std::string, T1 > ret;
+    typename std::map<std::string, T2>::const_iterator it;
+    for (it = inputs.begin(); it != inputs.end(); it++) {
+        std::string key = it->first;
+        T1 val = Marshaling< T1, T2 >::marshal(it->second);
+        std::pair<std::string, T1> keyVal(key, val);
+        ret.insert(keyVal);
+    }
+    return ret;
+  }
+};
 
 template<class T1, class T2>
 class Marshaling< T1, T2* > {
@@ -67,6 +82,22 @@ class WrapReturn< std::vector< T1 >, std::vector< T2 > > {
         vec.push_back( WrapReturn< T1, T2 >::wrapReturn(inputs[k]) );
     }
     return vec;
+  }
+};
+
+template<class T1, class T2>
+class WrapReturn< std::map< std::string, T1 >, std::map< std::string, T2 > > {
+  public:
+  static std::map< std::string, T1 > wrapReturn(std::map< std::string, T2 > inputs){
+    std::map< std::string, T1 > ret;
+    typename std::map<std::string, T2>::iterator it;
+    for (it = inputs.begin(); it != inputs.end(); it++) {
+        std::string key = it->first;
+        T1 val = WrapReturn< T1, T2 >::wrapReturn(it->second);
+        std::pair<std::string, T1> keyVal(key, val);
+        ret.insert(keyVal);
+    }
+    return ret;
   }
 };
 

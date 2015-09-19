@@ -5,9 +5,11 @@ module Casadi.Internal.MarshalTypes
        , StdString
        , StdOstream
        , StdPair
+       , StdMap
        ) where
 
 data StdVec a
 data StdPair a b
+data StdMap a b
 data StdString
 data StdOstream

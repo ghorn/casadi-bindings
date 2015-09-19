@@ -8,6 +8,7 @@ module Casadi.Internal.WrapReturn
        ( WrapReturn(..)
        ) where
 
+import qualified Data.Map as M
 import qualified Data.Vector as V
 import Foreign.C.Types
 import Foreign.C.String
@@ -15,7 +16,7 @@ import Foreign.Ptr ( Ptr )
 import Foreign.Storable ( Storable )
 import Foreign.Marshal ( mallocArray, free, peekArray )
 
-import Casadi.Internal.MarshalTypes ( StdVec, StdString )
+import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString )
 
 import Casadi.Internal.CppHelpers ( readStdVec, c_lengthStdString, c_copyStdString, c_deleteStdString )
 import Casadi.Internal.CToolsImports
@@ -33,6 +34,26 @@ instance WrapReturn CLong Int where
 instance WrapReturn CInt Bool where
   wrapReturn 0 = return False
   wrapReturn _ = return True
+
+instance WrapReturn (Ptr a) b => WrapReturn (Ptr (StdMap StdString (Ptr a))) (M.Map String b) where
+  wrapReturn stdMap = do
+    msize <- fmap fromIntegral (c_dictSize stdMap)
+    keyArray <- mallocArray msize :: IO (Ptr (Ptr StdString))
+    valArray <- mallocArray msize :: IO (Ptr (Ptr a))
+
+    c_dictCopy stdMap keyArray valArray
+    c_deleteDict stdMap
+
+    keys0 <- peekArray msize keyArray :: IO [Ptr StdString]
+    vals0 <- peekArray msize valArray :: IO [Ptr a]
+
+    free keyArray
+    free valArray
+
+    keys <- mapM wrapReturn keys0 :: IO [String]
+    vals <- mapM wrapReturn vals0 :: IO [b]
+
+    return $ M.fromList (zip keys vals)
 
 
 instance WrapReturn (Ptr a) b => WrapReturn (Ptr (StdVec (Ptr a))) (V.Vector b) where

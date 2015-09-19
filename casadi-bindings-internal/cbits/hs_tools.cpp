@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include "string.h"
 
 using namespace std;
@@ -23,6 +24,69 @@ void hs_delete_string(string * x){
     delete x;
 }
 
+////////////////// std::pair /////////////////
+extern "C" std::pair<void*,void*> * hs_new_stdpair(void * x, void * y);
+std::pair<void*,void*> * hs_new_stdpair(void * x, void * y) {
+    return new std::pair<void*,void*>(x, y);
+}
+extern "C" void * hs_stdpair_fst(std::pair<void*,void*> * stdpair);
+void * hs_stdpair_fst(std::pair<void*,void*> * stdpair) {
+    return stdpair->first;
+}
+extern "C" void * hs_stdpair_snd(std::pair<void*,void*> * stdpair);
+void * hs_stdpair_snd(std::pair<void*,void*> * stdpair) {
+    return stdpair->second;
+}
+extern "C" void hs_delete_stdpair(std::pair<void*,void*> * pair);
+void hs_delete_stdpair(std::pair<void*,void*> * pair){
+    delete pair;
+}
+
+
+////////////////// std::map /////////////////
+extern "C" std::map<string,void*> * hs_new_dict(std::vector<std::string*> * keys,
+                                                std::vector<void*> * vals);
+std::map<string,void*> * hs_new_dict(std::vector<std::string*> * keys, std::vector<void*> * vals) {
+    std::map<std::string,void*> * ret = new std::map<std::string,void*>;
+    for (int k = 0; k < keys->size(); k++) {
+        std::string key = *((*keys)[k]);
+        void * val = (*vals)[k];
+        std::pair<std::string, void*> keyVal(key, val);
+        ret->insert(keyVal);
+    }
+    return ret;
+}
+
+extern "C" int hs_dict_size(std::map<std::string, void*> * map);
+int hs_dict_size(std::map<std::string, void*> * map) {
+    return map->size();
+}
+
+extern "C" void hs_dict_copy(std::map<std::string, void*> * map,
+                             std::string * keys[],
+                             void * vals[]);
+void hs_dict_copy(std::map<std::string, void*> * map,
+                  std::string * keys[],
+                  void * vals[]) {
+    int k = 0;
+    for(std::map<std::string, void*>::iterator it = map->begin(); it != map->end(); it++) {
+        std::string * key = new std::string(it->first);
+        void * val = it->second;
+        keys[k] = key;
+        vals[k] = val;
+        k++;
+    }
+}
+
+extern "C" void * hs_lookup_dict(std::map<std::string, void*> * map, std::string* key);
+void * hs_lookup_dict(std::map<std::string, void*> * map, std::string* key) {
+    return map->at(*key);
+}
+
+extern "C" void hs_delete_dict(std::map<std::string,void*> *);
+void hs_delete_dict(std::map<std::string,void*> * dict) {
+    delete dict;
+}
 
 ////////////////////////// copying vectors to arrays /////////////////////
 template <typename T>

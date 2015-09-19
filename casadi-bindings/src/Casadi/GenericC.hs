@@ -1,25 +1,20 @@
 {-# OPTIONS_GHC -Wall -fno-warn-orphans -fno-cse #-}
 {-# Language GADTs #-}
 {-# Language FlexibleInstances #-}
+{-# Language ScopedTypeVariables #-}
 
+-- todo(greg): merge this with Casadi.Option
 module Casadi.GenericC
        ( GenericC(..)
+       , GenericType
        , Opt(..)
        , getDescription
        ) where
 
+import qualified Data.Traversable as T
 import Data.Vector ( Vector )
-import qualified Data.Vector as V
-import Foreign.Marshal ( new, free )
-import Foreign.Storable ( peek )
-import Foreign.Ptr ( Ptr, nullPtr )
+import Data.Map ( Map )
 
-import Casadi.Internal.FormatException ( formatException )
-import Casadi.Internal.MarshalTypes ( StdVec, StdString )
-import Casadi.Internal.Marshal ( withMarshal )
-import Casadi.Internal.WrapReturn ( WrapReturn(..) )
-
-import Casadi.Core.Data ( GenericType' )
 import Casadi.Core.Classes.Function ( Function )
 import Casadi.Core.Classes.GenericType
 import Casadi.Core.Classes.DerivativeGenerator ( DerivativeGenerator )
@@ -71,14 +66,19 @@ instance GenericC Function where
   mkGeneric = genericType__3
   fromGeneric = ifThenGet genericType_isFunction genericType_toFunction
 instance GenericC DerivativeGenerator where
-  mkGeneric = genericType__1
+  mkGeneric = genericType__2
   fromGeneric = const $ return $ error "no fromGeneric for DerivativeGenerator"
-instance GenericC [(String,Opt)] where
-  mkGeneric kvs = do
-    let (ks,vs') = unzip kvs
-    vs <- mapM (\(Opt x) -> mkGeneric x) vs'
-    mkGenericDictionary (V.fromList ks) (V.fromList vs)
-  fromGeneric = const $ return $ error "no fromGeneric for [(String,Opt)]"
+instance GenericC Opt where
+  mkGeneric (Opt o) = mkGeneric o
+  fromGeneric = const $ return $ error "no fromGeneric for Opt"
+instance GenericC a => GenericC (Map String a) where
+  mkGeneric dict = T.mapM mkGeneric dict >>= genericType__0
+  fromGeneric gdict = do
+    mDict <- ifThenGet genericType_isDict genericType_toDict gdict
+    case mDict of
+     Nothing -> return Nothing
+     Just dict -> do
+       T.sequenceA <$> T.mapM fromGeneric dict
 
 ifThenGet :: (a -> IO Bool) -> (a -> IO b) -> a -> IO (Maybe b)
 ifThenGet isOpt getOpt g = do
@@ -86,19 +86,3 @@ ifThenGet isOpt getOpt g = do
   if isopt
     then fmap Just (getOpt g)
     else return Nothing
-
--- direct wrapper
-foreign import ccall unsafe "custom_generic_dictionary" c_custom_generic_dictionary
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr GenericType'))
-     -> IO (Ptr GenericType')
-
-mkGenericDictionary :: Vector String -> Vector GenericType -> IO GenericType
-mkGenericDictionary x0 x1 =
-  withMarshal x0 $ \x0' ->
-  withMarshal x1 $ \x1' ->
-  do
-    errStrPtrP <- new nullPtr
-    ret <- c_custom_generic_dictionary errStrPtrP x0' x1'
-    errStrPtr <- peek errStrPtrP
-    free errStrPtrP
-    if errStrPtr == nullPtr then wrapReturn ret else wrapReturn errStrPtr >>= (error . formatException)

@@ -266,6 +266,7 @@ writeClassModules inheritance classes = map (\x -> (dataName (clType x),writeOne
       , "import Prelude hiding ( Functor )"
       , ""
       , "import Data.Vector ( Vector )"
+      , "import qualified Data.Map as M"
       , "import Foreign.C.Types"
       , "import Foreign.Marshal ( new, free )"
       , "import Foreign.Storable ( peek )"
@@ -275,7 +276,7 @@ writeClassModules inheritance classes = map (\x -> (dataName (clType x),writeOne
       , ""
       , "import Casadi.Internal.CToolsInstances ( )"
       , "import Casadi.Internal.FormatException ( formatException )"
-      , "import Casadi.Internal.MarshalTypes ( StdVec, StdString) -- StdPair StdOstream'"
+      , "import Casadi.Internal.MarshalTypes ( StdVec, StdString, StdMap, StdPair ) -- StdPair StdOstream'"
       , "import Casadi.Internal.Marshal ( Marshal(..), withMarshal )"
       , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
       , "import Casadi.Core.Data"
@@ -356,6 +357,7 @@ writeToolsModule functions =
   , exportDecl (sort funNames)
   , ""
   , "import Data.Vector ( Vector )"
+  , "import qualified Data.Map as M"
   , "import Foreign.C.Types"
   , "import Foreign.Marshal ( new, free )"
   , "import Foreign.Storable ( peek )"
@@ -365,7 +367,7 @@ writeToolsModule functions =
   , "import Casadi.Core.Enums"
   , "import Casadi.Internal.CToolsInstances ( )"
   , "import Casadi.Internal.FormatException ( formatException )"
-  , "import Casadi.Internal.MarshalTypes ( StdVec, StdString )"
+  , "import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString )"
   , "import Casadi.Internal.Marshal ( withMarshal )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
   ] ++ funDecls

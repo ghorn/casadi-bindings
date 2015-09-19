@@ -42,6 +42,7 @@ instance FromJSON ClassType where
       Right x@(IOSchemeVec {}) -> return (ClassType x)
       Right x@(StdVec _)       -> return (ClassType x)
       Right x@(StdPair {})     -> return (ClassType x)
+      Right x@(StdMap {})      -> return (ClassType x)
       Right x@(IOInterface {}) -> return (ClassType x)
       Right x@(PrintableObject {}) -> return (ClassType x)
       Right y -> fail $ "\nParsec parser returned wrong class type: " ++ str ++ "\n" ++ show y
@@ -64,6 +65,7 @@ parseType isEnum str = case parse ((typeParser isEnum) <* eof) "" str of
 p :: String -> Type -> Parsec String u Type
 p name tp = try $ do
   _ <- string name
+  notFollowedBy alphaNum
   return tp
 
 ps :: [String] -> Type -> Parsec String u Type
@@ -109,6 +111,15 @@ pairp isEnum =
     r <- typeParser isEnum
     return (StdPair l r)
 
+mapp :: IsEnum -> Parsec String u Type
+mapp isEnum =
+  try $
+  between (string "std::map<(") (string ")>") $ do
+    l <- typeParser isEnum
+    _ <- char ','
+    r <- typeParser isEnum
+    return (StdMap l r)
+
 ioschemevecp :: IsEnum -> Parsec String u Type
 ioschemevecp isEnum =
   try $ do
@@ -152,6 +163,11 @@ typeParser isEnum = do
        , p "std::string" StdString
        , p "std::size_t" CSize
        , p "std::ostream" StdOstream
+       , p "casadi::Dict" (StdMap StdString genericType)
+       , p "casadi::GenericType::Dict" (StdMap StdString genericType)
+       , p "casadi::DMatrixDict" (StdMap StdString dmatrix)
+       , p "casadi::SXDict" (StdMap StdString sx)
+       , p "casadi::MXDict" (StdMap StdString mx)
          -- some literals
        , ps [ "casadi::Matrix<(double)>"
             ,         "Matrix<(double)>"
@@ -180,6 +196,7 @@ typeParser isEnum = do
        , templatep isEnum "casadi::IOInterface" IOInterface
        , templatep isEnum "casadi::PrintableObject" PrintableObject
        , pairp isEnum
+       , mapp isEnum
        , ioschemevecp isEnum
        , classp isEnum
        ]
@@ -215,6 +232,7 @@ data Type = CInt
           | UserType Namespace Name
           | CEnum Namespace Name
           | StdPair Type Type
+          | StdMap Type Type
           | Ref Type
           | Pointer Type
           | Const Type
@@ -355,6 +373,7 @@ instance FromJSON a => FromJSON (Class' a)
 getAllTypes :: Type -> [Type]
 getAllTypes x@(CArray t) = x:getAllTypes t
 getAllTypes x@(StdPair tx ty) = x : concatMap getAllTypes [tx,ty]
+getAllTypes x@(StdMap tx ty) = x : concatMap getAllTypes [tx,ty]
 getAllTypes x@(Ref t) = x : getAllTypes t
 getAllTypes x@(Pointer t) = x : getAllTypes t
 getAllTypes x@(Const t) = x : getAllTypes t

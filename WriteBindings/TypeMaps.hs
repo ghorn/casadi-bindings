@@ -57,6 +57,7 @@ hsType p (Ref x) = hsType p x
 hsType p (Pointer x) = hsType p x
 hsType _ (IOSchemeVec {}) = error "hsType: IOSchemeVec undefined"
 hsType _ (StdPair x y) = "(" ++ hsType False x ++ ", " ++ hsType False y ++ ")"
+hsType p (StdMap x y) = maybeParens p $ "M.Map " ++ hsType True x ++ " " ++ hsType True y
 hsType p (Const x) = hsType p x
 hsType _ (PrintableObject _) = error "PrintableObject should be internal"
 
@@ -84,6 +85,8 @@ ffiType p (UserType _ (Name x)) = maybeParens p $ "Ptr " ++ uppercase x ++ raw
 ffiType _ (IOSchemeVec {}) = error "ffiType: IOSchemeVec undefined"
 ffiType p (IOInterface x) = maybeParens p $ "Ptr IOInterface" ++ hsType False x ++ raw
 ffiType p (StdPair x y) = maybeParens p $ "Ptr (StdPair " ++ ffiType True x ++ " " ++ ffiType True y ++ ")"
+ffiType p (StdMap StdString y) = maybeParens p $ "Ptr (StdMap StdString " ++ ffiType True y ++ ")"
+ffiType p (StdMap x y) = maybeParens p $ "Ptr (StdMap " ++ ffiType True x ++ " " ++ ffiType True y ++ ")"
 ffiType p (Const x) = ffiType p x
 ffiType _ (PrintableObject _) = error "PrintableObject should be internal"
 
@@ -111,6 +114,7 @@ cppType (Ref x) = cppType x ++ "&"
 cppType (Pointer x) = cppType x ++ "*"
 cppType (UserType ns x) = namespace ns x
 cppType (StdPair x y) = "std::pair< " ++ cppType x ++ ", " ++ cppType y ++ " >"
+cppType (StdMap x y) = "std::map< " ++ cppType x ++ ", " ++ cppType y ++ " >"
 cppType (IOInterface x) = "casadi::IOInterface< " ++ cppType x ++ " >"
 cppType (IOSchemeVec {}) = error "cppType: IOSchemeVec undefined"
 cppType (Const x) = cppType x
@@ -140,6 +144,8 @@ cWrapperType (Pointer x)
   | addPtr x = cWrapperType x
   | otherwise = cWrapperType x ++ "*"
 cWrapperType (StdPair x y) = "std::pair< " ++ cWrapperType x ++ ", " ++ cWrapperType y ++ " >*"
+cWrapperType (StdMap StdString y) = "std::map< std::string, " ++ cWrapperType y ++ " >*"
+cWrapperType (StdMap x y) = "std::map< " ++ cWrapperType x ++ ", " ++ cWrapperType y ++ " >*"
 cWrapperType (IOInterface x) = "casadi::IOInterface< " ++ cWrapperType x ++ " >*"
 cWrapperType (IOSchemeVec {}) = error "cWrapperType: IOSchemeVec undefined"
 cWrapperType (PrintableObject _) = error "PrintableObject should be internal"
@@ -150,6 +156,7 @@ addPtr (StdString) = True
 addPtr (StdOstream) = True
 addPtr (StdVec _) = True
 addPtr (StdPair {}) = True
+addPtr (StdMap {}) = True
 addPtr (IOInterface {}) = True
 addPtr (Const x) = addPtr x
 addPtr _ = False
@@ -158,6 +165,8 @@ addPtr _ = False
 ---- output type of the cpp marshal function, usually same as cppType except for references
 cppMarshalType :: Type -> String
 cppMarshalType (Const x) = cppMarshalType x
+cppMarshalType (Ref x@(StdMap {})) = cppMarshalType x
+cppMarshalType (Ref (Const x@(StdMap {}))) = cppMarshalType x
 cppMarshalType (Ref x@(StdVec {})) = cppMarshalType x
 cppMarshalType (Ref (Const x@(StdVec {}))) = cppMarshalType x
 cppMarshalType (Ref x@(CEnum {})) = cppMarshalType x
