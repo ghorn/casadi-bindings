@@ -24,7 +24,6 @@ module WriteBindings.ParseJSON
        ) where
 
 import GHC.Generics ( Generic )
-import Control.Applicative ( Applicative(..) )
 import Control.Arrow ( first )
 import Data.Aeson
 import Data.Aeson.Types ( typeMismatch )
