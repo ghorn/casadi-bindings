@@ -28,13 +28,13 @@ instance Conjugate SX where
   conjugate = id
 
 ssym :: String -> IO SX
-ssym = sx_sym__5
+ssym = sx_sym__6
 
 ssymV :: String -> Int -> IO SX
-ssymV = sx_sym__6
+ssymV = sx_sym__7
 
 ssymM :: String -> Int -> Int -> IO SX
-ssymM = sx_sym__7
+ssymM = sx_sym__8
 
 -- | @jacobian exp x@ is the jacobian of exp w.r.t. x
 sgradient :: SX -> SX -> SX
@@ -85,11 +85,11 @@ instance CMatrix SX where
   {-# NOINLINE diag #-}
   eye n = unsafePerformIO (sx_eye n)
   {-# NOINLINE eye #-}
-  ones (r,c) = unsafePerformIO (sx_ones__3 r c)
+  ones (r,c) = unsafePerformIO (sx_ones__4 r c)
   {-# NOINLINE ones #-}
-  zeros (r,c) = unsafePerformIO (sx_zeros__3 r c)
+  zeros (r,c) = unsafePerformIO (sx_zeros__4 r c)
   {-# NOINLINE zeros #-}
-  zerosSp sp = unsafePerformIO (sx_zeros__0 sp)
+  zerosSp sp = unsafePerformIO (sx_zeros__1 sp)
   {-# NOINLINE zerosSp #-}
   solve x y s m = unsafePerformIO (C.casadi_solve__1 x y s m)
   {-# NOINLINE solve #-}

@@ -28,10 +28,10 @@ sxFunction :: String -> Vector SX -> Vector SX -> Map String Opt
               -> IO C.SXFunction
 sxFunction n x y opts0 = do
   opts <- T.mapM mkGeneric opts0 :: IO (Map String GenericType)
-  C.sxFunction__1 n x y opts
+  C.sxFunction__7 n x y opts
 
 sxFunctionFromFunction :: C.Function -> IO C.SXFunction
-sxFunctionFromFunction = C.sxFunction__2
+sxFunctionFromFunction = C.sxFunction__8
 
 sxFunctionFromMXFunction :: C.MXFunction -> IO C.SXFunction
-sxFunctionFromMXFunction = C.sxFunction__3
+sxFunctionFromMXFunction = C.sxFunction__9

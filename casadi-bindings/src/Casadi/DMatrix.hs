@@ -90,11 +90,11 @@ instance CMatrix DMatrix where
   {-# NOINLINE diag #-}
   eye n = unsafePerformIO (dmatrix_eye n)
   {-# NOINLINE eye #-}
-  ones (r,c) = unsafePerformIO (dmatrix_ones__3 r c)
+  ones (r,c) = unsafePerformIO (dmatrix_ones__4 r c)
   {-# NOINLINE ones #-}
-  zeros (r,c) = unsafePerformIO (dmatrix_zeros__3 r c)
+  zeros (r,c) = unsafePerformIO (dmatrix_zeros__4 r c)
   {-# NOINLINE zeros #-}
-  zerosSp sp = unsafePerformIO (dmatrix_zeros__0 sp)
+  zerosSp sp = unsafePerformIO (dmatrix_zeros__1 sp)
   {-# NOINLINE zerosSp #-}
   solve x y s m = unsafePerformIO (C.casadi_solve__4 x y s m)
   {-# NOINLINE solve #-}

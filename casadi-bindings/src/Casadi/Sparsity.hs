@@ -71,7 +71,7 @@ sparse nr nc r c = unsafePerformIO (sparsity__0 nr nc r c)
 {-# NOINLINE sparse #-}
 
 dense :: Int -> Int -> Sparsity
-dense nr nc = unsafePerformIO (sparsity_dense__1 nr nc)
+dense nr nc = unsafePerformIO (sparsity_dense__2 nr nc)
 {-# NOINLINE dense #-}
 
 compress :: Sparsity -> V.Vector Int

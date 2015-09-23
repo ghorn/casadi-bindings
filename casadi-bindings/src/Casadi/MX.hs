@@ -30,13 +30,13 @@ instance Show MX where
   {-# NOINLINE show #-}
 
 sym :: String -> IO MX
-sym x = fmap castMX (mx_sym__5 x)
+sym x = fmap castMX (mx_sym__6 x)
 
 symV :: String -> Int -> IO MX
-symV x y = fmap castMX (mx_sym__6 x y)
+symV x y = fmap castMX (mx_sym__7 x y)
 
 symM :: String -> Int -> Int -> IO MX
-symM x y z = fmap castMX (mx_sym__7 x y z)
+symM x y z = fmap castMX (mx_sym__8 x y z)
 
 -- | @jacobian exp x@ is the jacobian of exp w.r.t. x
 gradient :: MX -> MX -> MX
@@ -90,11 +90,11 @@ instance CMatrix MX where
   {-# NOINLINE diag #-}
   eye n = unsafePerformIO (mx_eye n)
   {-# NOINLINE eye #-}
-  ones (r,c) = unsafePerformIO (mx_ones__3 r c)
+  ones (r,c) = unsafePerformIO (mx_ones__4 r c)
   {-# NOINLINE ones #-}
-  zeros (r,c) = unsafePerformIO (mx_zeros__3 r c)
+  zeros (r,c) = unsafePerformIO (mx_zeros__4 r c)
   {-# NOINLINE zeros #-}
-  zerosSp sp = unsafePerformIO (mx_zeros__0 sp)
+  zerosSp sp = unsafePerformIO (mx_zeros__1 sp)
   {-# NOINLINE zerosSp #-}
   solve x y s m = unsafePerformIO (C.casadi_solve__10 x y s m)
   {-# NOINLINE solve #-}
