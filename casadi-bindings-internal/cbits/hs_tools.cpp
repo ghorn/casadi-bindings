@@ -42,8 +42,8 @@ void hs_delete_stdpair(std::pair<void*,void*> * pair){
     delete pair;
 }
 
-extern "C" std::pair<int,int> * hs_new_stdpair_ints(int x, int y);
-std::pair<int,int> * hs_new_stdpair_ints(int x, int y) {
+extern "C" std::pair<int,int> * hs_new_stdpair_int(int x, int y);
+std::pair<int,int> * hs_new_stdpair_int(int x, int y) {
     return new std::pair<int,int>(x, y);
 }
 extern "C" int hs_stdpair_fst_int(std::pair<int,int> * stdpair);
@@ -55,7 +55,7 @@ int hs_stdpair_snd_int(std::pair<int,int> * stdpair) {
     return stdpair->second;
 }
 extern "C" void hs_delete_stdpair_int(std::pair<int,int> * pair);
-void hs_delete_stdpair(std::pair<int,int> * pair){
+void hs_delete_stdpair_int(std::pair<int,int> * pair){
     delete pair;
 }
 
