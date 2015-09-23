@@ -133,6 +133,8 @@ writeClassMethods c = methods
                                 , fReturn = mReturn fcn
                                 , fParams = Ref classType' : mParams fcn
                                 , fCode = Nothing
+                                , fIsIOSchemeHelper = False
+                                , fFriendwrap = False
                                 , fDocs = mDocs fcn
                                 , fDocslink = mDocslink fcn
                                 }
@@ -142,6 +144,8 @@ writeClassMethods c = methods
                            , fReturn = mReturn fcn
                            , fParams = mParams fcn
                            , fCode = Nothing
+                           , fIsIOSchemeHelper = False
+                           , fFriendwrap = False
                            , fDocs = mDocs fcn
                            , fDocslink = mDocslink fcn
                            }

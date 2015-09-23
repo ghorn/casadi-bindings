@@ -333,6 +333,8 @@ data CppFunction' a =
   { funName :: String
   , funReturn :: a
   , funCode :: String
+  , funIsIOSchemeHelper :: Bool
+  , funFriendwrap :: Bool
   , funParams :: [a]
   , funDocs :: Doc
   , funDocslink :: DocLink
@@ -346,6 +348,8 @@ data CppFunction =
   , fOthers :: Maybe Int
   , fReturn :: Type
   , fCode :: Maybe String
+  , fIsIOSchemeHelper :: Bool
+  , fFriendwrap :: Bool
   , fParams :: [Type]
   , fDocs :: Doc
   , fDocslink :: DocLink
@@ -581,12 +585,14 @@ readModule jsonpath = do
             , fOthers = others
             , fReturn = funReturn f
             , fCode = if funCode f == "" then Nothing else Just (funCode f)
+            , fIsIOSchemeHelper = funIsIOSchemeHelper f
+            , fFriendwrap = funFriendwrap f
             , fParams = funParams f
             , fDocs = Doc "" -- funDocs f
             , fDocslink = DocLink "" -- funDocslink f
             }
 
-      module' = treeToModule tree'
+      module0 = treeToModule tree'
 
 --      pmi :: M.Map ClassType (S.Set ClassType) -> IO ()
 --      pmi xs = do
@@ -598,7 +604,30 @@ readModule jsonpath = do
 --        mapM_ pmi' (M.toList xs)
 --  mapM_ (pmi . moduleInheritance) modules
 
-  return module'
+  return (removeEmptyIOHelpers module0)
+
+
+-- things like nlpIn() are ill defined in c++ because the template type can't be determined
+-- filter these guys out of the module
+removeEmptyIOHelpers :: Module -> Module
+removeEmptyIOHelpers m = case M.lookup (Name "InputOutputScheme") (moduleEnums m) of
+  Nothing -> m
+  Just ioscheme -> m { moduleFunctions = removeEmptyIOHelpers' (moduleFunctions m)}
+    where
+      removeEmptyIOHelpers' :: [CppFunctions] -> [CppFunctions]
+      removeEmptyIOHelpers' [] = []
+      removeEmptyIOHelpers' (x@(Right function):xs)
+        | isEmptyIOHelper function = removeEmptyIOHelpers' xs
+        | otherwise = x : removeEmptyIOHelpers' xs
+      removeEmptyIOHelpers' ((Left functions):xs) =
+        case filter (not . isEmptyIOHelper) functions of
+           [] -> removeEmptyIOHelpers' xs
+           [r] -> Right r : removeEmptyIOHelpers' xs
+           rs -> Left rs : removeEmptyIOHelpers' xs
+
+      isEmptyIOHelper :: CppFunction -> Bool
+      isEmptyIOHelper f = fIsIOSchemeHelper f && (length (fParams f) < 2)
+
 
 
 main :: IO ()

@@ -41,7 +41,9 @@ writeFunction fcn =
   , "// args: " ++ show args
   , "// cWrapperRetType: " ++ show (TM.cWrapperRetType retType)
   , "// proto: " ++ show proto
+  , "// friendWrap: " ++ show (fFriendwrap fcn)
   , "// fName: " ++ show (fName fcn)
+  , "// fCode: " ++ show (fCode fcn)
   , "// call: " ++ show call
   , "extern \"C\"\n" ++ proto ++ ";"
   , proto ++ "{"
