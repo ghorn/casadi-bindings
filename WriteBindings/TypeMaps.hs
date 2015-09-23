@@ -165,6 +165,8 @@ addPtr _ = False
 ---- output type of the cpp marshal function, usually same as cppType except for references
 cppMarshalType :: Type -> String
 cppMarshalType (Const x) = cppMarshalType x
+cppMarshalType (Ref x@(StdPair {})) = cppMarshalType x
+cppMarshalType (Ref (Const x@(StdPair {}))) = cppMarshalType x
 cppMarshalType (Ref x@(StdMap {})) = cppMarshalType x
 cppMarshalType (Ref (Const x@(StdMap {}))) = cppMarshalType x
 cppMarshalType (Ref x@(StdVec {})) = cppMarshalType x

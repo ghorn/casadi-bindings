@@ -16,7 +16,7 @@ import Foreign.Ptr ( Ptr )
 import Foreign.Storable ( Storable )
 import Foreign.Marshal ( mallocArray, free, peekArray )
 
-import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString )
+import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString, StdPair )
 
 import Casadi.Internal.CppHelpers ( readStdVec, c_lengthStdString, c_copyStdString, c_deleteStdString )
 import Casadi.Internal.CToolsImports
@@ -54,6 +54,27 @@ instance WrapReturn (Ptr a) b => WrapReturn (Ptr (StdMap StdString (Ptr a))) (M.
     vals <- mapM wrapReturn vals0 :: IO [b]
 
     return $ M.fromList (zip keys vals)
+
+
+instance (WrapReturn (Ptr pa) a, WrapReturn (Ptr pb) b)
+         => WrapReturn (Ptr (StdPair (Ptr pa) (Ptr pb))) (a, b) where
+  wrapReturn stdPair = do
+    px <- c_stdPairFst stdPair
+    py <- c_stdPairSnd stdPair
+    x <- wrapReturn px
+    y <- wrapReturn py
+    c_deleteStdPair stdPair
+    return (x, y)
+
+instance (WrapReturn CInt a, WrapReturn CInt b)
+         => WrapReturn (Ptr (StdPair CInt CInt)) (a, b) where
+  wrapReturn stdPair = do
+    px <- c_stdPairFstInt stdPair
+    py <- c_stdPairSndInt stdPair
+    x <- wrapReturn px
+    y <- wrapReturn py
+    c_deleteStdPairInt stdPair
+    return (x, y)
 
 
 instance WrapReturn (Ptr a) b => WrapReturn (Ptr (StdVec (Ptr a))) (V.Vector b) where

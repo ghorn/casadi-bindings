@@ -18,6 +18,15 @@ foreign import ccall unsafe "hs_stdpair_snd" c_stdPairSnd
 foreign import ccall unsafe "hs_delete_stdpair" c_deleteStdPair
   :: Ptr (StdPair (Ptr a) (Ptr b)) -> IO ()
 
+foreign import ccall unsafe "hs_new_stdpair_int" c_newStdPairInt
+  :: CInt -> CInt -> IO (Ptr (StdPair CInt CInt))
+foreign import ccall unsafe "hs_stdpair_fst_int" c_stdPairFstInt
+  :: Ptr (StdPair CInt CInt) -> IO CInt
+foreign import ccall unsafe "hs_stdpair_snd_int" c_stdPairSndInt
+  :: Ptr (StdPair CInt CInt) -> IO CInt
+foreign import ccall unsafe "hs_delete_stdpair_int" c_deleteStdPairInt
+  :: Ptr (StdPair CInt CInt) -> IO ()
+
 --------------------------- stdmap -----------------------------------
 foreign import ccall unsafe "hs_new_dict" c_newDict
   :: Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr a)) -> IO (Ptr (StdMap StdString (Ptr a)))

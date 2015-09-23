@@ -403,7 +403,7 @@ hasBadType x = any badType $ concatMap getAllTypes (getTypes x)
     badType (IOInterface (UserType (Namespace ["casadi"]) (Name "Function"))) = False
     badType (IOInterface {}) = True
     badType StdOstream = True
-    badType (StdPair {}) = True
+    badType (StdPair {}) = False
     badType (Pointer {}) = True
     badType (CArray {}) = True
     badType (UserType _ (Name name))

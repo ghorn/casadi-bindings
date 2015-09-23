@@ -367,7 +367,7 @@ writeToolsModule functions =
   , "import Casadi.Core.Data"
   , "import Casadi.Core.Enums"
   , "import Casadi.Internal.FormatException ( formatException )"
-  , "import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString )"
+  , "import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString, StdPair )"
   , "import Casadi.Internal.Marshal ( withMarshal )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
   ] ++ funDecls

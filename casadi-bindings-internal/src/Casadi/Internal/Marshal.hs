@@ -112,6 +112,20 @@ instance (Marshal a (Ptr pa), Marshal b (Ptr pb))
     marshalFree y py
     c_deleteStdPair stdpair
 
+-- stdpair
+instance (Marshal a CInt, Marshal b CInt)
+         => Marshal (a, b) (Ptr (StdPair CInt CInt)) where
+  marshal (x,y) = do
+    px <- marshal x
+    py <- marshal y
+    c_newStdPairInt px py
+  marshalFree (x,y) stdpair = do
+    cx <- c_stdPairFstInt stdpair
+    cy <- c_stdPairSndInt stdpair
+    marshalFree x cx
+    marshalFree y cy
+    c_deleteStdPairInt stdpair
+
 -- stdmap
 instance (Marshal a (Ptr pa))
          => Marshal (M.Map String a) (Ptr (StdMap StdString (Ptr pa))) where

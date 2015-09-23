@@ -40,6 +40,16 @@ class Marshaling< std::vector< T1 >, std::vector< T2 > > {
   }
 };
 
+template<class TX1, class TX2, class TY1, class TY2>
+class Marshaling< std::pair< TX1, TY1 >, std::pair< TX2, TY2 > > {
+  public:
+  static std::pair< TX1, TY1 > marshal(const std::pair< TX2, TY2 > inputs){
+    TX1 x = Marshaling< TX1, TX2 >::marshal(inputs.first);
+    TY1 y = Marshaling< TY1, TY2 >::marshal(inputs.second);
+    return std::pair<TX1, TY1>(x, y);
+  }
+};
+
 template<class T1, class T2>
 class Marshaling< std::map< std::string, T1 >, std::map< std::string, T2 > > {
   public:
@@ -98,6 +108,16 @@ class WrapReturn< std::map< std::string, T1 >, std::map< std::string, T2 > > {
         ret.insert(keyVal);
     }
     return ret;
+  }
+};
+
+template<class T1X, class T1Y, class T2X, class T2Y>
+class WrapReturn< std::pair< T1X, T1Y >, std::pair< T2X, T2Y > > {
+  public:
+  static std::pair< T1X, T1Y > wrapReturn(std::pair< T2X, T2Y > inputs){
+    T1X x = WrapReturn< T1X, T2X >::wrapReturn(inputs.first);
+    T1Y y = WrapReturn< T1Y, T2Y >::wrapReturn(inputs.second);
+    return std::pair< T1X, T1Y >(x, y);
   }
 };
 
