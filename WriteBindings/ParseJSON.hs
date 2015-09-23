@@ -53,7 +53,7 @@ instance FromJSON ClassType where
 
 newtype ClassType = ClassType { unClassType :: Type } deriving (Eq, Ord, Show)
 instance GetTypes ClassType where
-  getTypes (ClassType t) = [t]
+  getTypes (ClassType t) = S.singleton t
 
 parseType :: IsEnum -> String -> Type
 parseType isEnum str = case parse ((typeParser isEnum) <* eof) "" str of
@@ -254,7 +254,7 @@ data Type = CInt
           deriving (Eq, Ord, Show)
 
 class GetTypes a where
-  getTypes :: a -> [Type]
+  getTypes :: a -> S.Set Type
 
 data Class' a =
   Class'
@@ -295,7 +295,9 @@ classUnion x y
     cty = classType y
 
 instance GetTypes (Class' Type) where
-  getTypes c = unClassType (classType c) : concatMap getTypes (classMethods c)
+  getTypes c = S.unions $ getTypes (classType c) : map getTypes (classMethods c)
+instance GetTypes Class where
+  getTypes c = S.unions $ getTypes (clType c) : map getTypes (clMethods c)
 
 data Method' a =
   Method'
@@ -307,7 +309,7 @@ data Method' a =
   , methodDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Functor, Show)
 instance GetTypes (Method' Type) where
-  getTypes m = methodReturn m : methodParams m
+  getTypes m = S.fromList (methodReturn m : methodParams m)
 
 data Method =
   Method
@@ -319,7 +321,12 @@ data Method =
   , mDocs :: Doc
   , mDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Show)
+instance GetTypes Method where
+  getTypes m = S.fromList (mReturn m : mParams m)
 type Methods = Either [Method] Method
+instance GetTypes (Either [Method] Method) where
+  getTypes (Left xs) = S.unions $ map getTypes xs
+  getTypes (Right x) = getTypes x
 
 data CppFunction' a =
   CppFunction'
@@ -331,7 +338,7 @@ data CppFunction' a =
   , funDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Functor, Show)
 instance GetTypes (CppFunction' Type) where
-  getTypes f = funReturn f : funParams f
+  getTypes f = S.fromList (funReturn f : funParams f)
 
 data CppFunction =
   CppFunction
@@ -343,6 +350,8 @@ data CppFunction =
   , fDocs :: Doc
   , fDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Show)
+instance GetTypes CppFunction where
+  getTypes f = S.fromList (fReturn f : fParams f)
 
 data Enum' =
   Enum'
@@ -376,6 +385,15 @@ data Module =
   , moduleIncludes :: [String]
   }
 
+
+instance GetTypes Module where
+  getTypes m = S.unions
+               [ S.unions $ map getTypes (moduleFunctions m)
+               , S.unions $ map getTypes $ M.keys (moduleClasses m)
+               , S.unions $ map getTypes $ M.elems (moduleClasses m)
+               ]
+
+
 instance FromJSON a => FromJSON (CppFunction' a)
 instance FromJSON Enum'
 instance FromJSON EnumEntry
@@ -383,20 +401,33 @@ instance FromJSON a => FromJSON (Tree a)
 instance FromJSON a => FromJSON (Method' a)
 instance FromJSON a => FromJSON (Class' a)
 
-getAllTypes :: Type -> [Type]
-getAllTypes x@(CArray t) = x:getAllTypes t
-getAllTypes x@(StdPair tx ty) = x : concatMap getAllTypes [tx,ty]
-getAllTypes x@(StdMap tx ty) = x : concatMap getAllTypes [tx,ty]
-getAllTypes x@(Ref t) = x : getAllTypes t
-getAllTypes x@(Pointer t) = x : getAllTypes t
-getAllTypes x@(Const t) = x : getAllTypes t
-getAllTypes x@(StdVec t) = x : getAllTypes t
-getAllTypes x@(IOSchemeVec _ _ t) = x : getAllTypes t
-getAllTypes x@(IOInterface t) = x : getAllTypes t
-getAllTypes x = [x]
+getAllTypes :: Type -> S.Set Type
+getAllTypes x@(StdPair tx ty) = S.insert x $ S.union (getAllTypes tx) (getAllTypes ty)
+getAllTypes x@(StdMap tx ty)  = S.insert x $ S.union (getAllTypes tx) (getAllTypes ty)
+getAllTypes x@(CArray t)          = S.insert x (getAllTypes t)
+getAllTypes x@(Ref t)             = S.insert x (getAllTypes t)
+getAllTypes x@(Pointer t)         = S.insert x (getAllTypes t)
+getAllTypes x@(Const t)           = S.insert x (getAllTypes t)
+getAllTypes x@(StdVec t)          = S.insert x (getAllTypes t)
+getAllTypes x@(IOSchemeVec _ _ t) = S.insert x (getAllTypes t)
+getAllTypes x@(IOInterface t)     = S.insert x (getAllTypes t)
+getAllTypes x@CInt                 = S.singleton x
+getAllTypes x@CDouble              = S.singleton x
+getAllTypes x@CBool                = S.singleton x
+getAllTypes x@CVoid                = S.singleton x
+getAllTypes x@CSize                = S.singleton x
+getAllTypes x@CLong                = S.singleton x
+getAllTypes x@CUChar               = S.singleton x
+getAllTypes x@CChar                = S.singleton x
+getAllTypes x@StdOstream           = S.singleton x
+getAllTypes x@StdString            = S.singleton x
+getAllTypes x@(UserType {})        = S.singleton x
+getAllTypes x@(CEnum {})           = S.singleton x
+getAllTypes x@(PrintableObject {}) = S.singleton x
+
 
 hasBadType :: GetTypes a => a -> Bool
-hasBadType x = any badType $ concatMap getAllTypes (getTypes x)
+hasBadType x = any badType $ S.unions $ map getAllTypes (S.toList (getTypes x))
   where
     badType :: Type -> Bool
     badType (IOSchemeVec {}) = True
@@ -455,6 +486,9 @@ overloadMethods c =
       }
 
 type CppFunctions = Either [CppFunction] CppFunction
+instance GetTypes (Either [CppFunction] CppFunction) where
+  getTypes (Left xs) = S.unions $ map getTypes xs
+  getTypes (Right x) = getTypes x
 
 readModule :: FilePath -> IO Module
 readModule jsonpath = do
