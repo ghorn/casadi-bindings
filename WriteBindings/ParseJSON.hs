@@ -173,6 +173,7 @@ typeParser isEnum = do
        , p "casadi::DMatrixDict" (StdMap StdString dmatrix)
        , p "casadi::SXDict" (StdMap StdString sx)
        , p "casadi::MXDict" (StdMap StdString mx)
+       , p "casadi::SparsityDict" (StdMap StdString sparsity)
        , p "casadi::DMatrixVector" (StdVec dmatrix)
        , p "casadi::DMatrixVectorVector" (StdVec (StdVec dmatrix))
        , p "casadi::SXVector" (StdVec sx)
