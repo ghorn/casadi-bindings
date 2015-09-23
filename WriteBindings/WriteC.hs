@@ -41,6 +41,7 @@ writeFunction fcn =
   , "// args: " ++ show args
   , "// cWrapperRetType: " ++ show (TM.cWrapperRetType retType)
   , "// proto: " ++ show proto
+  , "// fName: " ++ show (fName fcn)
   , "// call: " ++ show call
   , "extern \"C\"\n" ++ proto ++ ";"
   , proto ++ "{"
@@ -55,7 +56,6 @@ writeFunction fcn =
   , ""
   ]
   where
-    cppName = "casadi::" ++ fName fcn
     retType = fReturn fcn
     params = fParams fcn
     marshals = map (uncurry marshal) $ zip [0..] params
@@ -63,10 +63,35 @@ writeFunction fcn =
     cWrapperName'' = TM.cWrapperName' fcn
     protoArgs = "(" ++ intercalate ", " (errArg : protoArgList) ++ ")"
     protoArgList = map (uncurry paramProto) $ zip [0..] params
-    args = "(" ++ intercalate ", " (map ((++ "_"). paramName . fst) $ zip [0..] params) ++ ")"
-    call = case fCode fcn of
-      Nothing -> removeTics cppName ++ args
-      Just c -> c
+    args = "(" ++ intercalate ", " args0 ++ ")"
+    args0 = map ((++ "_"). paramName . fst) $ zip [0..] params
+    cppName = "casadi::" ++ fName fcn
+
+    call
+      | fFriendwrap fcn = case (fName fcn, args0) of
+        ("casadi_and", [x0, x1]) -> x0 ++ " && " ++ x1
+        ("casadi_eq", [x0, x1]) -> x0 ++ " == " ++ x1
+        ("casadi_ge", [x0, x1]) -> x0 ++ " >= " ++ x1
+        ("casadi_gt", [x0, x1]) -> x0 ++ " > " ++ x1
+        ("casadi_le", [x0, x1]) -> x0 ++ " <= " ++ x1
+        ("casadi_lt", [x0, x1]) -> x0 ++ " < " ++ x1
+        ("casadi_ldivide", [x0, x1]) -> x0 ++ " / " ++ x1
+        ("casadi_rdivide", [x0, x1]) -> x0 ++ " / " ++ x1
+        ("casadi_not", [x0]) -> "!" ++ x0
+        ("casadi_minus", [x0, x1]) -> x0 ++ " - " ++ x1
+        ("casadi_ne", [x0, x1]) -> x0 ++ " != " ++ x1
+        ("casadi_or", [x0, x1]) -> x0 ++ " || " ++ x1
+        ("casadi_plus", [x0, x1]) -> x0 ++ " + " ++ x1
+        ("casadi_times", [x0, x1]) -> x0 ++ " * " ++ x1
+        ("casadi_mod", [_, _]) -> "fmod" ++ args
+        ("casadi_min", [_, _]) -> "fmin" ++ args
+        ("casadi_max", [_, _]) -> "fmax" ++ args
+        ("casadi_power", [_, _]) -> "pow" ++ args
+        _ -> removeCasadi (fName fcn) ++ args
+      | otherwise = removeTics cppName ++ args
+
+    removeCasadi ('c':'a':'s':'a':'d':'i':'_':x) = x
+    removeCasadi x = x
 
 writeClass :: Class -> String
 writeClass c = unlines $ writeDeletes ct : concatMap (writeMethods ct) (clMethods c)
