@@ -14,6 +14,7 @@ module Casadi.GenericC
 import qualified Data.Traversable as T
 import Data.Vector ( Vector )
 import Data.Map ( Map )
+import System.IO.Unsafe ( unsafePerformIO )
 
 import Casadi.Core.Classes.Function ( Function )
 import Casadi.Core.Classes.GenericType
@@ -31,6 +32,8 @@ class GenericC a where
 
 data Opt where
   Opt :: GenericC a => a -> Opt
+instance Show Opt where
+  show (Opt x) = show (unsafePerformIO (mkGeneric x))
 
 getDescription :: GenericType -> IO String
 getDescription = genericType_get_description
