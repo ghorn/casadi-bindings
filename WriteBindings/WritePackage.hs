@@ -22,10 +22,10 @@ version :: String
 version = "2.4.0.0"
 
 jsonpath :: FilePath
-jsonpath = "/home/greghorn/casadi_develop/build/swig/json/casadi.json"
+jsonpath = "/home/makani/casadi/build/swig/json/casadi.json"
 
 writepath :: FilePath
-writepath = "/home/greghorn/hslibs/casadi-bindings/genpath"
+writepath = "/home/makani/hslibs/casadi-bindings/genpath"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
