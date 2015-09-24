@@ -332,7 +332,6 @@ data CppFunction' a =
   CppFunction'
   { funName :: String
   , funReturn :: a
-  , funCode :: String
   , funIsIOSchemeHelper :: Bool
   , funFriendwrap :: Bool
   , funParams :: [a]
@@ -347,7 +346,6 @@ data CppFunction =
   { fName :: String
   , fOthers :: Maybe Int
   , fReturn :: Type
-  , fCode :: Maybe String
   , fIsIOSchemeHelper :: Bool
   , fFriendwrap :: Bool
   , fParams :: [Type]
@@ -584,7 +582,6 @@ readModule jsonpath = do
             { fName = funName f
             , fOthers = others
             , fReturn = funReturn f
-            , fCode = if funCode f == "" then Nothing else Just (funCode f)
             , fIsIOSchemeHelper = funIsIOSchemeHelper f
             , fFriendwrap = funFriendwrap f
             , fParams = funParams f

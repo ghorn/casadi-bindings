@@ -43,7 +43,6 @@ writeFunction fcn =
   , "// proto: " ++ show proto
   , "// friendWrap: " ++ show (fFriendwrap fcn)
   , "// fName: " ++ show (fName fcn)
-  , "// fCode: " ++ show (fCode fcn)
   , "// call: " ++ show call
   , "extern \"C\"\n" ++ proto ++ ";"
   , proto ++ "{"
