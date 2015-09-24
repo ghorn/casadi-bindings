@@ -7,7 +7,7 @@ module Casadi.IOScheme
        , sxFunctionWithSchemes
        ) where
 
-import Control.Monad ( forM, unless )
+import Control.Monad ( unless )
 import qualified Data.Map as M
 import qualified Data.Set as S
 import Data.Vector ( Vector )
@@ -20,10 +20,10 @@ import Casadi.Core.Enums ( InputOutputScheme(..) )
 import qualified Casadi.Core.Tools as C
 
 import Casadi.MX ( MX )
-import Casadi.MXFunction ( mxFunction )
+import Casadi.MXFunction ( mxFunction' )
 import Casadi.Option ( Opt )
 import Casadi.SX ( SX )
-import Casadi.SXFunction ( sxFunction )
+import Casadi.SXFunction ( sxFunction' )
 
 mxFunctionWithSchemes ::
   String
@@ -32,9 +32,9 @@ mxFunctionWithSchemes ::
   -> M.Map String Opt
   -> IO MXFunction
 mxFunctionWithSchemes name (inputScheme, inputs) (outputScheme, outputs) opts = do
-  inputVector <- schemeToVector inputScheme inputs
-  outputVector <- schemeToVector outputScheme outputs
-  mxFunction name inputVector outputVector opts
+  input' <- schemeToMapVec inputScheme inputs
+  output' <- schemeToMapVec outputScheme outputs
+  mxFunction' name input' output' opts
 
 sxFunctionWithSchemes ::
   String
@@ -43,35 +43,25 @@ sxFunctionWithSchemes ::
   -> M.Map String Opt
   -> IO SXFunction
 sxFunctionWithSchemes name (inputScheme, inputs) (outputScheme, outputs) opts = do
-  inputVector <- schemeToVector inputScheme inputs
-  outputVector <- schemeToVector outputScheme outputs
-  sxFunction name inputVector outputVector opts
+  input' <- schemeToMapVec inputScheme inputs
+  output' <- schemeToMapVec outputScheme outputs
+  sxFunction' name input' output' opts
 
-schemeToVector ::
+schemeToMapVec ::
   forall a
   . Num a
-  => InputOutputScheme -> M.Map String a -> IO (Vector a)
-schemeToVector scheme symMap = do
+  => InputOutputScheme -> M.Map String a -> IO (M.Map String a, Vector String)
+schemeToMapVec scheme symMap = do
   len <- C.getSchemeSize scheme
   let indices = take len [0..]
   
-  indicesNames' <- forM indices $ \k -> do
-    name <- C.getSchemeEntryName scheme k
-    return (k, name)
-  let indicesNames = M.fromList indicesNames' :: M.Map Int String
-      namesSet = S.fromList (map snd indicesNames')
+  indicesNames <- mapM (C.getSchemeEntryName scheme) indices :: IO [String]
+
+  let namesSet = S.fromList indicesNames
       extraEntries = M.keysSet symMap S.\\ namesSet
 
   _ <- unless (S.null extraEntries) $ error $ printf
-    "case 1! scheme %s has entries %s, but you gave keys %s\n"
+    "scheme %s has entries %s, but you gave keys %s\n"
     (show scheme) (show namesSet) (show extraEntries)
 
-  let lookup' :: Int -> a
-      lookup' k = case M.lookup k indicesNames of
-        Nothing -> error $ "schemeToVector: the impossible happened! scheme "
-                   ++ show scheme ++ "has no " ++ show k ++ "-th entry"
-        Just name -> case M.lookup name symMap of
-          Nothing -> 0
-          Just r -> r
-  
-  return $ V.fromList (map lookup' indices)
+  return (symMap, V.fromList indicesNames)

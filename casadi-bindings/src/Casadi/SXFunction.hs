@@ -3,6 +3,7 @@
 module Casadi.SXFunction
        ( C.SXFunction
        , sxFunction
+       , sxFunction'
        , sxFunctionFromFunction
        , sxFunctionFromMXFunction
        ) where
@@ -29,6 +30,14 @@ sxFunction :: String -> Vector SX -> Vector SX -> Map String Opt
 sxFunction n x y opts0 = do
   opts <- T.mapM mkGeneric opts0 :: IO (Map String GenericType)
   C.sxFunction__7 n x y opts
+
+sxFunction' ::
+  String -> (Map String SX, Vector String) -> (Map String SX, Vector String)
+  -> Map String Opt
+  -> IO C.SXFunction
+sxFunction' n x y opts0 = do
+  opts <- T.mapM mkGeneric opts0 :: IO (Map String GenericType)
+  C.sxFunction__1 n x y opts
 
 sxFunctionFromFunction :: C.Function -> IO C.SXFunction
 sxFunctionFromFunction = C.sxFunction__8
