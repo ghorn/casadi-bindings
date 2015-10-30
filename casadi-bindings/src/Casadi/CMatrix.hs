@@ -28,6 +28,8 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a) => CMatrix 
   mm :: a -> a -> a
   -- | sumAll(x*y), x and y same dimension
   innerProd :: a -> a -> a
+  sumCols :: a -> a
+  sumRows :: a -> a
   -- | transpose
   trans :: a -> a
   diag :: a -> a

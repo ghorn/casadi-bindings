@@ -84,6 +84,10 @@ instance CMatrix MX where
   {-# NOINLINE mm #-}
   innerProd x y = unsafePerformIO (C.casadi_inner_prod__3 x y)
   {-# NOINLINE innerProd #-}
+  sumCols x = unsafePerformIO (C.casadi_sumCols__3 x)
+  {-# NOINLINE sumCols #-}
+  sumRows x = unsafePerformIO (C.casadi_sumRows__3 x)
+  {-# NOINLINE sumRows #-}
   trans x = unsafePerformIO (mx_T x)
   {-# NOINLINE trans #-}
   diag x = unsafePerformIO (C.casadi_diag__3 x)
