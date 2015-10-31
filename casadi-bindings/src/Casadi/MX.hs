@@ -31,7 +31,7 @@ instance Show MX where
   {-# NOINLINE show #-}
 
 instance Viewable MX where
-  vveccat = veccat
+  vvertcat = vertcat
   vvertsplit = vertsplit
   vsize1 = size1
   vsize2 = size2

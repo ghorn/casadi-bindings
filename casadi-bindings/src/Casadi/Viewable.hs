@@ -8,7 +8,7 @@ import qualified Data.Vector as V
 
 class Viewable a where
   vvertsplit :: a -> V.Vector Int -> V.Vector a
-  vveccat :: V.Vector a -> a
+  vvertcat :: V.Vector a -> a
   vsize1 :: a -> Int
   vsize2 :: a -> Int
   vrecoverDimension :: a -> (Int, Int) -> a
@@ -16,7 +16,7 @@ class Viewable a where
 instance Viewable (V.Vector a) where
   vsize1 = V.length
   vsize2 = const 1
-  vveccat = V.concat . V.toList
+  vvertcat = V.concat . V.toList
   vvertsplit x ks = V.fromList (split x (V.toList ks))
   -- todo(greg): this doesn't look right
   vrecoverDimension x _ = x

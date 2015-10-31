@@ -29,7 +29,7 @@ instance Conjugate SX where
   conjugate = id
 
 instance Viewable SX where
-  vveccat = veccat
+  vvertcat = vertcat
   vvertsplit = vertsplit
   vsize1 = size1
   vsize2 = size2
