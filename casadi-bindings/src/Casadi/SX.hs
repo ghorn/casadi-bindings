@@ -65,6 +65,10 @@ ssparsify x = unsafePerformIO (C.casadi_sparsify__0 x)
 
 
 instance CMatrix SX where
+  blocksplit x ix iy = unsafePerformIO (C.casadi_blocksplit__3 x ix iy)
+  {-# NOINLINE blocksplit #-}
+  blockcat x = unsafePerformIO (C.casadi_blockcat__1 x)
+  {-# NOINLINE blockcat #-}
   veccat x = unsafePerformIO (C.casadi_veccat__0 x)
   {-# NOINLINE veccat #-}
   --  vertsplit = vertslice

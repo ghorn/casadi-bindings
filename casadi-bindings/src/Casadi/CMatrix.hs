@@ -18,6 +18,8 @@ import Casadi.Viewable ( Viewable )
 
 class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
       => CMatrix a where
+  blocksplit :: a -> V.Vector Int -> V.Vector Int -> V.Vector (V.Vector a)
+  blockcat :: V.Vector (V.Vector a) -> a
   vertsplit :: a -> V.Vector Int -> V.Vector a
   vertcat :: V.Vector a -> a
   horzsplit :: a -> V.Vector Int -> V.Vector a

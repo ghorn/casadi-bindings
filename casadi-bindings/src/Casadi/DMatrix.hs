@@ -70,6 +70,10 @@ instance Eq DMatrix where
   {-# NOINLINE (==) #-}
 
 instance CMatrix DMatrix where
+  blocksplit x ix iy = unsafePerformIO (C.casadi_blocksplit__7 x ix iy)
+  {-# NOINLINE blocksplit #-}
+  blockcat x = unsafePerformIO (C.casadi_blockcat__3 x)
+  {-# NOINLINE blockcat #-}
   veccat x = unsafePerformIO (C.casadi_veccat__1 x)
   {-# NOINLINE veccat #-}
   ----  vertsplit = vertslice

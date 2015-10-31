@@ -70,6 +70,10 @@ hessian x y z = unsafePerformIO (C.casadi_hessian__3 x y z)
 --{-# NOINLINE sparsify #-}
 
 instance CMatrix MX where
+  blocksplit x ix iy = unsafePerformIO (C.casadi_blocksplit__15 x ix iy)
+  {-# NOINLINE blocksplit #-}
+  blockcat x = unsafePerformIO (C.casadi_blockcat__7 x)
+  {-# NOINLINE blockcat #-}
   veccat x = unsafePerformIO (C.casadi_veccat__3 x)
   {-# NOINLINE veccat #-}
   --  vertsplit = vertslice
