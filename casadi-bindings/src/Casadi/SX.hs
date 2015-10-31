@@ -15,6 +15,7 @@ import qualified Casadi.Core.Tools as C
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.CMatrix ( CMatrix(..) )
 import Casadi.DMatrix ()
+import Casadi.Viewable ( Viewable(..) )
 
 instance Show SX where
   show x = unsafePerformIO (sx_getDescription x)
@@ -26,6 +27,13 @@ instance Eq SX where
 
 instance Conjugate SX where
   conjugate = id
+
+instance Viewable SX where
+  vveccat = veccat
+  vvertsplit = vertsplit
+  vsize1 = size1
+  vsize2 = size2
+  vrecoverDimension _ dim = zeros dim
 
 ssym :: String -> IO SX
 ssym = sx_sym__6

@@ -14,8 +14,10 @@ import Casadi.Core.Classes.GenericType ( GenericType )
 import Casadi.Overloading ( Fmod, ArcTan2, SymOrd, Erf )
 import Casadi.Sparsity ( Sparsity )
 import Casadi.Slice ( Slice, slice )
+import Casadi.Viewable ( Viewable )
 
-class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a) => CMatrix a where
+class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
+      => CMatrix a where
   vertsplit :: a -> V.Vector Int -> V.Vector a
   vertcat :: V.Vector a -> a
   horzsplit :: a -> V.Vector Int -> V.Vector a

@@ -19,6 +19,7 @@ import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.CMatrix ( CMatrix(..) )
+import Casadi.Viewable ( Viewable(..) )
 
 getWith :: Monad m => m Sparsity -> m (V.Vector Double) -> m DMatrix
 getWith get getVector = do
@@ -40,6 +41,13 @@ instance B.Binary DMatrix where
 
 instance Conjugate DMatrix where
   conjugate = id
+
+instance Viewable DMatrix where
+  vveccat = veccat
+  vvertsplit = vertsplit
+  vsize1 = size1
+  vsize2 = size2
+  vrecoverDimension _ dim = zeros dim
 
 fromSparseData :: Sparsity -> V.Vector Double -> DMatrix
 fromSparseData s d = unsafePerformIO (dmatrix__4 s (fromDVector d))

@@ -16,6 +16,7 @@ import qualified Casadi.Core.Tools as C
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.CMatrix ( CMatrix(..) )
 import Casadi.DMatrix ()
+import Casadi.Viewable ( Viewable(..) )
 import Casadi.SharedObject ( castSharedObject )
 
 instance Conjugate MX where
@@ -28,6 +29,13 @@ instance Eq MX where
 instance Show MX where
   show x = show (castSharedObject x)
   {-# NOINLINE show #-}
+
+instance Viewable MX where
+  vveccat = veccat
+  vvertsplit = vertsplit
+  vsize1 = size1
+  vsize2 = size2
+  vrecoverDimension _ dim = zeros dim
 
 sym :: String -> IO MX
 sym x = fmap castMX (mx_sym__6 x)

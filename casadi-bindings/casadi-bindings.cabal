@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             2.4.1.1
+version:             2.4.1.2
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:
@@ -53,6 +53,7 @@ library
                        Casadi.Sparsity
                        Casadi.SX
                        Casadi.SXFunction
+                       Casadi.Viewable
   other-modules:       Casadi.SharedObject
   build-depends:       base >=4.6 && <5,
                        linear,
