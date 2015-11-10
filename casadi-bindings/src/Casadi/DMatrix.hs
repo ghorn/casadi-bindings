@@ -146,6 +146,8 @@ instance CMatrix DMatrix where
   fromDouble x = unsafePerformIO (dmatrix__3 x)
   {-# NOINLINE fromDouble #-}
   allocEmpty = dmatrix__8
+  reshape x s = unsafePerformIO (C.casadi_reshape__4 x s)
+  {-# NOINLINE reshape #-}
 
 
 instance Num DMatrix where

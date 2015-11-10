@@ -147,6 +147,8 @@ instance CMatrix MX where
   fromDouble x = unsafePerformIO (mx__3 x)
   {-# NOINLINE fromDouble #-}
   allocEmpty = mx__7
+  reshape x s = unsafePerformIO (C.casadi_reshape__10 x s)
+  {-# NOINLINE reshape #-}
 
 
 instance Num MX where

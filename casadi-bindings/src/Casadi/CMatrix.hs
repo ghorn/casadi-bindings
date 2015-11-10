@@ -16,6 +16,7 @@ import Casadi.Sparsity ( Sparsity )
 import Casadi.Slice ( Slice, slice )
 import Casadi.Viewable ( Viewable )
 
+-- TODO(greg): alphabetize this, it's getting too big to manage
 class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
       => CMatrix a where
   blocksplit :: a -> V.Vector Int -> V.Vector Int -> V.Vector (V.Vector a)
@@ -57,6 +58,7 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   fromDVector :: V.Vector Double -> a
   fromDouble :: Double -> a
   allocEmpty :: IO a
+  reshape :: a -> (Int, Int) -> a
 {-# DEPRECATED solve' "use the new solve, this one is going away" #-}
 
 
