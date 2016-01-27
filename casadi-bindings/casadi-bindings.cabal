@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             2.4.1.6
+version:             2.4.1.7
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:
@@ -57,6 +57,7 @@ library
   other-modules:       Casadi.SharedObject
   build-depends:       base >=4.6 && <5,
                        linear,
+                       spatial-math >= 0.2.6.0,
                        vector,
                        containers,
                        cereal,

@@ -10,6 +10,7 @@ module Casadi.Overloading
        ) where
 
 import Data.Fixed ( mod' )
+import SpatialMath ( ArcTan2(..) )
 
 -- | doesn't require Real, used for overloading symbolics
 class Fmod a where
@@ -17,13 +18,6 @@ class Fmod a where
 
 instance Fmod Double where fmod = mod'
 instance Fmod Float where fmod = mod'
-
--- | doesn't require RealFloat, used for overloading symbolics
-class ArcTan2 a where
-  arctan2 :: a -> a -> a
-
-instance ArcTan2 Double where arctan2 = atan2
-instance ArcTan2 Float where arctan2 = atan2
 
 -- | error function
 class Erf a where
