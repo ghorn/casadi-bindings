@@ -59,6 +59,8 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   fromDouble :: Double -> a
   allocEmpty :: IO a
   reshape :: a -> (Int, Int) -> a
+  conditional :: a -> V.Vector a -> a -> a
+  conditional' :: a -> V.Vector a -> a -> Bool -> a
 {-# DEPRECATED solve' "use the new solve, this one is going away" #-}
 
 

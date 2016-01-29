@@ -149,6 +149,10 @@ instance CMatrix MX where
   allocEmpty = mx__7
   reshape x s = unsafePerformIO (C.casadi_reshape__10 x s)
   {-# NOINLINE reshape #-}
+  conditional x0 x1 x2 = unsafePerformIO (C.casadi_conditional__6 x0 x1 x2)
+  {-# NOINLINE conditional #-}
+  conditional' x0 x1 x2 x3 = unsafePerformIO (C.casadi_conditional__7 x0 x1 x2 x3)
+  {-# NOINLINE conditional' #-}
 
 
 instance Num MX where

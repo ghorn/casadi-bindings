@@ -144,6 +144,10 @@ instance CMatrix SX where
   allocEmpty = sx__10
   reshape x s = unsafePerformIO (C.casadi_reshape__1 x s)
   {-# NOINLINE reshape #-}
+  conditional x0 x1 x2 = unsafePerformIO (C.casadi_conditional__0 x0 x1 x2)
+  {-# NOINLINE conditional #-}
+  conditional' x0 x1 x2 x3 = unsafePerformIO (C.casadi_conditional__1 x0 x1 x2 x3)
+  {-# NOINLINE conditional' #-}
 
 
 instance Num SX where
