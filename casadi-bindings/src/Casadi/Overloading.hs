@@ -9,15 +9,17 @@ module Casadi.Overloading
        , ifLeqThen, ifGeqThen, ifEqThen, ifLtThen, ifGtThen
        ) where
 
-import Data.Fixed ( mod' )
+import Foreign.C.Types ( CDouble(..), CFloat(..) )
 import SpatialMath ( ArcTan2(..) )
 
 -- | doesn't require Real, used for overloading symbolics
 class Fmod a where
   fmod :: a -> a -> a
 
-instance Fmod Double where fmod = mod'
-instance Fmod Float where fmod = mod'
+foreign import ccall unsafe "c_fmod" c_fmod :: CDouble -> CDouble -> CDouble
+foreign import ccall unsafe "c_fmodf" c_fmodf :: CFloat -> CFloat -> CFloat
+instance Fmod Double where fmod x y = realToFrac $ c_fmod (realToFrac x) (realToFrac y)
+instance Fmod Float where fmod x y = realToFrac $ c_fmodf (realToFrac x) (realToFrac y)
 
 -- | error function
 class Erf a where
