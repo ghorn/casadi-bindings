@@ -2,10 +2,10 @@
 
 module Casadi.Sparsity
        ( Sparsity
-       , upper, lower, spy, spyMatlab
+       , upper, lower, spy, spy_matlab
        , dense, sparse, scalar
        , compress, compressed
-       , getRow, getCol
+       , get_row, get_col
        ) where
 
 import qualified Data.Vector as V
@@ -37,7 +37,7 @@ instance Show Sparsity where
   {-# NOINLINE show #-}
 
 instance Eq Sparsity where
-  x == y = unsafePerformIO (sparsity_isEqual__1 x y)
+  x == y = unsafePerformIO (sparsity_is_equal__1 x y)
   {-# NOINLINE (==) #-}
 
 upper :: Int -> Sparsity
@@ -51,20 +51,20 @@ lower k = unsafePerformIO (sparsity_lower k)
 spy :: Sparsity -> IO ()
 spy = sparsity_spy
 
-spyMatlab :: Sparsity -> String -> IO ()
-spyMatlab = sparsity_spyMatlab
+spy_matlab :: Sparsity -> String -> IO ()
+spy_matlab = sparsity_spy_matlab
 
 scalar :: Sparsity
 scalar = unsafePerformIO sparsity_scalar__0
 {-# NOINLINE scalar #-}
 
-getRow :: Sparsity -> V.Vector Int
-getRow s = unsafePerformIO (sparsity_getRow s)
-{-# NOINLINE getRow #-}
+get_row :: Sparsity -> V.Vector Int
+get_row s = unsafePerformIO (sparsity_get_row s)
+{-# NOINLINE get_row #-}
 
-getCol :: Sparsity -> V.Vector Int
-getCol s = unsafePerformIO (sparsity_getCol s)
-{-# NOINLINE getCol #-}
+get_col :: Sparsity -> V.Vector Int
+get_col s = unsafePerformIO (sparsity_get_col s)
+{-# NOINLINE get_col #-}
 
 sparse :: Int -> Int -> V.Vector Int -> V.Vector Int -> Sparsity
 sparse nr nc r c = unsafePerformIO (sparsity__0 nr nc r c)

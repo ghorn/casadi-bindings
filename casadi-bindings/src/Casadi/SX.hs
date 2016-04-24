@@ -14,7 +14,7 @@ import qualified Casadi.Core.Tools as C
 
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.CMatrix ( CMatrix(..) )
-import Casadi.DMatrix ()
+import Casadi.DM ()
 import Casadi.Viewable ( Viewable(..) )
 
 instance Show SX where
@@ -22,7 +22,7 @@ instance Show SX where
   {-# NOINLINE show #-}
 
 instance Eq SX where
-  x == y = unsafePerformIO (C.casadi_isEqual__0 x y)
+  x == y = unsafePerformIO (C.casadi_is_equal__2 x y)
   {-# NOINLINE (==) #-}
 
 instance Conjugate SX where
@@ -87,14 +87,14 @@ instance CMatrix SX where
   {-# NOINLINE size2 #-}
   numel x = unsafePerformIO (sx_numel__1 x)
   {-# NOINLINE numel #-}
-  mm x y = unsafePerformIO (C.casadi_mul__1 x y)
+  mm x y = unsafePerformIO (C.casadi_mtimes__1 x y)
   {-# NOINLINE mm #-}
-  innerProd x y = unsafePerformIO (C.casadi_inner_prod__0 x y)
-  {-# NOINLINE innerProd #-}
-  sumCols x = unsafePerformIO (C.casadi_sumCols__0 x)
-  {-# NOINLINE sumCols #-}
-  sumRows x = unsafePerformIO (C.casadi_sumRows__0 x)
-  {-# NOINLINE sumRows #-}
+  dot x y = unsafePerformIO (C.casadi_dot__0 x y)
+  {-# NOINLINE dot #-}
+  sum1 x = unsafePerformIO (C.casadi_sum1__0 x)
+  {-# NOINLINE sum1 #-}
+  sum2 x = unsafePerformIO (C.casadi_sum2__0 x)
+  {-# NOINLINE sum2 #-}
   trans x = unsafePerformIO (sx_T x)
   {-# NOINLINE trans #-}
   diag x = unsafePerformIO (C.casadi_diag__0 x)
@@ -111,19 +111,13 @@ instance CMatrix SX where
   {-# NOINLINE solve #-}
   solve' x y = unsafePerformIO (C.casadi_solve__2 x y)
   {-# NOINLINE solve' #-}
-  indexed m spx spy = unsafePerformIO $ do
-    ret <- allocEmpty :: IO SX
-    sx_get__3 m ret False spx spy
-    return ret
+  indexed m spx spy = unsafePerformIO (sx_get__3 m False spx spy)
   {-# NOINLINE indexed #-}
-  sparsity x = unsafePerformIO (sx_getSparsity x)
+  sparsity x = unsafePerformIO (sx_get_sparsity x)
   {-# NOINLINE sparsity #-}
-  getNZ m sp = unsafePerformIO $ do
-    ret <- allocEmpty :: IO SX
-    sx_getNZ__1 m ret False sp
-    return ret
+  getNZ m sp = unsafePerformIO (sx_get_nz__1 m False sp)
   {-# NOINLINE getNZ #-}
-  setNZ m y s = sx_setNZ__1 m y False s
+  setNZ m y s = sx_set_nz__1 m y False s
   triu x = unsafePerformIO (C.casadi_triu__0 x)
   {-# NOINLINE triu #-}
   tril x = unsafePerformIO (C.casadi_tril__0 x)
@@ -135,37 +129,46 @@ instance CMatrix SX where
   copy m = sx__9 m
   densify x = unsafePerformIO (C.casadi_densify__0 x)
   {-# NOINLINE densify #-}
-  fromDMatrix x = unsafePerformIO (sx__1 x)
-  {-# NOINLINE fromDMatrix #-}
-  fromDVector x = fromDMatrix (fromDVector x)
+  fromDM x = unsafePerformIO (sx__1 x)
+  {-# NOINLINE fromDM #-}
+  fromDVector x = fromDM (fromDVector x)
   {-# NOINLINE fromDVector #-}
   fromDouble x = unsafePerformIO (sx__5 x)
   {-# NOINLINE fromDouble #-}
-  allocEmpty = sx__10
   reshape x s = unsafePerformIO (C.casadi_reshape__1 x s)
   {-# NOINLINE reshape #-}
   conditional x0 x1 x2 = unsafePerformIO (C.casadi_conditional__0 x0 x1 x2)
   {-# NOINLINE conditional #-}
   conditional' x0 x1 x2 x3 = unsafePerformIO (C.casadi_conditional__1 x0 x1 x2 x3)
   {-# NOINLINE conditional' #-}
+  inv x = unsafePerformIO (C.casadi_inv__0 x)
+  {-# NOINLINE inv #-}
+  pinv x = unsafePerformIO (C.casadi_pinv__2 x)
+  {-# NOINLINE pinv #-}
+  pinv' x n o = unsafePerformIO (C.casadi_pinv__1 x n o)
+  {-# NOINLINE pinv' #-}
+  cmax x y = unsafePerformIO (C.casadi_max__1 x y)
+  {-# NOINLINE cmax #-}
+  cmin x y = unsafePerformIO (C.casadi_min__1 x y)
+  {-# NOINLINE cmin #-}
 
 
 instance Num SX where
-  (+) x y = unsafePerformIO (C.casadi_plus__0 x y)
+  (+) x y = unsafePerformIO (C.casadi_plus__1 x y)
   {-# NOINLINE (+) #-}
-  (-) x y = unsafePerformIO (C.casadi_minus__0 x y)
+  (-) x y = unsafePerformIO (C.casadi_minus__1 x y)
   {-# NOINLINE (-) #-}
-  (*) x y = unsafePerformIO (C.casadi_times__0 x y)
+  (*) x y = unsafePerformIO (C.casadi_times__1 x y)
   {-# NOINLINE (*) #-}
   fromInteger x = fromDouble (fromInteger x :: Double)
   {-# NOINLINE fromInteger #-}
-  abs x = unsafePerformIO (C.casadi_abs__0 x)
+  abs x = unsafePerformIO (C.casadi_abs__1 x)
   {-# NOINLINE abs #-}
-  signum x = unsafePerformIO (C.casadi_sign__0 x)
+  signum x = unsafePerformIO (C.casadi_sign__1 x)
   {-# NOINLINE signum #-}
 
 instance Fractional SX where
-  (/) x y = unsafePerformIO (C.casadi_rdivide__0 x y)
+  (/) x y = unsafePerformIO (C.casadi_rdivide__1 x y)
   {-# NOINLINE (/) #-}
   fromRational x = fromDouble (fromRational x :: Double)
   {-# NOINLINE fromRational #-}
@@ -173,55 +176,55 @@ instance Fractional SX where
 instance Floating SX where
   pi = fromDouble (pi :: Double)
   {-# NOINLINE pi #-}
-  (**) x y = unsafePerformIO (C.casadi_power__0 x y)
+  (**) x y = unsafePerformIO (C.casadi_power__1 x y)
   {-# NOINLINE (**) #-}
-  exp x   = unsafePerformIO (C.casadi_exp__0 x)
+  exp x   = unsafePerformIO (C.casadi_exp__1 x)
   {-# NOINLINE exp #-}
-  log x   = unsafePerformIO (C.casadi_log__0 x)
+  log x   = unsafePerformIO (C.casadi_log__1 x)
   {-# NOINLINE log #-}
-  sin x   = unsafePerformIO (C.casadi_sin__0 x)
+  sin x   = unsafePerformIO (C.casadi_sin__1 x)
   {-# NOINLINE sin #-}
-  cos x   = unsafePerformIO (C.casadi_cos__0 x)
+  cos x   = unsafePerformIO (C.casadi_cos__1 x)
   {-# NOINLINE cos #-}
-  tan x   = unsafePerformIO (C.casadi_tan__0 x)
+  tan x   = unsafePerformIO (C.casadi_tan__1 x)
   {-# NOINLINE tan #-}
-  asin x  = unsafePerformIO (C.casadi_asin__0 x)
+  asin x  = unsafePerformIO (C.casadi_asin__1 x)
   {-# NOINLINE asin #-}
-  atan x  = unsafePerformIO (C.casadi_atan__0 x)
+  atan x  = unsafePerformIO (C.casadi_atan__1 x)
   {-# NOINLINE atan #-}
-  acos x  = unsafePerformIO (C.casadi_acos__0 x)
+  acos x  = unsafePerformIO (C.casadi_acos__1 x)
   {-# NOINLINE acos #-}
-  sinh x  = unsafePerformIO (C.casadi_sinh__0 x)
+  sinh x  = unsafePerformIO (C.casadi_sinh__1 x)
   {-# NOINLINE sinh #-}
-  cosh x  = unsafePerformIO (C.casadi_cosh__0 x)
+  cosh x  = unsafePerformIO (C.casadi_cosh__1 x)
   {-# NOINLINE cosh #-}
-  tanh x  = unsafePerformIO (C.casadi_tanh__0 x)
+  tanh x  = unsafePerformIO (C.casadi_tanh__1 x)
   {-# NOINLINE tanh #-}
-  asinh x = unsafePerformIO (C.casadi_asinh__0 x)
+  asinh x = unsafePerformIO (C.casadi_asinh__1 x)
   {-# NOINLINE asinh #-}
-  atanh x = unsafePerformIO (C.casadi_atanh__0 x)
+  atanh x = unsafePerformIO (C.casadi_atanh__1 x)
   {-# NOINLINE atanh #-}
-  acosh x = unsafePerformIO (C.casadi_acosh__0 x)
+  acosh x = unsafePerformIO (C.casadi_acosh__1 x)
   {-# NOINLINE acosh #-}
 
 instance Fmod SX where
-  fmod x y = unsafePerformIO (C.casadi_mod__0 x y)
+  fmod x y = unsafePerformIO (C.casadi_mod__1 x y)
   {-# NOINLINE fmod #-}
 
 instance ArcTan2 SX where
-  arctan2 x y = unsafePerformIO (C.casadi_atan2__0 x y)
+  arctan2 x y = unsafePerformIO (C.casadi_atan2__1 x y)
   {-# NOINLINE arctan2 #-}
 
 instance SymOrd SX where
-  x `leq` y = unsafePerformIO (C.casadi_le__0 x y)
+  x `leq` y = unsafePerformIO (C.casadi_le__1 x y)
   {-# NOINLINE leq #-}
-  x `geq` y = unsafePerformIO (C.casadi_ge__0 x y)
+  x `geq` y = unsafePerformIO (C.casadi_ge__1 x y)
   {-# NOINLINE geq #-}
-  x  `eq` y = unsafePerformIO (C.casadi_eq__0 x y)
+  x  `eq` y = unsafePerformIO (C.casadi_eq__1 x y)
   {-# NOINLINE eq #-}
 
 instance Erf SX where
-  erf x = unsafePerformIO (C.casadi_erf__0 x)
+  erf x = unsafePerformIO (C.casadi_erf__1 x)
   {-# NOINLINE erf #-}
-  erfinv x = unsafePerformIO (C.casadi_erfinv__0 x)
+  erfinv x = unsafePerformIO (C.casadi_erfinv__1 x)
   {-# NOINLINE erfinv #-}

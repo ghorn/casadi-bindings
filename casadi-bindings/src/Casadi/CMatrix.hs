@@ -8,7 +8,7 @@ module Casadi.CMatrix
 import qualified Data.Vector as V
 import Data.Map ( Map )
 
-import Casadi.Core.Classes.DMatrix ( DMatrix )
+import Casadi.Core.Classes.DM ( DM )
 import Casadi.Core.Classes.GenericType ( GenericType )
 
 import Casadi.Overloading ( Fmod, ArcTan2, SymOrd, Erf )
@@ -32,9 +32,9 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   -- | matrix matrix product
   mm :: a -> a -> a
   -- | sumAll(x*y), x and y same dimension
-  innerProd :: a -> a -> a
-  sumCols :: a -> a
-  sumRows :: a -> a
+  dot :: a -> a -> a
+  sum1 :: a -> a
+  sum2 :: a -> a
   -- | transpose
   trans :: a -> a
   diag :: a -> a
@@ -48,19 +48,23 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   sparsity :: a -> Sparsity
   getNZ :: a -> Slice -> a
   setNZ :: a -> a -> Slice -> IO ()
+  inv :: a -> a
+  pinv :: a -> a
+  pinv' :: a -> String -> Map String GenericType -> a
   triu :: a -> a
   tril :: a -> a
   triu2symm :: a -> a
   tril2symm :: a -> a
   copy :: a -> IO a
   densify :: a -> a
-  fromDMatrix :: DMatrix -> a
+  fromDM :: DM -> a
   fromDVector :: V.Vector Double -> a
   fromDouble :: Double -> a
-  allocEmpty :: IO a
   reshape :: a -> (Int, Int) -> a
   conditional :: a -> V.Vector a -> a -> a
   conditional' :: a -> V.Vector a -> a -> Bool -> a
+  cmin :: a -> a -> a
+  cmax :: a -> a -> a
 {-# DEPRECATED solve' "use the new solve, this one is going away" #-}
 
 

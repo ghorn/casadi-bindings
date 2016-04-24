@@ -12,6 +12,7 @@ module WriteBindings.ParseJSON
        , CppFunctions
        , CppFunction(..)
        , Name(..)
+       , SwigOutput(..)
        , Type(..)
        , MethodKind(..)
        , Doc(..)
@@ -34,15 +35,20 @@ import Text.Parsec
 --import Debug.Trace
 import qualified Data.Set as S
 
+newtype SwigOutput = SwigOutput Bool deriving (Eq, Ord, Show)
+
+toSwigOutput :: String -> SwigOutput
+toSwigOutput "Output" = SwigOutput True
+toSwigOutput "Normal" = SwigOutput False
+toSwigOutput r = error $ "while reading SwigOutput, got unexpected string: " ++ show r
+
 instance FromJSON ClassType where
   parseJSON (String txt) =
     case parse (typeParser (const False) <* eof) "" str of
       Right x@(UserType {})    -> return (ClassType x)
-      Right x@(IOSchemeVec {}) -> return (ClassType x)
       Right x@(StdVec _)       -> return (ClassType x)
       Right x@(StdPair {})     -> return (ClassType x)
       Right x@(StdMap {})      -> return (ClassType x)
-      Right x@(IOInterface {}) -> return (ClassType x)
       Right x@(PrintableObject {}) -> return (ClassType x)
       Right y -> fail $ "\nParsec parser returned wrong class type: " ++ str ++ "\n" ++ show y
       Left x -> fail $ "\nParsec parser failed on " ++ str ++ "\n" ++ show x
@@ -119,14 +125,6 @@ mapp isEnum =
     r <- typeParser isEnum
     return (StdMap l r)
 
-ioschemevecp :: IsEnum -> Parsec String u Type
-ioschemevecp isEnum =
-  try $ do
-    ns <- namespace
-    name <- manyTill (choice [alphaNum, char '_']) $ (try (string "IOSchemeVector"))
-    inside <- between (string "<(") (string ")>") (typeParser isEnum)
-    return (IOSchemeVec ns name inside)
-
 type IsEnum = String -> Bool
 
 constp :: IsEnum -> Parsec String u Type
@@ -154,7 +152,7 @@ typeParser isEnum = do
   let genericType = UserType (Namespace ["casadi"]) (Name "GenericType")
       sx       = UserType (Namespace ["casadi"]) (Name "SX")
       mx       = UserType (Namespace ["casadi"]) (Name "MX")
-      dmatrix  = UserType (Namespace ["casadi"]) (Name "DMatrix")
+      dmatrix  = UserType (Namespace ["casadi"]) (Name "DM")
       sparsity = UserType (Namespace ["casadi"]) (Name "Sparsity")
   x <- choice
        [ p "bool" CBool
@@ -170,12 +168,12 @@ typeParser isEnum = do
        , p "std::ostream" StdOstream
        , p "casadi::Dict" (StdMap StdString genericType)
        , p "casadi::GenericType::Dict" (StdMap StdString genericType)
-       , p "casadi::DMatrixDict" (StdMap StdString dmatrix)
+       , p "casadi::DMDict" (StdMap StdString dmatrix)
        , p "casadi::SXDict" (StdMap StdString sx)
        , p "casadi::MXDict" (StdMap StdString mx)
-       , p "casadi::SparsityDict" (StdMap StdString sparsity)
-       , p "casadi::DMatrixVector" (StdVec dmatrix)
-       , p "casadi::DMatrixVectorVector" (StdVec (StdVec dmatrix))
+       , p "casadi::SpDict" (StdMap StdString sparsity)
+       , p "casadi::DMVector" (StdVec dmatrix)
+       , p "casadi::DMVectorVector" (StdVec (StdVec dmatrix))
        , p "casadi::SXVector" (StdVec sx)
        , p "casadi::SXVectorVector" (StdVec (StdVec sx))
        , p "casadi::MXVector" (StdVec mx)
@@ -184,16 +182,16 @@ typeParser isEnum = do
        , ps [ "casadi::Matrix<(double)>"
             ,         "Matrix<(double)>"
             ]
-         (UserType (Namespace ["casadi"]) (Name "DMatrix"))
+         (UserType (Namespace ["casadi"]) (Name "DM"))
 
-       , ps [ "casadi::Matrix<(casadi::SXElement)>"
-            ,         "Matrix<(casadi::SXElement)>"
+       , ps [ "casadi::Matrix<(casadi::SXElem)>"
+            ,         "Matrix<(casadi::SXElem)>"
             ]
          sx
        , ps [ "casadi::Matrix<(int)>"
             ,         "Matrix<(int)>"
             ]
-         (UserType (Namespace ["casadi"]) (Name "IMatrix"))
+         (UserType (Namespace ["casadi"]) (Name "IM"))
 
          
        , constp isEnum
@@ -204,11 +202,9 @@ typeParser isEnum = do
        , templatep isEnum "casadi::GenericExpression" id
        , templatep isEnum "casadi::GenericMatrix" id
        , templatep isEnum "casadi::SparsityInterface" id
-       , templatep isEnum "casadi::IOInterface" IOInterface
        , templatep isEnum "casadi::PrintableObject" PrintableObject
        , pairp isEnum
        , mapp isEnum
-       , ioschemevecp isEnum
        , classp isEnum
        ]
   return x
@@ -249,8 +245,6 @@ data Type = CInt
           | Const Type
           | StdVec Type
           | PrintableObject Type
-          | IOSchemeVec Namespace String Type
-          | IOInterface Type
           deriving (Eq, Ord, Show)
 
 class GetTypes a where
@@ -303,26 +297,26 @@ data Method' a =
   Method'
   { methodName :: Name
   , methodReturn :: a
-  , methodParams :: [a]
+  , methodParams :: [(a, String)]
   , methodKind :: MethodKind
   , methodDocs :: Doc
   , methodDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Functor, Show)
 instance GetTypes (Method' Type) where
-  getTypes m = S.fromList (methodReturn m : methodParams m)
+  getTypes m = S.fromList (methodReturn m : map fst (methodParams m))
 
 data Method =
   Method
   { mName :: Name
   , mOthers :: Maybe Int
   , mReturn :: Type
-  , mParams :: [Type]
+  , mParams :: [(Type, SwigOutput)]
   , mKind :: MethodKind
   , mDocs :: Doc
   , mDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Show)
 instance GetTypes Method where
-  getTypes m = S.fromList (mReturn m : mParams m)
+  getTypes m = S.fromList (mReturn m : map fst (mParams m))
 type Methods = Either [Method] Method
 instance GetTypes (Either [Method] Method) where
   getTypes (Left xs) = S.unions $ map getTypes xs
@@ -332,28 +326,26 @@ data CppFunction' a =
   CppFunction'
   { funName :: String
   , funReturn :: a
-  , funIsIOSchemeHelper :: Bool
   , funFriendwrap :: Bool
-  , funParams :: [a]
+  , funParams :: [(a, String)]
   , funDocs :: Doc
   , funDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Functor, Show)
 instance GetTypes (CppFunction' Type) where
-  getTypes f = S.fromList (funReturn f : funParams f)
+  getTypes f = S.fromList (funReturn f : map fst (funParams f))
 
 data CppFunction =
   CppFunction
   { fName :: String
   , fOthers :: Maybe Int
   , fReturn :: Type
-  , fIsIOSchemeHelper :: Bool
   , fFriendwrap :: Bool
-  , fParams :: [Type]
+  , fParams :: [(Type, SwigOutput)]
   , fDocs :: Doc
   , fDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Show)
 instance GetTypes CppFunction where
-  getTypes f = S.fromList (fReturn f : fParams f)
+  getTypes f = S.fromList (fReturn f : map fst (fParams f))
 
 data Enum' =
   Enum'
@@ -411,8 +403,6 @@ getAllTypes x@(Ref t)             = S.insert x (getAllTypes t)
 getAllTypes x@(Pointer t)         = S.insert x (getAllTypes t)
 getAllTypes x@(Const t)           = S.insert x (getAllTypes t)
 getAllTypes x@(StdVec t)          = S.insert x (getAllTypes t)
-getAllTypes x@(IOSchemeVec _ _ t) = S.insert x (getAllTypes t)
-getAllTypes x@(IOInterface t)     = S.insert x (getAllTypes t)
 getAllTypes x@CInt                 = S.singleton x
 getAllTypes x@CDouble              = S.singleton x
 getAllTypes x@CBool                = S.singleton x
@@ -432,9 +422,6 @@ hasBadType :: GetTypes a => a -> Bool
 hasBadType x = any badType $ S.unions $ map getAllTypes (S.toList (getTypes x))
   where
     badType :: Type -> Bool
-    badType (IOSchemeVec {}) = True
-    badType (IOInterface (UserType (Namespace ["casadi"]) (Name "Function"))) = False
-    badType (IOInterface {}) = True
     badType StdOstream = True
     badType (StdPair {}) = False
     badType (Pointer {}) = True
@@ -482,7 +469,7 @@ overloadMethods c =
       , mOthers = others
       , mKind = methodKind f
       , mReturn = methodReturn f
-      , mParams = methodParams f
+      , mParams = map (\(x,y) -> (x, toSwigOutput y)) (methodParams f)
       , mDocs = Doc "" -- methodDocs f
       , mDocslink = DocLink "" -- methodDocslink f
       }
@@ -582,9 +569,8 @@ readModule jsonpath = do
             { fName = funName f
             , fOthers = others
             , fReturn = funReturn f
-            , fIsIOSchemeHelper = funIsIOSchemeHelper f
             , fFriendwrap = funFriendwrap f
-            , fParams = funParams f
+            , fParams = map (\(x,y) -> (x, toSwigOutput y)) (funParams f)
             , fDocs = Doc "" -- funDocs f
             , fDocslink = DocLink "" -- funDocslink f
             }
@@ -601,30 +587,7 @@ readModule jsonpath = do
 --        mapM_ pmi' (M.toList xs)
 --  mapM_ (pmi . moduleInheritance) modules
 
-  return (removeEmptyIOHelpers module0)
-
-
--- things like nlpIn() are ill defined in c++ because the template type can't be determined
--- filter these guys out of the module
-removeEmptyIOHelpers :: Module -> Module
-removeEmptyIOHelpers m = case M.lookup (Name "InputOutputScheme") (moduleEnums m) of
-  Nothing -> m
-  Just ioscheme -> m { moduleFunctions = removeEmptyIOHelpers' (moduleFunctions m)}
-    where
-      removeEmptyIOHelpers' :: [CppFunctions] -> [CppFunctions]
-      removeEmptyIOHelpers' [] = []
-      removeEmptyIOHelpers' (x@(Right function):xs)
-        | isEmptyIOHelper function = removeEmptyIOHelpers' xs
-        | otherwise = x : removeEmptyIOHelpers' xs
-      removeEmptyIOHelpers' ((Left functions):xs) =
-        case filter (not . isEmptyIOHelper) functions of
-           [] -> removeEmptyIOHelpers' xs
-           [r] -> Right r : removeEmptyIOHelpers' xs
-           rs -> Left rs : removeEmptyIOHelpers' xs
-
-      isEmptyIOHelper :: CppFunction -> Bool
-      isEmptyIOHelper f = fIsIOSchemeHelper f && (length (fParams f) < 2)
-
+  return module0
 
 
 main :: IO ()

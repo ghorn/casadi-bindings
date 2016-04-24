@@ -112,5 +112,8 @@ wrapReturnVec vecSize vecCopy vecDel cToHs vecPtr = do
 instance WrapReturn (Ptr (StdVec CInt)) (V.Vector Int) where
   wrapReturn = wrapReturnVec c_sizeVecCInt c_copyVecCInt c_deleteVecCInt wrapReturn
 
+instance WrapReturn (Ptr (StdVec CInt)) (V.Vector Bool) where
+  wrapReturn = wrapReturnVec c_sizeVecCInt c_copyVecCInt c_deleteVecCInt wrapReturn
+
 instance WrapReturn (Ptr (StdVec CDouble)) (V.Vector Double) where
   wrapReturn = wrapReturnVec c_sizeVecCDouble c_copyVecCDouble c_deleteVecCDouble wrapReturn

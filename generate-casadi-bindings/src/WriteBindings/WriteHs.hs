@@ -8,7 +8,7 @@ module WriteBindings.WriteHs
        ) where
 
 import Data.Char ( toLower, isLower )
-import Data.List ( intersperse, sort )
+import Data.List ( intercalate, partition, sort )
 import qualified Data.Foldable as F
 import qualified Data.Set as S
 import qualified Data.Map as M
@@ -24,27 +24,67 @@ rstrip xs = case reverse xs of
   '\n':ys -> reverse ys
   _ -> xs
 
-marshalFun :: [Type] -> String -> String -> String
-marshalFun params fun wrappedFun =
+marshalFun :: Type -> [(Type, SwigOutput)] -> String -> String -> String
+marshalFun retType params fun wrappedFun =
   unlines $
-  [ fun ++ " " ++ concat (intersperse " " patternMatchArgs) ++ " ="
+  [ fun ++ " " ++ intercalate " " patternMatchArgs ++ " = do"
   , marshals
-  , "  do"
-  , "    errStrPtrP <- new nullPtr"
-  , "    ret <- " ++ wrappedFun ++ " errStrPtrP " ++  concat (intersperse " " appArgs)
-  , "    errStrPtr <- peek errStrPtrP"
-  , "    free errStrPtrP"
-  , "    if errStrPtr == nullPtr then wrapReturn ret else wrapReturn errStrPtr >>= (error . formatException)"
+  , ""
+  , "  errStrPtrP <- new nullPtr"
+  , "  ret0 <- " ++ wrappedFun ++ " errStrPtrP " ++ intercalate " " appArgs
+  , "  errStrPtr <- peek errStrPtrP"
+  , "  free errStrPtrP"
+  , ""
+  , "  " ++ retPattern ++ " <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)"
+  , ""
+  , unmarshals
+  , ""
+  , "  return " ++ ret
+  , ""
   ]
   where
-    marshals = rstrip $ unlines $ blah $ args
-    args = zipWith (\k p -> ("x"++show k, p)) [(0::Int)..] params
-    patternMatchArgs = map fst args
-    appArgs = map (++ "'") patternMatchArgs
+    retPattern = case retType of
+      CVoid -> "()"
+      _ -> "ret"
 
-    blah :: [(String,Type)] -> [String]
-    blah ((x,_type):xs) = ("  withMarshal " ++ x ++ " $ \\" ++ x ++ "' ->") : (blah xs)
-    blah [] = []
+    ret = case (swigOutputNames, retType) of
+      ([], CVoid) -> "()"
+      ([], _) -> "ret"
+      (_, CVoid) -> "(" ++ intercalate ", " (map (++ "'''") swigOutputNames) ++ ")"
+      _ -> "(ret, " ++ intercalate ", " (map (++ "'''") swigOutputNames) ++ ")"
+
+    swigOutputNames :: [String]
+    swigOutputNames = map fst $ fst $ partition (\(_, (_, SwigOutput swigOutput)) -> swigOutput) args
+
+    marshals = rstrip $ unlines $ map toMarshal args
+    unmarshals = rstrip $ unlines $ map toUnmarshal args
+
+    args :: [(String, (Type, SwigOutput))]
+    args = zipWith f [0..] params
+      where
+        f :: Int -> (Type, SwigOutput) -> (String, (Type, SwigOutput))
+        f k t@(_, SwigOutput False) = ("x" ++ show k, t)
+        f k t@(_, SwigOutput True) = ("o" ++ show k, t)
+
+    -- inputs
+    patternMatchArgs = map fst $ filter (\(_, (_, SwigOutput swigOutput)) -> not swigOutput) args
+
+    -- arguments to be applied to the ffi function
+    appArgs = map ((++ "'") . fst) args
+
+    toMarshal :: (String, (Type, SwigOutput)) -> String
+    toMarshal (x, (_type, SwigOutput False)) = "  " ++ x ++ "' <- marshal " ++ x
+    toMarshal (x, (_type, SwigOutput True)) = "  " ++ x ++ "' <- new nullPtr"
+
+    toUnmarshal :: (String, (Type, SwigOutput)) -> String
+    toUnmarshal (x, (_type, SwigOutput False)) = "  marshalFree " ++ x ++ " " ++ x ++ "'"
+    toUnmarshal (x, (_type, SwigOutput True)) =
+      "  " ++ x ++ "'' <- peek " ++ x ++ "'" ++ "\n" ++
+      "  free " ++ x ++ "'\n" ++
+      "  " ++ x ++ "''' <- if " ++ x ++ "'' == nullPtr then error \"" ++ err ++ "\" else wrapReturn " ++ x ++ "''"
+      where
+        err = "swig output " ++ x ++ "' was not set in " ++ fun ++ "/" ++ wrappedFun
+
 
 c_deleteName :: Type -> String
 c_deleteName = ("c_" ++) .  TM.deleteName
@@ -118,7 +158,6 @@ writeClassMethods c = methods
 
         hsname = case classType' of
           x@(UserType (Namespace ["casadi"]) (Name _)) -> TM.hsType False x
-          x@(IOInterface (UserType (Namespace ["casadi"]) (Name _))) -> TM.hsType False x
           y -> error $ "class method name got non-class object: " ++ show y
 
         hsMethodName = case mKind fcn of
@@ -131,8 +170,7 @@ writeClassMethods c = methods
                     CppFunction { fName = cWrapperName''
                                 , fOthers = Nothing
                                 , fReturn = mReturn fcn
-                                , fParams = Ref classType' : mParams fcn
-                                , fIsIOSchemeHelper = False
+                                , fParams = (Ref classType', SwigOutput False) : mParams fcn
                                 , fFriendwrap = False
                                 , fDocs = mDocs fcn
                                 , fDocslink = mDocslink fcn
@@ -142,16 +180,23 @@ writeClassMethods c = methods
                            , fOthers = Nothing
                            , fReturn = mReturn fcn
                            , fParams = mParams fcn
-                           , fIsIOSchemeHelper = False
                            , fFriendwrap = False
                            , fDocs = mDocs fcn
                            , fDocslink = mDocslink fcn
                            }
 
+        (outputParams, inputParams) = (map fst ops, map fst ips)
+          where
+            (ops, ips) = partition (\(_, SwigOutput swigOutput) -> swigOutput) (mParams fcn)
+
         typeDef = case mKind fcn of
-          Normal -> className' ++ " a => " ++ concat (intersperse " -> " ("a":map (TM.hsType False) (mParams fcn) ++ [retType']))
-          _ -> concat (intersperse " -> " (map (TM.hsType False) (mParams fcn) ++ [retType']))
-        retType' = "IO " ++ TM.hsType True (mReturn fcn)
+          Normal -> className' ++ " a => " ++ intercalate " -> " ("a":map (TM.hsType False) inputParams ++ [retType'])
+          _ -> intercalate " -> " (map (TM.hsType False) inputParams ++ [retType'])
+
+        retType' = case (outputParams, mReturn fcn) of
+          ([], _) -> "IO " ++ TM.hsType True (mReturn fcn)
+          (_, CVoid) -> "IO (" ++ intercalate ", " (map (TM.hsType False) outputParams) ++ ")"
+          _ -> "IO (" ++ intercalate ", " (map (TM.hsType False) (mReturn fcn : outputParams)) ++ ")"
 
         Name methodName' = mName fcn
 
@@ -181,7 +226,7 @@ helperInstances c =
   , "  marshal (" ++ dn ++ " x) = return (unsafeForeignPtrToPtr x)"
   , "  marshalFree (" ++ dn ++ " x) _ = touchForeignPtr x"
   , "foreign import ccall unsafe \"&" ++ TM.deleteName cc ++ "\" "
-  , "  " ++ c_deleteName cc ++ " :: FunPtr ("++ TM.ffiType False cc ++ " -> IO ())"
+  , "  " ++ c_deleteName cc ++ " :: FunPtr ("++ TM.ffiType False (cc, SwigOutput False) ++ " -> IO ())"
   , "instance WrapReturn (Ptr " ++ dn ++ "') " ++ dn ++ " where"
   , "  wrapReturn = (fmap " ++ dn ++ ") . (newForeignPtr " ++ c_deleteName cc ++ ")"
   ]
@@ -215,8 +260,10 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
     ffiWrapper =
       unlines $
       foreignImport : maybeDoc hsFunctionName (fDocs fun) ++
-      [ hsFunctionName ++ "\n  :: " ++ proto
-      , marshalFun params hsFunctionName c_hsFunctionName
+      [ ""
+      , hsFunctionName
+      , "  :: " ++ proto
+      , marshalFun retType params hsFunctionName c_hsFunctionName
       ]
 
     params = fParams fun
@@ -226,30 +273,38 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
 
     cFunctionName = TM.cWrapperName' fun
     c_hsFunctionName = "c_" ++ cFunctionName
-    safeunsafe = if any (cFunctionName `startsWith`) [ "casadi__Function__evaluate"
-                                                     , "casadi__Function__jacobian"
-                                                     , "casadi__Function__call"
-                                                     , "casadi__Function__callDerivative"
-                                                     , "casadi__Function__hessian"
-                                                     , "casadi__Function__derivative"
-                                                     , "casadi__Function__gradient"
-                                                     , "casadi__Function__tangent"
-                                                     , "casadi__SharedObject__init"
-                                                     ]
-                 then "safe" else "unsafe"
+    safeunsafe
+      | any (cFunctionName `startsWith`)
+        [ "casadi__Function__jacobian"
+        , "casadi__Function__call"
+        , "casadi__Function__callDerivative"
+        , "casadi__Function__hessian"
+        , "casadi__Function__derivative"
+        , "casadi__Function__gradient"
+        , "casadi__Function__tangent"
+        , "casadi__SharedObject__init"
+        ] = "safe"
+      | otherwise = "unsafe"
     foreignImport =
       "foreign import ccall " ++ safeunsafe ++ " \"" ++ cFunctionName ++ "\" " ++
       c_hsFunctionName ++ "\n  :: " ++ ffiProto
-    ffiProto = concat $ intersperse " -> " $
+    ffiProto = intercalate " -> " $
                "Ptr (Ptr StdString)" : map (TM.ffiType False) params ++ [ffiRetType]
-    proto = concat $ intersperse " -> " $
-            map (TM.hsType False) params ++ [retType']
+    proto = intercalate " -> " $
+            map (TM.hsType False) inputParams ++ [retType']
+
+    (outputParams, inputParams) = (map fst ops, map fst ips)
+      where
+        (ops, ips) = partition (\(_, SwigOutput swigOutput) -> swigOutput) params
 
     retType' :: String
-    retType' = "IO " ++ TM.hsType True retType
+    retType' = case (outputParams, retType) of
+      ([], _) -> "IO " ++ TM.hsType True retType
+      (_, CVoid) -> "IO (" ++ intercalate ", " (map (TM.hsType False) outputParams) ++ ")"
+      _ -> "IO (" ++ intercalate ", " (map (TM.hsType False) (retType : outputParams)) ++ ")"
 
     ffiRetType :: String
-    ffiRetType = "IO " ++ TM.ffiType True retType
+    ffiRetType = "IO " ++ TM.ffiType True (retType, SwigOutput False)
 
 writeClassModules :: (ClassType -> S.Set ClassType) -> [Class] -> [(String, String)]
 writeClassModules inheritance classes = map (\x -> (dataName (clType x),writeOneModule x)) classes
@@ -280,7 +335,7 @@ writeClassModules inheritance classes = map (\x -> (dataName (clType x),writeOne
       , ""
       , "import Casadi.Internal.FormatException ( formatException )"
       , "import Casadi.Internal.MarshalTypes ( StdVec, StdString, StdMap, StdPair ) -- StdPair StdOstream'"
-      , "import Casadi.Internal.Marshal ( Marshal(..), withMarshal )"
+      , "import Casadi.Internal.Marshal ( Marshal(..), marshal, marshalFree )"
       , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
       , "import Casadi.Core.Data"
       , "import Casadi.Core.Enums"
@@ -370,7 +425,7 @@ writeToolsModule functions =
   , "import Casadi.Core.Enums"
   , "import Casadi.Internal.FormatException ( formatException )"
   , "import Casadi.Internal.MarshalTypes ( StdMap, StdVec, StdString, StdPair )"
-  , "import Casadi.Internal.Marshal ( withMarshal )"
+  , "import Casadi.Internal.Marshal ( Marshal(..) )"
   , "import Casadi.Internal.WrapReturn ( WrapReturn(..) )"
   ] ++ funDecls
   where

@@ -14,10 +14,10 @@ instance Show Slice where
 
 -- | slice start stop step
 slice :: Int -> Int -> Int -> Slice
-slice x y z = unsafePerformIO (slice__4 x y z)
+slice x y z = unsafePerformIO (slice__1 x y z)
 {-# NOINLINE slice #-}
 
 -- | Slice()
 slice' :: Slice
-slice' = unsafePerformIO slice__7
+slice' = unsafePerformIO slice__4
 {-# NOINLINE slice' #-}
