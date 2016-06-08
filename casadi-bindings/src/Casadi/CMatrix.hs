@@ -65,6 +65,9 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   conditional' :: a -> V.Vector a -> a -> Bool -> a
   cmin :: a -> a -> a
   cmax :: a -> a -> a
+  cand :: a -> a -> a
+  cor :: a -> a -> a
+  -- TODO(greg): any and all
   repmat :: a -> (Int, Int) -> a
 {-# DEPRECATED solve' "use the new solve, this one is going away" #-}
 

@@ -155,6 +155,10 @@ instance CMatrix DM where
   {-# NOINLINE cmax #-}
   cmin x y = unsafePerformIO (C.casadi_min__2 x y)
   {-# NOINLINE cmin #-}
+  cand x y = unsafePerformIO (C.casadi_and__2 x y)
+  {-# NOINLINE cand #-}
+  cor x y = unsafePerformIO (C.casadi_or__2 x y)
+  {-# NOINLINE cor #-}
   repmat x (s1, s2) = unsafePerformIO (C.casadi_repmat__5 x s1 s2)
   {-# NOINLINE repmat #-}
 
