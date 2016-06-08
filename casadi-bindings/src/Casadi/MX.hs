@@ -225,8 +225,12 @@ instance ArcTan2 MX where
 instance SymOrd MX where
   x `leq` y = unsafePerformIO (C.casadi_le__4 x y)
   {-# NOINLINE leq #-}
+  x `lt` y = unsafePerformIO (C.casadi_lt__4 x y)
+  {-# NOINLINE lt #-}
   x `geq` y = unsafePerformIO (C.casadi_ge__4 x y)
   {-# NOINLINE geq #-}
+  x `gt` y = unsafePerformIO (C.casadi_gt__4 x y)
+  {-# NOINLINE gt #-}
   x  `eq` y = unsafePerformIO (C.casadi_eq__4 x y)
   {-# NOINLINE eq #-}
 

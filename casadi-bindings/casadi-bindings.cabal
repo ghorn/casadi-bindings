@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             3.0.0.1
+version:             3.0.0.2
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:

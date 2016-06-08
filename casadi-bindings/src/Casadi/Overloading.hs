@@ -5,7 +5,6 @@ module Casadi.Overloading
        , Erf(..)
        , Fmod(..)
        , SymOrd(..)
-       , lt, gt
        , ifLeqThen, ifGeqThen, ifEqThen, ifLtThen, ifGtThen
        ) where
 
@@ -40,6 +39,15 @@ class Erf a where
 -- >>> 43 `leq` 42 :: Double
 -- 0.0
 --
+-- >>> 41 `lt` 42 :: Double
+-- 1.0
+--
+-- >>> 42 `lt` 42 :: Double
+-- 0.0
+--
+-- >>> 43 `lt` 42 :: Double
+-- 0.0
+--
 -- >>> 41 `geq` 42 :: Double
 -- 0.0
 --
@@ -47,6 +55,15 @@ class Erf a where
 -- 1.0
 --
 -- >>> 43 `geq` 42 :: Double
+-- 1.0
+--
+-- >>> 41 `gt` 42 :: Double
+-- 0.0
+--
+-- >>> 42 `gt` 42 :: Double
+-- 0.0
+--
+-- >>> 43 `gt` 42 :: Double
 -- 1.0
 --
 -- >>> 41 `eq` 42 :: Double
@@ -60,43 +77,27 @@ class Erf a where
 class Num a => SymOrd a where
   -- | @<=@
   leq :: a -> a -> a
+  -- | @<@
+  lt :: a -> a -> a
   -- | @>=@
   geq :: a -> a -> a
+  -- | @>@
+  gt :: a -> a -> a
   -- | @==@
   eq :: a -> a -> a
 
 instance SymOrd Double where
   x `leq` y = if x <= y then 1 else 0
+  x  `lt` y = if x <  y then 1 else 0
   x `geq` y = if x >= y then 1 else 0
+  x  `gt` y = if x >  y then 1 else 0
   x  `eq` y = if x == y then 1 else 0
 instance SymOrd Float where
   x `leq` y = if x <= y then 1 else 0
+  x  `lt` y = if x <  y then 1 else 0
   x `geq` y = if x >= y then 1 else 0
+  x  `gt` y = if x >  y then 1 else 0
   x  `eq` y = if x == y then 1 else 0
-
--- | @<@
--- >>> 41 `lt` 42 :: Double
--- 1.0
---
--- >>> 42 `lt` 42 :: Double
--- 0.0
---
--- >>> 43 `lt` 42 :: Double
--- 0.0
-lt :: SymOrd a => a -> a -> a
-lt x y = 1 - geq x y
-
--- | @>@
--- >>> 41 `gt` 42 :: Double
--- 0.0
---
--- >>> 42 `gt` 42 :: Double
--- 0.0
---
--- >>> 43 `gt` 42 :: Double
--- 1.0
-gt :: SymOrd a => a -> a -> a
-gt x y = 1 - leq x y
 
 -- | @ifLeqThen x y ifX ifY == if x <= y then ifX else ifY@
 -- >>> ifLeqThen 41 42 100 200 :: Double

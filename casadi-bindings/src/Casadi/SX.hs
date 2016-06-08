@@ -220,8 +220,12 @@ instance ArcTan2 SX where
 instance SymOrd SX where
   x `leq` y = unsafePerformIO (C.casadi_le__1 x y)
   {-# NOINLINE leq #-}
+  x `lt` y = unsafePerformIO (C.casadi_lt__1 x y)
+  {-# NOINLINE lt #-}
   x `geq` y = unsafePerformIO (C.casadi_ge__1 x y)
   {-# NOINLINE geq #-}
+  x `gt` y = unsafePerformIO (C.casadi_gt__1 x y)
+  {-# NOINLINE gt #-}
   x  `eq` y = unsafePerformIO (C.casadi_eq__1 x y)
   {-# NOINLINE eq #-}
 
