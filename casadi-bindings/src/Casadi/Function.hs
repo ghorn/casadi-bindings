@@ -4,7 +4,7 @@ module Casadi.Function
        ( C.Function, AlwaysInline(..), NeverInline(..)
        , mxFunction, mxFunction', sxFunction, sxFunction'
        , callMX, callMX', callSX, callSX', callDM, callDM'
-       , jacobian, gradient, derivative
+       , hessian, jacobian, gradient, derivative
        , externalFunction, externalFunction'
        , generateCode, generateCode'
        ) where
@@ -54,6 +54,9 @@ callDM f ins = C.function_call__15 f ins
 -- | evaluate a Function with many inputs, many outputs
 callDM' :: C.FunctionClass f => f -> Map String DM -> IO (Map String DM)
 callDM' f ins = C.function_call__6 f ins
+
+hessian :: C.FunctionClass a => a -> Int -> Int -> IO C.Function
+hessian = C.function_hessian__6
 
 jacobian :: C.FunctionClass a => a -> Int -> Int -> Bool -> Bool -> IO C.Function
 jacobian = C.function_jacobian__14
