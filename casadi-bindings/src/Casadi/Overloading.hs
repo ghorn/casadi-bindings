@@ -85,6 +85,10 @@ class Num a => SymOrd a where
   gt :: a -> a -> a
   -- | @==@
   eq :: a -> a -> a
+  -- | max without (==)
+  max' :: a -> a -> a
+  -- | min without (==)
+  min' :: a -> a -> a
 
 instance SymOrd Double where
   x `leq` y = if x <= y then 1 else 0
@@ -92,12 +96,16 @@ instance SymOrd Double where
   x `geq` y = if x >= y then 1 else 0
   x  `gt` y = if x >  y then 1 else 0
   x  `eq` y = if x == y then 1 else 0
+  max' = max
+  min' = min
 instance SymOrd Float where
   x `leq` y = if x <= y then 1 else 0
   x  `lt` y = if x <  y then 1 else 0
   x `geq` y = if x >= y then 1 else 0
   x  `gt` y = if x >  y then 1 else 0
   x  `eq` y = if x == y then 1 else 0
+  max' = max
+  min' = min
 
 -- | @ifLeqThen x y ifX ifY == if x <= y then ifX else ifY@
 -- >>> ifLeqThen 41 42 100 200 :: Double

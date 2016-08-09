@@ -235,6 +235,10 @@ instance SymOrd DM where
   {-# NOINLINE gt #-}
   x  `eq` y = unsafePerformIO (C.casadi_eq__2 x y)
   {-# NOINLINE eq #-}
+  max' x y = cmax x y
+  {-# NOINLINE max' #-}
+  min' x y = cmin x y
+  {-# NOINLINE min' #-}
 
 instance Erf DM where
   erf x = unsafePerformIO (C.casadi_erf__2 x)
