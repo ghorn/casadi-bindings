@@ -15,8 +15,8 @@ import SpatialMath ( ArcTan2(..) )
 class Fmod a where
   fmod :: a -> a -> a
 
-foreign import ccall unsafe "c_fmod" c_fmod :: CDouble -> CDouble -> CDouble
-foreign import ccall unsafe "c_fmodf" c_fmodf :: CFloat -> CFloat -> CFloat
+foreign import ccall unsafe "math.h fmod" c_fmod :: CDouble -> CDouble -> CDouble
+foreign import ccall unsafe "math.h fmodf" c_fmodf :: CFloat -> CFloat -> CFloat
 instance Fmod Double where fmod x y = realToFrac $ c_fmod (realToFrac x) (realToFrac y)
 instance Fmod Float where fmod x y = realToFrac $ c_fmodf (realToFrac x) (realToFrac y)
 
