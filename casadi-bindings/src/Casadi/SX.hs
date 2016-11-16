@@ -129,7 +129,7 @@ instance CMatrix SX where
   copy m = sx__9 m
   densify x = unsafePerformIO (C.casadi_densify__0 x)
   {-# NOINLINE densify #-}
-  fromDM x = unsafePerformIO (sx__1 x)
+  fromDM x = unsafePerformIO (sx__0 x)
   {-# NOINLINE fromDM #-}
   fromDVector x = fromDM (fromDVector x)
   {-# NOINLINE fromDVector #-}

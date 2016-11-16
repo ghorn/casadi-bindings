@@ -19,7 +19,10 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "3.0.0.0"
+version = "3.1.0.0"
+
+internalVersion :: String
+internalVersion = "0.1.5.0"
 
 jsonpath :: FilePath
 jsonpath = "/home/greghorn/casadi/build/swig/json/casadi.json"
@@ -41,6 +44,7 @@ writeFile' path txt = do
 data Package =
   Package
   { pCabal :: (FilePath, String)
+  , pStack :: (FilePath, String)
   , pCClasses :: (FilePath,String)
   , pCFunctions :: (FilePath,String)
   , pHsClasses :: [(FilePath,String)]
@@ -68,6 +72,7 @@ writePackage rootDir pkg = do
   wf ("Casadi" </> "Core" </> "CustomWrappers.hs",customWrappersHs)
   wf ("Setup.hs",setupFile)
   wf (pCabal pkg)
+  wf (pStack pkg)
   wf (pCClasses pkg)
   wf (pCFunctions pkg)
   wf (pHsData pkg)
@@ -100,6 +105,24 @@ toPackage mod' =
   , pModuleName = modname
   , pHsData = ("Casadi/Core/Data.hs",
                HS.writeDataModule allclasses inherit)
+  , pStack = ( "stack.yaml"
+             , unlines
+               [ "resolver: lts-7.0"
+               , ""
+               , "compiler-check: newer-minor"
+               , ""
+               , "# Local packages, usually specified by relative directory name"
+               , "packages:"
+               , "- ."
+               , ""
+--               , "- location:"
+--               , "    ../../casadi-bindings-internal"
+--               , ""
+               , "# Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)"
+               , "extra-deps: [ casadi-bindings-internal-" ++ internalVersion
+               , "            ]"
+               ]
+             )
   , pCabal = (modname ++ ".cabal",
               unlines $
               [ "name:                " ++ modname
@@ -120,17 +143,15 @@ toPackage mod' =
               , "  build-depends:       base >=4.6 && <5,"
               , "                       vector >=0.10,"
               , "                       containers >= 0.5,"
-              , "                       casadi-bindings-internal == 0.1.4.0"
+              , "                       casadi-bindings-internal == " ++ internalVersion
               , ""
               , "  default-language:    Haskell2010"
               , ""
               , ""
-              , "  extra-libraries:  stdc++"
+              , "  extra-libraries:  stdc++ casadi"
               , ""
-              , "  pkgconfig-depends: casadi"
-              , ""
-              , "  ghc-prof-options: -prof -fprof-auto -fprof-cafs -rtsopts"
-              , "  ghc-options: "
+              , "  ghc-prof-options: -O2"
+              , "  ghc-options:      -O2"
               , "  cc-options: -Wall -Wno-sign-compare -std=c++11"
               , ""
               , "  C-sources:        cbits/custom_wrappers.cpp"

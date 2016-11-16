@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             3.0.0.5
+version:             3.1.0.0
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:
@@ -33,7 +33,7 @@ license:             LGPL-3
 license-file:        LICENSE
 author:              Greg Horn
 maintainer:          gregmainland@gmail.com
-copyright:           (c) Greg Horn 2013-2015
+copyright:           (c) Greg Horn 2013-2016
 build-type:          Simple
 cabal-version:       >=1.10
 
@@ -61,14 +61,15 @@ library
                        cereal,
                        binary,
                        vector-binary-instances,
-                       casadi-bindings-internal == 0.1.4.0,
-                       casadi-bindings-core     == 3.0.0.0
+                       casadi-bindings-internal == 0.1.5.0,
+                       casadi-bindings-core     == 3.1.0.0
   default-language:    Haskell2010
 
   C-sources:           cbits/casadi_bindings.cpp
-  extra-libraries:     stdc++
-  pkgconfig-depends:   casadi
-  cc-options: -Wall -Wno-sign-compare -std=c++11
+  extra-libraries:     stdc++ casadi
+  cc-options:          -Wall -Wno-sign-compare -std=c++11
+  ghc-prof-options:    -O2
+  ghc-options:         -O2
 
 source-repository head
   type: git

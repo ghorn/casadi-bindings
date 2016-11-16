@@ -4,7 +4,7 @@ module Casadi.Function
        ( C.Function, AlwaysInline(..), NeverInline(..)
        , mxFunction, mxFunction', sxFunction, sxFunction'
        , callMX, callMX', callSX, callSX', callDM, callDM'
-       , hessian, jacobian, gradient, derivative
+       , hessian, jacobian, gradient
        , externalFunction, externalFunction'
        , generateCode, generateCode'
        ) where
@@ -64,18 +64,15 @@ jacobian = C.function_jacobian__14
 gradient :: C.FunctionClass a => a -> Int -> Int -> IO C.Function
 gradient = C.function_gradient__6
 
-derivative :: C.FunctionClass a => a -> Int -> Int -> IO C.Function
-derivative = C.function_derivative__0
-
-generateCode :: C.FunctionClass a => a -> String -> Map String GType -> IO ()
+generateCode :: C.FunctionClass a => a -> String -> Map String GType -> IO String
 generateCode f n opts0 = do
   opts <- T.mapM fromGType opts0 :: IO (Map String GenericType)
   C.function_generate__3 (C.castFunction f) n opts
 
-generateCode' :: C.FunctionClass a => a -> Map String GType -> IO String
-generateCode' f opts0 = do
+generateCode' :: C.FunctionClass a => a -> String -> Map String GType -> IO String
+generateCode' f name opts0 = do
   opts <- T.mapM fromGType opts0 :: IO (Map String GenericType)
-  cg <- C.codeGenerator__1 opts
+  cg <- C.codeGenerator__1 name opts
   C.codeGenerator_add cg (C.castFunction f)
   C.codeGenerator_generate__0 cg
 

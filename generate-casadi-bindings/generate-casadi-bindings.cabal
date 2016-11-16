@@ -17,7 +17,11 @@ cabal-version:       >=1.10
 
 executable generate-casadi-bindings
   main-is:             WritePackage.hs
-  -- other-modules:       
+  other-modules:       WriteBindings.ParseJSON
+                       WriteBindings.TypeMaps
+                       WriteBindings.WriteC
+                       WriteBindings.WriteHs
+
   other-extensions:    MultiParamTypeClasses
   build-depends:       base >=4.8 && <5,
 --                       casadi-bindings-internal >=0.1 && <0.2,

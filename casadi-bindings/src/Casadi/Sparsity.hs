@@ -67,7 +67,7 @@ get_col s = unsafePerformIO (sparsity_get_col s)
 {-# NOINLINE get_col #-}
 
 sparse :: Int -> Int -> V.Vector Int -> V.Vector Int -> Sparsity
-sparse nr nc r c = unsafePerformIO (sparsity__0 nr nc r c)
+sparse nr nc r c = unsafePerformIO (sparsity__1 nr nc r c)
 {-# NOINLINE sparse #-}
 
 dense :: Int -> Int -> Sparsity
