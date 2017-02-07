@@ -162,6 +162,8 @@ instance CMatrix MX where
   {-# NOINLINE cor #-}
   repmat x (s1, s2) = unsafePerformIO (C.casadi_repmat__11 x s1 s2)
   {-# NOINLINE repmat #-}
+  printme x y = unsafePerformIO (mx_printme x y)
+  {-# NOINLINE printme #-}
 
 
 instance Num MX where
