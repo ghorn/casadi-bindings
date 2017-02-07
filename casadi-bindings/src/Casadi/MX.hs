@@ -3,7 +3,7 @@
 module Casadi.MX
        ( MX
        , sym, symV, symM, gradient, jacobian, hessian
-       , expand
+       , expand, attachAssert
        ) where
 
 import Data.Vector ( Vector )
@@ -64,6 +64,10 @@ expand x = unsafePerformIO (C.casadi_matrix_expand__3 x)
 hessian :: MX -> MX -> MX -> MX
 hessian x y z = unsafePerformIO (C.casadi_hessian__3 x y z)
 {-# NOINLINE hessian #-}
+
+attachAssert :: MX -> MX -> String -> MX
+attachAssert x y msg = unsafePerformIO (mx_attachAssert__1 x y msg)
+{-# NOINLINE attachAssert #-}
 
 --sparsify :: MX -> MX
 --sparsify x = unsafePerformIO (C.casadi_sparsify__0__3 x)
