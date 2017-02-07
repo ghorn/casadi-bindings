@@ -243,6 +243,8 @@ instance SymOrd MX where
   {-# NOINLINE gt #-}
   x  `eq` y = unsafePerformIO (C.casadi_eq__4 x y)
   {-# NOINLINE eq #-}
+  x `ne` y = unsafePerformIO (C.casadi_ne__4 x y)
+  {-# NOINLINE ne #-}
   max' x y = cmax x y
   {-# NOINLINE max' #-}
   min' x y = cmin x y

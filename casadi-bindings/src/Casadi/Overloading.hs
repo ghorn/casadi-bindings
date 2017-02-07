@@ -74,6 +74,15 @@ class Erf a where
 --
 -- >>> 43 `eq` 42 :: Double
 -- 0.0
+--
+-- >>> 41 `ne` 42 :: Double
+  -- 1.0
+--
+-- >>> 42 `ne` 42 :: Double
+-- 0.0
+--
+-- >>> 43 `ne` 42 :: Double
+-- 1.0
 class Num a => SymOrd a where
   -- | @<=@
   leq :: a -> a -> a
@@ -85,6 +94,8 @@ class Num a => SymOrd a where
   gt :: a -> a -> a
   -- | @==@
   eq :: a -> a -> a
+  -- | @!=@
+  ne :: a -> a -> a
   -- | max without (==)
   max' :: a -> a -> a
   -- | min without (==)
@@ -96,6 +107,7 @@ instance SymOrd Double where
   x `geq` y = if x >= y then 1 else 0
   x  `gt` y = if x >  y then 1 else 0
   x  `eq` y = if x == y then 1 else 0
+  x  `ne` y = if x /= y then 1 else 0
   max' = max
   min' = min
 instance SymOrd Float where
@@ -104,6 +116,7 @@ instance SymOrd Float where
   x `geq` y = if x >= y then 1 else 0
   x  `gt` y = if x >  y then 1 else 0
   x  `eq` y = if x == y then 1 else 0
+  x  `ne` y = if x /= y then 1 else 0
   max' = max
   min' = min
 

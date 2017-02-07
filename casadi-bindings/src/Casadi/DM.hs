@@ -237,6 +237,8 @@ instance SymOrd DM where
   {-# NOINLINE gt #-}
   x  `eq` y = unsafePerformIO (C.casadi_eq__2 x y)
   {-# NOINLINE eq #-}
+  x `ne` y = unsafePerformIO (C.casadi_ne__2 x y)
+  {-# NOINLINE ne #-}
   max' x y = cmax x y
   {-# NOINLINE max' #-}
   min' x y = cmin x y
