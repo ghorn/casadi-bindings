@@ -14,11 +14,13 @@ import qualified Data.Binary as B
 import Data.Vector.Binary () -- instances
 
 import Casadi.Core.Classes.DM
+import qualified Casadi.Core.Classes.Function as C
 import Casadi.Core.Classes.Sparsity ( Sparsity )
 import qualified Casadi.Core.Tools as C
 
+import Casadi.Matrix ( CMatrix(..) )
+import Casadi.GenericType ( fromGType )
 import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
-import Casadi.CMatrix ( CMatrix(..) )
 import Casadi.Viewable ( Viewable(..) )
 
 getWith :: Monad m => m Sparsity -> m (V.Vector Double) -> m DM
@@ -90,10 +92,10 @@ instance CMatrix DM where
   {-# NOINLINE size1 #-}
   size2 x = unsafePerformIO (dm_size2 x)
   {-# NOINLINE size2 #-}
-  numel x = unsafePerformIO (dm_numel__1 x)
+  numel x = unsafePerformIO (dm_numel x)
   {-# NOINLINE numel #-}
-  mm x y = unsafePerformIO (C.casadi_mtimes__3 x y)
-  {-# NOINLINE mm #-}
+  mtimes x y = unsafePerformIO (C.casadi_mtimes__3 x y)
+  {-# NOINLINE mtimes #-}
   dot x y = unsafePerformIO (C.casadi_dot__1 x y)
   {-# NOINLINE dot #-}
   sum1 x = unsafePerformIO (C.casadi_sum1__1 x)
@@ -112,7 +114,7 @@ instance CMatrix DM where
   {-# NOINLINE zeros #-}
   zerosSp sp = unsafePerformIO (dm_zeros__1 sp)
   {-# NOINLINE zerosSp #-}
-  solve x y s m = unsafePerformIO (C.casadi_solve__4 x y s m)
+  solve x y s m = unsafePerformIO (mapM fromGType m >>= C.casadi_solve__4 x y s)
   {-# NOINLINE solve #-}
   solve' x y = unsafePerformIO (C.casadi_solve__5 x y)
   {-# NOINLINE solve' #-}
@@ -149,7 +151,7 @@ instance CMatrix DM where
   {-# NOINLINE inv #-}
   pinv x = unsafePerformIO (C.casadi_pinv__5 x)
   {-# NOINLINE pinv #-}
-  pinv' x n o = unsafePerformIO (C.casadi_pinv__4 x n o)
+  pinv' x n o = unsafePerformIO (mapM fromGType o >>= C.casadi_pinv__4 x n)
   {-# NOINLINE pinv' #-}
   cmax x y = unsafePerformIO (C.casadi_max__2 x y)
   {-# NOINLINE cmax #-}
@@ -163,6 +165,36 @@ instance CMatrix DM where
   {-# NOINLINE repmat #-}
   printme x y = unsafePerformIO (dm_printme x y)
   {-# NOINLINE printme #-}
+
+  sumSquare x = unsafePerformIO (C.casadi_sum_square__1 x)
+  {-# NOINLINE sumSquare #-}
+  invSkew x = unsafePerformIO (C.casadi_inv_skew__1 x)
+  {-# NOINLINE invSkew #-}
+  cnot x = unsafePerformIO (C.casadi_not__2 x)
+  {-# NOINLINE cnot #-}
+  nullspace x = unsafePerformIO (C.casadi_nullspace__1 x)
+  {-# NOINLINE nullspace #-}
+  norm1 x = unsafePerformIO (C.casadi_norm_1__1 x)
+  {-# NOINLINE norm1 #-}
+  norm2 x = unsafePerformIO (C.casadi_norm_2__1 x)
+  {-# NOINLINE norm2 #-}
+  normFro x = unsafePerformIO (C.casadi_norm_fro__1 x)
+  {-# NOINLINE normFro #-}
+  normInf x = unsafePerformIO (C.casadi_norm_inf__1 x)
+  {-# NOINLINE normInf #-}
+  kron x y = unsafePerformIO (C.casadi_kron__1 x y)
+  {-# NOINLINE kron #-}
+  mldivide x y = unsafePerformIO (C.casadi_mldivide__1 x y)
+  {-# NOINLINE mldivide #-}
+  mrdivide x y = unsafePerformIO (C.casadi_mrdivide__1 x y)
+  {-# NOINLINE mrdivide #-}
+  mpower x y = unsafePerformIO (C.casadi_mpower__1 x y)
+  {-# NOINLINE mpower #-}
+  ceil' x = unsafePerformIO (C.casadi_ceil__2 x)
+  {-# NOINLINE ceil' #-}
+  floor' x = unsafePerformIO (C.casadi_floor__2 x)
+  {-# NOINLINE floor' #-}
+
 
 instance Num DM where
   (+) x y = unsafePerformIO (C.casadi_plus__2 x y)

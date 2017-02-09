@@ -1,6 +1,6 @@
 # For more information, see: https://github.com/commercialhaskell/stack/blob/release/doc/yaml_configuration.md
 
-resolver: lts-7.0
+resolver: lts-7.14
 
 compiler-check: newer-minor
 
@@ -8,14 +8,14 @@ compiler-check: newer-minor
 packages:
 - .
 
-# - location:
-#     /home/greghorn/hslibs/casadi-bindings/genpath/casadi-bindings-core
+- location:
+    /home/greghorn/hslibs/casadi-bindings/genpath/casadi-bindings-core
 
 - location:
     /home/greghorn/hslibs/casadi-bindings/casadi-bindings-internal
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
 extra-deps: [ spatial-math-0.4.0.0
-            , casadi-bindings-core-3.1.0.0
+#            , casadi-bindings-core-3.1.0.22
             , TypeCompose-0.9.12
             ]

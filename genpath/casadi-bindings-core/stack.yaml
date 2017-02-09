@@ -1,0 +1,11 @@
+resolver: lts-7.14
+
+compiler-check: newer-minor
+
+# Local packages, usually specified by relative directory name
+packages:
+- .
+
+# Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
+extra-deps: [ casadi-bindings-internal-0.1.5.0
+            ]

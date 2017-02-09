@@ -1,22 +1,24 @@
 {-# OPTIONS_GHC -Wall #-}
 
-module Casadi.CMatrix
-       ( CMatrix(..)
+module Casadi.Matrix
+       ( CMatrix(..), SMatrix(..)
        , vertslice, horzslice
        ) where
 
+import qualified Data.Map as M
 import qualified Data.Vector as V
-import Data.Map ( Map )
 
 import Casadi.Core.Classes.DM ( DM )
-import Casadi.Core.Classes.GenericType ( GenericType )
+import Casadi.Core.Classes.Function ( Function )
 
+import Casadi.GenericType ( GType )
 import Casadi.Overloading ( Fmod, ArcTan2, SymOrd, Erf )
 import Casadi.Sparsity ( Sparsity )
 import Casadi.Slice ( Slice, slice )
 import Casadi.Viewable ( Viewable )
 
 -- TODO(greg): alphabetize this, it's getting too big to manage
+-- | casadi matrix
 class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
       => CMatrix a where
   blocksplit :: a -> V.Vector Int -> V.Vector Int -> V.Vector (V.Vector a)
@@ -30,11 +32,12 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   size2 :: a -> Int
   numel :: a -> Int
   -- | matrix matrix product
-  mm :: a -> a -> a
+  mtimes :: a -> a -> a
   -- | sumAll(x*y), x and y same dimension
   dot :: a -> a -> a
   sum1 :: a -> a
   sum2 :: a -> a
+  sumSquare :: a -> a
   -- | transpose
   trans :: a -> a
   diag :: a -> a
@@ -42,15 +45,16 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   ones :: (Int,Int) -> a
   zeros :: (Int,Int) -> a
   zerosSp :: Sparsity -> a
-  solve :: a -> a -> String -> Map String GenericType -> a
+  solve :: a -> a -> String -> M.Map String GType -> a
   solve' :: a -> a -> a
   indexed :: a -> Slice -> Slice -> a
   sparsity :: a -> Sparsity
   getNZ :: a -> Slice -> a
   setNZ :: a -> a -> Slice -> IO ()
   inv :: a -> a
+  invSkew :: a -> a
   pinv :: a -> a
-  pinv' :: a -> String -> Map String GenericType -> a
+  pinv' :: a -> String -> M.Map String GType -> a
   triu :: a -> a
   tril :: a -> a
   triu2symm :: a -> a
@@ -67,10 +71,44 @@ class (Eq a, Show a, Floating a, Fmod a, ArcTan2 a, SymOrd a, Erf a, Viewable a)
   cmax :: a -> a -> a
   cand :: a -> a -> a
   cor :: a -> a -> a
-  -- TODO(greg): any and all
+  cnot :: a -> a
+  nullspace :: a -> a
+  norm1 :: a -> a
+  norm2 :: a -> a
+  normFro :: a -> a
+  normInf :: a -> a
+
+--  if_else ::
+  -- TODO(greg): any and all, mac, repsum?
   repmat :: a -> (Int, Int) -> a
   printme :: a -> a -> a
-{-# DEPRECATED solve' "use the new solve, this one is going away" #-}
+  kron :: a -> a -> a
+  mldivide :: a -> a -> a
+  mrdivide :: a -> a -> a
+  mpower :: a -> a -> a
+--  matrix_expand :: a -> a -> a
+
+  ceil' :: a -> a
+  floor' :: a -> a
+
+
+-- | symbolic matrix
+class CMatrix a => SMatrix a where
+  sym :: String -> Int -> Int -> IO a
+  toFunction :: String -> V.Vector a -> V.Vector a -> M.Map String GType -> IO Function
+  toFunction' :: String -> V.Vector (String, a) -> V.Vector (String, a) -> M.Map String GType -> IO Function
+  -- | @gradient exp x@ is the gradient of exp w.r.t. x
+  gradient :: a -> a -> a
+  -- | @jacobian exp x@ is the jacobian of exp w.r.t. x
+  jacobian :: a -> a -> a
+  -- | @(hess, grad) = hessian exp args@
+  hessian :: a -> a -> (a, a)
+  jtimes :: a -> a -> a -> a
+  forward :: V.Vector a -> V.Vector a -> V.Vector (V.Vector a) -> M.Map String GType -> V.Vector (V.Vector a)
+  reverse :: V.Vector a -> V.Vector a -> V.Vector (V.Vector a) -> M.Map String GType -> V.Vector (V.Vector a)
+
+  callSym :: Function -> V.Vector a -> V.Vector a
+  callSym' :: Function -> M.Map String a -> M.Map String a
 
 
 vertslice :: CMatrix a => a -> V.Vector Int -> V.Vector a

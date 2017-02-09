@@ -166,6 +166,7 @@ typeParser isEnum = do
        , p "std::size_t" CSize
        , p "size_t" CSize
        , p "std::ostream" StdOstream
+       , p "casadi::Function::AuxOut" (StdMap StdString (StdVec StdString))
        , p "casadi::Dict" (StdMap StdString genericType)
        , p "casadi::GenericType::Dict" (StdMap StdString genericType)
        , p "casadi::DMDict" (StdMap StdString dmatrix)
@@ -592,6 +593,6 @@ readModule jsonpath = do
 
 main :: IO ()
 main = do
-  let jsonpath = "/home/ghorn/casadi_debian/casadi/build/swig/json/casadi.json"
+  let jsonpath = "/home/greghorn/casadi/build/swig/json/casadi.json"
   _ <- readModule jsonpath
   return ()

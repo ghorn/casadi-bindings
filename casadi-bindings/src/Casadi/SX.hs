@@ -2,19 +2,21 @@
 
 module Casadi.SX
        ( SX
-       , ssym, ssymV, ssymM, sgradient, sjacobian, shessian
        , ssparsify
        ) where
 
+import qualified Data.Vector as V
 import System.IO.Unsafe ( unsafePerformIO )
 import Linear.Conjugate ( Conjugate(..) )
 
+import qualified Casadi.Core.Classes.Function as C
 import Casadi.Core.Classes.SX
 import qualified Casadi.Core.Tools as C
 
-import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
-import Casadi.CMatrix ( CMatrix(..) )
 import Casadi.DM ()
+import Casadi.GenericType ( fromGType )
+import Casadi.Matrix ( CMatrix(..), SMatrix(..) )
+import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.Viewable ( Viewable(..) )
 
 instance Show SX where
@@ -34,35 +36,6 @@ instance Viewable SX where
   vsize1 = size1
   vsize2 = size2
   vrecoverDimension _ dim = zeros dim
-
-ssym :: String -> IO SX
-ssym = sx_sym__6
-
-ssymV :: String -> Int -> IO SX
-ssymV = sx_sym__7
-
-ssymM :: String -> Int -> Int -> IO SX
-ssymM = sx_sym__8
-
--- | @jacobian exp x@ is the jacobian of exp w.r.t. x
-sgradient :: SX -> SX -> SX
-sgradient x y = unsafePerformIO (C.casadi_gradient__0 x y)
-{-# NOINLINE sgradient #-}
-
--- | @jacobian exp x@ is the jacobian of exp w.r.t. x
-sjacobian :: SX -> SX -> SX
-sjacobian x y = unsafePerformIO (C.casadi_jacobian__0 x y)
-{-# NOINLINE sjacobian #-}
-
--- | @hessian exp x@ is the hessian of exp w.r.t. x
-shessian :: SX -> SX -> SX -> SX
-shessian x y z = unsafePerformIO (C.casadi_hessian__0 x y z)
-{-# NOINLINE shessian #-}
-
-ssparsify :: SX -> SX
-ssparsify x = unsafePerformIO (C.casadi_sparsify__0 x)
-{-# NOINLINE ssparsify #-}
-
 
 instance CMatrix SX where
   blocksplit x ix iy = unsafePerformIO (C.casadi_blocksplit__3 x ix iy)
@@ -85,10 +58,10 @@ instance CMatrix SX where
   {-# NOINLINE size1 #-}
   size2 x = unsafePerformIO (sx_size2 x)
   {-# NOINLINE size2 #-}
-  numel x = unsafePerformIO (sx_numel__1 x)
+  numel x = unsafePerformIO (sx_numel x)
   {-# NOINLINE numel #-}
-  mm x y = unsafePerformIO (C.casadi_mtimes__1 x y)
-  {-# NOINLINE mm #-}
+  mtimes x y = unsafePerformIO (C.casadi_mtimes__1 x y)
+  {-# NOINLINE mtimes #-}
   dot x y = unsafePerformIO (C.casadi_dot__0 x y)
   {-# NOINLINE dot #-}
   sum1 x = unsafePerformIO (C.casadi_sum1__0 x)
@@ -107,7 +80,7 @@ instance CMatrix SX where
   {-# NOINLINE zeros #-}
   zerosSp sp = unsafePerformIO (sx_zeros__1 sp)
   {-# NOINLINE zerosSp #-}
-  solve x y s m = unsafePerformIO (C.casadi_solve__1 x y s m)
+  solve x y s m = unsafePerformIO (mapM fromGType m >>= C.casadi_solve__1 x y s)
   {-# NOINLINE solve #-}
   solve' x y = unsafePerformIO (C.casadi_solve__2 x y)
   {-# NOINLINE solve' #-}
@@ -145,7 +118,7 @@ instance CMatrix SX where
   {-# NOINLINE inv #-}
   pinv x = unsafePerformIO (C.casadi_pinv__2 x)
   {-# NOINLINE pinv #-}
-  pinv' x n o = unsafePerformIO (C.casadi_pinv__1 x n o)
+  pinv' x n o = unsafePerformIO (mapM fromGType o >>= C.casadi_pinv__1 x n)
   {-# NOINLINE pinv' #-}
   cmax x y = unsafePerformIO (C.casadi_max__1 x y)
   {-# NOINLINE cmax #-}
@@ -159,6 +132,76 @@ instance CMatrix SX where
   {-# NOINLINE repmat #-}
   printme x y = unsafePerformIO (sx_printme x y)
   {-# NOINLINE printme #-}
+
+  sumSquare x = unsafePerformIO (C.casadi_sum_square__0 x)
+  {-# NOINLINE sumSquare #-}
+  invSkew x = unsafePerformIO (C.casadi_inv_skew__0 x)
+  {-# NOINLINE invSkew #-}
+  cnot x = unsafePerformIO (C.casadi_not__1 x)
+  {-# NOINLINE cnot #-}
+  nullspace x = unsafePerformIO (C.casadi_nullspace__0 x)
+  {-# NOINLINE nullspace #-}
+  norm1 x = unsafePerformIO (C.casadi_norm_1__0 x)
+  {-# NOINLINE norm1 #-}
+  norm2 x = unsafePerformIO (C.casadi_norm_2__0 x)
+  {-# NOINLINE norm2 #-}
+  normFro x = unsafePerformIO (C.casadi_norm_fro__0 x)
+  {-# NOINLINE normFro #-}
+  normInf x = unsafePerformIO (C.casadi_norm_inf__0 x)
+  {-# NOINLINE normInf #-}
+  kron x y = unsafePerformIO (C.casadi_kron__0 x y)
+  {-# NOINLINE kron #-}
+  mldivide x y = unsafePerformIO (C.casadi_mldivide__0 x y)
+  {-# NOINLINE mldivide #-}
+  mrdivide x y = unsafePerformIO (C.casadi_mrdivide__0 x y)
+  {-# NOINLINE mrdivide #-}
+  mpower x y = unsafePerformIO (C.casadi_mpower__0 x y)
+  {-# NOINLINE mpower #-}
+  ceil' x = unsafePerformIO (C.casadi_ceil__1 x)
+  {-# NOINLINE ceil' #-}
+  floor' x = unsafePerformIO (C.casadi_floor__1 x)
+  {-# NOINLINE floor' #-}
+
+
+instance SMatrix SX where
+  gradient x y = unsafePerformIO (C.casadi_gradient__0 x y)
+  {-# NOINLINE gradient #-}
+  jacobian x y = unsafePerformIO (C.casadi_jacobian__0 x y)
+  {-# NOINLINE jacobian #-}
+  hessian expr args = unsafePerformIO $ do
+    grad <- sx__10
+    hess <- C.casadi_hessian__0 expr args grad
+    return (hess, grad)
+  {-# NOINLINE hessian #-}
+  jtimes x y z = unsafePerformIO (C.casadi_jtimes__0 x y z)
+  {-# NOINLINE jtimes #-}
+  forward x y z w = unsafePerformIO (mapM fromGType w >>= C.casadi_forward__1 x y z)
+  {-# NOINLINE forward #-}
+  reverse x y z w = unsafePerformIO (mapM fromGType w >>= C.casadi_reverse__1 x y z)
+  {-# NOINLINE reverse #-}
+
+  sym = sx_sym__8
+
+  toFunction n x y opts0 = do
+    opts <- mapM fromGType opts0
+    C.function__11 n x y opts
+
+  toFunction' n nxx nyy opts0 = do
+    let (nx, x) = V.unzip nxx
+        (ny, y) = V.unzip nyy
+    opts <- mapM fromGType opts0
+    C.function__9 n x y nx ny opts
+
+  callSym f ins = unsafePerformIO (C.function_call__12 f ins)
+  {-# NOINLINE callSym #-}
+  callSym' f ins = unsafePerformIO (C.function_call__3 f ins)
+  {-# NOINLINE callSym' #-}
+
+
+ssparsify :: SX -> SX
+ssparsify x = unsafePerformIO (C.casadi_sparsify__0 x)
+{-# NOINLINE ssparsify #-}
+
 
 
 instance Num SX where

@@ -2,22 +2,23 @@
 
 module Casadi.MX
        ( MX
-       , sym, symV, symM, gradient, jacobian, hessian
-       , expand, attachAssert
+       , attachAssert
        ) where
 
-import Data.Vector ( Vector )
-import System.IO.Unsafe ( unsafePerformIO )
+import qualified Data.Vector as V
 import Linear.Conjugate ( Conjugate(..) )
+import System.IO.Unsafe ( unsafePerformIO )
 
+import qualified Casadi.Core.Classes.Function as C
 import Casadi.Core.Classes.MX
 import qualified Casadi.Core.Tools as C
 
-import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
-import Casadi.CMatrix ( CMatrix(..) )
 import Casadi.DM ()
-import Casadi.Viewable ( Viewable(..) )
+import Casadi.GenericType ( fromGType )
+import Casadi.Matrix ( CMatrix(..), SMatrix(..) )
+import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.SharedObject ( castSharedObject )
+import Casadi.Viewable ( Viewable(..) )
 
 instance Conjugate MX where
   conjugate = id
@@ -36,34 +37,6 @@ instance Viewable MX where
   vsize1 = size1
   vsize2 = size2
   vrecoverDimension _ dim = zeros dim
-
-sym :: String -> IO MX
-sym x = fmap castMX (mx_sym__6 x)
-
-symV :: String -> Int -> IO MX
-symV x y = fmap castMX (mx_sym__7 x y)
-
-symM :: String -> Int -> Int -> IO MX
-symM x y z = fmap castMX (mx_sym__8 x y z)
-
--- | @jacobian exp x@ is the jacobian of exp w.r.t. x
-gradient :: MX -> MX -> MX
-gradient x y = unsafePerformIO (C.casadi_gradient__3 x y)
-{-# NOINLINE gradient #-}
-
--- | @jacobian exp x@ is the jacobian of exp w.r.t. x
-jacobian :: MX -> MX -> MX
-jacobian x y = unsafePerformIO (C.casadi_jacobian__3 x y)
-{-# NOINLINE jacobian #-}
-
-expand :: Vector MX -> Vector MX
-expand x = unsafePerformIO (C.casadi_matrix_expand__3 x)
-{-# NOINLINE expand #-}
-
----- | @hessian exp x@ is the jacobian of exp w.r.t. x
-hessian :: MX -> MX -> MX -> MX
-hessian x y z = unsafePerformIO (C.casadi_hessian__3 x y z)
-{-# NOINLINE hessian #-}
 
 attachAssert :: MX -> MX -> String -> MX
 attachAssert x y msg = unsafePerformIO (mx_attachAssert__1 x y msg)
@@ -94,10 +67,10 @@ instance CMatrix MX where
   {-# NOINLINE size1 #-}
   size2 x = unsafePerformIO (mx_size2 x)
   {-# NOINLINE size2 #-}
-  numel x = unsafePerformIO (mx_numel__1 x)
+  numel x = unsafePerformIO (mx_numel x)
   {-# NOINLINE numel #-}
-  mm x y = unsafePerformIO (C.casadi_mtimes__7 x y)
-  {-# NOINLINE mm #-}
+  mtimes x y = unsafePerformIO (C.casadi_mtimes__7 x y)
+  {-# NOINLINE mtimes #-}
   dot x y = unsafePerformIO (C.casadi_dot__3 x y)
   {-# NOINLINE dot #-}
   sum1 x = unsafePerformIO (C.casadi_sum1__3 x)
@@ -116,7 +89,7 @@ instance CMatrix MX where
   {-# NOINLINE zeros #-}
   zerosSp sp = unsafePerformIO (mx_zeros__1 sp)
   {-# NOINLINE zerosSp #-}
-  solve x y s m = unsafePerformIO (C.casadi_solve__10 x y s m)
+  solve x y s m = unsafePerformIO (mapM fromGType m >>= C.casadi_solve__10 x y s)
   {-# NOINLINE solve #-}
   solve' x y = unsafePerformIO (C.casadi_solve__11 x y)
   {-# NOINLINE solve' #-}
@@ -154,7 +127,7 @@ instance CMatrix MX where
   {-# NOINLINE inv #-}
   pinv x = unsafePerformIO (C.casadi_pinv__11 x)
   {-# NOINLINE pinv #-}
-  pinv' x n o = unsafePerformIO (C.casadi_pinv__10 x n o)
+  pinv' x n o = unsafePerformIO (mapM fromGType o >>= C.casadi_pinv__10 x n)
   {-# NOINLINE pinv' #-}
   cmax x y = unsafePerformIO (C.casadi_max__4 x y)
   {-# NOINLINE cmax #-}
@@ -168,6 +141,70 @@ instance CMatrix MX where
   {-# NOINLINE repmat #-}
   printme x y = unsafePerformIO (mx_printme x y)
   {-# NOINLINE printme #-}
+
+  sumSquare x = unsafePerformIO (C.casadi_sum_square__3 x)
+  {-# NOINLINE sumSquare #-}
+  invSkew x = unsafePerformIO (C.casadi_inv_skew__3 x)
+  {-# NOINLINE invSkew #-}
+  cnot x = unsafePerformIO (C.casadi_not__4 x)
+  {-# NOINLINE cnot #-}
+  nullspace x = unsafePerformIO (C.casadi_nullspace__3 x)
+  {-# NOINLINE nullspace #-}
+  norm1 x = unsafePerformIO (C.casadi_norm_1__3 x)
+  {-# NOINLINE norm1 #-}
+  norm2 x = unsafePerformIO (C.casadi_norm_2__3 x)
+  {-# NOINLINE norm2 #-}
+  normFro x = unsafePerformIO (C.casadi_norm_fro__3 x)
+  {-# NOINLINE normFro #-}
+  normInf x = unsafePerformIO (C.casadi_norm_inf__3 x)
+  {-# NOINLINE normInf #-}
+  kron x y = unsafePerformIO (C.casadi_kron__3 x y)
+  {-# NOINLINE kron #-}
+  mldivide x y = unsafePerformIO (C.casadi_mldivide__3 x y)
+  {-# NOINLINE mldivide #-}
+  mrdivide x y = unsafePerformIO (C.casadi_mrdivide__3 x y)
+  {-# NOINLINE mrdivide #-}
+  mpower x y = unsafePerformIO (C.casadi_mpower__3 x y)
+  {-# NOINLINE mpower #-}
+  ceil' x = unsafePerformIO (C.casadi_ceil__4 x)
+  {-# NOINLINE ceil' #-}
+  floor' x = unsafePerformIO (C.casadi_floor__4 x)
+  {-# NOINLINE floor' #-}
+
+
+instance SMatrix MX where
+  gradient x y = unsafePerformIO (C.casadi_gradient__3 x y)
+  {-# NOINLINE gradient #-}
+  jacobian x y = unsafePerformIO (C.casadi_jacobian__3 x y)
+  {-# NOINLINE jacobian #-}
+  hessian expr args = unsafePerformIO $ do
+    grad <- mx__7
+    hess <- C.casadi_hessian__3 expr args grad
+    return (hess, grad)
+  {-# NOINLINE hessian #-}
+  jtimes x y z = unsafePerformIO (C.casadi_jtimes__6 x y z)
+  {-# NOINLINE jtimes #-}
+  forward x y z w = unsafePerformIO (mapM fromGType w >>= C.casadi_forward__7 x y z)
+  {-# NOINLINE forward #-}
+  reverse x y z w = unsafePerformIO (mapM fromGType w >>= C.casadi_reverse__7 x y z)
+  {-# NOINLINE reverse #-}
+
+  sym = mx_sym__8
+
+  toFunction n x y opts0 = do
+    opts <- mapM fromGType opts0
+    C.function__5 n x y opts
+
+  toFunction' n nxx nyy opts0 = do
+    let (nx, x) = V.unzip nxx
+        (ny, y) = V.unzip nyy
+    opts <- mapM fromGType opts0
+    C.function__3 n x y nx ny opts
+
+  callSym f ins = unsafePerformIO (C.function_call__9 f ins)
+  {-# NOINLINE callSym #-}
+  callSym' f ins = unsafePerformIO (C.function_call__0 f ins)
+  {-# NOINLINE callSym' #-}
 
 
 instance Num MX where

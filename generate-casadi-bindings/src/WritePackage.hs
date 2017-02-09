@@ -19,7 +19,7 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "3.1.0.0"
+version = "3.1.0.22"
 
 internalVersion :: String
 internalVersion = "0.1.5.0"
@@ -107,7 +107,7 @@ toPackage mod' =
                HS.writeDataModule allclasses inherit)
   , pStack = ( "stack.yaml"
              , unlines
-               [ "resolver: lts-7.0"
+               [ "resolver: lts-7.14"
                , ""
                , "compiler-check: newer-minor"
                , ""
@@ -130,7 +130,7 @@ toPackage mod' =
               , "license:             LGPL-3"
               , "license-file:        LICENSE"
               , "category:            Numerical, Math"
-              , "copyright:           (c) 2013-2016 Greg Horn"
+              , "copyright:           (c) 2013-2017 Greg Horn"
               , "author:              Greg Horn"
               , "maintainer:          gregmainland@gmail.com"
               , "build-type:          Simple"
