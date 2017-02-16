@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             3.1.0.22
+version:             3.1.0.23
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:
@@ -70,7 +70,7 @@ library
   extra-libraries:     stdc++ casadi
   cc-options:          -Wall -Wno-sign-compare -std=c++11
   ghc-prof-options:    -O2
-  ghc-options:         -O2
+  ghc-options:         -O2 -Wall -Werror
 
 source-repository head
   type: git

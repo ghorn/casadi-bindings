@@ -14,7 +14,6 @@ import qualified Data.Binary as B
 import Data.Vector.Binary () -- instances
 
 import Casadi.Core.Classes.DM
-import qualified Casadi.Core.Classes.Function as C
 import Casadi.Core.Classes.Sparsity ( Sparsity )
 import qualified Casadi.Core.Tools as C
 

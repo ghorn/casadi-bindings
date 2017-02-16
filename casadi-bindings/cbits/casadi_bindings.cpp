@@ -144,3 +144,29 @@ extern "C" float c_fmodf(float x, float y);
 float c_fmodf(float x, float y) {
   return fmodf(x, y);
 }
+
+extern "C"
+void hs_call_casadi_function_with_pointers(
+  std::string ** err_msg,
+  casadi::Function &f,
+  double ** arg, int narg,
+  double ** res, int nres) {
+  try {
+    // setup inputs
+    std::vector<const double*> argv(narg);
+    for (int k = 0; k < narg; k++) {
+      argv[k] = arg[k];
+    }
+
+    // setup outputs
+    std::vector<double*> resv(nres);
+    for (int k = 0; k < nres; k++) {
+      resv[k] = res[k];
+    }
+
+    // call the function
+    f(argv, resv);
+  } catch (std::exception& ex) {
+    *err_msg = new std::string(ex.what());
+  }
+}
