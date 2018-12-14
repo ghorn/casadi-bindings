@@ -12,9 +12,10 @@ module Casadi.Core.Classes.Variable
          variable__0,
          variable__1,
          variable__2,
-         variable_getDescription,
-         variable_getRepresentation,
+         variable_get_str__0,
+         variable_get_str__1,
          variable_name,
+         variable_type_name,
        ) where
 
 
@@ -119,6 +120,62 @@ variable__2 = casadi__Variable__CONSTRUCTOR__2
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Variable__get_str__0" c_casadi__Variable__get_str__0
+  :: Ptr (Ptr StdString) -> Ptr Variable' -> IO (Ptr StdString)
+
+casadi__Variable__get_str__0
+  :: Variable -> IO String
+casadi__Variable__get_str__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Variable__get_str__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+variable_get_str__0 :: VariableClass a => a -> IO String
+variable_get_str__0 x = casadi__Variable__get_str__0 (castVariable x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Variable__get_str__1" c_casadi__Variable__get_str__1
+  :: Ptr (Ptr StdString) -> Ptr Variable' -> CInt -> IO (Ptr StdString)
+
+casadi__Variable__get_str__1
+  :: Variable -> Bool -> IO String
+casadi__Variable__get_str__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Variable__get_str__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+variable_get_str__1 :: VariableClass a => a -> Bool -> IO String
+variable_get_str__1 x = casadi__Variable__get_str__1 (castVariable x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Variable__name" c_casadi__Variable__name
   :: Ptr (Ptr StdString) -> Ptr Variable' -> IO (Ptr StdString)
 
@@ -146,16 +203,16 @@ variable_name x = casadi__Variable__name (castVariable x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Variable__getRepresentation" c_casadi__Variable__getRepresentation
+foreign import ccall unsafe "casadi__Variable__type_name" c_casadi__Variable__type_name
   :: Ptr (Ptr StdString) -> Ptr Variable' -> IO (Ptr StdString)
 
-casadi__Variable__getRepresentation
+casadi__Variable__type_name
   :: Variable -> IO String
-casadi__Variable__getRepresentation x0 = do
+casadi__Variable__type_name x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Variable__getRepresentation errStrPtrP x0'
+  ret0 <- c_casadi__Variable__type_name errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -168,33 +225,6 @@ casadi__Variable__getRepresentation x0 = do
 
 
 -- classy wrapper
-variable_getRepresentation :: VariableClass a => a -> IO String
-variable_getRepresentation x = casadi__Variable__getRepresentation (castVariable x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Variable__getDescription" c_casadi__Variable__getDescription
-  :: Ptr (Ptr StdString) -> Ptr Variable' -> IO (Ptr StdString)
-
-casadi__Variable__getDescription
-  :: Variable -> IO String
-casadi__Variable__getDescription x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Variable__getDescription errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-variable_getDescription :: VariableClass a => a -> IO String
-variable_getDescription x = casadi__Variable__getDescription (castVariable x)
+variable_type_name :: VariableClass a => a -> IO String
+variable_type_name x = casadi__Variable__type_name (castVariable x)
 

@@ -11,23 +11,33 @@ module Casadi.Core.Classes.Callback
          CallbackClass(..),
          callback__0,
          callback__1,
+         callback_alloc_arg__0,
+         callback_alloc_arg__1,
+         callback_alloc_iw__0,
+         callback_alloc_iw__1,
+         callback_alloc_res__0,
+         callback_alloc_res__1,
+         callback_alloc_w__0,
+         callback_alloc_w__1,
          callback_construct__0,
          callback_construct__1,
          callback_eval,
          callback_finalize,
          callback_get_forward,
          callback_get_jacobian,
-         callback_get_n_forward,
          callback_get_n_in,
          callback_get_n_out,
-         callback_get_n_reverse,
          callback_get_name_in,
          callback_get_name_out,
          callback_get_reverse,
          callback_get_sparsity_in,
          callback_get_sparsity_out,
+         callback_has_forward,
          callback_has_jacobian,
+         callback_has_reverse,
          callback_init,
+         callback_type_name,
+         callback_uses_output,
        ) where
 
 
@@ -100,6 +110,246 @@ casadi__Callback__CONSTRUCTOR__1  = do
 -- classy wrapper
 callback__1 :: IO Callback
 callback__1 = casadi__Callback__CONSTRUCTOR__1
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_arg__0" c_casadi__Callback__alloc_arg__0
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> IO ()
+
+casadi__Callback__alloc_arg__0
+  :: Callback -> CSize -> IO ()
+casadi__Callback__alloc_arg__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_arg__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_arg__0 :: CallbackClass a => a -> CSize -> IO ()
+callback_alloc_arg__0 x = casadi__Callback__alloc_arg__0 (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_arg__1" c_casadi__Callback__alloc_arg__1
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> CInt -> IO ()
+
+casadi__Callback__alloc_arg__1
+  :: Callback -> CSize -> Bool -> IO ()
+casadi__Callback__alloc_arg__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_arg__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_arg__1 :: CallbackClass a => a -> CSize -> Bool -> IO ()
+callback_alloc_arg__1 x = casadi__Callback__alloc_arg__1 (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_iw__0" c_casadi__Callback__alloc_iw__0
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> IO ()
+
+casadi__Callback__alloc_iw__0
+  :: Callback -> CSize -> IO ()
+casadi__Callback__alloc_iw__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_iw__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_iw__0 :: CallbackClass a => a -> CSize -> IO ()
+callback_alloc_iw__0 x = casadi__Callback__alloc_iw__0 (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_iw__1" c_casadi__Callback__alloc_iw__1
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> CInt -> IO ()
+
+casadi__Callback__alloc_iw__1
+  :: Callback -> CSize -> Bool -> IO ()
+casadi__Callback__alloc_iw__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_iw__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_iw__1 :: CallbackClass a => a -> CSize -> Bool -> IO ()
+callback_alloc_iw__1 x = casadi__Callback__alloc_iw__1 (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_res__0" c_casadi__Callback__alloc_res__0
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> IO ()
+
+casadi__Callback__alloc_res__0
+  :: Callback -> CSize -> IO ()
+casadi__Callback__alloc_res__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_res__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_res__0 :: CallbackClass a => a -> CSize -> IO ()
+callback_alloc_res__0 x = casadi__Callback__alloc_res__0 (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_res__1" c_casadi__Callback__alloc_res__1
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> CInt -> IO ()
+
+casadi__Callback__alloc_res__1
+  :: Callback -> CSize -> Bool -> IO ()
+casadi__Callback__alloc_res__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_res__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_res__1 :: CallbackClass a => a -> CSize -> Bool -> IO ()
+callback_alloc_res__1 x = casadi__Callback__alloc_res__1 (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_w__0" c_casadi__Callback__alloc_w__0
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> IO ()
+
+casadi__Callback__alloc_w__0
+  :: Callback -> CSize -> IO ()
+casadi__Callback__alloc_w__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_w__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_w__0 :: CallbackClass a => a -> CSize -> IO ()
+callback_alloc_w__0 x = casadi__Callback__alloc_w__0 (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__alloc_w__1" c_casadi__Callback__alloc_w__1
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CSize -> CInt -> IO ()
+
+casadi__Callback__alloc_w__1
+  :: Callback -> CSize -> Bool -> IO ()
+casadi__Callback__alloc_w__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__alloc_w__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ()
+
+
+
+-- classy wrapper
+callback_alloc_w__1 :: CallbackClass a => a -> CSize -> Bool -> IO ()
+callback_alloc_w__1 x = casadi__Callback__alloc_w__1 (castCallback x)
 
 
 -- direct wrapper
@@ -220,10 +470,10 @@ callback_finalize x = casadi__Callback__finalize (castCallback x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_forward" c_casadi__Callback__get_forward
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> Ptr StdString -> CInt -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Callback__get_forward
-  :: Callback -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+  :: Callback -> Int -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
 casadi__Callback__get_forward x0 x1 x2 x3 x4 x5 = do
   x0' <- marshal x0
   x1' <- marshal x1
@@ -251,23 +501,25 @@ casadi__Callback__get_forward x0 x1 x2 x3 x4 x5 = do
 
 
 -- classy wrapper
-callback_get_forward :: CallbackClass a => a -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+callback_get_forward :: CallbackClass a => a -> Int -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
 callback_get_forward x = casadi__Callback__get_forward (castCallback x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_jacobian" c_casadi__Callback__get_jacobian
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Callback__get_jacobian
-  :: Callback -> String -> M.Map String GenericType -> IO Function
-casadi__Callback__get_jacobian x0 x1 x2 = do
+  :: Callback -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+casadi__Callback__get_jacobian x0 x1 x2 x3 x4 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Callback__get_jacobian errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__Callback__get_jacobian errStrPtrP x0' x1' x2' x3' x4'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -276,46 +528,21 @@ casadi__Callback__get_jacobian x0 x1 x2 = do
   marshalFree x0 x0'
   marshalFree x1 x1'
   marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
 
   return ret
 
 
 
 -- classy wrapper
-callback_get_jacobian :: CallbackClass a => a -> String -> M.Map String GenericType -> IO Function
+callback_get_jacobian :: CallbackClass a => a -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
 callback_get_jacobian x = casadi__Callback__get_jacobian (castCallback x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Callback__get_n_forward" c_casadi__Callback__get_n_forward
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> IO CInt
-
-casadi__Callback__get_n_forward
-  :: Callback -> IO Int
-casadi__Callback__get_n_forward x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Callback__get_n_forward errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-callback_get_n_forward :: CallbackClass a => a -> IO Int
-callback_get_n_forward x = casadi__Callback__get_n_forward (castCallback x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_n_in" c_casadi__Callback__get_n_in
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> IO CLLong
 
 casadi__Callback__get_n_in
   :: Callback -> IO Int
@@ -342,7 +569,7 @@ callback_get_n_in x = casadi__Callback__get_n_in (castCallback x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_n_out" c_casadi__Callback__get_n_out
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> IO CLLong
 
 casadi__Callback__get_n_out
   :: Callback -> IO Int
@@ -368,35 +595,8 @@ callback_get_n_out x = casadi__Callback__get_n_out (castCallback x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Callback__get_n_reverse" c_casadi__Callback__get_n_reverse
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> IO CInt
-
-casadi__Callback__get_n_reverse
-  :: Callback -> IO Int
-casadi__Callback__get_n_reverse x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Callback__get_n_reverse errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-callback_get_n_reverse :: CallbackClass a => a -> IO Int
-callback_get_n_reverse x = casadi__Callback__get_n_reverse (castCallback x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_name_in" c_casadi__Callback__get_name_in
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> IO (Ptr StdString)
 
 casadi__Callback__get_name_in
   :: Callback -> Int -> IO String
@@ -425,7 +625,7 @@ callback_get_name_in x = casadi__Callback__get_name_in (castCallback x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_name_out" c_casadi__Callback__get_name_out
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> IO (Ptr StdString)
 
 casadi__Callback__get_name_out
   :: Callback -> Int -> IO String
@@ -454,10 +654,10 @@ callback_get_name_out x = casadi__Callback__get_name_out (castCallback x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_reverse" c_casadi__Callback__get_reverse
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> Ptr StdString -> CInt -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Callback__get_reverse
-  :: Callback -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+  :: Callback -> Int -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
 casadi__Callback__get_reverse x0 x1 x2 x3 x4 x5 = do
   x0' <- marshal x0
   x1' <- marshal x1
@@ -485,13 +685,13 @@ casadi__Callback__get_reverse x0 x1 x2 x3 x4 x5 = do
 
 
 -- classy wrapper
-callback_get_reverse :: CallbackClass a => a -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+callback_get_reverse :: CallbackClass a => a -> Int -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
 callback_get_reverse x = casadi__Callback__get_reverse (castCallback x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_sparsity_in" c_casadi__Callback__get_sparsity_in
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Callback__get_sparsity_in
   :: Callback -> Int -> IO Sparsity
@@ -520,7 +720,7 @@ callback_get_sparsity_in x = casadi__Callback__get_sparsity_in (castCallback x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Callback__get_sparsity_out" c_casadi__Callback__get_sparsity_out
-  :: Ptr (Ptr StdString) -> Ptr Callback' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Callback__get_sparsity_out
   :: Callback -> Int -> IO Sparsity
@@ -545,6 +745,35 @@ casadi__Callback__get_sparsity_out x0 x1 = do
 -- classy wrapper
 callback_get_sparsity_out :: CallbackClass a => a -> Int -> IO Sparsity
 callback_get_sparsity_out x = casadi__Callback__get_sparsity_out (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__has_forward" c_casadi__Callback__has_forward
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> IO CInt
+
+casadi__Callback__has_forward
+  :: Callback -> Int -> IO Bool
+casadi__Callback__has_forward x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__has_forward errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+callback_has_forward :: CallbackClass a => a -> Int -> IO Bool
+callback_has_forward x = casadi__Callback__has_forward (castCallback x)
 
 
 -- direct wrapper
@@ -575,6 +804,35 @@ callback_has_jacobian x = casadi__Callback__has_jacobian (castCallback x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Callback__has_reverse" c_casadi__Callback__has_reverse
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> CLLong -> IO CInt
+
+casadi__Callback__has_reverse
+  :: Callback -> Int -> IO Bool
+casadi__Callback__has_reverse x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__has_reverse errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+callback_has_reverse :: CallbackClass a => a -> Int -> IO Bool
+callback_has_reverse x = casadi__Callback__has_reverse (castCallback x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Callback__init" c_casadi__Callback__init
   :: Ptr (Ptr StdString) -> Ptr Callback' -> IO ()
 
@@ -599,4 +857,58 @@ casadi__Callback__init x0 = do
 -- classy wrapper
 callback_init :: CallbackClass a => a -> IO ()
 callback_init x = casadi__Callback__init (castCallback x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__type_name" c_casadi__Callback__type_name
+  :: Ptr (Ptr StdString) -> IO (Ptr StdString)
+
+casadi__Callback__type_name
+  :: IO String
+casadi__Callback__type_name  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__type_name errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+callback_type_name :: IO String
+callback_type_name = casadi__Callback__type_name
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Callback__uses_output" c_casadi__Callback__uses_output
+  :: Ptr (Ptr StdString) -> Ptr Callback' -> IO CInt
+
+casadi__Callback__uses_output
+  :: Callback -> IO Bool
+casadi__Callback__uses_output x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Callback__uses_output errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+callback_uses_output :: CallbackClass a => a -> IO Bool
+callback_uses_output x = casadi__Callback__uses_output (castCallback x)
 

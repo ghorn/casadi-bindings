@@ -2,6 +2,7 @@
 #include <casadi/core/casadi_interrupt.hpp>
 #include <cmath>
 #include <stdexcept>
+#include <typeinfo>
 #include "../marshal.hpp"
 
 // ================== function "casadi::casadi_abs" ===============
@@ -1841,20 +1842,144 @@ casadi::MX*
 // ================== function "casadi::casadi_blockcat" ===============
 // cppName: "casadi::casadi_blockcat"
 // cWrapperName: "casadi_blockcat__0"
+// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0)"
+// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "SX"))))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_blockcat__0(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0)"
+// friendWrap: True
+// fName: "casadi_blockcat"
+// call: "        casadi::SX ret = blockcat(x0_);"
+extern "C"
+casadi::SX*
+    casadi_blockcat__0(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0);
+casadi::SX*
+    casadi_blockcat__0(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0){
+    try {
+        std::vector< std::vector< casadi::SX > > x0_ = Marshaling<std::vector< std::vector< casadi::SX > >,std::vector< std::vector< casadi::SX* >* >*>::marshal(x0);
+
+        casadi::SX ret = blockcat(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_blockcat" ===============
+// cppName: "casadi::casadi_blockcat"
+// cWrapperName: "casadi_blockcat__1"
+// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0)"
+// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "DM"))))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_blockcat__1(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0)"
+// friendWrap: True
+// fName: "casadi_blockcat"
+// call: "        casadi::DM ret = blockcat(x0_);"
+extern "C"
+casadi::DM*
+    casadi_blockcat__1(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0);
+casadi::DM*
+    casadi_blockcat__1(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0){
+    try {
+        std::vector< std::vector< casadi::DM > > x0_ = Marshaling<std::vector< std::vector< casadi::DM > >,std::vector< std::vector< casadi::DM* >* >*>::marshal(x0);
+
+        casadi::DM ret = blockcat(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_blockcat" ===============
+// cppName: "casadi::casadi_blockcat"
+// cWrapperName: "casadi_blockcat__2"
+// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0)"
+// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "IM"))))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_blockcat__2(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0)"
+// friendWrap: True
+// fName: "casadi_blockcat"
+// call: "        casadi::IM ret = blockcat(x0_);"
+extern "C"
+casadi::IM*
+    casadi_blockcat__2(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0);
+casadi::IM*
+    casadi_blockcat__2(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0){
+    try {
+        std::vector< std::vector< casadi::IM > > x0_ = Marshaling<std::vector< std::vector< casadi::IM > >,std::vector< std::vector< casadi::IM* >* >*>::marshal(x0);
+
+        casadi::IM ret = blockcat(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_blockcat" ===============
+// cppName: "casadi::casadi_blockcat"
+// cWrapperName: "casadi_blockcat__3"
+// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0)"
+// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "MX"))))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_blockcat__3(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0)"
+// friendWrap: True
+// fName: "casadi_blockcat"
+// call: "        casadi::MX ret = blockcat(x0_);"
+extern "C"
+casadi::MX*
+    casadi_blockcat__3(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0);
+casadi::MX*
+    casadi_blockcat__3(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0){
+    try {
+        std::vector< std::vector< casadi::MX > > x0_ = Marshaling<std::vector< std::vector< casadi::MX > >,std::vector< std::vector< casadi::MX* >* >*>::marshal(x0);
+
+        casadi::MX ret = blockcat(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_blockcat" ===============
+// cppName: "casadi::casadi_blockcat"
+// cWrapperName: "casadi_blockcat__4"
 // protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_blockcat__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3)"
+// proto: "casadi::SX*\n    casadi_blockcat__4(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3)"
 // friendWrap: True
 // fName: "casadi_blockcat"
 // call: "        casadi::SX ret = blockcat(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::SX*
-    casadi_blockcat__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3);
+    casadi_blockcat__4(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3);
 casadi::SX*
-    casadi_blockcat__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3){
+    casadi_blockcat__4(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
@@ -1877,52 +2002,21 @@ casadi::SX*
 
 // ================== function "casadi::casadi_blockcat" ===============
 // cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__1"
-// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0)"
-// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "SX"))))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "SX")
-// args: "(x0_)"
-// cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_blockcat__1(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0)"
-// friendWrap: True
-// fName: "casadi_blockcat"
-// call: "        casadi::SX ret = blockcat(x0_);"
-extern "C"
-casadi::SX*
-    casadi_blockcat__1(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0);
-casadi::SX*
-    casadi_blockcat__1(std::string ** err_msg, std::vector< std::vector< casadi::SX* >* >* x0){
-    try {
-        std::vector< std::vector< casadi::SX > > x0_ = Marshaling<std::vector< std::vector< casadi::SX > >,std::vector< std::vector< casadi::SX* >* >*>::marshal(x0);
-
-        casadi::SX ret = blockcat(x0_);
-        // x0 is not a swig output
-
-        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_blockcat" ===============
-// cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__2"
+// cWrapperName: "casadi_blockcat__5"
 // protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_blockcat__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3)"
+// proto: "casadi::DM*\n    casadi_blockcat__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3)"
 // friendWrap: True
 // fName: "casadi_blockcat"
 // call: "        casadi::DM ret = blockcat(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::DM*
-    casadi_blockcat__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3);
+    casadi_blockcat__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3);
 casadi::DM*
-    casadi_blockcat__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3){
+    casadi_blockcat__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
@@ -1945,52 +2039,21 @@ casadi::DM*
 
 // ================== function "casadi::casadi_blockcat" ===============
 // cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__3"
-// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0)"
-// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "DM"))))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "DM")
-// args: "(x0_)"
-// cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_blockcat__3(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0)"
-// friendWrap: True
-// fName: "casadi_blockcat"
-// call: "        casadi::DM ret = blockcat(x0_);"
-extern "C"
-casadi::DM*
-    casadi_blockcat__3(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0);
-casadi::DM*
-    casadi_blockcat__3(std::string ** err_msg, std::vector< std::vector< casadi::DM* >* >* x0){
-    try {
-        std::vector< std::vector< casadi::DM > > x0_ = Marshaling<std::vector< std::vector< casadi::DM > >,std::vector< std::vector< casadi::DM* >* >*>::marshal(x0);
-
-        casadi::DM ret = blockcat(x0_);
-        // x0 is not a swig output
-
-        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_blockcat" ===============
-// cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__4"
+// cWrapperName: "casadi_blockcat__6"
 // protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_blockcat__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3)"
+// proto: "casadi::IM*\n    casadi_blockcat__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3)"
 // friendWrap: True
 // fName: "casadi_blockcat"
 // call: "        casadi::IM ret = blockcat(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::IM*
-    casadi_blockcat__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3);
+    casadi_blockcat__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3);
 casadi::IM*
-    casadi_blockcat__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3){
+    casadi_blockcat__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
@@ -2013,52 +2076,21 @@ casadi::IM*
 
 // ================== function "casadi::casadi_blockcat" ===============
 // cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__5"
-// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0)"
-// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "IM"))))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "IM")
-// args: "(x0_)"
-// cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_blockcat__5(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0)"
-// friendWrap: True
-// fName: "casadi_blockcat"
-// call: "        casadi::IM ret = blockcat(x0_);"
-extern "C"
-casadi::IM*
-    casadi_blockcat__5(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0);
-casadi::IM*
-    casadi_blockcat__5(std::string ** err_msg, std::vector< std::vector< casadi::IM* >* >* x0){
-    try {
-        std::vector< std::vector< casadi::IM > > x0_ = Marshaling<std::vector< std::vector< casadi::IM > >,std::vector< std::vector< casadi::IM* >* >*>::marshal(x0);
-
-        casadi::IM ret = blockcat(x0_);
-        // x0 is not a swig output
-
-        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_blockcat" ===============
-// cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__6"
+// cWrapperName: "casadi_blockcat__7"
 // protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_blockcat__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3)"
+// proto: "casadi::MX*\n    casadi_blockcat__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3)"
 // friendWrap: True
 // fName: "casadi_blockcat"
 // call: "        casadi::MX ret = blockcat(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::MX*
-    casadi_blockcat__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3);
+    casadi_blockcat__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3);
 casadi::MX*
-    casadi_blockcat__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3){
+    casadi_blockcat__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
         casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
@@ -2070,37 +2102,6 @@ casadi::MX*
         // x1 is not a swig output
         // x2 is not a swig output
         // x3 is not a swig output
-
-        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_blockcat" ===============
-// cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__7"
-// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0)"
-// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "MX"))))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "MX")
-// args: "(x0_)"
-// cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_blockcat__7(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0)"
-// friendWrap: True
-// fName: "casadi_blockcat"
-// call: "        casadi::MX ret = blockcat(x0_);"
-extern "C"
-casadi::MX*
-    casadi_blockcat__7(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0);
-casadi::MX*
-    casadi_blockcat__7(std::string ** err_msg, std::vector< std::vector< casadi::MX* >* >* x0){
-    try {
-        std::vector< std::vector< casadi::MX > > x0_ = Marshaling<std::vector< std::vector< casadi::MX > >,std::vector< std::vector< casadi::MX* >* >*>::marshal(x0);
-
-        casadi::MX ret = blockcat(x0_);
-        // x0 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -2147,37 +2148,6 @@ casadi::Sparsity*
 }
 
 
-// ================== function "casadi::casadi_blockcat" ===============
-// cppName: "casadi::casadi_blockcat"
-// cWrapperName: "casadi_blockcat__9"
-// protoArgs: "(std::string ** err_msg, std::vector< std::vector< casadi::Sparsity* >* >* x0)"
-// params: [(Ref (Const (StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
-// args: "(x0_)"
-// cWrapperRetType: "casadi::Sparsity*"
-// proto: "casadi::Sparsity*\n    casadi_blockcat__9(std::string ** err_msg, std::vector< std::vector< casadi::Sparsity* >* >* x0)"
-// friendWrap: True
-// fName: "casadi_blockcat"
-// call: "        casadi::Sparsity ret = blockcat(x0_);"
-extern "C"
-casadi::Sparsity*
-    casadi_blockcat__9(std::string ** err_msg, std::vector< std::vector< casadi::Sparsity* >* >* x0);
-casadi::Sparsity*
-    casadi_blockcat__9(std::string ** err_msg, std::vector< std::vector< casadi::Sparsity* >* >* x0){
-    try {
-        std::vector< std::vector< casadi::Sparsity > > x0_ = Marshaling<std::vector< std::vector< casadi::Sparsity > >,std::vector< std::vector< casadi::Sparsity* >* >*>::marshal(x0);
-
-        casadi::Sparsity ret = blockcat(x0_);
-        // x0 is not a swig output
-
-        return WrapReturn< casadi::Sparsity*, casadi::Sparsity >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__0"
@@ -2212,23 +2182,23 @@ std::vector< std::vector< casadi::SX* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "SX")))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::SX* >* >*"
-// proto: "std::vector< std::vector< casadi::SX* >* >*\n    casadi_blocksplit__1(std::string ** err_msg, casadi::SX* x0, int x1)"
+// proto: "std::vector< std::vector< casadi::SX* >* >*\n    casadi_blocksplit__1(std::string ** err_msg, casadi::SX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::SX > > ret = blocksplit(x0_, x1_);"
 extern "C"
 std::vector< std::vector< casadi::SX* >* >*
-    casadi_blocksplit__1(std::string ** err_msg, casadi::SX* x0, int x1);
+    casadi_blocksplit__1(std::string ** err_msg, casadi::SX* x0, long long x1);
 std::vector< std::vector< casadi::SX* >* >*
-    casadi_blocksplit__1(std::string ** err_msg, casadi::SX* x0, int x1){
+    casadi_blocksplit__1(std::string ** err_msg, casadi::SX* x0, long long x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< std::vector< casadi::SX > > ret = blocksplit(x0_, x1_);
         // x0 is not a swig output
@@ -2245,24 +2215,24 @@ std::vector< std::vector< casadi::SX* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "SX")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::SX* >* >*"
-// proto: "std::vector< std::vector< casadi::SX* >* >*\n    casadi_blocksplit__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
+// proto: "std::vector< std::vector< casadi::SX* >* >*\n    casadi_blocksplit__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::SX > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::SX* >* >*
-    casadi_blocksplit__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2);
+    casadi_blocksplit__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
 std::vector< std::vector< casadi::SX* >* >*
-    casadi_blocksplit__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2){
+    casadi_blocksplit__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< std::vector< casadi::SX > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2280,24 +2250,24 @@ std::vector< std::vector< casadi::SX* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__3"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "SX")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::SX* >* >*"
-// proto: "std::vector< std::vector< casadi::SX* >* >*\n    casadi_blocksplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< std::vector< casadi::SX* >* >*\n    casadi_blocksplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::SX > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::SX* >* >*
-    casadi_blocksplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_blocksplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< std::vector< casadi::SX* >* >*
-    casadi_blocksplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_blocksplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< std::vector< casadi::SX > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2346,23 +2316,23 @@ std::vector< std::vector< casadi::DM* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "DM")))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::DM* >* >*"
-// proto: "std::vector< std::vector< casadi::DM* >* >*\n    casadi_blocksplit__5(std::string ** err_msg, casadi::DM* x0, int x1)"
+// proto: "std::vector< std::vector< casadi::DM* >* >*\n    casadi_blocksplit__5(std::string ** err_msg, casadi::DM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::DM > > ret = blocksplit(x0_, x1_);"
 extern "C"
 std::vector< std::vector< casadi::DM* >* >*
-    casadi_blocksplit__5(std::string ** err_msg, casadi::DM* x0, int x1);
+    casadi_blocksplit__5(std::string ** err_msg, casadi::DM* x0, long long x1);
 std::vector< std::vector< casadi::DM* >* >*
-    casadi_blocksplit__5(std::string ** err_msg, casadi::DM* x0, int x1){
+    casadi_blocksplit__5(std::string ** err_msg, casadi::DM* x0, long long x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< std::vector< casadi::DM > > ret = blocksplit(x0_, x1_);
         // x0 is not a swig output
@@ -2379,24 +2349,24 @@ std::vector< std::vector< casadi::DM* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__6"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "DM")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::DM* >* >*"
-// proto: "std::vector< std::vector< casadi::DM* >* >*\n    casadi_blocksplit__6(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
+// proto: "std::vector< std::vector< casadi::DM* >* >*\n    casadi_blocksplit__6(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::DM > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::DM* >* >*
-    casadi_blocksplit__6(std::string ** err_msg, casadi::DM* x0, int x1, int x2);
+    casadi_blocksplit__6(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
 std::vector< std::vector< casadi::DM* >* >*
-    casadi_blocksplit__6(std::string ** err_msg, casadi::DM* x0, int x1, int x2){
+    casadi_blocksplit__6(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< std::vector< casadi::DM > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2414,24 +2384,24 @@ std::vector< std::vector< casadi::DM* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__7"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "DM")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::DM* >* >*"
-// proto: "std::vector< std::vector< casadi::DM* >* >*\n    casadi_blocksplit__7(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< std::vector< casadi::DM* >* >*\n    casadi_blocksplit__7(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::DM > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::DM* >* >*
-    casadi_blocksplit__7(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_blocksplit__7(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< std::vector< casadi::DM* >* >*
-    casadi_blocksplit__7(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_blocksplit__7(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< std::vector< casadi::DM > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2480,23 +2450,23 @@ std::vector< std::vector< casadi::IM* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__9"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "IM")))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::IM* >* >*"
-// proto: "std::vector< std::vector< casadi::IM* >* >*\n    casadi_blocksplit__9(std::string ** err_msg, casadi::IM* x0, int x1)"
+// proto: "std::vector< std::vector< casadi::IM* >* >*\n    casadi_blocksplit__9(std::string ** err_msg, casadi::IM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::IM > > ret = blocksplit(x0_, x1_);"
 extern "C"
 std::vector< std::vector< casadi::IM* >* >*
-    casadi_blocksplit__9(std::string ** err_msg, casadi::IM* x0, int x1);
+    casadi_blocksplit__9(std::string ** err_msg, casadi::IM* x0, long long x1);
 std::vector< std::vector< casadi::IM* >* >*
-    casadi_blocksplit__9(std::string ** err_msg, casadi::IM* x0, int x1){
+    casadi_blocksplit__9(std::string ** err_msg, casadi::IM* x0, long long x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< std::vector< casadi::IM > > ret = blocksplit(x0_, x1_);
         // x0 is not a swig output
@@ -2513,24 +2483,24 @@ std::vector< std::vector< casadi::IM* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__10"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "IM")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::IM* >* >*"
-// proto: "std::vector< std::vector< casadi::IM* >* >*\n    casadi_blocksplit__10(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
+// proto: "std::vector< std::vector< casadi::IM* >* >*\n    casadi_blocksplit__10(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::IM > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::IM* >* >*
-    casadi_blocksplit__10(std::string ** err_msg, casadi::IM* x0, int x1, int x2);
+    casadi_blocksplit__10(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
 std::vector< std::vector< casadi::IM* >* >*
-    casadi_blocksplit__10(std::string ** err_msg, casadi::IM* x0, int x1, int x2){
+    casadi_blocksplit__10(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< std::vector< casadi::IM > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2548,24 +2518,24 @@ std::vector< std::vector< casadi::IM* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__11"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "IM")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::IM* >* >*"
-// proto: "std::vector< std::vector< casadi::IM* >* >*\n    casadi_blocksplit__11(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< std::vector< casadi::IM* >* >*\n    casadi_blocksplit__11(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::IM > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::IM* >* >*
-    casadi_blocksplit__11(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_blocksplit__11(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< std::vector< casadi::IM* >* >*
-    casadi_blocksplit__11(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_blocksplit__11(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< std::vector< casadi::IM > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2614,23 +2584,23 @@ std::vector< std::vector< casadi::MX* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__13"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "MX")))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::MX* >* >*"
-// proto: "std::vector< std::vector< casadi::MX* >* >*\n    casadi_blocksplit__13(std::string ** err_msg, casadi::MX* x0, int x1)"
+// proto: "std::vector< std::vector< casadi::MX* >* >*\n    casadi_blocksplit__13(std::string ** err_msg, casadi::MX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::MX > > ret = blocksplit(x0_, x1_);"
 extern "C"
 std::vector< std::vector< casadi::MX* >* >*
-    casadi_blocksplit__13(std::string ** err_msg, casadi::MX* x0, int x1);
+    casadi_blocksplit__13(std::string ** err_msg, casadi::MX* x0, long long x1);
 std::vector< std::vector< casadi::MX* >* >*
-    casadi_blocksplit__13(std::string ** err_msg, casadi::MX* x0, int x1){
+    casadi_blocksplit__13(std::string ** err_msg, casadi::MX* x0, long long x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< std::vector< casadi::MX > > ret = blocksplit(x0_, x1_);
         // x0 is not a swig output
@@ -2647,24 +2617,24 @@ std::vector< std::vector< casadi::MX* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__14"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "MX")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::MX* >* >*"
-// proto: "std::vector< std::vector< casadi::MX* >* >*\n    casadi_blocksplit__14(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
+// proto: "std::vector< std::vector< casadi::MX* >* >*\n    casadi_blocksplit__14(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::MX > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::MX* >* >*
-    casadi_blocksplit__14(std::string ** err_msg, casadi::MX* x0, int x1, int x2);
+    casadi_blocksplit__14(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2);
 std::vector< std::vector< casadi::MX* >* >*
-    casadi_blocksplit__14(std::string ** err_msg, casadi::MX* x0, int x1, int x2){
+    casadi_blocksplit__14(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< std::vector< casadi::MX > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2682,24 +2652,24 @@ std::vector< std::vector< casadi::MX* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__15"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "MX")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::MX* >* >*"
-// proto: "std::vector< std::vector< casadi::MX* >* >*\n    casadi_blocksplit__15(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< std::vector< casadi::MX* >* >*\n    casadi_blocksplit__15(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::MX > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::MX* >* >*
-    casadi_blocksplit__15(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_blocksplit__15(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< std::vector< casadi::MX* >* >*
-    casadi_blocksplit__15(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_blocksplit__15(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< std::vector< casadi::MX > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2748,23 +2718,23 @@ std::vector< std::vector< casadi::Sparsity* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__17"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity")))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::Sparsity* >* >*"
-// proto: "std::vector< std::vector< casadi::Sparsity* >* >*\n    casadi_blocksplit__17(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
+// proto: "std::vector< std::vector< casadi::Sparsity* >* >*\n    casadi_blocksplit__17(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::Sparsity > > ret = blocksplit(x0_, x1_);"
 extern "C"
 std::vector< std::vector< casadi::Sparsity* >* >*
-    casadi_blocksplit__17(std::string ** err_msg, casadi::Sparsity* x0, int x1);
+    casadi_blocksplit__17(std::string ** err_msg, casadi::Sparsity* x0, long long x1);
 std::vector< std::vector< casadi::Sparsity* >* >*
-    casadi_blocksplit__17(std::string ** err_msg, casadi::Sparsity* x0, int x1){
+    casadi_blocksplit__17(std::string ** err_msg, casadi::Sparsity* x0, long long x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< std::vector< casadi::Sparsity > > ret = blocksplit(x0_, x1_);
         // x0 is not a swig output
@@ -2781,24 +2751,24 @@ std::vector< std::vector< casadi::Sparsity* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__18"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::Sparsity* >* >*"
-// proto: "std::vector< std::vector< casadi::Sparsity* >* >*\n    casadi_blocksplit__18(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
+// proto: "std::vector< std::vector< casadi::Sparsity* >* >*\n    casadi_blocksplit__18(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::Sparsity > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::Sparsity* >* >*
-    casadi_blocksplit__18(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2);
+    casadi_blocksplit__18(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2);
 std::vector< std::vector< casadi::Sparsity* >* >*
-    casadi_blocksplit__18(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2){
+    casadi_blocksplit__18(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< std::vector< casadi::Sparsity > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -2816,24 +2786,24 @@ std::vector< std::vector< casadi::Sparsity* >* >*
 // ================== function "casadi::casadi_blocksplit" ===============
 // cppName: "casadi::casadi_blocksplit"
 // cWrapperName: "casadi_blocksplit__19"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity")))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< std::vector< casadi::Sparsity* >* >*"
-// proto: "std::vector< std::vector< casadi::Sparsity* >* >*\n    casadi_blocksplit__19(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< std::vector< casadi::Sparsity* >* >*\n    casadi_blocksplit__19(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_blocksplit"
 // call: "        std::vector< std::vector< casadi::Sparsity > > ret = blocksplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< std::vector< casadi::Sparsity* >* >*
-    casadi_blocksplit__19(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_blocksplit__19(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< std::vector< casadi::Sparsity* >* >*
-    casadi_blocksplit__19(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_blocksplit__19(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< std::vector< casadi::Sparsity > > ret = blocksplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -3099,24 +3069,24 @@ casadi::IM*
 // ================== function "casadi::casadi_cofactor" ===============
 // cppName: "casadi::casadi_cofactor"
 // cWrapperName: "casadi_cofactor__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_cofactor__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
+// proto: "casadi::SX*\n    casadi_cofactor__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_cofactor"
 // call: "        casadi::SX ret = cofactor(x0_, x1_, x2_);"
 extern "C"
 casadi::SX*
-    casadi_cofactor__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2);
+    casadi_cofactor__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
 casadi::SX*
-    casadi_cofactor__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2){
+    casadi_cofactor__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::SX ret = cofactor(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -3134,24 +3104,24 @@ casadi::SX*
 // ================== function "casadi::casadi_cofactor" ===============
 // cppName: "casadi::casadi_cofactor"
 // cWrapperName: "casadi_cofactor__1"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_cofactor__1(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
+// proto: "casadi::DM*\n    casadi_cofactor__1(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_cofactor"
 // call: "        casadi::DM ret = cofactor(x0_, x1_, x2_);"
 extern "C"
 casadi::DM*
-    casadi_cofactor__1(std::string ** err_msg, casadi::DM* x0, int x1, int x2);
+    casadi_cofactor__1(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
 casadi::DM*
-    casadi_cofactor__1(std::string ** err_msg, casadi::DM* x0, int x1, int x2){
+    casadi_cofactor__1(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::DM ret = cofactor(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -3169,24 +3139,24 @@ casadi::DM*
 // ================== function "casadi::casadi_cofactor" ===============
 // cppName: "casadi::casadi_cofactor"
 // cWrapperName: "casadi_cofactor__2"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_cofactor__2(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
+// proto: "casadi::IM*\n    casadi_cofactor__2(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_cofactor"
 // call: "        casadi::IM ret = cofactor(x0_, x1_, x2_);"
 extern "C"
 casadi::IM*
-    casadi_cofactor__2(std::string ** err_msg, casadi::IM* x0, int x1, int x2);
+    casadi_cofactor__2(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
 casadi::IM*
-    casadi_cofactor__2(std::string ** err_msg, casadi::IM* x0, int x1, int x2){
+    casadi_cofactor__2(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::IM ret = cofactor(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -4165,24 +4135,24 @@ casadi::SX*
 // ================== function "casadi::casadi_cross" ===============
 // cppName: "casadi::casadi_cross"
 // cWrapperName: "casadi_cross__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_cross__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2)"
+// proto: "casadi::SX*\n    casadi_cross__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_cross"
 // call: "        casadi::SX ret = cross(x0_, x1_, x2_);"
 extern "C"
 casadi::SX*
-    casadi_cross__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2);
+    casadi_cross__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2);
 casadi::SX*
-    casadi_cross__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2){
+    casadi_cross__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::SX ret = cross(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -4233,24 +4203,24 @@ casadi::DM*
 // ================== function "casadi::casadi_cross" ===============
 // cppName: "casadi::casadi_cross"
 // cWrapperName: "casadi_cross__3"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_cross__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2)"
+// proto: "casadi::DM*\n    casadi_cross__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_cross"
 // call: "        casadi::DM ret = cross(x0_, x1_, x2_);"
 extern "C"
 casadi::DM*
-    casadi_cross__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2);
+    casadi_cross__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2);
 casadi::DM*
-    casadi_cross__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2){
+    casadi_cross__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::DM ret = cross(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -4301,24 +4271,24 @@ casadi::IM*
 // ================== function "casadi::casadi_cross" ===============
 // cppName: "casadi::casadi_cross"
 // cWrapperName: "casadi_cross__5"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_cross__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2)"
+// proto: "casadi::IM*\n    casadi_cross__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_cross"
 // call: "        casadi::IM ret = cross(x0_, x1_, x2_);"
 extern "C"
 casadi::IM*
-    casadi_cross__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2);
+    casadi_cross__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2);
 casadi::IM*
-    casadi_cross__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2){
+    casadi_cross__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::IM ret = cross(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -4369,29 +4339,285 @@ casadi::MX*
 // ================== function "casadi::casadi_cross" ===============
 // cppName: "casadi::casadi_cross"
 // cWrapperName: "casadi_cross__7"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_cross__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2)"
+// proto: "casadi::MX*\n    casadi_cross__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_cross"
 // call: "        casadi::MX ret = cross(x0_, x1_, x2_);"
 extern "C"
 casadi::MX*
-    casadi_cross__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2);
+    casadi_cross__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2);
 casadi::MX*
-    casadi_cross__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2){
+    casadi_cross__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
         casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::MX ret = cross(x0_, x1_, x2_);
         // x0 is not a swig output
         // x1 is not a swig output
         // x2 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_cumsum__0(std::string ** err_msg, casadi::SX* x0)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::SX ret = cumsum(x0_);"
+extern "C"
+casadi::SX*
+    casadi_cumsum__0(std::string ** err_msg, casadi::SX* x0);
+casadi::SX*
+    casadi_cumsum__0(std::string ** err_msg, casadi::SX* x0){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+
+        casadi::SX ret = cumsum(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_cumsum__1(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::SX ret = cumsum(x0_, x1_);"
+extern "C"
+casadi::SX*
+    casadi_cumsum__1(std::string ** err_msg, casadi::SX* x0, long long x1);
+casadi::SX*
+    casadi_cumsum__1(std::string ** err_msg, casadi::SX* x0, long long x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::SX ret = cumsum(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__2"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_cumsum__2(std::string ** err_msg, casadi::DM* x0)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::DM ret = cumsum(x0_);"
+extern "C"
+casadi::DM*
+    casadi_cumsum__2(std::string ** err_msg, casadi::DM* x0);
+casadi::DM*
+    casadi_cumsum__2(std::string ** err_msg, casadi::DM* x0){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+
+        casadi::DM ret = cumsum(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_cumsum__3(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::DM ret = cumsum(x0_, x1_);"
+extern "C"
+casadi::DM*
+    casadi_cumsum__3(std::string ** err_msg, casadi::DM* x0, long long x1);
+casadi::DM*
+    casadi_cumsum__3(std::string ** err_msg, casadi::DM* x0, long long x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::DM ret = cumsum(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__4"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_cumsum__4(std::string ** err_msg, casadi::IM* x0)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::IM ret = cumsum(x0_);"
+extern "C"
+casadi::IM*
+    casadi_cumsum__4(std::string ** err_msg, casadi::IM* x0);
+casadi::IM*
+    casadi_cumsum__4(std::string ** err_msg, casadi::IM* x0){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+
+        casadi::IM ret = cumsum(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__5"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_cumsum__5(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::IM ret = cumsum(x0_, x1_);"
+extern "C"
+casadi::IM*
+    casadi_cumsum__5(std::string ** err_msg, casadi::IM* x0, long long x1);
+casadi::IM*
+    casadi_cumsum__5(std::string ** err_msg, casadi::IM* x0, long long x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::IM ret = cumsum(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__6"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_cumsum__6(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::MX ret = cumsum(x0_);"
+extern "C"
+casadi::MX*
+    casadi_cumsum__6(std::string ** err_msg, casadi::MX* x0);
+casadi::MX*
+    casadi_cumsum__6(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::MX ret = cumsum(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_cumsum" ===============
+// cppName: "casadi::casadi_cumsum"
+// cWrapperName: "casadi_cumsum__7"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_cumsum__7(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_cumsum"
+// call: "        casadi::MX ret = cumsum(x0_, x1_);"
+extern "C"
+casadi::MX*
+    casadi_cumsum__7(std::string ** err_msg, casadi::MX* x0, long long x1);
+casadi::MX*
+    casadi_cumsum__7(std::string ** err_msg, casadi::MX* x0, long long x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::MX ret = cumsum(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -5063,24 +5289,24 @@ casadi::Sparsity*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::SX > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_diagsplit__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2);
+    casadi_diagsplit__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
 std::vector< casadi::SX* >*
-    casadi_diagsplit__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2){
+    casadi_diagsplit__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< casadi::SX > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5129,23 +5355,23 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__2(std::string ** err_msg, casadi::SX* x0, int x1)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__2(std::string ** err_msg, casadi::SX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::SX > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_diagsplit__2(std::string ** err_msg, casadi::SX* x0, int x1);
+    casadi_diagsplit__2(std::string ** err_msg, casadi::SX* x0, long long x1);
 std::vector< casadi::SX* >*
-    casadi_diagsplit__2(std::string ** err_msg, casadi::SX* x0, int x1){
+    casadi_diagsplit__2(std::string ** err_msg, casadi::SX* x0, long long x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::SX > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5162,23 +5388,23 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__3"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::SX > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_diagsplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1);
+    casadi_diagsplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1);
 std::vector< casadi::SX* >*
-    casadi_diagsplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1){
+    casadi_diagsplit__3(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::SX > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5195,24 +5421,24 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__4"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__4(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_diagsplit__4(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::SX > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_diagsplit__4(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_diagsplit__4(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< casadi::SX* >*
-    casadi_diagsplit__4(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_diagsplit__4(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< casadi::SX > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5230,24 +5456,24 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::DM > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_diagsplit__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2);
+    casadi_diagsplit__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
 std::vector< casadi::DM* >*
-    casadi_diagsplit__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2){
+    casadi_diagsplit__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< casadi::DM > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5296,23 +5522,23 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__7"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__7(std::string ** err_msg, casadi::DM* x0, int x1)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__7(std::string ** err_msg, casadi::DM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::DM > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_diagsplit__7(std::string ** err_msg, casadi::DM* x0, int x1);
+    casadi_diagsplit__7(std::string ** err_msg, casadi::DM* x0, long long x1);
 std::vector< casadi::DM* >*
-    casadi_diagsplit__7(std::string ** err_msg, casadi::DM* x0, int x1){
+    casadi_diagsplit__7(std::string ** err_msg, casadi::DM* x0, long long x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::DM > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5329,23 +5555,23 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__8"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__8(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__8(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::DM > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_diagsplit__8(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1);
+    casadi_diagsplit__8(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1);
 std::vector< casadi::DM* >*
-    casadi_diagsplit__8(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1){
+    casadi_diagsplit__8(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::DM > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5362,24 +5588,24 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__9"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__9(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_diagsplit__9(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::DM > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_diagsplit__9(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_diagsplit__9(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< casadi::DM* >*
-    casadi_diagsplit__9(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_diagsplit__9(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< casadi::DM > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5397,24 +5623,24 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__10"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__10(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__10(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::IM > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_diagsplit__10(std::string ** err_msg, casadi::IM* x0, int x1, int x2);
+    casadi_diagsplit__10(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
 std::vector< casadi::IM* >*
-    casadi_diagsplit__10(std::string ** err_msg, casadi::IM* x0, int x1, int x2){
+    casadi_diagsplit__10(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< casadi::IM > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5463,23 +5689,23 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__12"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__12(std::string ** err_msg, casadi::IM* x0, int x1)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__12(std::string ** err_msg, casadi::IM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::IM > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_diagsplit__12(std::string ** err_msg, casadi::IM* x0, int x1);
+    casadi_diagsplit__12(std::string ** err_msg, casadi::IM* x0, long long x1);
 std::vector< casadi::IM* >*
-    casadi_diagsplit__12(std::string ** err_msg, casadi::IM* x0, int x1){
+    casadi_diagsplit__12(std::string ** err_msg, casadi::IM* x0, long long x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::IM > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5496,23 +5722,23 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__13"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__13(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__13(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::IM > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_diagsplit__13(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1);
+    casadi_diagsplit__13(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1);
 std::vector< casadi::IM* >*
-    casadi_diagsplit__13(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1){
+    casadi_diagsplit__13(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::IM > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5529,24 +5755,24 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__14"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__14(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_diagsplit__14(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::IM > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_diagsplit__14(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_diagsplit__14(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< casadi::IM* >*
-    casadi_diagsplit__14(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_diagsplit__14(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< casadi::IM > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5564,24 +5790,24 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__15"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__15(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__15(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::MX > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_diagsplit__15(std::string ** err_msg, casadi::MX* x0, int x1, int x2);
+    casadi_diagsplit__15(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2);
 std::vector< casadi::MX* >*
-    casadi_diagsplit__15(std::string ** err_msg, casadi::MX* x0, int x1, int x2){
+    casadi_diagsplit__15(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< casadi::MX > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5630,23 +5856,23 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__17"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__17(std::string ** err_msg, casadi::MX* x0, int x1)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__17(std::string ** err_msg, casadi::MX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::MX > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_diagsplit__17(std::string ** err_msg, casadi::MX* x0, int x1);
+    casadi_diagsplit__17(std::string ** err_msg, casadi::MX* x0, long long x1);
 std::vector< casadi::MX* >*
-    casadi_diagsplit__17(std::string ** err_msg, casadi::MX* x0, int x1){
+    casadi_diagsplit__17(std::string ** err_msg, casadi::MX* x0, long long x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::MX > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5663,23 +5889,23 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__18"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__18(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__18(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::MX > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_diagsplit__18(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1);
+    casadi_diagsplit__18(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1);
 std::vector< casadi::MX* >*
-    casadi_diagsplit__18(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1){
+    casadi_diagsplit__18(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::MX > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5696,24 +5922,24 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__19"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__19(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_diagsplit__19(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::MX > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_diagsplit__19(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_diagsplit__19(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< casadi::MX* >*
-    casadi_diagsplit__19(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_diagsplit__19(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< casadi::MX > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5731,24 +5957,24 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__20"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__20(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__20(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__20(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2);
+    casadi_diagsplit__20(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2);
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__20(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2){
+    casadi_diagsplit__20(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5797,23 +6023,23 @@ std::vector< casadi::Sparsity* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__22"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__22(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__22(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__22(std::string ** err_msg, casadi::Sparsity* x0, int x1);
+    casadi_diagsplit__22(std::string ** err_msg, casadi::Sparsity* x0, long long x1);
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__22(std::string ** err_msg, casadi::Sparsity* x0, int x1){
+    casadi_diagsplit__22(std::string ** err_msg, casadi::Sparsity* x0, long long x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5830,23 +6056,23 @@ std::vector< casadi::Sparsity* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__23"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__23(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__23(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__23(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1);
+    casadi_diagsplit__23(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1);
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__23(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1){
+    casadi_diagsplit__23(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_);
         // x0 is not a swig output
@@ -5863,24 +6089,24 @@ std::vector< casadi::Sparsity* >*
 // ================== function "casadi::casadi_diagsplit" ===============
 // cppName: "casadi::casadi_diagsplit"
 // cWrapperName: "casadi_diagsplit__24"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__24(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_diagsplit__24(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2)"
 // friendWrap: True
 // fName: "casadi_diagsplit"
 // call: "        std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_, x2_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__24(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2);
+    casadi_diagsplit__24(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2);
 std::vector< casadi::Sparsity* >*
-    casadi_diagsplit__24(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1, std::vector< int >* x2){
+    casadi_diagsplit__24(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1, std::vector< long long >* x2){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
 
         std::vector< casadi::Sparsity > ret = diagsplit(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -5888,6 +6114,402 @@ std::vector< casadi::Sparsity* >*
         // x2 is not a swig output
 
         return WrapReturn< std::vector< casadi::Sparsity* >*, std::vector< casadi::Sparsity > >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_diff__0(std::string ** err_msg, casadi::SX* x0)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::SX ret = diff(x0_);"
+extern "C"
+casadi::SX*
+    casadi_diff__0(std::string ** err_msg, casadi::SX* x0);
+casadi::SX*
+    casadi_diff__0(std::string ** err_msg, casadi::SX* x0){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+
+        casadi::SX ret = diff(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_diff__1(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::SX ret = diff(x0_, x1_);"
+extern "C"
+casadi::SX*
+    casadi_diff__1(std::string ** err_msg, casadi::SX* x0, long long x1);
+casadi::SX*
+    casadi_diff__1(std::string ** err_msg, casadi::SX* x0, long long x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::SX ret = diff(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__2"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_diff__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::SX ret = diff(x0_, x1_, x2_);"
+extern "C"
+casadi::SX*
+    casadi_diff__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
+casadi::SX*
+    casadi_diff__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
+
+        casadi::SX ret = diff(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_diff__3(std::string ** err_msg, casadi::DM* x0)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::DM ret = diff(x0_);"
+extern "C"
+casadi::DM*
+    casadi_diff__3(std::string ** err_msg, casadi::DM* x0);
+casadi::DM*
+    casadi_diff__3(std::string ** err_msg, casadi::DM* x0){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+
+        casadi::DM ret = diff(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__4"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_diff__4(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::DM ret = diff(x0_, x1_);"
+extern "C"
+casadi::DM*
+    casadi_diff__4(std::string ** err_msg, casadi::DM* x0, long long x1);
+casadi::DM*
+    casadi_diff__4(std::string ** err_msg, casadi::DM* x0, long long x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::DM ret = diff(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__5"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_diff__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::DM ret = diff(x0_, x1_, x2_);"
+extern "C"
+casadi::DM*
+    casadi_diff__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
+casadi::DM*
+    casadi_diff__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
+
+        casadi::DM ret = diff(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__6"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_diff__6(std::string ** err_msg, casadi::IM* x0)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::IM ret = diff(x0_);"
+extern "C"
+casadi::IM*
+    casadi_diff__6(std::string ** err_msg, casadi::IM* x0);
+casadi::IM*
+    casadi_diff__6(std::string ** err_msg, casadi::IM* x0){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+
+        casadi::IM ret = diff(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__7"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_diff__7(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::IM ret = diff(x0_, x1_);"
+extern "C"
+casadi::IM*
+    casadi_diff__7(std::string ** err_msg, casadi::IM* x0, long long x1);
+casadi::IM*
+    casadi_diff__7(std::string ** err_msg, casadi::IM* x0, long long x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::IM ret = diff(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__8"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_diff__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::IM ret = diff(x0_, x1_, x2_);"
+extern "C"
+casadi::IM*
+    casadi_diff__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
+casadi::IM*
+    casadi_diff__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
+
+        casadi::IM ret = diff(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__9"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_diff__9(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::MX ret = diff(x0_);"
+extern "C"
+casadi::MX*
+    casadi_diff__9(std::string ** err_msg, casadi::MX* x0);
+casadi::MX*
+    casadi_diff__9(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::MX ret = diff(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__10"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_diff__10(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::MX ret = diff(x0_, x1_);"
+extern "C"
+casadi::MX*
+    casadi_diff__10(std::string ** err_msg, casadi::MX* x0, long long x1);
+casadi::MX*
+    casadi_diff__10(std::string ** err_msg, casadi::MX* x0, long long x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        casadi::MX ret = diff(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_diff" ===============
+// cppName: "casadi::casadi_diff"
+// cWrapperName: "casadi_diff__11"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_diff__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
+// friendWrap: True
+// fName: "casadi_diff"
+// call: "        casadi::MX ret = diff(x0_, x1_, x2_);"
+extern "C"
+casadi::MX*
+    casadi_diff__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2);
+casadi::MX*
+    casadi_diff__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
+
+        casadi::MX ret = diff(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -6113,6 +6735,374 @@ casadi::IM*
         // x0 is not a swig output
 
         return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_einstein__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::SX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);"
+extern "C"
+casadi::SX*
+    casadi_einstein__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7);
+casadi::SX*
+    casadi_einstein__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+
+        casadi::SX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_einstein__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::SX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);"
+extern "C"
+casadi::SX*
+    casadi_einstein__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8);
+casadi::SX*
+    casadi_einstein__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+        std::vector< long long > x8_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x8);
+
+        casadi::SX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+        // x8 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__2"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_einstein__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::DM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);"
+extern "C"
+casadi::DM*
+    casadi_einstein__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7);
+casadi::DM*
+    casadi_einstein__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+
+        casadi::DM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_einstein__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::DM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);"
+extern "C"
+casadi::DM*
+    casadi_einstein__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8);
+casadi::DM*
+    casadi_einstein__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+        std::vector< long long > x8_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x8);
+
+        casadi::DM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+        // x8 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__4"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_einstein__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::IM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);"
+extern "C"
+casadi::IM*
+    casadi_einstein__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7);
+casadi::IM*
+    casadi_einstein__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+
+        casadi::IM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__5"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_einstein__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::IM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);"
+extern "C"
+casadi::IM*
+    casadi_einstein__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8);
+casadi::IM*
+    casadi_einstein__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+        std::vector< long long > x8_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x8);
+
+        casadi::IM ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+        // x8 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__6"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_einstein__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::MX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);"
+extern "C"
+casadi::MX*
+    casadi_einstein__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7);
+casadi::MX*
+    casadi_einstein__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::vector< long long >* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+
+        casadi::MX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_einstein" ===============
+// cppName: "casadi::casadi_einstein"
+// cWrapperName: "casadi_einstein__7"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_einstein__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8)"
+// friendWrap: True
+// fName: "casadi_einstein"
+// call: "        casadi::MX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);"
+extern "C"
+casadi::MX*
+    casadi_einstein__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8);
+casadi::MX*
+    casadi_einstein__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, std::vector< long long >* x3, std::vector< long long >* x4, std::vector< long long >* x5, std::vector< long long >* x6, std::vector< long long >* x7, std::vector< long long >* x8){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+        casadi::MX& x2_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        std::vector< long long > x6_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x6);
+        std::vector< long long > x7_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x7);
+        std::vector< long long > x8_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x8);
+
+        casadi::MX ret = einstein(x0_, x1_, x2_, x3_, x4_, x5_, x6_, x7_, x8_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+        // x7 is not a swig output
+        // x8 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -6595,6 +7585,130 @@ casadi::MX*
 }
 
 
+// ================== function "casadi::casadi_evalf" ===============
+// cppName: "casadi::casadi_evalf"
+// cWrapperName: "casadi_evalf__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_evalf__0(std::string ** err_msg, casadi::SX* x0)"
+// friendWrap: True
+// fName: "casadi_evalf"
+// call: "        casadi::DM ret = evalf(x0_);"
+extern "C"
+casadi::DM*
+    casadi_evalf__0(std::string ** err_msg, casadi::SX* x0);
+casadi::DM*
+    casadi_evalf__0(std::string ** err_msg, casadi::SX* x0){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+
+        casadi::DM ret = evalf(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_evalf" ===============
+// cppName: "casadi::casadi_evalf"
+// cWrapperName: "casadi_evalf__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_evalf__1(std::string ** err_msg, casadi::DM* x0)"
+// friendWrap: True
+// fName: "casadi_evalf"
+// call: "        casadi::DM ret = evalf(x0_);"
+extern "C"
+casadi::DM*
+    casadi_evalf__1(std::string ** err_msg, casadi::DM* x0);
+casadi::DM*
+    casadi_evalf__1(std::string ** err_msg, casadi::DM* x0){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+
+        casadi::DM ret = evalf(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_evalf" ===============
+// cppName: "casadi::casadi_evalf"
+// cWrapperName: "casadi_evalf__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_evalf__2(std::string ** err_msg, casadi::IM* x0)"
+// friendWrap: True
+// fName: "casadi_evalf"
+// call: "        casadi::DM ret = evalf(x0_);"
+extern "C"
+casadi::DM*
+    casadi_evalf__2(std::string ** err_msg, casadi::IM* x0);
+casadi::DM*
+    casadi_evalf__2(std::string ** err_msg, casadi::IM* x0){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+
+        casadi::DM ret = evalf(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_evalf" ===============
+// cppName: "casadi::casadi_evalf"
+// cWrapperName: "casadi_evalf__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_evalf__3(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_evalf"
+// call: "        casadi::DM ret = evalf(x0_);"
+extern "C"
+casadi::DM*
+    casadi_evalf__3(std::string ** err_msg, casadi::MX* x0);
+casadi::DM*
+    casadi_evalf__3(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::DM ret = evalf(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::casadi_exp" ===============
 // cppName: "casadi::casadi_exp"
 // cWrapperName: "casadi_exp__0"
@@ -6855,6 +7969,262 @@ void
 }
 
 
+// ================== function "casadi::casadi_expm" ===============
+// cppName: "casadi::casadi_expm"
+// cWrapperName: "casadi_expm__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_expm__0(std::string ** err_msg, casadi::SX* x0)"
+// friendWrap: True
+// fName: "casadi_expm"
+// call: "        casadi::SX ret = expm(x0_);"
+extern "C"
+casadi::SX*
+    casadi_expm__0(std::string ** err_msg, casadi::SX* x0);
+casadi::SX*
+    casadi_expm__0(std::string ** err_msg, casadi::SX* x0){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+
+        casadi::SX ret = expm(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_expm" ===============
+// cppName: "casadi::casadi_expm"
+// cWrapperName: "casadi_expm__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_expm__1(std::string ** err_msg, casadi::DM* x0)"
+// friendWrap: True
+// fName: "casadi_expm"
+// call: "        casadi::DM ret = expm(x0_);"
+extern "C"
+casadi::DM*
+    casadi_expm__1(std::string ** err_msg, casadi::DM* x0);
+casadi::DM*
+    casadi_expm__1(std::string ** err_msg, casadi::DM* x0){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+
+        casadi::DM ret = expm(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_expm" ===============
+// cppName: "casadi::casadi_expm"
+// cWrapperName: "casadi_expm__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_expm__2(std::string ** err_msg, casadi::IM* x0)"
+// friendWrap: True
+// fName: "casadi_expm"
+// call: "        casadi::IM ret = expm(x0_);"
+extern "C"
+casadi::IM*
+    casadi_expm__2(std::string ** err_msg, casadi::IM* x0);
+casadi::IM*
+    casadi_expm__2(std::string ** err_msg, casadi::IM* x0){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+
+        casadi::IM ret = expm(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_expm" ===============
+// cppName: "casadi::casadi_expm"
+// cWrapperName: "casadi_expm__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_expm__3(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_expm"
+// call: "        casadi::MX ret = expm(x0_);"
+extern "C"
+casadi::MX*
+    casadi_expm__3(std::string ** err_msg, casadi::MX* x0);
+casadi::MX*
+    casadi_expm__3(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::MX ret = expm(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_expm_const" ===============
+// cppName: "casadi::casadi_expm_const"
+// cWrapperName: "casadi_expm_const__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_expm_const__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// friendWrap: True
+// fName: "casadi_expm_const"
+// call: "        casadi::SX ret = expm_const(x0_, x1_);"
+extern "C"
+casadi::SX*
+    casadi_expm_const__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
+casadi::SX*
+    casadi_expm_const__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+
+        casadi::SX ret = expm_const(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_expm_const" ===============
+// cppName: "casadi::casadi_expm_const"
+// cWrapperName: "casadi_expm_const__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_expm_const__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// friendWrap: True
+// fName: "casadi_expm_const"
+// call: "        casadi::DM ret = expm_const(x0_, x1_);"
+extern "C"
+casadi::DM*
+    casadi_expm_const__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+casadi::DM*
+    casadi_expm_const__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+
+        casadi::DM ret = expm_const(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_expm_const" ===============
+// cppName: "casadi::casadi_expm_const"
+// cWrapperName: "casadi_expm_const__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_expm_const__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// friendWrap: True
+// fName: "casadi_expm_const"
+// call: "        casadi::IM ret = expm_const(x0_, x1_);"
+extern "C"
+casadi::IM*
+    casadi_expm_const__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+casadi::IM*
+    casadi_expm_const__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+
+        casadi::IM ret = expm_const(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_expm_const" ===============
+// cppName: "casadi::casadi_expm_const"
+// cWrapperName: "casadi_expm_const__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_expm_const__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// friendWrap: True
+// fName: "casadi_expm_const"
+// call: "        casadi::MX ret = expm_const(x0_, x1_);"
+extern "C"
+casadi::MX*
+    casadi_expm_const__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
+casadi::MX*
+    casadi_expm_const__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+
+        casadi::MX ret = expm_const(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::casadi_find" ===============
 // cppName: "casadi::casadi_find"
 // cWrapperName: "casadi_find"
@@ -7032,6 +8402,336 @@ casadi::MX*
 
         casadi::MX ret = floor(x0_);
         // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmax" ===============
+// cppName: "casadi::casadi_fmax"
+// cWrapperName: "casadi_fmax__0"
+// protoArgs: "(std::string ** err_msg, double* x0, double* x1)"
+// params: [(Ref (Const CDouble),SwigOutput False),(Ref (Const CDouble),SwigOutput False)]
+// retType: CDouble
+// args: "(x0_, x1_)"
+// cWrapperRetType: "double"
+// proto: "double\n    casadi_fmax__0(std::string ** err_msg, double* x0, double* x1)"
+// friendWrap: True
+// fName: "casadi_fmax"
+// call: "        double ret = fmax(x0_, x1_);"
+extern "C"
+double
+    casadi_fmax__0(std::string ** err_msg, double* x0, double* x1);
+double
+    casadi_fmax__0(std::string ** err_msg, double* x0, double* x1){
+    try {
+        double& x0_ = Marshaling<double&,double*>::marshal(x0);
+        double& x1_ = Marshaling<double&,double*>::marshal(x1);
+
+        double ret = fmax(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< double, double >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmax" ===============
+// cppName: "casadi::casadi_fmax"
+// cWrapperName: "casadi_fmax__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_fmax__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// friendWrap: True
+// fName: "casadi_fmax"
+// call: "        casadi::SX ret = fmax(x0_, x1_);"
+extern "C"
+casadi::SX*
+    casadi_fmax__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
+casadi::SX*
+    casadi_fmax__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+
+        casadi::SX ret = fmax(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmax" ===============
+// cppName: "casadi::casadi_fmax"
+// cWrapperName: "casadi_fmax__2"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_fmax__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// friendWrap: True
+// fName: "casadi_fmax"
+// call: "        casadi::DM ret = fmax(x0_, x1_);"
+extern "C"
+casadi::DM*
+    casadi_fmax__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+casadi::DM*
+    casadi_fmax__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+
+        casadi::DM ret = fmax(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmax" ===============
+// cppName: "casadi::casadi_fmax"
+// cWrapperName: "casadi_fmax__3"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_fmax__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// friendWrap: True
+// fName: "casadi_fmax"
+// call: "        casadi::IM ret = fmax(x0_, x1_);"
+extern "C"
+casadi::IM*
+    casadi_fmax__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+casadi::IM*
+    casadi_fmax__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+
+        casadi::IM ret = fmax(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmax" ===============
+// cppName: "casadi::casadi_fmax"
+// cWrapperName: "casadi_fmax__4"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_fmax__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// friendWrap: True
+// fName: "casadi_fmax"
+// call: "        casadi::MX ret = fmax(x0_, x1_);"
+extern "C"
+casadi::MX*
+    casadi_fmax__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
+casadi::MX*
+    casadi_fmax__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+
+        casadi::MX ret = fmax(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmin" ===============
+// cppName: "casadi::casadi_fmin"
+// cWrapperName: "casadi_fmin__0"
+// protoArgs: "(std::string ** err_msg, double* x0, double* x1)"
+// params: [(Ref (Const CDouble),SwigOutput False),(Ref (Const CDouble),SwigOutput False)]
+// retType: CDouble
+// args: "(x0_, x1_)"
+// cWrapperRetType: "double"
+// proto: "double\n    casadi_fmin__0(std::string ** err_msg, double* x0, double* x1)"
+// friendWrap: True
+// fName: "casadi_fmin"
+// call: "        double ret = fmin(x0_, x1_);"
+extern "C"
+double
+    casadi_fmin__0(std::string ** err_msg, double* x0, double* x1);
+double
+    casadi_fmin__0(std::string ** err_msg, double* x0, double* x1){
+    try {
+        double& x0_ = Marshaling<double&,double*>::marshal(x0);
+        double& x1_ = Marshaling<double&,double*>::marshal(x1);
+
+        double ret = fmin(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< double, double >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmin" ===============
+// cppName: "casadi::casadi_fmin"
+// cWrapperName: "casadi_fmin__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_fmin__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// friendWrap: True
+// fName: "casadi_fmin"
+// call: "        casadi::SX ret = fmin(x0_, x1_);"
+extern "C"
+casadi::SX*
+    casadi_fmin__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
+casadi::SX*
+    casadi_fmin__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+
+        casadi::SX ret = fmin(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmin" ===============
+// cppName: "casadi::casadi_fmin"
+// cWrapperName: "casadi_fmin__2"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_fmin__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// friendWrap: True
+// fName: "casadi_fmin"
+// call: "        casadi::DM ret = fmin(x0_, x1_);"
+extern "C"
+casadi::DM*
+    casadi_fmin__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+casadi::DM*
+    casadi_fmin__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+
+        casadi::DM ret = fmin(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmin" ===============
+// cppName: "casadi::casadi_fmin"
+// cWrapperName: "casadi_fmin__3"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_fmin__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// friendWrap: True
+// fName: "casadi_fmin"
+// call: "        casadi::IM ret = fmin(x0_, x1_);"
+extern "C"
+casadi::IM*
+    casadi_fmin__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+casadi::IM*
+    casadi_fmin__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+
+        casadi::IM ret = fmin(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_fmin" ===============
+// cppName: "casadi::casadi_fmin"
+// cWrapperName: "casadi_fmin__4"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_fmin__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// friendWrap: True
+// fName: "casadi_fmin"
+// call: "        casadi::MX ret = fmin(x0_, x1_);"
+extern "C"
+casadi::MX*
+    casadi_fmin__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
+casadi::MX*
+    casadi_fmin__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+
+        casadi::MX ret = fmin(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -7332,26 +9032,26 @@ std::vector< std::vector< casadi::MX* >* >*
 // ================== function "casadi::casadi_gauss_quadrature" ===============
 // cppName: "casadi::casadi_gauss_quadrature"
 // cWrapperName: "casadi_gauss_quadrature__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4, casadi::SX* x5)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4, casadi::SX* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_gauss_quadrature__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4, casadi::SX* x5)"
+// proto: "casadi::SX*\n    casadi_gauss_quadrature__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4, casadi::SX* x5)"
 // friendWrap: True
 // fName: "casadi_gauss_quadrature"
 // call: "        casadi::SX ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_, x5_);"
 extern "C"
 casadi::SX*
-    casadi_gauss_quadrature__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4, casadi::SX* x5);
+    casadi_gauss_quadrature__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4, casadi::SX* x5);
 casadi::SX*
-    casadi_gauss_quadrature__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4, casadi::SX* x5){
+    casadi_gauss_quadrature__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4, casadi::SX* x5){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
         casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
         casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
-        int x4_ = Marshaling<int,int>::marshal(x4);
+        long long x4_ = Marshaling<long long,long long>::marshal(x4);
         casadi::SX& x5_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x5);
 
         casadi::SX ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_, x5_);
@@ -7410,26 +9110,26 @@ casadi::SX*
 // ================== function "casadi::casadi_gauss_quadrature" ===============
 // cppName: "casadi::casadi_gauss_quadrature"
 // cWrapperName: "casadi_gauss_quadrature__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_, x3_, x4_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_gauss_quadrature__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4)"
+// proto: "casadi::SX*\n    casadi_gauss_quadrature__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4)"
 // friendWrap: True
 // fName: "casadi_gauss_quadrature"
 // call: "        casadi::SX ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_);"
 extern "C"
 casadi::SX*
-    casadi_gauss_quadrature__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4);
+    casadi_gauss_quadrature__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4);
 casadi::SX*
-    casadi_gauss_quadrature__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, int x4){
+    casadi_gauss_quadrature__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, long long x4){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
         casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
         casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
-        int x4_ = Marshaling<int,int>::marshal(x4);
+        long long x4_ = Marshaling<long long,long long>::marshal(x4);
 
         casadi::SX ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_);
         // x0 is not a swig output
@@ -7449,26 +9149,26 @@ casadi::SX*
 // ================== function "casadi::casadi_gauss_quadrature" ===============
 // cppName: "casadi::casadi_gauss_quadrature"
 // cWrapperName: "casadi_gauss_quadrature__3"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4, casadi::DM* x5)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4, casadi::DM* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_gauss_quadrature__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4, casadi::DM* x5)"
+// proto: "casadi::DM*\n    casadi_gauss_quadrature__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4, casadi::DM* x5)"
 // friendWrap: True
 // fName: "casadi_gauss_quadrature"
 // call: "        casadi::DM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_, x5_);"
 extern "C"
 casadi::DM*
-    casadi_gauss_quadrature__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4, casadi::DM* x5);
+    casadi_gauss_quadrature__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4, casadi::DM* x5);
 casadi::DM*
-    casadi_gauss_quadrature__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4, casadi::DM* x5){
+    casadi_gauss_quadrature__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4, casadi::DM* x5){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
         casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
         casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
-        int x4_ = Marshaling<int,int>::marshal(x4);
+        long long x4_ = Marshaling<long long,long long>::marshal(x4);
         casadi::DM& x5_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x5);
 
         casadi::DM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_, x5_);
@@ -7527,26 +9227,26 @@ casadi::DM*
 // ================== function "casadi::casadi_gauss_quadrature" ===============
 // cppName: "casadi::casadi_gauss_quadrature"
 // cWrapperName: "casadi_gauss_quadrature__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_, x3_, x4_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_gauss_quadrature__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4)"
+// proto: "casadi::DM*\n    casadi_gauss_quadrature__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4)"
 // friendWrap: True
 // fName: "casadi_gauss_quadrature"
 // call: "        casadi::DM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_);"
 extern "C"
 casadi::DM*
-    casadi_gauss_quadrature__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4);
+    casadi_gauss_quadrature__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4);
 casadi::DM*
-    casadi_gauss_quadrature__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, int x4){
+    casadi_gauss_quadrature__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, long long x4){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
         casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
         casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
-        int x4_ = Marshaling<int,int>::marshal(x4);
+        long long x4_ = Marshaling<long long,long long>::marshal(x4);
 
         casadi::DM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_);
         // x0 is not a swig output
@@ -7566,26 +9266,26 @@ casadi::DM*
 // ================== function "casadi::casadi_gauss_quadrature" ===============
 // cppName: "casadi::casadi_gauss_quadrature"
 // cWrapperName: "casadi_gauss_quadrature__6"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4, casadi::IM* x5)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4, casadi::IM* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_gauss_quadrature__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4, casadi::IM* x5)"
+// proto: "casadi::IM*\n    casadi_gauss_quadrature__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4, casadi::IM* x5)"
 // friendWrap: True
 // fName: "casadi_gauss_quadrature"
 // call: "        casadi::IM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_, x5_);"
 extern "C"
 casadi::IM*
-    casadi_gauss_quadrature__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4, casadi::IM* x5);
+    casadi_gauss_quadrature__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4, casadi::IM* x5);
 casadi::IM*
-    casadi_gauss_quadrature__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4, casadi::IM* x5){
+    casadi_gauss_quadrature__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4, casadi::IM* x5){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
         casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
         casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
-        int x4_ = Marshaling<int,int>::marshal(x4);
+        long long x4_ = Marshaling<long long,long long>::marshal(x4);
         casadi::IM& x5_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x5);
 
         casadi::IM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_, x5_);
@@ -7644,26 +9344,26 @@ casadi::IM*
 // ================== function "casadi::casadi_gauss_quadrature" ===============
 // cppName: "casadi::casadi_gauss_quadrature"
 // cWrapperName: "casadi_gauss_quadrature__8"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_, x3_, x4_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_gauss_quadrature__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4)"
+// proto: "casadi::IM*\n    casadi_gauss_quadrature__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4)"
 // friendWrap: True
 // fName: "casadi_gauss_quadrature"
 // call: "        casadi::IM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_);"
 extern "C"
 casadi::IM*
-    casadi_gauss_quadrature__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4);
+    casadi_gauss_quadrature__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4);
 casadi::IM*
-    casadi_gauss_quadrature__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, int x4){
+    casadi_gauss_quadrature__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, long long x4){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
         casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
         casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
-        int x4_ = Marshaling<int,int>::marshal(x4);
+        long long x4_ = Marshaling<long long,long long>::marshal(x4);
 
         casadi::IM ret = gauss_quadrature(x0_, x1_, x2_, x3_, x4_);
         // x0 is not a swig output
@@ -7838,111 +9538,6 @@ casadi::MX*
         // x1 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_getMinor" ===============
-// cppName: "casadi::casadi_getMinor"
-// cWrapperName: "casadi_getMinor__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "SX")
-// args: "(x0_, x1_, x2_)"
-// cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_getMinor__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// friendWrap: True
-// fName: "casadi_getMinor"
-// call: "        casadi::SX ret = getMinor(x0_, x1_, x2_);"
-extern "C"
-casadi::SX*
-    casadi_getMinor__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2);
-casadi::SX*
-    casadi_getMinor__0(std::string ** err_msg, casadi::SX* x0, int x1, int x2){
-    try {
-        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-
-        casadi::SX ret = getMinor(x0_, x1_, x2_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-
-        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_getMinor" ===============
-// cppName: "casadi::casadi_getMinor"
-// cWrapperName: "casadi_getMinor__1"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "DM")
-// args: "(x0_, x1_, x2_)"
-// cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_getMinor__1(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// friendWrap: True
-// fName: "casadi_getMinor"
-// call: "        casadi::DM ret = getMinor(x0_, x1_, x2_);"
-extern "C"
-casadi::DM*
-    casadi_getMinor__1(std::string ** err_msg, casadi::DM* x0, int x1, int x2);
-casadi::DM*
-    casadi_getMinor__1(std::string ** err_msg, casadi::DM* x0, int x1, int x2){
-    try {
-        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-
-        casadi::DM ret = getMinor(x0_, x1_, x2_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-
-        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_getMinor" ===============
-// cppName: "casadi::casadi_getMinor"
-// cWrapperName: "casadi_getMinor__2"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "IM")
-// args: "(x0_, x1_, x2_)"
-// cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_getMinor__2(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// friendWrap: True
-// fName: "casadi_getMinor"
-// call: "        casadi::IM ret = getMinor(x0_, x1_, x2_);"
-extern "C"
-casadi::IM*
-    casadi_getMinor__2(std::string ** err_msg, casadi::IM* x0, int x1, int x2);
-casadi::IM*
-    casadi_getMinor__2(std::string ** err_msg, casadi::IM* x0, int x1, int x2){
-    try {
-        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-
-        casadi::IM ret = getMinor(x0_, x1_, x2_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-
-        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -8739,23 +10334,23 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_horzsplit__1(std::string ** err_msg, casadi::SX* x0, int x1)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_horzsplit__1(std::string ** err_msg, casadi::SX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::SX > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_horzsplit__1(std::string ** err_msg, casadi::SX* x0, int x1);
+    casadi_horzsplit__1(std::string ** err_msg, casadi::SX* x0, long long x1);
 std::vector< casadi::SX* >*
-    casadi_horzsplit__1(std::string ** err_msg, casadi::SX* x0, int x1){
+    casadi_horzsplit__1(std::string ** err_msg, casadi::SX* x0, long long x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::SX > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -8772,23 +10367,23 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_horzsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_horzsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::SX > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_horzsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1);
+    casadi_horzsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1);
 std::vector< casadi::SX* >*
-    casadi_horzsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1){
+    casadi_horzsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::SX > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -8836,23 +10431,23 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__4"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_horzsplit__4(std::string ** err_msg, casadi::DM* x0, int x1)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_horzsplit__4(std::string ** err_msg, casadi::DM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::DM > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_horzsplit__4(std::string ** err_msg, casadi::DM* x0, int x1);
+    casadi_horzsplit__4(std::string ** err_msg, casadi::DM* x0, long long x1);
 std::vector< casadi::DM* >*
-    casadi_horzsplit__4(std::string ** err_msg, casadi::DM* x0, int x1){
+    casadi_horzsplit__4(std::string ** err_msg, casadi::DM* x0, long long x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::DM > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -8869,23 +10464,23 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_horzsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_horzsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::DM > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_horzsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1);
+    casadi_horzsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1);
 std::vector< casadi::DM* >*
-    casadi_horzsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1){
+    casadi_horzsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::DM > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -8933,23 +10528,23 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__7"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_horzsplit__7(std::string ** err_msg, casadi::IM* x0, int x1)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_horzsplit__7(std::string ** err_msg, casadi::IM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::IM > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_horzsplit__7(std::string ** err_msg, casadi::IM* x0, int x1);
+    casadi_horzsplit__7(std::string ** err_msg, casadi::IM* x0, long long x1);
 std::vector< casadi::IM* >*
-    casadi_horzsplit__7(std::string ** err_msg, casadi::IM* x0, int x1){
+    casadi_horzsplit__7(std::string ** err_msg, casadi::IM* x0, long long x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::IM > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -8966,23 +10561,23 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__8"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_horzsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_horzsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::IM > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_horzsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1);
+    casadi_horzsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1);
 std::vector< casadi::IM* >*
-    casadi_horzsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1){
+    casadi_horzsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::IM > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -9030,23 +10625,23 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__10"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_horzsplit__10(std::string ** err_msg, casadi::MX* x0, int x1)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_horzsplit__10(std::string ** err_msg, casadi::MX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::MX > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_horzsplit__10(std::string ** err_msg, casadi::MX* x0, int x1);
+    casadi_horzsplit__10(std::string ** err_msg, casadi::MX* x0, long long x1);
 std::vector< casadi::MX* >*
-    casadi_horzsplit__10(std::string ** err_msg, casadi::MX* x0, int x1){
+    casadi_horzsplit__10(std::string ** err_msg, casadi::MX* x0, long long x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::MX > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -9063,23 +10658,23 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__11"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_horzsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_horzsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::MX > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_horzsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1);
+    casadi_horzsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1);
 std::vector< casadi::MX* >*
-    casadi_horzsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1){
+    casadi_horzsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::MX > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -9127,23 +10722,23 @@ std::vector< casadi::Sparsity* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__13"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_horzsplit__13(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_horzsplit__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::Sparsity > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_horzsplit__13(std::string ** err_msg, casadi::Sparsity* x0, int x1);
+    casadi_horzsplit__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1);
 std::vector< casadi::Sparsity* >*
-    casadi_horzsplit__13(std::string ** err_msg, casadi::Sparsity* x0, int x1){
+    casadi_horzsplit__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::Sparsity > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -9160,23 +10755,23 @@ std::vector< casadi::Sparsity* >*
 // ================== function "casadi::casadi_horzsplit" ===============
 // cppName: "casadi::casadi_horzsplit"
 // cWrapperName: "casadi_horzsplit__14"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_horzsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_horzsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_horzsplit"
 // call: "        std::vector< casadi::Sparsity > ret = horzsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_horzsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1);
+    casadi_horzsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1);
 std::vector< casadi::Sparsity* >*
-    casadi_horzsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1){
+    casadi_horzsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::Sparsity > ret = horzsplit(x0_, x1_);
         // x0 is not a swig output
@@ -9481,20 +11076,88 @@ casadi::MX*
 // ================== function "casadi::casadi_inv" ===============
 // cppName: "casadi::casadi_inv"
 // cWrapperName: "casadi_inv__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::string* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_inv__0(std::string ** err_msg, casadi::SX* x0, std::string* x1)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::SX ret = inv(x0_, x1_);"
+extern "C"
+casadi::SX*
+    casadi_inv__0(std::string ** err_msg, casadi::SX* x0, std::string* x1);
+casadi::SX*
+    casadi_inv__0(std::string ** err_msg, casadi::SX* x0, std::string* x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        casadi::SX ret = inv(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_inv__1(std::string ** err_msg, casadi::SX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::SX ret = inv(x0_, x1_, x2_);"
+extern "C"
+casadi::SX*
+    casadi_inv__1(std::string ** err_msg, casadi::SX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::SX*
+    casadi_inv__1(std::string ** err_msg, casadi::SX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::SX ret = inv(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__2"
 // protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_inv__0(std::string ** err_msg, casadi::SX* x0)"
+// proto: "casadi::SX*\n    casadi_inv__2(std::string ** err_msg, casadi::SX* x0)"
 // friendWrap: True
 // fName: "casadi_inv"
 // call: "        casadi::SX ret = inv(x0_);"
 extern "C"
 casadi::SX*
-    casadi_inv__0(std::string ** err_msg, casadi::SX* x0);
+    casadi_inv__2(std::string ** err_msg, casadi::SX* x0);
 casadi::SX*
-    casadi_inv__0(std::string ** err_msg, casadi::SX* x0){
+    casadi_inv__2(std::string ** err_msg, casadi::SX* x0){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
 
@@ -9511,21 +11174,89 @@ casadi::SX*
 
 // ================== function "casadi::casadi_inv" ===============
 // cppName: "casadi::casadi_inv"
-// cWrapperName: "casadi_inv__1"
+// cWrapperName: "casadi_inv__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::string* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_inv__3(std::string ** err_msg, casadi::DM* x0, std::string* x1)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::DM ret = inv(x0_, x1_);"
+extern "C"
+casadi::DM*
+    casadi_inv__3(std::string ** err_msg, casadi::DM* x0, std::string* x1);
+casadi::DM*
+    casadi_inv__3(std::string ** err_msg, casadi::DM* x0, std::string* x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        casadi::DM ret = inv(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__4"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_inv__4(std::string ** err_msg, casadi::DM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::DM ret = inv(x0_, x1_, x2_);"
+extern "C"
+casadi::DM*
+    casadi_inv__4(std::string ** err_msg, casadi::DM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::DM*
+    casadi_inv__4(std::string ** err_msg, casadi::DM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::DM ret = inv(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__5"
 // protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_inv__1(std::string ** err_msg, casadi::DM* x0)"
+// proto: "casadi::DM*\n    casadi_inv__5(std::string ** err_msg, casadi::DM* x0)"
 // friendWrap: True
 // fName: "casadi_inv"
 // call: "        casadi::DM ret = inv(x0_);"
 extern "C"
 casadi::DM*
-    casadi_inv__1(std::string ** err_msg, casadi::DM* x0);
+    casadi_inv__5(std::string ** err_msg, casadi::DM* x0);
 casadi::DM*
-    casadi_inv__1(std::string ** err_msg, casadi::DM* x0){
+    casadi_inv__5(std::string ** err_msg, casadi::DM* x0){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
 
@@ -9542,21 +11273,89 @@ casadi::DM*
 
 // ================== function "casadi::casadi_inv" ===============
 // cppName: "casadi::casadi_inv"
-// cWrapperName: "casadi_inv__2"
+// cWrapperName: "casadi_inv__6"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::string* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_inv__6(std::string ** err_msg, casadi::IM* x0, std::string* x1)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::IM ret = inv(x0_, x1_);"
+extern "C"
+casadi::IM*
+    casadi_inv__6(std::string ** err_msg, casadi::IM* x0, std::string* x1);
+casadi::IM*
+    casadi_inv__6(std::string ** err_msg, casadi::IM* x0, std::string* x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        casadi::IM ret = inv(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__7"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_inv__7(std::string ** err_msg, casadi::IM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::IM ret = inv(x0_, x1_, x2_);"
+extern "C"
+casadi::IM*
+    casadi_inv__7(std::string ** err_msg, casadi::IM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::IM*
+    casadi_inv__7(std::string ** err_msg, casadi::IM* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::IM ret = inv(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__8"
 // protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_inv__2(std::string ** err_msg, casadi::IM* x0)"
+// proto: "casadi::IM*\n    casadi_inv__8(std::string ** err_msg, casadi::IM* x0)"
 // friendWrap: True
 // fName: "casadi_inv"
 // call: "        casadi::IM ret = inv(x0_);"
 extern "C"
 casadi::IM*
-    casadi_inv__2(std::string ** err_msg, casadi::IM* x0);
+    casadi_inv__8(std::string ** err_msg, casadi::IM* x0);
 casadi::IM*
-    casadi_inv__2(std::string ** err_msg, casadi::IM* x0){
+    casadi_inv__8(std::string ** err_msg, casadi::IM* x0){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
 
@@ -9573,25 +11372,248 @@ casadi::IM*
 
 // ================== function "casadi::casadi_inv" ===============
 // cppName: "casadi::casadi_inv"
-// cWrapperName: "casadi_inv__3"
+// cWrapperName: "casadi_inv__9"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::string* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_inv__9(std::string ** err_msg, casadi::MX* x0, std::string* x1)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::MX ret = inv(x0_, x1_);"
+extern "C"
+casadi::MX*
+    casadi_inv__9(std::string ** err_msg, casadi::MX* x0, std::string* x1);
+casadi::MX*
+    casadi_inv__9(std::string ** err_msg, casadi::MX* x0, std::string* x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        casadi::MX ret = inv(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__10"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_inv__10(std::string ** err_msg, casadi::MX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_inv"
+// call: "        casadi::MX ret = inv(x0_, x1_, x2_);"
+extern "C"
+casadi::MX*
+    casadi_inv__10(std::string ** err_msg, casadi::MX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::MX*
+    casadi_inv__10(std::string ** err_msg, casadi::MX* x0, std::string* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::MX ret = inv(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv" ===============
+// cppName: "casadi::casadi_inv"
+// cWrapperName: "casadi_inv__11"
 // protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_inv__3(std::string ** err_msg, casadi::MX* x0)"
+// proto: "casadi::MX*\n    casadi_inv__11(std::string ** err_msg, casadi::MX* x0)"
 // friendWrap: True
 // fName: "casadi_inv"
 // call: "        casadi::MX ret = inv(x0_);"
 extern "C"
 casadi::MX*
-    casadi_inv__3(std::string ** err_msg, casadi::MX* x0);
+    casadi_inv__11(std::string ** err_msg, casadi::MX* x0);
 casadi::MX*
-    casadi_inv__3(std::string ** err_msg, casadi::MX* x0){
+    casadi_inv__11(std::string ** err_msg, casadi::MX* x0){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
 
         casadi::MX ret = inv(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv_minor" ===============
+// cppName: "casadi::casadi_inv_minor"
+// cWrapperName: "casadi_inv_minor__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_inv_minor__0(std::string ** err_msg, casadi::SX* x0)"
+// friendWrap: True
+// fName: "casadi_inv_minor"
+// call: "        casadi::SX ret = inv_minor(x0_);"
+extern "C"
+casadi::SX*
+    casadi_inv_minor__0(std::string ** err_msg, casadi::SX* x0);
+casadi::SX*
+    casadi_inv_minor__0(std::string ** err_msg, casadi::SX* x0){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+
+        casadi::SX ret = inv_minor(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv_minor" ===============
+// cppName: "casadi::casadi_inv_minor"
+// cWrapperName: "casadi_inv_minor__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_inv_minor__1(std::string ** err_msg, casadi::DM* x0)"
+// friendWrap: True
+// fName: "casadi_inv_minor"
+// call: "        casadi::DM ret = inv_minor(x0_);"
+extern "C"
+casadi::DM*
+    casadi_inv_minor__1(std::string ** err_msg, casadi::DM* x0);
+casadi::DM*
+    casadi_inv_minor__1(std::string ** err_msg, casadi::DM* x0){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+
+        casadi::DM ret = inv_minor(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv_minor" ===============
+// cppName: "casadi::casadi_inv_minor"
+// cWrapperName: "casadi_inv_minor__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_inv_minor__2(std::string ** err_msg, casadi::IM* x0)"
+// friendWrap: True
+// fName: "casadi_inv_minor"
+// call: "        casadi::IM ret = inv_minor(x0_);"
+extern "C"
+casadi::IM*
+    casadi_inv_minor__2(std::string ** err_msg, casadi::IM* x0);
+casadi::IM*
+    casadi_inv_minor__2(std::string ** err_msg, casadi::IM* x0){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+
+        casadi::IM ret = inv_minor(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv_minor" ===============
+// cppName: "casadi::casadi_inv_minor"
+// cWrapperName: "casadi_inv_minor__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_inv_minor__3(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_inv_minor"
+// call: "        casadi::MX ret = inv_minor(x0_);"
+extern "C"
+casadi::MX*
+    casadi_inv_minor__3(std::string ** err_msg, casadi::MX* x0);
+casadi::MX*
+    casadi_inv_minor__3(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::MX ret = inv_minor(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_inv_node" ===============
+// cppName: "casadi::casadi_inv_node"
+// cWrapperName: "casadi_inv_node"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_inv_node(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_inv_node"
+// call: "        casadi::MX ret = inv_node(x0_);"
+extern "C"
+casadi::MX*
+    casadi_inv_node(std::string ** err_msg, casadi::MX* x0);
+casadi::MX*
+    casadi_inv_node(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::MX ret = inv_node(x0_);
         // x0 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
@@ -9762,24 +11784,24 @@ int
 // ================== function "casadi::casadi_is_equal" ===============
 // cppName: "casadi::casadi_is_equal"
 // cWrapperName: "casadi_is_equal__1"
-// protoArgs: "(std::string ** err_msg, double* x0, double* x1, int x2)"
-// params: [(Ref (Const CDouble),SwigOutput False),(Ref (Const CDouble),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, double* x0, double* x1, long long x2)"
+// params: [(Ref (Const CDouble),SwigOutput False),(Ref (Const CDouble),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: CBool
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "int"
-// proto: "int\n    casadi_is_equal__1(std::string ** err_msg, double* x0, double* x1, int x2)"
+// proto: "int\n    casadi_is_equal__1(std::string ** err_msg, double* x0, double* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_is_equal"
 // call: "        bool ret = casadi::is_equal(x0_, x1_, x2_);"
 extern "C"
 int
-    casadi_is_equal__1(std::string ** err_msg, double* x0, double* x1, int x2);
+    casadi_is_equal__1(std::string ** err_msg, double* x0, double* x1, long long x2);
 int
-    casadi_is_equal__1(std::string ** err_msg, double* x0, double* x1, int x2){
+    casadi_is_equal__1(std::string ** err_msg, double* x0, double* x1, long long x2){
     try {
         double& x0_ = Marshaling<double&,double*>::marshal(x0);
         double& x1_ = Marshaling<double&,double*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         bool ret = casadi::is_equal(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -9830,24 +11852,24 @@ int
 // ================== function "casadi::casadi_is_equal" ===============
 // cppName: "casadi::casadi_is_equal"
 // cWrapperName: "casadi_is_equal__3"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: CBool
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "int"
-// proto: "int\n    casadi_is_equal__3(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2)"
+// proto: "int\n    casadi_is_equal__3(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_is_equal"
 // call: "        bool ret = is_equal(x0_, x1_, x2_);"
 extern "C"
 int
-    casadi_is_equal__3(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2);
+    casadi_is_equal__3(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2);
 int
-    casadi_is_equal__3(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2){
+    casadi_is_equal__3(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         bool ret = is_equal(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -9898,24 +11920,24 @@ int
 // ================== function "casadi::casadi_is_equal" ===============
 // cppName: "casadi::casadi_is_equal"
 // cWrapperName: "casadi_is_equal__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: CBool
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "int"
-// proto: "int\n    casadi_is_equal__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2)"
+// proto: "int\n    casadi_is_equal__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_is_equal"
 // call: "        bool ret = is_equal(x0_, x1_, x2_);"
 extern "C"
 int
-    casadi_is_equal__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2);
+    casadi_is_equal__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2);
 int
-    casadi_is_equal__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2){
+    casadi_is_equal__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         bool ret = is_equal(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -9966,24 +11988,24 @@ int
 // ================== function "casadi::casadi_is_equal" ===============
 // cppName: "casadi::casadi_is_equal"
 // cWrapperName: "casadi_is_equal__7"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: CBool
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "int"
-// proto: "int\n    casadi_is_equal__7(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2)"
+// proto: "int\n    casadi_is_equal__7(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_is_equal"
 // call: "        bool ret = is_equal(x0_, x1_, x2_);"
 extern "C"
 int
-    casadi_is_equal__7(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2);
+    casadi_is_equal__7(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2);
 int
-    casadi_is_equal__7(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2){
+    casadi_is_equal__7(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         bool ret = is_equal(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -10034,29 +12056,293 @@ int
 // ================== function "casadi::casadi_is_equal" ===============
 // cppName: "casadi::casadi_is_equal"
 // cWrapperName: "casadi_is_equal__9"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: CBool
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "int"
-// proto: "int\n    casadi_is_equal__9(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2)"
+// proto: "int\n    casadi_is_equal__9(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_is_equal"
 // call: "        bool ret = is_equal(x0_, x1_, x2_);"
 extern "C"
 int
-    casadi_is_equal__9(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2);
+    casadi_is_equal__9(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2);
 int
-    casadi_is_equal__9(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2){
+    casadi_is_equal__9(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
         casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         bool ret = is_equal(x0_, x1_, x2_);
         // x0 is not a swig output
         // x1 is not a swig output
         // x2 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_linear" ===============
+// cppName: "casadi::casadi_is_linear"
+// cWrapperName: "casadi_is_linear__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_linear__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// friendWrap: True
+// fName: "casadi_is_linear"
+// call: "        bool ret = is_linear(x0_, x1_);"
+extern "C"
+int
+    casadi_is_linear__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
+int
+    casadi_is_linear__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+
+        bool ret = is_linear(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_linear" ===============
+// cppName: "casadi::casadi_is_linear"
+// cWrapperName: "casadi_is_linear__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_linear__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// friendWrap: True
+// fName: "casadi_is_linear"
+// call: "        bool ret = is_linear(x0_, x1_);"
+extern "C"
+int
+    casadi_is_linear__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+int
+    casadi_is_linear__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+
+        bool ret = is_linear(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_linear" ===============
+// cppName: "casadi::casadi_is_linear"
+// cWrapperName: "casadi_is_linear__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_linear__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// friendWrap: True
+// fName: "casadi_is_linear"
+// call: "        bool ret = is_linear(x0_, x1_);"
+extern "C"
+int
+    casadi_is_linear__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+int
+    casadi_is_linear__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+
+        bool ret = is_linear(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_linear" ===============
+// cppName: "casadi::casadi_is_linear"
+// cWrapperName: "casadi_is_linear__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_linear__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// friendWrap: True
+// fName: "casadi_is_linear"
+// call: "        bool ret = is_linear(x0_, x1_);"
+extern "C"
+int
+    casadi_is_linear__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
+int
+    casadi_is_linear__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+
+        bool ret = is_linear(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_quadratic" ===============
+// cppName: "casadi::casadi_is_quadratic"
+// cWrapperName: "casadi_is_quadratic__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_quadratic__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// friendWrap: True
+// fName: "casadi_is_quadratic"
+// call: "        bool ret = is_quadratic(x0_, x1_);"
+extern "C"
+int
+    casadi_is_quadratic__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
+int
+    casadi_is_quadratic__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+
+        bool ret = is_quadratic(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_quadratic" ===============
+// cppName: "casadi::casadi_is_quadratic"
+// cWrapperName: "casadi_is_quadratic__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_quadratic__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// friendWrap: True
+// fName: "casadi_is_quadratic"
+// call: "        bool ret = is_quadratic(x0_, x1_);"
+extern "C"
+int
+    casadi_is_quadratic__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+int
+    casadi_is_quadratic__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+
+        bool ret = is_quadratic(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_quadratic" ===============
+// cppName: "casadi::casadi_is_quadratic"
+// cWrapperName: "casadi_is_quadratic__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_quadratic__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// friendWrap: True
+// fName: "casadi_is_quadratic"
+// call: "        bool ret = is_quadratic(x0_, x1_);"
+extern "C"
+int
+    casadi_is_quadratic__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+int
+    casadi_is_quadratic__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+
+        bool ret = is_quadratic(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_is_quadratic" ===============
+// cppName: "casadi::casadi_is_quadratic"
+// cWrapperName: "casadi_is_quadratic__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: CBool
+// args: "(x0_, x1_)"
+// cWrapperRetType: "int"
+// proto: "int\n    casadi_is_quadratic__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// friendWrap: True
+// fName: "casadi_is_quadratic"
+// call: "        bool ret = is_quadratic(x0_, x1_);"
+extern "C"
+int
+    casadi_is_quadratic__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
+int
+    casadi_is_quadratic__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+
+        bool ret = is_quadratic(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
 
         return WrapReturn< int, bool >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -10102,20 +12388,55 @@ casadi::SX*
 // ================== function "casadi::casadi_jacobian" ===============
 // cppName: "casadi::casadi_jacobian"
 // cWrapperName: "casadi_jacobian__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_jacobian__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_jacobian"
+// call: "        casadi::SX ret = jacobian(x0_, x1_, x2_);"
+extern "C"
+casadi::SX*
+    casadi_jacobian__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::SX*
+    casadi_jacobian__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::SX ret = jacobian(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_jacobian" ===============
+// cppName: "casadi::casadi_jacobian"
+// cWrapperName: "casadi_jacobian__2"
 // protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_jacobian__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// proto: "casadi::DM*\n    casadi_jacobian__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
 // friendWrap: True
 // fName: "casadi_jacobian"
 // call: "        casadi::DM ret = jacobian(x0_, x1_);"
 extern "C"
 casadi::DM*
-    casadi_jacobian__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+    casadi_jacobian__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
 casadi::DM*
-    casadi_jacobian__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    casadi_jacobian__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
@@ -10134,21 +12455,56 @@ casadi::DM*
 
 // ================== function "casadi::casadi_jacobian" ===============
 // cppName: "casadi::casadi_jacobian"
-// cWrapperName: "casadi_jacobian__2"
+// cWrapperName: "casadi_jacobian__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_jacobian__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_jacobian"
+// call: "        casadi::DM ret = jacobian(x0_, x1_, x2_);"
+extern "C"
+casadi::DM*
+    casadi_jacobian__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::DM*
+    casadi_jacobian__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::DM ret = jacobian(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_jacobian" ===============
+// cppName: "casadi::casadi_jacobian"
+// cWrapperName: "casadi_jacobian__4"
 // protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_jacobian__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// proto: "casadi::IM*\n    casadi_jacobian__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
 // friendWrap: True
 // fName: "casadi_jacobian"
 // call: "        casadi::IM ret = jacobian(x0_, x1_);"
 extern "C"
 casadi::IM*
-    casadi_jacobian__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+    casadi_jacobian__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
 casadi::IM*
-    casadi_jacobian__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    casadi_jacobian__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
@@ -10167,21 +12523,56 @@ casadi::IM*
 
 // ================== function "casadi::casadi_jacobian" ===============
 // cppName: "casadi::casadi_jacobian"
-// cWrapperName: "casadi_jacobian__3"
+// cWrapperName: "casadi_jacobian__5"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_jacobian__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_jacobian"
+// call: "        casadi::IM ret = jacobian(x0_, x1_, x2_);"
+extern "C"
+casadi::IM*
+    casadi_jacobian__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::IM*
+    casadi_jacobian__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::IM ret = jacobian(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_jacobian" ===============
+// cppName: "casadi::casadi_jacobian"
+// cWrapperName: "casadi_jacobian__6"
 // protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_jacobian__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// proto: "casadi::MX*\n    casadi_jacobian__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
 // friendWrap: True
 // fName: "casadi_jacobian"
 // call: "        casadi::MX ret = jacobian(x0_, x1_);"
 extern "C"
 casadi::MX*
-    casadi_jacobian__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
+    casadi_jacobian__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
 casadi::MX*
-    casadi_jacobian__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
+    casadi_jacobian__6(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
         casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
@@ -10189,6 +12580,41 @@ casadi::MX*
         casadi::MX ret = jacobian(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_jacobian" ===============
+// cppName: "casadi::casadi_jacobian"
+// cWrapperName: "casadi_jacobian__7"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_jacobian__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::map< std::string, casadi::GenericType* >* x2)"
+// friendWrap: True
+// fName: "casadi_jacobian"
+// call: "        casadi::MX ret = jacobian(x0_, x1_, x2_);"
+extern "C"
+casadi::MX*
+    casadi_jacobian__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::map< std::string, casadi::GenericType* >* x2);
+casadi::MX*
+    casadi_jacobian__7(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, std::map< std::string, casadi::GenericType* >* x2){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+        std::map< std::string, casadi::GenericType > x2_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x2);
+
+        casadi::MX ret = jacobian(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -10816,6 +13242,345 @@ casadi::MX*
 }
 
 
+// ================== function "casadi::casadi_ldl" ===============
+// cppName: "casadi::casadi_ldl"
+// cWrapperName: "casadi_ldl__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_ldl__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3)"
+// friendWrap: True
+// fName: "casadi_ldl"
+// call: "        ldl(x0_, x1_, x2_, x3_);"
+extern "C"
+void
+    casadi_ldl__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3);
+void
+    casadi_ldl__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+
+        ldl(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl" ===============
+// cppName: "casadi::casadi_ldl"
+// cWrapperName: "casadi_ldl__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, int x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(CBool,SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_ldl__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, int x4)"
+// friendWrap: True
+// fName: "casadi_ldl"
+// call: "        ldl(x0_, x1_, x2_, x3_, x4_);"
+extern "C"
+void
+    casadi_ldl__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, int x4);
+void
+    casadi_ldl__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3, int x4){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        bool x4_ = Marshaling<bool,int>::marshal(x4);
+
+        ldl(x0_, x1_, x2_, x3_, x4_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl" ===============
+// cppName: "casadi::casadi_ldl"
+// cWrapperName: "casadi_ldl__2"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_ldl__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3)"
+// friendWrap: True
+// fName: "casadi_ldl"
+// call: "        ldl(x0_, x1_, x2_, x3_);"
+extern "C"
+void
+    casadi_ldl__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3);
+void
+    casadi_ldl__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+
+        ldl(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl" ===============
+// cppName: "casadi::casadi_ldl"
+// cWrapperName: "casadi_ldl__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, int x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(CBool,SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_ldl__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, int x4)"
+// friendWrap: True
+// fName: "casadi_ldl"
+// call: "        ldl(x0_, x1_, x2_, x3_, x4_);"
+extern "C"
+void
+    casadi_ldl__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, int x4);
+void
+    casadi_ldl__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3, int x4){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        bool x4_ = Marshaling<bool,int>::marshal(x4);
+
+        ldl(x0_, x1_, x2_, x3_, x4_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl" ===============
+// cppName: "casadi::casadi_ldl"
+// cWrapperName: "casadi_ldl__4"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_ldl__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3)"
+// friendWrap: True
+// fName: "casadi_ldl"
+// call: "        ldl(x0_, x1_, x2_, x3_);"
+extern "C"
+void
+    casadi_ldl__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3);
+void
+    casadi_ldl__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+
+        ldl(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl" ===============
+// cppName: "casadi::casadi_ldl"
+// cWrapperName: "casadi_ldl__5"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, int x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(CBool,SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_ldl__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, int x4)"
+// friendWrap: True
+// fName: "casadi_ldl"
+// call: "        ldl(x0_, x1_, x2_, x3_, x4_);"
+extern "C"
+void
+    casadi_ldl__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, int x4);
+void
+    casadi_ldl__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3, int x4){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+        bool x4_ = Marshaling<bool,int>::marshal(x4);
+
+        ldl(x0_, x1_, x2_, x3_, x4_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl_solve" ===============
+// cppName: "casadi::casadi_ldl_solve"
+// cWrapperName: "casadi_ldl_solve__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_ldl_solve__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3)"
+// friendWrap: True
+// fName: "casadi_ldl_solve"
+// call: "        casadi::SX ret = ldl_solve(x0_, x1_, x2_, x3_);"
+extern "C"
+casadi::SX*
+    casadi_ldl_solve__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3);
+casadi::SX*
+    casadi_ldl_solve__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, std::vector< long long >* x3){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+
+        casadi::SX ret = ldl_solve(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl_solve" ===============
+// cppName: "casadi::casadi_ldl_solve"
+// cWrapperName: "casadi_ldl_solve__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_ldl_solve__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3)"
+// friendWrap: True
+// fName: "casadi_ldl_solve"
+// call: "        casadi::DM ret = ldl_solve(x0_, x1_, x2_, x3_);"
+extern "C"
+casadi::DM*
+    casadi_ldl_solve__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3);
+casadi::DM*
+    casadi_ldl_solve__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, std::vector< long long >* x3){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+
+        casadi::DM ret = ldl_solve(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_ldl_solve" ===============
+// cppName: "casadi::casadi_ldl_solve"
+// cWrapperName: "casadi_ldl_solve__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_ldl_solve__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3)"
+// friendWrap: True
+// fName: "casadi_ldl_solve"
+// call: "        casadi::IM ret = ldl_solve(x0_, x1_, x2_, x3_);"
+extern "C"
+casadi::IM*
+    casadi_ldl_solve__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3);
+casadi::IM*
+    casadi_ldl_solve__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, std::vector< long long >* x3){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
+
+        casadi::IM ret = ldl_solve(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::casadi_le" ===============
 // cppName: "casadi::casadi_le"
 // cWrapperName: "casadi_le__0"
@@ -10981,27 +13746,315 @@ casadi::MX*
 }
 
 
-// ================== function "casadi::casadi_linspace" ===============
-// cppName: "casadi::casadi_linspace"
-// cWrapperName: "casadi_linspace__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// ================== function "casadi::casadi_linear_coeff" ===============
+// cppName: "casadi::casadi_linear_coeff"
+// cWrapperName: "casadi_linear_coeff__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_linear_coeff__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3)"
+// friendWrap: True
+// fName: "casadi_linear_coeff"
+// call: "        linear_coeff(x0_, x1_, x2_, x3_);"
+extern "C"
+void
+    casadi_linear_coeff__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3);
+void
+    casadi_linear_coeff__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
+
+        linear_coeff(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_linear_coeff" ===============
+// cppName: "casadi::casadi_linear_coeff"
+// cWrapperName: "casadi_linear_coeff__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_linear_coeff__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3)"
+// friendWrap: True
+// fName: "casadi_linear_coeff"
+// call: "        linear_coeff(x0_, x1_, x2_, x3_);"
+extern "C"
+void
+    casadi_linear_coeff__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3);
+void
+    casadi_linear_coeff__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
+
+        linear_coeff(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_linear_coeff" ===============
+// cppName: "casadi::casadi_linear_coeff"
+// cWrapperName: "casadi_linear_coeff__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_linear_coeff__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3)"
+// friendWrap: True
+// fName: "casadi_linear_coeff"
+// call: "        linear_coeff(x0_, x1_, x2_, x3_);"
+extern "C"
+void
+    casadi_linear_coeff__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3);
+void
+    casadi_linear_coeff__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
+
+        linear_coeff(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_linear_coeff" ===============
+// cppName: "casadi::casadi_linear_coeff"
+// cWrapperName: "casadi_linear_coeff__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "MX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "MX")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_linear_coeff__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3)"
+// friendWrap: True
+// fName: "casadi_linear_coeff"
+// call: "        linear_coeff(x0_, x1_, x2_, x3_);"
+extern "C"
+void
+    casadi_linear_coeff__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3);
+void
+    casadi_linear_coeff__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+        casadi::MX& x2_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x2);
+        casadi::MX& x3_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x3);
+
+        linear_coeff(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_linearize" ===============
+// cppName: "casadi::casadi_linearize"
+// cWrapperName: "casadi_linearize__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_linspace__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2)"
+// proto: "casadi::SX*\n    casadi_linearize__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2)"
+// friendWrap: True
+// fName: "casadi_linearize"
+// call: "        casadi::SX ret = linearize(x0_, x1_, x2_);"
+extern "C"
+casadi::SX*
+    casadi_linearize__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2);
+casadi::SX*
+    casadi_linearize__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+
+        casadi::SX ret = linearize(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_linearize" ===============
+// cppName: "casadi::casadi_linearize"
+// cWrapperName: "casadi_linearize__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_linearize__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2)"
+// friendWrap: True
+// fName: "casadi_linearize"
+// call: "        casadi::DM ret = linearize(x0_, x1_, x2_);"
+extern "C"
+casadi::DM*
+    casadi_linearize__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2);
+casadi::DM*
+    casadi_linearize__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+
+        casadi::DM ret = linearize(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_linearize" ===============
+// cppName: "casadi::casadi_linearize"
+// cWrapperName: "casadi_linearize__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_linearize__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2)"
+// friendWrap: True
+// fName: "casadi_linearize"
+// call: "        casadi::IM ret = linearize(x0_, x1_, x2_);"
+extern "C"
+casadi::IM*
+    casadi_linearize__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2);
+casadi::IM*
+    casadi_linearize__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+
+        casadi::IM ret = linearize(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_linearize" ===============
+// cppName: "casadi::casadi_linearize"
+// cWrapperName: "casadi_linearize__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_linearize__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2)"
+// friendWrap: True
+// fName: "casadi_linearize"
+// call: "        casadi::MX ret = linearize(x0_, x1_, x2_);"
+extern "C"
+casadi::MX*
+    casadi_linearize__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2);
+casadi::MX*
+    casadi_linearize__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+        casadi::MX& x2_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x2);
+
+        casadi::MX ret = linearize(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_linspace" ===============
+// cppName: "casadi::casadi_linspace"
+// cWrapperName: "casadi_linspace__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_linspace__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_linspace"
 // call: "        casadi::SX ret = linspace(x0_, x1_, x2_);"
 extern "C"
 casadi::SX*
-    casadi_linspace__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2);
+    casadi_linspace__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2);
 casadi::SX*
-    casadi_linspace__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2){
+    casadi_linspace__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::SX ret = linspace(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -11019,24 +14072,24 @@ casadi::SX*
 // ================== function "casadi::casadi_linspace" ===============
 // cppName: "casadi::casadi_linspace"
 // cWrapperName: "casadi_linspace__1"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_linspace__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2)"
+// proto: "casadi::DM*\n    casadi_linspace__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_linspace"
 // call: "        casadi::DM ret = linspace(x0_, x1_, x2_);"
 extern "C"
 casadi::DM*
-    casadi_linspace__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2);
+    casadi_linspace__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2);
 casadi::DM*
-    casadi_linspace__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2){
+    casadi_linspace__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::DM ret = linspace(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -11054,24 +14107,24 @@ casadi::DM*
 // ================== function "casadi::casadi_linspace" ===============
 // cppName: "casadi::casadi_linspace"
 // cWrapperName: "casadi_linspace__2"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_linspace__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2)"
+// proto: "casadi::IM*\n    casadi_linspace__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_linspace"
 // call: "        casadi::IM ret = linspace(x0_, x1_, x2_);"
 extern "C"
 casadi::IM*
-    casadi_linspace__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2);
+    casadi_linspace__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2);
 casadi::IM*
-    casadi_linspace__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2){
+    casadi_linspace__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::IM ret = linspace(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -11089,24 +14142,24 @@ casadi::IM*
 // ================== function "casadi::casadi_linspace" ===============
 // cppName: "casadi::casadi_linspace"
 // cWrapperName: "casadi_linspace__3"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_linspace__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2)"
+// proto: "casadi::MX*\n    casadi_linspace__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_linspace"
 // call: "        casadi::MX ret = linspace(x0_, x1_, x2_);"
 extern "C"
 casadi::MX*
-    casadi_linspace__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2);
+    casadi_linspace__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2);
 casadi::MX*
-    casadi_linspace__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2){
+    casadi_linspace__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
         casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::MX ret = linspace(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -11969,63 +15022,32 @@ std::vector< casadi::MX* >*
 }
 
 
-// ================== function "casadi::casadi_max" ===============
-// cppName: "casadi::casadi_max"
-// cWrapperName: "casadi_max__0"
-// protoArgs: "(std::string ** err_msg, double* x0, double* x1)"
-// params: [(Ref (Const CDouble),SwigOutput False),(Ref (Const CDouble),SwigOutput False)]
-// retType: CDouble
-// args: "(x0_, x1_)"
-// cWrapperRetType: "double"
-// proto: "double\n    casadi_max__0(std::string ** err_msg, double* x0, double* x1)"
-// friendWrap: True
-// fName: "casadi_max"
-// call: "        double ret = fmax(x0_, x1_);"
-extern "C"
-double
-    casadi_max__0(std::string ** err_msg, double* x0, double* x1);
-double
-    casadi_max__0(std::string ** err_msg, double* x0, double* x1){
-    try {
-        double& x0_ = Marshaling<double&,double*>::marshal(x0);
-        double& x1_ = Marshaling<double&,double*>::marshal(x1);
-
-        double ret = fmax(x0_, x1_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-
-        return WrapReturn< double, double >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_max" ===============
-// cppName: "casadi::casadi_max"
-// cWrapperName: "casadi_max__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// ================== function "casadi::casadi_minor" ===============
+// cppName: "casadi::casadi_minor"
+// cWrapperName: "casadi_minor__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
-// args: "(x0_, x1_)"
+// args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_max__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// proto: "casadi::SX*\n    casadi_minor__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
 // friendWrap: True
-// fName: "casadi_max"
-// call: "        casadi::SX ret = fmax(x0_, x1_);"
+// fName: "casadi_minor"
+// call: "        casadi::SX ret = minor(x0_, x1_, x2_);"
 extern "C"
 casadi::SX*
-    casadi_max__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
+    casadi_minor__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
 casadi::SX*
-    casadi_max__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
+    casadi_minor__0(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
-        casadi::SX ret = fmax(x0_, x1_);
+        casadi::SX ret = minor(x0_, x1_, x2_);
         // x0 is not a swig output
         // x1 is not a swig output
+        // x2 is not a swig output
 
         return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -12035,30 +15057,32 @@ casadi::SX*
 }
 
 
-// ================== function "casadi::casadi_max" ===============
-// cppName: "casadi::casadi_max"
-// cWrapperName: "casadi_max__2"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// ================== function "casadi::casadi_minor" ===============
+// cppName: "casadi::casadi_minor"
+// cWrapperName: "casadi_minor__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
-// args: "(x0_, x1_)"
+// args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_max__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// proto: "casadi::DM*\n    casadi_minor__1(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
 // friendWrap: True
-// fName: "casadi_max"
-// call: "        casadi::DM ret = fmax(x0_, x1_);"
+// fName: "casadi_minor"
+// call: "        casadi::DM ret = minor(x0_, x1_, x2_);"
 extern "C"
 casadi::DM*
-    casadi_max__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+    casadi_minor__1(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
 casadi::DM*
-    casadi_max__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    casadi_minor__1(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
-        casadi::DM ret = fmax(x0_, x1_);
+        casadi::DM ret = minor(x0_, x1_, x2_);
         // x0 is not a swig output
         // x1 is not a swig output
+        // x2 is not a swig output
 
         return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -12068,230 +15092,34 @@ casadi::DM*
 }
 
 
-// ================== function "casadi::casadi_max" ===============
-// cppName: "casadi::casadi_max"
-// cWrapperName: "casadi_max__3"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// ================== function "casadi::casadi_minor" ===============
+// cppName: "casadi::casadi_minor"
+// cWrapperName: "casadi_minor__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
-// args: "(x0_, x1_)"
+// args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_max__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// proto: "casadi::IM*\n    casadi_minor__2(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
 // friendWrap: True
-// fName: "casadi_max"
-// call: "        casadi::IM ret = fmax(x0_, x1_);"
+// fName: "casadi_minor"
+// call: "        casadi::IM ret = minor(x0_, x1_, x2_);"
 extern "C"
 casadi::IM*
-    casadi_max__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+    casadi_minor__2(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
 casadi::IM*
-    casadi_max__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    casadi_minor__2(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
-        casadi::IM ret = fmax(x0_, x1_);
+        casadi::IM ret = minor(x0_, x1_, x2_);
         // x0 is not a swig output
         // x1 is not a swig output
+        // x2 is not a swig output
 
         return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_max" ===============
-// cppName: "casadi::casadi_max"
-// cWrapperName: "casadi_max__4"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "MX")
-// args: "(x0_, x1_)"
-// cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_max__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
-// friendWrap: True
-// fName: "casadi_max"
-// call: "        casadi::MX ret = fmax(x0_, x1_);"
-extern "C"
-casadi::MX*
-    casadi_max__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
-casadi::MX*
-    casadi_max__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
-    try {
-        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
-
-        casadi::MX ret = fmax(x0_, x1_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-
-        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_min" ===============
-// cppName: "casadi::casadi_min"
-// cWrapperName: "casadi_min__0"
-// protoArgs: "(std::string ** err_msg, double* x0, double* x1)"
-// params: [(Ref (Const CDouble),SwigOutput False),(Ref (Const CDouble),SwigOutput False)]
-// retType: CDouble
-// args: "(x0_, x1_)"
-// cWrapperRetType: "double"
-// proto: "double\n    casadi_min__0(std::string ** err_msg, double* x0, double* x1)"
-// friendWrap: True
-// fName: "casadi_min"
-// call: "        double ret = fmin(x0_, x1_);"
-extern "C"
-double
-    casadi_min__0(std::string ** err_msg, double* x0, double* x1);
-double
-    casadi_min__0(std::string ** err_msg, double* x0, double* x1){
-    try {
-        double& x0_ = Marshaling<double&,double*>::marshal(x0);
-        double& x1_ = Marshaling<double&,double*>::marshal(x1);
-
-        double ret = fmin(x0_, x1_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-
-        return WrapReturn< double, double >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_min" ===============
-// cppName: "casadi::casadi_min"
-// cWrapperName: "casadi_min__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "SX")
-// args: "(x0_, x1_)"
-// cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_min__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
-// friendWrap: True
-// fName: "casadi_min"
-// call: "        casadi::SX ret = fmin(x0_, x1_);"
-extern "C"
-casadi::SX*
-    casadi_min__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
-casadi::SX*
-    casadi_min__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
-    try {
-        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
-
-        casadi::SX ret = fmin(x0_, x1_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-
-        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_min" ===============
-// cppName: "casadi::casadi_min"
-// cWrapperName: "casadi_min__2"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "DM")
-// args: "(x0_, x1_)"
-// cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_min__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
-// friendWrap: True
-// fName: "casadi_min"
-// call: "        casadi::DM ret = fmin(x0_, x1_);"
-extern "C"
-casadi::DM*
-    casadi_min__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
-casadi::DM*
-    casadi_min__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
-    try {
-        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
-
-        casadi::DM ret = fmin(x0_, x1_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-
-        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_min" ===============
-// cppName: "casadi::casadi_min"
-// cWrapperName: "casadi_min__3"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "IM")
-// args: "(x0_, x1_)"
-// cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_min__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
-// friendWrap: True
-// fName: "casadi_min"
-// call: "        casadi::IM ret = fmin(x0_, x1_);"
-extern "C"
-casadi::IM*
-    casadi_min__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
-casadi::IM*
-    casadi_min__3(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
-    try {
-        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
-
-        casadi::IM ret = fmin(x0_, x1_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-
-        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_min" ===============
-// cppName: "casadi::casadi_min"
-// cWrapperName: "casadi_min__4"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "MX")
-// args: "(x0_, x1_)"
-// cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_min__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
-// friendWrap: True
-// fName: "casadi_min"
-// call: "        casadi::MX ret = fmin(x0_, x1_);"
-extern "C"
-casadi::MX*
-    casadi_min__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
-casadi::MX*
-    casadi_min__4(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
-    try {
-        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
-
-        casadi::MX ret = fmin(x0_, x1_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-
-        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -12587,6 +15415,254 @@ casadi::MX*
         casadi::MX ret = mldivide(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmax" ===============
+// cppName: "casadi::casadi_mmax"
+// cWrapperName: "casadi_mmax__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_mmax__0(std::string ** err_msg, casadi::SX* x0)"
+// friendWrap: True
+// fName: "casadi_mmax"
+// call: "        casadi::SX ret = mmax(x0_);"
+extern "C"
+casadi::SX*
+    casadi_mmax__0(std::string ** err_msg, casadi::SX* x0);
+casadi::SX*
+    casadi_mmax__0(std::string ** err_msg, casadi::SX* x0){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+
+        casadi::SX ret = mmax(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmax" ===============
+// cppName: "casadi::casadi_mmax"
+// cWrapperName: "casadi_mmax__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_mmax__1(std::string ** err_msg, casadi::DM* x0)"
+// friendWrap: True
+// fName: "casadi_mmax"
+// call: "        casadi::DM ret = mmax(x0_);"
+extern "C"
+casadi::DM*
+    casadi_mmax__1(std::string ** err_msg, casadi::DM* x0);
+casadi::DM*
+    casadi_mmax__1(std::string ** err_msg, casadi::DM* x0){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+
+        casadi::DM ret = mmax(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmax" ===============
+// cppName: "casadi::casadi_mmax"
+// cWrapperName: "casadi_mmax__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_mmax__2(std::string ** err_msg, casadi::IM* x0)"
+// friendWrap: True
+// fName: "casadi_mmax"
+// call: "        casadi::IM ret = mmax(x0_);"
+extern "C"
+casadi::IM*
+    casadi_mmax__2(std::string ** err_msg, casadi::IM* x0);
+casadi::IM*
+    casadi_mmax__2(std::string ** err_msg, casadi::IM* x0){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+
+        casadi::IM ret = mmax(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmax" ===============
+// cppName: "casadi::casadi_mmax"
+// cWrapperName: "casadi_mmax__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_mmax__3(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_mmax"
+// call: "        casadi::MX ret = mmax(x0_);"
+extern "C"
+casadi::MX*
+    casadi_mmax__3(std::string ** err_msg, casadi::MX* x0);
+casadi::MX*
+    casadi_mmax__3(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::MX ret = mmax(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmin" ===============
+// cppName: "casadi::casadi_mmin"
+// cWrapperName: "casadi_mmin__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_mmin__0(std::string ** err_msg, casadi::SX* x0)"
+// friendWrap: True
+// fName: "casadi_mmin"
+// call: "        casadi::SX ret = mmin(x0_);"
+extern "C"
+casadi::SX*
+    casadi_mmin__0(std::string ** err_msg, casadi::SX* x0);
+casadi::SX*
+    casadi_mmin__0(std::string ** err_msg, casadi::SX* x0){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+
+        casadi::SX ret = mmin(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmin" ===============
+// cppName: "casadi::casadi_mmin"
+// cWrapperName: "casadi_mmin__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_mmin__1(std::string ** err_msg, casadi::DM* x0)"
+// friendWrap: True
+// fName: "casadi_mmin"
+// call: "        casadi::DM ret = mmin(x0_);"
+extern "C"
+casadi::DM*
+    casadi_mmin__1(std::string ** err_msg, casadi::DM* x0);
+casadi::DM*
+    casadi_mmin__1(std::string ** err_msg, casadi::DM* x0){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+
+        casadi::DM ret = mmin(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmin" ===============
+// cppName: "casadi::casadi_mmin"
+// cWrapperName: "casadi_mmin__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_mmin__2(std::string ** err_msg, casadi::IM* x0)"
+// friendWrap: True
+// fName: "casadi_mmin"
+// call: "        casadi::IM ret = mmin(x0_);"
+extern "C"
+casadi::IM*
+    casadi_mmin__2(std::string ** err_msg, casadi::IM* x0);
+casadi::IM*
+    casadi_mmin__2(std::string ** err_msg, casadi::IM* x0){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+
+        casadi::IM ret = mmin(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_mmin" ===============
+// cppName: "casadi::casadi_mmin"
+// cWrapperName: "casadi_mmin__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_mmin__3(std::string ** err_msg, casadi::MX* x0)"
+// friendWrap: True
+// fName: "casadi_mmin"
+// call: "        casadi::MX ret = mmin(x0_);"
+extern "C"
+casadi::MX*
+    casadi_mmin__3(std::string ** err_msg, casadi::MX* x0);
+casadi::MX*
+    casadi_mmin__3(std::string ** err_msg, casadi::MX* x0){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+
+        casadi::MX ret = mmin(x0_);
+        // x0 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
     } catch (std::exception& ex) {
@@ -13028,26 +16104,26 @@ casadi::MX*
 // ================== function "casadi::casadi_mtaylor" ===============
 // cppName: "casadi::casadi_mtaylor"
 // cWrapperName: "casadi_mtaylor__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3, std::vector< int >* x4)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3, std::vector< long long >* x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_, x3_, x4_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_mtaylor__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3, std::vector< int >* x4)"
+// proto: "casadi::SX*\n    casadi_mtaylor__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3, std::vector< long long >* x4)"
 // friendWrap: True
 // fName: "casadi_mtaylor"
 // call: "        casadi::SX ret = mtaylor(x0_, x1_, x2_, x3_, x4_);"
 extern "C"
 casadi::SX*
-    casadi_mtaylor__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3, std::vector< int >* x4);
+    casadi_mtaylor__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3, std::vector< long long >* x4);
 casadi::SX*
-    casadi_mtaylor__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3, std::vector< int >* x4){
+    casadi_mtaylor__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3, std::vector< long long >* x4){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
         casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
-        std::vector< int > x4_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x4);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
 
         casadi::SX ret = mtaylor(x0_, x1_, x2_, x3_, x4_);
         // x0 is not a swig output
@@ -13102,25 +16178,25 @@ casadi::SX*
 // ================== function "casadi::casadi_mtaylor" ===============
 // cppName: "casadi::casadi_mtaylor"
 // cWrapperName: "casadi_mtaylor__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_mtaylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3)"
+// proto: "casadi::SX*\n    casadi_mtaylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3)"
 // friendWrap: True
 // fName: "casadi_mtaylor"
 // call: "        casadi::SX ret = mtaylor(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::SX*
-    casadi_mtaylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3);
+    casadi_mtaylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3);
 casadi::SX*
-    casadi_mtaylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3){
+    casadi_mtaylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
         casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
 
         casadi::SX ret = mtaylor(x0_, x1_, x2_, x3_);
         // x0 is not a swig output
@@ -13139,26 +16215,26 @@ casadi::SX*
 // ================== function "casadi::casadi_mtaylor" ===============
 // cppName: "casadi::casadi_mtaylor"
 // cWrapperName: "casadi_mtaylor__3"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3, std::vector< int >* x4)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3, std::vector< long long >* x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_, x3_, x4_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_mtaylor__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3, std::vector< int >* x4)"
+// proto: "casadi::DM*\n    casadi_mtaylor__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3, std::vector< long long >* x4)"
 // friendWrap: True
 // fName: "casadi_mtaylor"
 // call: "        casadi::DM ret = mtaylor(x0_, x1_, x2_, x3_, x4_);"
 extern "C"
 casadi::DM*
-    casadi_mtaylor__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3, std::vector< int >* x4);
+    casadi_mtaylor__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3, std::vector< long long >* x4);
 casadi::DM*
-    casadi_mtaylor__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3, std::vector< int >* x4){
+    casadi_mtaylor__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3, std::vector< long long >* x4){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
         casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
-        std::vector< int > x4_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x4);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
 
         casadi::DM ret = mtaylor(x0_, x1_, x2_, x3_, x4_);
         // x0 is not a swig output
@@ -13213,25 +16289,25 @@ casadi::DM*
 // ================== function "casadi::casadi_mtaylor" ===============
 // cppName: "casadi::casadi_mtaylor"
 // cWrapperName: "casadi_mtaylor__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_mtaylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3)"
+// proto: "casadi::DM*\n    casadi_mtaylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3)"
 // friendWrap: True
 // fName: "casadi_mtaylor"
 // call: "        casadi::DM ret = mtaylor(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::DM*
-    casadi_mtaylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3);
+    casadi_mtaylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3);
 casadi::DM*
-    casadi_mtaylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3){
+    casadi_mtaylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
         casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
 
         casadi::DM ret = mtaylor(x0_, x1_, x2_, x3_);
         // x0 is not a swig output
@@ -13250,26 +16326,26 @@ casadi::DM*
 // ================== function "casadi::casadi_mtaylor" ===============
 // cppName: "casadi::casadi_mtaylor"
 // cWrapperName: "casadi_mtaylor__6"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3, std::vector< int >* x4)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3, std::vector< long long >* x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_, x3_, x4_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_mtaylor__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3, std::vector< int >* x4)"
+// proto: "casadi::IM*\n    casadi_mtaylor__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3, std::vector< long long >* x4)"
 // friendWrap: True
 // fName: "casadi_mtaylor"
 // call: "        casadi::IM ret = mtaylor(x0_, x1_, x2_, x3_, x4_);"
 extern "C"
 casadi::IM*
-    casadi_mtaylor__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3, std::vector< int >* x4);
+    casadi_mtaylor__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3, std::vector< long long >* x4);
 casadi::IM*
-    casadi_mtaylor__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3, std::vector< int >* x4){
+    casadi_mtaylor__6(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3, std::vector< long long >* x4){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
         casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
-        std::vector< int > x4_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x4);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
 
         casadi::IM ret = mtaylor(x0_, x1_, x2_, x3_, x4_);
         // x0 is not a swig output
@@ -13324,25 +16400,25 @@ casadi::IM*
 // ================== function "casadi::casadi_mtaylor" ===============
 // cppName: "casadi::casadi_mtaylor"
 // cWrapperName: "casadi_mtaylor__8"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_mtaylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3)"
+// proto: "casadi::IM*\n    casadi_mtaylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3)"
 // friendWrap: True
 // fName: "casadi_mtaylor"
 // call: "        casadi::IM ret = mtaylor(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::IM*
-    casadi_mtaylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3);
+    casadi_mtaylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3);
 casadi::IM*
-    casadi_mtaylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3){
+    casadi_mtaylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
         casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
 
         casadi::IM ret = mtaylor(x0_, x1_, x2_, x3_);
         // x0 is not a swig output
@@ -13683,25 +16759,25 @@ casadi::Sparsity*
 // cWrapperName: "casadi_n_nodes__0"
 // protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_n_nodes__0(std::string ** err_msg, casadi::SX* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_n_nodes__0(std::string ** err_msg, casadi::SX* x0)"
 // friendWrap: True
 // fName: "casadi_n_nodes"
-// call: "        int ret = n_nodes(x0_);"
+// call: "        long long ret = n_nodes(x0_);"
 extern "C"
-int
+long long
     casadi_n_nodes__0(std::string ** err_msg, casadi::SX* x0);
-int
+long long
     casadi_n_nodes__0(std::string ** err_msg, casadi::SX* x0){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
 
-        int ret = n_nodes(x0_);
+        long long ret = n_nodes(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -13714,25 +16790,25 @@ int
 // cWrapperName: "casadi_n_nodes__1"
 // protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_n_nodes__1(std::string ** err_msg, casadi::DM* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_n_nodes__1(std::string ** err_msg, casadi::DM* x0)"
 // friendWrap: True
 // fName: "casadi_n_nodes"
-// call: "        int ret = n_nodes(x0_);"
+// call: "        long long ret = n_nodes(x0_);"
 extern "C"
-int
+long long
     casadi_n_nodes__1(std::string ** err_msg, casadi::DM* x0);
-int
+long long
     casadi_n_nodes__1(std::string ** err_msg, casadi::DM* x0){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
 
-        int ret = n_nodes(x0_);
+        long long ret = n_nodes(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -13745,25 +16821,25 @@ int
 // cWrapperName: "casadi_n_nodes__2"
 // protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_n_nodes__2(std::string ** err_msg, casadi::IM* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_n_nodes__2(std::string ** err_msg, casadi::IM* x0)"
 // friendWrap: True
 // fName: "casadi_n_nodes"
-// call: "        int ret = n_nodes(x0_);"
+// call: "        long long ret = n_nodes(x0_);"
 extern "C"
-int
+long long
     casadi_n_nodes__2(std::string ** err_msg, casadi::IM* x0);
-int
+long long
     casadi_n_nodes__2(std::string ** err_msg, casadi::IM* x0){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
 
-        int ret = n_nodes(x0_);
+        long long ret = n_nodes(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -13776,25 +16852,25 @@ int
 // cWrapperName: "casadi_n_nodes__3"
 // protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_n_nodes__3(std::string ** err_msg, casadi::MX* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_n_nodes__3(std::string ** err_msg, casadi::MX* x0)"
 // friendWrap: True
 // fName: "casadi_n_nodes"
-// call: "        int ret = n_nodes(x0_);"
+// call: "        long long ret = n_nodes(x0_);"
 extern "C"
-int
+long long
     casadi_n_nodes__3(std::string ** err_msg, casadi::MX* x0);
-int
+long long
     casadi_n_nodes__3(std::string ** err_msg, casadi::MX* x0){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
 
-        int ret = n_nodes(x0_);
+        long long ret = n_nodes(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -13972,27 +17048,27 @@ casadi::MX*
 // cWrapperName: "casadi_norm_0_mul__0"
 // protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_norm_0_mul__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_norm_0_mul__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
 // friendWrap: True
 // fName: "casadi_norm_0_mul"
-// call: "        int ret = norm_0_mul(x0_, x1_);"
+// call: "        long long ret = norm_0_mul(x0_, x1_);"
 extern "C"
-int
+long long
     casadi_norm_0_mul__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
-int
+long long
     casadi_norm_0_mul__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
 
-        int ret = norm_0_mul(x0_, x1_);
+        long long ret = norm_0_mul(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -14005,27 +17081,27 @@ int
 // cWrapperName: "casadi_norm_0_mul__1"
 // protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_norm_0_mul__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_norm_0_mul__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
 // friendWrap: True
 // fName: "casadi_norm_0_mul"
-// call: "        int ret = norm_0_mul(x0_, x1_);"
+// call: "        long long ret = norm_0_mul(x0_, x1_);"
 extern "C"
-int
+long long
     casadi_norm_0_mul__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
-int
+long long
     casadi_norm_0_mul__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
 
-        int ret = norm_0_mul(x0_, x1_);
+        long long ret = norm_0_mul(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -14038,27 +17114,27 @@ int
 // cWrapperName: "casadi_norm_0_mul__2"
 // protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_norm_0_mul__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_norm_0_mul__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
 // friendWrap: True
 // fName: "casadi_norm_0_mul"
-// call: "        int ret = norm_0_mul(x0_, x1_);"
+// call: "        long long ret = norm_0_mul(x0_, x1_);"
 extern "C"
-int
+long long
     casadi_norm_0_mul__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
-int
+long long
     casadi_norm_0_mul__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
 
-        int ret = norm_0_mul(x0_, x1_);
+        long long ret = norm_0_mul(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -14071,27 +17147,27 @@ int
 // cWrapperName: "casadi_norm_0_mul__3"
 // protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_norm_0_mul__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_norm_0_mul__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
 // friendWrap: True
 // fName: "casadi_norm_0_mul"
-// call: "        int ret = norm_0_mul(x0_, x1_);"
+// call: "        long long ret = norm_0_mul(x0_, x1_);"
 extern "C"
-int
+long long
     casadi_norm_0_mul__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
-int
+long long
     casadi_norm_0_mul__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
         casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
 
-        int ret = norm_0_mul(x0_, x1_);
+        long long ret = norm_0_mul(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -14104,27 +17180,27 @@ int
 // cWrapperName: "casadi_norm_0_mul__4"
 // protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, casadi::Sparsity* x1)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_norm_0_mul__4(std::string ** err_msg, casadi::Sparsity* x0, casadi::Sparsity* x1)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_norm_0_mul__4(std::string ** err_msg, casadi::Sparsity* x0, casadi::Sparsity* x1)"
 // friendWrap: True
 // fName: "casadi_norm_0_mul"
-// call: "        int ret = norm_0_mul(x0_, x1_);"
+// call: "        long long ret = norm_0_mul(x0_, x1_);"
 extern "C"
-int
+long long
     casadi_norm_0_mul__4(std::string ** err_msg, casadi::Sparsity* x0, casadi::Sparsity* x1);
-int
+long long
     casadi_norm_0_mul__4(std::string ** err_msg, casadi::Sparsity* x0, casadi::Sparsity* x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
         casadi::Sparsity& x1_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x1);
 
-        int ret = norm_0_mul(x0_, x1_);
+        long long ret = norm_0_mul(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15011,25 +18087,25 @@ casadi::MX*
 // cWrapperName: "casadi_offset__0"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::SX* >* x0)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "SX")))),SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__0(std::string ** err_msg, std::vector< casadi::SX* >* x0)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__0(std::string ** err_msg, std::vector< casadi::SX* >* x0)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_);"
+// call: "        std::vector< long long > ret = offset(x0_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__0(std::string ** err_msg, std::vector< casadi::SX* >* x0);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__0(std::string ** err_msg, std::vector< casadi::SX* >* x0){
     try {
         std::vector< casadi::SX > x0_ = Marshaling<std::vector< casadi::SX >,std::vector< casadi::SX* >*>::marshal(x0);
 
-        std::vector< int > ret = offset(x0_);
+        std::vector< long long > ret = offset(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15042,27 +18118,27 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__1"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::SX* >* x0, int x1)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "SX")))),SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__1(std::string ** err_msg, std::vector< casadi::SX* >* x0, int x1)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__1(std::string ** err_msg, std::vector< casadi::SX* >* x0, int x1)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_, x1_);"
+// call: "        std::vector< long long > ret = offset(x0_, x1_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__1(std::string ** err_msg, std::vector< casadi::SX* >* x0, int x1);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__1(std::string ** err_msg, std::vector< casadi::SX* >* x0, int x1){
     try {
         std::vector< casadi::SX > x0_ = Marshaling<std::vector< casadi::SX >,std::vector< casadi::SX* >*>::marshal(x0);
         bool x1_ = Marshaling<bool,int>::marshal(x1);
 
-        std::vector< int > ret = offset(x0_, x1_);
+        std::vector< long long > ret = offset(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15075,25 +18151,25 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__2"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::DM* >* x0)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "DM")))),SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__2(std::string ** err_msg, std::vector< casadi::DM* >* x0)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__2(std::string ** err_msg, std::vector< casadi::DM* >* x0)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_);"
+// call: "        std::vector< long long > ret = offset(x0_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__2(std::string ** err_msg, std::vector< casadi::DM* >* x0);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__2(std::string ** err_msg, std::vector< casadi::DM* >* x0){
     try {
         std::vector< casadi::DM > x0_ = Marshaling<std::vector< casadi::DM >,std::vector< casadi::DM* >*>::marshal(x0);
 
-        std::vector< int > ret = offset(x0_);
+        std::vector< long long > ret = offset(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15106,27 +18182,27 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__3"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::DM* >* x0, int x1)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "DM")))),SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__3(std::string ** err_msg, std::vector< casadi::DM* >* x0, int x1)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__3(std::string ** err_msg, std::vector< casadi::DM* >* x0, int x1)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_, x1_);"
+// call: "        std::vector< long long > ret = offset(x0_, x1_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__3(std::string ** err_msg, std::vector< casadi::DM* >* x0, int x1);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__3(std::string ** err_msg, std::vector< casadi::DM* >* x0, int x1){
     try {
         std::vector< casadi::DM > x0_ = Marshaling<std::vector< casadi::DM >,std::vector< casadi::DM* >*>::marshal(x0);
         bool x1_ = Marshaling<bool,int>::marshal(x1);
 
-        std::vector< int > ret = offset(x0_, x1_);
+        std::vector< long long > ret = offset(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15139,25 +18215,25 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__4"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::IM* >* x0)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "IM")))),SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__4(std::string ** err_msg, std::vector< casadi::IM* >* x0)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__4(std::string ** err_msg, std::vector< casadi::IM* >* x0)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_);"
+// call: "        std::vector< long long > ret = offset(x0_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__4(std::string ** err_msg, std::vector< casadi::IM* >* x0);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__4(std::string ** err_msg, std::vector< casadi::IM* >* x0){
     try {
         std::vector< casadi::IM > x0_ = Marshaling<std::vector< casadi::IM >,std::vector< casadi::IM* >*>::marshal(x0);
 
-        std::vector< int > ret = offset(x0_);
+        std::vector< long long > ret = offset(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15170,27 +18246,27 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__5"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::IM* >* x0, int x1)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "IM")))),SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__5(std::string ** err_msg, std::vector< casadi::IM* >* x0, int x1)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__5(std::string ** err_msg, std::vector< casadi::IM* >* x0, int x1)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_, x1_);"
+// call: "        std::vector< long long > ret = offset(x0_, x1_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__5(std::string ** err_msg, std::vector< casadi::IM* >* x0, int x1);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__5(std::string ** err_msg, std::vector< casadi::IM* >* x0, int x1){
     try {
         std::vector< casadi::IM > x0_ = Marshaling<std::vector< casadi::IM >,std::vector< casadi::IM* >*>::marshal(x0);
         bool x1_ = Marshaling<bool,int>::marshal(x1);
 
-        std::vector< int > ret = offset(x0_, x1_);
+        std::vector< long long > ret = offset(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15203,25 +18279,25 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__6"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::MX* >* x0)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "MX")))),SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__6(std::string ** err_msg, std::vector< casadi::MX* >* x0)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__6(std::string ** err_msg, std::vector< casadi::MX* >* x0)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_);"
+// call: "        std::vector< long long > ret = offset(x0_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__6(std::string ** err_msg, std::vector< casadi::MX* >* x0);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__6(std::string ** err_msg, std::vector< casadi::MX* >* x0){
     try {
         std::vector< casadi::MX > x0_ = Marshaling<std::vector< casadi::MX >,std::vector< casadi::MX* >*>::marshal(x0);
 
-        std::vector< int > ret = offset(x0_);
+        std::vector< long long > ret = offset(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15234,27 +18310,27 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__7"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::MX* >* x0, int x1)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "MX")))),SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__7(std::string ** err_msg, std::vector< casadi::MX* >* x0, int x1)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__7(std::string ** err_msg, std::vector< casadi::MX* >* x0, int x1)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_, x1_);"
+// call: "        std::vector< long long > ret = offset(x0_, x1_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__7(std::string ** err_msg, std::vector< casadi::MX* >* x0, int x1);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__7(std::string ** err_msg, std::vector< casadi::MX* >* x0, int x1){
     try {
         std::vector< casadi::MX > x0_ = Marshaling<std::vector< casadi::MX >,std::vector< casadi::MX* >*>::marshal(x0);
         bool x1_ = Marshaling<bool,int>::marshal(x1);
 
-        std::vector< int > ret = offset(x0_, x1_);
+        std::vector< long long > ret = offset(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15267,25 +18343,25 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__8"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity")))),SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__8(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__8(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_);"
+// call: "        std::vector< long long > ret = offset(x0_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__8(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__8(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0){
     try {
         std::vector< casadi::Sparsity > x0_ = Marshaling<std::vector< casadi::Sparsity >,std::vector< casadi::Sparsity* >*>::marshal(x0);
 
-        std::vector< int > ret = offset(x0_);
+        std::vector< long long > ret = offset(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -15298,27 +18374,27 @@ std::vector< int >*
 // cWrapperName: "casadi_offset__9"
 // protoArgs: "(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0, int x1)"
 // params: [(Ref (Const (StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity")))),SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CInt
+// retType: StdVec CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_offset__9(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0, int x1)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    casadi_offset__9(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0, int x1)"
 // friendWrap: True
 // fName: "casadi_offset"
-// call: "        std::vector< int > ret = offset(x0_, x1_);"
+// call: "        std::vector< long long > ret = offset(x0_, x1_);"
 extern "C"
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__9(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0, int x1);
-std::vector< int >*
+std::vector< long long >*
     casadi_offset__9(std::string ** err_msg, std::vector< casadi::Sparsity* >* x0, int x1){
     try {
         std::vector< casadi::Sparsity > x0_ = Marshaling<std::vector< casadi::Sparsity >,std::vector< casadi::Sparsity* >*>::marshal(x0);
         bool x1_ = Marshaling<bool,int>::marshal(x1);
 
-        std::vector< int > ret = offset(x0_, x1_);
+        std::vector< long long > ret = offset(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -17260,6 +20336,666 @@ void
 }
 
 
+// ================== function "casadi::casadi_qr_solve" ===============
+// cppName: "casadi::casadi_qr_solve"
+// cWrapperName: "casadi_qr_solve__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_qr_solve__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// friendWrap: True
+// fName: "casadi_qr_solve"
+// call: "        casadi::SX ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_);"
+extern "C"
+casadi::SX*
+    casadi_qr_solve__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5);
+casadi::SX*
+    casadi_qr_solve__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+
+        casadi::SX ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_solve" ===============
+// cppName: "casadi::casadi_qr_solve"
+// cWrapperName: "casadi_qr_solve__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(CBool,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_qr_solve__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// friendWrap: True
+// fName: "casadi_qr_solve"
+// call: "        casadi::SX ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_, x6_);"
+extern "C"
+casadi::SX*
+    casadi_qr_solve__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6);
+casadi::SX*
+    casadi_qr_solve__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        bool x6_ = Marshaling<bool,int>::marshal(x6);
+
+        casadi::SX ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_, x6_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_solve" ===============
+// cppName: "casadi::casadi_qr_solve"
+// cWrapperName: "casadi_qr_solve__2"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_qr_solve__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// friendWrap: True
+// fName: "casadi_qr_solve"
+// call: "        casadi::DM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_);"
+extern "C"
+casadi::DM*
+    casadi_qr_solve__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5);
+casadi::DM*
+    casadi_qr_solve__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+
+        casadi::DM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_solve" ===============
+// cppName: "casadi::casadi_qr_solve"
+// cWrapperName: "casadi_qr_solve__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(CBool,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_qr_solve__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// friendWrap: True
+// fName: "casadi_qr_solve"
+// call: "        casadi::DM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_, x6_);"
+extern "C"
+casadi::DM*
+    casadi_qr_solve__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6);
+casadi::DM*
+    casadi_qr_solve__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        bool x6_ = Marshaling<bool,int>::marshal(x6);
+
+        casadi::DM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_, x6_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_solve" ===============
+// cppName: "casadi::casadi_qr_solve"
+// cWrapperName: "casadi_qr_solve__4"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_qr_solve__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// friendWrap: True
+// fName: "casadi_qr_solve"
+// call: "        casadi::IM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_);"
+extern "C"
+casadi::IM*
+    casadi_qr_solve__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5);
+casadi::IM*
+    casadi_qr_solve__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+
+        casadi::IM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_solve" ===============
+// cppName: "casadi::casadi_qr_solve"
+// cWrapperName: "casadi_qr_solve__5"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(CBool,SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_qr_solve__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// friendWrap: True
+// fName: "casadi_qr_solve"
+// call: "        casadi::IM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_, x6_);"
+extern "C"
+casadi::IM*
+    casadi_qr_solve__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6);
+casadi::IM*
+    casadi_qr_solve__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        bool x6_ = Marshaling<bool,int>::marshal(x6);
+
+        casadi::IM ret = qr_solve(x0_, x1_, x2_, x3_, x4_, x5_, x6_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_sparse" ===============
+// cppName: "casadi::casadi_qr_sparse"
+// cWrapperName: "casadi_qr_sparse__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_qr_sparse__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// friendWrap: True
+// fName: "casadi_qr_sparse"
+// call: "        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_);"
+extern "C"
+void
+    casadi_qr_sparse__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5);
+void
+    casadi_qr_sparse__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+
+        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_sparse" ===============
+// cppName: "casadi::casadi_qr_sparse"
+// cWrapperName: "casadi_qr_sparse__1"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(CBool,SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_qr_sparse__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// friendWrap: True
+// fName: "casadi_qr_sparse"
+// call: "        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_, x6_);"
+extern "C"
+void
+    casadi_qr_sparse__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6);
+void
+    casadi_qr_sparse__1(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        bool x6_ = Marshaling<bool,int>::marshal(x6);
+
+        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_, x6_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_sparse" ===============
+// cppName: "casadi::casadi_qr_sparse"
+// cWrapperName: "casadi_qr_sparse__2"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_qr_sparse__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// friendWrap: True
+// fName: "casadi_qr_sparse"
+// call: "        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_);"
+extern "C"
+void
+    casadi_qr_sparse__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5);
+void
+    casadi_qr_sparse__2(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+
+        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_sparse" ===============
+// cppName: "casadi::casadi_qr_sparse"
+// cWrapperName: "casadi_qr_sparse__3"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(CBool,SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_qr_sparse__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// friendWrap: True
+// fName: "casadi_qr_sparse"
+// call: "        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_, x6_);"
+extern "C"
+void
+    casadi_qr_sparse__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6);
+void
+    casadi_qr_sparse__3(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        bool x6_ = Marshaling<bool,int>::marshal(x6);
+
+        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_, x6_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_sparse" ===============
+// cppName: "casadi::casadi_qr_sparse"
+// cWrapperName: "casadi_qr_sparse__4"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_qr_sparse__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5)"
+// friendWrap: True
+// fName: "casadi_qr_sparse"
+// call: "        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_);"
+extern "C"
+void
+    casadi_qr_sparse__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5);
+void
+    casadi_qr_sparse__4(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+
+        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_qr_sparse" ===============
+// cppName: "casadi::casadi_qr_sparse"
+// cWrapperName: "casadi_qr_sparse__5"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(Ref (StdVec CLongLong),SwigOutput False),(CBool,SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_, x5_, x6_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_qr_sparse__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6)"
+// friendWrap: True
+// fName: "casadi_qr_sparse"
+// call: "        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_, x6_);"
+extern "C"
+void
+    casadi_qr_sparse__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6);
+void
+    casadi_qr_sparse__5(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, std::vector< long long >* x4, std::vector< long long >* x5, int x6){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
+        std::vector< long long > x4_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x4);
+        std::vector< long long > x5_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x5);
+        bool x6_ = Marshaling<bool,int>::marshal(x6);
+
+        qr_sparse(x0_, x1_, x2_, x3_, x4_, x5_, x6_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+        // x5 is not a swig output
+        // x6 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_quadratic_coeff" ===============
+// cppName: "casadi::casadi_quadratic_coeff"
+// cWrapperName: "casadi_quadratic_coeff__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, casadi::SX* x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "SX")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_quadratic_coeff__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, casadi::SX* x4)"
+// friendWrap: True
+// fName: "casadi_quadratic_coeff"
+// call: "        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);"
+extern "C"
+void
+    casadi_quadratic_coeff__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, casadi::SX* x4);
+void
+    casadi_quadratic_coeff__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, casadi::SX* x3, casadi::SX* x4){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+        casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
+        casadi::SX& x3_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x3);
+        casadi::SX& x4_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x4);
+
+        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_quadratic_coeff" ===============
+// cppName: "casadi::casadi_quadratic_coeff"
+// cWrapperName: "casadi_quadratic_coeff__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, casadi::DM* x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "DM")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_quadratic_coeff__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, casadi::DM* x4)"
+// friendWrap: True
+// fName: "casadi_quadratic_coeff"
+// call: "        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);"
+extern "C"
+void
+    casadi_quadratic_coeff__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, casadi::DM* x4);
+void
+    casadi_quadratic_coeff__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, casadi::DM* x3, casadi::DM* x4){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+        casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
+        casadi::DM& x3_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x3);
+        casadi::DM& x4_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x4);
+
+        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_quadratic_coeff" ===============
+// cppName: "casadi::casadi_quadratic_coeff"
+// cWrapperName: "casadi_quadratic_coeff__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, casadi::IM* x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "IM")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_quadratic_coeff__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, casadi::IM* x4)"
+// friendWrap: True
+// fName: "casadi_quadratic_coeff"
+// call: "        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);"
+extern "C"
+void
+    casadi_quadratic_coeff__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, casadi::IM* x4);
+void
+    casadi_quadratic_coeff__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, casadi::IM* x3, casadi::IM* x4){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+        casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
+        casadi::IM& x3_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x3);
+        casadi::IM& x4_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x4);
+
+        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::casadi_quadratic_coeff" ===============
+// cppName: "casadi::casadi_quadratic_coeff"
+// cWrapperName: "casadi_quadratic_coeff__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3, casadi::MX* x4)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "MX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "MX")),SwigOutput False),(Ref (UserType (Namespace ["casadi"]) (Name "MX")),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_, x2_, x3_, x4_)"
+// cWrapperRetType: "void"
+// proto: "void\n    casadi_quadratic_coeff__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3, casadi::MX* x4)"
+// friendWrap: True
+// fName: "casadi_quadratic_coeff"
+// call: "        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);"
+extern "C"
+void
+    casadi_quadratic_coeff__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3, casadi::MX* x4);
+void
+    casadi_quadratic_coeff__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, casadi::MX* x2, casadi::MX* x3, casadi::MX* x4){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+        casadi::MX& x2_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x2);
+        casadi::MX& x3_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x3);
+        casadi::MX& x4_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x4);
+
+        quadratic_coeff(x0_, x1_, x2_, x3_, x4_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+        // x4 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
 // ================== function "casadi::casadi_ramp" ===============
 // cppName: "casadi::casadi_ramp"
 // cWrapperName: "casadi_ramp__0"
@@ -17762,23 +21498,23 @@ casadi::IM*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdPair CInt CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdPair CLongLong CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_repmat__0(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1)"
+// proto: "casadi::SX*\n    casadi_repmat__0(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::SX ret = repmat(x0_, x1_);"
 extern "C"
 casadi::SX*
-    casadi_repmat__0(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1);
+    casadi_repmat__0(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1);
 casadi::SX*
-    casadi_repmat__0(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1){
+    casadi_repmat__0(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::SX ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -17795,23 +21531,23 @@ casadi::SX*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_repmat__1(std::string ** err_msg, casadi::SX* x0, int x1)"
+// proto: "casadi::SX*\n    casadi_repmat__1(std::string ** err_msg, casadi::SX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::SX ret = repmat(x0_, x1_);"
 extern "C"
 casadi::SX*
-    casadi_repmat__1(std::string ** err_msg, casadi::SX* x0, int x1);
+    casadi_repmat__1(std::string ** err_msg, casadi::SX* x0, long long x1);
 casadi::SX*
-    casadi_repmat__1(std::string ** err_msg, casadi::SX* x0, int x1){
+    casadi_repmat__1(std::string ** err_msg, casadi::SX* x0, long long x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::SX ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -17828,24 +21564,24 @@ casadi::SX*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_repmat__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
+// proto: "casadi::SX*\n    casadi_repmat__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::SX ret = repmat(x0_, x1_, x2_);"
 extern "C"
 casadi::SX*
-    casadi_repmat__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2);
+    casadi_repmat__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
 casadi::SX*
-    casadi_repmat__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2){
+    casadi_repmat__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::SX ret = repmat(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -17863,23 +21599,23 @@ casadi::SX*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__3"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdPair CInt CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdPair CLongLong CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_repmat__3(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1)"
+// proto: "casadi::DM*\n    casadi_repmat__3(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::DM ret = repmat(x0_, x1_);"
 extern "C"
 casadi::DM*
-    casadi_repmat__3(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1);
+    casadi_repmat__3(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1);
 casadi::DM*
-    casadi_repmat__3(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1){
+    casadi_repmat__3(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::DM ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -17896,23 +21632,23 @@ casadi::DM*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__4"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_repmat__4(std::string ** err_msg, casadi::DM* x0, int x1)"
+// proto: "casadi::DM*\n    casadi_repmat__4(std::string ** err_msg, casadi::DM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::DM ret = repmat(x0_, x1_);"
 extern "C"
 casadi::DM*
-    casadi_repmat__4(std::string ** err_msg, casadi::DM* x0, int x1);
+    casadi_repmat__4(std::string ** err_msg, casadi::DM* x0, long long x1);
 casadi::DM*
-    casadi_repmat__4(std::string ** err_msg, casadi::DM* x0, int x1){
+    casadi_repmat__4(std::string ** err_msg, casadi::DM* x0, long long x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::DM ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -17929,24 +21665,24 @@ casadi::DM*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_repmat__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
+// proto: "casadi::DM*\n    casadi_repmat__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::DM ret = repmat(x0_, x1_, x2_);"
 extern "C"
 casadi::DM*
-    casadi_repmat__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2);
+    casadi_repmat__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
 casadi::DM*
-    casadi_repmat__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2){
+    casadi_repmat__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::DM ret = repmat(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -17964,23 +21700,23 @@ casadi::DM*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__6"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdPair CInt CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdPair CLongLong CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_repmat__6(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1)"
+// proto: "casadi::IM*\n    casadi_repmat__6(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::IM ret = repmat(x0_, x1_);"
 extern "C"
 casadi::IM*
-    casadi_repmat__6(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1);
+    casadi_repmat__6(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1);
 casadi::IM*
-    casadi_repmat__6(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1){
+    casadi_repmat__6(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::IM ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -17997,23 +21733,23 @@ casadi::IM*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__7"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_repmat__7(std::string ** err_msg, casadi::IM* x0, int x1)"
+// proto: "casadi::IM*\n    casadi_repmat__7(std::string ** err_msg, casadi::IM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::IM ret = repmat(x0_, x1_);"
 extern "C"
 casadi::IM*
-    casadi_repmat__7(std::string ** err_msg, casadi::IM* x0, int x1);
+    casadi_repmat__7(std::string ** err_msg, casadi::IM* x0, long long x1);
 casadi::IM*
-    casadi_repmat__7(std::string ** err_msg, casadi::IM* x0, int x1){
+    casadi_repmat__7(std::string ** err_msg, casadi::IM* x0, long long x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::IM ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -18030,24 +21766,24 @@ casadi::IM*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__8"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_repmat__8(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
+// proto: "casadi::IM*\n    casadi_repmat__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::IM ret = repmat(x0_, x1_, x2_);"
 extern "C"
 casadi::IM*
-    casadi_repmat__8(std::string ** err_msg, casadi::IM* x0, int x1, int x2);
+    casadi_repmat__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
 casadi::IM*
-    casadi_repmat__8(std::string ** err_msg, casadi::IM* x0, int x1, int x2){
+    casadi_repmat__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::IM ret = repmat(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18065,23 +21801,23 @@ casadi::IM*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__9"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdPair CInt CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdPair CLongLong CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_repmat__9(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1)"
+// proto: "casadi::MX*\n    casadi_repmat__9(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::MX ret = repmat(x0_, x1_);"
 extern "C"
 casadi::MX*
-    casadi_repmat__9(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1);
+    casadi_repmat__9(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1);
 casadi::MX*
-    casadi_repmat__9(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1){
+    casadi_repmat__9(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::MX ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -18098,23 +21834,23 @@ casadi::MX*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__10"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_repmat__10(std::string ** err_msg, casadi::MX* x0, int x1)"
+// proto: "casadi::MX*\n    casadi_repmat__10(std::string ** err_msg, casadi::MX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::MX ret = repmat(x0_, x1_);"
 extern "C"
 casadi::MX*
-    casadi_repmat__10(std::string ** err_msg, casadi::MX* x0, int x1);
+    casadi_repmat__10(std::string ** err_msg, casadi::MX* x0, long long x1);
 casadi::MX*
-    casadi_repmat__10(std::string ** err_msg, casadi::MX* x0, int x1){
+    casadi_repmat__10(std::string ** err_msg, casadi::MX* x0, long long x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::MX ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -18131,24 +21867,24 @@ casadi::MX*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__11"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_repmat__11(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
+// proto: "casadi::MX*\n    casadi_repmat__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::MX ret = repmat(x0_, x1_, x2_);"
 extern "C"
 casadi::MX*
-    casadi_repmat__11(std::string ** err_msg, casadi::MX* x0, int x1, int x2);
+    casadi_repmat__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2);
 casadi::MX*
-    casadi_repmat__11(std::string ** err_msg, casadi::MX* x0, int x1, int x2){
+    casadi_repmat__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::MX ret = repmat(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18166,23 +21902,23 @@ casadi::MX*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__12"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdPair CInt CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdPair CLongLong CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::Sparsity*"
-// proto: "casadi::Sparsity*\n    casadi_repmat__12(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1)"
+// proto: "casadi::Sparsity*\n    casadi_repmat__12(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::Sparsity ret = repmat(x0_, x1_);"
 extern "C"
 casadi::Sparsity*
-    casadi_repmat__12(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1);
+    casadi_repmat__12(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1);
 casadi::Sparsity*
-    casadi_repmat__12(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1){
+    casadi_repmat__12(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::Sparsity ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -18199,23 +21935,23 @@ casadi::Sparsity*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__13"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::Sparsity*"
-// proto: "casadi::Sparsity*\n    casadi_repmat__13(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
+// proto: "casadi::Sparsity*\n    casadi_repmat__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::Sparsity ret = repmat(x0_, x1_);"
 extern "C"
 casadi::Sparsity*
-    casadi_repmat__13(std::string ** err_msg, casadi::Sparsity* x0, int x1);
+    casadi_repmat__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1);
 casadi::Sparsity*
-    casadi_repmat__13(std::string ** err_msg, casadi::Sparsity* x0, int x1){
+    casadi_repmat__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::Sparsity ret = repmat(x0_, x1_);
         // x0 is not a swig output
@@ -18232,24 +21968,24 @@ casadi::Sparsity*
 // ================== function "casadi::casadi_repmat" ===============
 // cppName: "casadi::casadi_repmat"
 // cWrapperName: "casadi_repmat__14"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::Sparsity*"
-// proto: "casadi::Sparsity*\n    casadi_repmat__14(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
+// proto: "casadi::Sparsity*\n    casadi_repmat__14(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repmat"
 // call: "        casadi::Sparsity ret = repmat(x0_, x1_, x2_);"
 extern "C"
 casadi::Sparsity*
-    casadi_repmat__14(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2);
+    casadi_repmat__14(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2);
 casadi::Sparsity*
-    casadi_repmat__14(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2){
+    casadi_repmat__14(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::Sparsity ret = repmat(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18267,23 +22003,23 @@ casadi::Sparsity*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_repsum__0(std::string ** err_msg, casadi::SX* x0, int x1)"
+// proto: "casadi::SX*\n    casadi_repsum__0(std::string ** err_msg, casadi::SX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::SX ret = repsum(x0_, x1_);"
 extern "C"
 casadi::SX*
-    casadi_repsum__0(std::string ** err_msg, casadi::SX* x0, int x1);
+    casadi_repsum__0(std::string ** err_msg, casadi::SX* x0, long long x1);
 casadi::SX*
-    casadi_repsum__0(std::string ** err_msg, casadi::SX* x0, int x1){
+    casadi_repsum__0(std::string ** err_msg, casadi::SX* x0, long long x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::SX ret = repsum(x0_, x1_);
         // x0 is not a swig output
@@ -18300,24 +22036,24 @@ casadi::SX*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_repsum__1(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
+// proto: "casadi::SX*\n    casadi_repsum__1(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::SX ret = repsum(x0_, x1_, x2_);"
 extern "C"
 casadi::SX*
-    casadi_repsum__1(std::string ** err_msg, casadi::SX* x0, int x1, int x2);
+    casadi_repsum__1(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
 casadi::SX*
-    casadi_repsum__1(std::string ** err_msg, casadi::SX* x0, int x1, int x2){
+    casadi_repsum__1(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::SX ret = repsum(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18335,23 +22071,23 @@ casadi::SX*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__2"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_repsum__2(std::string ** err_msg, casadi::DM* x0, int x1)"
+// proto: "casadi::DM*\n    casadi_repsum__2(std::string ** err_msg, casadi::DM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::DM ret = repsum(x0_, x1_);"
 extern "C"
 casadi::DM*
-    casadi_repsum__2(std::string ** err_msg, casadi::DM* x0, int x1);
+    casadi_repsum__2(std::string ** err_msg, casadi::DM* x0, long long x1);
 casadi::DM*
-    casadi_repsum__2(std::string ** err_msg, casadi::DM* x0, int x1){
+    casadi_repsum__2(std::string ** err_msg, casadi::DM* x0, long long x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::DM ret = repsum(x0_, x1_);
         // x0 is not a swig output
@@ -18368,24 +22104,24 @@ casadi::DM*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__3"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_repsum__3(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
+// proto: "casadi::DM*\n    casadi_repsum__3(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::DM ret = repsum(x0_, x1_, x2_);"
 extern "C"
 casadi::DM*
-    casadi_repsum__3(std::string ** err_msg, casadi::DM* x0, int x1, int x2);
+    casadi_repsum__3(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
 casadi::DM*
-    casadi_repsum__3(std::string ** err_msg, casadi::DM* x0, int x1, int x2){
+    casadi_repsum__3(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::DM ret = repsum(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18403,23 +22139,23 @@ casadi::DM*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__4"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_repsum__4(std::string ** err_msg, casadi::IM* x0, int x1)"
+// proto: "casadi::IM*\n    casadi_repsum__4(std::string ** err_msg, casadi::IM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::IM ret = repsum(x0_, x1_);"
 extern "C"
 casadi::IM*
-    casadi_repsum__4(std::string ** err_msg, casadi::IM* x0, int x1);
+    casadi_repsum__4(std::string ** err_msg, casadi::IM* x0, long long x1);
 casadi::IM*
-    casadi_repsum__4(std::string ** err_msg, casadi::IM* x0, int x1){
+    casadi_repsum__4(std::string ** err_msg, casadi::IM* x0, long long x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::IM ret = repsum(x0_, x1_);
         // x0 is not a swig output
@@ -18436,24 +22172,24 @@ casadi::IM*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__5"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_repsum__5(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
+// proto: "casadi::IM*\n    casadi_repsum__5(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::IM ret = repsum(x0_, x1_, x2_);"
 extern "C"
 casadi::IM*
-    casadi_repsum__5(std::string ** err_msg, casadi::IM* x0, int x1, int x2);
+    casadi_repsum__5(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
 casadi::IM*
-    casadi_repsum__5(std::string ** err_msg, casadi::IM* x0, int x1, int x2){
+    casadi_repsum__5(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::IM ret = repsum(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18471,23 +22207,23 @@ casadi::IM*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__6"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_repsum__6(std::string ** err_msg, casadi::MX* x0, int x1)"
+// proto: "casadi::MX*\n    casadi_repsum__6(std::string ** err_msg, casadi::MX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::MX ret = repsum(x0_, x1_);"
 extern "C"
 casadi::MX*
-    casadi_repsum__6(std::string ** err_msg, casadi::MX* x0, int x1);
+    casadi_repsum__6(std::string ** err_msg, casadi::MX* x0, long long x1);
 casadi::MX*
-    casadi_repsum__6(std::string ** err_msg, casadi::MX* x0, int x1){
+    casadi_repsum__6(std::string ** err_msg, casadi::MX* x0, long long x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::MX ret = repsum(x0_, x1_);
         // x0 is not a swig output
@@ -18504,24 +22240,24 @@ casadi::MX*
 // ================== function "casadi::casadi_repsum" ===============
 // cppName: "casadi::casadi_repsum"
 // cWrapperName: "casadi_repsum__7"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_repsum__7(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
+// proto: "casadi::MX*\n    casadi_repsum__7(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_repsum"
 // call: "        casadi::MX ret = repsum(x0_, x1_, x2_);"
 extern "C"
 casadi::MX*
-    casadi_repsum__7(std::string ** err_msg, casadi::MX* x0, int x1, int x2);
+    casadi_repsum__7(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2);
 casadi::MX*
-    casadi_repsum__7(std::string ** err_msg, casadi::MX* x0, int x1, int x2){
+    casadi_repsum__7(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::MX ret = repsum(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18572,23 +22308,23 @@ casadi::SX*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(StdPair CInt CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(StdPair CLongLong CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_reshape__1(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1)"
+// proto: "casadi::SX*\n    casadi_reshape__1(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::SX ret = reshape(x0_, x1_);"
 extern "C"
 casadi::SX*
-    casadi_reshape__1(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1);
+    casadi_reshape__1(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1);
 casadi::SX*
-    casadi_reshape__1(std::string ** err_msg, casadi::SX* x0, std::pair< int, int >* x1){
+    casadi_reshape__1(std::string ** err_msg, casadi::SX* x0, std::pair< long long, long long >* x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::SX ret = reshape(x0_, x1_);
         // x0 is not a swig output
@@ -18605,24 +22341,24 @@ casadi::SX*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_reshape__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2)"
+// proto: "casadi::SX*\n    casadi_reshape__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::SX ret = reshape(x0_, x1_, x2_);"
 extern "C"
 casadi::SX*
-    casadi_reshape__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2);
+    casadi_reshape__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2);
 casadi::SX*
-    casadi_reshape__2(std::string ** err_msg, casadi::SX* x0, int x1, int x2){
+    casadi_reshape__2(std::string ** err_msg, casadi::SX* x0, long long x1, long long x2){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::SX ret = reshape(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18673,23 +22409,23 @@ casadi::DM*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__4"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(StdPair CInt CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(StdPair CLongLong CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_reshape__4(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1)"
+// proto: "casadi::DM*\n    casadi_reshape__4(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::DM ret = reshape(x0_, x1_);"
 extern "C"
 casadi::DM*
-    casadi_reshape__4(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1);
+    casadi_reshape__4(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1);
 casadi::DM*
-    casadi_reshape__4(std::string ** err_msg, casadi::DM* x0, std::pair< int, int >* x1){
+    casadi_reshape__4(std::string ** err_msg, casadi::DM* x0, std::pair< long long, long long >* x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::DM ret = reshape(x0_, x1_);
         // x0 is not a swig output
@@ -18706,24 +22442,24 @@ casadi::DM*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_reshape__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2)"
+// proto: "casadi::DM*\n    casadi_reshape__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::DM ret = reshape(x0_, x1_, x2_);"
 extern "C"
 casadi::DM*
-    casadi_reshape__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2);
+    casadi_reshape__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2);
 casadi::DM*
-    casadi_reshape__5(std::string ** err_msg, casadi::DM* x0, int x1, int x2){
+    casadi_reshape__5(std::string ** err_msg, casadi::DM* x0, long long x1, long long x2){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::DM ret = reshape(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18774,23 +22510,23 @@ casadi::IM*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__7"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(StdPair CInt CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(StdPair CLongLong CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_reshape__7(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1)"
+// proto: "casadi::IM*\n    casadi_reshape__7(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::IM ret = reshape(x0_, x1_);"
 extern "C"
 casadi::IM*
-    casadi_reshape__7(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1);
+    casadi_reshape__7(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1);
 casadi::IM*
-    casadi_reshape__7(std::string ** err_msg, casadi::IM* x0, std::pair< int, int >* x1){
+    casadi_reshape__7(std::string ** err_msg, casadi::IM* x0, std::pair< long long, long long >* x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::IM ret = reshape(x0_, x1_);
         // x0 is not a swig output
@@ -18807,24 +22543,24 @@ casadi::IM*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__8"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_reshape__8(std::string ** err_msg, casadi::IM* x0, int x1, int x2)"
+// proto: "casadi::IM*\n    casadi_reshape__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::IM ret = reshape(x0_, x1_, x2_);"
 extern "C"
 casadi::IM*
-    casadi_reshape__8(std::string ** err_msg, casadi::IM* x0, int x1, int x2);
+    casadi_reshape__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2);
 casadi::IM*
-    casadi_reshape__8(std::string ** err_msg, casadi::IM* x0, int x1, int x2){
+    casadi_reshape__8(std::string ** err_msg, casadi::IM* x0, long long x1, long long x2){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::IM ret = reshape(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18875,23 +22611,23 @@ casadi::MX*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__10"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(StdPair CInt CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(StdPair CLongLong CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_reshape__10(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1)"
+// proto: "casadi::MX*\n    casadi_reshape__10(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::MX ret = reshape(x0_, x1_);"
 extern "C"
 casadi::MX*
-    casadi_reshape__10(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1);
+    casadi_reshape__10(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1);
 casadi::MX*
-    casadi_reshape__10(std::string ** err_msg, casadi::MX* x0, std::pair< int, int >* x1){
+    casadi_reshape__10(std::string ** err_msg, casadi::MX* x0, std::pair< long long, long long >* x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::MX ret = reshape(x0_, x1_);
         // x0 is not a swig output
@@ -18908,24 +22644,24 @@ casadi::MX*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__11"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_reshape__11(std::string ** err_msg, casadi::MX* x0, int x1, int x2)"
+// proto: "casadi::MX*\n    casadi_reshape__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::MX ret = reshape(x0_, x1_, x2_);"
 extern "C"
 casadi::MX*
-    casadi_reshape__11(std::string ** err_msg, casadi::MX* x0, int x1, int x2);
+    casadi_reshape__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2);
 casadi::MX*
-    casadi_reshape__11(std::string ** err_msg, casadi::MX* x0, int x1, int x2){
+    casadi_reshape__11(std::string ** err_msg, casadi::MX* x0, long long x1, long long x2){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::MX ret = reshape(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -18976,23 +22712,23 @@ casadi::Sparsity*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__13"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(StdPair CInt CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(StdPair CLongLong CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::Sparsity*"
-// proto: "casadi::Sparsity*\n    casadi_reshape__13(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1)"
+// proto: "casadi::Sparsity*\n    casadi_reshape__13(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::Sparsity ret = reshape(x0_, x1_);"
 extern "C"
 casadi::Sparsity*
-    casadi_reshape__13(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1);
+    casadi_reshape__13(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1);
 casadi::Sparsity*
-    casadi_reshape__13(std::string ** err_msg, casadi::Sparsity* x0, std::pair< int, int >* x1){
+    casadi_reshape__13(std::string ** err_msg, casadi::Sparsity* x0, std::pair< long long, long long >* x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        std::pair< int, int > x1_ = Marshaling<std::pair< int, int >,std::pair< int, int >*>::marshal(x1);
+        std::pair< long long, long long > x1_ = Marshaling<std::pair< long long, long long >,std::pair< long long, long long >*>::marshal(x1);
 
         casadi::Sparsity ret = reshape(x0_, x1_);
         // x0 is not a swig output
@@ -19009,24 +22745,24 @@ casadi::Sparsity*
 // ================== function "casadi::casadi_reshape" ===============
 // cppName: "casadi::casadi_reshape"
 // cWrapperName: "casadi_reshape__14"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::Sparsity*"
-// proto: "casadi::Sparsity*\n    casadi_reshape__14(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2)"
+// proto: "casadi::Sparsity*\n    casadi_reshape__14(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2)"
 // friendWrap: True
 // fName: "casadi_reshape"
 // call: "        casadi::Sparsity ret = reshape(x0_, x1_, x2_);"
 extern "C"
 casadi::Sparsity*
-    casadi_reshape__14(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2);
+    casadi_reshape__14(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2);
 casadi::Sparsity*
-    casadi_reshape__14(std::string ** err_msg, casadi::Sparsity* x0, int x1, int x2){
+    casadi_reshape__14(std::string ** err_msg, casadi::Sparsity* x0, long long x1, long long x2){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::Sparsity ret = reshape(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -20541,6 +24277,138 @@ casadi::MX*
 }
 
 
+// ================== function "casadi::casadi_soc" ===============
+// cppName: "casadi::casadi_soc"
+// cWrapperName: "casadi_soc__0"
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "SX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::SX*"
+// proto: "casadi::SX*\n    casadi_soc__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1)"
+// friendWrap: True
+// fName: "casadi_soc"
+// call: "        casadi::SX ret = soc(x0_, x1_);"
+extern "C"
+casadi::SX*
+    casadi_soc__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1);
+casadi::SX*
+    casadi_soc__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1){
+    try {
+        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
+        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
+
+        casadi::SX ret = soc(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_soc" ===============
+// cppName: "casadi::casadi_soc"
+// cWrapperName: "casadi_soc__1"
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "DM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::DM*"
+// proto: "casadi::DM*\n    casadi_soc__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1)"
+// friendWrap: True
+// fName: "casadi_soc"
+// call: "        casadi::DM ret = soc(x0_, x1_);"
+extern "C"
+casadi::DM*
+    casadi_soc__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1);
+casadi::DM*
+    casadi_soc__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1){
+    try {
+        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
+        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
+
+        casadi::DM ret = soc(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_soc" ===============
+// cppName: "casadi::casadi_soc"
+// cWrapperName: "casadi_soc__2"
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "IM")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::IM*"
+// proto: "casadi::IM*\n    casadi_soc__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1)"
+// friendWrap: True
+// fName: "casadi_soc"
+// call: "        casadi::IM ret = soc(x0_, x1_);"
+extern "C"
+casadi::IM*
+    casadi_soc__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1);
+casadi::IM*
+    casadi_soc__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1){
+    try {
+        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
+        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
+
+        casadi::IM ret = soc(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_soc" ===============
+// cppName: "casadi::casadi_soc"
+// cWrapperName: "casadi_soc__3"
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "MX")
+// args: "(x0_, x1_)"
+// cWrapperRetType: "casadi::MX*"
+// proto: "casadi::MX*\n    casadi_soc__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1)"
+// friendWrap: True
+// fName: "casadi_soc"
+// call: "        casadi::MX ret = soc(x0_, x1_);"
+extern "C"
+casadi::MX*
+    casadi_soc__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1);
+casadi::MX*
+    casadi_soc__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1){
+    try {
+        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
+        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
+
+        casadi::MX ret = soc(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::casadi_solve" ===============
 // cppName: "casadi::casadi_solve"
 // cWrapperName: "casadi_solve__0"
@@ -21158,25 +25026,25 @@ casadi::IM*
 // cWrapperName: "casadi_sprank__0"
 // protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_sprank__0(std::string ** err_msg, casadi::SX* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_sprank__0(std::string ** err_msg, casadi::SX* x0)"
 // friendWrap: True
 // fName: "casadi_sprank"
-// call: "        int ret = sprank(x0_);"
+// call: "        long long ret = sprank(x0_);"
 extern "C"
-int
+long long
     casadi_sprank__0(std::string ** err_msg, casadi::SX* x0);
-int
+long long
     casadi_sprank__0(std::string ** err_msg, casadi::SX* x0){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
 
-        int ret = sprank(x0_);
+        long long ret = sprank(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -21189,25 +25057,25 @@ int
 // cWrapperName: "casadi_sprank__1"
 // protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_sprank__1(std::string ** err_msg, casadi::DM* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_sprank__1(std::string ** err_msg, casadi::DM* x0)"
 // friendWrap: True
 // fName: "casadi_sprank"
-// call: "        int ret = sprank(x0_);"
+// call: "        long long ret = sprank(x0_);"
 extern "C"
-int
+long long
     casadi_sprank__1(std::string ** err_msg, casadi::DM* x0);
-int
+long long
     casadi_sprank__1(std::string ** err_msg, casadi::DM* x0){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
 
-        int ret = sprank(x0_);
+        long long ret = sprank(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -21220,25 +25088,25 @@ int
 // cWrapperName: "casadi_sprank__2"
 // protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_sprank__2(std::string ** err_msg, casadi::IM* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_sprank__2(std::string ** err_msg, casadi::IM* x0)"
 // friendWrap: True
 // fName: "casadi_sprank"
-// call: "        int ret = sprank(x0_);"
+// call: "        long long ret = sprank(x0_);"
 extern "C"
-int
+long long
     casadi_sprank__2(std::string ** err_msg, casadi::IM* x0);
-int
+long long
     casadi_sprank__2(std::string ** err_msg, casadi::IM* x0){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
 
-        int ret = sprank(x0_);
+        long long ret = sprank(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -21251,25 +25119,25 @@ int
 // cWrapperName: "casadi_sprank__3"
 // protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_sprank__3(std::string ** err_msg, casadi::MX* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_sprank__3(std::string ** err_msg, casadi::MX* x0)"
 // friendWrap: True
 // fName: "casadi_sprank"
-// call: "        int ret = sprank(x0_);"
+// call: "        long long ret = sprank(x0_);"
 extern "C"
-int
+long long
     casadi_sprank__3(std::string ** err_msg, casadi::MX* x0);
-int
+long long
     casadi_sprank__3(std::string ** err_msg, casadi::MX* x0){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
 
-        int ret = sprank(x0_);
+        long long ret = sprank(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -21282,25 +25150,25 @@ int
 // cWrapperName: "casadi_sprank__4"
 // protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False)]
-// retType: CInt
+// retType: CLongLong
 // args: "(x0_)"
-// cWrapperRetType: "int"
-// proto: "int\n    casadi_sprank__4(std::string ** err_msg, casadi::Sparsity* x0)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    casadi_sprank__4(std::string ** err_msg, casadi::Sparsity* x0)"
 // friendWrap: True
 // fName: "casadi_sprank"
-// call: "        int ret = sprank(x0_);"
+// call: "        long long ret = sprank(x0_);"
 extern "C"
-int
+long long
     casadi_sprank__4(std::string ** err_msg, casadi::Sparsity* x0);
-int
+long long
     casadi_sprank__4(std::string ** err_msg, casadi::Sparsity* x0){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
 
-        int ret = sprank(x0_);
+        long long ret = sprank(x0_);
         // x0 is not a swig output
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -22155,6 +26023,37 @@ casadi::MX*
 }
 
 
+// ================== function "casadi::casadi_sum1" ===============
+// cppName: "casadi::casadi_sum1"
+// cWrapperName: "casadi_sum1__4"
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::Sparsity*"
+// proto: "casadi::Sparsity*\n    casadi_sum1__4(std::string ** err_msg, casadi::Sparsity* x0)"
+// friendWrap: True
+// fName: "casadi_sum1"
+// call: "        casadi::Sparsity ret = sum1(x0_);"
+extern "C"
+casadi::Sparsity*
+    casadi_sum1__4(std::string ** err_msg, casadi::Sparsity* x0);
+casadi::Sparsity*
+    casadi_sum1__4(std::string ** err_msg, casadi::Sparsity* x0){
+    try {
+        casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
+
+        casadi::Sparsity ret = sum1(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::Sparsity*, casadi::Sparsity >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::casadi_sum2" ===============
 // cppName: "casadi::casadi_sum2"
 // cWrapperName: "casadi_sum2__0"
@@ -22279,27 +26178,58 @@ casadi::MX*
 }
 
 
-// ================== function "casadi::casadi_sum_square" ===============
-// cppName: "casadi::casadi_sum_square"
-// cWrapperName: "casadi_sum_square__0"
+// ================== function "casadi::casadi_sum2" ===============
+// cppName: "casadi::casadi_sum2"
+// cWrapperName: "casadi_sum2__4"
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Sparsity")
+// args: "(x0_)"
+// cWrapperRetType: "casadi::Sparsity*"
+// proto: "casadi::Sparsity*\n    casadi_sum2__4(std::string ** err_msg, casadi::Sparsity* x0)"
+// friendWrap: True
+// fName: "casadi_sum2"
+// call: "        casadi::Sparsity ret = sum2(x0_);"
+extern "C"
+casadi::Sparsity*
+    casadi_sum2__4(std::string ** err_msg, casadi::Sparsity* x0);
+casadi::Sparsity*
+    casadi_sum2__4(std::string ** err_msg, casadi::Sparsity* x0){
+    try {
+        casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
+
+        casadi::Sparsity ret = sum2(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< casadi::Sparsity*, casadi::Sparsity >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::casadi_sumsqr" ===============
+// cppName: "casadi::casadi_sumsqr"
+// cWrapperName: "casadi_sumsqr__0"
 // protoArgs: "(std::string ** err_msg, casadi::SX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_sum_square__0(std::string ** err_msg, casadi::SX* x0)"
+// proto: "casadi::SX*\n    casadi_sumsqr__0(std::string ** err_msg, casadi::SX* x0)"
 // friendWrap: True
-// fName: "casadi_sum_square"
-// call: "        casadi::SX ret = sum_square(x0_);"
+// fName: "casadi_sumsqr"
+// call: "        casadi::SX ret = sumsqr(x0_);"
 extern "C"
 casadi::SX*
-    casadi_sum_square__0(std::string ** err_msg, casadi::SX* x0);
+    casadi_sumsqr__0(std::string ** err_msg, casadi::SX* x0);
 casadi::SX*
-    casadi_sum_square__0(std::string ** err_msg, casadi::SX* x0){
+    casadi_sumsqr__0(std::string ** err_msg, casadi::SX* x0){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
 
-        casadi::SX ret = sum_square(x0_);
+        casadi::SX ret = sumsqr(x0_);
         // x0 is not a swig output
 
         return WrapReturn< casadi::SX*, casadi::SX >::wrapReturn( ret );
@@ -22310,27 +26240,27 @@ casadi::SX*
 }
 
 
-// ================== function "casadi::casadi_sum_square" ===============
-// cppName: "casadi::casadi_sum_square"
-// cWrapperName: "casadi_sum_square__1"
+// ================== function "casadi::casadi_sumsqr" ===============
+// cppName: "casadi::casadi_sumsqr"
+// cWrapperName: "casadi_sumsqr__1"
 // protoArgs: "(std::string ** err_msg, casadi::DM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_sum_square__1(std::string ** err_msg, casadi::DM* x0)"
+// proto: "casadi::DM*\n    casadi_sumsqr__1(std::string ** err_msg, casadi::DM* x0)"
 // friendWrap: True
-// fName: "casadi_sum_square"
-// call: "        casadi::DM ret = sum_square(x0_);"
+// fName: "casadi_sumsqr"
+// call: "        casadi::DM ret = sumsqr(x0_);"
 extern "C"
 casadi::DM*
-    casadi_sum_square__1(std::string ** err_msg, casadi::DM* x0);
+    casadi_sumsqr__1(std::string ** err_msg, casadi::DM* x0);
 casadi::DM*
-    casadi_sum_square__1(std::string ** err_msg, casadi::DM* x0){
+    casadi_sumsqr__1(std::string ** err_msg, casadi::DM* x0){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
 
-        casadi::DM ret = sum_square(x0_);
+        casadi::DM ret = sumsqr(x0_);
         // x0 is not a swig output
 
         return WrapReturn< casadi::DM*, casadi::DM >::wrapReturn( ret );
@@ -22341,27 +26271,27 @@ casadi::DM*
 }
 
 
-// ================== function "casadi::casadi_sum_square" ===============
-// cppName: "casadi::casadi_sum_square"
-// cWrapperName: "casadi_sum_square__2"
+// ================== function "casadi::casadi_sumsqr" ===============
+// cppName: "casadi::casadi_sumsqr"
+// cWrapperName: "casadi_sumsqr__2"
 // protoArgs: "(std::string ** err_msg, casadi::IM* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_sum_square__2(std::string ** err_msg, casadi::IM* x0)"
+// proto: "casadi::IM*\n    casadi_sumsqr__2(std::string ** err_msg, casadi::IM* x0)"
 // friendWrap: True
-// fName: "casadi_sum_square"
-// call: "        casadi::IM ret = sum_square(x0_);"
+// fName: "casadi_sumsqr"
+// call: "        casadi::IM ret = sumsqr(x0_);"
 extern "C"
 casadi::IM*
-    casadi_sum_square__2(std::string ** err_msg, casadi::IM* x0);
+    casadi_sumsqr__2(std::string ** err_msg, casadi::IM* x0);
 casadi::IM*
-    casadi_sum_square__2(std::string ** err_msg, casadi::IM* x0){
+    casadi_sumsqr__2(std::string ** err_msg, casadi::IM* x0){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
 
-        casadi::IM ret = sum_square(x0_);
+        casadi::IM ret = sumsqr(x0_);
         // x0 is not a swig output
 
         return WrapReturn< casadi::IM*, casadi::IM >::wrapReturn( ret );
@@ -22372,27 +26302,27 @@ casadi::IM*
 }
 
 
-// ================== function "casadi::casadi_sum_square" ===============
-// cppName: "casadi::casadi_sum_square"
-// cWrapperName: "casadi_sum_square__3"
+// ================== function "casadi::casadi_sumsqr" ===============
+// cppName: "casadi::casadi_sumsqr"
+// cWrapperName: "casadi_sumsqr__3"
 // protoArgs: "(std::string ** err_msg, casadi::MX* x0)"
 // params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "MX")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::MX*"
-// proto: "casadi::MX*\n    casadi_sum_square__3(std::string ** err_msg, casadi::MX* x0)"
+// proto: "casadi::MX*\n    casadi_sumsqr__3(std::string ** err_msg, casadi::MX* x0)"
 // friendWrap: True
-// fName: "casadi_sum_square"
-// call: "        casadi::MX ret = sum_square(x0_);"
+// fName: "casadi_sumsqr"
+// call: "        casadi::MX ret = sumsqr(x0_);"
 extern "C"
 casadi::MX*
-    casadi_sum_square__3(std::string ** err_msg, casadi::MX* x0);
+    casadi_sumsqr__3(std::string ** err_msg, casadi::MX* x0);
 casadi::MX*
-    casadi_sum_square__3(std::string ** err_msg, casadi::MX* x0){
+    casadi_sumsqr__3(std::string ** err_msg, casadi::MX* x0){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
 
-        casadi::MX ret = sum_square(x0_);
+        casadi::MX ret = sumsqr(x0_);
         // x0 is not a swig output
 
         return WrapReturn< casadi::MX*, casadi::MX >::wrapReturn( ret );
@@ -23040,25 +26970,25 @@ casadi::SX*
 // ================== function "casadi::casadi_taylor" ===============
 // cppName: "casadi::casadi_taylor"
 // cWrapperName: "casadi_taylor__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "SX")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::SX*"
-// proto: "casadi::SX*\n    casadi_taylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3)"
+// proto: "casadi::SX*\n    casadi_taylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3)"
 // friendWrap: True
 // fName: "casadi_taylor"
 // call: "        casadi::SX ret = taylor(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::SX*
-    casadi_taylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3);
+    casadi_taylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3);
 casadi::SX*
-    casadi_taylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, int x3){
+    casadi_taylor__2(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, casadi::SX* x2, long long x3){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
         casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
         casadi::SX& x2_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
 
         casadi::SX ret = taylor(x0_, x1_, x2_, x3_);
         // x0 is not a swig output
@@ -23145,25 +27075,25 @@ casadi::DM*
 // ================== function "casadi::casadi_taylor" ===============
 // cppName: "casadi::casadi_taylor"
 // cWrapperName: "casadi_taylor__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "DM")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::DM*"
-// proto: "casadi::DM*\n    casadi_taylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3)"
+// proto: "casadi::DM*\n    casadi_taylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3)"
 // friendWrap: True
 // fName: "casadi_taylor"
 // call: "        casadi::DM ret = taylor(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::DM*
-    casadi_taylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3);
+    casadi_taylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3);
 casadi::DM*
-    casadi_taylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, int x3){
+    casadi_taylor__5(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, casadi::DM* x2, long long x3){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
         casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
         casadi::DM& x2_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
 
         casadi::DM ret = taylor(x0_, x1_, x2_, x3_);
         // x0 is not a swig output
@@ -23250,25 +27180,25 @@ casadi::IM*
 // ================== function "casadi::casadi_taylor" ===============
 // cppName: "casadi::casadi_taylor"
 // cWrapperName: "casadi_taylor__8"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "IM")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::IM*"
-// proto: "casadi::IM*\n    casadi_taylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3)"
+// proto: "casadi::IM*\n    casadi_taylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3)"
 // friendWrap: True
 // fName: "casadi_taylor"
 // call: "        casadi::IM ret = taylor(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::IM*
-    casadi_taylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3);
+    casadi_taylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3);
 casadi::IM*
-    casadi_taylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, int x3){
+    casadi_taylor__8(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, casadi::IM* x2, long long x3){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
         casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
         casadi::IM& x2_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x2);
-        int x3_ = Marshaling<int,int>::marshal(x3);
+        long long x3_ = Marshaling<long long,long long>::marshal(x3);
 
         casadi::IM ret = taylor(x0_, x1_, x2_, x3_);
         // x0 is not a swig output
@@ -25340,23 +29270,23 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__1"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_vertsplit__1(std::string ** err_msg, casadi::SX* x0, int x1)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_vertsplit__1(std::string ** err_msg, casadi::SX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::SX > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_vertsplit__1(std::string ** err_msg, casadi::SX* x0, int x1);
+    casadi_vertsplit__1(std::string ** err_msg, casadi::SX* x0, long long x1);
 std::vector< casadi::SX* >*
-    casadi_vertsplit__1(std::string ** err_msg, casadi::SX* x0, int x1){
+    casadi_vertsplit__1(std::string ** err_msg, casadi::SX* x0, long long x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::SX > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25373,23 +29303,23 @@ std::vector< casadi::SX* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__2"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "SX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::SX* >*"
-// proto: "std::vector< casadi::SX* >*\n    casadi_vertsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::SX* >*\n    casadi_vertsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::SX > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::SX* >*
-    casadi_vertsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1);
+    casadi_vertsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1);
 std::vector< casadi::SX* >*
-    casadi_vertsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< int >* x1){
+    casadi_vertsplit__2(std::string ** err_msg, casadi::SX* x0, std::vector< long long >* x1){
     try {
         casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::SX > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25437,23 +29367,23 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__4"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_vertsplit__4(std::string ** err_msg, casadi::DM* x0, int x1)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_vertsplit__4(std::string ** err_msg, casadi::DM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::DM > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_vertsplit__4(std::string ** err_msg, casadi::DM* x0, int x1);
+    casadi_vertsplit__4(std::string ** err_msg, casadi::DM* x0, long long x1);
 std::vector< casadi::DM* >*
-    casadi_vertsplit__4(std::string ** err_msg, casadi::DM* x0, int x1){
+    casadi_vertsplit__4(std::string ** err_msg, casadi::DM* x0, long long x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::DM > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25470,23 +29400,23 @@ std::vector< casadi::DM* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__5"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "DM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::DM* >*"
-// proto: "std::vector< casadi::DM* >*\n    casadi_vertsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::DM* >*\n    casadi_vertsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::DM > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::DM* >*
-    casadi_vertsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1);
+    casadi_vertsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1);
 std::vector< casadi::DM* >*
-    casadi_vertsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< int >* x1){
+    casadi_vertsplit__5(std::string ** err_msg, casadi::DM* x0, std::vector< long long >* x1){
     try {
         casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::DM > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25534,23 +29464,23 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__7"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_vertsplit__7(std::string ** err_msg, casadi::IM* x0, int x1)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_vertsplit__7(std::string ** err_msg, casadi::IM* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::IM > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_vertsplit__7(std::string ** err_msg, casadi::IM* x0, int x1);
+    casadi_vertsplit__7(std::string ** err_msg, casadi::IM* x0, long long x1);
 std::vector< casadi::IM* >*
-    casadi_vertsplit__7(std::string ** err_msg, casadi::IM* x0, int x1){
+    casadi_vertsplit__7(std::string ** err_msg, casadi::IM* x0, long long x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::IM > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25567,23 +29497,23 @@ std::vector< casadi::IM* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__8"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "IM"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::IM* >*"
-// proto: "std::vector< casadi::IM* >*\n    casadi_vertsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::IM* >*\n    casadi_vertsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::IM > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::IM* >*
-    casadi_vertsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1);
+    casadi_vertsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1);
 std::vector< casadi::IM* >*
-    casadi_vertsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< int >* x1){
+    casadi_vertsplit__8(std::string ** err_msg, casadi::IM* x0, std::vector< long long >* x1){
     try {
         casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::IM > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25631,23 +29561,23 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__10"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_vertsplit__10(std::string ** err_msg, casadi::MX* x0, int x1)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_vertsplit__10(std::string ** err_msg, casadi::MX* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::MX > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_vertsplit__10(std::string ** err_msg, casadi::MX* x0, int x1);
+    casadi_vertsplit__10(std::string ** err_msg, casadi::MX* x0, long long x1);
 std::vector< casadi::MX* >*
-    casadi_vertsplit__10(std::string ** err_msg, casadi::MX* x0, int x1){
+    casadi_vertsplit__10(std::string ** err_msg, casadi::MX* x0, long long x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::MX > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25664,23 +29594,23 @@ std::vector< casadi::MX* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__11"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "MX"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::MX* >*"
-// proto: "std::vector< casadi::MX* >*\n    casadi_vertsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::MX* >*\n    casadi_vertsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::MX > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::MX* >*
-    casadi_vertsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1);
+    casadi_vertsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1);
 std::vector< casadi::MX* >*
-    casadi_vertsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< int >* x1){
+    casadi_vertsplit__11(std::string ** err_msg, casadi::MX* x0, std::vector< long long >* x1){
     try {
         casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::MX > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25728,23 +29658,23 @@ std::vector< casadi::Sparsity* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__13"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_vertsplit__13(std::string ** err_msg, casadi::Sparsity* x0, int x1)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_vertsplit__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::Sparsity > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_vertsplit__13(std::string ** err_msg, casadi::Sparsity* x0, int x1);
+    casadi_vertsplit__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1);
 std::vector< casadi::Sparsity* >*
-    casadi_vertsplit__13(std::string ** err_msg, casadi::Sparsity* x0, int x1){
+    casadi_vertsplit__13(std::string ** err_msg, casadi::Sparsity* x0, long long x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         std::vector< casadi::Sparsity > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
@@ -25761,177 +29691,29 @@ std::vector< casadi::Sparsity* >*
 // ================== function "casadi::casadi_vertsplit" ===============
 // cppName: "casadi::casadi_vertsplit"
 // cWrapperName: "casadi_vertsplit__14"
-// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdVec (UserType (Namespace ["casadi"]) (Name "Sparsity"))
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< casadi::Sparsity* >*"
-// proto: "std::vector< casadi::Sparsity* >*\n    casadi_vertsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1)"
+// proto: "std::vector< casadi::Sparsity* >*\n    casadi_vertsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1)"
 // friendWrap: True
 // fName: "casadi_vertsplit"
 // call: "        std::vector< casadi::Sparsity > ret = vertsplit(x0_, x1_);"
 extern "C"
 std::vector< casadi::Sparsity* >*
-    casadi_vertsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1);
+    casadi_vertsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1);
 std::vector< casadi::Sparsity* >*
-    casadi_vertsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< int >* x1){
+    casadi_vertsplit__14(std::string ** err_msg, casadi::Sparsity* x0, std::vector< long long >* x1){
     try {
         casadi::Sparsity& x0_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         std::vector< casadi::Sparsity > ret = vertsplit(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
         return WrapReturn< std::vector< casadi::Sparsity* >*, std::vector< casadi::Sparsity > >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_which_depends" ===============
-// cppName: "casadi::casadi_which_depends"
-// cWrapperName: "casadi_which_depends__0"
-// protoArgs: "(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "SX"))),SwigOutput False),(CInt,SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CBool
-// args: "(x0_, x1_, x2_, x3_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_which_depends__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2, int x3)"
-// friendWrap: True
-// fName: "casadi_which_depends"
-// call: "        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);"
-extern "C"
-std::vector< int >*
-    casadi_which_depends__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2, int x3);
-std::vector< int >*
-    casadi_which_depends__0(std::string ** err_msg, casadi::SX* x0, casadi::SX* x1, int x2, int x3){
-    try {
-        casadi::SX& x0_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x0);
-        casadi::SX& x1_ = Marshaling<casadi::SX&,casadi::SX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-        bool x3_ = Marshaling<bool,int>::marshal(x3);
-
-        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-        // x3 is not a swig output
-
-        return WrapReturn< std::vector< int >*, std::vector< bool > >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_which_depends" ===============
-// cppName: "casadi::casadi_which_depends"
-// cWrapperName: "casadi_which_depends__1"
-// protoArgs: "(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "DM"))),SwigOutput False),(CInt,SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CBool
-// args: "(x0_, x1_, x2_, x3_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_which_depends__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2, int x3)"
-// friendWrap: True
-// fName: "casadi_which_depends"
-// call: "        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);"
-extern "C"
-std::vector< int >*
-    casadi_which_depends__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2, int x3);
-std::vector< int >*
-    casadi_which_depends__1(std::string ** err_msg, casadi::DM* x0, casadi::DM* x1, int x2, int x3){
-    try {
-        casadi::DM& x0_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x0);
-        casadi::DM& x1_ = Marshaling<casadi::DM&,casadi::DM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-        bool x3_ = Marshaling<bool,int>::marshal(x3);
-
-        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-        // x3 is not a swig output
-
-        return WrapReturn< std::vector< int >*, std::vector< bool > >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_which_depends" ===============
-// cppName: "casadi::casadi_which_depends"
-// cWrapperName: "casadi_which_depends__2"
-// protoArgs: "(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "IM"))),SwigOutput False),(CInt,SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CBool
-// args: "(x0_, x1_, x2_, x3_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_which_depends__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2, int x3)"
-// friendWrap: True
-// fName: "casadi_which_depends"
-// call: "        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);"
-extern "C"
-std::vector< int >*
-    casadi_which_depends__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2, int x3);
-std::vector< int >*
-    casadi_which_depends__2(std::string ** err_msg, casadi::IM* x0, casadi::IM* x1, int x2, int x3){
-    try {
-        casadi::IM& x0_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x0);
-        casadi::IM& x1_ = Marshaling<casadi::IM&,casadi::IM*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-        bool x3_ = Marshaling<bool,int>::marshal(x3);
-
-        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-        // x3 is not a swig output
-
-        return WrapReturn< std::vector< int >*, std::vector< bool > >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::casadi_which_depends" ===============
-// cppName: "casadi::casadi_which_depends"
-// cWrapperName: "casadi_which_depends__3"
-// protoArgs: "(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2, int x3)"
-// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "MX"))),SwigOutput False),(CInt,SwigOutput False),(CBool,SwigOutput False)]
-// retType: StdVec CBool
-// args: "(x0_, x1_, x2_, x3_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    casadi_which_depends__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2, int x3)"
-// friendWrap: True
-// fName: "casadi_which_depends"
-// call: "        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);"
-extern "C"
-std::vector< int >*
-    casadi_which_depends__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2, int x3);
-std::vector< int >*
-    casadi_which_depends__3(std::string ** err_msg, casadi::MX* x0, casadi::MX* x1, int x2, int x3){
-    try {
-        casadi::MX& x0_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x0);
-        casadi::MX& x1_ = Marshaling<casadi::MX&,casadi::MX*>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-        bool x3_ = Marshaling<bool,int>::marshal(x3);
-
-        std::vector< bool > ret = which_depends(x0_, x1_, x2_, x3_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-        // x3 is not a swig output
-
-        return WrapReturn< std::vector< int >*, std::vector< bool > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -25977,22 +29759,22 @@ void
 // ================== function "casadi::collocation_points" ===============
 // cppName: "casadi::collocation_points"
 // cWrapperName: "collocation_points__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdVec CDouble
 // args: "(x0_)"
 // cWrapperRetType: "std::vector< double >*"
-// proto: "std::vector< double >*\n    collocation_points__0(std::string ** err_msg, int x0)"
+// proto: "std::vector< double >*\n    collocation_points__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "collocation_points"
 // call: "        std::vector< double > ret = casadi::collocation_points(x0_);"
 extern "C"
 std::vector< double >*
-    collocation_points__0(std::string ** err_msg, int x0);
+    collocation_points__0(std::string ** err_msg, long long x0);
 std::vector< double >*
-    collocation_points__0(std::string ** err_msg, int x0){
+    collocation_points__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::vector< double > ret = casadi::collocation_points(x0_);
         // x0 is not a swig output
@@ -26008,22 +29790,22 @@ std::vector< double >*
 // ================== function "casadi::collocation_points" ===============
 // cppName: "casadi::collocation_points"
 // cWrapperName: "collocation_points__1"
-// protoArgs: "(std::string ** err_msg, int x0, std::string* x1)"
-// params: [(CInt,SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0, std::string* x1)"
+// params: [(CLongLong,SwigOutput False),(Ref (Const StdString),SwigOutput False)]
 // retType: StdVec CDouble
 // args: "(x0_, x1_)"
 // cWrapperRetType: "std::vector< double >*"
-// proto: "std::vector< double >*\n    collocation_points__1(std::string ** err_msg, int x0, std::string* x1)"
+// proto: "std::vector< double >*\n    collocation_points__1(std::string ** err_msg, long long x0, std::string* x1)"
 // friendWrap: False
 // fName: "collocation_points"
 // call: "        std::vector< double > ret = casadi::collocation_points(x0_, x1_);"
 extern "C"
 std::vector< double >*
-    collocation_points__1(std::string ** err_msg, int x0, std::string* x1);
+    collocation_points__1(std::string ** err_msg, long long x0, std::string* x1);
 std::vector< double >*
-    collocation_points__1(std::string ** err_msg, int x0, std::string* x1){
+    collocation_points__1(std::string ** err_msg, long long x0, std::string* x1){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
         std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
 
         std::vector< double > ret = casadi::collocation_points(x0_, x1_);
@@ -26041,29 +29823,29 @@ std::vector< double >*
 // ================== function "casadi::complement" ===============
 // cppName: "casadi::complement"
 // cWrapperName: "complement"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0, int x1)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False),(CInt,SwigOutput False)]
-// retType: StdVec CInt
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0, long long x1)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: StdVec CLongLong
 // args: "(x0_, x1_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    complement(std::string ** err_msg, std::vector< int >* x0, int x1)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    complement(std::string ** err_msg, std::vector< long long >* x0, long long x1)"
 // friendWrap: False
 // fName: "complement"
-// call: "        std::vector< int > ret = casadi::complement(x0_, x1_);"
+// call: "        std::vector< long long > ret = casadi::complement(x0_, x1_);"
 extern "C"
-std::vector< int >*
-    complement(std::string ** err_msg, std::vector< int >* x0, int x1);
-std::vector< int >*
-    complement(std::string ** err_msg, std::vector< int >* x0, int x1){
+std::vector< long long >*
+    complement(std::string ** err_msg, std::vector< long long >* x0, long long x1);
+std::vector< long long >*
+    complement(std::string ** err_msg, std::vector< long long >* x0, long long x1){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
-        std::vector< int > ret = casadi::complement(x0_, x1_);
+        std::vector< long long > ret = casadi::complement(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -26143,25 +29925,58 @@ casadi::Function*
 }
 
 
+// ================== function "casadi::conic_debug" ===============
+// cppName: "casadi::conic_debug"
+// cWrapperName: "conic_debug"
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, std::string* x1)"
+// params: [(Ref (Const (UserType (Namespace ["casadi"]) (Name "Function"))),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_, x1_)"
+// cWrapperRetType: "void"
+// proto: "void\n    conic_debug(std::string ** err_msg, casadi::Function* x0, std::string* x1)"
+// friendWrap: False
+// fName: "conic_debug"
+// call: "        casadi::conic_debug(x0_, x1_);"
+extern "C"
+void
+    conic_debug(std::string ** err_msg, casadi::Function* x0, std::string* x1);
+void
+    conic_debug(std::string ** err_msg, casadi::Function* x0, std::string* x1){
+    try {
+        casadi::Function& x0_ = Marshaling<casadi::Function&,casadi::Function*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        casadi::conic_debug(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
 // ================== function "casadi::conic_in" ===============
 // cppName: "casadi::conic_in"
 // cWrapperName: "conic_in__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    conic_in__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    conic_in__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "conic_in"
 // call: "        std::string ret = casadi::conic_in(x0_);"
 extern "C"
 std::string*
-    conic_in__0(std::string ** err_msg, int x0);
+    conic_in__0(std::string ** err_msg, long long x0);
 std::string*
-    conic_in__0(std::string ** err_msg, int x0){
+    conic_in__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::conic_in(x0_);
         // x0 is not a swig output
@@ -26208,23 +30023,23 @@ std::vector< std::string* >*
 // cWrapperName: "conic_n_in"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    conic_n_in(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    conic_n_in(std::string ** err_msg)"
 // friendWrap: False
 // fName: "conic_n_in"
-// call: "        int ret = casadi::conic_n_in();"
+// call: "        long long ret = casadi::conic_n_in();"
 extern "C"
-int
+long long
     conic_n_in(std::string ** err_msg);
-int
+long long
     conic_n_in(std::string ** err_msg){
     try {
 
-        int ret = casadi::conic_n_in();
+        long long ret = casadi::conic_n_in();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -26237,23 +30052,120 @@ int
 // cWrapperName: "conic_n_out"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    conic_n_out(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    conic_n_out(std::string ** err_msg)"
 // friendWrap: False
 // fName: "conic_n_out"
-// call: "        int ret = casadi::conic_n_out();"
+// call: "        long long ret = casadi::conic_n_out();"
 extern "C"
-int
+long long
     conic_n_out(std::string ** err_msg);
-int
+long long
     conic_n_out(std::string ** err_msg){
     try {
 
-        int ret = casadi::conic_n_out();
+        long long ret = casadi::conic_n_out();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::conic_option_info" ===============
+// cppName: "casadi::conic_option_info"
+// cWrapperName: "conic_option_info"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    conic_option_info(std::string ** err_msg, std::string* x0, std::string* x1)"
+// friendWrap: False
+// fName: "conic_option_info"
+// call: "        std::string ret = casadi::conic_option_info(x0_, x1_);"
+extern "C"
+std::string*
+    conic_option_info(std::string ** err_msg, std::string* x0, std::string* x1);
+std::string*
+    conic_option_info(std::string ** err_msg, std::string* x0, std::string* x1){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        std::string ret = casadi::conic_option_info(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::conic_option_type" ===============
+// cppName: "casadi::conic_option_type"
+// cWrapperName: "conic_option_type"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    conic_option_type(std::string ** err_msg, std::string* x0, std::string* x1)"
+// friendWrap: False
+// fName: "conic_option_type"
+// call: "        std::string ret = casadi::conic_option_type(x0_, x1_);"
+extern "C"
+std::string*
+    conic_option_type(std::string ** err_msg, std::string* x0, std::string* x1);
+std::string*
+    conic_option_type(std::string ** err_msg, std::string* x0, std::string* x1){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        std::string ret = casadi::conic_option_type(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::conic_options" ===============
+// cppName: "casadi::conic_options"
+// cWrapperName: "conic_options"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: StdVec StdString
+// args: "(x0_)"
+// cWrapperRetType: "std::vector< std::string* >*"
+// proto: "std::vector< std::string* >*\n    conic_options(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "conic_options"
+// call: "        std::vector< std::string > ret = casadi::conic_options(x0_);"
+extern "C"
+std::vector< std::string* >*
+    conic_options(std::string ** err_msg, std::string* x0);
+std::vector< std::string* >*
+    conic_options(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        std::vector< std::string > ret = casadi::conic_options(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::vector< std::string* >*, std::vector< std::string > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -26264,22 +30176,22 @@ int
 // ================== function "casadi::conic_out" ===============
 // cppName: "casadi::conic_out"
 // cWrapperName: "conic_out__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    conic_out__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    conic_out__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "conic_out"
 // call: "        std::string ret = casadi::conic_out(x0_);"
 extern "C"
 std::string*
-    conic_out__0(std::string ** err_msg, int x0);
+    conic_out__0(std::string ** err_msg, long long x0);
 std::string*
-    conic_out__0(std::string ** err_msg, int x0){
+    conic_out__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::conic_out(x0_);
         // x0 is not a swig output
@@ -26383,6 +30295,37 @@ std::string*
 }
 
 
+// ================== function "casadi::doc_expm" ===============
+// cppName: "casadi::doc_expm"
+// cWrapperName: "doc_expm"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    doc_expm(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "doc_expm"
+// call: "        std::string ret = casadi::doc_expm(x0_);"
+extern "C"
+std::string*
+    doc_expm(std::string ** err_msg, std::string* x0);
+std::string*
+    doc_expm(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        std::string ret = casadi::doc_expm(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::doc_integrator" ===============
 // cppName: "casadi::doc_integrator"
 // cWrapperName: "doc_integrator"
@@ -26435,6 +30378,37 @@ std::string*
         std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
 
         std::string ret = casadi::doc_interpolant(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::doc_linsol" ===============
+// cppName: "casadi::doc_linsol"
+// cWrapperName: "doc_linsol"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    doc_linsol(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "doc_linsol"
+// call: "        std::string ret = casadi::doc_linsol(x0_);"
+extern "C"
+std::string*
+    doc_linsol(std::string ** err_msg, std::string* x0);
+std::string*
+    doc_linsol(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        std::string ret = casadi::doc_linsol(x0_);
         // x0 is not a swig output
 
         return WrapReturn< std::string*, std::string >::wrapReturn( ret );
@@ -26510,22 +30484,22 @@ std::string*
 // ================== function "casadi::dple_in" ===============
 // cppName: "casadi::dple_in"
 // cWrapperName: "dple_in__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    dple_in__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    dple_in__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "dple_in"
 // call: "        std::string ret = casadi::dple_in(x0_);"
 extern "C"
 std::string*
-    dple_in__0(std::string ** err_msg, int x0);
+    dple_in__0(std::string ** err_msg, long long x0);
 std::string*
-    dple_in__0(std::string ** err_msg, int x0){
+    dple_in__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::dple_in(x0_);
         // x0 is not a swig output
@@ -26572,23 +30546,23 @@ std::vector< std::string* >*
 // cWrapperName: "dple_n_in"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    dple_n_in(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    dple_n_in(std::string ** err_msg)"
 // friendWrap: False
 // fName: "dple_n_in"
-// call: "        int ret = casadi::dple_n_in();"
+// call: "        long long ret = casadi::dple_n_in();"
 extern "C"
-int
+long long
     dple_n_in(std::string ** err_msg);
-int
+long long
     dple_n_in(std::string ** err_msg){
     try {
 
-        int ret = casadi::dple_n_in();
+        long long ret = casadi::dple_n_in();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -26601,23 +30575,23 @@ int
 // cWrapperName: "dple_n_out"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    dple_n_out(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    dple_n_out(std::string ** err_msg)"
 // friendWrap: False
 // fName: "dple_n_out"
-// call: "        int ret = casadi::dple_n_out();"
+// call: "        long long ret = casadi::dple_n_out();"
 extern "C"
-int
+long long
     dple_n_out(std::string ** err_msg);
-int
+long long
     dple_n_out(std::string ** err_msg){
     try {
 
-        int ret = casadi::dple_n_out();
+        long long ret = casadi::dple_n_out();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -26628,22 +30602,22 @@ int
 // ================== function "casadi::dple_out" ===============
 // cppName: "casadi::dple_out"
 // cWrapperName: "dple_out__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    dple_out__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    dple_out__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "dple_out"
 // call: "        std::string ret = casadi::dple_out(x0_);"
 extern "C"
 std::string*
-    dple_out__0(std::string ** err_msg, int x0);
+    dple_out__0(std::string ** err_msg, long long x0);
 std::string*
-    dple_out__0(std::string ** err_msg, int x0){
+    dple_out__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::dple_out(x0_);
         // x0 is not a swig output
@@ -26973,6 +30947,136 @@ casadi::Function*
 }
 
 
+// ================== function "casadi::expm_n_in" ===============
+// cppName: "casadi::expm_n_in"
+// cWrapperName: "expm_n_in"
+// protoArgs: "(std::string ** err_msg)"
+// params: []
+// retType: CLongLong
+// args: "()"
+// cWrapperRetType: "long long"
+// proto: "long long\n    expm_n_in(std::string ** err_msg)"
+// friendWrap: False
+// fName: "expm_n_in"
+// call: "        long long ret = casadi::expm_n_in();"
+extern "C"
+long long
+    expm_n_in(std::string ** err_msg);
+long long
+    expm_n_in(std::string ** err_msg){
+    try {
+
+        long long ret = casadi::expm_n_in();
+
+        return WrapReturn< long long, long long >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::expm_n_out" ===============
+// cppName: "casadi::expm_n_out"
+// cWrapperName: "expm_n_out"
+// protoArgs: "(std::string ** err_msg)"
+// params: []
+// retType: CLongLong
+// args: "()"
+// cWrapperRetType: "long long"
+// proto: "long long\n    expm_n_out(std::string ** err_msg)"
+// friendWrap: False
+// fName: "expm_n_out"
+// call: "        long long ret = casadi::expm_n_out();"
+extern "C"
+long long
+    expm_n_out(std::string ** err_msg);
+long long
+    expm_n_out(std::string ** err_msg){
+    try {
+
+        long long ret = casadi::expm_n_out();
+
+        return WrapReturn< long long, long long >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::expmsol" ===============
+// cppName: "casadi::expmsol"
+// cWrapperName: "expmsol__0"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Function")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::Function*"
+// proto: "casadi::Function*\n    expmsol__0(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2)"
+// friendWrap: False
+// fName: "expmsol"
+// call: "        casadi::Function ret = casadi::expmsol(x0_, x1_, x2_);"
+extern "C"
+casadi::Function*
+    expmsol__0(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2);
+casadi::Function*
+    expmsol__0(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        casadi::Sparsity& x2_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x2);
+
+        casadi::Function ret = casadi::expmsol(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::expmsol" ===============
+// cppName: "casadi::expmsol"
+// cWrapperName: "expmsol__1"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2, std::map< std::string, casadi::GenericType* >* x3)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (UserType (Namespace ["casadi"]) (Name "Sparsity"))),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Function")
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "casadi::Function*"
+// proto: "casadi::Function*\n    expmsol__1(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2, std::map< std::string, casadi::GenericType* >* x3)"
+// friendWrap: False
+// fName: "expmsol"
+// call: "        casadi::Function ret = casadi::expmsol(x0_, x1_, x2_, x3_);"
+extern "C"
+casadi::Function*
+    expmsol__1(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2, std::map< std::string, casadi::GenericType* >* x3);
+casadi::Function*
+    expmsol__1(std::string ** err_msg, std::string* x0, std::string* x1, casadi::Sparsity* x2, std::map< std::string, casadi::GenericType* >* x3){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        casadi::Sparsity& x2_ = Marshaling<casadi::Sparsity&,casadi::Sparsity*>::marshal(x2);
+        std::map< std::string, casadi::GenericType > x3_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x3);
+
+        casadi::Function ret = casadi::expmsol(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::external" ===============
 // cppName: "casadi::external"
 // cWrapperName: "external__0"
@@ -27235,6 +31339,37 @@ int
 }
 
 
+// ================== function "casadi::has_expm" ===============
+// cppName: "casadi::has_expm"
+// cWrapperName: "has_expm"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: CBool
+// args: "(x0_)"
+// cWrapperRetType: "int"
+// proto: "int\n    has_expm(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "has_expm"
+// call: "        bool ret = casadi::has_expm(x0_);"
+extern "C"
+int
+    has_expm(std::string ** err_msg, std::string* x0);
+int
+    has_expm(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        bool ret = casadi::has_expm(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::has_integrator" ===============
 // cppName: "casadi::has_integrator"
 // cWrapperName: "has_integrator"
@@ -27287,6 +31422,37 @@ int
         std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
 
         bool ret = casadi::has_interpolant(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< int, bool >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::has_linsol" ===============
+// cppName: "casadi::has_linsol"
+// cWrapperName: "has_linsol"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: CBool
+// args: "(x0_)"
+// cWrapperRetType: "int"
+// proto: "int\n    has_linsol(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "has_linsol"
+// call: "        bool ret = casadi::has_linsol(x0_);"
+extern "C"
+int
+    has_linsol(std::string ** err_msg, std::string* x0);
+int
+    has_linsol(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        bool ret = casadi::has_linsol(x0_);
         // x0 is not a swig output
 
         return WrapReturn< int, bool >::wrapReturn( ret );
@@ -27362,23 +31528,23 @@ int
 // ================== function "casadi::hash_combine" ===============
 // cppName: "casadi::hash_combine"
 // cWrapperName: "hash_combine"
-// protoArgs: "(std::string ** err_msg, size_t* x0, std::vector< int >* x1)"
-// params: [(Ref CSize,SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, size_t* x0, std::vector< long long >* x1)"
+// params: [(Ref CSize,SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: CVoid
 // args: "(x0_, x1_)"
 // cWrapperRetType: "void"
-// proto: "void\n    hash_combine(std::string ** err_msg, size_t* x0, std::vector< int >* x1)"
+// proto: "void\n    hash_combine(std::string ** err_msg, size_t* x0, std::vector< long long >* x1)"
 // friendWrap: False
 // fName: "hash_combine"
 // call: "        casadi::hash_combine(x0_, x1_);"
 extern "C"
 void
-    hash_combine(std::string ** err_msg, size_t* x0, std::vector< int >* x1);
+    hash_combine(std::string ** err_msg, size_t* x0, std::vector< long long >* x1);
 void
-    hash_combine(std::string ** err_msg, size_t* x0, std::vector< int >* x1){
+    hash_combine(std::string ** err_msg, size_t* x0, std::vector< long long >* x1){
     try {
         size_t& x0_ = Marshaling<size_t&,size_t*>::marshal(x0);
-        std::vector< int > x1_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x1);
+        std::vector< long long > x1_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x1);
 
         casadi::hash_combine(x0_, x1_);
         // x0 is not a swig output
@@ -27395,25 +31561,25 @@ void
 // ================== function "casadi::hash_sparsity" ===============
 // cppName: "casadi::hash_sparsity"
 // cWrapperName: "hash_sparsity"
-// protoArgs: "(std::string ** err_msg, int x0, int x1, std::vector< int >* x2, std::vector< int >* x3)"
-// params: [(CInt,SwigOutput False),(CInt,SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False),(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0, long long x1, std::vector< long long >* x2, std::vector< long long >* x3)"
+// params: [(CLongLong,SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False),(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: CSize
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "size_t"
-// proto: "size_t\n    hash_sparsity(std::string ** err_msg, int x0, int x1, std::vector< int >* x2, std::vector< int >* x3)"
+// proto: "size_t\n    hash_sparsity(std::string ** err_msg, long long x0, long long x1, std::vector< long long >* x2, std::vector< long long >* x3)"
 // friendWrap: False
 // fName: "hash_sparsity"
 // call: "        size_t ret = casadi::hash_sparsity(x0_, x1_, x2_, x3_);"
 extern "C"
 size_t
-    hash_sparsity(std::string ** err_msg, int x0, int x1, std::vector< int >* x2, std::vector< int >* x3);
+    hash_sparsity(std::string ** err_msg, long long x0, long long x1, std::vector< long long >* x2, std::vector< long long >* x3);
 size_t
-    hash_sparsity(std::string ** err_msg, int x0, int x1, std::vector< int >* x2, std::vector< int >* x3){
+    hash_sparsity(std::string ** err_msg, long long x0, long long x1, std::vector< long long >* x2, std::vector< long long >* x3){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        std::vector< int > x2_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x2);
-        std::vector< int > x3_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x3);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        std::vector< long long > x2_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x2);
+        std::vector< long long > x3_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x3);
 
         size_t ret = casadi::hash_sparsity(x0_, x1_, x2_, x3_);
         // x0 is not a swig output
@@ -27422,6 +31588,74 @@ size_t
         // x3 is not a swig output
 
         return WrapReturn< size_t, size_t >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::index_interp1d" ===============
+// cppName: "casadi::index_interp1d"
+// cWrapperName: "index_interp1d__0"
+// protoArgs: "(std::string ** err_msg, std::vector< double >* x0, double x1)"
+// params: [(Ref (Const (StdVec CDouble)),SwigOutput False),(CDouble,SwigOutput False)]
+// retType: CDouble
+// args: "(x0_, x1_)"
+// cWrapperRetType: "double"
+// proto: "double\n    index_interp1d__0(std::string ** err_msg, std::vector< double >* x0, double x1)"
+// friendWrap: False
+// fName: "index_interp1d"
+// call: "        double ret = casadi::index_interp1d(x0_, x1_);"
+extern "C"
+double
+    index_interp1d__0(std::string ** err_msg, std::vector< double >* x0, double x1);
+double
+    index_interp1d__0(std::string ** err_msg, std::vector< double >* x0, double x1){
+    try {
+        std::vector< double > x0_ = Marshaling<std::vector< double >,std::vector< double >*>::marshal(x0);
+        double x1_ = Marshaling<double,double>::marshal(x1);
+
+        double ret = casadi::index_interp1d(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< double, double >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::index_interp1d" ===============
+// cppName: "casadi::index_interp1d"
+// cWrapperName: "index_interp1d__1"
+// protoArgs: "(std::string ** err_msg, std::vector< double >* x0, double x1, int x2)"
+// params: [(Ref (Const (StdVec CDouble)),SwigOutput False),(CDouble,SwigOutput False),(CBool,SwigOutput False)]
+// retType: CDouble
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "double"
+// proto: "double\n    index_interp1d__1(std::string ** err_msg, std::vector< double >* x0, double x1, int x2)"
+// friendWrap: False
+// fName: "index_interp1d"
+// call: "        double ret = casadi::index_interp1d(x0_, x1_, x2_);"
+extern "C"
+double
+    index_interp1d__1(std::string ** err_msg, std::vector< double >* x0, double x1, int x2);
+double
+    index_interp1d__1(std::string ** err_msg, std::vector< double >* x0, double x1, int x2){
+    try {
+        std::vector< double > x0_ = Marshaling<std::vector< double >,std::vector< double >*>::marshal(x0);
+        double x1_ = Marshaling<double,double>::marshal(x1);
+        bool x2_ = Marshaling<bool,int>::marshal(x2);
+
+        double ret = casadi::index_interp1d(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< double, double >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -27576,22 +31810,22 @@ casadi::Function*
 // ================== function "casadi::integrator_in" ===============
 // cppName: "casadi::integrator_in"
 // cWrapperName: "integrator_in__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    integrator_in__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    integrator_in__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "integrator_in"
 // call: "        std::string ret = casadi::integrator_in(x0_);"
 extern "C"
 std::string*
-    integrator_in__0(std::string ** err_msg, int x0);
+    integrator_in__0(std::string ** err_msg, long long x0);
 std::string*
-    integrator_in__0(std::string ** err_msg, int x0){
+    integrator_in__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::integrator_in(x0_);
         // x0 is not a swig output
@@ -27638,23 +31872,23 @@ std::vector< std::string* >*
 // cWrapperName: "integrator_n_in"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    integrator_n_in(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    integrator_n_in(std::string ** err_msg)"
 // friendWrap: False
 // fName: "integrator_n_in"
-// call: "        int ret = casadi::integrator_n_in();"
+// call: "        long long ret = casadi::integrator_n_in();"
 extern "C"
-int
+long long
     integrator_n_in(std::string ** err_msg);
-int
+long long
     integrator_n_in(std::string ** err_msg){
     try {
 
-        int ret = casadi::integrator_n_in();
+        long long ret = casadi::integrator_n_in();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -27667,23 +31901,23 @@ int
 // cWrapperName: "integrator_n_out"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    integrator_n_out(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    integrator_n_out(std::string ** err_msg)"
 // friendWrap: False
 // fName: "integrator_n_out"
-// call: "        int ret = casadi::integrator_n_out();"
+// call: "        long long ret = casadi::integrator_n_out();"
 extern "C"
-int
+long long
     integrator_n_out(std::string ** err_msg);
-int
+long long
     integrator_n_out(std::string ** err_msg){
     try {
 
-        int ret = casadi::integrator_n_out();
+        long long ret = casadi::integrator_n_out();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -27694,22 +31928,22 @@ int
 // ================== function "casadi::integrator_out" ===============
 // cppName: "casadi::integrator_out"
 // cWrapperName: "integrator_out__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    integrator_out__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    integrator_out__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "integrator_out"
 // call: "        std::string ret = casadi::integrator_out(x0_);"
 extern "C"
 std::string*
-    integrator_out__0(std::string ** err_msg, int x0);
+    integrator_out__0(std::string ** err_msg, long long x0);
 std::string*
-    integrator_out__0(std::string ** err_msg, int x0){
+    integrator_out__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::integrator_out(x0_);
         // x0 is not a swig output
@@ -27894,22 +32128,22 @@ int
 // ================== function "casadi::is_slice" ===============
 // cppName: "casadi::is_slice"
 // cWrapperName: "is_slice__2"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: CBool
 // args: "(x0_)"
 // cWrapperRetType: "int"
-// proto: "int\n    is_slice__2(std::string ** err_msg, std::vector< int >* x0)"
+// proto: "int\n    is_slice__2(std::string ** err_msg, std::vector< long long >* x0)"
 // friendWrap: False
 // fName: "is_slice"
 // call: "        bool ret = casadi::is_slice(x0_);"
 extern "C"
 int
-    is_slice__2(std::string ** err_msg, std::vector< int >* x0);
+    is_slice__2(std::string ** err_msg, std::vector< long long >* x0);
 int
-    is_slice__2(std::string ** err_msg, std::vector< int >* x0){
+    is_slice__2(std::string ** err_msg, std::vector< long long >* x0){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
 
         bool ret = casadi::is_slice(x0_);
         // x0 is not a swig output
@@ -27925,22 +32159,22 @@ int
 // ================== function "casadi::is_slice" ===============
 // cppName: "casadi::is_slice"
 // cWrapperName: "is_slice__3"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0, int x1)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False),(CBool,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0, int x1)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False),(CBool,SwigOutput False)]
 // retType: CBool
 // args: "(x0_, x1_)"
 // cWrapperRetType: "int"
-// proto: "int\n    is_slice__3(std::string ** err_msg, std::vector< int >* x0, int x1)"
+// proto: "int\n    is_slice__3(std::string ** err_msg, std::vector< long long >* x0, int x1)"
 // friendWrap: False
 // fName: "is_slice"
 // call: "        bool ret = casadi::is_slice(x0_, x1_);"
 extern "C"
 int
-    is_slice__3(std::string ** err_msg, std::vector< int >* x0, int x1);
+    is_slice__3(std::string ** err_msg, std::vector< long long >* x0, int x1);
 int
-    is_slice__3(std::string ** err_msg, std::vector< int >* x0, int x1){
+    is_slice__3(std::string ** err_msg, std::vector< long long >* x0, int x1){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
         bool x1_ = Marshaling<bool,int>::marshal(x1);
 
         bool ret = casadi::is_slice(x0_, x1_);
@@ -27958,103 +32192,27 @@ int
 // ================== function "casadi::is_slice2" ===============
 // cppName: "casadi::is_slice2"
 // cWrapperName: "is_slice2"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: CBool
 // args: "(x0_)"
 // cWrapperRetType: "int"
-// proto: "int\n    is_slice2(std::string ** err_msg, std::vector< int >* x0)"
+// proto: "int\n    is_slice2(std::string ** err_msg, std::vector< long long >* x0)"
 // friendWrap: False
 // fName: "is_slice2"
 // call: "        bool ret = casadi::is_slice2(x0_);"
 extern "C"
 int
-    is_slice2(std::string ** err_msg, std::vector< int >* x0);
+    is_slice2(std::string ** err_msg, std::vector< long long >* x0);
 int
-    is_slice2(std::string ** err_msg, std::vector< int >* x0){
+    is_slice2(std::string ** err_msg, std::vector< long long >* x0){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
 
         bool ret = casadi::is_slice2(x0_);
         // x0 is not a swig output
 
         return WrapReturn< int, bool >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::jit" ===============
-// cppName: "casadi::jit"
-// cWrapperName: "jit__0"
-// protoArgs: "(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3)"
-// params: [(Ref (Const StdString),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False),(Ref (Const StdString),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "Function")
-// args: "(x0_, x1_, x2_, x3_)"
-// cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    jit__0(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3)"
-// friendWrap: False
-// fName: "jit"
-// call: "        casadi::Function ret = casadi::jit(x0_, x1_, x2_, x3_);"
-extern "C"
-casadi::Function*
-    jit__0(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3);
-casadi::Function*
-    jit__0(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3){
-    try {
-        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-        std::string& x3_ = Marshaling<std::string&,std::string*>::marshal(x3);
-
-        casadi::Function ret = casadi::jit(x0_, x1_, x2_, x3_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-        // x3 is not a swig output
-
-        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
-    } catch (std::exception& ex) {
-         *err_msg = new std::string(ex.what());
-         return 0;
-    }
-}
-
-
-// ================== function "casadi::jit" ===============
-// cppName: "casadi::jit"
-// cWrapperName: "jit__1"
-// protoArgs: "(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3, std::map< std::string, casadi::GenericType* >* x4)"
-// params: [(Ref (Const StdString),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
-// retType: UserType (Namespace ["casadi"]) (Name "Function")
-// args: "(x0_, x1_, x2_, x3_, x4_)"
-// cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    jit__1(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3, std::map< std::string, casadi::GenericType* >* x4)"
-// friendWrap: False
-// fName: "jit"
-// call: "        casadi::Function ret = casadi::jit(x0_, x1_, x2_, x3_, x4_);"
-extern "C"
-casadi::Function*
-    jit__1(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3, std::map< std::string, casadi::GenericType* >* x4);
-casadi::Function*
-    jit__1(std::string ** err_msg, std::string* x0, int x1, int x2, std::string* x3, std::map< std::string, casadi::GenericType* >* x4){
-    try {
-        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
-        std::string& x3_ = Marshaling<std::string&,std::string*>::marshal(x3);
-        std::map< std::string, casadi::GenericType > x4_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x4);
-
-        casadi::Function ret = casadi::jit(x0_, x1_, x2_, x3_, x4_);
-        // x0 is not a swig output
-        // x1 is not a swig output
-        // x2 is not a swig output
-        // x3 is not a swig output
-        // x4 is not a swig output
-
-        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -28124,6 +32282,37 @@ void
 }
 
 
+// ================== function "casadi::load_expm" ===============
+// cppName: "casadi::load_expm"
+// cWrapperName: "load_expm"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_)"
+// cWrapperRetType: "void"
+// proto: "void\n    load_expm(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "load_expm"
+// call: "        casadi::load_expm(x0_);"
+extern "C"
+void
+    load_expm(std::string ** err_msg, std::string* x0);
+void
+    load_expm(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        casadi::load_expm(x0_);
+        // x0 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
 // ================== function "casadi::load_integrator" ===============
 // cppName: "casadi::load_integrator"
 // cWrapperName: "load_integrator"
@@ -28176,6 +32365,37 @@ void
         std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
 
         casadi::load_interpolant(x0_);
+        // x0 is not a swig output
+
+        return;
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return;
+    }
+}
+
+
+// ================== function "casadi::load_linsol" ===============
+// cppName: "casadi::load_linsol"
+// cWrapperName: "load_linsol"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: CVoid
+// args: "(x0_)"
+// cWrapperRetType: "void"
+// proto: "void\n    load_linsol(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "load_linsol"
+// call: "        casadi::load_linsol(x0_);"
+extern "C"
+void
+    load_linsol(std::string ** err_msg, std::string* x0);
+void
+    load_linsol(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        casadi::load_linsol(x0_);
         // x0 is not a swig output
 
         return;
@@ -28250,30 +32470,61 @@ void
 
 // ================== function "casadi::lookupvector" ===============
 // cppName: "casadi::lookupvector"
-// cWrapperName: "lookupvector"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0, int x1)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False),(CInt,SwigOutput False)]
-// retType: StdVec CInt
-// args: "(x0_, x1_)"
-// cWrapperRetType: "std::vector< int >*"
-// proto: "std::vector< int >*\n    lookupvector(std::string ** err_msg, std::vector< int >* x0, int x1)"
+// cWrapperName: "lookupvector__0"
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False)]
+// retType: StdVec CLongLong
+// args: "(x0_)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    lookupvector__0(std::string ** err_msg, std::vector< long long >* x0)"
 // friendWrap: False
 // fName: "lookupvector"
-// call: "        std::vector< int > ret = casadi::lookupvector(x0_, x1_);"
+// call: "        std::vector< long long > ret = casadi::lookupvector(x0_);"
 extern "C"
-std::vector< int >*
-    lookupvector(std::string ** err_msg, std::vector< int >* x0, int x1);
-std::vector< int >*
-    lookupvector(std::string ** err_msg, std::vector< int >* x0, int x1){
+std::vector< long long >*
+    lookupvector__0(std::string ** err_msg, std::vector< long long >* x0);
+std::vector< long long >*
+    lookupvector__0(std::string ** err_msg, std::vector< long long >* x0){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
 
-        std::vector< int > ret = casadi::lookupvector(x0_, x1_);
+        std::vector< long long > ret = casadi::lookupvector(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::lookupvector" ===============
+// cppName: "casadi::lookupvector"
+// cWrapperName: "lookupvector__1"
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0, long long x1)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False),(CLongLong,SwigOutput False)]
+// retType: StdVec CLongLong
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::vector< long long >*"
+// proto: "std::vector< long long >*\n    lookupvector__1(std::string ** err_msg, std::vector< long long >* x0, long long x1)"
+// friendWrap: False
+// fName: "lookupvector"
+// call: "        std::vector< long long > ret = casadi::lookupvector(x0_, x1_);"
+extern "C"
+std::vector< long long >*
+    lookupvector__1(std::string ** err_msg, std::vector< long long >* x0, long long x1);
+std::vector< long long >*
+    lookupvector__1(std::string ** err_msg, std::vector< long long >* x0, long long x1){
+    try {
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+
+        std::vector< long long > ret = casadi::lookupvector(x0_, x1_);
         // x0 is not a swig output
         // x1 is not a swig output
 
-        return WrapReturn< std::vector< int >*, std::vector< int > >::wrapReturn( ret );
+        return WrapReturn< std::vector< long long >*, std::vector< long long > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -28673,22 +32924,22 @@ std::vector< double >*
 // ================== function "casadi::nlpsol_default_in" ===============
 // cppName: "casadi::nlpsol_default_in"
 // cWrapperName: "nlpsol_default_in__1"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: CDouble
 // args: "(x0_)"
 // cWrapperRetType: "double"
-// proto: "double\n    nlpsol_default_in__1(std::string ** err_msg, int x0)"
+// proto: "double\n    nlpsol_default_in__1(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "nlpsol_default_in"
 // call: "        double ret = casadi::nlpsol_default_in(x0_);"
 extern "C"
 double
-    nlpsol_default_in__1(std::string ** err_msg, int x0);
+    nlpsol_default_in__1(std::string ** err_msg, long long x0);
 double
-    nlpsol_default_in__1(std::string ** err_msg, int x0){
+    nlpsol_default_in__1(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         double ret = casadi::nlpsol_default_in(x0_);
         // x0 is not a swig output
@@ -28704,22 +32955,22 @@ double
 // ================== function "casadi::nlpsol_in" ===============
 // cppName: "casadi::nlpsol_in"
 // cWrapperName: "nlpsol_in__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    nlpsol_in__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    nlpsol_in__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "nlpsol_in"
 // call: "        std::string ret = casadi::nlpsol_in(x0_);"
 extern "C"
 std::string*
-    nlpsol_in__0(std::string ** err_msg, int x0);
+    nlpsol_in__0(std::string ** err_msg, long long x0);
 std::string*
-    nlpsol_in__0(std::string ** err_msg, int x0){
+    nlpsol_in__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::nlpsol_in(x0_);
         // x0 is not a swig output
@@ -28766,23 +33017,23 @@ std::vector< std::string* >*
 // cWrapperName: "nlpsol_n_in"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    nlpsol_n_in(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    nlpsol_n_in(std::string ** err_msg)"
 // friendWrap: False
 // fName: "nlpsol_n_in"
-// call: "        int ret = casadi::nlpsol_n_in();"
+// call: "        long long ret = casadi::nlpsol_n_in();"
 extern "C"
-int
+long long
     nlpsol_n_in(std::string ** err_msg);
-int
+long long
     nlpsol_n_in(std::string ** err_msg){
     try {
 
-        int ret = casadi::nlpsol_n_in();
+        long long ret = casadi::nlpsol_n_in();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -28795,23 +33046,120 @@ int
 // cWrapperName: "nlpsol_n_out"
 // protoArgs: "(std::string ** err_msg)"
 // params: []
-// retType: CInt
+// retType: CLongLong
 // args: "()"
-// cWrapperRetType: "int"
-// proto: "int\n    nlpsol_n_out(std::string ** err_msg)"
+// cWrapperRetType: "long long"
+// proto: "long long\n    nlpsol_n_out(std::string ** err_msg)"
 // friendWrap: False
 // fName: "nlpsol_n_out"
-// call: "        int ret = casadi::nlpsol_n_out();"
+// call: "        long long ret = casadi::nlpsol_n_out();"
 extern "C"
-int
+long long
     nlpsol_n_out(std::string ** err_msg);
-int
+long long
     nlpsol_n_out(std::string ** err_msg){
     try {
 
-        int ret = casadi::nlpsol_n_out();
+        long long ret = casadi::nlpsol_n_out();
 
-        return WrapReturn< int, int >::wrapReturn( ret );
+        return WrapReturn< long long, long long >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::nlpsol_option_info" ===============
+// cppName: "casadi::nlpsol_option_info"
+// cWrapperName: "nlpsol_option_info"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    nlpsol_option_info(std::string ** err_msg, std::string* x0, std::string* x1)"
+// friendWrap: False
+// fName: "nlpsol_option_info"
+// call: "        std::string ret = casadi::nlpsol_option_info(x0_, x1_);"
+extern "C"
+std::string*
+    nlpsol_option_info(std::string ** err_msg, std::string* x0, std::string* x1);
+std::string*
+    nlpsol_option_info(std::string ** err_msg, std::string* x0, std::string* x1){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        std::string ret = casadi::nlpsol_option_info(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::nlpsol_option_type" ===============
+// cppName: "casadi::nlpsol_option_type"
+// cWrapperName: "nlpsol_option_type"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    nlpsol_option_type(std::string ** err_msg, std::string* x0, std::string* x1)"
+// friendWrap: False
+// fName: "nlpsol_option_type"
+// call: "        std::string ret = casadi::nlpsol_option_type(x0_, x1_);"
+extern "C"
+std::string*
+    nlpsol_option_type(std::string ** err_msg, std::string* x0, std::string* x1);
+std::string*
+    nlpsol_option_type(std::string ** err_msg, std::string* x0, std::string* x1){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        std::string ret = casadi::nlpsol_option_type(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::nlpsol_options" ===============
+// cppName: "casadi::nlpsol_options"
+// cWrapperName: "nlpsol_options"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: StdVec StdString
+// args: "(x0_)"
+// cWrapperRetType: "std::vector< std::string* >*"
+// proto: "std::vector< std::string* >*\n    nlpsol_options(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "nlpsol_options"
+// call: "        std::vector< std::string > ret = casadi::nlpsol_options(x0_);"
+extern "C"
+std::vector< std::string* >*
+    nlpsol_options(std::string ** err_msg, std::string* x0);
+std::vector< std::string* >*
+    nlpsol_options(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        std::vector< std::string > ret = casadi::nlpsol_options(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::vector< std::string* >*, std::vector< std::string > >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -28822,22 +33170,22 @@ int
 // ================== function "casadi::nlpsol_out" ===============
 // cppName: "casadi::nlpsol_out"
 // cWrapperName: "nlpsol_out__0"
-// protoArgs: "(std::string ** err_msg, int x0)"
-// params: [(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
 // retType: StdString
 // args: "(x0_)"
 // cWrapperRetType: "std::string*"
-// proto: "std::string*\n    nlpsol_out__0(std::string ** err_msg, int x0)"
+// proto: "std::string*\n    nlpsol_out__0(std::string ** err_msg, long long x0)"
 // friendWrap: False
 // fName: "nlpsol_out"
 // call: "        std::string ret = casadi::nlpsol_out(x0_);"
 extern "C"
 std::string*
-    nlpsol_out__0(std::string ** err_msg, int x0);
+    nlpsol_out__0(std::string ** err_msg, long long x0);
 std::string*
-    nlpsol_out__0(std::string ** err_msg, int x0){
+    nlpsol_out__0(std::string ** err_msg, long long x0){
     try {
-        int x0_ = Marshaling<int,int>::marshal(x0);
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
 
         std::string ret = casadi::nlpsol_out(x0_);
         // x0 is not a swig output
@@ -29095,6 +33443,425 @@ casadi::Function*
 }
 
 
+// ================== function "casadi::rootfinder" ===============
+// cppName: "casadi::rootfinder"
+// cWrapperName: "rootfinder__2"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "MX")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Function")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::Function*"
+// proto: "casadi::Function*\n    rootfinder__2(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2)"
+// friendWrap: False
+// fName: "rootfinder"
+// call: "        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_);"
+extern "C"
+casadi::Function*
+    rootfinder__2(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2);
+casadi::Function*
+    rootfinder__2(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::MX > x2_ = Marshaling<std::map< std::string, casadi::MX >,std::map< std::string, casadi::MX* >*>::marshal(x2);
+
+        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder" ===============
+// cppName: "casadi::rootfinder"
+// cWrapperName: "rootfinder__3"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2, std::map< std::string, casadi::GenericType* >* x3)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "MX")))),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Function")
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "casadi::Function*"
+// proto: "casadi::Function*\n    rootfinder__3(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2, std::map< std::string, casadi::GenericType* >* x3)"
+// friendWrap: False
+// fName: "rootfinder"
+// call: "        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_, x3_);"
+extern "C"
+casadi::Function*
+    rootfinder__3(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2, std::map< std::string, casadi::GenericType* >* x3);
+casadi::Function*
+    rootfinder__3(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::MX* >* x2, std::map< std::string, casadi::GenericType* >* x3){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::MX > x2_ = Marshaling<std::map< std::string, casadi::MX >,std::map< std::string, casadi::MX* >*>::marshal(x2);
+        std::map< std::string, casadi::GenericType > x3_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x3);
+
+        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder" ===============
+// cppName: "casadi::rootfinder"
+// cWrapperName: "rootfinder__4"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "SX")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Function")
+// args: "(x0_, x1_, x2_)"
+// cWrapperRetType: "casadi::Function*"
+// proto: "casadi::Function*\n    rootfinder__4(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2)"
+// friendWrap: False
+// fName: "rootfinder"
+// call: "        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_);"
+extern "C"
+casadi::Function*
+    rootfinder__4(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2);
+casadi::Function*
+    rootfinder__4(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::SX > x2_ = Marshaling<std::map< std::string, casadi::SX >,std::map< std::string, casadi::SX* >*>::marshal(x2);
+
+        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+
+        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder" ===============
+// cppName: "casadi::rootfinder"
+// cWrapperName: "rootfinder__5"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2, std::map< std::string, casadi::GenericType* >* x3)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "SX")))),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// retType: UserType (Namespace ["casadi"]) (Name "Function")
+// args: "(x0_, x1_, x2_, x3_)"
+// cWrapperRetType: "casadi::Function*"
+// proto: "casadi::Function*\n    rootfinder__5(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2, std::map< std::string, casadi::GenericType* >* x3)"
+// friendWrap: False
+// fName: "rootfinder"
+// call: "        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_, x3_);"
+extern "C"
+casadi::Function*
+    rootfinder__5(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2, std::map< std::string, casadi::GenericType* >* x3);
+casadi::Function*
+    rootfinder__5(std::string ** err_msg, std::string* x0, std::string* x1, std::map< std::string, casadi::SX* >* x2, std::map< std::string, casadi::GenericType* >* x3){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+        std::map< std::string, casadi::SX > x2_ = Marshaling<std::map< std::string, casadi::SX >,std::map< std::string, casadi::SX* >*>::marshal(x2);
+        std::map< std::string, casadi::GenericType > x3_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x3);
+
+        casadi::Function ret = casadi::rootfinder(x0_, x1_, x2_, x3_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+        // x2 is not a swig output
+        // x3 is not a swig output
+
+        return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_in" ===============
+// cppName: "casadi::rootfinder_in"
+// cWrapperName: "rootfinder_in__0"
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
+// retType: StdString
+// args: "(x0_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    rootfinder_in__0(std::string ** err_msg, long long x0)"
+// friendWrap: False
+// fName: "rootfinder_in"
+// call: "        std::string ret = casadi::rootfinder_in(x0_);"
+extern "C"
+std::string*
+    rootfinder_in__0(std::string ** err_msg, long long x0);
+std::string*
+    rootfinder_in__0(std::string ** err_msg, long long x0){
+    try {
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
+
+        std::string ret = casadi::rootfinder_in(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_in" ===============
+// cppName: "casadi::rootfinder_in"
+// cWrapperName: "rootfinder_in__1"
+// protoArgs: "(std::string ** err_msg)"
+// params: []
+// retType: StdVec StdString
+// args: "()"
+// cWrapperRetType: "std::vector< std::string* >*"
+// proto: "std::vector< std::string* >*\n    rootfinder_in__1(std::string ** err_msg)"
+// friendWrap: False
+// fName: "rootfinder_in"
+// call: "        std::vector< std::string > ret = casadi::rootfinder_in();"
+extern "C"
+std::vector< std::string* >*
+    rootfinder_in__1(std::string ** err_msg);
+std::vector< std::string* >*
+    rootfinder_in__1(std::string ** err_msg){
+    try {
+
+        std::vector< std::string > ret = casadi::rootfinder_in();
+
+        return WrapReturn< std::vector< std::string* >*, std::vector< std::string > >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_n_in" ===============
+// cppName: "casadi::rootfinder_n_in"
+// cWrapperName: "rootfinder_n_in"
+// protoArgs: "(std::string ** err_msg)"
+// params: []
+// retType: CLongLong
+// args: "()"
+// cWrapperRetType: "long long"
+// proto: "long long\n    rootfinder_n_in(std::string ** err_msg)"
+// friendWrap: False
+// fName: "rootfinder_n_in"
+// call: "        long long ret = casadi::rootfinder_n_in();"
+extern "C"
+long long
+    rootfinder_n_in(std::string ** err_msg);
+long long
+    rootfinder_n_in(std::string ** err_msg){
+    try {
+
+        long long ret = casadi::rootfinder_n_in();
+
+        return WrapReturn< long long, long long >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_n_out" ===============
+// cppName: "casadi::rootfinder_n_out"
+// cWrapperName: "rootfinder_n_out"
+// protoArgs: "(std::string ** err_msg)"
+// params: []
+// retType: CLongLong
+// args: "()"
+// cWrapperRetType: "long long"
+// proto: "long long\n    rootfinder_n_out(std::string ** err_msg)"
+// friendWrap: False
+// fName: "rootfinder_n_out"
+// call: "        long long ret = casadi::rootfinder_n_out();"
+extern "C"
+long long
+    rootfinder_n_out(std::string ** err_msg);
+long long
+    rootfinder_n_out(std::string ** err_msg){
+    try {
+
+        long long ret = casadi::rootfinder_n_out();
+
+        return WrapReturn< long long, long long >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_option_info" ===============
+// cppName: "casadi::rootfinder_option_info"
+// cWrapperName: "rootfinder_option_info"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    rootfinder_option_info(std::string ** err_msg, std::string* x0, std::string* x1)"
+// friendWrap: False
+// fName: "rootfinder_option_info"
+// call: "        std::string ret = casadi::rootfinder_option_info(x0_, x1_);"
+extern "C"
+std::string*
+    rootfinder_option_info(std::string ** err_msg, std::string* x0, std::string* x1);
+std::string*
+    rootfinder_option_info(std::string ** err_msg, std::string* x0, std::string* x1){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        std::string ret = casadi::rootfinder_option_info(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_option_type" ===============
+// cppName: "casadi::rootfinder_option_type"
+// cWrapperName: "rootfinder_option_type"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    rootfinder_option_type(std::string ** err_msg, std::string* x0, std::string* x1)"
+// friendWrap: False
+// fName: "rootfinder_option_type"
+// call: "        std::string ret = casadi::rootfinder_option_type(x0_, x1_);"
+extern "C"
+std::string*
+    rootfinder_option_type(std::string ** err_msg, std::string* x0, std::string* x1);
+std::string*
+    rootfinder_option_type(std::string ** err_msg, std::string* x0, std::string* x1){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        std::string ret = casadi::rootfinder_option_type(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_options" ===============
+// cppName: "casadi::rootfinder_options"
+// cWrapperName: "rootfinder_options"
+// protoArgs: "(std::string ** err_msg, std::string* x0)"
+// params: [(Ref (Const StdString),SwigOutput False)]
+// retType: StdVec StdString
+// args: "(x0_)"
+// cWrapperRetType: "std::vector< std::string* >*"
+// proto: "std::vector< std::string* >*\n    rootfinder_options(std::string ** err_msg, std::string* x0)"
+// friendWrap: False
+// fName: "rootfinder_options"
+// call: "        std::vector< std::string > ret = casadi::rootfinder_options(x0_);"
+extern "C"
+std::vector< std::string* >*
+    rootfinder_options(std::string ** err_msg, std::string* x0);
+std::vector< std::string* >*
+    rootfinder_options(std::string ** err_msg, std::string* x0){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+
+        std::vector< std::string > ret = casadi::rootfinder_options(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::vector< std::string* >*, std::vector< std::string > >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_out" ===============
+// cppName: "casadi::rootfinder_out"
+// cWrapperName: "rootfinder_out__0"
+// protoArgs: "(std::string ** err_msg, long long x0)"
+// params: [(CLongLong,SwigOutput False)]
+// retType: StdString
+// args: "(x0_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    rootfinder_out__0(std::string ** err_msg, long long x0)"
+// friendWrap: False
+// fName: "rootfinder_out"
+// call: "        std::string ret = casadi::rootfinder_out(x0_);"
+extern "C"
+std::string*
+    rootfinder_out__0(std::string ** err_msg, long long x0);
+std::string*
+    rootfinder_out__0(std::string ** err_msg, long long x0){
+    try {
+        long long x0_ = Marshaling<long long,long long>::marshal(x0);
+
+        std::string ret = casadi::rootfinder_out(x0_);
+        // x0 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::rootfinder_out" ===============
+// cppName: "casadi::rootfinder_out"
+// cWrapperName: "rootfinder_out__1"
+// protoArgs: "(std::string ** err_msg)"
+// params: []
+// retType: StdVec StdString
+// args: "()"
+// cWrapperRetType: "std::vector< std::string* >*"
+// proto: "std::vector< std::string* >*\n    rootfinder_out__1(std::string ** err_msg)"
+// friendWrap: False
+// fName: "rootfinder_out"
+// call: "        std::vector< std::string > ret = casadi::rootfinder_out();"
+extern "C"
+std::vector< std::string* >*
+    rootfinder_out__1(std::string ** err_msg);
+std::vector< std::string* >*
+    rootfinder_out__1(std::string ** err_msg){
+    try {
+
+        std::vector< std::string > ret = casadi::rootfinder_out();
+
+        return WrapReturn< std::vector< std::string* >*, std::vector< std::string > >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
 // ================== function "casadi::simpleIRK" ===============
 // cppName: "casadi::simpleIRK"
 // cWrapperName: "simpleIRK__0"
@@ -29129,23 +33896,23 @@ casadi::Function*
 // ================== function "casadi::simpleIRK" ===============
 // cppName: "casadi::simpleIRK"
 // cWrapperName: "simpleIRK__1"
-// protoArgs: "(std::string ** err_msg, casadi::Function* x0, int x1)"
-// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, long long x1)"
+// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Function")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    simpleIRK__1(std::string ** err_msg, casadi::Function* x0, int x1)"
+// proto: "casadi::Function*\n    simpleIRK__1(std::string ** err_msg, casadi::Function* x0, long long x1)"
 // friendWrap: False
 // fName: "simpleIRK"
 // call: "        casadi::Function ret = casadi::simpleIRK(x0_, x1_);"
 extern "C"
 casadi::Function*
-    simpleIRK__1(std::string ** err_msg, casadi::Function* x0, int x1);
+    simpleIRK__1(std::string ** err_msg, casadi::Function* x0, long long x1);
 casadi::Function*
-    simpleIRK__1(std::string ** err_msg, casadi::Function* x0, int x1){
+    simpleIRK__1(std::string ** err_msg, casadi::Function* x0, long long x1){
     try {
         casadi::Function x0_ = Marshaling<casadi::Function,casadi::Function*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::Function ret = casadi::simpleIRK(x0_, x1_);
         // x0 is not a swig output
@@ -29162,24 +33929,24 @@ casadi::Function*
 // ================== function "casadi::simpleIRK" ===============
 // cppName: "casadi::simpleIRK"
 // cWrapperName: "simpleIRK__2"
-// protoArgs: "(std::string ** err_msg, casadi::Function* x0, int x1, int x2)"
-// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2)"
+// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Function")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    simpleIRK__2(std::string ** err_msg, casadi::Function* x0, int x1, int x2)"
+// proto: "casadi::Function*\n    simpleIRK__2(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2)"
 // friendWrap: False
 // fName: "simpleIRK"
 // call: "        casadi::Function ret = casadi::simpleIRK(x0_, x1_, x2_);"
 extern "C"
 casadi::Function*
-    simpleIRK__2(std::string ** err_msg, casadi::Function* x0, int x1, int x2);
+    simpleIRK__2(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2);
 casadi::Function*
-    simpleIRK__2(std::string ** err_msg, casadi::Function* x0, int x1, int x2){
+    simpleIRK__2(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2){
     try {
         casadi::Function x0_ = Marshaling<casadi::Function,casadi::Function*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::Function ret = casadi::simpleIRK(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -29197,24 +33964,24 @@ casadi::Function*
 // ================== function "casadi::simpleIRK" ===============
 // cppName: "casadi::simpleIRK"
 // cWrapperName: "simpleIRK__3"
-// protoArgs: "(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3)"
-// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3)"
+// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const StdString),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Function")
 // args: "(x0_, x1_, x2_, x3_)"
 // cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    simpleIRK__3(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3)"
+// proto: "casadi::Function*\n    simpleIRK__3(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3)"
 // friendWrap: False
 // fName: "simpleIRK"
 // call: "        casadi::Function ret = casadi::simpleIRK(x0_, x1_, x2_, x3_);"
 extern "C"
 casadi::Function*
-    simpleIRK__3(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3);
+    simpleIRK__3(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3);
 casadi::Function*
-    simpleIRK__3(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3){
+    simpleIRK__3(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3){
     try {
         casadi::Function x0_ = Marshaling<casadi::Function,casadi::Function*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
         std::string& x3_ = Marshaling<std::string&,std::string*>::marshal(x3);
 
         casadi::Function ret = casadi::simpleIRK(x0_, x1_, x2_, x3_);
@@ -29234,24 +34001,24 @@ casadi::Function*
 // ================== function "casadi::simpleIRK" ===============
 // cppName: "casadi::simpleIRK"
 // cWrapperName: "simpleIRK__4"
-// protoArgs: "(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4)"
-// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4)"
+// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Function")
 // args: "(x0_, x1_, x2_, x3_, x4_)"
 // cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    simpleIRK__4(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4)"
+// proto: "casadi::Function*\n    simpleIRK__4(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4)"
 // friendWrap: False
 // fName: "simpleIRK"
 // call: "        casadi::Function ret = casadi::simpleIRK(x0_, x1_, x2_, x3_, x4_);"
 extern "C"
 casadi::Function*
-    simpleIRK__4(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4);
+    simpleIRK__4(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4);
 casadi::Function*
-    simpleIRK__4(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4){
+    simpleIRK__4(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4){
     try {
         casadi::Function x0_ = Marshaling<casadi::Function,casadi::Function*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
         std::string& x3_ = Marshaling<std::string&,std::string*>::marshal(x3);
         std::string& x4_ = Marshaling<std::string&,std::string*>::marshal(x4);
 
@@ -29273,24 +34040,24 @@ casadi::Function*
 // ================== function "casadi::simpleIRK" ===============
 // cppName: "casadi::simpleIRK"
 // cWrapperName: "simpleIRK__5"
-// protoArgs: "(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5)"
-// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5)"
+// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False),(Ref (Const (StdMap StdString (UserType (Namespace ["casadi"]) (Name "GenericType")))),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Function")
 // args: "(x0_, x1_, x2_, x3_, x4_, x5_)"
 // cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    simpleIRK__5(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5)"
+// proto: "casadi::Function*\n    simpleIRK__5(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5)"
 // friendWrap: False
 // fName: "simpleIRK"
 // call: "        casadi::Function ret = casadi::simpleIRK(x0_, x1_, x2_, x3_, x4_, x5_);"
 extern "C"
 casadi::Function*
-    simpleIRK__5(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5);
+    simpleIRK__5(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5);
 casadi::Function*
-    simpleIRK__5(std::string ** err_msg, casadi::Function* x0, int x1, int x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5){
+    simpleIRK__5(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2, std::string* x3, std::string* x4, std::map< std::string, casadi::GenericType* >* x5){
     try {
         casadi::Function x0_ = Marshaling<casadi::Function,casadi::Function*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
         std::string& x3_ = Marshaling<std::string&,std::string*>::marshal(x3);
         std::string& x4_ = Marshaling<std::string&,std::string*>::marshal(x4);
         std::map< std::string, casadi::GenericType > x5_ = Marshaling<std::map< std::string, casadi::GenericType >,std::map< std::string, casadi::GenericType* >*>::marshal(x5);
@@ -29444,23 +34211,23 @@ casadi::Function*
 // ================== function "casadi::simpleRK" ===============
 // cppName: "casadi::simpleRK"
 // cWrapperName: "simpleRK__1"
-// protoArgs: "(std::string ** err_msg, casadi::Function* x0, int x1)"
-// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, long long x1)"
+// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Function")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    simpleRK__1(std::string ** err_msg, casadi::Function* x0, int x1)"
+// proto: "casadi::Function*\n    simpleRK__1(std::string ** err_msg, casadi::Function* x0, long long x1)"
 // friendWrap: False
 // fName: "simpleRK"
 // call: "        casadi::Function ret = casadi::simpleRK(x0_, x1_);"
 extern "C"
 casadi::Function*
-    simpleRK__1(std::string ** err_msg, casadi::Function* x0, int x1);
+    simpleRK__1(std::string ** err_msg, casadi::Function* x0, long long x1);
 casadi::Function*
-    simpleRK__1(std::string ** err_msg, casadi::Function* x0, int x1){
+    simpleRK__1(std::string ** err_msg, casadi::Function* x0, long long x1){
     try {
         casadi::Function x0_ = Marshaling<casadi::Function,casadi::Function*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
 
         casadi::Function ret = casadi::simpleRK(x0_, x1_);
         // x0 is not a swig output
@@ -29477,24 +34244,24 @@ casadi::Function*
 // ================== function "casadi::simpleRK" ===============
 // cppName: "casadi::simpleRK"
 // cWrapperName: "simpleRK__2"
-// protoArgs: "(std::string ** err_msg, casadi::Function* x0, int x1, int x2)"
-// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CInt,SwigOutput False),(CInt,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2)"
+// params: [(UserType (Namespace ["casadi"]) (Name "Function"),SwigOutput False),(CLongLong,SwigOutput False),(CLongLong,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Function")
 // args: "(x0_, x1_, x2_)"
 // cWrapperRetType: "casadi::Function*"
-// proto: "casadi::Function*\n    simpleRK__2(std::string ** err_msg, casadi::Function* x0, int x1, int x2)"
+// proto: "casadi::Function*\n    simpleRK__2(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2)"
 // friendWrap: False
 // fName: "simpleRK"
 // call: "        casadi::Function ret = casadi::simpleRK(x0_, x1_, x2_);"
 extern "C"
 casadi::Function*
-    simpleRK__2(std::string ** err_msg, casadi::Function* x0, int x1, int x2);
+    simpleRK__2(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2);
 casadi::Function*
-    simpleRK__2(std::string ** err_msg, casadi::Function* x0, int x1, int x2){
+    simpleRK__2(std::string ** err_msg, casadi::Function* x0, long long x1, long long x2){
     try {
         casadi::Function x0_ = Marshaling<casadi::Function,casadi::Function*>::marshal(x0);
-        int x1_ = Marshaling<int,int>::marshal(x1);
-        int x2_ = Marshaling<int,int>::marshal(x2);
+        long long x1_ = Marshaling<long long,long long>::marshal(x1);
+        long long x2_ = Marshaling<long long,long long>::marshal(x2);
 
         casadi::Function ret = casadi::simpleRK(x0_, x1_, x2_);
         // x0 is not a swig output
@@ -29502,6 +34269,39 @@ casadi::Function*
         // x2 is not a swig output
 
         return WrapReturn< casadi::Function*, casadi::Function >::wrapReturn( ret );
+    } catch (std::exception& ex) {
+         *err_msg = new std::string(ex.what());
+         return 0;
+    }
+}
+
+
+// ================== function "casadi::temporary_file" ===============
+// cppName: "casadi::temporary_file"
+// cWrapperName: "temporary_file"
+// protoArgs: "(std::string ** err_msg, std::string* x0, std::string* x1)"
+// params: [(Ref (Const StdString),SwigOutput False),(Ref (Const StdString),SwigOutput False)]
+// retType: StdString
+// args: "(x0_, x1_)"
+// cWrapperRetType: "std::string*"
+// proto: "std::string*\n    temporary_file(std::string ** err_msg, std::string* x0, std::string* x1)"
+// friendWrap: False
+// fName: "temporary_file"
+// call: "        std::string ret = casadi::temporary_file(x0_, x1_);"
+extern "C"
+std::string*
+    temporary_file(std::string ** err_msg, std::string* x0, std::string* x1);
+std::string*
+    temporary_file(std::string ** err_msg, std::string* x0, std::string* x1){
+    try {
+        std::string& x0_ = Marshaling<std::string&,std::string*>::marshal(x0);
+        std::string& x1_ = Marshaling<std::string&,std::string*>::marshal(x1);
+
+        std::string ret = casadi::temporary_file(x0_, x1_);
+        // x0 is not a swig output
+        // x1 is not a swig output
+
+        return WrapReturn< std::string*, std::string >::wrapReturn( ret );
     } catch (std::exception& ex) {
          *err_msg = new std::string(ex.what());
          return 0;
@@ -29576,22 +34376,22 @@ casadi::Slice*
 // ================== function "casadi::to_slice" ===============
 // cppName: "casadi::to_slice"
 // cWrapperName: "to_slice__2"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Slice")
 // args: "(x0_)"
 // cWrapperRetType: "casadi::Slice*"
-// proto: "casadi::Slice*\n    to_slice__2(std::string ** err_msg, std::vector< int >* x0)"
+// proto: "casadi::Slice*\n    to_slice__2(std::string ** err_msg, std::vector< long long >* x0)"
 // friendWrap: False
 // fName: "to_slice"
 // call: "        casadi::Slice ret = casadi::to_slice(x0_);"
 extern "C"
 casadi::Slice*
-    to_slice__2(std::string ** err_msg, std::vector< int >* x0);
+    to_slice__2(std::string ** err_msg, std::vector< long long >* x0);
 casadi::Slice*
-    to_slice__2(std::string ** err_msg, std::vector< int >* x0){
+    to_slice__2(std::string ** err_msg, std::vector< long long >* x0){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
 
         casadi::Slice ret = casadi::to_slice(x0_);
         // x0 is not a swig output
@@ -29607,22 +34407,22 @@ casadi::Slice*
 // ================== function "casadi::to_slice" ===============
 // cppName: "casadi::to_slice"
 // cWrapperName: "to_slice__3"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0, int x1)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False),(CBool,SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0, int x1)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False),(CBool,SwigOutput False)]
 // retType: UserType (Namespace ["casadi"]) (Name "Slice")
 // args: "(x0_, x1_)"
 // cWrapperRetType: "casadi::Slice*"
-// proto: "casadi::Slice*\n    to_slice__3(std::string ** err_msg, std::vector< int >* x0, int x1)"
+// proto: "casadi::Slice*\n    to_slice__3(std::string ** err_msg, std::vector< long long >* x0, int x1)"
 // friendWrap: False
 // fName: "to_slice"
 // call: "        casadi::Slice ret = casadi::to_slice(x0_, x1_);"
 extern "C"
 casadi::Slice*
-    to_slice__3(std::string ** err_msg, std::vector< int >* x0, int x1);
+    to_slice__3(std::string ** err_msg, std::vector< long long >* x0, int x1);
 casadi::Slice*
-    to_slice__3(std::string ** err_msg, std::vector< int >* x0, int x1){
+    to_slice__3(std::string ** err_msg, std::vector< long long >* x0, int x1){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
         bool x1_ = Marshaling<bool,int>::marshal(x1);
 
         casadi::Slice ret = casadi::to_slice(x0_, x1_);
@@ -29640,22 +34440,22 @@ casadi::Slice*
 // ================== function "casadi::to_slice2" ===============
 // cppName: "casadi::to_slice2"
 // cWrapperName: "to_slice2"
-// protoArgs: "(std::string ** err_msg, std::vector< int >* x0)"
-// params: [(Ref (Const (StdVec CInt)),SwigOutput False)]
+// protoArgs: "(std::string ** err_msg, std::vector< long long >* x0)"
+// params: [(Ref (Const (StdVec CLongLong)),SwigOutput False)]
 // retType: StdPair (UserType (Namespace ["casadi"]) (Name "Slice")) (UserType (Namespace ["casadi"]) (Name "Slice"))
 // args: "(x0_)"
 // cWrapperRetType: "std::pair< casadi::Slice*, casadi::Slice* >*"
-// proto: "std::pair< casadi::Slice*, casadi::Slice* >*\n    to_slice2(std::string ** err_msg, std::vector< int >* x0)"
+// proto: "std::pair< casadi::Slice*, casadi::Slice* >*\n    to_slice2(std::string ** err_msg, std::vector< long long >* x0)"
 // friendWrap: False
 // fName: "to_slice2"
 // call: "        std::pair< casadi::Slice, casadi::Slice > ret = casadi::to_slice2(x0_);"
 extern "C"
 std::pair< casadi::Slice*, casadi::Slice* >*
-    to_slice2(std::string ** err_msg, std::vector< int >* x0);
+    to_slice2(std::string ** err_msg, std::vector< long long >* x0);
 std::pair< casadi::Slice*, casadi::Slice* >*
-    to_slice2(std::string ** err_msg, std::vector< int >* x0){
+    to_slice2(std::string ** err_msg, std::vector< long long >* x0){
     try {
-        std::vector< int > x0_ = Marshaling<std::vector< int >,std::vector< int >*>::marshal(x0);
+        std::vector< long long > x0_ = Marshaling<std::vector< long long >,std::vector< long long >*>::marshal(x0);
 
         std::pair< casadi::Slice, casadi::Slice > ret = casadi::to_slice2(x0_);
         // x0 is not a swig output

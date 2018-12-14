@@ -12,20 +12,20 @@ module Casadi.Core.Classes.Linsol
          linsol__0,
          linsol__1,
          linsol__2,
-         linsol_cholesky__0,
-         linsol_cholesky__1,
-         linsol_cholesky_sparsity__0,
-         linsol_cholesky_sparsity__1,
          linsol_doc,
          linsol_has_plugin,
          linsol_load_plugin,
          linsol_neig,
+         linsol_nfact,
          linsol_plugin_name,
          linsol_rank,
+         linsol_sfact,
          linsol_solve__0,
          linsol_solve__1,
          linsol_solve__2,
          linsol_solve__3,
+         linsol_sparsity,
+         linsol_type_name,
        ) where
 
 
@@ -48,46 +48,17 @@ import Casadi.Core.Data
 import Casadi.Core.Enums
 -- direct wrapper
 foreign import ccall unsafe "casadi__Linsol__CONSTRUCTOR__0" c_casadi__Linsol__CONSTRUCTOR__0
-  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr Linsol')
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr Sparsity' -> IO (Ptr Linsol')
 
 casadi__Linsol__CONSTRUCTOR__0
-  :: String -> String -> IO Linsol
-casadi__Linsol__CONSTRUCTOR__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__CONSTRUCTOR__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-linsol__0 :: String -> String -> IO Linsol
-linsol__0 = casadi__Linsol__CONSTRUCTOR__0
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Linsol__CONSTRUCTOR__1" c_casadi__Linsol__CONSTRUCTOR__1
-  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Linsol')
-
-casadi__Linsol__CONSTRUCTOR__1
-  :: String -> String -> M.Map String GenericType -> IO Linsol
-casadi__Linsol__CONSTRUCTOR__1 x0 x1 x2 = do
+  :: String -> String -> Sparsity -> IO Linsol
+casadi__Linsol__CONSTRUCTOR__0 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__CONSTRUCTOR__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__Linsol__CONSTRUCTOR__0 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -102,7 +73,40 @@ casadi__Linsol__CONSTRUCTOR__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-linsol__1 :: String -> String -> M.Map String GenericType -> IO Linsol
+linsol__0 :: String -> String -> Sparsity -> IO Linsol
+linsol__0 = casadi__Linsol__CONSTRUCTOR__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Linsol__CONSTRUCTOR__1" c_casadi__Linsol__CONSTRUCTOR__1
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr Sparsity' -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Linsol')
+
+casadi__Linsol__CONSTRUCTOR__1
+  :: String -> String -> Sparsity -> M.Map String GenericType -> IO Linsol
+casadi__Linsol__CONSTRUCTOR__1 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Linsol__CONSTRUCTOR__1 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+linsol__1 :: String -> String -> Sparsity -> M.Map String GenericType -> IO Linsol
 linsol__1 = casadi__Linsol__CONSTRUCTOR__1
 
 
@@ -131,118 +135,6 @@ casadi__Linsol__CONSTRUCTOR__2  = do
 -- classy wrapper
 linsol__2 :: IO Linsol
 linsol__2 = casadi__Linsol__CONSTRUCTOR__2
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Linsol__cholesky__0" c_casadi__Linsol__cholesky__0
-  :: Ptr (Ptr StdString) -> Ptr Linsol' -> IO (Ptr DM')
-
-casadi__Linsol__cholesky__0
-  :: Linsol -> IO DM
-casadi__Linsol__cholesky__0 x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__cholesky__0 errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-linsol_cholesky__0 :: LinsolClass a => a -> IO DM
-linsol_cholesky__0 x = casadi__Linsol__cholesky__0 (castLinsol x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Linsol__cholesky__1" c_casadi__Linsol__cholesky__1
-  :: Ptr (Ptr StdString) -> Ptr Linsol' -> CInt -> IO (Ptr DM')
-
-casadi__Linsol__cholesky__1
-  :: Linsol -> Bool -> IO DM
-casadi__Linsol__cholesky__1 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__cholesky__1 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-linsol_cholesky__1 :: LinsolClass a => a -> Bool -> IO DM
-linsol_cholesky__1 x = casadi__Linsol__cholesky__1 (castLinsol x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Linsol__cholesky_sparsity__0" c_casadi__Linsol__cholesky_sparsity__0
-  :: Ptr (Ptr StdString) -> Ptr Linsol' -> IO (Ptr Sparsity')
-
-casadi__Linsol__cholesky_sparsity__0
-  :: Linsol -> IO Sparsity
-casadi__Linsol__cholesky_sparsity__0 x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__cholesky_sparsity__0 errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-linsol_cholesky_sparsity__0 :: LinsolClass a => a -> IO Sparsity
-linsol_cholesky_sparsity__0 x = casadi__Linsol__cholesky_sparsity__0 (castLinsol x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Linsol__cholesky_sparsity__1" c_casadi__Linsol__cholesky_sparsity__1
-  :: Ptr (Ptr StdString) -> Ptr Linsol' -> CInt -> IO (Ptr Sparsity')
-
-casadi__Linsol__cholesky_sparsity__1
-  :: Linsol -> Bool -> IO Sparsity
-casadi__Linsol__cholesky_sparsity__1 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__cholesky_sparsity__1 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-linsol_cholesky_sparsity__1 :: LinsolClass a => a -> Bool -> IO Sparsity
-linsol_cholesky_sparsity__1 x = casadi__Linsol__cholesky_sparsity__1 (castLinsol x)
 
 
 -- direct wrapper
@@ -328,29 +220,60 @@ linsol_load_plugin = casadi__Linsol__load_plugin
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Linsol__neig" c_casadi__Linsol__neig
-  :: Ptr (Ptr StdString) -> Ptr Linsol' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Linsol' -> Ptr DM' -> IO CLLong
 
 casadi__Linsol__neig
-  :: Linsol -> IO Int
-casadi__Linsol__neig x0 = do
+  :: Linsol -> DM -> IO Int
+casadi__Linsol__neig x0 x1 = do
   x0' <- marshal x0
+  x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__neig errStrPtrP x0'
+  ret0 <- c_casadi__Linsol__neig errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
 
 
 -- classy wrapper
-linsol_neig :: LinsolClass a => a -> IO Int
+linsol_neig :: LinsolClass a => a -> DM -> IO Int
 linsol_neig x = casadi__Linsol__neig (castLinsol x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Linsol__nfact" c_casadi__Linsol__nfact
+  :: Ptr (Ptr StdString) -> Ptr Linsol' -> Ptr DM' -> IO ()
+
+casadi__Linsol__nfact
+  :: Linsol -> DM -> IO ()
+casadi__Linsol__nfact x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Linsol__nfact errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+linsol_nfact :: LinsolClass a => a -> DM -> IO ()
+linsol_nfact x = casadi__Linsol__nfact (castLinsol x)
 
 
 -- direct wrapper
@@ -382,29 +305,60 @@ linsol_plugin_name x = casadi__Linsol__plugin_name (castLinsol x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Linsol__rank" c_casadi__Linsol__rank
-  :: Ptr (Ptr StdString) -> Ptr Linsol' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Linsol' -> Ptr DM' -> IO CLLong
 
 casadi__Linsol__rank
-  :: Linsol -> IO Int
-casadi__Linsol__rank x0 = do
+  :: Linsol -> DM -> IO Int
+casadi__Linsol__rank x0 x1 = do
   x0' <- marshal x0
+  x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Linsol__rank errStrPtrP x0'
+  ret0 <- c_casadi__Linsol__rank errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
 
 
 -- classy wrapper
-linsol_rank :: LinsolClass a => a -> IO Int
+linsol_rank :: LinsolClass a => a -> DM -> IO Int
 linsol_rank x = casadi__Linsol__rank (castLinsol x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Linsol__sfact" c_casadi__Linsol__sfact
+  :: Ptr (Ptr StdString) -> Ptr Linsol' -> Ptr DM' -> IO ()
+
+casadi__Linsol__sfact
+  :: Linsol -> DM -> IO ()
+casadi__Linsol__sfact x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Linsol__sfact errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+linsol_sfact :: LinsolClass a => a -> DM -> IO ()
+linsol_sfact x = casadi__Linsol__sfact (castLinsol x)
 
 
 -- direct wrapper
@@ -533,4 +487,58 @@ casadi__Linsol__solve__3 x0 x1 x2 x3 = do
 -- classy wrapper
 linsol_solve__3 :: LinsolClass a => a -> DM -> DM -> Bool -> IO DM
 linsol_solve__3 x = casadi__Linsol__solve__3 (castLinsol x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Linsol__sparsity" c_casadi__Linsol__sparsity
+  :: Ptr (Ptr StdString) -> Ptr Linsol' -> IO (Ptr Sparsity')
+
+casadi__Linsol__sparsity
+  :: Linsol -> IO Sparsity
+casadi__Linsol__sparsity x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Linsol__sparsity errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+linsol_sparsity :: LinsolClass a => a -> IO Sparsity
+linsol_sparsity x = casadi__Linsol__sparsity (castLinsol x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Linsol__type_name" c_casadi__Linsol__type_name
+  :: Ptr (Ptr StdString) -> IO (Ptr StdString)
+
+casadi__Linsol__type_name
+  :: IO String
+casadi__Linsol__type_name  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Linsol__type_name errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+linsol_type_name :: IO String
+linsol_type_name = casadi__Linsol__type_name
 

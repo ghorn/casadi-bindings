@@ -11,9 +11,11 @@ module Casadi.Core.Classes.GlobalOptions
          GlobalOptionsClass(..),
          globalOptions_getCasadiPath,
          globalOptions_getHierarchicalSparsity,
+         globalOptions_getMaxNumDir,
          globalOptions_getSimplificationOnTheFly,
          globalOptions_setCasadiPath,
          globalOptions_setHierarchicalSparsity,
+         globalOptions_setMaxNumDir,
          globalOptions_setSimplificationOnTheFly,
        ) where
 
@@ -87,6 +89,33 @@ casadi__GlobalOptions__getHierarchicalSparsity  = do
 -- classy wrapper
 globalOptions_getHierarchicalSparsity :: IO Bool
 globalOptions_getHierarchicalSparsity = casadi__GlobalOptions__getHierarchicalSparsity
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GlobalOptions__getMaxNumDir" c_casadi__GlobalOptions__getMaxNumDir
+  :: Ptr (Ptr StdString) -> IO CLLong
+
+casadi__GlobalOptions__getMaxNumDir
+  :: IO Int
+casadi__GlobalOptions__getMaxNumDir  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GlobalOptions__getMaxNumDir errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+globalOptions_getMaxNumDir :: IO Int
+globalOptions_getMaxNumDir = casadi__GlobalOptions__getMaxNumDir
 
 
 -- direct wrapper
@@ -168,6 +197,33 @@ casadi__GlobalOptions__setHierarchicalSparsity x0 = do
 -- classy wrapper
 globalOptions_setHierarchicalSparsity :: Bool -> IO ()
 globalOptions_setHierarchicalSparsity = casadi__GlobalOptions__setHierarchicalSparsity
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GlobalOptions__setMaxNumDir" c_casadi__GlobalOptions__setMaxNumDir
+  :: Ptr (Ptr StdString) -> CLLong -> IO ()
+
+casadi__GlobalOptions__setMaxNumDir
+  :: Int -> IO ()
+casadi__GlobalOptions__setMaxNumDir x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GlobalOptions__setMaxNumDir errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ()
+
+
+
+-- classy wrapper
+globalOptions_setMaxNumDir :: Int -> IO ()
+globalOptions_setMaxNumDir = casadi__GlobalOptions__setMaxNumDir
 
 
 -- direct wrapper

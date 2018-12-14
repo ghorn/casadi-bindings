@@ -112,7 +112,7 @@ writeFunction fcn =
         ("casadi_erfinv", _, CDouble, [Ref (Const CDouble)]) -> "casadi::erfinv" ++ args
         ("casadi_simplify", _, CDouble, [Ref (Const CDouble)]) -> "casadi::simplify" ++ args
         ("casadi_sign", _, CDouble, [Ref (Const CDouble)]) -> "casadi::sign" ++ args
-        ("casadi_is_equal", _, CBool, [Ref (Const CDouble), Ref (Const CDouble), CInt]) ->
+        ("casadi_is_equal", _, CBool, [Ref (Const CDouble), Ref (Const CDouble), CLongLong]) ->
           "casadi::is_equal" ++ args
         ("casadi_is_equal", _, CBool, [Ref (Const CDouble), Ref (Const CDouble)]) ->
           "casadi::is_equal" ++ args

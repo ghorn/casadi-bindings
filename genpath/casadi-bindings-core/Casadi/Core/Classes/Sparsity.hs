@@ -15,27 +15,33 @@ module Casadi.Core.Classes.Sparsity
          sparsity__2,
          sparsity__3,
          sparsity__4,
+         sparsity__5,
          sparsity_add_nz,
+         sparsity_amd,
          sparsity_append,
          sparsity_appendColumns,
          sparsity_band,
          sparsity_banded,
-         sparsity_btf__0,
-         sparsity_btf__1,
+         sparsity_btf,
          sparsity_bw_lower,
          sparsity_bw_upper,
          sparsity_colind,
+         sparsity_columns,
          sparsity_combine,
          sparsity_compress,
-         sparsity_compressed,
+         sparsity_compressed__0,
+         sparsity_compressed__1,
          sparsity_dense__0,
          sparsity_dense__1,
          sparsity_dense__2,
+         sparsity_density,
+         sparsity_deserialize,
          sparsity_dfs,
          sparsity_diag__0,
          sparsity_diag__1,
          sparsity_diag__2,
-         sparsity_dim,
+         sparsity_dim__0,
+         sparsity_dim__1,
          sparsity_enlargeColumns__0,
          sparsity_enlargeColumns__1,
          sparsity_enlargeRows__0,
@@ -48,8 +54,12 @@ module Casadi.Core.Classes.Sparsity
          sparsity_erase__3,
          sparsity_etree__0,
          sparsity_etree__1,
+         sparsity_export_code,
          sparsity_find__0,
          sparsity_find__1,
+         sparsity_from_file__0,
+         sparsity_from_file__1,
+         sparsity_from_info,
          sparsity_get_ccs,
          sparsity_get_col,
          sparsity_get_colind,
@@ -64,8 +74,8 @@ module Casadi.Core.Classes.Sparsity
          sparsity_get_upper,
          sparsity_has_nz,
          sparsity_hash,
+         sparsity_info,
          sparsity_intersect,
-         sparsity_isReshape,
          sparsity_is_column,
          sparsity_is_dense,
          sparsity_is_diag,
@@ -73,17 +83,24 @@ module Casadi.Core.Classes.Sparsity
          sparsity_is_empty__1,
          sparsity_is_equal__0,
          sparsity_is_equal__1,
+         sparsity_is_reshape,
          sparsity_is_row,
          sparsity_is_scalar__0,
          sparsity_is_scalar__1,
          sparsity_is_singular,
          sparsity_is_square,
+         sparsity_is_stacked,
          sparsity_is_symmetric,
          sparsity_is_transpose,
          sparsity_is_tril,
          sparsity_is_triu,
          sparsity_is_vector,
+         sparsity_kkt__0,
+         sparsity_kkt__1,
+         sparsity_kkt__2,
          sparsity_largest_first,
+         sparsity_ldl__0,
+         sparsity_ldl__1,
          sparsity_lower,
          sparsity_makeDense,
          sparsity_nnz,
@@ -92,6 +109,8 @@ module Casadi.Core.Classes.Sparsity
          sparsity_nnz_lower__1,
          sparsity_nnz_upper__0,
          sparsity_nnz_upper__1,
+         sparsity_nonzeros__0,
+         sparsity_nonzeros__1,
          sparsity_numel,
          sparsity_operator__equals,
          sparsity_operator__mul,
@@ -102,19 +121,21 @@ module Casadi.Core.Classes.Sparsity
          sparsity_pmult__1,
          sparsity_pmult__2,
          sparsity_pmult__3,
-         sparsity_print_compact,
+         sparsity_postfix_dim,
+         sparsity_qr_sparse__0,
+         sparsity_qr_sparse__1,
          sparsity_removeDuplicates,
          sparsity_repr_el,
          sparsity_resize,
          sparsity_row,
          sparsity_rowcol,
+         sparsity_rows,
          sparsity_rowsSequential__0,
          sparsity_rowsSequential__1,
-         sparsity_sanity_check__0,
-         sparsity_sanity_check__1,
          sparsity_scalar__0,
          sparsity_scalar__1,
          sparsity_scc,
+         sparsity_serialize,
          sparsity_size1,
          sparsity_size2,
          sparsity_size__0,
@@ -131,10 +152,13 @@ module Casadi.Core.Classes.Sparsity
          sparsity_sub__1,
          sparsity_sub__2,
          sparsity_sub__3,
+         sparsity_to_file__0,
+         sparsity_to_file__1,
          sparsity_transpose__0,
          sparsity_transpose__1,
          sparsity_triplet__0,
          sparsity_triplet__1,
+         sparsity_type_name,
          sparsity_uni_coloring__0,
          sparsity_uni_coloring__1,
          sparsity_uni_coloring__2,
@@ -163,7 +187,7 @@ import Casadi.Core.Data
 import Casadi.Core.Enums
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__0" c_casadi__Sparsity__CONSTRUCTOR__0
-  :: Ptr (Ptr StdString) -> Ptr (StdPair CInt CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr (StdPair CLLong CLLong) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__CONSTRUCTOR__0
   :: (Int, Int) -> IO Sparsity
@@ -190,7 +214,7 @@ sparsity__0 = casadi__Sparsity__CONSTRUCTOR__0
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__1" c_casadi__Sparsity__CONSTRUCTOR__1
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__CONSTRUCTOR__1
   :: Int -> Int -> Vector Int -> Vector Int -> IO Sparsity
@@ -223,16 +247,51 @@ sparsity__1 = casadi__Sparsity__CONSTRUCTOR__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__2" c_casadi__Sparsity__CONSTRUCTOR__2
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__CONSTRUCTOR__2
+  :: Int -> Int -> Vector Int -> Vector Int -> Bool -> IO Sparsity
+casadi__Sparsity__CONSTRUCTOR__2 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__CONSTRUCTOR__2 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity__2 :: Int -> Int -> Vector Int -> Vector Int -> Bool -> IO Sparsity
+sparsity__2 = casadi__Sparsity__CONSTRUCTOR__2
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__3" c_casadi__Sparsity__CONSTRUCTOR__3
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr Sparsity')
+
+casadi__Sparsity__CONSTRUCTOR__3
   :: Int -> Int -> IO Sparsity
-casadi__Sparsity__CONSTRUCTOR__2 x0 x1 = do
+casadi__Sparsity__CONSTRUCTOR__3 x0 x1 = do
   x0' <- marshal x0
   x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__CONSTRUCTOR__2 errStrPtrP x0' x1'
+  ret0 <- c_casadi__Sparsity__CONSTRUCTOR__3 errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -246,21 +305,21 @@ casadi__Sparsity__CONSTRUCTOR__2 x0 x1 = do
 
 
 -- classy wrapper
-sparsity__2 :: Int -> Int -> IO Sparsity
-sparsity__2 = casadi__Sparsity__CONSTRUCTOR__2
+sparsity__3 :: Int -> Int -> IO Sparsity
+sparsity__3 = casadi__Sparsity__CONSTRUCTOR__3
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__3" c_casadi__Sparsity__CONSTRUCTOR__3
+foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__4" c_casadi__Sparsity__CONSTRUCTOR__4
   :: Ptr (Ptr StdString) -> IO (Ptr Sparsity')
 
-casadi__Sparsity__CONSTRUCTOR__3
+casadi__Sparsity__CONSTRUCTOR__4
   :: IO Sparsity
-casadi__Sparsity__CONSTRUCTOR__3  = do
+casadi__Sparsity__CONSTRUCTOR__4  = do
 
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__CONSTRUCTOR__3 errStrPtrP 
+  ret0 <- c_casadi__Sparsity__CONSTRUCTOR__4 errStrPtrP 
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -273,21 +332,21 @@ casadi__Sparsity__CONSTRUCTOR__3  = do
 
 
 -- classy wrapper
-sparsity__3 :: IO Sparsity
-sparsity__3 = casadi__Sparsity__CONSTRUCTOR__3
+sparsity__4 :: IO Sparsity
+sparsity__4 = casadi__Sparsity__CONSTRUCTOR__4
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__4" c_casadi__Sparsity__CONSTRUCTOR__4
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr Sparsity')
+foreign import ccall unsafe "casadi__Sparsity__CONSTRUCTOR__5" c_casadi__Sparsity__CONSTRUCTOR__5
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr Sparsity')
 
-casadi__Sparsity__CONSTRUCTOR__4
+casadi__Sparsity__CONSTRUCTOR__5
   :: Int -> IO Sparsity
-casadi__Sparsity__CONSTRUCTOR__4 x0 = do
+casadi__Sparsity__CONSTRUCTOR__5 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__CONSTRUCTOR__4 errStrPtrP x0'
+  ret0 <- c_casadi__Sparsity__CONSTRUCTOR__5 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -300,8 +359,8 @@ casadi__Sparsity__CONSTRUCTOR__4 x0 = do
 
 
 -- classy wrapper
-sparsity__4 :: Int -> IO Sparsity
-sparsity__4 = casadi__Sparsity__CONSTRUCTOR__4
+sparsity__5 :: Int -> IO Sparsity
+sparsity__5 = casadi__Sparsity__CONSTRUCTOR__5
 
 
 -- direct wrapper
@@ -333,7 +392,7 @@ sparsity_T x = casadi__Sparsity__T (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__add_nz" c_casadi__Sparsity__add_nz
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO CLLong
 
 casadi__Sparsity__add_nz
   :: Sparsity -> Int -> Int -> IO Int
@@ -360,6 +419,33 @@ casadi__Sparsity__add_nz x0 x1 x2 = do
 -- classy wrapper
 sparsity_add_nz :: SparsityClass a => a -> Int -> Int -> IO Int
 sparsity_add_nz x = casadi__Sparsity__add_nz (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__amd" c_casadi__Sparsity__amd
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
+
+casadi__Sparsity__amd
+  :: Sparsity -> IO (Vector Int)
+casadi__Sparsity__amd x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__amd errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_amd :: SparsityClass a => a -> IO (Vector Int)
+sparsity_amd x = casadi__Sparsity__amd (castSparsity x)
 
 
 -- direct wrapper
@@ -422,7 +508,7 @@ sparsity_appendColumns x = casadi__Sparsity__appendColumns (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__band" c_casadi__Sparsity__band
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__band
   :: Int -> Int -> IO Sparsity
@@ -451,7 +537,7 @@ sparsity_band = casadi__Sparsity__band
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__banded" c_casadi__Sparsity__banded
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__banded
   :: Int -> Int -> IO Sparsity
@@ -479,12 +565,12 @@ sparsity_banded = casadi__Sparsity__banded
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__btf__0" c_casadi__Sparsity__btf__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> IO CInt
+foreign import ccall unsafe "casadi__Sparsity__btf" c_casadi__Sparsity__btf
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> IO CLLong
 
-casadi__Sparsity__btf__0
+casadi__Sparsity__btf
   :: Sparsity -> IO (Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int)
-casadi__Sparsity__btf__0 x0 = do
+casadi__Sparsity__btf x0 = do
   x0' <- marshal x0
   o1' <- new nullPtr
   o2' <- new nullPtr
@@ -494,7 +580,7 @@ casadi__Sparsity__btf__0 x0 = do
   o6' <- new nullPtr
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__btf__0 errStrPtrP x0' o1' o2' o3' o4' o5' o6'
+  ret0 <- c_casadi__Sparsity__btf errStrPtrP x0' o1' o2' o3' o4' o5' o6'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -503,88 +589,35 @@ casadi__Sparsity__btf__0 x0 = do
   marshalFree x0 x0'
   o1'' <- peek o1'
   free o1'
-  o1''' <- if o1'' == nullPtr then error "swig output o1' was not set in casadi__Sparsity__btf__0/c_casadi__Sparsity__btf__0" else wrapReturn o1''
+  o1''' <- if o1'' == nullPtr then error "swig output o1' was not set in casadi__Sparsity__btf/c_casadi__Sparsity__btf" else wrapReturn o1''
   o2'' <- peek o2'
   free o2'
-  o2''' <- if o2'' == nullPtr then error "swig output o2' was not set in casadi__Sparsity__btf__0/c_casadi__Sparsity__btf__0" else wrapReturn o2''
+  o2''' <- if o2'' == nullPtr then error "swig output o2' was not set in casadi__Sparsity__btf/c_casadi__Sparsity__btf" else wrapReturn o2''
   o3'' <- peek o3'
   free o3'
-  o3''' <- if o3'' == nullPtr then error "swig output o3' was not set in casadi__Sparsity__btf__0/c_casadi__Sparsity__btf__0" else wrapReturn o3''
+  o3''' <- if o3'' == nullPtr then error "swig output o3' was not set in casadi__Sparsity__btf/c_casadi__Sparsity__btf" else wrapReturn o3''
   o4'' <- peek o4'
   free o4'
-  o4''' <- if o4'' == nullPtr then error "swig output o4' was not set in casadi__Sparsity__btf__0/c_casadi__Sparsity__btf__0" else wrapReturn o4''
+  o4''' <- if o4'' == nullPtr then error "swig output o4' was not set in casadi__Sparsity__btf/c_casadi__Sparsity__btf" else wrapReturn o4''
   o5'' <- peek o5'
   free o5'
-  o5''' <- if o5'' == nullPtr then error "swig output o5' was not set in casadi__Sparsity__btf__0/c_casadi__Sparsity__btf__0" else wrapReturn o5''
+  o5''' <- if o5'' == nullPtr then error "swig output o5' was not set in casadi__Sparsity__btf/c_casadi__Sparsity__btf" else wrapReturn o5''
   o6'' <- peek o6'
   free o6'
-  o6''' <- if o6'' == nullPtr then error "swig output o6' was not set in casadi__Sparsity__btf__0/c_casadi__Sparsity__btf__0" else wrapReturn o6''
+  o6''' <- if o6'' == nullPtr then error "swig output o6' was not set in casadi__Sparsity__btf/c_casadi__Sparsity__btf" else wrapReturn o6''
 
   return (ret, o1''', o2''', o3''', o4''', o5''', o6''')
 
 
 
 -- classy wrapper
-sparsity_btf__0 :: SparsityClass a => a -> IO (Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int)
-sparsity_btf__0 x = casadi__Sparsity__btf__0 (castSparsity x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__btf__1" c_casadi__Sparsity__btf__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> CInt -> IO CInt
-
-casadi__Sparsity__btf__1
-  :: Sparsity -> Int -> IO (Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int)
-casadi__Sparsity__btf__1 x0 x7 = do
-  x0' <- marshal x0
-  o1' <- new nullPtr
-  o2' <- new nullPtr
-  o3' <- new nullPtr
-  o4' <- new nullPtr
-  o5' <- new nullPtr
-  o6' <- new nullPtr
-  x7' <- marshal x7
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__btf__1 errStrPtrP x0' o1' o2' o3' o4' o5' o6' x7'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  o1'' <- peek o1'
-  free o1'
-  o1''' <- if o1'' == nullPtr then error "swig output o1' was not set in casadi__Sparsity__btf__1/c_casadi__Sparsity__btf__1" else wrapReturn o1''
-  o2'' <- peek o2'
-  free o2'
-  o2''' <- if o2'' == nullPtr then error "swig output o2' was not set in casadi__Sparsity__btf__1/c_casadi__Sparsity__btf__1" else wrapReturn o2''
-  o3'' <- peek o3'
-  free o3'
-  o3''' <- if o3'' == nullPtr then error "swig output o3' was not set in casadi__Sparsity__btf__1/c_casadi__Sparsity__btf__1" else wrapReturn o3''
-  o4'' <- peek o4'
-  free o4'
-  o4''' <- if o4'' == nullPtr then error "swig output o4' was not set in casadi__Sparsity__btf__1/c_casadi__Sparsity__btf__1" else wrapReturn o4''
-  o5'' <- peek o5'
-  free o5'
-  o5''' <- if o5'' == nullPtr then error "swig output o5' was not set in casadi__Sparsity__btf__1/c_casadi__Sparsity__btf__1" else wrapReturn o5''
-  o6'' <- peek o6'
-  free o6'
-  o6''' <- if o6'' == nullPtr then error "swig output o6' was not set in casadi__Sparsity__btf__1/c_casadi__Sparsity__btf__1" else wrapReturn o6''
-  marshalFree x7 x7'
-
-  return (ret, o1''', o2''', o3''', o4''', o5''', o6''')
-
-
-
--- classy wrapper
-sparsity_btf__1 :: SparsityClass a => a -> Int -> IO (Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int)
-sparsity_btf__1 x = casadi__Sparsity__btf__1 (castSparsity x)
+sparsity_btf :: SparsityClass a => a -> IO (Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int, Vector Int)
+sparsity_btf x = casadi__Sparsity__btf (castSparsity x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__bw_lower" c_casadi__Sparsity__bw_lower
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__bw_lower
   :: Sparsity -> IO Int
@@ -611,7 +644,7 @@ sparsity_bw_lower x = casadi__Sparsity__bw_lower (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__bw_upper" c_casadi__Sparsity__bw_upper
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__bw_upper
   :: Sparsity -> IO Int
@@ -638,7 +671,7 @@ sparsity_bw_upper x = casadi__Sparsity__bw_upper (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__colind" c_casadi__Sparsity__colind
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO CLLong
 
 casadi__Sparsity__colind
   :: Sparsity -> Int -> IO Int
@@ -663,6 +696,33 @@ casadi__Sparsity__colind x0 x1 = do
 -- classy wrapper
 sparsity_colind :: SparsityClass a => a -> Int -> IO Int
 sparsity_colind x = casadi__Sparsity__colind (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__columns" c_casadi__Sparsity__columns
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
+
+casadi__Sparsity__columns
+  :: Sparsity -> IO Int
+casadi__Sparsity__columns x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__columns errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_columns :: SparsityClass a => a -> IO Int
+sparsity_columns x = casadi__Sparsity__columns (castSparsity x)
 
 
 -- direct wrapper
@@ -700,7 +760,7 @@ sparsity_combine x = casadi__Sparsity__combine (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__compress" c_casadi__Sparsity__compress
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__compress
   :: Sparsity -> IO (Vector Int)
@@ -726,16 +786,16 @@ sparsity_compress x = casadi__Sparsity__compress (castSparsity x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__compressed" c_casadi__Sparsity__compressed
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO (Ptr Sparsity')
+foreign import ccall unsafe "casadi__Sparsity__compressed__0" c_casadi__Sparsity__compressed__0
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> IO (Ptr Sparsity')
 
-casadi__Sparsity__compressed
+casadi__Sparsity__compressed__0
   :: Vector Int -> IO Sparsity
-casadi__Sparsity__compressed x0 = do
+casadi__Sparsity__compressed__0 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__compressed errStrPtrP x0'
+  ret0 <- c_casadi__Sparsity__compressed__0 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -748,13 +808,42 @@ casadi__Sparsity__compressed x0 = do
 
 
 -- classy wrapper
-sparsity_compressed :: Vector Int -> IO Sparsity
-sparsity_compressed = casadi__Sparsity__compressed
+sparsity_compressed__0 :: Vector Int -> IO Sparsity
+sparsity_compressed__0 = casadi__Sparsity__compressed__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__compressed__1" c_casadi__Sparsity__compressed__1
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr Sparsity')
+
+casadi__Sparsity__compressed__1
+  :: Vector Int -> Bool -> IO Sparsity
+casadi__Sparsity__compressed__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__compressed__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_compressed__1 :: Vector Int -> Bool -> IO Sparsity
+sparsity_compressed__1 = casadi__Sparsity__compressed__1
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__dense__0" c_casadi__Sparsity__dense__0
-  :: Ptr (Ptr StdString) -> Ptr (StdPair CInt CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr (StdPair CLLong CLLong) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__dense__0
   :: (Int, Int) -> IO Sparsity
@@ -781,7 +870,7 @@ sparsity_dense__0 = casadi__Sparsity__dense__0
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__dense__1" c_casadi__Sparsity__dense__1
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__dense__1
   :: Int -> IO Sparsity
@@ -808,7 +897,7 @@ sparsity_dense__1 = casadi__Sparsity__dense__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__dense__2" c_casadi__Sparsity__dense__2
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__dense__2
   :: Int -> Int -> IO Sparsity
@@ -836,8 +925,62 @@ sparsity_dense__2 = casadi__Sparsity__dense__2
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__density" c_casadi__Sparsity__density
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CDouble
+
+casadi__Sparsity__density
+  :: Sparsity -> IO Double
+casadi__Sparsity__density x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__density errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_density :: SparsityClass a => a -> IO Double
+sparsity_density x = casadi__Sparsity__density (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__deserialize" c_casadi__Sparsity__deserialize
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr Sparsity')
+
+casadi__Sparsity__deserialize
+  :: String -> IO Sparsity
+casadi__Sparsity__deserialize x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__deserialize errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_deserialize :: String -> IO Sparsity
+sparsity_deserialize = casadi__Sparsity__deserialize
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__dfs" c_casadi__Sparsity__dfs
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CInt) -> IO CLLong
 
 casadi__Sparsity__dfs
   :: Sparsity -> Int -> Int -> Vector Int -> Vector Int -> Vector Int -> Vector Bool -> IO Int
@@ -876,7 +1019,7 @@ sparsity_dfs x = casadi__Sparsity__dfs (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__diag__0" c_casadi__Sparsity__diag__0
-  :: Ptr (Ptr StdString) -> Ptr (StdPair CInt CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr (StdPair CLLong CLLong) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__diag__0
   :: (Int, Int) -> IO Sparsity
@@ -903,7 +1046,7 @@ sparsity_diag__0 = casadi__Sparsity__diag__0
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__diag__1" c_casadi__Sparsity__diag__1
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__diag__1
   :: Int -> Int -> IO Sparsity
@@ -932,7 +1075,7 @@ sparsity_diag__1 = casadi__Sparsity__diag__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__diag__2" c_casadi__Sparsity__diag__2
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__diag__2
   :: Int -> IO Sparsity
@@ -958,16 +1101,16 @@ sparsity_diag__2 = casadi__Sparsity__diag__2
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__dim" c_casadi__Sparsity__dim
+foreign import ccall unsafe "casadi__Sparsity__dim__0" c_casadi__Sparsity__dim__0
   :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr StdString)
 
-casadi__Sparsity__dim
+casadi__Sparsity__dim__0
   :: Sparsity -> IO String
-casadi__Sparsity__dim x0 = do
+casadi__Sparsity__dim__0 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__dim errStrPtrP x0'
+  ret0 <- c_casadi__Sparsity__dim__0 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -980,13 +1123,42 @@ casadi__Sparsity__dim x0 = do
 
 
 -- classy wrapper
-sparsity_dim :: SparsityClass a => a -> IO String
-sparsity_dim x = casadi__Sparsity__dim (castSparsity x)
+sparsity_dim__0 :: SparsityClass a => a -> IO String
+sparsity_dim__0 x = casadi__Sparsity__dim__0 (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__dim__1" c_casadi__Sparsity__dim__1
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr StdString)
+
+casadi__Sparsity__dim__1
+  :: Sparsity -> Bool -> IO String
+casadi__Sparsity__dim__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__dim__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_dim__1 :: SparsityClass a => a -> Bool -> IO String
+sparsity_dim__1 x = casadi__Sparsity__dim__1 (castSparsity x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__enlarge__0" c_casadi__Sparsity__enlarge__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__Sparsity__enlarge__0
   :: Sparsity -> Int -> Int -> Vector Int -> Vector Int -> IO ()
@@ -1021,7 +1193,7 @@ sparsity_enlarge__0 x = casadi__Sparsity__enlarge__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__enlarge__1" c_casadi__Sparsity__enlarge__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO ()
 
 casadi__Sparsity__enlarge__1
   :: Sparsity -> Int -> Int -> Vector Int -> Vector Int -> Bool -> IO ()
@@ -1058,7 +1230,7 @@ sparsity_enlarge__1 x = casadi__Sparsity__enlarge__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__enlargeColumns__0" c_casadi__Sparsity__enlargeColumns__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__Sparsity__enlargeColumns__0
   :: Sparsity -> Int -> Vector Int -> IO ()
@@ -1089,7 +1261,7 @@ sparsity_enlargeColumns__0 x = casadi__Sparsity__enlargeColumns__0 (castSparsity
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__enlargeColumns__1" c_casadi__Sparsity__enlargeColumns__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> Ptr (StdVec CInt) -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> Ptr (StdVec CLLong) -> CInt -> IO ()
 
 casadi__Sparsity__enlargeColumns__1
   :: Sparsity -> Int -> Vector Int -> Bool -> IO ()
@@ -1122,7 +1294,7 @@ sparsity_enlargeColumns__1 x = casadi__Sparsity__enlargeColumns__1 (castSparsity
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__enlargeRows__0" c_casadi__Sparsity__enlargeRows__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__Sparsity__enlargeRows__0
   :: Sparsity -> Int -> Vector Int -> IO ()
@@ -1153,7 +1325,7 @@ sparsity_enlargeRows__0 x = casadi__Sparsity__enlargeRows__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__enlargeRows__1" c_casadi__Sparsity__enlargeRows__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> Ptr (StdVec CInt) -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> Ptr (StdVec CLLong) -> CInt -> IO ()
 
 casadi__Sparsity__enlargeRows__1
   :: Sparsity -> Int -> Vector Int -> Bool -> IO ()
@@ -1186,7 +1358,7 @@ sparsity_enlargeRows__1 x = casadi__Sparsity__enlargeRows__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__erase__0" c_casadi__Sparsity__erase__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__erase__0
   :: Sparsity -> Vector Int -> IO (Vector Int)
@@ -1215,7 +1387,7 @@ sparsity_erase__0 x = casadi__Sparsity__erase__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__erase__1" c_casadi__Sparsity__erase__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__erase__1
   :: Sparsity -> Vector Int -> Bool -> IO (Vector Int)
@@ -1246,7 +1418,7 @@ sparsity_erase__1 x = casadi__Sparsity__erase__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__erase__2" c_casadi__Sparsity__erase__2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__erase__2
   :: Sparsity -> Vector Int -> Vector Int -> IO (Vector Int)
@@ -1277,7 +1449,7 @@ sparsity_erase__2 x = casadi__Sparsity__erase__2 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__erase__3" c_casadi__Sparsity__erase__3
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__erase__3
   :: Sparsity -> Vector Int -> Vector Int -> Bool -> IO (Vector Int)
@@ -1310,7 +1482,7 @@ sparsity_erase__3 x = casadi__Sparsity__erase__3 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__etree__0" c_casadi__Sparsity__etree__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__etree__0
   :: Sparsity -> IO (Vector Int)
@@ -1337,7 +1509,7 @@ sparsity_etree__0 x = casadi__Sparsity__etree__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__etree__1" c_casadi__Sparsity__etree__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__etree__1
   :: Sparsity -> Bool -> IO (Vector Int)
@@ -1365,8 +1537,37 @@ sparsity_etree__1 x = casadi__Sparsity__etree__1 (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__export_code" c_casadi__Sparsity__export_code
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr StdString -> IO ()
+
+casadi__Sparsity__export_code
+  :: Sparsity -> String -> IO ()
+casadi__Sparsity__export_code x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__export_code errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+sparsity_export_code :: SparsityClass a => a -> String -> IO ()
+sparsity_export_code x = casadi__Sparsity__export_code (castSparsity x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__find__0" c_casadi__Sparsity__find__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__find__0
   :: Sparsity -> IO (Vector Int)
@@ -1393,7 +1594,7 @@ sparsity_find__0 x = casadi__Sparsity__find__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__find__1" c_casadi__Sparsity__find__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__find__1
   :: Sparsity -> Bool -> IO (Vector Int)
@@ -1421,8 +1622,91 @@ sparsity_find__1 x = casadi__Sparsity__find__1 (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__from_file__0" c_casadi__Sparsity__from_file__0
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr Sparsity')
+
+casadi__Sparsity__from_file__0
+  :: String -> IO Sparsity
+casadi__Sparsity__from_file__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__from_file__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_from_file__0 :: String -> IO Sparsity
+sparsity_from_file__0 = casadi__Sparsity__from_file__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__from_file__1" c_casadi__Sparsity__from_file__1
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr Sparsity')
+
+casadi__Sparsity__from_file__1
+  :: String -> String -> IO Sparsity
+casadi__Sparsity__from_file__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__from_file__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_from_file__1 :: String -> String -> IO Sparsity
+sparsity_from_file__1 = casadi__Sparsity__from_file__1
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__from_info" c_casadi__Sparsity__from_info
+  :: Ptr (Ptr StdString) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Sparsity')
+
+casadi__Sparsity__from_info
+  :: M.Map String GenericType -> IO Sparsity
+casadi__Sparsity__from_info x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__from_info errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_from_info :: M.Map String GenericType -> IO Sparsity
+sparsity_from_info = casadi__Sparsity__from_info
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_ccs" c_casadi__Sparsity__get_ccs
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> IO ()
 
 casadi__Sparsity__get_ccs
   :: Sparsity -> IO (Vector Int, Vector Int)
@@ -1457,7 +1741,7 @@ sparsity_get_ccs x = casadi__Sparsity__get_ccs (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_col" c_casadi__Sparsity__get_col
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__get_col
   :: Sparsity -> IO (Vector Int)
@@ -1484,7 +1768,7 @@ sparsity_get_col x = casadi__Sparsity__get_col (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_colind" c_casadi__Sparsity__get_colind
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__get_colind
   :: Sparsity -> IO (Vector Int)
@@ -1511,7 +1795,7 @@ sparsity_get_colind x = casadi__Sparsity__get_colind (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_crs" c_casadi__Sparsity__get_crs
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> IO ()
 
 casadi__Sparsity__get_crs
   :: Sparsity -> IO (Vector Int, Vector Int)
@@ -1546,7 +1830,7 @@ sparsity_get_crs x = casadi__Sparsity__get_crs (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_diag" c_casadi__Sparsity__get_diag
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__get_diag
   :: Sparsity -> IO (Sparsity, Vector Int)
@@ -1577,7 +1861,7 @@ sparsity_get_diag x = casadi__Sparsity__get_diag (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_lower" c_casadi__Sparsity__get_lower
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__get_lower
   :: Sparsity -> IO (Vector Int)
@@ -1604,7 +1888,7 @@ sparsity_get_lower x = casadi__Sparsity__get_lower (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_nz__0" c_casadi__Sparsity__get_nz__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__Sparsity__get_nz__0
   :: Sparsity -> Vector Int -> IO ()
@@ -1633,7 +1917,7 @@ sparsity_get_nz__0 x = casadi__Sparsity__get_nz__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_nz__1" c_casadi__Sparsity__get_nz__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__get_nz__1
   :: Sparsity -> Vector Int -> Vector Int -> IO (Vector Int)
@@ -1664,7 +1948,7 @@ sparsity_get_nz__1 x = casadi__Sparsity__get_nz__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_nz__2" c_casadi__Sparsity__get_nz__2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO CLLong
 
 casadi__Sparsity__get_nz__2
   :: Sparsity -> Int -> Int -> IO Int
@@ -1695,7 +1979,7 @@ sparsity_get_nz__2 x = casadi__Sparsity__get_nz__2 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_row" c_casadi__Sparsity__get_row
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__get_row
   :: Sparsity -> IO (Vector Int)
@@ -1722,7 +2006,7 @@ sparsity_get_row x = casadi__Sparsity__get_row (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_triplet" c_casadi__Sparsity__get_triplet
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> IO ()
 
 casadi__Sparsity__get_triplet
   :: Sparsity -> IO (Vector Int, Vector Int)
@@ -1757,7 +2041,7 @@ sparsity_get_triplet x = casadi__Sparsity__get_triplet (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__get_upper" c_casadi__Sparsity__get_upper
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__get_upper
   :: Sparsity -> IO (Vector Int)
@@ -1784,7 +2068,7 @@ sparsity_get_upper x = casadi__Sparsity__get_upper (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__has_nz" c_casadi__Sparsity__has_nz
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO CInt
 
 casadi__Sparsity__has_nz
   :: Sparsity -> Int -> Int -> IO Bool
@@ -1841,6 +2125,33 @@ sparsity_hash x = casadi__Sparsity__hash (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__info" c_casadi__Sparsity__info
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdMap StdString (Ptr GenericType')))
+
+casadi__Sparsity__info
+  :: Sparsity -> IO (M.Map String GenericType)
+casadi__Sparsity__info x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__info errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_info :: SparsityClass a => a -> IO (M.Map String GenericType)
+sparsity_info x = casadi__Sparsity__info (castSparsity x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__intersect" c_casadi__Sparsity__intersect
   :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> IO (Ptr Sparsity')
 
@@ -1867,35 +2178,6 @@ casadi__Sparsity__intersect x0 x1 = do
 -- classy wrapper
 sparsity_intersect :: SparsityClass a => a -> Sparsity -> IO Sparsity
 sparsity_intersect x = casadi__Sparsity__intersect (castSparsity x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__isReshape" c_casadi__Sparsity__isReshape
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> IO CInt
-
-casadi__Sparsity__isReshape
-  :: Sparsity -> Sparsity -> IO Bool
-casadi__Sparsity__isReshape x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__isReshape errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-sparsity_isReshape :: SparsityClass a => a -> Sparsity -> IO Bool
-sparsity_isReshape x = casadi__Sparsity__isReshape (castSparsity x)
 
 
 -- direct wrapper
@@ -2037,7 +2319,7 @@ sparsity_is_empty__1 x = casadi__Sparsity__is_empty__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__is_equal__0" c_casadi__Sparsity__is_equal__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO CInt
 
 casadi__Sparsity__is_equal__0
   :: Sparsity -> Int -> Int -> Vector Int -> Vector Int -> IO Bool
@@ -2097,6 +2379,35 @@ casadi__Sparsity__is_equal__1 x0 x1 = do
 -- classy wrapper
 sparsity_is_equal__1 :: SparsityClass a => a -> Sparsity -> IO Bool
 sparsity_is_equal__1 x = casadi__Sparsity__is_equal__1 (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__is_reshape" c_casadi__Sparsity__is_reshape
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> IO CInt
+
+casadi__Sparsity__is_reshape
+  :: Sparsity -> Sparsity -> IO Bool
+casadi__Sparsity__is_reshape x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__is_reshape errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_is_reshape :: SparsityClass a => a -> Sparsity -> IO Bool
+sparsity_is_reshape x = casadi__Sparsity__is_reshape (castSparsity x)
 
 
 -- direct wrapper
@@ -2237,6 +2548,37 @@ sparsity_is_square x = casadi__Sparsity__is_square (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__is_stacked" c_casadi__Sparsity__is_stacked
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> CLLong -> IO CInt
+
+casadi__Sparsity__is_stacked
+  :: Sparsity -> Sparsity -> Int -> IO Bool
+casadi__Sparsity__is_stacked x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__is_stacked errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_is_stacked :: SparsityClass a => a -> Sparsity -> Int -> IO Bool
+sparsity_is_stacked x = casadi__Sparsity__is_stacked (castSparsity x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__is_symmetric" c_casadi__Sparsity__is_symmetric
   :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
 
@@ -2374,8 +2716,101 @@ sparsity_is_vector x = casadi__Sparsity__is_vector (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__kkt__0" c_casadi__Sparsity__kkt__0
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> IO (Ptr Sparsity')
+
+casadi__Sparsity__kkt__0
+  :: Sparsity -> Sparsity -> IO Sparsity
+casadi__Sparsity__kkt__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__kkt__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_kkt__0 :: Sparsity -> Sparsity -> IO Sparsity
+sparsity_kkt__0 = casadi__Sparsity__kkt__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__kkt__1" c_casadi__Sparsity__kkt__1
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> CInt -> IO (Ptr Sparsity')
+
+casadi__Sparsity__kkt__1
+  :: Sparsity -> Sparsity -> Bool -> IO Sparsity
+casadi__Sparsity__kkt__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__kkt__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_kkt__1 :: Sparsity -> Sparsity -> Bool -> IO Sparsity
+sparsity_kkt__1 = casadi__Sparsity__kkt__1
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__kkt__2" c_casadi__Sparsity__kkt__2
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr Sparsity')
+
+casadi__Sparsity__kkt__2
+  :: Sparsity -> Sparsity -> Bool -> Bool -> IO Sparsity
+casadi__Sparsity__kkt__2 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__kkt__2 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_kkt__2 :: Sparsity -> Sparsity -> Bool -> Bool -> IO Sparsity
+sparsity_kkt__2 = casadi__Sparsity__kkt__2
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__largest_first" c_casadi__Sparsity__largest_first
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdVec CLLong))
 
 casadi__Sparsity__largest_first
   :: Sparsity -> IO (Vector Int)
@@ -2401,8 +2836,72 @@ sparsity_largest_first x = casadi__Sparsity__largest_first (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__ldl__0" c_casadi__Sparsity__ldl__0
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> IO (Ptr Sparsity')
+
+casadi__Sparsity__ldl__0
+  :: Sparsity -> IO (Sparsity, Vector Int)
+casadi__Sparsity__ldl__0 x0 = do
+  x0' <- marshal x0
+  o1' <- new nullPtr
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__ldl__0 errStrPtrP x0' o1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  o1'' <- peek o1'
+  free o1'
+  o1''' <- if o1'' == nullPtr then error "swig output o1' was not set in casadi__Sparsity__ldl__0/c_casadi__Sparsity__ldl__0" else wrapReturn o1''
+
+  return (ret, o1''')
+
+
+
+-- classy wrapper
+sparsity_ldl__0 :: SparsityClass a => a -> IO (Sparsity, Vector Int)
+sparsity_ldl__0 x = casadi__Sparsity__ldl__0 (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__ldl__1" c_casadi__Sparsity__ldl__1
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> CInt -> IO (Ptr Sparsity')
+
+casadi__Sparsity__ldl__1
+  :: Sparsity -> Bool -> IO (Sparsity, Vector Int)
+casadi__Sparsity__ldl__1 x0 x2 = do
+  x0' <- marshal x0
+  o1' <- new nullPtr
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__ldl__1 errStrPtrP x0' o1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  o1'' <- peek o1'
+  free o1'
+  o1''' <- if o1'' == nullPtr then error "swig output o1' was not set in casadi__Sparsity__ldl__1/c_casadi__Sparsity__ldl__1" else wrapReturn o1''
+  marshalFree x2 x2'
+
+  return (ret, o1''')
+
+
+
+-- classy wrapper
+sparsity_ldl__1 :: SparsityClass a => a -> Bool -> IO (Sparsity, Vector Int)
+sparsity_ldl__1 x = casadi__Sparsity__ldl__1 (castSparsity x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__lower" c_casadi__Sparsity__lower
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__lower
   :: Int -> IO Sparsity
@@ -2429,7 +2928,7 @@ sparsity_lower = casadi__Sparsity__lower
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__makeDense" c_casadi__Sparsity__makeDense
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__makeDense
   :: Sparsity -> IO (Sparsity, Vector Int)
@@ -2460,7 +2959,7 @@ sparsity_makeDense x = casadi__Sparsity__makeDense (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__nnz" c_casadi__Sparsity__nnz
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__nnz
   :: Sparsity -> IO Int
@@ -2487,7 +2986,7 @@ sparsity_nnz x = casadi__Sparsity__nnz (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__nnz_diag" c_casadi__Sparsity__nnz_diag
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__nnz_diag
   :: Sparsity -> IO Int
@@ -2514,7 +3013,7 @@ sparsity_nnz_diag x = casadi__Sparsity__nnz_diag (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__nnz_lower__0" c_casadi__Sparsity__nnz_lower__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__nnz_lower__0
   :: Sparsity -> IO Int
@@ -2541,7 +3040,7 @@ sparsity_nnz_lower__0 x = casadi__Sparsity__nnz_lower__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__nnz_lower__1" c_casadi__Sparsity__nnz_lower__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO CLLong
 
 casadi__Sparsity__nnz_lower__1
   :: Sparsity -> Bool -> IO Int
@@ -2570,7 +3069,7 @@ sparsity_nnz_lower__1 x = casadi__Sparsity__nnz_lower__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__nnz_upper__0" c_casadi__Sparsity__nnz_upper__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__nnz_upper__0
   :: Sparsity -> IO Int
@@ -2597,7 +3096,7 @@ sparsity_nnz_upper__0 x = casadi__Sparsity__nnz_upper__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__nnz_upper__1" c_casadi__Sparsity__nnz_upper__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO CLLong
 
 casadi__Sparsity__nnz_upper__1
   :: Sparsity -> Bool -> IO Int
@@ -2625,8 +3124,72 @@ sparsity_nnz_upper__1 x = casadi__Sparsity__nnz_upper__1 (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__nonzeros__0" c_casadi__Sparsity__nonzeros__0
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> IO (Ptr Sparsity')
+
+casadi__Sparsity__nonzeros__0
+  :: Int -> Int -> Vector Int -> IO Sparsity
+casadi__Sparsity__nonzeros__0 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__nonzeros__0 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_nonzeros__0 :: Int -> Int -> Vector Int -> IO Sparsity
+sparsity_nonzeros__0 = casadi__Sparsity__nonzeros__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__nonzeros__1" c_casadi__Sparsity__nonzeros__1
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr Sparsity')
+
+casadi__Sparsity__nonzeros__1
+  :: Int -> Int -> Vector Int -> Bool -> IO Sparsity
+casadi__Sparsity__nonzeros__1 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__nonzeros__1 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_nonzeros__1 :: Int -> Int -> Vector Int -> Bool -> IO Sparsity
+sparsity_nonzeros__1 = casadi__Sparsity__nonzeros__1
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__numel" c_casadi__Sparsity__numel
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__numel
   :: Sparsity -> IO Int
@@ -2796,7 +3359,7 @@ sparsity_pattern_inverse x = casadi__Sparsity__pattern_inverse (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__pmult__0" c_casadi__Sparsity__pmult__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__pmult__0
   :: Sparsity -> Vector Int -> IO Sparsity
@@ -2825,7 +3388,7 @@ sparsity_pmult__0 x = casadi__Sparsity__pmult__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__pmult__1" c_casadi__Sparsity__pmult__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__pmult__1
   :: Sparsity -> Vector Int -> Bool -> IO Sparsity
@@ -2856,7 +3419,7 @@ sparsity_pmult__1 x = casadi__Sparsity__pmult__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__pmult__2" c_casadi__Sparsity__pmult__2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> CInt -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__pmult__2
   :: Sparsity -> Vector Int -> Bool -> Bool -> IO Sparsity
@@ -2889,7 +3452,7 @@ sparsity_pmult__2 x = casadi__Sparsity__pmult__2 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__pmult__3" c_casadi__Sparsity__pmult__3
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> CInt -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> CInt -> CInt -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__pmult__3
   :: Sparsity -> Vector Int -> Bool -> Bool -> Bool -> IO Sparsity
@@ -2923,35 +3486,123 @@ sparsity_pmult__3 x = casadi__Sparsity__pmult__3 (castSparsity x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__print_compact" c_casadi__Sparsity__print_compact
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO ()
+foreign import ccall unsafe "casadi__Sparsity__postfix_dim" c_casadi__Sparsity__postfix_dim
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr StdString)
 
-casadi__Sparsity__print_compact
-  :: Sparsity -> IO ()
-casadi__Sparsity__print_compact x0 = do
+casadi__Sparsity__postfix_dim
+  :: Sparsity -> IO String
+casadi__Sparsity__postfix_dim x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__print_compact errStrPtrP x0'
+  ret0 <- c_casadi__Sparsity__postfix_dim errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_postfix_dim :: SparsityClass a => a -> IO String
+sparsity_postfix_dim x = casadi__Sparsity__postfix_dim (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__qr_sparse__0" c_casadi__Sparsity__qr_sparse__0
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr Sparsity') -> Ptr (Ptr Sparsity') -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> IO ()
+
+casadi__Sparsity__qr_sparse__0
+  :: Sparsity -> IO (Sparsity, Sparsity, Vector Int, Vector Int)
+casadi__Sparsity__qr_sparse__0 x0 = do
+  x0' <- marshal x0
+  o1' <- new nullPtr
+  o2' <- new nullPtr
+  o3' <- new nullPtr
+  o4' <- new nullPtr
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__qr_sparse__0 errStrPtrP x0' o1' o2' o3' o4'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  o1'' <- peek o1'
+  free o1'
+  o1''' <- if o1'' == nullPtr then error "swig output o1' was not set in casadi__Sparsity__qr_sparse__0/c_casadi__Sparsity__qr_sparse__0" else wrapReturn o1''
+  o2'' <- peek o2'
+  free o2'
+  o2''' <- if o2'' == nullPtr then error "swig output o2' was not set in casadi__Sparsity__qr_sparse__0/c_casadi__Sparsity__qr_sparse__0" else wrapReturn o2''
+  o3'' <- peek o3'
+  free o3'
+  o3''' <- if o3'' == nullPtr then error "swig output o3' was not set in casadi__Sparsity__qr_sparse__0/c_casadi__Sparsity__qr_sparse__0" else wrapReturn o3''
+  o4'' <- peek o4'
+  free o4'
+  o4''' <- if o4'' == nullPtr then error "swig output o4' was not set in casadi__Sparsity__qr_sparse__0/c_casadi__Sparsity__qr_sparse__0" else wrapReturn o4''
 
-  return ()
+  return (o1''', o2''', o3''', o4''')
 
 
 
 -- classy wrapper
-sparsity_print_compact :: SparsityClass a => a -> IO ()
-sparsity_print_compact x = casadi__Sparsity__print_compact (castSparsity x)
+sparsity_qr_sparse__0 :: SparsityClass a => a -> IO (Sparsity, Sparsity, Vector Int, Vector Int)
+sparsity_qr_sparse__0 x = casadi__Sparsity__qr_sparse__0 (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__qr_sparse__1" c_casadi__Sparsity__qr_sparse__1
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr Sparsity') -> Ptr (Ptr Sparsity') -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> CInt -> IO ()
+
+casadi__Sparsity__qr_sparse__1
+  :: Sparsity -> Bool -> IO (Sparsity, Sparsity, Vector Int, Vector Int)
+casadi__Sparsity__qr_sparse__1 x0 x5 = do
+  x0' <- marshal x0
+  o1' <- new nullPtr
+  o2' <- new nullPtr
+  o3' <- new nullPtr
+  o4' <- new nullPtr
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__qr_sparse__1 errStrPtrP x0' o1' o2' o3' o4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  o1'' <- peek o1'
+  free o1'
+  o1''' <- if o1'' == nullPtr then error "swig output o1' was not set in casadi__Sparsity__qr_sparse__1/c_casadi__Sparsity__qr_sparse__1" else wrapReturn o1''
+  o2'' <- peek o2'
+  free o2'
+  o2''' <- if o2'' == nullPtr then error "swig output o2' was not set in casadi__Sparsity__qr_sparse__1/c_casadi__Sparsity__qr_sparse__1" else wrapReturn o2''
+  o3'' <- peek o3'
+  free o3'
+  o3''' <- if o3'' == nullPtr then error "swig output o3' was not set in casadi__Sparsity__qr_sparse__1/c_casadi__Sparsity__qr_sparse__1" else wrapReturn o3''
+  o4'' <- peek o4'
+  free o4'
+  o4''' <- if o4'' == nullPtr then error "swig output o4' was not set in casadi__Sparsity__qr_sparse__1/c_casadi__Sparsity__qr_sparse__1" else wrapReturn o4''
+  marshalFree x5 x5'
+
+  return (o1''', o2''', o3''', o4''')
+
+
+
+-- classy wrapper
+sparsity_qr_sparse__1 :: SparsityClass a => a -> Bool -> IO (Sparsity, Sparsity, Vector Int, Vector Int)
+sparsity_qr_sparse__1 x = casadi__Sparsity__qr_sparse__1 (castSparsity x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__removeDuplicates" c_casadi__Sparsity__removeDuplicates
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__Sparsity__removeDuplicates
   :: Sparsity -> Vector Int -> IO ()
@@ -2980,7 +3631,7 @@ sparsity_removeDuplicates x = casadi__Sparsity__removeDuplicates (castSparsity x
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__repr_el" c_casadi__Sparsity__repr_el
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr StdString)
 
 casadi__Sparsity__repr_el
   :: Sparsity -> Int -> IO String
@@ -3009,7 +3660,7 @@ sparsity_repr_el x = casadi__Sparsity__repr_el (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__resize" c_casadi__Sparsity__resize
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO ()
 
 casadi__Sparsity__resize
   :: Sparsity -> Int -> Int -> IO ()
@@ -3040,7 +3691,7 @@ sparsity_resize x = casadi__Sparsity__resize (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__row" c_casadi__Sparsity__row
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO CLLong
 
 casadi__Sparsity__row
   :: Sparsity -> Int -> IO Int
@@ -3069,7 +3720,7 @@ sparsity_row x = casadi__Sparsity__row (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__rowcol" c_casadi__Sparsity__rowcol
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__rowcol
   :: Vector Int -> Vector Int -> Int -> Int -> IO Sparsity
@@ -3098,6 +3749,33 @@ casadi__Sparsity__rowcol x0 x1 x2 x3 = do
 -- classy wrapper
 sparsity_rowcol :: Vector Int -> Vector Int -> Int -> Int -> IO Sparsity
 sparsity_rowcol = casadi__Sparsity__rowcol
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__rows" c_casadi__Sparsity__rows
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
+
+casadi__Sparsity__rows
+  :: Sparsity -> IO Int
+casadi__Sparsity__rows x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__rows errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_rows :: SparsityClass a => a -> IO Int
+sparsity_rows x = casadi__Sparsity__rows (castSparsity x)
 
 
 -- direct wrapper
@@ -3157,62 +3835,6 @@ sparsity_rowsSequential__1 x = casadi__Sparsity__rowsSequential__1 (castSparsity
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__sanity_check__0" c_casadi__Sparsity__sanity_check__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO ()
-
-casadi__Sparsity__sanity_check__0
-  :: Sparsity -> IO ()
-casadi__Sparsity__sanity_check__0 x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__sanity_check__0 errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ()
-
-
-
--- classy wrapper
-sparsity_sanity_check__0 :: SparsityClass a => a -> IO ()
-sparsity_sanity_check__0 x = casadi__Sparsity__sanity_check__0 (castSparsity x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Sparsity__sanity_check__1" c_casadi__Sparsity__sanity_check__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO ()
-
-casadi__Sparsity__sanity_check__1
-  :: Sparsity -> Bool -> IO ()
-casadi__Sparsity__sanity_check__1 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Sparsity__sanity_check__1 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ()
-
-
-
--- classy wrapper
-sparsity_sanity_check__1 :: SparsityClass a => a -> Bool -> IO ()
-sparsity_sanity_check__1 x = casadi__Sparsity__sanity_check__1 (castSparsity x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__scalar__0" c_casadi__Sparsity__scalar__0
   :: Ptr (Ptr StdString) -> IO (Ptr Sparsity')
 
@@ -3268,7 +3890,7 @@ sparsity_scalar__1 = casadi__Sparsity__scalar__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__scc" c_casadi__Sparsity__scc
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> Ptr (Ptr (StdVec CInt)) -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> Ptr (Ptr (StdVec CLLong)) -> IO CLLong
 
 casadi__Sparsity__scc
   :: Sparsity -> IO (Int, Vector Int, Vector Int)
@@ -3302,8 +3924,35 @@ sparsity_scc x = casadi__Sparsity__scc (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__serialize" c_casadi__Sparsity__serialize
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr StdString)
+
+casadi__Sparsity__serialize
+  :: Sparsity -> IO String
+casadi__Sparsity__serialize x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__serialize errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_serialize :: SparsityClass a => a -> IO String
+sparsity_serialize x = casadi__Sparsity__serialize (castSparsity x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__size__0" c_casadi__Sparsity__size__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO CLLong
 
 casadi__Sparsity__size__0
   :: Sparsity -> Int -> IO Int
@@ -3332,7 +3981,7 @@ sparsity_size__0 x = casadi__Sparsity__size__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__size__1" c_casadi__Sparsity__size__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdPair CInt CInt))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr (StdPair CLLong CLLong))
 
 casadi__Sparsity__size__1
   :: Sparsity -> IO (Int, Int)
@@ -3359,7 +4008,7 @@ sparsity_size__1 x = casadi__Sparsity__size__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__size1" c_casadi__Sparsity__size1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__size1
   :: Sparsity -> IO Int
@@ -3386,7 +4035,7 @@ sparsity_size1 x = casadi__Sparsity__size1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__size2" c_casadi__Sparsity__size2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi__Sparsity__size2
   :: Sparsity -> IO Int
@@ -3496,7 +4145,7 @@ sparsity_star_coloring__0 x = casadi__Sparsity__star_coloring__0 (castSparsity x
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__star_coloring__1" c_casadi__Sparsity__star_coloring__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__star_coloring__1
   :: Sparsity -> Int -> IO Sparsity
@@ -3525,7 +4174,7 @@ sparsity_star_coloring__1 x = casadi__Sparsity__star_coloring__1 (castSparsity x
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__star_coloring__2" c_casadi__Sparsity__star_coloring__2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__star_coloring__2
   :: Sparsity -> Int -> Int -> IO Sparsity
@@ -3583,7 +4232,7 @@ sparsity_star_coloring2__0 x = casadi__Sparsity__star_coloring2__0 (castSparsity
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__star_coloring2__1" c_casadi__Sparsity__star_coloring2__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__star_coloring2__1
   :: Sparsity -> Int -> IO Sparsity
@@ -3612,7 +4261,7 @@ sparsity_star_coloring2__1 x = casadi__Sparsity__star_coloring2__1 (castSparsity
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__star_coloring2__2" c_casadi__Sparsity__star_coloring2__2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__star_coloring2__2
   :: Sparsity -> Int -> Int -> IO Sparsity
@@ -3643,7 +4292,7 @@ sparsity_star_coloring2__2 x = casadi__Sparsity__star_coloring2__2 (castSparsity
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__sub__0" c_casadi__Sparsity__sub__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__sub__0
   :: Sparsity -> Vector Int -> Sparsity -> IO (Sparsity, Vector Int)
@@ -3678,7 +4327,7 @@ sparsity_sub__0 x = casadi__Sparsity__sub__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__sub__1" c_casadi__Sparsity__sub__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__sub__1
   :: Sparsity -> Vector Int -> Sparsity -> Bool -> IO (Sparsity, Vector Int)
@@ -3715,7 +4364,7 @@ sparsity_sub__1 x = casadi__Sparsity__sub__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__sub__2" c_casadi__Sparsity__sub__2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (Ptr (StdVec CInt)) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (Ptr (StdVec CLLong)) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__sub__2
   :: Sparsity -> Vector Int -> Vector Int -> IO (Sparsity, Vector Int)
@@ -3750,7 +4399,7 @@ sparsity_sub__2 x = casadi__Sparsity__sub__2 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__sub__3" c_casadi__Sparsity__sub__3
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (Ptr (StdVec CInt)) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (Ptr (StdVec CLLong)) -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__sub__3
   :: Sparsity -> Vector Int -> Vector Int -> Bool -> IO (Sparsity, Vector Int)
@@ -3786,8 +4435,68 @@ sparsity_sub__3 x = casadi__Sparsity__sub__3 (castSparsity x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__to_file__0" c_casadi__Sparsity__to_file__0
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr StdString -> IO ()
+
+casadi__Sparsity__to_file__0
+  :: Sparsity -> String -> IO ()
+casadi__Sparsity__to_file__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__to_file__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+sparsity_to_file__0 :: SparsityClass a => a -> String -> IO ()
+sparsity_to_file__0 x = casadi__Sparsity__to_file__0 (castSparsity x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__to_file__1" c_casadi__Sparsity__to_file__1
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr StdString -> Ptr StdString -> IO ()
+
+casadi__Sparsity__to_file__1
+  :: Sparsity -> String -> String -> IO ()
+casadi__Sparsity__to_file__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__to_file__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ()
+
+
+
+-- classy wrapper
+sparsity_to_file__1 :: SparsityClass a => a -> String -> String -> IO ()
+sparsity_to_file__1 x = casadi__Sparsity__to_file__1 (castSparsity x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__transpose__0" c_casadi__Sparsity__transpose__0
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__transpose__0
   :: Sparsity -> IO (Sparsity, Vector Int)
@@ -3818,7 +4527,7 @@ sparsity_transpose__0 x = casadi__Sparsity__transpose__0 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__transpose__1" c_casadi__Sparsity__transpose__1
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CInt)) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (Ptr (StdVec CLLong)) -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__transpose__1
   :: Sparsity -> Bool -> IO (Sparsity, Vector Int)
@@ -3851,7 +4560,7 @@ sparsity_transpose__1 x = casadi__Sparsity__transpose__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__triplet__0" c_casadi__Sparsity__triplet__0
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr Sparsity')
 
 casadi__Sparsity__triplet__0
   :: Int -> Int -> Vector Int -> Vector Int -> IO Sparsity
@@ -3884,7 +4593,7 @@ sparsity_triplet__0 = casadi__Sparsity__triplet__0
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__triplet__1" c_casadi__Sparsity__triplet__1
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (Ptr (StdVec CInt)) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (Ptr (StdVec CLLong)) -> CInt -> IO (Ptr Sparsity')
 
 casadi__Sparsity__triplet__1
   :: Int -> Int -> Vector Int -> Vector Int -> Bool -> IO (Sparsity, Vector Int)
@@ -3919,6 +4628,33 @@ casadi__Sparsity__triplet__1 x0 x1 x2 x3 x5 = do
 -- classy wrapper
 sparsity_triplet__1 :: Int -> Int -> Vector Int -> Vector Int -> Bool -> IO (Sparsity, Vector Int)
 sparsity_triplet__1 = casadi__Sparsity__triplet__1
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Sparsity__type_name" c_casadi__Sparsity__type_name
+  :: Ptr (Ptr StdString) -> IO (Ptr StdString)
+
+casadi__Sparsity__type_name
+  :: IO String
+casadi__Sparsity__type_name  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Sparsity__type_name errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+sparsity_type_name :: IO String
+sparsity_type_name = casadi__Sparsity__type_name
 
 
 -- direct wrapper
@@ -3979,7 +4715,7 @@ sparsity_uni_coloring__1 x = casadi__Sparsity__uni_coloring__1 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__uni_coloring__2" c_casadi__Sparsity__uni_coloring__2
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__uni_coloring__2
   :: Sparsity -> Sparsity -> Int -> IO Sparsity
@@ -4010,7 +4746,7 @@ sparsity_uni_coloring__2 x = casadi__Sparsity__uni_coloring__2 (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__unit" c_casadi__Sparsity__unit
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__unit
   :: Int -> Int -> IO Sparsity
@@ -4068,7 +4804,7 @@ sparsity_unite x = casadi__Sparsity__unite (castSparsity x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Sparsity__upper" c_casadi__Sparsity__upper
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Sparsity__upper
   :: Int -> IO Sparsity

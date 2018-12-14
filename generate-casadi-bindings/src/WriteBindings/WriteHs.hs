@@ -173,7 +173,6 @@ writeClassMethods c = methods
                                 , fParams = (Ref classType', SwigOutput False) : mParams fcn
                                 , fFriendwrap = False
                                 , fDocs = mDocs fcn
-                                , fDocslink = mDocslink fcn
                                 }
           _ -> writeFunction
                CppFunction { fName = cWrapperName''
@@ -182,7 +181,6 @@ writeClassMethods c = methods
                            , fParams = mParams fcn
                            , fFriendwrap = False
                            , fDocs = mDocs fcn
-                           , fDocslink = mDocslink fcn
                            }
 
         (outputParams, inputParams) = (map fst ops, map fst ips)
@@ -307,7 +305,7 @@ writeFunction fun = (hsFunctionName, ffiWrapper)
     ffiRetType = "IO " ++ TM.ffiType True (retType, SwigOutput False)
 
 writeClassModules :: (ClassType -> S.Set ClassType) -> [Class] -> [(String, String)]
-writeClassModules inheritance classes = map (\x -> (dataName (clType x),writeOneModule x)) classes
+writeClassModules _inheritance classes = map (\x -> (dataName (clType x),writeOneModule x)) classes
   where
     writeOneModule :: Class -> String
     writeOneModule c =

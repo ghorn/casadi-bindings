@@ -9,5 +9,5 @@ import System.IO.Unsafe ( unsafePerformIO )
 import qualified Casadi.Core.Classes.SharedObject as C
 
 instance Show C.SharedObject where
-  show x = unsafePerformIO (C.sharedObject_getDescription x)
+  show x = unsafePerformIO (C.sharedObject_get_str__0 x)
   {-# NOINLINE show #-}

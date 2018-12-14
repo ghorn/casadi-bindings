@@ -25,6 +25,13 @@ module Casadi.Core.Classes.Function
          function__9,
          function_assert_size_in,
          function_assert_size_out,
+         function_bspline__0,
+         function_bspline__1,
+         function_bspline__2,
+         function_bspline_dual__0,
+         function_bspline_dual__1,
+         function_bspline_dual__2,
+         function_bspline_dual__3,
          function_call__0,
          function_call__1,
          function_call__10,
@@ -43,24 +50,28 @@ module Casadi.Core.Classes.Function
          function_call__7,
          function_call__8,
          function_call__9,
-         function_checkInputs,
          function_check_name,
          function_checkout,
          function_conditional__0,
          function_conditional__1,
-         function_conic_debug,
          function_default_in,
+         function_deserialize,
          function_expand__0,
          function_expand__1,
          function_expand__2,
+         function_export_code__0,
+         function_export_code__1,
+         function_export_code__2,
+         function_export_code__3,
          function_factory__0,
          function_factory__1,
          function_factory__2,
          function_fix_name,
+         function_fold__0,
+         function_fold__1,
          function_forward,
          function_free_mx,
          function_free_sx,
-         function_fullJacobian,
          function_generate__0,
          function_generate__1,
          function_generate__2,
@@ -68,50 +79,40 @@ module Casadi.Core.Classes.Function
          function_generate_dependencies__0,
          function_generate_dependencies__1,
          function_generate_lifted,
-         function_getAlgorithmSize,
-         function_getAtomicInput,
-         function_getAtomicInputReal,
-         function_getAtomicOperation,
-         function_getAtomicOutput,
-         function_getWorkSize,
+         function_get_free,
          function_get_function__0,
          function_get_function__1,
          function_has_free,
          function_has_function,
-         function_hessian__0,
-         function_hessian__1,
-         function_hessian__2,
-         function_hessian__3,
-         function_hessian__4,
-         function_hessian__5,
-         function_hessian__6,
+         function_has_spfwd,
+         function_has_sprev,
+         function_hessian_old,
          function_if_else__0,
          function_if_else__1,
          function_index_in,
          function_index_out,
+         function_info,
+         function_instruction_MX,
+         function_instruction_constant,
+         function_instruction_id,
+         function_instruction_input,
+         function_instruction_output,
          function_is_a__0,
          function_is_a__1,
-         function_jacobian__0,
-         function_jacobian__1,
-         function_jacobian__10,
-         function_jacobian__11,
-         function_jacobian__12,
-         function_jacobian__13,
-         function_jacobian__14,
-         function_jacobian__2,
-         function_jacobian__3,
-         function_jacobian__4,
-         function_jacobian__5,
-         function_jacobian__6,
-         function_jacobian__7,
-         function_jacobian__8,
-         function_jacobian__9,
+         function_jac,
+         function_jacobian,
+         function_jacobian_old,
+         function_jit__0,
+         function_jit__1,
+         function_jit__2,
+         function_jit__3,
          function_map__0,
          function_map__1,
          function_map__2,
          function_map__3,
          function_map__4,
          function_map__5,
+         function_map__6,
          function_mapaccum__0,
          function_mapaccum__1,
          function_mapaccum__2,
@@ -119,8 +120,13 @@ module Casadi.Core.Classes.Function
          function_mapaccum__4,
          function_mapaccum__5,
          function_mapaccum__6,
+         function_mapaccum__7,
+         function_mapaccum__8,
+         function_mapaccum__9,
          function_mapsum__0,
          function_mapsum__1,
+         function_max_in,
+         function_min_in,
          function_mx_in__0,
          function_mx_in__1,
          function_mx_in__2,
@@ -128,6 +134,7 @@ module Casadi.Core.Classes.Function
          function_mx_out__1,
          function_mx_out__2,
          function_n_in,
+         function_n_instructions,
          function_n_nodes,
          function_n_out,
          function_name,
@@ -149,12 +156,11 @@ module Casadi.Core.Classes.Function
          function_numel_out__2,
          function_oracle,
          function_print_dimensions,
-         function_print_free,
          function_print_option,
          function_print_options,
          function_release,
          function_reverse,
-         function_setFullJacobian,
+         function_serialize,
          function_size1_in__0,
          function_size1_in__1,
          function_size1_out__0,
@@ -169,7 +175,6 @@ module Casadi.Core.Classes.Function
          function_size_out__1,
          function_slice__0,
          function_slice__1,
-         function_spCanEvaluate,
          function_sparsity_in__0,
          function_sparsity_in__1,
          function_sparsity_jac__0,
@@ -177,8 +182,6 @@ module Casadi.Core.Classes.Function
          function_sparsity_jac__10,
          function_sparsity_jac__11,
          function_sparsity_jac__12,
-         function_sparsity_jac__13,
-         function_sparsity_jac__14,
          function_sparsity_jac__2,
          function_sparsity_jac__3,
          function_sparsity_jac__4,
@@ -202,7 +205,10 @@ module Casadi.Core.Classes.Function
          function_sz_res,
          function_sz_w,
          function_type_name,
-         function_which_depends,
+         function_uses_output,
+         function_which_depends__0,
+         function_which_depends__1,
+         function_which_depends__2,
          function_wrap,
        ) where
 
@@ -688,7 +694,7 @@ function__13 = casadi__Function__CONSTRUCTOR__13
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__assert_size_in" c_casadi__Function__assert_size_in
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> CLLong -> IO ()
 
 casadi__Function__assert_size_in
   :: Function -> Int -> Int -> Int -> IO ()
@@ -721,7 +727,7 @@ function_assert_size_in x = casadi__Function__assert_size_in (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__assert_size_out" c_casadi__Function__assert_size_out
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> CLLong -> IO ()
 
 casadi__Function__assert_size_out
   :: Function -> Int -> Int -> Int -> IO ()
@@ -750,6 +756,255 @@ casadi__Function__assert_size_out x0 x1 x2 x3 = do
 -- classy wrapper
 function_assert_size_out :: FunctionClass a => a -> Int -> Int -> Int -> IO ()
 function_assert_size_out x = casadi__Function__assert_size_out (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__bspline__0" c_casadi__Function__bspline__0
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdVec (Ptr (StdVec CDouble))) -> Ptr (StdVec CDouble) -> Ptr (StdVec CLLong) -> IO (Ptr Function')
+
+casadi__Function__bspline__0
+  :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> IO Function
+casadi__Function__bspline__0 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__bspline__0 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+function_bspline__0 :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> IO Function
+function_bspline__0 = casadi__Function__bspline__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__bspline__1" c_casadi__Function__bspline__1
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdVec (Ptr (StdVec CDouble))) -> Ptr (StdVec CDouble) -> Ptr (StdVec CLLong) -> CLLong -> IO (Ptr Function')
+
+casadi__Function__bspline__1
+  :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> IO Function
+casadi__Function__bspline__1 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__bspline__1 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ret
+
+
+
+-- classy wrapper
+function_bspline__1 :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> IO Function
+function_bspline__1 = casadi__Function__bspline__1
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__bspline__2" c_casadi__Function__bspline__2
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdVec (Ptr (StdVec CDouble))) -> Ptr (StdVec CDouble) -> Ptr (StdVec CLLong) -> CLLong -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__Function__bspline__2
+  :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> M.Map String GenericType -> IO Function
+casadi__Function__bspline__2 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__bspline__2 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ret
+
+
+
+-- classy wrapper
+function_bspline__2 :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> M.Map String GenericType -> IO Function
+function_bspline__2 = casadi__Function__bspline__2
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__bspline_dual__0" c_casadi__Function__bspline_dual__0
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdVec (Ptr (StdVec CDouble))) -> Ptr (StdVec CDouble) -> Ptr (StdVec CLLong) -> IO (Ptr Function')
+
+casadi__Function__bspline_dual__0
+  :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> IO Function
+casadi__Function__bspline_dual__0 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__bspline_dual__0 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+function_bspline_dual__0 :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> IO Function
+function_bspline_dual__0 = casadi__Function__bspline_dual__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__bspline_dual__1" c_casadi__Function__bspline_dual__1
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdVec (Ptr (StdVec CDouble))) -> Ptr (StdVec CDouble) -> Ptr (StdVec CLLong) -> CLLong -> IO (Ptr Function')
+
+casadi__Function__bspline_dual__1
+  :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> IO Function
+casadi__Function__bspline_dual__1 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__bspline_dual__1 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ret
+
+
+
+-- classy wrapper
+function_bspline_dual__1 :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> IO Function
+function_bspline_dual__1 = casadi__Function__bspline_dual__1
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__bspline_dual__2" c_casadi__Function__bspline_dual__2
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdVec (Ptr (StdVec CDouble))) -> Ptr (StdVec CDouble) -> Ptr (StdVec CLLong) -> CLLong -> CInt -> IO (Ptr Function')
+
+casadi__Function__bspline_dual__2
+  :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> Bool -> IO Function
+casadi__Function__bspline_dual__2 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__bspline_dual__2 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ret
+
+
+
+-- classy wrapper
+function_bspline_dual__2 :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> Bool -> IO Function
+function_bspline_dual__2 = casadi__Function__bspline_dual__2
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__bspline_dual__3" c_casadi__Function__bspline_dual__3
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdVec (Ptr (StdVec CDouble))) -> Ptr (StdVec CDouble) -> Ptr (StdVec CLLong) -> CLLong -> CInt -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__Function__bspline_dual__3
+  :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> Bool -> M.Map String GenericType -> IO Function
+casadi__Function__bspline_dual__3 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__bspline_dual__3 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ret
+
+
+
+-- classy wrapper
+function_bspline_dual__3 :: String -> Vector (Vector Double) -> Vector Double -> Vector Int -> Int -> Bool -> M.Map String GenericType -> IO Function
+function_bspline_dual__3 = casadi__Function__bspline_dual__3
 
 
 -- direct wrapper
@@ -1383,33 +1638,6 @@ function_call__17 x = casadi__Function__call__17 (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__checkInputs" c_casadi__Function__checkInputs
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO ()
-
-casadi__Function__checkInputs
-  :: Function -> IO ()
-casadi__Function__checkInputs x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__checkInputs errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ()
-
-
-
--- classy wrapper
-function_checkInputs :: FunctionClass a => a -> IO ()
-function_checkInputs x = casadi__Function__checkInputs (castFunction x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__Function__check_name" c_casadi__Function__check_name
   :: Ptr (Ptr StdString) -> Ptr StdString -> IO CInt
 
@@ -1438,7 +1666,7 @@ function_check_name = casadi__Function__check_name
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__checkout" c_casadi__Function__checkout
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__checkout
   :: Function -> IO Int
@@ -1528,37 +1756,8 @@ function_conditional__1 = casadi__Function__conditional__1
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__conic_debug" c_casadi__Function__conic_debug
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO ()
-
-casadi__Function__conic_debug
-  :: Function -> String -> IO ()
-casadi__Function__conic_debug x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__conic_debug errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ()
-
-
-
--- classy wrapper
-function_conic_debug :: FunctionClass a => a -> String -> IO ()
-function_conic_debug x = casadi__Function__conic_debug (castFunction x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__Function__default_in" c_casadi__Function__default_in
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CDouble
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CDouble
 
 casadi__Function__default_in
   :: Function -> Int -> IO Double
@@ -1583,6 +1782,33 @@ casadi__Function__default_in x0 x1 = do
 -- classy wrapper
 function_default_in :: FunctionClass a => a -> Int -> IO Double
 function_default_in x = casadi__Function__default_in (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__deserialize" c_casadi__Function__deserialize
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr Function')
+
+casadi__Function__deserialize
+  :: String -> IO Function
+casadi__Function__deserialize x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__deserialize errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+function_deserialize :: String -> IO Function
+function_deserialize = casadi__Function__deserialize
 
 
 -- direct wrapper
@@ -1670,6 +1896,130 @@ casadi__Function__expand__2 x0 = do
 -- classy wrapper
 function_expand__2 :: FunctionClass a => a -> IO Function
 function_expand__2 x = casadi__Function__expand__2 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__export_code__0" c_casadi__Function__export_code__0
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr StdString)
+
+casadi__Function__export_code__0
+  :: Function -> String -> IO String
+casadi__Function__export_code__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__export_code__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_export_code__0 :: FunctionClass a => a -> String -> IO String
+function_export_code__0 x = casadi__Function__export_code__0 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__export_code__1" c_casadi__Function__export_code__1
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr StdString)
+
+casadi__Function__export_code__1
+  :: Function -> String -> M.Map String GenericType -> IO String
+casadi__Function__export_code__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__export_code__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+function_export_code__1 :: FunctionClass a => a -> String -> M.Map String GenericType -> IO String
+function_export_code__1 x = casadi__Function__export_code__1 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__export_code__2" c_casadi__Function__export_code__2
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> IO ()
+
+casadi__Function__export_code__2
+  :: Function -> String -> String -> IO ()
+casadi__Function__export_code__2 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__export_code__2 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ()
+
+
+
+-- classy wrapper
+function_export_code__2 :: FunctionClass a => a -> String -> String -> IO ()
+function_export_code__2 x = casadi__Function__export_code__2 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__export_code__3" c_casadi__Function__export_code__3
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO ()
+
+casadi__Function__export_code__3
+  :: Function -> String -> String -> M.Map String GenericType -> IO ()
+casadi__Function__export_code__3 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__export_code__3 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+-- classy wrapper
+function_export_code__3 :: FunctionClass a => a -> String -> String -> M.Map String GenericType -> IO ()
+function_export_code__3 x = casadi__Function__export_code__3 (castFunction x)
 
 
 -- direct wrapper
@@ -1805,8 +2155,68 @@ function_fix_name = casadi__Function__fix_name
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Function__fold__0" c_casadi__Function__fold__0
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Function')
+
+casadi__Function__fold__0
+  :: Function -> Int -> IO Function
+casadi__Function__fold__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__fold__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_fold__0 :: FunctionClass a => a -> Int -> IO Function
+function_fold__0 x = casadi__Function__fold__0 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__fold__1" c_casadi__Function__fold__1
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__Function__fold__1
+  :: Function -> Int -> M.Map String GenericType -> IO Function
+casadi__Function__fold__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__fold__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+function_fold__1 :: FunctionClass a => a -> Int -> M.Map String GenericType -> IO Function
+function_fold__1 x = casadi__Function__fold__1 (castFunction x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Function__forward" c_casadi__Function__forward
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Function')
 
 casadi__Function__forward
   :: Function -> Int -> IO Function
@@ -1885,33 +2295,6 @@ casadi__Function__free_sx x0 = do
 -- classy wrapper
 function_free_sx :: FunctionClass a => a -> IO (Vector SX)
 function_free_sx x = casadi__Function__free_sx (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__fullJacobian" c_casadi__Function__fullJacobian
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr Function')
-
-casadi__Function__fullJacobian
-  :: Function -> IO Function
-casadi__Function__fullJacobian x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__fullJacobian errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-function_fullJacobian :: FunctionClass a => a -> IO Function
-function_fullJacobian x = casadi__Function__fullJacobian (castFunction x)
 
 
 -- direct wrapper
@@ -2126,16 +2509,16 @@ function_generate_lifted x = casadi__Function__generate_lifted (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__getAlgorithmSize" c_casadi__Function__getAlgorithmSize
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+foreign import ccall unsafe "casadi__Function__get_free" c_casadi__Function__get_free
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr (StdVec (Ptr StdString)))
 
-casadi__Function__getAlgorithmSize
-  :: Function -> IO Int
-casadi__Function__getAlgorithmSize x0 = do
+casadi__Function__get_free
+  :: Function -> IO (Vector String)
+casadi__Function__get_free x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__getAlgorithmSize errStrPtrP x0'
+  ret0 <- c_casadi__Function__get_free errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -2148,151 +2531,8 @@ casadi__Function__getAlgorithmSize x0 = do
 
 
 -- classy wrapper
-function_getAlgorithmSize :: FunctionClass a => a -> IO Int
-function_getAlgorithmSize x = casadi__Function__getAlgorithmSize (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__getAtomicInput" c_casadi__Function__getAtomicInput
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr (StdPair CInt CInt))
-
-casadi__Function__getAtomicInput
-  :: Function -> Int -> IO (Int, Int)
-casadi__Function__getAtomicInput x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__getAtomicInput errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_getAtomicInput :: FunctionClass a => a -> Int -> IO (Int, Int)
-function_getAtomicInput x = casadi__Function__getAtomicInput (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__getAtomicInputReal" c_casadi__Function__getAtomicInputReal
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CDouble
-
-casadi__Function__getAtomicInputReal
-  :: Function -> Int -> IO Double
-casadi__Function__getAtomicInputReal x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__getAtomicInputReal errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_getAtomicInputReal :: FunctionClass a => a -> Int -> IO Double
-function_getAtomicInputReal x = casadi__Function__getAtomicInputReal (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__getAtomicOperation" c_casadi__Function__getAtomicOperation
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
-
-casadi__Function__getAtomicOperation
-  :: Function -> Int -> IO Int
-casadi__Function__getAtomicOperation x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__getAtomicOperation errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_getAtomicOperation :: FunctionClass a => a -> Int -> IO Int
-function_getAtomicOperation x = casadi__Function__getAtomicOperation (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__getAtomicOutput" c_casadi__Function__getAtomicOutput
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
-
-casadi__Function__getAtomicOutput
-  :: Function -> Int -> IO Int
-casadi__Function__getAtomicOutput x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__getAtomicOutput errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_getAtomicOutput :: FunctionClass a => a -> Int -> IO Int
-function_getAtomicOutput x = casadi__Function__getAtomicOutput (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__getWorkSize" c_casadi__Function__getWorkSize
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
-
-casadi__Function__getWorkSize
-  :: Function -> IO Int
-casadi__Function__getWorkSize x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__getWorkSize errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-function_getWorkSize :: FunctionClass a => a -> IO Int
-function_getWorkSize x = casadi__Function__getWorkSize (castFunction x)
+function_get_free :: FunctionClass a => a -> IO (Vector String)
+function_get_free x = casadi__Function__get_free (castFunction x)
 
 
 -- direct wrapper
@@ -2408,138 +2648,16 @@ function_has_function x = casadi__Function__has_function (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__hessian__0" c_casadi__Function__hessian__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> IO (Ptr Function')
+foreign import ccall unsafe "casadi__Function__has_spfwd" c_casadi__Function__has_spfwd
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
 
-casadi__Function__hessian__0
-  :: Function -> String -> String -> IO Function
-casadi__Function__hessian__0 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__hessian__0 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
--- classy wrapper
-function_hessian__0 :: FunctionClass a => a -> String -> String -> IO Function
-function_hessian__0 x = casadi__Function__hessian__0 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__hessian__1" c_casadi__Function__hessian__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> IO (Ptr Function')
-
-casadi__Function__hessian__1
-  :: Function -> Int -> String -> IO Function
-casadi__Function__hessian__1 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__hessian__1 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
--- classy wrapper
-function_hessian__1 :: FunctionClass a => a -> Int -> String -> IO Function
-function_hessian__1 x = casadi__Function__hessian__1 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__hessian__2" c_casadi__Function__hessian__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr Function')
-
-casadi__Function__hessian__2
-  :: Function -> String -> IO Function
-casadi__Function__hessian__2 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__hessian__2 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_hessian__2 :: FunctionClass a => a -> String -> IO Function
-function_hessian__2 x = casadi__Function__hessian__2 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__hessian__3" c_casadi__Function__hessian__3
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> IO (Ptr Function')
-
-casadi__Function__hessian__3
-  :: Function -> String -> Int -> IO Function
-casadi__Function__hessian__3 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__hessian__3 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
--- classy wrapper
-function_hessian__3 :: FunctionClass a => a -> String -> Int -> IO Function
-function_hessian__3 x = casadi__Function__hessian__3 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__hessian__4" c_casadi__Function__hessian__4
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr Function')
-
-casadi__Function__hessian__4
-  :: Function -> IO Function
-casadi__Function__hessian__4 x0 = do
+casadi__Function__has_spfwd
+  :: Function -> IO Bool
+casadi__Function__has_spfwd x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__hessian__4 errStrPtrP x0'
+  ret0 <- c_casadi__Function__has_spfwd errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -2552,52 +2670,50 @@ casadi__Function__hessian__4 x0 = do
 
 
 -- classy wrapper
-function_hessian__4 :: FunctionClass a => a -> IO Function
-function_hessian__4 x = casadi__Function__hessian__4 (castFunction x)
+function_has_spfwd :: FunctionClass a => a -> IO Bool
+function_has_spfwd x = casadi__Function__has_spfwd (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__hessian__5" c_casadi__Function__hessian__5
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Function')
+foreign import ccall unsafe "casadi__Function__has_sprev" c_casadi__Function__has_sprev
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
 
-casadi__Function__hessian__5
-  :: Function -> Int -> IO Function
-casadi__Function__hessian__5 x0 x1 = do
+casadi__Function__has_sprev
+  :: Function -> IO Bool
+casadi__Function__has_sprev x0 = do
   x0' <- marshal x0
-  x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__hessian__5 errStrPtrP x0' x1'
+  ret0 <- c_casadi__Function__has_sprev errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
-  marshalFree x1 x1'
 
   return ret
 
 
 
 -- classy wrapper
-function_hessian__5 :: FunctionClass a => a -> Int -> IO Function
-function_hessian__5 x = casadi__Function__hessian__5 (castFunction x)
+function_has_sprev :: FunctionClass a => a -> IO Bool
+function_has_sprev x = casadi__Function__has_sprev (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__hessian__6" c_casadi__Function__hessian__6
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> IO (Ptr Function')
+foreign import ccall safe "casadi__Function__hessian_old" c_casadi__Function__hessian_old
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> IO (Ptr Function')
 
-casadi__Function__hessian__6
+casadi__Function__hessian_old
   :: Function -> Int -> Int -> IO Function
-casadi__Function__hessian__6 x0 x1 x2 = do
+casadi__Function__hessian_old x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__hessian__6 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__Function__hessian_old errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -2612,8 +2728,8 @@ casadi__Function__hessian__6 x0 x1 x2 = do
 
 
 -- classy wrapper
-function_hessian__6 :: FunctionClass a => a -> Int -> Int -> IO Function
-function_hessian__6 x = casadi__Function__hessian__6 (castFunction x)
+function_hessian_old :: FunctionClass a => a -> Int -> Int -> IO Function
+function_hessian_old x = casadi__Function__hessian_old (castFunction x)
 
 
 -- direct wrapper
@@ -2682,7 +2798,7 @@ function_if_else__1 = casadi__Function__if_else__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__index_in" c_casadi__Function__index_in
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__index_in
   :: Function -> String -> IO Int
@@ -2711,7 +2827,7 @@ function_index_in x = casadi__Function__index_in (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__index_out" c_casadi__Function__index_out
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__index_out
   :: Function -> String -> IO Int
@@ -2736,6 +2852,178 @@ casadi__Function__index_out x0 x1 = do
 -- classy wrapper
 function_index_out :: FunctionClass a => a -> String -> IO Int
 function_index_out x = casadi__Function__index_out (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__info" c_casadi__Function__info
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr (StdMap StdString (Ptr GenericType')))
+
+casadi__Function__info
+  :: Function -> IO (M.Map String GenericType)
+casadi__Function__info x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__info errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+function_info :: FunctionClass a => a -> IO (M.Map String GenericType)
+function_info x = casadi__Function__info (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__instruction_MX" c_casadi__Function__instruction_MX
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr MX')
+
+casadi__Function__instruction_MX
+  :: Function -> Int -> IO MX
+casadi__Function__instruction_MX x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__instruction_MX errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_instruction_MX :: FunctionClass a => a -> Int -> IO MX
+function_instruction_MX x = casadi__Function__instruction_MX (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__instruction_constant" c_casadi__Function__instruction_constant
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CDouble
+
+casadi__Function__instruction_constant
+  :: Function -> Int -> IO Double
+casadi__Function__instruction_constant x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__instruction_constant errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_instruction_constant :: FunctionClass a => a -> Int -> IO Double
+function_instruction_constant x = casadi__Function__instruction_constant (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__instruction_id" c_casadi__Function__instruction_id
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
+
+casadi__Function__instruction_id
+  :: Function -> Int -> IO Int
+casadi__Function__instruction_id x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__instruction_id errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_instruction_id :: FunctionClass a => a -> Int -> IO Int
+function_instruction_id x = casadi__Function__instruction_id (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__instruction_input" c_casadi__Function__instruction_input
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr (StdVec CLLong))
+
+casadi__Function__instruction_input
+  :: Function -> Int -> IO (Vector Int)
+casadi__Function__instruction_input x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__instruction_input errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_instruction_input :: FunctionClass a => a -> Int -> IO (Vector Int)
+function_instruction_input x = casadi__Function__instruction_input (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__instruction_output" c_casadi__Function__instruction_output
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr (StdVec CLLong))
+
+casadi__Function__instruction_output
+  :: Function -> Int -> IO (Vector Int)
+casadi__Function__instruction_output x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__instruction_output errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_instruction_output :: FunctionClass a => a -> Int -> IO (Vector Int)
+function_instruction_output x = casadi__Function__instruction_output (castFunction x)
 
 
 -- direct wrapper
@@ -2799,342 +3087,16 @@ function_is_a__1 x = casadi__Function__is_a__1 (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__0" c_casadi__Function__jacobian__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> IO (Ptr Function')
-
-casadi__Function__jacobian__0
-  :: Function -> String -> String -> IO Function
-casadi__Function__jacobian__0 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__0 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__0 :: FunctionClass a => a -> String -> String -> IO Function
-function_jacobian__0 x = casadi__Function__jacobian__0 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__1" c_casadi__Function__jacobian__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CInt -> IO (Ptr Function')
-
-casadi__Function__jacobian__1
-  :: Function -> String -> String -> Bool -> IO Function
-casadi__Function__jacobian__1 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__1 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__1 :: FunctionClass a => a -> String -> String -> Bool -> IO Function
-function_jacobian__1 x = casadi__Function__jacobian__1 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__2" c_casadi__Function__jacobian__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CInt -> CInt -> IO (Ptr Function')
-
-casadi__Function__jacobian__2
-  :: Function -> String -> String -> Bool -> Bool -> IO Function
-casadi__Function__jacobian__2 x0 x1 x2 x3 x4 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-  x4' <- marshal x4
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__2 errStrPtrP x0' x1' x2' x3' x4'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-  marshalFree x4 x4'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__2 :: FunctionClass a => a -> String -> String -> Bool -> Bool -> IO Function
-function_jacobian__2 x = casadi__Function__jacobian__2 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__3" c_casadi__Function__jacobian__3
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> IO (Ptr Function')
-
-casadi__Function__jacobian__3
-  :: Function -> Int -> String -> IO Function
-casadi__Function__jacobian__3 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__3 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__3 :: FunctionClass a => a -> Int -> String -> IO Function
-function_jacobian__3 x = casadi__Function__jacobian__3 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__4" c_casadi__Function__jacobian__4
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> CInt -> IO (Ptr Function')
-
-casadi__Function__jacobian__4
-  :: Function -> Int -> String -> Bool -> IO Function
-casadi__Function__jacobian__4 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__4 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__4 :: FunctionClass a => a -> Int -> String -> Bool -> IO Function
-function_jacobian__4 x = casadi__Function__jacobian__4 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__5" c_casadi__Function__jacobian__5
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> CInt -> CInt -> IO (Ptr Function')
-
-casadi__Function__jacobian__5
-  :: Function -> Int -> String -> Bool -> Bool -> IO Function
-casadi__Function__jacobian__5 x0 x1 x2 x3 x4 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-  x4' <- marshal x4
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__5 errStrPtrP x0' x1' x2' x3' x4'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-  marshalFree x4 x4'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__5 :: FunctionClass a => a -> Int -> String -> Bool -> Bool -> IO Function
-function_jacobian__5 x = casadi__Function__jacobian__5 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__6" c_casadi__Function__jacobian__6
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr Function')
-
-casadi__Function__jacobian__6
-  :: Function -> String -> IO Function
-casadi__Function__jacobian__6 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__6 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__6 :: FunctionClass a => a -> String -> IO Function
-function_jacobian__6 x = casadi__Function__jacobian__6 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__7" c_casadi__Function__jacobian__7
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> IO (Ptr Function')
-
-casadi__Function__jacobian__7
-  :: Function -> String -> Int -> IO Function
-casadi__Function__jacobian__7 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__7 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__7 :: FunctionClass a => a -> String -> Int -> IO Function
-function_jacobian__7 x = casadi__Function__jacobian__7 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__8" c_casadi__Function__jacobian__8
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> CInt -> IO (Ptr Function')
-
-casadi__Function__jacobian__8
-  :: Function -> String -> Int -> Bool -> IO Function
-casadi__Function__jacobian__8 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__8 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__8 :: FunctionClass a => a -> String -> Int -> Bool -> IO Function
-function_jacobian__8 x = casadi__Function__jacobian__8 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__9" c_casadi__Function__jacobian__9
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> CInt -> CInt -> IO (Ptr Function')
-
-casadi__Function__jacobian__9
-  :: Function -> String -> Int -> Bool -> Bool -> IO Function
-casadi__Function__jacobian__9 x0 x1 x2 x3 x4 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-  x4' <- marshal x4
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__9 errStrPtrP x0' x1' x2' x3' x4'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-  marshalFree x4 x4'
-
-  return ret
-
-
-
--- classy wrapper
-function_jacobian__9 :: FunctionClass a => a -> String -> Int -> Bool -> Bool -> IO Function
-function_jacobian__9 x = casadi__Function__jacobian__9 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__10" c_casadi__Function__jacobian__10
+foreign import ccall unsafe "casadi__Function__jac" c_casadi__Function__jac
   :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr Function')
 
-casadi__Function__jacobian__10
+casadi__Function__jac
   :: Function -> IO Function
-casadi__Function__jacobian__10 x0 = do
+casadi__Function__jac x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__10 errStrPtrP x0'
+  ret0 <- c_casadi__Function__jac errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3147,52 +3109,50 @@ casadi__Function__jacobian__10 x0 = do
 
 
 -- classy wrapper
-function_jacobian__10 :: FunctionClass a => a -> IO Function
-function_jacobian__10 x = casadi__Function__jacobian__10 (castFunction x)
+function_jac :: FunctionClass a => a -> IO Function
+function_jac x = casadi__Function__jac (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__11" c_casadi__Function__jacobian__11
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Function')
+foreign import ccall safe "casadi__Function__jacobian" c_casadi__Function__jacobian
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr Function')
 
-casadi__Function__jacobian__11
-  :: Function -> Int -> IO Function
-casadi__Function__jacobian__11 x0 x1 = do
+casadi__Function__jacobian
+  :: Function -> IO Function
+casadi__Function__jacobian x0 = do
   x0' <- marshal x0
-  x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__11 errStrPtrP x0' x1'
+  ret0 <- c_casadi__Function__jacobian errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
-  marshalFree x1 x1'
 
   return ret
 
 
 
 -- classy wrapper
-function_jacobian__11 :: FunctionClass a => a -> Int -> IO Function
-function_jacobian__11 x = casadi__Function__jacobian__11 (castFunction x)
+function_jacobian :: FunctionClass a => a -> IO Function
+function_jacobian x = casadi__Function__jacobian (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__12" c_casadi__Function__jacobian__12
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> IO (Ptr Function')
+foreign import ccall safe "casadi__Function__jacobian_old" c_casadi__Function__jacobian_old
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> IO (Ptr Function')
 
-casadi__Function__jacobian__12
+casadi__Function__jacobian_old
   :: Function -> Int -> Int -> IO Function
-casadi__Function__jacobian__12 x0 x1 x2 = do
+casadi__Function__jacobian_old x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__12 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__Function__jacobian_old errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3207,24 +3167,100 @@ casadi__Function__jacobian__12 x0 x1 x2 = do
 
 
 -- classy wrapper
-function_jacobian__12 :: FunctionClass a => a -> Int -> Int -> IO Function
-function_jacobian__12 x = casadi__Function__jacobian__12 (castFunction x)
+function_jacobian_old :: FunctionClass a => a -> Int -> Int -> IO Function
+function_jacobian_old x = casadi__Function__jacobian_old (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__13" c_casadi__Function__jacobian__13
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> CInt -> IO (Ptr Function')
+foreign import ccall unsafe "casadi__Function__jit__0" c_casadi__Function__jit__0
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr Sparsity')) -> Ptr (StdVec (Ptr Sparsity')) -> IO (Ptr Function')
 
-casadi__Function__jacobian__13
-  :: Function -> Int -> Int -> Bool -> IO Function
-casadi__Function__jacobian__13 x0 x1 x2 x3 = do
+casadi__Function__jit__0
+  :: String -> String -> Vector String -> Vector String -> Vector Sparsity -> Vector Sparsity -> IO Function
+casadi__Function__jit__0 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__jit__0 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ret
+
+
+
+-- classy wrapper
+function_jit__0 :: String -> String -> Vector String -> Vector String -> Vector Sparsity -> Vector Sparsity -> IO Function
+function_jit__0 = casadi__Function__jit__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__jit__1" c_casadi__Function__jit__1
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr Sparsity')) -> Ptr (StdVec (Ptr Sparsity')) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__Function__jit__1
+  :: String -> String -> Vector String -> Vector String -> Vector Sparsity -> Vector Sparsity -> M.Map String GenericType -> IO Function
+casadi__Function__jit__1 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__jit__1 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ret
+
+
+
+-- classy wrapper
+function_jit__1 :: String -> String -> Vector String -> Vector String -> Vector Sparsity -> Vector Sparsity -> M.Map String GenericType -> IO Function
+function_jit__1 = casadi__Function__jit__1
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__jit__2" c_casadi__Function__jit__2
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr Function')
+
+casadi__Function__jit__2
+  :: String -> String -> Vector String -> Vector String -> IO Function
+casadi__Function__jit__2 x0 x1 x2 x3 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
   x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__13 errStrPtrP x0' x1' x2' x3'
+  ret0 <- c_casadi__Function__jit__2 errStrPtrP x0' x1' x2' x3'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3240,17 +3276,17 @@ casadi__Function__jacobian__13 x0 x1 x2 x3 = do
 
 
 -- classy wrapper
-function_jacobian__13 :: FunctionClass a => a -> Int -> Int -> Bool -> IO Function
-function_jacobian__13 x = casadi__Function__jacobian__13 (castFunction x)
+function_jit__2 :: String -> String -> Vector String -> Vector String -> IO Function
+function_jit__2 = casadi__Function__jit__2
 
 
 -- direct wrapper
-foreign import ccall safe "casadi__Function__jacobian__14" c_casadi__Function__jacobian__14
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> CInt -> CInt -> IO (Ptr Function')
+foreign import ccall unsafe "casadi__Function__jit__3" c_casadi__Function__jit__3
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
-casadi__Function__jacobian__14
-  :: Function -> Int -> Int -> Bool -> Bool -> IO Function
-casadi__Function__jacobian__14 x0 x1 x2 x3 x4 = do
+casadi__Function__jit__3
+  :: String -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+casadi__Function__jit__3 x0 x1 x2 x3 x4 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
@@ -3258,7 +3294,7 @@ casadi__Function__jacobian__14 x0 x1 x2 x3 x4 = do
   x4' <- marshal x4
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__jacobian__14 errStrPtrP x0' x1' x2' x3' x4'
+  ret0 <- c_casadi__Function__jit__3 errStrPtrP x0' x1' x2' x3' x4'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3275,13 +3311,13 @@ casadi__Function__jacobian__14 x0 x1 x2 x3 x4 = do
 
 
 -- classy wrapper
-function_jacobian__14 :: FunctionClass a => a -> Int -> Int -> Bool -> Bool -> IO Function
-function_jacobian__14 x = casadi__Function__jacobian__14 (castFunction x)
+function_jit__3 :: String -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+function_jit__3 = casadi__Function__jit__3
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__map__0" c_casadi__Function__map__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CInt -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CLLong -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr Function')
 
 casadi__Function__map__0
   :: Function -> String -> String -> Int -> Vector String -> Vector String -> IO Function
@@ -3318,7 +3354,7 @@ function_map__0 x = casadi__Function__map__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__map__1" c_casadi__Function__map__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CInt -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CLLong -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Function__map__1
   :: Function -> String -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
@@ -3357,7 +3393,7 @@ function_map__1 x = casadi__Function__map__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__map__2" c_casadi__Function__map__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr Function')
 
 casadi__Function__map__2
   :: Function -> String -> String -> Int -> Vector Int -> Vector Int -> IO Function
@@ -3394,7 +3430,7 @@ function_map__2 x = casadi__Function__map__2 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__map__3" c_casadi__Function__map__3
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr StdString -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Function__map__3
   :: Function -> String -> String -> Int -> Vector Int -> Vector Int -> M.Map String GenericType -> IO Function
@@ -3433,16 +3469,18 @@ function_map__3 x = casadi__Function__map__3 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__map__4" c_casadi__Function__map__4
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> Ptr StdString -> CLLong -> IO (Ptr Function')
 
 casadi__Function__map__4
-  :: Function -> Int -> IO Function
-casadi__Function__map__4 x0 x1 = do
+  :: Function -> Int -> String -> Int -> IO Function
+casadi__Function__map__4 x0 x1 x2 x3 = do
   x0' <- marshal x0
   x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__map__4 errStrPtrP x0' x1'
+  ret0 <- c_casadi__Function__map__4 errStrPtrP x0' x1' x2' x3'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3450,29 +3488,30 @@ casadi__Function__map__4 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
 
   return ret
 
 
 
 -- classy wrapper
-function_map__4 :: FunctionClass a => a -> Int -> IO Function
+function_map__4 :: FunctionClass a => a -> Int -> String -> Int -> IO Function
 function_map__4 x = casadi__Function__map__4 (castFunction x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__map__5" c_casadi__Function__map__5
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Function')
 
 casadi__Function__map__5
-  :: Function -> Int -> String -> IO Function
-casadi__Function__map__5 x0 x1 x2 = do
+  :: Function -> Int -> IO Function
+casadi__Function__map__5 x0 x1 = do
   x0' <- marshal x0
   x1' <- marshal x1
-  x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__map__5 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__Function__map__5 errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3480,32 +3519,29 @@ casadi__Function__map__5 x0 x1 x2 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
-  marshalFree x2 x2'
 
   return ret
 
 
 
 -- classy wrapper
-function_map__5 :: FunctionClass a => a -> Int -> String -> IO Function
+function_map__5 :: FunctionClass a => a -> Int -> IO Function
 function_map__5 x = casadi__Function__map__5 (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__mapaccum__0" c_casadi__Function__mapaccum__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr Function')
+foreign import ccall unsafe "casadi__Function__map__6" c_casadi__Function__map__6
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> Ptr StdString -> IO (Ptr Function')
 
-casadi__Function__mapaccum__0
-  :: Function -> String -> Int -> Vector String -> Vector String -> IO Function
-casadi__Function__mapaccum__0 x0 x1 x2 x3 x4 = do
+casadi__Function__map__6
+  :: Function -> Int -> String -> IO Function
+casadi__Function__map__6 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
-  x3' <- marshal x3
-  x4' <- marshal x4
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__mapaccum__0 errStrPtrP x0' x1' x2' x3' x4'
+  ret0 <- c_casadi__Function__map__6 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3514,34 +3550,58 @@ casadi__Function__mapaccum__0 x0 x1 x2 x3 x4 = do
   marshalFree x0 x0'
   marshalFree x1 x1'
   marshalFree x2 x2'
-  marshalFree x3 x3'
-  marshalFree x4 x4'
 
   return ret
 
 
 
 -- classy wrapper
-function_mapaccum__0 :: FunctionClass a => a -> String -> Int -> Vector String -> Vector String -> IO Function
+function_map__6 :: FunctionClass a => a -> Int -> String -> IO Function
+function_map__6 x = casadi__Function__map__6 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__mapaccum__0" c_casadi__Function__mapaccum__0
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Function')
+
+casadi__Function__mapaccum__0
+  :: Function -> Int -> IO Function
+casadi__Function__mapaccum__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__mapaccum__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_mapaccum__0 :: FunctionClass a => a -> Int -> IO Function
 function_mapaccum__0 x = casadi__Function__mapaccum__0 (castFunction x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__mapaccum__1" c_casadi__Function__mapaccum__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Function__mapaccum__1
-  :: Function -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
-casadi__Function__mapaccum__1 x0 x1 x2 x3 x4 x5 = do
+  :: Function -> Int -> M.Map String GenericType -> IO Function
+casadi__Function__mapaccum__1 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
-  x3' <- marshal x3
-  x4' <- marshal x4
-  x5' <- marshal x5
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__mapaccum__1 errStrPtrP x0' x1' x2' x3' x4' x5'
+  ret0 <- c_casadi__Function__mapaccum__1 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3550,25 +3610,22 @@ casadi__Function__mapaccum__1 x0 x1 x2 x3 x4 x5 = do
   marshalFree x0 x0'
   marshalFree x1 x1'
   marshalFree x2 x2'
-  marshalFree x3 x3'
-  marshalFree x4 x4'
-  marshalFree x5 x5'
 
   return ret
 
 
 
 -- classy wrapper
-function_mapaccum__1 :: FunctionClass a => a -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+function_mapaccum__1 :: FunctionClass a => a -> Int -> M.Map String GenericType -> IO Function
 function_mapaccum__1 x = casadi__Function__mapaccum__1 (castFunction x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__mapaccum__2" c_casadi__Function__mapaccum__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr Function')
 
 casadi__Function__mapaccum__2
-  :: Function -> String -> Int -> Vector Int -> Vector Int -> IO Function
+  :: Function -> String -> Int -> Vector String -> Vector String -> IO Function
 casadi__Function__mapaccum__2 x0 x1 x2 x3 x4 = do
   x0' <- marshal x0
   x1' <- marshal x1
@@ -3594,16 +3651,16 @@ casadi__Function__mapaccum__2 x0 x1 x2 x3 x4 = do
 
 
 -- classy wrapper
-function_mapaccum__2 :: FunctionClass a => a -> String -> Int -> Vector Int -> Vector Int -> IO Function
+function_mapaccum__2 :: FunctionClass a => a -> String -> Int -> Vector String -> Vector String -> IO Function
 function_mapaccum__2 x = casadi__Function__mapaccum__2 (castFunction x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__mapaccum__3" c_casadi__Function__mapaccum__3
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Function__mapaccum__3
-  :: Function -> String -> Int -> Vector Int -> Vector Int -> M.Map String GenericType -> IO Function
+  :: Function -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
 casadi__Function__mapaccum__3 x0 x1 x2 x3 x4 x5 = do
   x0' <- marshal x0
   x1' <- marshal x1
@@ -3631,81 +3688,17 @@ casadi__Function__mapaccum__3 x0 x1 x2 x3 x4 x5 = do
 
 
 -- classy wrapper
-function_mapaccum__3 :: FunctionClass a => a -> String -> Int -> Vector Int -> Vector Int -> M.Map String GenericType -> IO Function
+function_mapaccum__3 :: FunctionClass a => a -> String -> Int -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
 function_mapaccum__3 x = casadi__Function__mapaccum__3 (castFunction x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__mapaccum__4" c_casadi__Function__mapaccum__4
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr Function')
 
 casadi__Function__mapaccum__4
-  :: Function -> String -> Int -> IO Function
-casadi__Function__mapaccum__4 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__mapaccum__4 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
--- classy wrapper
-function_mapaccum__4 :: FunctionClass a => a -> String -> Int -> IO Function
-function_mapaccum__4 x = casadi__Function__mapaccum__4 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__mapaccum__5" c_casadi__Function__mapaccum__5
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> CInt -> IO (Ptr Function')
-
-casadi__Function__mapaccum__5
-  :: Function -> String -> Int -> Int -> IO Function
-casadi__Function__mapaccum__5 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__mapaccum__5 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
--- classy wrapper
-function_mapaccum__5 :: FunctionClass a => a -> String -> Int -> Int -> IO Function
-function_mapaccum__5 x = casadi__Function__mapaccum__5 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__mapaccum__6" c_casadi__Function__mapaccum__6
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> CInt -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
-
-casadi__Function__mapaccum__6
-  :: Function -> String -> Int -> Int -> M.Map String GenericType -> IO Function
-casadi__Function__mapaccum__6 x0 x1 x2 x3 x4 = do
+  :: Function -> String -> Int -> Vector Int -> Vector Int -> IO Function
+casadi__Function__mapaccum__4 x0 x1 x2 x3 x4 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
@@ -3713,7 +3706,7 @@ casadi__Function__mapaccum__6 x0 x1 x2 x3 x4 = do
   x4' <- marshal x4
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__mapaccum__6 errStrPtrP x0' x1' x2' x3' x4'
+  ret0 <- c_casadi__Function__mapaccum__4 errStrPtrP x0' x1' x2' x3' x4'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -3730,8 +3723,177 @@ casadi__Function__mapaccum__6 x0 x1 x2 x3 x4 = do
 
 
 -- classy wrapper
-function_mapaccum__6 :: FunctionClass a => a -> String -> Int -> Int -> M.Map String GenericType -> IO Function
+function_mapaccum__4 :: FunctionClass a => a -> String -> Int -> Vector Int -> Vector Int -> IO Function
+function_mapaccum__4 x = casadi__Function__mapaccum__4 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__mapaccum__5" c_casadi__Function__mapaccum__5
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__Function__mapaccum__5
+  :: Function -> String -> Int -> Vector Int -> Vector Int -> M.Map String GenericType -> IO Function
+casadi__Function__mapaccum__5 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__mapaccum__5 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ret
+
+
+
+-- classy wrapper
+function_mapaccum__5 :: FunctionClass a => a -> String -> Int -> Vector Int -> Vector Int -> M.Map String GenericType -> IO Function
+function_mapaccum__5 x = casadi__Function__mapaccum__5 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__mapaccum__6" c_casadi__Function__mapaccum__6
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> CLLong -> IO (Ptr Function')
+
+casadi__Function__mapaccum__6
+  :: Function -> String -> Int -> Int -> IO Function
+casadi__Function__mapaccum__6 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__mapaccum__6 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+function_mapaccum__6 :: FunctionClass a => a -> String -> Int -> Int -> IO Function
 function_mapaccum__6 x = casadi__Function__mapaccum__6 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__mapaccum__7" c_casadi__Function__mapaccum__7
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> CLLong -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__Function__mapaccum__7
+  :: Function -> String -> Int -> Int -> M.Map String GenericType -> IO Function
+casadi__Function__mapaccum__7 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__mapaccum__7 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ret
+
+
+
+-- classy wrapper
+function_mapaccum__7 :: FunctionClass a => a -> String -> Int -> Int -> M.Map String GenericType -> IO Function
+function_mapaccum__7 x = casadi__Function__mapaccum__7 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__mapaccum__8" c_casadi__Function__mapaccum__8
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> IO (Ptr Function')
+
+casadi__Function__mapaccum__8
+  :: Function -> String -> Int -> IO Function
+casadi__Function__mapaccum__8 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__mapaccum__8 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+function_mapaccum__8 :: FunctionClass a => a -> String -> Int -> IO Function
+function_mapaccum__8 x = casadi__Function__mapaccum__8 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__mapaccum__9" c_casadi__Function__mapaccum__9
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__Function__mapaccum__9
+  :: Function -> String -> Int -> M.Map String GenericType -> IO Function
+casadi__Function__mapaccum__9 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__mapaccum__9 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+function_mapaccum__9 :: FunctionClass a => a -> String -> Int -> M.Map String GenericType -> IO Function
+function_mapaccum__9 x = casadi__Function__mapaccum__9 (castFunction x)
 
 
 -- direct wrapper
@@ -3795,6 +3957,64 @@ function_mapsum__1 x = casadi__Function__mapsum__1 (castFunction x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Function__max_in" c_casadi__Function__max_in
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CDouble
+
+casadi__Function__max_in
+  :: Function -> Int -> IO Double
+casadi__Function__max_in x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__max_in errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_max_in :: FunctionClass a => a -> Int -> IO Double
+function_max_in x = casadi__Function__max_in (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__min_in" c_casadi__Function__min_in
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CDouble
+
+casadi__Function__min_in
+  :: Function -> Int -> IO Double
+casadi__Function__min_in x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__min_in errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+function_min_in :: FunctionClass a => a -> Int -> IO Double
+function_min_in x = casadi__Function__min_in (castFunction x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Function__mx_in__0" c_casadi__Function__mx_in__0
   :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr (StdVec (Ptr MX')))
 
@@ -3852,7 +4072,7 @@ function_mx_in__1 x = casadi__Function__mx_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__mx_in__2" c_casadi__Function__mx_in__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr MX')
 
 casadi__Function__mx_in__2
   :: Function -> Int -> IO MX
@@ -3937,7 +4157,7 @@ function_mx_out__1 x = casadi__Function__mx_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__mx_out__2" c_casadi__Function__mx_out__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr MX')
 
 casadi__Function__mx_out__2
   :: Function -> Int -> IO MX
@@ -3966,7 +4186,7 @@ function_mx_out__2 x = casadi__Function__mx_out__2 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__n_in" c_casadi__Function__n_in
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__n_in
   :: Function -> IO Int
@@ -3992,8 +4212,35 @@ function_n_in x = casadi__Function__n_in (castFunction x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__Function__n_instructions" c_casadi__Function__n_instructions
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
+
+casadi__Function__n_instructions
+  :: Function -> IO Int
+casadi__Function__n_instructions x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__n_instructions errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+function_n_instructions :: FunctionClass a => a -> IO Int
+function_n_instructions x = casadi__Function__n_instructions (castFunction x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__Function__n_nodes" c_casadi__Function__n_nodes
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__n_nodes
   :: Function -> IO Int
@@ -4020,7 +4267,7 @@ function_n_nodes x = casadi__Function__n_nodes (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__n_out" c_casadi__Function__n_out
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__n_out
   :: Function -> IO Int
@@ -4074,7 +4321,7 @@ function_name x = casadi__Function__name (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__name_in__0" c_casadi__Function__name_in__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr StdString)
 
 casadi__Function__name_in__0
   :: Function -> Int -> IO String
@@ -4130,7 +4377,7 @@ function_name_in__1 x = casadi__Function__name_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__name_out__0" c_casadi__Function__name_out__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr StdString)
 
 casadi__Function__name_out__0
   :: Function -> Int -> IO String
@@ -4186,7 +4433,7 @@ function_name_out__1 x = casadi__Function__name_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__nnz_in__0" c_casadi__Function__nnz_in__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__nnz_in__0
   :: Function -> String -> IO Int
@@ -4215,7 +4462,7 @@ function_nnz_in__0 x = casadi__Function__nnz_in__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__nnz_in__1" c_casadi__Function__nnz_in__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__nnz_in__1
   :: Function -> Int -> IO Int
@@ -4244,7 +4491,7 @@ function_nnz_in__1 x = casadi__Function__nnz_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__nnz_in__2" c_casadi__Function__nnz_in__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__nnz_in__2
   :: Function -> IO Int
@@ -4271,7 +4518,7 @@ function_nnz_in__2 x = casadi__Function__nnz_in__2 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__nnz_out__0" c_casadi__Function__nnz_out__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__nnz_out__0
   :: Function -> String -> IO Int
@@ -4300,7 +4547,7 @@ function_nnz_out__0 x = casadi__Function__nnz_out__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__nnz_out__1" c_casadi__Function__nnz_out__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__nnz_out__1
   :: Function -> Int -> IO Int
@@ -4329,7 +4576,7 @@ function_nnz_out__1 x = casadi__Function__nnz_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__nnz_out__2" c_casadi__Function__nnz_out__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__nnz_out__2
   :: Function -> IO Int
@@ -4356,7 +4603,7 @@ function_nnz_out__2 x = casadi__Function__nnz_out__2 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__numel_in__0" c_casadi__Function__numel_in__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__numel_in__0
   :: Function -> String -> IO Int
@@ -4385,7 +4632,7 @@ function_numel_in__0 x = casadi__Function__numel_in__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__numel_in__1" c_casadi__Function__numel_in__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__numel_in__1
   :: Function -> Int -> IO Int
@@ -4414,7 +4661,7 @@ function_numel_in__1 x = casadi__Function__numel_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__numel_in__2" c_casadi__Function__numel_in__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__numel_in__2
   :: Function -> IO Int
@@ -4441,7 +4688,7 @@ function_numel_in__2 x = casadi__Function__numel_in__2 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__numel_out__0" c_casadi__Function__numel_out__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__numel_out__0
   :: Function -> String -> IO Int
@@ -4470,7 +4717,7 @@ function_numel_out__0 x = casadi__Function__numel_out__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__numel_out__1" c_casadi__Function__numel_out__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__numel_out__1
   :: Function -> Int -> IO Int
@@ -4499,7 +4746,7 @@ function_numel_out__1 x = casadi__Function__numel_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__numel_out__2" c_casadi__Function__numel_out__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CLLong
 
 casadi__Function__numel_out__2
   :: Function -> IO Int
@@ -4579,33 +4826,6 @@ function_print_dimensions x = casadi__Function__print_dimensions (castFunction x
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__print_free" c_casadi__Function__print_free
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO ()
-
-casadi__Function__print_free
-  :: Function -> IO ()
-casadi__Function__print_free x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__print_free errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ()
-
-
-
--- classy wrapper
-function_print_free :: FunctionClass a => a -> IO ()
-function_print_free x = casadi__Function__print_free (castFunction x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__Function__print_option" c_casadi__Function__print_option
   :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO ()
 
@@ -4663,7 +4883,7 @@ function_print_options x = casadi__Function__print_options (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__release" c_casadi__Function__release
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO ()
 
 casadi__Function__release
   :: Function -> Int -> IO ()
@@ -4692,7 +4912,7 @@ function_release x = casadi__Function__release (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__reverse" c_casadi__Function__reverse
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Function')
 
 casadi__Function__reverse
   :: Function -> Int -> IO Function
@@ -4720,37 +4940,35 @@ function_reverse x = casadi__Function__reverse (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__setFullJacobian" c_casadi__Function__setFullJacobian
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr Function' -> IO ()
+foreign import ccall unsafe "casadi__Function__serialize" c_casadi__Function__serialize
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr StdString)
 
-casadi__Function__setFullJacobian
-  :: Function -> Function -> IO ()
-casadi__Function__setFullJacobian x0 x1 = do
+casadi__Function__serialize
+  :: Function -> IO String
+casadi__Function__serialize x0 = do
   x0' <- marshal x0
-  x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__setFullJacobian errStrPtrP x0' x1'
+  ret0 <- c_casadi__Function__serialize errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
-  marshalFree x1 x1'
 
-  return ()
+  return ret
 
 
 
 -- classy wrapper
-function_setFullJacobian :: FunctionClass a => a -> Function -> IO ()
-function_setFullJacobian x = casadi__Function__setFullJacobian (castFunction x)
+function_serialize :: FunctionClass a => a -> IO String
+function_serialize x = casadi__Function__serialize (castFunction x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size1_in__0" c_casadi__Function__size1_in__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__size1_in__0
   :: Function -> String -> IO Int
@@ -4779,7 +4997,7 @@ function_size1_in__0 x = casadi__Function__size1_in__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size1_in__1" c_casadi__Function__size1_in__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__size1_in__1
   :: Function -> Int -> IO Int
@@ -4808,7 +5026,7 @@ function_size1_in__1 x = casadi__Function__size1_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size1_out__0" c_casadi__Function__size1_out__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__size1_out__0
   :: Function -> String -> IO Int
@@ -4837,7 +5055,7 @@ function_size1_out__0 x = casadi__Function__size1_out__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size1_out__1" c_casadi__Function__size1_out__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__size1_out__1
   :: Function -> Int -> IO Int
@@ -4866,7 +5084,7 @@ function_size1_out__1 x = casadi__Function__size1_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size2_in__0" c_casadi__Function__size2_in__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__size2_in__0
   :: Function -> String -> IO Int
@@ -4895,7 +5113,7 @@ function_size2_in__0 x = casadi__Function__size2_in__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size2_in__1" c_casadi__Function__size2_in__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__size2_in__1
   :: Function -> Int -> IO Int
@@ -4924,7 +5142,7 @@ function_size2_in__1 x = casadi__Function__size2_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size2_out__0" c_casadi__Function__size2_out__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO CLLong
 
 casadi__Function__size2_out__0
   :: Function -> String -> IO Int
@@ -4953,7 +5171,7 @@ function_size2_out__0 x = casadi__Function__size2_out__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size2_out__1" c_casadi__Function__size2_out__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO CLLong
 
 casadi__Function__size2_out__1
   :: Function -> Int -> IO Int
@@ -4982,7 +5200,7 @@ function_size2_out__1 x = casadi__Function__size2_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size_in__0" c_casadi__Function__size_in__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr (StdPair CInt CInt))
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr (StdPair CLLong CLLong))
 
 casadi__Function__size_in__0
   :: Function -> String -> IO (Int, Int)
@@ -5011,7 +5229,7 @@ function_size_in__0 x = casadi__Function__size_in__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size_in__1" c_casadi__Function__size_in__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr (StdPair CInt CInt))
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr (StdPair CLLong CLLong))
 
 casadi__Function__size_in__1
   :: Function -> Int -> IO (Int, Int)
@@ -5040,7 +5258,7 @@ function_size_in__1 x = casadi__Function__size_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size_out__0" c_casadi__Function__size_out__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr (StdPair CInt CInt))
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr (StdPair CLLong CLLong))
 
 casadi__Function__size_out__0
   :: Function -> String -> IO (Int, Int)
@@ -5069,7 +5287,7 @@ function_size_out__0 x = casadi__Function__size_out__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__size_out__1" c_casadi__Function__size_out__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr (StdPair CInt CInt))
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr (StdPair CLLong CLLong))
 
 casadi__Function__size_out__1
   :: Function -> Int -> IO (Int, Int)
@@ -5098,7 +5316,7 @@ function_size_out__1 x = casadi__Function__size_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__slice__0" c_casadi__Function__slice__0
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr Function')
 
 casadi__Function__slice__0
   :: Function -> String -> Vector Int -> Vector Int -> IO Function
@@ -5131,7 +5349,7 @@ function_slice__0 x = casadi__Function__slice__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__slice__1" c_casadi__Function__slice__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 casadi__Function__slice__1
   :: Function -> String -> Vector Int -> Vector Int -> M.Map String GenericType -> IO Function
@@ -5165,35 +5383,6 @@ function_slice__1 x = casadi__Function__slice__1 (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__spCanEvaluate" c_casadi__Function__spCanEvaluate
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO CInt
-
-casadi__Function__spCanEvaluate
-  :: Function -> Bool -> IO Bool
-casadi__Function__spCanEvaluate x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__spCanEvaluate errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_spCanEvaluate :: FunctionClass a => a -> Bool -> IO Bool
-function_spCanEvaluate x = casadi__Function__spCanEvaluate (castFunction x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_in__0" c_casadi__Function__sparsity_in__0
   :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO (Ptr Sparsity')
 
@@ -5224,7 +5413,7 @@ function_sparsity_in__0 x = casadi__Function__sparsity_in__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_in__1" c_casadi__Function__sparsity_in__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_in__1
   :: Function -> Int -> IO Sparsity
@@ -5352,7 +5541,7 @@ function_sparsity_jac__2 x = casadi__Function__sparsity_jac__2 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_jac__3" c_casadi__Function__sparsity_jac__3
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> Ptr StdString -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_jac__3
   :: Function -> Int -> String -> IO Sparsity
@@ -5383,7 +5572,7 @@ function_sparsity_jac__3 x = casadi__Function__sparsity_jac__3 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_jac__4" c_casadi__Function__sparsity_jac__4
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> Ptr StdString -> CInt -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_jac__4
   :: Function -> Int -> String -> Bool -> IO Sparsity
@@ -5416,7 +5605,7 @@ function_sparsity_jac__4 x = casadi__Function__sparsity_jac__4 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_jac__5" c_casadi__Function__sparsity_jac__5
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> Ptr StdString -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> Ptr StdString -> CInt -> CInt -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_jac__5
   :: Function -> Int -> String -> Bool -> Bool -> IO Sparsity
@@ -5480,7 +5669,7 @@ function_sparsity_jac__6 x = casadi__Function__sparsity_jac__6 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_jac__7" c_casadi__Function__sparsity_jac__7
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_jac__7
   :: Function -> String -> Int -> IO Sparsity
@@ -5511,7 +5700,7 @@ function_sparsity_jac__7 x = casadi__Function__sparsity_jac__7 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_jac__8" c_casadi__Function__sparsity_jac__8
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> CInt -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_jac__8
   :: Function -> String -> Int -> Bool -> IO Sparsity
@@ -5544,7 +5733,7 @@ function_sparsity_jac__8 x = casadi__Function__sparsity_jac__8 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_jac__9" c_casadi__Function__sparsity_jac__9
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CInt -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> CLLong -> CInt -> CInt -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_jac__9
   :: Function -> String -> Int -> Bool -> Bool -> IO Sparsity
@@ -5579,73 +5768,17 @@ function_sparsity_jac__9 x = casadi__Function__sparsity_jac__9 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_jac__10" c_casadi__Function__sparsity_jac__10
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_jac__10
-  :: Function -> IO Sparsity
-casadi__Function__sparsity_jac__10 x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__sparsity_jac__10 errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-function_sparsity_jac__10 :: FunctionClass a => a -> IO Sparsity
-function_sparsity_jac__10 x = casadi__Function__sparsity_jac__10 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__sparsity_jac__11" c_casadi__Function__sparsity_jac__11
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Sparsity')
-
-casadi__Function__sparsity_jac__11
-  :: Function -> Int -> IO Sparsity
-casadi__Function__sparsity_jac__11 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__sparsity_jac__11 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-function_sparsity_jac__11 :: FunctionClass a => a -> Int -> IO Sparsity
-function_sparsity_jac__11 x = casadi__Function__sparsity_jac__11 (castFunction x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__Function__sparsity_jac__12" c_casadi__Function__sparsity_jac__12
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> IO (Ptr Sparsity')
-
-casadi__Function__sparsity_jac__12
   :: Function -> Int -> Int -> IO Sparsity
-casadi__Function__sparsity_jac__12 x0 x1 x2 = do
+casadi__Function__sparsity_jac__10 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__sparsity_jac__12 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__Function__sparsity_jac__10 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -5660,24 +5793,24 @@ casadi__Function__sparsity_jac__12 x0 x1 x2 = do
 
 
 -- classy wrapper
-function_sparsity_jac__12 :: FunctionClass a => a -> Int -> Int -> IO Sparsity
-function_sparsity_jac__12 x = casadi__Function__sparsity_jac__12 (castFunction x)
+function_sparsity_jac__10 :: FunctionClass a => a -> Int -> Int -> IO Sparsity
+function_sparsity_jac__10 x = casadi__Function__sparsity_jac__10 (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__sparsity_jac__13" c_casadi__Function__sparsity_jac__13
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> CInt -> IO (Ptr Sparsity')
+foreign import ccall unsafe "casadi__Function__sparsity_jac__11" c_casadi__Function__sparsity_jac__11
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> CInt -> IO (Ptr Sparsity')
 
-casadi__Function__sparsity_jac__13
+casadi__Function__sparsity_jac__11
   :: Function -> Int -> Int -> Bool -> IO Sparsity
-casadi__Function__sparsity_jac__13 x0 x1 x2 x3 = do
+casadi__Function__sparsity_jac__11 x0 x1 x2 x3 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
   x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__sparsity_jac__13 errStrPtrP x0' x1' x2' x3'
+  ret0 <- c_casadi__Function__sparsity_jac__11 errStrPtrP x0' x1' x2' x3'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -5693,17 +5826,17 @@ casadi__Function__sparsity_jac__13 x0 x1 x2 x3 = do
 
 
 -- classy wrapper
-function_sparsity_jac__13 :: FunctionClass a => a -> Int -> Int -> Bool -> IO Sparsity
-function_sparsity_jac__13 x = casadi__Function__sparsity_jac__13 (castFunction x)
+function_sparsity_jac__11 :: FunctionClass a => a -> Int -> Int -> Bool -> IO Sparsity
+function_sparsity_jac__11 x = casadi__Function__sparsity_jac__11 (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__sparsity_jac__14" c_casadi__Function__sparsity_jac__14
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> CInt -> CInt -> IO (Ptr Sparsity')
+foreign import ccall unsafe "casadi__Function__sparsity_jac__12" c_casadi__Function__sparsity_jac__12
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> CInt -> CInt -> IO (Ptr Sparsity')
 
-casadi__Function__sparsity_jac__14
+casadi__Function__sparsity_jac__12
   :: Function -> Int -> Int -> Bool -> Bool -> IO Sparsity
-casadi__Function__sparsity_jac__14 x0 x1 x2 x3 x4 = do
+casadi__Function__sparsity_jac__12 x0 x1 x2 x3 x4 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
@@ -5711,7 +5844,7 @@ casadi__Function__sparsity_jac__14 x0 x1 x2 x3 x4 = do
   x4' <- marshal x4
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__sparsity_jac__14 errStrPtrP x0' x1' x2' x3' x4'
+  ret0 <- c_casadi__Function__sparsity_jac__12 errStrPtrP x0' x1' x2' x3' x4'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -5728,8 +5861,8 @@ casadi__Function__sparsity_jac__14 x0 x1 x2 x3 x4 = do
 
 
 -- classy wrapper
-function_sparsity_jac__14 :: FunctionClass a => a -> Int -> Int -> Bool -> Bool -> IO Sparsity
-function_sparsity_jac__14 x = casadi__Function__sparsity_jac__14 (castFunction x)
+function_sparsity_jac__12 :: FunctionClass a => a -> Int -> Int -> Bool -> Bool -> IO Sparsity
+function_sparsity_jac__12 x = casadi__Function__sparsity_jac__12 (castFunction x)
 
 
 -- direct wrapper
@@ -5763,7 +5896,7 @@ function_sparsity_out__0 x = casadi__Function__sparsity_out__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sparsity_out__1" c_casadi__Function__sparsity_out__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Sparsity')
 
 casadi__Function__sparsity_out__1
   :: Function -> Int -> IO Sparsity
@@ -5819,7 +5952,7 @@ function_stats__0 x = casadi__Function__stats__0 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__stats__1" c_casadi__Function__stats__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr (StdMap StdString (Ptr GenericType')))
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr (StdMap StdString (Ptr GenericType')))
 
 casadi__Function__stats__1
   :: Function -> Int -> IO (M.Map String GenericType)
@@ -5904,7 +6037,7 @@ function_sx_in__1 x = casadi__Function__sx_in__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sx_in__2" c_casadi__Function__sx_in__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr SX')
 
 casadi__Function__sx_in__2
   :: Function -> Int -> IO SX
@@ -5989,7 +6122,7 @@ function_sx_out__1 x = casadi__Function__sx_out__1 (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__sx_out__2" c_casadi__Function__sx_out__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr SX')
 
 casadi__Function__sx_out__2
   :: Function -> Int -> IO SX
@@ -6126,15 +6259,42 @@ function_sz_w x = casadi__Function__sz_w (castFunction x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Function__type_name" c_casadi__Function__type_name
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> IO (Ptr StdString)
 
 casadi__Function__type_name
-  :: Function -> IO String
-casadi__Function__type_name x0 = do
+  :: IO String
+casadi__Function__type_name  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__type_name errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+function_type_name :: IO String
+function_type_name = casadi__Function__type_name
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__uses_output" c_casadi__Function__uses_output
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO CInt
+
+casadi__Function__uses_output
+  :: Function -> IO Bool
+casadi__Function__uses_output x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__type_name errStrPtrP x0'
+  ret0 <- c_casadi__Function__uses_output errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -6147,17 +6307,81 @@ casadi__Function__type_name x0 = do
 
 
 -- classy wrapper
-function_type_name :: FunctionClass a => a -> IO String
-function_type_name x = casadi__Function__type_name (castFunction x)
+function_uses_output :: FunctionClass a => a -> IO Bool
+function_uses_output x = casadi__Function__uses_output (castFunction x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__Function__which_depends" c_casadi__Function__which_depends
-  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> CInt -> CInt -> IO (Ptr (StdVec CInt))
+foreign import ccall unsafe "casadi__Function__which_depends__0" c_casadi__Function__which_depends__0
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr (StdVec CInt))
 
-casadi__Function__which_depends
+casadi__Function__which_depends__0
+  :: Function -> String -> Vector String -> IO (Vector Bool)
+casadi__Function__which_depends__0 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__which_depends__0 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+function_which_depends__0 :: FunctionClass a => a -> String -> Vector String -> IO (Vector Bool)
+function_which_depends__0 x = casadi__Function__which_depends__0 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__which_depends__1" c_casadi__Function__which_depends__1
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> CLLong -> IO (Ptr (StdVec CInt))
+
+casadi__Function__which_depends__1
+  :: Function -> String -> Vector String -> Int -> IO (Vector Bool)
+casadi__Function__which_depends__1 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Function__which_depends__1 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+function_which_depends__1 :: FunctionClass a => a -> String -> Vector String -> Int -> IO (Vector Bool)
+function_which_depends__1 x = casadi__Function__which_depends__1 (castFunction x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Function__which_depends__2" c_casadi__Function__which_depends__2
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> CLLong -> CInt -> IO (Ptr (StdVec CInt))
+
+casadi__Function__which_depends__2
   :: Function -> String -> Vector String -> Int -> Bool -> IO (Vector Bool)
-casadi__Function__which_depends x0 x1 x2 x3 x4 = do
+casadi__Function__which_depends__2 x0 x1 x2 x3 x4 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
@@ -6165,7 +6389,7 @@ casadi__Function__which_depends x0 x1 x2 x3 x4 = do
   x4' <- marshal x4
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__Function__which_depends errStrPtrP x0' x1' x2' x3' x4'
+  ret0 <- c_casadi__Function__which_depends__2 errStrPtrP x0' x1' x2' x3' x4'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -6182,8 +6406,8 @@ casadi__Function__which_depends x0 x1 x2 x3 x4 = do
 
 
 -- classy wrapper
-function_which_depends :: FunctionClass a => a -> String -> Vector String -> Int -> Bool -> IO (Vector Bool)
-function_which_depends x = casadi__Function__which_depends (castFunction x)
+function_which_depends__2 :: FunctionClass a => a -> String -> Vector String -> Int -> Bool -> IO (Vector Bool)
+function_which_depends__2 x = casadi__Function__which_depends__2 (castFunction x)
 
 
 -- direct wrapper

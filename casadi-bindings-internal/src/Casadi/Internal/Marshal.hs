@@ -46,6 +46,8 @@ instance HsToC Int CInt where
   hsToC = fromIntegral -- really should check min/max bounds here
 instance HsToC Int CLong where
   hsToC = fromIntegral
+instance HsToC Int CLLong where
+  hsToC = fromIntegral
 instance HsToC Bool CInt where
   hsToC False = 0
   hsToC True = 1
@@ -59,6 +61,8 @@ instance HsToC CSize CSize where
 instance Marshal Int CInt where
   marshal = return . hsToC
 instance Marshal Int CLong where
+  marshal = return . hsToC
+instance Marshal Int CLLong where
   marshal = return . hsToC
 instance Marshal Bool CInt where
   marshal = return . hsToC
@@ -76,6 +80,9 @@ instance Marshal (V.Vector CInt) (Ptr (StdVec CInt)) where
 instance Marshal (V.Vector Int) (Ptr (StdVec CInt)) where
   marshal = newStorableVec c_newVecCInt . (V.map hsToC)
   marshalFree = const c_deleteVecCInt
+instance Marshal (V.Vector Int) (Ptr (StdVec CLLong)) where
+  marshal = newStorableVec c_newVecLLong . V.map hsToC
+  marshalFree = const c_deleteVecLLong
 instance Marshal (V.Vector Bool) (Ptr (StdVec CInt)) where
   marshal = newStorableVec c_newVecCInt . (V.map hsToC)
   marshalFree = const c_deleteVecCInt
@@ -113,18 +120,18 @@ instance (Marshal a (Ptr pa), Marshal b (Ptr pb))
     c_deleteStdPair stdpair
 
 -- stdpair
-instance (Marshal a CInt, Marshal b CInt)
-         => Marshal (a, b) (Ptr (StdPair CInt CInt)) where
+instance (Marshal a CLLong, Marshal b CLLong)
+         => Marshal (a, b) (Ptr (StdPair CLLong CLLong)) where
   marshal (x,y) = do
     px <- marshal x
     py <- marshal y
-    c_newStdPairInt px py
+    c_newStdPairLLong px py
   marshalFree (x,y) stdpair = do
-    cx <- c_stdPairFstInt stdpair
-    cy <- c_stdPairSndInt stdpair
+    cx <- c_stdPairFstLLong stdpair
+    cy <- c_stdPairSndLLong stdpair
     marshalFree x cx
     marshalFree y cy
-    c_deleteStdPairInt stdpair
+    c_deleteStdPairLLong stdpair
 
 -- stdmap
 instance (Marshal a (Ptr pa))

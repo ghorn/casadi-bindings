@@ -18,14 +18,14 @@ foreign import ccall unsafe "hs_stdpair_snd" c_stdPairSnd
 foreign import ccall unsafe "hs_delete_stdpair" c_deleteStdPair
   :: Ptr (StdPair (Ptr a) (Ptr b)) -> IO ()
 
-foreign import ccall unsafe "hs_new_stdpair_int" c_newStdPairInt
-  :: CInt -> CInt -> IO (Ptr (StdPair CInt CInt))
-foreign import ccall unsafe "hs_stdpair_fst_int" c_stdPairFstInt
-  :: Ptr (StdPair CInt CInt) -> IO CInt
-foreign import ccall unsafe "hs_stdpair_snd_int" c_stdPairSndInt
-  :: Ptr (StdPair CInt CInt) -> IO CInt
-foreign import ccall unsafe "hs_delete_stdpair_int" c_deleteStdPairInt
-  :: Ptr (StdPair CInt CInt) -> IO ()
+foreign import ccall unsafe "hs_new_stdpair_long_long" c_newStdPairLLong
+  :: CLLong -> CLLong -> IO (Ptr (StdPair CLLong CLLong))
+foreign import ccall unsafe "hs_stdpair_fst_long_long" c_stdPairFstLLong
+  :: Ptr (StdPair CLLong CLLong) -> IO CLLong
+foreign import ccall unsafe "hs_stdpair_snd_long_long" c_stdPairSndLLong
+  :: Ptr (StdPair CLLong CLLong) -> IO CLLong
+foreign import ccall unsafe "hs_delete_stdpair_long_long" c_deleteStdPairLLong
+  :: Ptr (StdPair CLLong CLLong) -> IO ()
 
 --------------------------- stdmap -----------------------------------
 foreign import ccall unsafe "hs_new_dict" c_newDict
@@ -52,6 +52,16 @@ foreign import ccall unsafe "hs_copy_vec_int" c_copyVecCInt
   :: Ptr (StdVec CInt) -> Ptr CInt -> IO ()
 foreign import ccall unsafe "hs_size_vec_int" c_sizeVecCInt
   :: Ptr (StdVec CInt) -> IO CInt
+
+
+foreign import ccall unsafe "hs_new_vec_llong" c_newVecLLong
+  :: Ptr CLLong -> CInt -> IO (Ptr (StdVec CLLong))
+foreign import ccall unsafe "hs_delete_vec_llong" c_deleteVecLLong
+  :: Ptr (StdVec CLLong) -> IO ()
+foreign import ccall unsafe "hs_copy_vec_llong" c_copyVecCLLong
+  :: Ptr (StdVec CLLong) -> Ptr CLLong -> IO ()
+foreign import ccall unsafe "hs_size_vec_llong" c_sizeVecCLLong
+  :: Ptr (StdVec CLLong) -> IO CInt
 
 --------------------------- ("voidp","VoidP",Just "(Ptr a)",[]) -----------------------------------
 foreign import ccall unsafe "hs_new_vec_voidp" c_newVecVoidP

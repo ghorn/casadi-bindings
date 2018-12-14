@@ -49,7 +49,7 @@ attachAssert x y msg = unsafePerformIO (mx_attachAssert__1 x y msg)
 instance CMatrix MX where
   blocksplit x ix iy = unsafePerformIO (C.casadi_blocksplit__15 x ix iy)
   {-# NOINLINE blocksplit #-}
-  blockcat x = unsafePerformIO (C.casadi_blockcat__7 x)
+  blockcat x = unsafePerformIO (C.casadi_blockcat__3 x)
   {-# NOINLINE blockcat #-}
   veccat x = unsafePerformIO (C.casadi_veccat__3 x)
   {-# NOINLINE veccat #-}
@@ -123,15 +123,15 @@ instance CMatrix MX where
   {-# NOINLINE conditional #-}
   conditional' x0 x1 x2 x3 = unsafePerformIO (C.casadi_conditional__7 x0 x1 x2 x3)
   {-# NOINLINE conditional' #-}
-  inv x = unsafePerformIO (C.casadi_inv__3 x)
+  inv x = unsafePerformIO (C.casadi_inv__11 x)
   {-# NOINLINE inv #-}
   pinv x = unsafePerformIO (C.casadi_pinv__11 x)
   {-# NOINLINE pinv #-}
   pinv' x n o = unsafePerformIO (mapM fromGType o >>= C.casadi_pinv__10 x n)
   {-# NOINLINE pinv' #-}
-  cmax x y = unsafePerformIO (C.casadi_max__4 x y)
+  cmax x y = unsafePerformIO (C.casadi_fmax__4 x y)
   {-# NOINLINE cmax #-}
-  cmin x y = unsafePerformIO (C.casadi_min__4 x y)
+  cmin x y = unsafePerformIO (C.casadi_fmin__4 x y)
   {-# NOINLINE cmin #-}
   cand x y = unsafePerformIO (C.casadi_and__4 x y)
   {-# NOINLINE cand #-}
@@ -142,7 +142,7 @@ instance CMatrix MX where
   printme x y = unsafePerformIO (mx_printme x y)
   {-# NOINLINE printme #-}
 
-  sumSquare x = unsafePerformIO (C.casadi_sum_square__3 x)
+  sumSquare x = unsafePerformIO (C.casadi_sumsqr__3 x)
   {-# NOINLINE sumSquare #-}
   invSkew x = unsafePerformIO (C.casadi_inv_skew__3 x)
   {-# NOINLINE invSkew #-}
@@ -175,7 +175,7 @@ instance CMatrix MX where
 instance SMatrix MX where
   gradient x y = unsafePerformIO (C.casadi_gradient__3 x y)
   {-# NOINLINE gradient #-}
-  jacobian x y = unsafePerformIO (C.casadi_jacobian__3 x y)
+  jacobian x y = unsafePerformIO (C.casadi_jacobian__6 x y)
   {-# NOINLINE jacobian #-}
   hessian expr args = unsafePerformIO $ do
     grad <- mx__7

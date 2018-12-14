@@ -79,5 +79,5 @@ compress s = unsafePerformIO (sparsity_compress s)
 {-# NOINLINE compress #-}
 
 compressed :: V.Vector Int -> Sparsity
-compressed v = unsafePerformIO (sparsity_compressed v)
+compressed v = unsafePerformIO (sparsity_compressed__0 v)
 {-# NOINLINE compressed #-}

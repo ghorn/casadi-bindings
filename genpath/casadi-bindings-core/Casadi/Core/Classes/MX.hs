@@ -23,9 +23,13 @@ module Casadi.Core.Classes.MX
          mx_attachAssert__1,
          mx_binary,
          mx_colind,
+         mx_columns,
          mx_dep__0,
          mx_dep__1,
-         mx_dim,
+         mx_dim__0,
+         mx_dim__1,
+         mx_einstein__0,
+         mx_einstein__1,
          mx_enlarge__0,
          mx_enlarge__1,
          mx_erase__0,
@@ -33,10 +37,6 @@ module Casadi.Core.Classes.MX
          mx_erase__2,
          mx_erase__3,
          mx_eye,
-         mx_getFunction__0,
-         mx_getFunction__1,
-         mx_getOutput__0,
-         mx_getOutput__1,
          mx_get__0,
          mx_get__1,
          mx_get__2,
@@ -60,6 +60,7 @@ module Casadi.Core.Classes.MX
          mx_inf__2,
          mx_inf__3,
          mx_inf__4,
+         mx_info,
          mx_is_binary,
          mx_is_call,
          mx_is_column,
@@ -68,7 +69,7 @@ module Casadi.Core.Classes.MX
          mx_is_dense,
          mx_is_empty__0,
          mx_is_empty__1,
-         mx_is_identity,
+         mx_is_eye,
          mx_is_minus_one,
          mx_is_multiplication,
          mx_is_norm,
@@ -104,7 +105,6 @@ module Casadi.Core.Classes.MX
          mx_nnz_diag,
          mx_nnz_lower,
          mx_nnz_upper,
-         mx_numFunctions,
          mx_numel,
          mx_ones__0,
          mx_ones__1,
@@ -119,6 +119,7 @@ module Casadi.Core.Classes.MX
          mx_printme,
          mx_reset_input,
          mx_row,
+         mx_rows,
          mx_set__0,
          mx_set__1,
          mx_set__2,
@@ -148,6 +149,8 @@ module Casadi.Core.Classes.MX
          mx_sym__8,
          mx_type_name,
          mx_unary,
+         mx_which_function,
+         mx_which_output,
          mx_zeros__0,
          mx_zeros__1,
          mx_zeros__2,
@@ -339,7 +342,7 @@ mx__5 = casadi__MX__CONSTRUCTOR__5
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__CONSTRUCTOR__6" c_casadi__MX__CONSTRUCTOR__6
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi__MX__CONSTRUCTOR__6
   :: Int -> Int -> IO MX
@@ -509,7 +512,7 @@ mx_attachAssert__1 x = casadi__MX__attachAssert__1 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__binary" c_casadi__MX__binary
-  :: Ptr (Ptr StdString) -> CInt -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
 
 casadi__MX__binary
   :: Int -> MX -> MX -> IO MX
@@ -540,7 +543,7 @@ mx_binary = casadi__MX__binary
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__colind" c_casadi__MX__colind
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO CLLong
 
 casadi__MX__colind
   :: MX -> Int -> IO Int
@@ -565,6 +568,33 @@ casadi__MX__colind x0 x1 = do
 -- classy wrapper
 mx_colind :: MXClass a => a -> Int -> IO Int
 mx_colind x = casadi__MX__colind (castMX x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__MX__columns" c_casadi__MX__columns
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
+
+casadi__MX__columns
+  :: MX -> IO Int
+casadi__MX__columns x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__columns errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_columns :: MXClass a => a -> IO Int
+mx_columns x = casadi__MX__columns (castMX x)
 
 
 -- direct wrapper
@@ -596,7 +626,7 @@ mx_dep__0 x = casadi__MX__dep__0 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__dep__1" c_casadi__MX__dep__1
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr MX')
 
 casadi__MX__dep__1
   :: MX -> Int -> IO MX
@@ -624,16 +654,16 @@ mx_dep__1 x = casadi__MX__dep__1 (castMX x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__MX__dim" c_casadi__MX__dim
+foreign import ccall unsafe "casadi__MX__dim__0" c_casadi__MX__dim__0
   :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr StdString)
 
-casadi__MX__dim
+casadi__MX__dim__0
   :: MX -> IO String
-casadi__MX__dim x0 = do
+casadi__MX__dim__0 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__dim errStrPtrP x0'
+  ret0 <- c_casadi__MX__dim__0 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -646,13 +676,126 @@ casadi__MX__dim x0 = do
 
 
 -- classy wrapper
-mx_dim :: MXClass a => a -> IO String
-mx_dim x = casadi__MX__dim (castMX x)
+mx_dim__0 :: MXClass a => a -> IO String
+mx_dim__0 x = casadi__MX__dim__0 (castMX x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__MX__dim__1" c_casadi__MX__dim__1
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr StdString)
+
+casadi__MX__dim__1
+  :: MX -> Bool -> IO String
+casadi__MX__dim__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__dim__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_dim__1 :: MXClass a => a -> Bool -> IO String
+mx_dim__1 x = casadi__MX__dim__1 (castMX x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__MX__einstein__0" c_casadi__MX__einstein__0
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr MX')
+
+casadi__MX__einstein__0
+  :: MX -> MX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO MX
+casadi__MX__einstein__0 x0 x1 x2 x3 x4 x5 x6 x7 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__einstein__0 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_einstein__0 :: MX -> MX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO MX
+mx_einstein__0 = casadi__MX__einstein__0
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__MX__einstein__1" c_casadi__MX__einstein__1
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr MX')
+
+casadi__MX__einstein__1
+  :: MX -> MX -> MX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO MX
+casadi__MX__einstein__1 x0 x1 x2 x3 x4 x5 x6 x7 x8 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+  x8' <- marshal x8
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__einstein__1 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7' x8'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+  marshalFree x8 x8'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_einstein__1 :: MX -> MX -> MX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO MX
+mx_einstein__1 = casadi__MX__einstein__1
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__enlarge__0" c_casadi__MX__enlarge__0
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__MX__enlarge__0
   :: MX -> Int -> Int -> Vector Int -> Vector Int -> IO ()
@@ -687,7 +830,7 @@ mx_enlarge__0 x = casadi__MX__enlarge__0 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__enlarge__1" c_casadi__MX__enlarge__1
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO ()
 
 casadi__MX__enlarge__1
   :: MX -> Int -> Int -> Vector Int -> Vector Int -> Bool -> IO ()
@@ -724,7 +867,7 @@ mx_enlarge__1 x = casadi__MX__enlarge__1 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__erase__0" c_casadi__MX__erase__0
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__MX__erase__0
   :: MX -> Vector Int -> IO ()
@@ -753,7 +896,7 @@ mx_erase__0 x = casadi__MX__erase__0 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__erase__1" c_casadi__MX__erase__1
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> CInt -> IO ()
 
 casadi__MX__erase__1
   :: MX -> Vector Int -> Bool -> IO ()
@@ -784,7 +927,7 @@ mx_erase__1 x = casadi__MX__erase__1 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__erase__2" c_casadi__MX__erase__2
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO ()
 
 casadi__MX__erase__2
   :: MX -> Vector Int -> Vector Int -> IO ()
@@ -815,7 +958,7 @@ mx_erase__2 x = casadi__MX__erase__2 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__erase__3" c_casadi__MX__erase__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO ()
 
 casadi__MX__erase__3
   :: MX -> Vector Int -> Vector Int -> Bool -> IO ()
@@ -848,7 +991,7 @@ mx_erase__3 x = casadi__MX__erase__3 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__eye" c_casadi__MX__eye
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr MX')
 
 casadi__MX__eye
   :: Int -> IO MX
@@ -1127,120 +1270,8 @@ mx_get__6 x = casadi__MX__get__6 (castMX x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__MX__getFunction__0" c_casadi__MX__getFunction__0
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr Function')
-
-casadi__MX__getFunction__0
-  :: MX -> IO Function
-casadi__MX__getFunction__0 x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__getFunction__0 errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-mx_getFunction__0 :: MXClass a => a -> IO Function
-mx_getFunction__0 x = casadi__MX__getFunction__0 (castMX x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__MX__getFunction__1" c_casadi__MX__getFunction__1
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr Function')
-
-casadi__MX__getFunction__1
-  :: MX -> Int -> IO Function
-casadi__MX__getFunction__1 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__getFunction__1 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-mx_getFunction__1 :: MXClass a => a -> Int -> IO Function
-mx_getFunction__1 x = casadi__MX__getFunction__1 (castMX x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__MX__getOutput__0" c_casadi__MX__getOutput__0
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
-
-casadi__MX__getOutput__0
-  :: MX -> IO MX
-casadi__MX__getOutput__0 x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__getOutput__0 errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-mx_getOutput__0 :: MXClass a => a -> IO MX
-mx_getOutput__0 x = casadi__MX__getOutput__0 (castMX x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__MX__getOutput__1" c_casadi__MX__getOutput__1
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr MX')
-
-casadi__MX__getOutput__1
-  :: MX -> Int -> IO MX
-casadi__MX__getOutput__1 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__getOutput__1 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-mx_getOutput__1 :: MXClass a => a -> Int -> IO MX
-mx_getOutput__1 x = casadi__MX__getOutput__1 (castMX x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__MX__get_colind" c_casadi__MX__get_colind
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr (StdVec CLLong))
 
 casadi__MX__get_colind
   :: MX -> IO (Vector Int)
@@ -1321,7 +1352,7 @@ mx_get_input = casadi__MX__get_input
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__get_max_depth" c_casadi__MX__get_max_depth
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 casadi__MX__get_max_depth
   :: IO Int
@@ -1418,34 +1449,36 @@ mx_get_nz__1 x = casadi__MX__get_nz__1 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__get_output" c_casadi__MX__get_output
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr MX')
 
 casadi__MX__get_output
-  :: MX -> IO Int
-casadi__MX__get_output x0 = do
+  :: MX -> Int -> IO MX
+casadi__MX__get_output x0 x1 = do
   x0' <- marshal x0
+  x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__get_output errStrPtrP x0'
+  ret0 <- c_casadi__MX__get_output errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
 
 
 -- classy wrapper
-mx_get_output :: MXClass a => a -> IO Int
+mx_get_output :: MXClass a => a -> Int -> IO MX
 mx_get_output x = casadi__MX__get_output (castMX x)
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__get_row" c_casadi__MX__get_row
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr (StdVec CLLong))
 
 casadi__MX__get_row
   :: MX -> IO (Vector Int)
@@ -1499,7 +1532,7 @@ mx_get_sparsity x = casadi__MX__get_sparsity (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__get_temp" c_casadi__MX__get_temp
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__get_temp
   :: MX -> IO Int
@@ -1553,7 +1586,7 @@ mx_has_duplicates x = casadi__MX__has_duplicates (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__inf__0" c_casadi__MX__inf__0
-  :: Ptr (Ptr StdString) -> Ptr (StdPair CInt CInt) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr (StdPair CLLong CLLong) -> IO (Ptr MX')
 
 casadi__MX__inf__0
   :: (Int, Int) -> IO MX
@@ -1607,7 +1640,7 @@ mx_inf__1 = casadi__MX__inf__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__inf__2" c_casadi__MX__inf__2
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr MX')
 
 casadi__MX__inf__2
   :: Int -> IO MX
@@ -1634,7 +1667,7 @@ mx_inf__2 = casadi__MX__inf__2
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__inf__3" c_casadi__MX__inf__3
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi__MX__inf__3
   :: Int -> Int -> IO MX
@@ -1686,6 +1719,33 @@ casadi__MX__inf__4 x0 = do
 -- classy wrapper
 mx_inf__4 :: Sparsity -> IO MX
 mx_inf__4 = casadi__MX__inf__4
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__MX__info" c_casadi__MX__info
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr (StdMap StdString (Ptr GenericType')))
+
+casadi__MX__info
+  :: MX -> IO (M.Map String GenericType)
+casadi__MX__info x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__info errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_info :: MXClass a => a -> IO (M.Map String GenericType)
+mx_info x = casadi__MX__info (castMX x)
 
 
 -- direct wrapper
@@ -1907,16 +1967,16 @@ mx_is_empty__1 x = casadi__MX__is_empty__1 (castMX x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__MX__is_identity" c_casadi__MX__is_identity
+foreign import ccall unsafe "casadi__MX__is_eye" c_casadi__MX__is_eye
   :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
 
-casadi__MX__is_identity
+casadi__MX__is_eye
   :: MX -> IO Bool
-casadi__MX__is_identity x0 = do
+casadi__MX__is_eye x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__is_identity errStrPtrP x0'
+  ret0 <- c_casadi__MX__is_eye errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -1929,8 +1989,8 @@ casadi__MX__is_identity x0 = do
 
 
 -- classy wrapper
-mx_is_identity :: MXClass a => a -> IO Bool
-mx_is_identity x = casadi__MX__is_identity (castMX x)
+mx_is_eye :: MXClass a => a -> IO Bool
+mx_is_eye x = casadi__MX__is_eye (castMX x)
 
 
 -- direct wrapper
@@ -2043,7 +2103,7 @@ mx_is_one x = casadi__MX__is_one (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__is_op" c_casadi__MX__is_op
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO CInt
 
 casadi__MX__is_op
   :: MX -> Int -> IO Bool
@@ -2537,7 +2597,7 @@ mx_monitor x = casadi__MX__monitor (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__n_dep" c_casadi__MX__n_dep
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__n_dep
   :: MX -> IO Int
@@ -2564,7 +2624,7 @@ mx_n_dep x = casadi__MX__n_dep (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__n_out" c_casadi__MX__n_out
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__n_out
   :: MX -> IO Int
@@ -2591,7 +2651,7 @@ mx_n_out x = casadi__MX__n_out (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__n_primitives" c_casadi__MX__n_primitives
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__n_primitives
   :: MX -> IO Int
@@ -2645,7 +2705,7 @@ mx_name x = casadi__MX__name (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__nan__0" c_casadi__MX__nan__0
-  :: Ptr (Ptr StdString) -> Ptr (StdPair CInt CInt) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr (StdPair CLLong CLLong) -> IO (Ptr MX')
 
 casadi__MX__nan__0
   :: (Int, Int) -> IO MX
@@ -2699,7 +2759,7 @@ mx_nan__1 = casadi__MX__nan__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__nan__2" c_casadi__MX__nan__2
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr MX')
 
 casadi__MX__nan__2
   :: Int -> IO MX
@@ -2726,7 +2786,7 @@ mx_nan__2 = casadi__MX__nan__2
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__nan__3" c_casadi__MX__nan__3
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi__MX__nan__3
   :: Int -> Int -> IO MX
@@ -2782,7 +2842,7 @@ mx_nan__4 = casadi__MX__nan__4
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__nnz" c_casadi__MX__nnz
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__nnz
   :: MX -> IO Int
@@ -2809,7 +2869,7 @@ mx_nnz x = casadi__MX__nnz (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__nnz_diag" c_casadi__MX__nnz_diag
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__nnz_diag
   :: MX -> IO Int
@@ -2836,7 +2896,7 @@ mx_nnz_diag x = casadi__MX__nnz_diag (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__nnz_lower" c_casadi__MX__nnz_lower
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__nnz_lower
   :: MX -> IO Int
@@ -2863,7 +2923,7 @@ mx_nnz_lower x = casadi__MX__nnz_lower (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__nnz_upper" c_casadi__MX__nnz_upper
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__nnz_upper
   :: MX -> IO Int
@@ -2889,35 +2949,8 @@ mx_nnz_upper x = casadi__MX__nnz_upper (castMX x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__MX__numFunctions" c_casadi__MX__numFunctions
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
-
-casadi__MX__numFunctions
-  :: MX -> IO Int
-casadi__MX__numFunctions x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__MX__numFunctions errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-mx_numFunctions :: MXClass a => a -> IO Int
-mx_numFunctions x = casadi__MX__numFunctions (castMX x)
-
-
--- direct wrapper
 foreign import ccall unsafe "casadi__MX__numel" c_casadi__MX__numel
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__numel
   :: MX -> IO Int
@@ -2944,7 +2977,7 @@ mx_numel x = casadi__MX__numel (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__ones__0" c_casadi__MX__ones__0
-  :: Ptr (Ptr StdString) -> Ptr (StdPair CInt CInt) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr (StdPair CLLong CLLong) -> IO (Ptr MX')
 
 casadi__MX__ones__0
   :: (Int, Int) -> IO MX
@@ -3025,7 +3058,7 @@ mx_ones__2 = casadi__MX__ones__2
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__ones__3" c_casadi__MX__ones__3
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr MX')
 
 casadi__MX__ones__3
   :: Int -> IO MX
@@ -3052,7 +3085,7 @@ mx_ones__3 = casadi__MX__ones__3
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__ones__4" c_casadi__MX__ones__4
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi__MX__ones__4
   :: Int -> Int -> IO MX
@@ -3081,7 +3114,7 @@ mx_ones__4 = casadi__MX__ones__4
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__op" c_casadi__MX__op
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__op
   :: MX -> IO Int
@@ -3272,7 +3305,7 @@ mx_reset_input x = casadi__MX__reset_input (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__row" c_casadi__MX__row
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO CLLong
 
 casadi__MX__row
   :: MX -> Int -> IO Int
@@ -3297,6 +3330,33 @@ casadi__MX__row x0 x1 = do
 -- classy wrapper
 mx_row :: MXClass a => a -> Int -> IO Int
 mx_row x = casadi__MX__row (castMX x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__MX__rows" c_casadi__MX__rows
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
+
+casadi__MX__rows
+  :: MX -> IO Int
+casadi__MX__rows x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__rows errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_rows :: MXClass a => a -> IO Int
+mx_rows x = casadi__MX__rows (castMX x)
 
 
 -- direct wrapper
@@ -3567,7 +3627,7 @@ mx_set_max_depth__0 = casadi__MX__set_max_depth__0
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__set_max_depth__1" c_casadi__MX__set_max_depth__1
-  :: Ptr (Ptr StdString) -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> CLLong -> IO ()
 
 casadi__MX__set_max_depth__1
   :: Int -> IO ()
@@ -3660,7 +3720,7 @@ mx_set_nz__1 x = casadi__MX__set_nz__1 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__set_temp" c_casadi__MX__set_temp
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO ()
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO ()
 
 casadi__MX__set_temp
   :: MX -> Int -> IO ()
@@ -3689,7 +3749,7 @@ mx_set_temp x = casadi__MX__set_temp (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__size__0" c_casadi__MX__size__0
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO CLLong
 
 casadi__MX__size__0
   :: MX -> Int -> IO Int
@@ -3718,7 +3778,7 @@ mx_size__0 x = casadi__MX__size__0 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__size__1" c_casadi__MX__size__1
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr (StdPair CInt CInt))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr (StdPair CLLong CLLong))
 
 casadi__MX__size__1
   :: MX -> IO (Int, Int)
@@ -3745,7 +3805,7 @@ mx_size__1 x = casadi__MX__size__1 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__size1" c_casadi__MX__size1
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__size1
   :: MX -> IO Int
@@ -3772,7 +3832,7 @@ mx_size1 x = casadi__MX__size1 (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__size2" c_casadi__MX__size2
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi__MX__size2
   :: MX -> IO Int
@@ -3855,7 +3915,7 @@ mx_split_primitives x = casadi__MX__split_primitives (castMX x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__sym__0" c_casadi__MX__sym__0
-  :: Ptr (Ptr StdString) -> Ptr StdString -> CInt -> CInt -> CInt -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
+  :: Ptr (Ptr StdString) -> Ptr StdString -> CLLong -> CLLong -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
 
 casadi__MX__sym__0
   :: String -> Int -> Int -> Int -> Int -> IO (Vector (Vector MX))
@@ -3890,7 +3950,7 @@ mx_sym__0 = casadi__MX__sym__0
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__sym__1" c_casadi__MX__sym__1
-  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr Sparsity' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
 
 casadi__MX__sym__1
   :: String -> Sparsity -> Int -> Int -> IO (Vector (Vector MX))
@@ -3923,7 +3983,7 @@ mx_sym__1 = casadi__MX__sym__1
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__sym__2" c_casadi__MX__sym__2
-  :: Ptr (Ptr StdString) -> Ptr StdString -> CInt -> CInt -> CInt -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr StdString -> CLLong -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi__MX__sym__2
   :: String -> Int -> Int -> Int -> IO (Vector MX)
@@ -3956,7 +4016,7 @@ mx_sym__2 = casadi__MX__sym__2
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__sym__3" c_casadi__MX__sym__3
-  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr Sparsity' -> CLLong -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi__MX__sym__3
   :: String -> Sparsity -> Int -> IO (Vector MX)
@@ -4016,7 +4076,7 @@ mx_sym__4 = casadi__MX__sym__4
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__sym__5" c_casadi__MX__sym__5
-  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdPair CInt CInt) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr (StdPair CLLong CLLong) -> IO (Ptr MX')
 
 casadi__MX__sym__5
   :: String -> (Int, Int) -> IO MX
@@ -4072,7 +4132,7 @@ mx_sym__6 = casadi__MX__sym__6
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__sym__7" c_casadi__MX__sym__7
-  :: Ptr (Ptr StdString) -> Ptr StdString -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
 casadi__MX__sym__7
   :: String -> Int -> IO MX
@@ -4101,7 +4161,7 @@ mx_sym__7 = casadi__MX__sym__7
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__sym__8" c_casadi__MX__sym__8
-  :: Ptr (Ptr StdString) -> Ptr StdString -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr StdString -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi__MX__sym__8
   :: String -> Int -> Int -> IO MX
@@ -4159,7 +4219,7 @@ mx_type_name = casadi__MX__type_name
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__unary" c_casadi__MX__unary
-  :: Ptr (Ptr StdString) -> CInt -> Ptr MX' -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> Ptr MX' -> IO (Ptr MX')
 
 casadi__MX__unary
   :: Int -> MX -> IO MX
@@ -4187,8 +4247,62 @@ mx_unary = casadi__MX__unary
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__MX__which_function" c_casadi__MX__which_function
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr Function')
+
+casadi__MX__which_function
+  :: MX -> IO Function
+casadi__MX__which_function x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__which_function errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_which_function :: MXClass a => a -> IO Function
+mx_which_function x = casadi__MX__which_function (castMX x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__MX__which_output" c_casadi__MX__which_output
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
+
+casadi__MX__which_output
+  :: MX -> IO Int
+casadi__MX__which_output x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__MX__which_output errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+mx_which_output :: MXClass a => a -> IO Int
+mx_which_output x = casadi__MX__which_output (castMX x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__MX__zeros__0" c_casadi__MX__zeros__0
-  :: Ptr (Ptr StdString) -> Ptr (StdPair CInt CInt) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr (StdPair CLLong CLLong) -> IO (Ptr MX')
 
 casadi__MX__zeros__0
   :: (Int, Int) -> IO MX
@@ -4269,7 +4383,7 @@ mx_zeros__2 = casadi__MX__zeros__2
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__zeros__3" c_casadi__MX__zeros__3
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr MX')
 
 casadi__MX__zeros__3
   :: Int -> IO MX
@@ -4296,7 +4410,7 @@ mx_zeros__3 = casadi__MX__zeros__3
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__MX__zeros__4" c_casadi__MX__zeros__4
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi__MX__zeros__4
   :: Int -> Int -> IO MX

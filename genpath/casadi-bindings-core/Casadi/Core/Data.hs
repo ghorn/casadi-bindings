@@ -28,6 +28,9 @@ instance CallbackClass Callback where
 instance FunctionClass Callback where
   castFunction (Callback x) = Function (castForeignPtr x)
 
+instance PrintableCommonClass Callback where
+  castPrintableCommon (Callback x) = PrintableCommon (castForeignPtr x)
+
 instance SharedObjectClass Callback where
   castSharedObject (Callback x) = SharedObject (castForeignPtr x)
 
@@ -112,6 +115,9 @@ instance GenericMatrixCommonClass DM where
 instance MatrixCommonClass DM where
   castMatrixCommon (DM x) = MatrixCommon (castForeignPtr x)
 
+instance PrintableCommonClass DM where
+  castPrintableCommon (DM x) = PrintableCommon (castForeignPtr x)
+
 instance SparsityInterfaceCommonClass DM where
   castSparsityInterfaceCommon (DM x) = SparsityInterfaceCommon (castForeignPtr x)
 
@@ -139,6 +145,9 @@ instance DaeBuilderClass DaeBuilder where
   castDaeBuilder = id
 
 -- baseclass instances
+instance PrintableCommonClass DaeBuilder where
+  castPrintableCommon (DaeBuilder x) = PrintableCommon (castForeignPtr x)
+
 
 -- helper instances
 instance Marshal DaeBuilder (Ptr DaeBuilder') where
@@ -163,6 +172,9 @@ instance FunctionClass Function where
   castFunction = id
 
 -- baseclass instances
+instance PrintableCommonClass Function where
+  castPrintableCommon (Function x) = PrintableCommon (castForeignPtr x)
+
 instance SharedObjectClass Function where
   castSharedObject (Function x) = SharedObject (castForeignPtr x)
 
@@ -238,6 +250,9 @@ instance GenericTypeClass GenericType where
   castGenericType = id
 
 -- baseclass instances
+instance PrintableCommonClass GenericType where
+  castPrintableCommon (GenericType x) = PrintableCommon (castForeignPtr x)
+
 instance SharedObjectClass GenericType where
   castSharedObject (GenericType x) = SharedObject (castForeignPtr x)
 
@@ -298,6 +313,9 @@ instance GenericMatrixCommonClass IM where
 instance MatrixCommonClass IM where
   castMatrixCommon (IM x) = MatrixCommon (castForeignPtr x)
 
+instance PrintableCommonClass IM where
+  castPrintableCommon (IM x) = PrintableCommon (castForeignPtr x)
+
 instance SparsityInterfaceCommonClass IM where
   castSparsityInterfaceCommon (IM x) = SparsityInterfaceCommon (castForeignPtr x)
 
@@ -325,6 +343,9 @@ instance ImporterClass Importer where
   castImporter = id
 
 -- baseclass instances
+instance PrintableCommonClass Importer where
+  castPrintableCommon (Importer x) = PrintableCommon (castForeignPtr x)
+
 instance SharedObjectClass Importer where
   castSharedObject (Importer x) = SharedObject (castForeignPtr x)
 
@@ -340,6 +361,30 @@ instance WrapReturn (Ptr Importer') Importer where
 
 
 -- raw decl
+data IndexAbstraction'
+-- data decl
+{-|
+-}
+newtype IndexAbstraction = IndexAbstraction (ForeignPtr IndexAbstraction')
+-- typeclass decl
+class IndexAbstractionClass a where
+  castIndexAbstraction :: a -> IndexAbstraction
+instance IndexAbstractionClass IndexAbstraction where
+  castIndexAbstraction = id
+
+-- baseclass instances
+
+-- helper instances
+instance Marshal IndexAbstraction (Ptr IndexAbstraction') where
+  marshal (IndexAbstraction x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (IndexAbstraction x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__IndexAbstraction" 
+  c_delete_casadi__IndexAbstraction :: FunPtr (Ptr IndexAbstraction' -> IO ())
+instance WrapReturn (Ptr IndexAbstraction') IndexAbstraction where
+  wrapReturn = (fmap IndexAbstraction) . (newForeignPtr c_delete_casadi__IndexAbstraction)
+
+
+-- raw decl
 data Linsol'
 -- data decl
 {-|
@@ -352,6 +397,9 @@ instance LinsolClass Linsol where
   castLinsol = id
 
 -- baseclass instances
+instance PrintableCommonClass Linsol where
+  castPrintableCommon (Linsol x) = PrintableCommon (castForeignPtr x)
+
 instance SharedObjectClass Linsol where
   castSharedObject (Linsol x) = SharedObject (castForeignPtr x)
 
@@ -384,6 +432,9 @@ instance GenericExpressionCommonClass MX where
 
 instance GenericMatrixCommonClass MX where
   castGenericMatrixCommon (MX x) = GenericMatrixCommon (castForeignPtr x)
+
+instance PrintableCommonClass MX where
+  castPrintableCommon (MX x) = PrintableCommon (castForeignPtr x)
 
 instance SharedObjectClass MX where
   castSharedObject (MX x) = SharedObject (castForeignPtr x)
@@ -427,6 +478,60 @@ instance WrapReturn (Ptr MatrixCommon') MatrixCommon where
 
 
 -- raw decl
+data MetaCon'
+-- data decl
+{-|
+-}
+newtype MetaCon = MetaCon (ForeignPtr MetaCon')
+-- typeclass decl
+class MetaConClass a where
+  castMetaCon :: a -> MetaCon
+instance MetaConClass MetaCon where
+  castMetaCon = id
+
+-- baseclass instances
+instance IndexAbstractionClass MetaCon where
+  castIndexAbstraction (MetaCon x) = IndexAbstraction (castForeignPtr x)
+
+
+-- helper instances
+instance Marshal MetaCon (Ptr MetaCon') where
+  marshal (MetaCon x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (MetaCon x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__MetaCon" 
+  c_delete_casadi__MetaCon :: FunPtr (Ptr MetaCon' -> IO ())
+instance WrapReturn (Ptr MetaCon') MetaCon where
+  wrapReturn = (fmap MetaCon) . (newForeignPtr c_delete_casadi__MetaCon)
+
+
+-- raw decl
+data MetaVar'
+-- data decl
+{-|
+-}
+newtype MetaVar = MetaVar (ForeignPtr MetaVar')
+-- typeclass decl
+class MetaVarClass a where
+  castMetaVar :: a -> MetaVar
+instance MetaVarClass MetaVar where
+  castMetaVar = id
+
+-- baseclass instances
+instance IndexAbstractionClass MetaVar where
+  castIndexAbstraction (MetaVar x) = IndexAbstraction (castForeignPtr x)
+
+
+-- helper instances
+instance Marshal MetaVar (Ptr MetaVar') where
+  marshal (MetaVar x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (MetaVar x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__MetaVar" 
+  c_delete_casadi__MetaVar :: FunPtr (Ptr MetaVar' -> IO ())
+instance WrapReturn (Ptr MetaVar') MetaVar where
+  wrapReturn = (fmap MetaVar) . (newForeignPtr c_delete_casadi__MetaVar)
+
+
+-- raw decl
 data NlpBuilder'
 -- data decl
 {-|
@@ -439,6 +544,9 @@ instance NlpBuilderClass NlpBuilder where
   castNlpBuilder = id
 
 -- baseclass instances
+instance PrintableCommonClass NlpBuilder where
+  castPrintableCommon (NlpBuilder x) = PrintableCommon (castForeignPtr x)
+
 
 -- helper instances
 instance Marshal NlpBuilder (Ptr NlpBuilder') where
@@ -448,6 +556,144 @@ foreign import ccall unsafe "&delete_casadi__NlpBuilder"
   c_delete_casadi__NlpBuilder :: FunPtr (Ptr NlpBuilder' -> IO ())
 instance WrapReturn (Ptr NlpBuilder') NlpBuilder where
   wrapReturn = (fmap NlpBuilder) . (newForeignPtr c_delete_casadi__NlpBuilder)
+
+
+-- raw decl
+data Opti'
+-- data decl
+{-|
+-}
+newtype Opti = Opti (ForeignPtr Opti')
+-- typeclass decl
+class OptiClass a where
+  castOpti :: a -> Opti
+instance OptiClass Opti where
+  castOpti = id
+
+-- baseclass instances
+instance PrintableCommonClass Opti where
+  castPrintableCommon (Opti x) = PrintableCommon (castForeignPtr x)
+
+instance SharedObjectClass Opti where
+  castSharedObject (Opti x) = SharedObject (castForeignPtr x)
+
+
+-- helper instances
+instance Marshal Opti (Ptr Opti') where
+  marshal (Opti x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (Opti x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__Opti" 
+  c_delete_casadi__Opti :: FunPtr (Ptr Opti' -> IO ())
+instance WrapReturn (Ptr Opti') Opti where
+  wrapReturn = (fmap Opti) . (newForeignPtr c_delete_casadi__Opti)
+
+
+-- raw decl
+data OptiAdvanced'
+-- data decl
+{-|
+-}
+newtype OptiAdvanced = OptiAdvanced (ForeignPtr OptiAdvanced')
+-- typeclass decl
+class OptiAdvancedClass a where
+  castOptiAdvanced :: a -> OptiAdvanced
+instance OptiAdvancedClass OptiAdvanced where
+  castOptiAdvanced = id
+
+-- baseclass instances
+instance OptiClass OptiAdvanced where
+  castOpti (OptiAdvanced x) = Opti (castForeignPtr x)
+
+instance PrintableCommonClass OptiAdvanced where
+  castPrintableCommon (OptiAdvanced x) = PrintableCommon (castForeignPtr x)
+
+instance SharedObjectClass OptiAdvanced where
+  castSharedObject (OptiAdvanced x) = SharedObject (castForeignPtr x)
+
+
+-- helper instances
+instance Marshal OptiAdvanced (Ptr OptiAdvanced') where
+  marshal (OptiAdvanced x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (OptiAdvanced x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__OptiAdvanced" 
+  c_delete_casadi__OptiAdvanced :: FunPtr (Ptr OptiAdvanced' -> IO ())
+instance WrapReturn (Ptr OptiAdvanced') OptiAdvanced where
+  wrapReturn = (fmap OptiAdvanced) . (newForeignPtr c_delete_casadi__OptiAdvanced)
+
+
+-- raw decl
+data OptiCallback'
+-- data decl
+{-|
+-}
+newtype OptiCallback = OptiCallback (ForeignPtr OptiCallback')
+-- typeclass decl
+class OptiCallbackClass a where
+  castOptiCallback :: a -> OptiCallback
+instance OptiCallbackClass OptiCallback where
+  castOptiCallback = id
+
+-- baseclass instances
+
+-- helper instances
+instance Marshal OptiCallback (Ptr OptiCallback') where
+  marshal (OptiCallback x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (OptiCallback x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__OptiCallback" 
+  c_delete_casadi__OptiCallback :: FunPtr (Ptr OptiCallback' -> IO ())
+instance WrapReturn (Ptr OptiCallback') OptiCallback where
+  wrapReturn = (fmap OptiCallback) . (newForeignPtr c_delete_casadi__OptiCallback)
+
+
+-- raw decl
+data OptiSol'
+-- data decl
+{-|
+-}
+newtype OptiSol = OptiSol (ForeignPtr OptiSol')
+-- typeclass decl
+class OptiSolClass a where
+  castOptiSol :: a -> OptiSol
+instance OptiSolClass OptiSol where
+  castOptiSol = id
+
+-- baseclass instances
+instance PrintableCommonClass OptiSol where
+  castPrintableCommon (OptiSol x) = PrintableCommon (castForeignPtr x)
+
+
+-- helper instances
+instance Marshal OptiSol (Ptr OptiSol') where
+  marshal (OptiSol x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (OptiSol x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__OptiSol" 
+  c_delete_casadi__OptiSol :: FunPtr (Ptr OptiSol' -> IO ())
+instance WrapReturn (Ptr OptiSol') OptiSol where
+  wrapReturn = (fmap OptiSol) . (newForeignPtr c_delete_casadi__OptiSol)
+
+
+-- raw decl
+data PrintableCommon'
+-- data decl
+{-|
+-}
+newtype PrintableCommon = PrintableCommon (ForeignPtr PrintableCommon')
+-- typeclass decl
+class PrintableCommonClass a where
+  castPrintableCommon :: a -> PrintableCommon
+instance PrintableCommonClass PrintableCommon where
+  castPrintableCommon = id
+
+-- baseclass instances
+
+-- helper instances
+instance Marshal PrintableCommon (Ptr PrintableCommon') where
+  marshal (PrintableCommon x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (PrintableCommon x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__PrintableCommon" 
+  c_delete_casadi__PrintableCommon :: FunPtr (Ptr PrintableCommon' -> IO ())
+instance WrapReturn (Ptr PrintableCommon') PrintableCommon where
+  wrapReturn = (fmap PrintableCommon) . (newForeignPtr c_delete_casadi__PrintableCommon)
 
 
 -- raw decl
@@ -471,6 +717,9 @@ instance GenericMatrixCommonClass SX where
 
 instance MatrixCommonClass SX where
   castMatrixCommon (SX x) = MatrixCommon (castForeignPtr x)
+
+instance PrintableCommonClass SX where
+  castPrintableCommon (SX x) = PrintableCommon (castForeignPtr x)
 
 instance SparsityInterfaceCommonClass SX where
   castSparsityInterfaceCommon (SX x) = SparsityInterfaceCommon (castForeignPtr x)
@@ -547,6 +796,9 @@ instance SliceClass Slice where
   castSlice = id
 
 -- baseclass instances
+instance PrintableCommonClass Slice where
+  castPrintableCommon (Slice x) = PrintableCommon (castForeignPtr x)
+
 
 -- helper instances
 instance Marshal Slice (Ptr Slice') where
@@ -571,6 +823,9 @@ instance SparsityClass Sparsity where
   castSparsity = id
 
 -- baseclass instances
+instance PrintableCommonClass Sparsity where
+  castPrintableCommon (Sparsity x) = PrintableCommon (castForeignPtr x)
+
 instance SharedObjectClass Sparsity where
   castSharedObject (Sparsity x) = SharedObject (castForeignPtr x)
 
@@ -625,6 +880,9 @@ instance VariableClass Variable where
   castVariable = id
 
 -- baseclass instances
+instance PrintableCommonClass Variable where
+  castPrintableCommon (Variable x) = PrintableCommon (castForeignPtr x)
+
 
 -- helper instances
 instance Marshal Variable (Ptr Variable') where
@@ -634,6 +892,33 @@ foreign import ccall unsafe "&delete_casadi__Variable"
   c_delete_casadi__Variable :: FunPtr (Ptr Variable' -> IO ())
 instance WrapReturn (Ptr Variable') Variable where
   wrapReturn = (fmap Variable) . (newForeignPtr c_delete_casadi__Variable)
+
+
+-- raw decl
+data WeakRef'
+-- data decl
+{-|
+-}
+newtype WeakRef = WeakRef (ForeignPtr WeakRef')
+-- typeclass decl
+class WeakRefClass a where
+  castWeakRef :: a -> WeakRef
+instance WeakRefClass WeakRef where
+  castWeakRef = id
+
+-- baseclass instances
+instance SharedObjectClass WeakRef where
+  castSharedObject (WeakRef x) = SharedObject (castForeignPtr x)
+
+
+-- helper instances
+instance Marshal WeakRef (Ptr WeakRef') where
+  marshal (WeakRef x) = return (unsafeForeignPtrToPtr x)
+  marshalFree (WeakRef x) _ = touchForeignPtr x
+foreign import ccall unsafe "&delete_casadi__WeakRef" 
+  c_delete_casadi__WeakRef :: FunPtr (Ptr WeakRef' -> IO ())
+instance WrapReturn (Ptr WeakRef') WeakRef where
+  wrapReturn = (fmap WeakRef) . (newForeignPtr c_delete_casadi__WeakRef)
 
 
 -- raw decl
@@ -649,6 +934,9 @@ instance XmlFileClass XmlFile where
   castXmlFile = id
 
 -- baseclass instances
+instance PrintableCommonClass XmlFile where
+  castPrintableCommon (XmlFile x) = PrintableCommon (castForeignPtr x)
+
 instance SharedObjectClass XmlFile where
   castSharedObject (XmlFile x) = SharedObject (castForeignPtr x)
 

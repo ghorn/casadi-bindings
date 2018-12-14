@@ -5,10 +5,10 @@
 {-# Language FlexibleInstances #-}
 {-# Language MultiParamTypeClasses #-}
 
-module Casadi.Core.Classes.CasadiMeta
+module Casadi.Core.Classes.MetaVar
        (
-         CasadiMeta,
-         CasadiMetaClass(..),
+         MetaVar,
+         MetaVarClass(..),
        ) where
 
 

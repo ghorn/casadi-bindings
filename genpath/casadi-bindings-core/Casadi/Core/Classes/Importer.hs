@@ -23,6 +23,7 @@ module Casadi.Core.Classes.Importer
          importer_inlined,
          importer_load_plugin,
          importer_plugin_name,
+         importer_type_name,
        ) where
 
 
@@ -217,7 +218,7 @@ importer_get_meta__0 x = casadi__Importer__get_meta__0 (castImporter x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Importer__get_meta__1" c_casadi__Importer__get_meta__1
-  :: Ptr (Ptr StdString) -> Ptr Importer' -> Ptr StdString -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> Ptr Importer' -> Ptr StdString -> CLLong -> IO (Ptr StdString)
 
 casadi__Importer__get_meta__1
   :: Importer -> String -> Int -> IO String
@@ -306,7 +307,7 @@ importer_has_meta__0 x = casadi__Importer__has_meta__0 (castImporter x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__Importer__has_meta__1" c_casadi__Importer__has_meta__1
-  :: Ptr (Ptr StdString) -> Ptr Importer' -> Ptr StdString -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Importer' -> Ptr StdString -> CLLong -> IO CInt
 
 casadi__Importer__has_meta__1
   :: Importer -> String -> Int -> IO Bool
@@ -443,4 +444,31 @@ casadi__Importer__plugin_name x0 = do
 -- classy wrapper
 importer_plugin_name :: ImporterClass a => a -> IO String
 importer_plugin_name x = casadi__Importer__plugin_name (castImporter x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__Importer__type_name" c_casadi__Importer__type_name
+  :: Ptr (Ptr StdString) -> IO (Ptr StdString)
+
+casadi__Importer__type_name
+  :: IO String
+casadi__Importer__type_name  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__Importer__type_name errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+importer_type_name :: IO String
+importer_type_name = casadi__Importer__type_name
 

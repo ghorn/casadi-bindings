@@ -44,7 +44,7 @@ generateCode' :: C.Function -> String -> Map String GType -> IO String
 generateCode' f name opts0 = do
   opts <- T.mapM fromGType opts0 :: IO (Map String GenericType)
   cg <- C.codeGenerator__1 name opts
-  C.codeGenerator_add cg f
+  C.codeGenerator_add__0 cg f
   C.codeGenerator_generate__0 cg
 
 externalFunction :: String -> Map String GType -> IO C.Function

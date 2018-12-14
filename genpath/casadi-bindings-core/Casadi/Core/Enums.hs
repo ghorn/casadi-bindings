@@ -8,10 +8,12 @@ module Casadi.Core.Enums
          Category(..),
          Causality(..),
          CollocationPoints(..),
+         ConstraintType(..),
          Dynamics(..),
          Operation(..),
          TypeID(..),
          Variability(..),
+         VariableType(..),
        ) where
 
 
@@ -108,6 +110,38 @@ instance Marshal CollocationPoints CInt where
 instance WrapReturn CInt CollocationPoints where
         wrapReturn = return . toEnum . fromIntegral
 
+-- EnumDecl: ConstraintType
+data ConstraintType = OPTI_DOUBLE_INEQUALITY
+                    | OPTI_EQUALITY
+                    | OPTI_GENERIC_EQUALITY
+                    | OPTI_GENERIC_INEQUALITY
+                    | OPTI_INEQUALITY
+                    | OPTI_PSD
+                    | OPTI_UNKNOWN
+                    deriving (Show, Eq)
+instance Enum ConstraintType where
+        fromEnum (OPTI_DOUBLE_INEQUALITY) = 4
+        fromEnum (OPTI_EQUALITY) = 2
+        fromEnum (OPTI_GENERIC_EQUALITY) = 0
+        fromEnum (OPTI_GENERIC_INEQUALITY) = 1
+        fromEnum (OPTI_INEQUALITY) = 3
+        fromEnum (OPTI_PSD) = 5
+        fromEnum (OPTI_UNKNOWN) = 6
+        toEnum (4) = OPTI_DOUBLE_INEQUALITY
+        toEnum (2) = OPTI_EQUALITY
+        toEnum (0) = OPTI_GENERIC_EQUALITY
+        toEnum (1) = OPTI_GENERIC_INEQUALITY
+        toEnum (3) = OPTI_INEQUALITY
+        toEnum (5) = OPTI_PSD
+        toEnum (6) = OPTI_UNKNOWN
+        toEnum k
+          = error $ "ConstraintType: toEnum: got unhandled number: " ++
+              show k
+instance Marshal ConstraintType CInt where
+        marshal = return . fromIntegral . fromEnum
+instance WrapReturn CInt ConstraintType where
+        wrapReturn = return . toEnum . fromIntegral
+
 -- EnumDecl: Dynamics
 data Dynamics = ALGEBRAIC
               | DIFFERENTIAL
@@ -129,6 +163,7 @@ data Operation = OP_ACOS
                | OP_ACOSH
                | OP_ADD
                | OP_ADDNONZEROS
+               | OP_ADD_ELEMENTS
                | OP_AND
                | OP_ASIN
                | OP_ASINH
@@ -150,6 +185,7 @@ data Operation = OP_ACOS
                | OP_DIAGSPLIT
                | OP_DIV
                | OP_DOT
+               | OP_EINSTEIN
                | OP_EQ
                | OP_ERF
                | OP_ERFINV
@@ -161,6 +197,7 @@ data Operation = OP_ACOS
                | OP_FMIN
                | OP_FMOD
                | OP_GETNONZEROS
+               | OP_GET_ELEMENTS
                | OP_HORZCAT
                | OP_HORZREPMAT
                | OP_HORZREPSUM
@@ -174,6 +211,8 @@ data Operation = OP_ACOS
                | OP_LOG
                | OP_LT
                | OP_MAP
+               | OP_MMAX
+               | OP_MMIN
                | OP_MONITOR
                | OP_MTIMES
                | OP_MUL
@@ -214,10 +253,11 @@ instance Enum Operation where
         fromEnum (OP_ACOSH) = 41
         fromEnum (OP_ADD) = 1
         fromEnum (OP_ADDNONZEROS) = 69
+        fromEnum (OP_ADD_ELEMENTS) = 72
         fromEnum (OP_AND) = 24
         fromEnum (OP_ASIN) = 16
         fromEnum (OP_ASINH) = 40
-        fromEnum (OP_ASSERTION) = 72
+        fromEnum (OP_ASSERTION) = 74
         fromEnum (OP_ASSIGN) = 0
         fromEnum (OP_ATAN) = 18
         fromEnum (OP_ATAN2) = 43
@@ -235,9 +275,10 @@ instance Enum Operation where
         fromEnum (OP_DIAGSPLIT) = 64
         fromEnum (OP_DIV) = 4
         fromEnum (OP_DOT) = 56
+        fromEnum (OP_EINSTEIN) = 87
         fromEnum (OP_EQ) = 21
         fromEnum (OP_ERF) = 33
-        fromEnum (OP_ERFINV) = 80
+        fromEnum (OP_ERFINV) = 84
         fromEnum (OP_EXP) = 6
         fromEnum (OP_FABS) = 29
         fromEnum (OP_FIND) = 49
@@ -246,35 +287,38 @@ instance Enum Operation where
         fromEnum (OP_FMIN) = 34
         fromEnum (OP_FMOD) = 28
         fromEnum (OP_GETNONZEROS) = 68
+        fromEnum (OP_GET_ELEMENTS) = 71
         fromEnum (OP_HORZCAT) = 59
-        fromEnum (OP_HORZREPMAT) = 78
-        fromEnum (OP_HORZREPSUM) = 79
+        fromEnum (OP_HORZREPMAT) = 82
+        fromEnum (OP_HORZREPSUM) = 83
         fromEnum (OP_HORZSPLIT) = 62
         fromEnum (OP_IF_ELSE_ZERO) = 32
         fromEnum (OP_INPUT) = 45
         fromEnum (OP_INV) = 36
         fromEnum (OP_INVERSE) = 55
         fromEnum (OP_LE) = 20
-        fromEnum (OP_LIFT) = 82
+        fromEnum (OP_LIFT) = 86
         fromEnum (OP_LOG) = 7
         fromEnum (OP_LT) = 19
         fromEnum (OP_MAP) = 50
-        fromEnum (OP_MONITOR) = 73
+        fromEnum (OP_MMAX) = 81
+        fromEnum (OP_MMIN) = 80
+        fromEnum (OP_MONITOR) = 75
         fromEnum (OP_MTIMES) = 51
         fromEnum (OP_MUL) = 3
         fromEnum (OP_NE) = 22
         fromEnum (OP_NEG) = 5
-        fromEnum (OP_NORM1) = 75
-        fromEnum (OP_NORM2) = 74
-        fromEnum (OP_NORMF) = 77
-        fromEnum (OP_NORMINF) = 76
+        fromEnum (OP_NORM1) = 77
+        fromEnum (OP_NORM2) = 76
+        fromEnum (OP_NORMF) = 79
+        fromEnum (OP_NORMINF) = 78
         fromEnum (OP_NOT) = 23
         fromEnum (OP_OR) = 25
         fromEnum (OP_OUTPUT) = 46
         fromEnum (OP_PARAMETER) = 47
         fromEnum (OP_POW) = 8
-        fromEnum (OP_PRINTME) = 81
-        fromEnum (OP_PROJECT) = 71
+        fromEnum (OP_PRINTME) = 85
+        fromEnum (OP_PROJECT) = 73
         fromEnum (OP_RANK1) = 58
         fromEnum (OP_RESHAPE) = 65
         fromEnum (OP_SETNONZEROS) = 70
@@ -297,10 +341,11 @@ instance Enum Operation where
         toEnum (41) = OP_ACOSH
         toEnum (1) = OP_ADD
         toEnum (69) = OP_ADDNONZEROS
+        toEnum (72) = OP_ADD_ELEMENTS
         toEnum (24) = OP_AND
         toEnum (16) = OP_ASIN
         toEnum (40) = OP_ASINH
-        toEnum (72) = OP_ASSERTION
+        toEnum (74) = OP_ASSERTION
         toEnum (0) = OP_ASSIGN
         toEnum (18) = OP_ATAN
         toEnum (43) = OP_ATAN2
@@ -318,9 +363,10 @@ instance Enum Operation where
         toEnum (64) = OP_DIAGSPLIT
         toEnum (4) = OP_DIV
         toEnum (56) = OP_DOT
+        toEnum (87) = OP_EINSTEIN
         toEnum (21) = OP_EQ
         toEnum (33) = OP_ERF
-        toEnum (80) = OP_ERFINV
+        toEnum (84) = OP_ERFINV
         toEnum (6) = OP_EXP
         toEnum (29) = OP_FABS
         toEnum (49) = OP_FIND
@@ -329,35 +375,38 @@ instance Enum Operation where
         toEnum (34) = OP_FMIN
         toEnum (28) = OP_FMOD
         toEnum (68) = OP_GETNONZEROS
+        toEnum (71) = OP_GET_ELEMENTS
         toEnum (59) = OP_HORZCAT
-        toEnum (78) = OP_HORZREPMAT
-        toEnum (79) = OP_HORZREPSUM
+        toEnum (82) = OP_HORZREPMAT
+        toEnum (83) = OP_HORZREPSUM
         toEnum (62) = OP_HORZSPLIT
         toEnum (32) = OP_IF_ELSE_ZERO
         toEnum (45) = OP_INPUT
         toEnum (36) = OP_INV
         toEnum (55) = OP_INVERSE
         toEnum (20) = OP_LE
-        toEnum (82) = OP_LIFT
+        toEnum (86) = OP_LIFT
         toEnum (7) = OP_LOG
         toEnum (19) = OP_LT
         toEnum (50) = OP_MAP
-        toEnum (73) = OP_MONITOR
+        toEnum (81) = OP_MMAX
+        toEnum (80) = OP_MMIN
+        toEnum (75) = OP_MONITOR
         toEnum (51) = OP_MTIMES
         toEnum (3) = OP_MUL
         toEnum (22) = OP_NE
         toEnum (5) = OP_NEG
-        toEnum (75) = OP_NORM1
-        toEnum (74) = OP_NORM2
-        toEnum (77) = OP_NORMF
-        toEnum (76) = OP_NORMINF
+        toEnum (77) = OP_NORM1
+        toEnum (76) = OP_NORM2
+        toEnum (79) = OP_NORMF
+        toEnum (78) = OP_NORMINF
         toEnum (23) = OP_NOT
         toEnum (25) = OP_OR
         toEnum (46) = OP_OUTPUT
         toEnum (47) = OP_PARAMETER
         toEnum (8) = OP_POW
-        toEnum (81) = OP_PRINTME
-        toEnum (71) = OP_PROJECT
+        toEnum (85) = OP_PRINTME
+        toEnum (73) = OP_PROJECT
         toEnum (58) = OP_RANK1
         toEnum (65) = OP_RESHAPE
         toEnum (70) = OP_SETNONZEROS
@@ -389,7 +438,9 @@ data TypeID = OT_BOOL
             | OT_DICT
             | OT_DOUBLE
             | OT_DOUBLEVECTOR
+            | OT_DOUBLEVECTORVECTOR
             | OT_FUNCTION
+            | OT_FUNCTIONVECTOR
             | OT_INT
             | OT_INTVECTOR
             | OT_INTVECTORVECTOR
@@ -402,32 +453,36 @@ data TypeID = OT_BOOL
 instance Enum TypeID where
         fromEnum (OT_BOOL) = 1
         fromEnum (OT_BOOLVECTOR) = 7
-        fromEnum (OT_DICT) = 10
+        fromEnum (OT_DICT) = 11
         fromEnum (OT_DOUBLE) = 3
         fromEnum (OT_DOUBLEVECTOR) = 8
-        fromEnum (OT_FUNCTION) = 11
+        fromEnum (OT_DOUBLEVECTORVECTOR) = 9
+        fromEnum (OT_FUNCTION) = 12
+        fromEnum (OT_FUNCTIONVECTOR) = 13
         fromEnum (OT_INT) = 2
         fromEnum (OT_INTVECTOR) = 5
         fromEnum (OT_INTVECTORVECTOR) = 6
         fromEnum (OT_NULL) = 0
         fromEnum (OT_STRING) = 4
-        fromEnum (OT_STRINGVECTOR) = 9
-        fromEnum (OT_UNKNOWN) = 13
-        fromEnum (OT_VOIDPTR) = 12
+        fromEnum (OT_STRINGVECTOR) = 10
+        fromEnum (OT_UNKNOWN) = 15
+        fromEnum (OT_VOIDPTR) = 14
         toEnum (1) = OT_BOOL
         toEnum (7) = OT_BOOLVECTOR
-        toEnum (10) = OT_DICT
+        toEnum (11) = OT_DICT
         toEnum (3) = OT_DOUBLE
         toEnum (8) = OT_DOUBLEVECTOR
-        toEnum (11) = OT_FUNCTION
+        toEnum (9) = OT_DOUBLEVECTORVECTOR
+        toEnum (12) = OT_FUNCTION
+        toEnum (13) = OT_FUNCTIONVECTOR
         toEnum (2) = OT_INT
         toEnum (5) = OT_INTVECTOR
         toEnum (6) = OT_INTVECTORVECTOR
         toEnum (0) = OT_NULL
         toEnum (4) = OT_STRING
-        toEnum (9) = OT_STRINGVECTOR
-        toEnum (13) = OT_UNKNOWN
-        toEnum (12) = OT_VOIDPTR
+        toEnum (10) = OT_STRINGVECTOR
+        toEnum (15) = OT_UNKNOWN
+        toEnum (14) = OT_VOIDPTR
         toEnum k
           = error $ "TypeID: toEnum: got unhandled number: " ++ show k
 instance Marshal TypeID CInt where
@@ -455,5 +510,24 @@ instance Enum Variability where
 instance Marshal Variability CInt where
         marshal = return . fromIntegral . fromEnum
 instance WrapReturn CInt Variability where
+        wrapReturn = return . toEnum . fromIntegral
+
+-- EnumDecl: VariableType
+data VariableType = OPTI_DUAL_G
+                  | OPTI_PAR
+                  | OPTI_VAR
+                  deriving (Show, Eq)
+instance Enum VariableType where
+        fromEnum (OPTI_DUAL_G) = 2
+        fromEnum (OPTI_PAR) = 1
+        fromEnum (OPTI_VAR) = 0
+        toEnum (2) = OPTI_DUAL_G
+        toEnum (1) = OPTI_PAR
+        toEnum (0) = OPTI_VAR
+        toEnum k
+          = error $ "VariableType: toEnum: got unhandled number: " ++ show k
+instance Marshal VariableType CInt where
+        marshal = return . fromIntegral . fromEnum
+instance WrapReturn CInt VariableType where
         wrapReturn = return . toEnum . fromIntegral
 

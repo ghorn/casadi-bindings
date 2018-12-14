@@ -1,4 +1,4 @@
-resolver: lts-7.14
+resolver: lts-12.21
 
 compiler-check: newer-minor
 
@@ -7,5 +7,5 @@ packages:
 - .
 
 # Packages to be pulled from upstream that are not in the resolver (e.g., acme-missiles-0.3)
-extra-deps: [ casadi-bindings-internal-0.1.5.0
+extra-deps: [ casadi-bindings-internal-0.1.6.0
             ]

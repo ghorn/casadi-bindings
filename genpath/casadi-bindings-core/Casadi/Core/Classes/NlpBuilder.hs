@@ -9,10 +9,11 @@ module Casadi.Core.Classes.NlpBuilder
        (
          NlpBuilder,
          NlpBuilderClass(..),
-         nlpBuilder_getDescription,
-         nlpBuilder_getRepresentation,
+         nlpBuilder_get_str__0,
+         nlpBuilder_get_str__1,
          nlpBuilder_import_nl__0,
          nlpBuilder_import_nl__1,
+         nlpBuilder_type_name,
        ) where
 
 
@@ -33,6 +34,62 @@ import Casadi.Internal.Marshal ( Marshal(..), marshal, marshalFree )
 import Casadi.Internal.WrapReturn ( WrapReturn(..) )
 import Casadi.Core.Data
 import Casadi.Core.Enums
+-- direct wrapper
+foreign import ccall unsafe "casadi__NlpBuilder__get_str__0" c_casadi__NlpBuilder__get_str__0
+  :: Ptr (Ptr StdString) -> Ptr NlpBuilder' -> IO (Ptr StdString)
+
+casadi__NlpBuilder__get_str__0
+  :: NlpBuilder -> IO String
+casadi__NlpBuilder__get_str__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__NlpBuilder__get_str__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+nlpBuilder_get_str__0 :: NlpBuilderClass a => a -> IO String
+nlpBuilder_get_str__0 x = casadi__NlpBuilder__get_str__0 (castNlpBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__NlpBuilder__get_str__1" c_casadi__NlpBuilder__get_str__1
+  :: Ptr (Ptr StdString) -> Ptr NlpBuilder' -> CInt -> IO (Ptr StdString)
+
+casadi__NlpBuilder__get_str__1
+  :: NlpBuilder -> Bool -> IO String
+casadi__NlpBuilder__get_str__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__NlpBuilder__get_str__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+nlpBuilder_get_str__1 :: NlpBuilderClass a => a -> Bool -> IO String
+nlpBuilder_get_str__1 x = casadi__NlpBuilder__get_str__1 (castNlpBuilder x)
+
+
 -- direct wrapper
 foreign import ccall unsafe "casadi__NlpBuilder__import_nl__0" c_casadi__NlpBuilder__import_nl__0
   :: Ptr (Ptr StdString) -> Ptr NlpBuilder' -> Ptr StdString -> IO ()
@@ -94,16 +151,16 @@ nlpBuilder_import_nl__1 x = casadi__NlpBuilder__import_nl__1 (castNlpBuilder x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__NlpBuilder__getRepresentation" c_casadi__NlpBuilder__getRepresentation
+foreign import ccall unsafe "casadi__NlpBuilder__type_name" c_casadi__NlpBuilder__type_name
   :: Ptr (Ptr StdString) -> Ptr NlpBuilder' -> IO (Ptr StdString)
 
-casadi__NlpBuilder__getRepresentation
+casadi__NlpBuilder__type_name
   :: NlpBuilder -> IO String
-casadi__NlpBuilder__getRepresentation x0 = do
+casadi__NlpBuilder__type_name x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__NlpBuilder__getRepresentation errStrPtrP x0'
+  ret0 <- c_casadi__NlpBuilder__type_name errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -116,33 +173,6 @@ casadi__NlpBuilder__getRepresentation x0 = do
 
 
 -- classy wrapper
-nlpBuilder_getRepresentation :: NlpBuilderClass a => a -> IO String
-nlpBuilder_getRepresentation x = casadi__NlpBuilder__getRepresentation (castNlpBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__NlpBuilder__getDescription" c_casadi__NlpBuilder__getDescription
-  :: Ptr (Ptr StdString) -> Ptr NlpBuilder' -> IO (Ptr StdString)
-
-casadi__NlpBuilder__getDescription
-  :: NlpBuilder -> IO String
-casadi__NlpBuilder__getDescription x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__NlpBuilder__getDescription errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-nlpBuilder_getDescription :: NlpBuilderClass a => a -> IO String
-nlpBuilder_getDescription x = casadi__NlpBuilder__getDescription (castNlpBuilder x)
+nlpBuilder_type_name :: NlpBuilderClass a => a -> IO String
+nlpBuilder_type_name x = casadi__NlpBuilder__type_name (castNlpBuilder x)
 

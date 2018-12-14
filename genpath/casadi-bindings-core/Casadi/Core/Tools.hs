@@ -69,7 +69,6 @@ module Casadi.Core.Tools
          casadi_blockcat__6,
          casadi_blockcat__7,
          casadi_blockcat__8,
-         casadi_blockcat__9,
          casadi_blocksplit__0,
          casadi_blocksplit__1,
          casadi_blocksplit__10,
@@ -137,6 +136,14 @@ module Casadi.Core.Tools
          casadi_cross__5,
          casadi_cross__6,
          casadi_cross__7,
+         casadi_cumsum__0,
+         casadi_cumsum__1,
+         casadi_cumsum__2,
+         casadi_cumsum__3,
+         casadi_cumsum__4,
+         casadi_cumsum__5,
+         casadi_cumsum__6,
+         casadi_cumsum__7,
          casadi_densify__0,
          casadi_densify__1,
          casadi_densify__2,
@@ -183,6 +190,18 @@ module Casadi.Core.Tools
          casadi_diagsplit__7,
          casadi_diagsplit__8,
          casadi_diagsplit__9,
+         casadi_diff__0,
+         casadi_diff__1,
+         casadi_diff__10,
+         casadi_diff__11,
+         casadi_diff__2,
+         casadi_diff__3,
+         casadi_diff__4,
+         casadi_diff__5,
+         casadi_diff__6,
+         casadi_diff__7,
+         casadi_diff__8,
+         casadi_diff__9,
          casadi_dot__0,
          casadi_dot__1,
          casadi_dot__2,
@@ -190,6 +209,14 @@ module Casadi.Core.Tools
          casadi_eig_symbolic__0,
          casadi_eig_symbolic__1,
          casadi_eig_symbolic__2,
+         casadi_einstein__0,
+         casadi_einstein__1,
+         casadi_einstein__2,
+         casadi_einstein__3,
+         casadi_einstein__4,
+         casadi_einstein__5,
+         casadi_einstein__6,
+         casadi_einstein__7,
          casadi_eq__0,
          casadi_eq__1,
          casadi_eq__2,
@@ -205,6 +232,10 @@ module Casadi.Core.Tools
          casadi_erfinv__2,
          casadi_erfinv__3,
          casadi_erfinv__4,
+         casadi_evalf__0,
+         casadi_evalf__1,
+         casadi_evalf__2,
+         casadi_evalf__3,
          casadi_exp__0,
          casadi_exp__1,
          casadi_exp__2,
@@ -213,12 +244,30 @@ module Casadi.Core.Tools
          casadi_expand__0,
          casadi_expand__1,
          casadi_expand__2,
+         casadi_expm__0,
+         casadi_expm__1,
+         casadi_expm__2,
+         casadi_expm__3,
+         casadi_expm_const__0,
+         casadi_expm_const__1,
+         casadi_expm_const__2,
+         casadi_expm_const__3,
          casadi_find,
          casadi_floor__0,
          casadi_floor__1,
          casadi_floor__2,
          casadi_floor__3,
          casadi_floor__4,
+         casadi_fmax__0,
+         casadi_fmax__1,
+         casadi_fmax__2,
+         casadi_fmax__3,
+         casadi_fmax__4,
+         casadi_fmin__0,
+         casadi_fmin__1,
+         casadi_fmin__2,
+         casadi_fmin__3,
+         casadi_fmin__4,
          casadi_forward__0,
          casadi_forward__1,
          casadi_forward__2,
@@ -241,9 +290,6 @@ module Casadi.Core.Tools
          casadi_ge__2,
          casadi_ge__3,
          casadi_ge__4,
-         casadi_getMinor__0,
-         casadi_getMinor__1,
-         casadi_getMinor__2,
          casadi_gradient__0,
          casadi_gradient__1,
          casadi_gradient__2,
@@ -292,8 +338,21 @@ module Casadi.Core.Tools
          casadi_if_else__7,
          casadi_inv__0,
          casadi_inv__1,
+         casadi_inv__10,
+         casadi_inv__11,
          casadi_inv__2,
          casadi_inv__3,
+         casadi_inv__4,
+         casadi_inv__5,
+         casadi_inv__6,
+         casadi_inv__7,
+         casadi_inv__8,
+         casadi_inv__9,
+         casadi_inv_minor__0,
+         casadi_inv_minor__1,
+         casadi_inv_minor__2,
+         casadi_inv_minor__3,
+         casadi_inv_node,
          casadi_inv_skew__0,
          casadi_inv_skew__1,
          casadi_inv_skew__2,
@@ -308,10 +367,22 @@ module Casadi.Core.Tools
          casadi_is_equal__7,
          casadi_is_equal__8,
          casadi_is_equal__9,
+         casadi_is_linear__0,
+         casadi_is_linear__1,
+         casadi_is_linear__2,
+         casadi_is_linear__3,
+         casadi_is_quadratic__0,
+         casadi_is_quadratic__1,
+         casadi_is_quadratic__2,
+         casadi_is_quadratic__3,
          casadi_jacobian__0,
          casadi_jacobian__1,
          casadi_jacobian__2,
          casadi_jacobian__3,
+         casadi_jacobian__4,
+         casadi_jacobian__5,
+         casadi_jacobian__6,
+         casadi_jacobian__7,
          casadi_jtimes__0,
          casadi_jtimes__1,
          casadi_jtimes__2,
@@ -330,11 +401,28 @@ module Casadi.Core.Tools
          casadi_ldivide__2,
          casadi_ldivide__3,
          casadi_ldivide__4,
+         casadi_ldl__0,
+         casadi_ldl__1,
+         casadi_ldl__2,
+         casadi_ldl__3,
+         casadi_ldl__4,
+         casadi_ldl__5,
+         casadi_ldl_solve__0,
+         casadi_ldl_solve__1,
+         casadi_ldl_solve__2,
          casadi_le__0,
          casadi_le__1,
          casadi_le__2,
          casadi_le__3,
          casadi_le__4,
+         casadi_linear_coeff__0,
+         casadi_linear_coeff__1,
+         casadi_linear_coeff__2,
+         casadi_linear_coeff__3,
+         casadi_linearize__0,
+         casadi_linearize__1,
+         casadi_linearize__2,
+         casadi_linearize__3,
          casadi_linspace__0,
          casadi_linspace__1,
          casadi_linspace__2,
@@ -365,16 +453,9 @@ module Casadi.Core.Tools
          casadi_matrix_expand__3,
          casadi_matrix_expand__4,
          casadi_matrix_expand__5,
-         casadi_max__0,
-         casadi_max__1,
-         casadi_max__2,
-         casadi_max__3,
-         casadi_max__4,
-         casadi_min__0,
-         casadi_min__1,
-         casadi_min__2,
-         casadi_min__3,
-         casadi_min__4,
+         casadi_minor__0,
+         casadi_minor__1,
+         casadi_minor__2,
          casadi_minus__0,
          casadi_minus__1,
          casadi_minus__2,
@@ -384,6 +465,14 @@ module Casadi.Core.Tools
          casadi_mldivide__1,
          casadi_mldivide__2,
          casadi_mldivide__3,
+         casadi_mmax__0,
+         casadi_mmax__1,
+         casadi_mmax__2,
+         casadi_mmax__3,
+         casadi_mmin__0,
+         casadi_mmin__1,
+         casadi_mmin__2,
+         casadi_mmin__3,
          casadi_mod__0,
          casadi_mod__1,
          casadi_mod__2,
@@ -526,6 +615,22 @@ module Casadi.Core.Tools
          casadi_qr__0,
          casadi_qr__1,
          casadi_qr__2,
+         casadi_qr_solve__0,
+         casadi_qr_solve__1,
+         casadi_qr_solve__2,
+         casadi_qr_solve__3,
+         casadi_qr_solve__4,
+         casadi_qr_solve__5,
+         casadi_qr_sparse__0,
+         casadi_qr_sparse__1,
+         casadi_qr_sparse__2,
+         casadi_qr_sparse__3,
+         casadi_qr_sparse__4,
+         casadi_qr_sparse__5,
+         casadi_quadratic_coeff__0,
+         casadi_quadratic_coeff__1,
+         casadi_quadratic_coeff__2,
+         casadi_quadratic_coeff__3,
          casadi_ramp__0,
          casadi_ramp__1,
          casadi_ramp__2,
@@ -623,6 +728,10 @@ module Casadi.Core.Tools
          casadi_skew__1,
          casadi_skew__2,
          casadi_skew__3,
+         casadi_soc__0,
+         casadi_soc__1,
+         casadi_soc__2,
+         casadi_soc__3,
          casadi_solve__0,
          casadi_solve__1,
          casadi_solve__10,
@@ -671,14 +780,16 @@ module Casadi.Core.Tools
          casadi_sum1__1,
          casadi_sum1__2,
          casadi_sum1__3,
+         casadi_sum1__4,
          casadi_sum2__0,
          casadi_sum2__1,
          casadi_sum2__2,
          casadi_sum2__3,
-         casadi_sum_square__0,
-         casadi_sum_square__1,
-         casadi_sum_square__2,
-         casadi_sum_square__3,
+         casadi_sum2__4,
+         casadi_sumsqr__0,
+         casadi_sumsqr__1,
+         casadi_sumsqr__2,
+         casadi_sumsqr__3,
          casadi_symvar__0,
          casadi_symvar__1,
          casadi_symvar__2,
@@ -785,26 +896,28 @@ module Casadi.Core.Tools
          casadi_vertsplit__7,
          casadi_vertsplit__8,
          casadi_vertsplit__9,
-         casadi_which_depends__0,
-         casadi_which_depends__1,
-         casadi_which_depends__2,
-         casadi_which_depends__3,
          collocation_interpolators,
          collocation_points__0,
          collocation_points__1,
          complement,
          conic__0,
          conic__1,
+         conic_debug,
          conic_in__0,
          conic_in__1,
          conic_n_in,
          conic_n_out,
+         conic_option_info,
+         conic_option_type,
+         conic_options,
          conic_out__0,
          conic_out__1,
          doc_conic,
          doc_dple,
+         doc_expm,
          doc_integrator,
          doc_interpolant,
+         doc_linsol,
          doc_nlpsol,
          doc_rootfinder,
          dple_in__0,
@@ -821,6 +934,10 @@ module Casadi.Core.Tools
          dplesol__5,
          dplesol__6,
          dplesol__7,
+         expm_n_in,
+         expm_n_out,
+         expmsol__0,
+         expmsol__1,
          external__0,
          external__1,
          external__2,
@@ -829,12 +946,16 @@ module Casadi.Core.Tools
          external__5,
          has_conic,
          has_dple,
+         has_expm,
          has_integrator,
          has_interpolant,
+         has_linsol,
          has_nlpsol,
          has_rootfinder,
          hash_combine,
          hash_sparsity,
+         index_interp1d__0,
+         index_interp1d__1,
          integrator__0,
          integrator__1,
          integrator__2,
@@ -852,15 +973,16 @@ module Casadi.Core.Tools
          is_slice__1,
          is_slice__2,
          is_slice__3,
-         jit__0,
-         jit__1,
          load_conic,
          load_dple,
+         load_expm,
          load_integrator,
          load_interpolant,
+         load_linsol,
          load_nlpsol,
          load_rootfinder,
-         lookupvector,
+         lookupvector__0,
+         lookupvector__1,
          nlpsol__0,
          nlpsol__1,
          nlpsol__2,
@@ -877,6 +999,9 @@ module Casadi.Core.Tools
          nlpsol_in__1,
          nlpsol_n_in,
          nlpsol_n_out,
+         nlpsol_option_info,
+         nlpsol_option_type,
+         nlpsol_options,
          nlpsol_out__0,
          nlpsol_out__1,
          qpsol__0,
@@ -885,6 +1010,19 @@ module Casadi.Core.Tools
          qpsol__3,
          rootfinder__0,
          rootfinder__1,
+         rootfinder__2,
+         rootfinder__3,
+         rootfinder__4,
+         rootfinder__5,
+         rootfinder_in__0,
+         rootfinder_in__1,
+         rootfinder_n_in,
+         rootfinder_n_out,
+         rootfinder_option_info,
+         rootfinder_option_type,
+         rootfinder_options,
+         rootfinder_out__0,
+         rootfinder_out__1,
          simpleIRK__0,
          simpleIRK__1,
          simpleIRK__2,
@@ -897,6 +1035,7 @@ module Casadi.Core.Tools
          simpleRK__0,
          simpleRK__1,
          simpleRK__2,
+         temporary_file,
          to_slice2,
          to_slice__0,
          to_slice__1,
@@ -2173,37 +2312,31 @@ casadi_bilin__3 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_blockcat__0" c_casadi_blockcat__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr SX')))) -> IO (Ptr SX')
 
 casadi_blockcat__0
-  :: SX -> SX -> SX -> SX -> IO SX
-casadi_blockcat__0 x0 x1 x2 x3 = do
+  :: Vector (Vector SX) -> IO SX
+casadi_blockcat__0 x0 = do
   x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_blockcat__0 errStrPtrP x0' x1' x2' x3'
+  ret0 <- c_casadi_blockcat__0 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
 
   return ret
 
 
 
 foreign import ccall unsafe "casadi_blockcat__1" c_casadi_blockcat__1
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr SX')))) -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr DM')))) -> IO (Ptr DM')
 
 casadi_blockcat__1
-  :: Vector (Vector SX) -> IO SX
+  :: Vector (Vector DM) -> IO DM
 casadi_blockcat__1 x0 = do
   x0' <- marshal x0
 
@@ -2221,37 +2354,31 @@ casadi_blockcat__1 x0 = do
 
 
 foreign import ccall unsafe "casadi_blockcat__2" c_casadi_blockcat__2
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr IM')))) -> IO (Ptr IM')
 
 casadi_blockcat__2
-  :: DM -> DM -> DM -> DM -> IO DM
-casadi_blockcat__2 x0 x1 x2 x3 = do
+  :: Vector (Vector IM) -> IO IM
+casadi_blockcat__2 x0 = do
   x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_blockcat__2 errStrPtrP x0' x1' x2' x3'
+  ret0 <- c_casadi_blockcat__2 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
 
   return ret
 
 
 
 foreign import ccall unsafe "casadi_blockcat__3" c_casadi_blockcat__3
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr DM')))) -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr MX')))) -> IO (Ptr MX')
 
 casadi_blockcat__3
-  :: Vector (Vector DM) -> IO DM
+  :: Vector (Vector MX) -> IO MX
 casadi_blockcat__3 x0 = do
   x0' <- marshal x0
 
@@ -2269,10 +2396,10 @@ casadi_blockcat__3 x0 = do
 
 
 foreign import ccall unsafe "casadi_blockcat__4" c_casadi_blockcat__4
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
 
 casadi_blockcat__4
-  :: IM -> IM -> IM -> IM -> IO IM
+  :: SX -> SX -> SX -> SX -> IO SX
 casadi_blockcat__4 x0 x1 x2 x3 = do
   x0' <- marshal x0
   x1' <- marshal x1
@@ -2296,31 +2423,37 @@ casadi_blockcat__4 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_blockcat__5" c_casadi_blockcat__5
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr IM')))) -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
 
 casadi_blockcat__5
-  :: Vector (Vector IM) -> IO IM
-casadi_blockcat__5 x0 = do
+  :: DM -> DM -> DM -> DM -> IO DM
+casadi_blockcat__5 x0 x1 x2 x3 = do
   x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_blockcat__5 errStrPtrP x0'
+  ret0 <- c_casadi_blockcat__5 errStrPtrP x0' x1' x2' x3'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
 
   return ret
 
 
 
 foreign import ccall unsafe "casadi_blockcat__6" c_casadi_blockcat__6
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
 
 casadi_blockcat__6
-  :: MX -> MX -> MX -> MX -> IO MX
+  :: IM -> IM -> IM -> IM -> IO IM
 casadi_blockcat__6 x0 x1 x2 x3 = do
   x0' <- marshal x0
   x1' <- marshal x1
@@ -2344,21 +2477,27 @@ casadi_blockcat__6 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_blockcat__7" c_casadi_blockcat__7
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr MX')))) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
 
 casadi_blockcat__7
-  :: Vector (Vector MX) -> IO MX
-casadi_blockcat__7 x0 = do
+  :: MX -> MX -> MX -> MX -> IO MX
+casadi_blockcat__7 x0 x1 x2 x3 = do
   x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_blockcat__7 errStrPtrP x0'
+  ret0 <- c_casadi_blockcat__7 errStrPtrP x0' x1' x2' x3'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
 
   return ret
 
@@ -2391,27 +2530,6 @@ casadi_blockcat__8 x0 x1 x2 x3 = do
 
 
 
-foreign import ccall unsafe "casadi_blockcat__9" c_casadi_blockcat__9
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec (Ptr Sparsity')))) -> IO (Ptr Sparsity')
-
-casadi_blockcat__9
-  :: Vector (Vector Sparsity) -> IO Sparsity
-casadi_blockcat__9 x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_blockcat__9 errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
 foreign import ccall unsafe "casadi_blocksplit__0" c_casadi_blocksplit__0
   :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr (StdVec (Ptr (StdVec (Ptr SX')))))
 
@@ -2434,7 +2552,7 @@ casadi_blocksplit__0 x0 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__1" c_casadi_blocksplit__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr SX')))))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr SX')))))
 
 casadi_blocksplit__1
   :: SX -> Int -> IO (Vector (Vector SX))
@@ -2457,7 +2575,7 @@ casadi_blocksplit__1 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__2" c_casadi_blocksplit__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr SX')))))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr SX')))))
 
 casadi_blocksplit__2
   :: SX -> Int -> Int -> IO (Vector (Vector SX))
@@ -2482,7 +2600,7 @@ casadi_blocksplit__2 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__3" c_casadi_blocksplit__3
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr SX')))))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr SX')))))
 
 casadi_blocksplit__3
   :: SX -> Vector Int -> Vector Int -> IO (Vector (Vector SX))
@@ -2528,7 +2646,7 @@ casadi_blocksplit__4 x0 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__5" c_casadi_blocksplit__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr DM')))))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr DM')))))
 
 casadi_blocksplit__5
   :: DM -> Int -> IO (Vector (Vector DM))
@@ -2551,7 +2669,7 @@ casadi_blocksplit__5 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__6" c_casadi_blocksplit__6
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr DM')))))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr DM')))))
 
 casadi_blocksplit__6
   :: DM -> Int -> Int -> IO (Vector (Vector DM))
@@ -2576,7 +2694,7 @@ casadi_blocksplit__6 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__7" c_casadi_blocksplit__7
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr DM')))))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr DM')))))
 
 casadi_blocksplit__7
   :: DM -> Vector Int -> Vector Int -> IO (Vector (Vector DM))
@@ -2622,7 +2740,7 @@ casadi_blocksplit__8 x0 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__9" c_casadi_blocksplit__9
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr IM')))))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr IM')))))
 
 casadi_blocksplit__9
   :: IM -> Int -> IO (Vector (Vector IM))
@@ -2645,7 +2763,7 @@ casadi_blocksplit__9 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__10" c_casadi_blocksplit__10
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr IM')))))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr IM')))))
 
 casadi_blocksplit__10
   :: IM -> Int -> Int -> IO (Vector (Vector IM))
@@ -2670,7 +2788,7 @@ casadi_blocksplit__10 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__11" c_casadi_blocksplit__11
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr IM')))))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr IM')))))
 
 casadi_blocksplit__11
   :: IM -> Vector Int -> Vector Int -> IO (Vector (Vector IM))
@@ -2716,7 +2834,7 @@ casadi_blocksplit__12 x0 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__13" c_casadi_blocksplit__13
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
 
 casadi_blocksplit__13
   :: MX -> Int -> IO (Vector (Vector MX))
@@ -2739,7 +2857,7 @@ casadi_blocksplit__13 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__14" c_casadi_blocksplit__14
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
 
 casadi_blocksplit__14
   :: MX -> Int -> Int -> IO (Vector (Vector MX))
@@ -2764,7 +2882,7 @@ casadi_blocksplit__14 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__15" c_casadi_blocksplit__15
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr MX')))))
 
 casadi_blocksplit__15
   :: MX -> Vector Int -> Vector Int -> IO (Vector (Vector MX))
@@ -2810,7 +2928,7 @@ casadi_blocksplit__16 x0 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__17" c_casadi_blocksplit__17
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr Sparsity')))))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr Sparsity')))))
 
 casadi_blocksplit__17
   :: Sparsity -> Int -> IO (Vector (Vector Sparsity))
@@ -2833,7 +2951,7 @@ casadi_blocksplit__17 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__18" c_casadi_blocksplit__18
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr (StdVec (Ptr Sparsity')))))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr (StdVec (Ptr Sparsity')))))
 
 casadi_blocksplit__18
   :: Sparsity -> Int -> Int -> IO (Vector (Vector Sparsity))
@@ -2858,7 +2976,7 @@ casadi_blocksplit__18 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_blocksplit__19" c_casadi_blocksplit__19
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr Sparsity')))))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr (StdVec (Ptr Sparsity')))))
 
 casadi_blocksplit__19
   :: Sparsity -> Vector Int -> Vector Int -> IO (Vector (Vector Sparsity))
@@ -3051,7 +3169,7 @@ casadi_chol__2 x0 = do
 
 
 foreign import ccall unsafe "casadi_cofactor__0" c_casadi_cofactor__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr SX')
 
 casadi_cofactor__0
   :: SX -> Int -> Int -> IO SX
@@ -3076,7 +3194,7 @@ casadi_cofactor__0 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_cofactor__1" c_casadi_cofactor__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr DM')
 
 casadi_cofactor__1
   :: DM -> Int -> Int -> IO DM
@@ -3101,7 +3219,7 @@ casadi_cofactor__1 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_cofactor__2" c_casadi_cofactor__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr IM')
 
 casadi_cofactor__2
   :: IM -> Int -> Int -> IO IM
@@ -3797,7 +3915,7 @@ casadi_cross__0 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_cross__1" c_casadi_cross__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> CLLong -> IO (Ptr SX')
 
 casadi_cross__1
   :: SX -> SX -> Int -> IO SX
@@ -3845,7 +3963,7 @@ casadi_cross__2 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_cross__3" c_casadi_cross__3
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> CLLong -> IO (Ptr DM')
 
 casadi_cross__3
   :: DM -> DM -> Int -> IO DM
@@ -3893,7 +4011,7 @@ casadi_cross__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_cross__5" c_casadi_cross__5
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> CLLong -> IO (Ptr IM')
 
 casadi_cross__5
   :: IM -> IM -> Int -> IO IM
@@ -3941,7 +4059,7 @@ casadi_cross__6 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_cross__7" c_casadi_cross__7
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> CLLong -> IO (Ptr MX')
 
 casadi_cross__7
   :: MX -> MX -> Int -> IO MX
@@ -3960,6 +4078,182 @@ casadi_cross__7 x0 x1 x2 = do
   marshalFree x0 x0'
   marshalFree x1 x1'
   marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__0" c_casadi_cumsum__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
+
+casadi_cumsum__0
+  :: SX -> IO SX
+casadi_cumsum__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__1" c_casadi_cumsum__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr SX')
+
+casadi_cumsum__1
+  :: SX -> Int -> IO SX
+casadi_cumsum__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__2" c_casadi_cumsum__2
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_cumsum__2
+  :: DM -> IO DM
+casadi_cumsum__2 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__2 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__3" c_casadi_cumsum__3
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr DM')
+
+casadi_cumsum__3
+  :: DM -> Int -> IO DM
+casadi_cumsum__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__4" c_casadi_cumsum__4
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+
+casadi_cumsum__4
+  :: IM -> IO IM
+casadi_cumsum__4 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__4 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__5" c_casadi_cumsum__5
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr IM')
+
+casadi_cumsum__5
+  :: IM -> Int -> IO IM
+casadi_cumsum__5 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__5 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__6" c_casadi_cumsum__6
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_cumsum__6
+  :: MX -> IO MX
+casadi_cumsum__6 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__6 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_cumsum__7" c_casadi_cumsum__7
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr MX')
+
+casadi_cumsum__7
+  :: MX -> Int -> IO MX
+casadi_cumsum__7 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_cumsum__7 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
@@ -4415,7 +4709,7 @@ casadi_diagcat__4 x0 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__0" c_casadi_diagsplit__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_diagsplit__0
   :: SX -> Int -> Int -> IO (Vector SX)
@@ -4461,7 +4755,7 @@ casadi_diagsplit__1 x0 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__2" c_casadi_diagsplit__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_diagsplit__2
   :: SX -> Int -> IO (Vector SX)
@@ -4484,7 +4778,7 @@ casadi_diagsplit__2 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__3" c_casadi_diagsplit__3
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_diagsplit__3
   :: SX -> Vector Int -> IO (Vector SX)
@@ -4507,7 +4801,7 @@ casadi_diagsplit__3 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__4" c_casadi_diagsplit__4
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_diagsplit__4
   :: SX -> Vector Int -> Vector Int -> IO (Vector SX)
@@ -4532,7 +4826,7 @@ casadi_diagsplit__4 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__5" c_casadi_diagsplit__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_diagsplit__5
   :: DM -> Int -> Int -> IO (Vector DM)
@@ -4578,7 +4872,7 @@ casadi_diagsplit__6 x0 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__7" c_casadi_diagsplit__7
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_diagsplit__7
   :: DM -> Int -> IO (Vector DM)
@@ -4601,7 +4895,7 @@ casadi_diagsplit__7 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__8" c_casadi_diagsplit__8
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_diagsplit__8
   :: DM -> Vector Int -> IO (Vector DM)
@@ -4624,7 +4918,7 @@ casadi_diagsplit__8 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__9" c_casadi_diagsplit__9
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_diagsplit__9
   :: DM -> Vector Int -> Vector Int -> IO (Vector DM)
@@ -4649,7 +4943,7 @@ casadi_diagsplit__9 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__10" c_casadi_diagsplit__10
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_diagsplit__10
   :: IM -> Int -> Int -> IO (Vector IM)
@@ -4695,7 +4989,7 @@ casadi_diagsplit__11 x0 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__12" c_casadi_diagsplit__12
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_diagsplit__12
   :: IM -> Int -> IO (Vector IM)
@@ -4718,7 +5012,7 @@ casadi_diagsplit__12 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__13" c_casadi_diagsplit__13
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_diagsplit__13
   :: IM -> Vector Int -> IO (Vector IM)
@@ -4741,7 +5035,7 @@ casadi_diagsplit__13 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__14" c_casadi_diagsplit__14
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_diagsplit__14
   :: IM -> Vector Int -> Vector Int -> IO (Vector IM)
@@ -4766,7 +5060,7 @@ casadi_diagsplit__14 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__15" c_casadi_diagsplit__15
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_diagsplit__15
   :: MX -> Int -> Int -> IO (Vector MX)
@@ -4812,7 +5106,7 @@ casadi_diagsplit__16 x0 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__17" c_casadi_diagsplit__17
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_diagsplit__17
   :: MX -> Int -> IO (Vector MX)
@@ -4835,7 +5129,7 @@ casadi_diagsplit__17 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__18" c_casadi_diagsplit__18
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_diagsplit__18
   :: MX -> Vector Int -> IO (Vector MX)
@@ -4858,7 +5152,7 @@ casadi_diagsplit__18 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__19" c_casadi_diagsplit__19
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_diagsplit__19
   :: MX -> Vector Int -> Vector Int -> IO (Vector MX)
@@ -4883,7 +5177,7 @@ casadi_diagsplit__19 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__20" c_casadi_diagsplit__20
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_diagsplit__20
   :: Sparsity -> Int -> Int -> IO (Vector Sparsity)
@@ -4929,7 +5223,7 @@ casadi_diagsplit__21 x0 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__22" c_casadi_diagsplit__22
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_diagsplit__22
   :: Sparsity -> Int -> IO (Vector Sparsity)
@@ -4952,7 +5246,7 @@ casadi_diagsplit__22 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__23" c_casadi_diagsplit__23
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_diagsplit__23
   :: Sparsity -> Vector Int -> IO (Vector Sparsity)
@@ -4975,7 +5269,7 @@ casadi_diagsplit__23 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_diagsplit__24" c_casadi_diagsplit__24
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_diagsplit__24
   :: Sparsity -> Vector Int -> Vector Int -> IO (Vector Sparsity)
@@ -4986,6 +5280,282 @@ casadi_diagsplit__24 x0 x1 x2 = do
 
   errStrPtrP <- new nullPtr
   ret0 <- c_casadi_diagsplit__24 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__0" c_casadi_diff__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
+
+casadi_diff__0
+  :: SX -> IO SX
+casadi_diff__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__1" c_casadi_diff__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr SX')
+
+casadi_diff__1
+  :: SX -> Int -> IO SX
+casadi_diff__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__2" c_casadi_diff__2
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr SX')
+
+casadi_diff__2
+  :: SX -> Int -> Int -> IO SX
+casadi_diff__2 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__2 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__3" c_casadi_diff__3
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_diff__3
+  :: DM -> IO DM
+casadi_diff__3 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__3 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__4" c_casadi_diff__4
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr DM')
+
+casadi_diff__4
+  :: DM -> Int -> IO DM
+casadi_diff__4 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__4 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__5" c_casadi_diff__5
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr DM')
+
+casadi_diff__5
+  :: DM -> Int -> Int -> IO DM
+casadi_diff__5 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__5 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__6" c_casadi_diff__6
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+
+casadi_diff__6
+  :: IM -> IO IM
+casadi_diff__6 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__6 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__7" c_casadi_diff__7
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr IM')
+
+casadi_diff__7
+  :: IM -> Int -> IO IM
+casadi_diff__7 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__7 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__8" c_casadi_diff__8
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr IM')
+
+casadi_diff__8
+  :: IM -> Int -> Int -> IO IM
+casadi_diff__8 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__8 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__9" c_casadi_diff__9
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_diff__9
+  :: MX -> IO MX
+casadi_diff__9 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__9 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__10" c_casadi_diff__10
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr MX')
+
+casadi_diff__10
+  :: MX -> Int -> IO MX
+casadi_diff__10 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__10 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_diff__11" c_casadi_diff__11
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> IO (Ptr MX')
+
+casadi_diff__11
+  :: MX -> Int -> Int -> IO MX
+casadi_diff__11 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_diff__11 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -5149,6 +5719,294 @@ casadi_eig_symbolic__2 x0 = do
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__0" c_casadi_einstein__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr SX')
+
+casadi_einstein__0
+  :: SX -> SX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO SX
+casadi_einstein__0 x0 x1 x2 x3 x4 x5 x6 x7 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__0 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__1" c_casadi_einstein__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr SX')
+
+casadi_einstein__1
+  :: SX -> SX -> SX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO SX
+casadi_einstein__1 x0 x1 x2 x3 x4 x5 x6 x7 x8 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+  x8' <- marshal x8
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__1 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7' x8'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+  marshalFree x8 x8'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__2" c_casadi_einstein__2
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr DM')
+
+casadi_einstein__2
+  :: DM -> DM -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO DM
+casadi_einstein__2 x0 x1 x2 x3 x4 x5 x6 x7 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__2 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__3" c_casadi_einstein__3
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr DM')
+
+casadi_einstein__3
+  :: DM -> DM -> DM -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO DM
+casadi_einstein__3 x0 x1 x2 x3 x4 x5 x6 x7 x8 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+  x8' <- marshal x8
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__3 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7' x8'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+  marshalFree x8 x8'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__4" c_casadi_einstein__4
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr IM')
+
+casadi_einstein__4
+  :: IM -> IM -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO IM
+casadi_einstein__4 x0 x1 x2 x3 x4 x5 x6 x7 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__4 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__5" c_casadi_einstein__5
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr IM')
+
+casadi_einstein__5
+  :: IM -> IM -> IM -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO IM
+casadi_einstein__5 x0 x1 x2 x3 x4 x5 x6 x7 x8 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+  x8' <- marshal x8
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__5 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7' x8'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+  marshalFree x8 x8'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__6" c_casadi_einstein__6
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr MX')
+
+casadi_einstein__6
+  :: MX -> MX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO MX
+casadi_einstein__6 x0 x1 x2 x3 x4 x5 x6 x7 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__6 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_einstein__7" c_casadi_einstein__7
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr MX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr MX')
+
+casadi_einstein__7
+  :: MX -> MX -> MX -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> Vector Int -> IO MX
+casadi_einstein__7 x0 x1 x2 x3 x4 x5 x6 x7 x8 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+  x7' <- marshal x7
+  x8' <- marshal x8
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_einstein__7 errStrPtrP x0' x1' x2' x3' x4' x5' x6' x7' x8'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+  marshalFree x7 x7'
+  marshalFree x8 x8'
 
   return ret
 
@@ -5479,6 +6337,90 @@ casadi_erfinv__4 x0 = do
 
 
 
+foreign import ccall unsafe "casadi_evalf__0" c_casadi_evalf__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr DM')
+
+casadi_evalf__0
+  :: SX -> IO DM
+casadi_evalf__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_evalf__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_evalf__1" c_casadi_evalf__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_evalf__1
+  :: DM -> IO DM
+casadi_evalf__1 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_evalf__1 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_evalf__2" c_casadi_evalf__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr DM')
+
+casadi_evalf__2
+  :: IM -> IO DM
+casadi_evalf__2 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_evalf__2 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_evalf__3" c_casadi_evalf__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr DM')
+
+casadi_evalf__3
+  :: MX -> IO DM
+casadi_evalf__3 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_evalf__3 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
 foreign import ccall unsafe "casadi_exp__0" c_casadi_exp__0
   :: Ptr (Ptr StdString) -> CDouble -> IO CDouble
 
@@ -5659,6 +6601,182 @@ casadi_expand__2 x0 x1 x2 = do
 
 
 
+foreign import ccall unsafe "casadi_expm__0" c_casadi_expm__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
+
+casadi_expm__0
+  :: SX -> IO SX
+casadi_expm__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_expm__1" c_casadi_expm__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_expm__1
+  :: DM -> IO DM
+casadi_expm__1 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm__1 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_expm__2" c_casadi_expm__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+
+casadi_expm__2
+  :: IM -> IO IM
+casadi_expm__2 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm__2 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_expm__3" c_casadi_expm__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_expm__3
+  :: MX -> IO MX
+casadi_expm__3 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm__3 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_expm_const__0" c_casadi_expm_const__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
+
+casadi_expm_const__0
+  :: SX -> SX -> IO SX
+casadi_expm_const__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm_const__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_expm_const__1" c_casadi_expm_const__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+
+casadi_expm_const__1
+  :: DM -> DM -> IO DM
+casadi_expm_const__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm_const__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_expm_const__2" c_casadi_expm_const__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+
+casadi_expm_const__2
+  :: IM -> IM -> IO IM
+casadi_expm_const__2 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm_const__2 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_expm_const__3" c_casadi_expm_const__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+
+casadi_expm_const__3
+  :: MX -> MX -> IO MX
+casadi_expm_const__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_expm_const__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
 foreign import ccall unsafe "casadi_find" c_casadi_find
   :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
 
@@ -5780,6 +6898,236 @@ casadi_floor__4 x0 = do
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmax__0" c_casadi_fmax__0
+  :: Ptr (Ptr StdString) -> CDouble -> CDouble -> IO CDouble
+
+casadi_fmax__0
+  :: Double -> Double -> IO Double
+casadi_fmax__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmax__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmax__1" c_casadi_fmax__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
+
+casadi_fmax__1
+  :: SX -> SX -> IO SX
+casadi_fmax__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmax__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmax__2" c_casadi_fmax__2
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+
+casadi_fmax__2
+  :: DM -> DM -> IO DM
+casadi_fmax__2 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmax__2 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmax__3" c_casadi_fmax__3
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+
+casadi_fmax__3
+  :: IM -> IM -> IO IM
+casadi_fmax__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmax__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmax__4" c_casadi_fmax__4
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+
+casadi_fmax__4
+  :: MX -> MX -> IO MX
+casadi_fmax__4 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmax__4 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmin__0" c_casadi_fmin__0
+  :: Ptr (Ptr StdString) -> CDouble -> CDouble -> IO CDouble
+
+casadi_fmin__0
+  :: Double -> Double -> IO Double
+casadi_fmin__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmin__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmin__1" c_casadi_fmin__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
+
+casadi_fmin__1
+  :: SX -> SX -> IO SX
+casadi_fmin__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmin__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmin__2" c_casadi_fmin__2
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+
+casadi_fmin__2
+  :: DM -> DM -> IO DM
+casadi_fmin__2 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmin__2 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmin__3" c_casadi_fmin__3
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+
+casadi_fmin__3
+  :: IM -> IM -> IO IM
+casadi_fmin__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmin__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_fmin__4" c_casadi_fmin__4
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+
+casadi_fmin__4
+  :: MX -> MX -> IO MX
+casadi_fmin__4 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_fmin__4 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
@@ -5994,7 +7342,7 @@ casadi_forward__7 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_gauss_quadrature__0" c_casadi_gauss_quadrature__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CInt -> Ptr SX' -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CLLong -> Ptr SX' -> IO (Ptr SX')
 
 casadi_gauss_quadrature__0
   :: SX -> SX -> SX -> SX -> Int -> SX -> IO SX
@@ -6052,7 +7400,7 @@ casadi_gauss_quadrature__1 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_gauss_quadrature__2" c_casadi_gauss_quadrature__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CLLong -> IO (Ptr SX')
 
 casadi_gauss_quadrature__2
   :: SX -> SX -> SX -> SX -> Int -> IO SX
@@ -6081,7 +7429,7 @@ casadi_gauss_quadrature__2 x0 x1 x2 x3 x4 = do
 
 
 foreign import ccall unsafe "casadi_gauss_quadrature__3" c_casadi_gauss_quadrature__3
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CInt -> Ptr DM' -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CLLong -> Ptr DM' -> IO (Ptr DM')
 
 casadi_gauss_quadrature__3
   :: DM -> DM -> DM -> DM -> Int -> DM -> IO DM
@@ -6139,7 +7487,7 @@ casadi_gauss_quadrature__4 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_gauss_quadrature__5" c_casadi_gauss_quadrature__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CLLong -> IO (Ptr DM')
 
 casadi_gauss_quadrature__5
   :: DM -> DM -> DM -> DM -> Int -> IO DM
@@ -6168,7 +7516,7 @@ casadi_gauss_quadrature__5 x0 x1 x2 x3 x4 = do
 
 
 foreign import ccall unsafe "casadi_gauss_quadrature__6" c_casadi_gauss_quadrature__6
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CInt -> Ptr IM' -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CLLong -> Ptr IM' -> IO (Ptr IM')
 
 casadi_gauss_quadrature__6
   :: IM -> IM -> IM -> IM -> Int -> IM -> IO IM
@@ -6226,7 +7574,7 @@ casadi_gauss_quadrature__7 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_gauss_quadrature__8" c_casadi_gauss_quadrature__8
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CLLong -> IO (Ptr IM')
 
 casadi_gauss_quadrature__8
   :: IM -> IM -> IM -> IM -> Int -> IO IM
@@ -6364,81 +7712,6 @@ casadi_ge__4 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_getMinor__0" c_casadi_getMinor__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> CInt -> IO (Ptr SX')
-
-casadi_getMinor__0
-  :: SX -> Int -> Int -> IO SX
-casadi_getMinor__0 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_getMinor__0 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_getMinor__1" c_casadi_getMinor__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> CInt -> IO (Ptr DM')
-
-casadi_getMinor__1
-  :: DM -> Int -> Int -> IO DM
-casadi_getMinor__1 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_getMinor__1 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_getMinor__2" c_casadi_getMinor__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> CInt -> IO (Ptr IM')
-
-casadi_getMinor__2
-  :: IM -> Int -> Int -> IO IM
-casadi_getMinor__2 x0 x1 x2 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_getMinor__2 errStrPtrP x0' x1' x2'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
 
   return ret
 
@@ -6991,7 +8264,7 @@ casadi_horzsplit__0 x0 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__1" c_casadi_horzsplit__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_horzsplit__1
   :: SX -> Int -> IO (Vector SX)
@@ -7014,7 +8287,7 @@ casadi_horzsplit__1 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__2" c_casadi_horzsplit__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_horzsplit__2
   :: SX -> Vector Int -> IO (Vector SX)
@@ -7058,7 +8331,7 @@ casadi_horzsplit__3 x0 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__4" c_casadi_horzsplit__4
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_horzsplit__4
   :: DM -> Int -> IO (Vector DM)
@@ -7081,7 +8354,7 @@ casadi_horzsplit__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__5" c_casadi_horzsplit__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_horzsplit__5
   :: DM -> Vector Int -> IO (Vector DM)
@@ -7125,7 +8398,7 @@ casadi_horzsplit__6 x0 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__7" c_casadi_horzsplit__7
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_horzsplit__7
   :: IM -> Int -> IO (Vector IM)
@@ -7148,7 +8421,7 @@ casadi_horzsplit__7 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__8" c_casadi_horzsplit__8
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_horzsplit__8
   :: IM -> Vector Int -> IO (Vector IM)
@@ -7192,7 +8465,7 @@ casadi_horzsplit__9 x0 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__10" c_casadi_horzsplit__10
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_horzsplit__10
   :: MX -> Int -> IO (Vector MX)
@@ -7215,7 +8488,7 @@ casadi_horzsplit__10 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__11" c_casadi_horzsplit__11
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_horzsplit__11
   :: MX -> Vector Int -> IO (Vector MX)
@@ -7259,7 +8532,7 @@ casadi_horzsplit__12 x0 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__13" c_casadi_horzsplit__13
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_horzsplit__13
   :: Sparsity -> Int -> IO (Vector Sparsity)
@@ -7282,7 +8555,7 @@ casadi_horzsplit__13 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_horzsplit__14" c_casadi_horzsplit__14
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_horzsplit__14
   :: Sparsity -> Vector Int -> IO (Vector Sparsity)
@@ -7513,52 +8786,58 @@ casadi_if_else__7 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_inv__0" c_casadi_inv__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr StdString -> IO (Ptr SX')
 
 casadi_inv__0
-  :: SX -> IO SX
-casadi_inv__0 x0 = do
+  :: SX -> String -> IO SX
+casadi_inv__0 x0 x1 = do
   x0' <- marshal x0
+  x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_inv__0 errStrPtrP x0'
+  ret0 <- c_casadi_inv__0 errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
 
 
 foreign import ccall unsafe "casadi_inv__1" c_casadi_inv__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr SX')
 
 casadi_inv__1
-  :: DM -> IO DM
-casadi_inv__1 x0 = do
+  :: SX -> String -> M.Map String GenericType -> IO SX
+casadi_inv__1 x0 x1 x2 = do
   x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_inv__1 errStrPtrP x0'
+  ret0 <- c_casadi_inv__1 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
 
   return ret
 
 
 
 foreign import ccall unsafe "casadi_inv__2" c_casadi_inv__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
 
 casadi_inv__2
-  :: IM -> IO IM
+  :: SX -> IO SX
 casadi_inv__2 x0 = do
   x0' <- marshal x0
 
@@ -7576,15 +8855,306 @@ casadi_inv__2 x0 = do
 
 
 foreign import ccall unsafe "casadi_inv__3" c_casadi_inv__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr StdString -> IO (Ptr DM')
 
 casadi_inv__3
-  :: MX -> IO MX
-casadi_inv__3 x0 = do
+  :: DM -> String -> IO DM
+casadi_inv__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__4" c_casadi_inv__4
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr DM')
+
+casadi_inv__4
+  :: DM -> String -> M.Map String GenericType -> IO DM
+casadi_inv__4 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__4 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__5" c_casadi_inv__5
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_inv__5
+  :: DM -> IO DM
+casadi_inv__5 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_inv__3 errStrPtrP x0'
+  ret0 <- c_casadi_inv__5 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__6" c_casadi_inv__6
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr StdString -> IO (Ptr IM')
+
+casadi_inv__6
+  :: IM -> String -> IO IM
+casadi_inv__6 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__6 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__7" c_casadi_inv__7
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr IM')
+
+casadi_inv__7
+  :: IM -> String -> M.Map String GenericType -> IO IM
+casadi_inv__7 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__7 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__8" c_casadi_inv__8
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+
+casadi_inv__8
+  :: IM -> IO IM
+casadi_inv__8 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__8 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__9" c_casadi_inv__9
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr StdString -> IO (Ptr MX')
+
+casadi_inv__9
+  :: MX -> String -> IO MX
+casadi_inv__9 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__9 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__10" c_casadi_inv__10
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr MX')
+
+casadi_inv__10
+  :: MX -> String -> M.Map String GenericType -> IO MX
+casadi_inv__10 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__10 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv__11" c_casadi_inv__11
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_inv__11
+  :: MX -> IO MX
+casadi_inv__11 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv__11 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv_minor__0" c_casadi_inv_minor__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
+
+casadi_inv_minor__0
+  :: SX -> IO SX
+casadi_inv_minor__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv_minor__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv_minor__1" c_casadi_inv_minor__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_inv_minor__1
+  :: DM -> IO DM
+casadi_inv_minor__1 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv_minor__1 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv_minor__2" c_casadi_inv_minor__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+
+casadi_inv_minor__2
+  :: IM -> IO IM
+casadi_inv_minor__2 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv_minor__2 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv_minor__3" c_casadi_inv_minor__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_inv_minor__3
+  :: MX -> IO MX
+casadi_inv_minor__3 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv_minor__3 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_inv_node" c_casadi_inv_node
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_inv_node
+  :: MX -> IO MX
+casadi_inv_node x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_inv_node errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -7704,7 +9274,7 @@ casadi_is_equal__0 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_is_equal__1" c_casadi_is_equal__1
-  :: Ptr (Ptr StdString) -> CDouble -> CDouble -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> CDouble -> CDouble -> CLLong -> IO CInt
 
 casadi_is_equal__1
   :: Double -> Double -> Int -> IO Bool
@@ -7752,7 +9322,7 @@ casadi_is_equal__2 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_is_equal__3" c_casadi_is_equal__3
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> CLLong -> IO CInt
 
 casadi_is_equal__3
   :: SX -> SX -> Int -> IO Bool
@@ -7800,7 +9370,7 @@ casadi_is_equal__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_is_equal__5" c_casadi_is_equal__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> CLLong -> IO CInt
 
 casadi_is_equal__5
   :: DM -> DM -> Int -> IO Bool
@@ -7848,7 +9418,7 @@ casadi_is_equal__6 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_is_equal__7" c_casadi_is_equal__7
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> CLLong -> IO CInt
 
 casadi_is_equal__7
   :: IM -> IM -> Int -> IO Bool
@@ -7896,7 +9466,7 @@ casadi_is_equal__8 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_is_equal__9" c_casadi_is_equal__9
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> CLLong -> IO CInt
 
 casadi_is_equal__9
   :: MX -> MX -> Int -> IO Bool
@@ -7915,6 +9485,190 @@ casadi_is_equal__9 x0 x1 x2 = do
   marshalFree x0 x0'
   marshalFree x1 x1'
   marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_linear__0" c_casadi_is_linear__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO CInt
+
+casadi_is_linear__0
+  :: SX -> SX -> IO Bool
+casadi_is_linear__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_linear__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_linear__1" c_casadi_is_linear__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO CInt
+
+casadi_is_linear__1
+  :: DM -> DM -> IO Bool
+casadi_is_linear__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_linear__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_linear__2" c_casadi_is_linear__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO CInt
+
+casadi_is_linear__2
+  :: IM -> IM -> IO Bool
+casadi_is_linear__2 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_linear__2 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_linear__3" c_casadi_is_linear__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO CInt
+
+casadi_is_linear__3
+  :: MX -> MX -> IO Bool
+casadi_is_linear__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_linear__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_quadratic__0" c_casadi_is_quadratic__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO CInt
+
+casadi_is_quadratic__0
+  :: SX -> SX -> IO Bool
+casadi_is_quadratic__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_quadratic__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_quadratic__1" c_casadi_is_quadratic__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO CInt
+
+casadi_is_quadratic__1
+  :: DM -> DM -> IO Bool
+casadi_is_quadratic__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_quadratic__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_quadratic__2" c_casadi_is_quadratic__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO CInt
+
+casadi_is_quadratic__2
+  :: IM -> IM -> IO Bool
+casadi_is_quadratic__2 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_quadratic__2 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_is_quadratic__3" c_casadi_is_quadratic__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO CInt
+
+casadi_is_quadratic__3
+  :: MX -> MX -> IO Bool
+casadi_is_quadratic__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_is_quadratic__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
@@ -7944,16 +9698,17 @@ casadi_jacobian__0 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_jacobian__1" c_casadi_jacobian__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr SX')
 
 casadi_jacobian__1
-  :: DM -> DM -> IO DM
-casadi_jacobian__1 x0 x1 = do
+  :: SX -> SX -> M.Map String GenericType -> IO SX
+casadi_jacobian__1 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
+  x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_jacobian__1 errStrPtrP x0' x1'
+  ret0 <- c_casadi_jacobian__1 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -7961,16 +9716,17 @@ casadi_jacobian__1 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
+  marshalFree x2 x2'
 
   return ret
 
 
 
 foreign import ccall unsafe "casadi_jacobian__2" c_casadi_jacobian__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
 
 casadi_jacobian__2
-  :: IM -> IM -> IO IM
+  :: DM -> DM -> IO DM
 casadi_jacobian__2 x0 x1 = do
   x0' <- marshal x0
   x1' <- marshal x1
@@ -7990,16 +9746,17 @@ casadi_jacobian__2 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_jacobian__3" c_casadi_jacobian__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr DM')
 
 casadi_jacobian__3
-  :: MX -> MX -> IO MX
-casadi_jacobian__3 x0 x1 = do
+  :: DM -> DM -> M.Map String GenericType -> IO DM
+casadi_jacobian__3 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
+  x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_jacobian__3 errStrPtrP x0' x1'
+  ret0 <- c_casadi_jacobian__3 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -8007,6 +9764,103 @@ casadi_jacobian__3 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_jacobian__4" c_casadi_jacobian__4
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+
+casadi_jacobian__4
+  :: IM -> IM -> IO IM
+casadi_jacobian__4 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_jacobian__4 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_jacobian__5" c_casadi_jacobian__5
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr IM')
+
+casadi_jacobian__5
+  :: IM -> IM -> M.Map String GenericType -> IO IM
+casadi_jacobian__5 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_jacobian__5 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_jacobian__6" c_casadi_jacobian__6
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+
+casadi_jacobian__6
+  :: MX -> MX -> IO MX
+casadi_jacobian__6 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_jacobian__6 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_jacobian__7" c_casadi_jacobian__7
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr MX')
+
+casadi_jacobian__7
+  :: MX -> MX -> M.Map String GenericType -> IO MX
+casadi_jacobian__7 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_jacobian__7 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
 
   return ret
 
@@ -8450,6 +10304,255 @@ casadi_ldivide__4 x0 x1 = do
 
 
 
+foreign import ccall unsafe "casadi_ldl__0" c_casadi_ldl__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> IO ()
+
+casadi_ldl__0
+  :: SX -> SX -> SX -> Vector Int -> IO ()
+casadi_ldl__0 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl__0 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_ldl__1" c_casadi_ldl__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> CInt -> IO ()
+
+casadi_ldl__1
+  :: SX -> SX -> SX -> Vector Int -> Bool -> IO ()
+casadi_ldl__1 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl__1 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_ldl__2" c_casadi_ldl__2
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> IO ()
+
+casadi_ldl__2
+  :: DM -> DM -> DM -> Vector Int -> IO ()
+casadi_ldl__2 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl__2 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_ldl__3" c_casadi_ldl__3
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> CInt -> IO ()
+
+casadi_ldl__3
+  :: DM -> DM -> DM -> Vector Int -> Bool -> IO ()
+casadi_ldl__3 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl__3 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_ldl__4" c_casadi_ldl__4
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> IO ()
+
+casadi_ldl__4
+  :: IM -> IM -> IM -> Vector Int -> IO ()
+casadi_ldl__4 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl__4 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_ldl__5" c_casadi_ldl__5
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> CInt -> IO ()
+
+casadi_ldl__5
+  :: IM -> IM -> IM -> Vector Int -> Bool -> IO ()
+casadi_ldl__5 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl__5 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_ldl_solve__0" c_casadi_ldl_solve__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> IO (Ptr SX')
+
+casadi_ldl_solve__0
+  :: SX -> SX -> SX -> Vector Int -> IO SX
+casadi_ldl_solve__0 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl_solve__0 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_ldl_solve__1" c_casadi_ldl_solve__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> IO (Ptr DM')
+
+casadi_ldl_solve__1
+  :: DM -> DM -> DM -> Vector Int -> IO DM
+casadi_ldl_solve__1 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl_solve__1 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_ldl_solve__2" c_casadi_ldl_solve__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> IO (Ptr IM')
+
+casadi_ldl_solve__2
+  :: IM -> IM -> IM -> Vector Int -> IO IM
+casadi_ldl_solve__2 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_ldl_solve__2 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
 foreign import ccall unsafe "casadi_le__0" c_casadi_le__0
   :: Ptr (Ptr StdString) -> CDouble -> CDouble -> IO CDouble
 
@@ -8565,8 +10668,216 @@ casadi_le__4 x0 x1 = do
 
 
 
+foreign import ccall unsafe "casadi_linear_coeff__0" c_casadi_linear_coeff__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> IO ()
+
+casadi_linear_coeff__0
+  :: SX -> SX -> SX -> SX -> IO ()
+casadi_linear_coeff__0 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linear_coeff__0 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_linear_coeff__1" c_casadi_linear_coeff__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> IO ()
+
+casadi_linear_coeff__1
+  :: DM -> DM -> DM -> DM -> IO ()
+casadi_linear_coeff__1 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linear_coeff__1 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_linear_coeff__2" c_casadi_linear_coeff__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> IO ()
+
+casadi_linear_coeff__2
+  :: IM -> IM -> IM -> IM -> IO ()
+casadi_linear_coeff__2 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linear_coeff__2 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_linear_coeff__3" c_casadi_linear_coeff__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr MX' -> Ptr MX' -> IO ()
+
+casadi_linear_coeff__3
+  :: MX -> MX -> MX -> MX -> IO ()
+casadi_linear_coeff__3 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linear_coeff__3 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_linearize__0" c_casadi_linearize__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
+
+casadi_linearize__0
+  :: SX -> SX -> SX -> IO SX
+casadi_linearize__0 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linearize__0 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_linearize__1" c_casadi_linearize__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+
+casadi_linearize__1
+  :: DM -> DM -> DM -> IO DM
+casadi_linearize__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linearize__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_linearize__2" c_casadi_linearize__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+
+casadi_linearize__2
+  :: IM -> IM -> IM -> IO IM
+casadi_linearize__2 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linearize__2 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_linearize__3" c_casadi_linearize__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+
+casadi_linearize__3
+  :: MX -> MX -> MX -> IO MX
+casadi_linearize__3 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_linearize__3 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
 foreign import ccall unsafe "casadi_linspace__0" c_casadi_linspace__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> CLLong -> IO (Ptr SX')
 
 casadi_linspace__0
   :: SX -> SX -> Int -> IO SX
@@ -8591,7 +10902,7 @@ casadi_linspace__0 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_linspace__1" c_casadi_linspace__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> CLLong -> IO (Ptr DM')
 
 casadi_linspace__1
   :: DM -> DM -> Int -> IO DM
@@ -8616,7 +10927,7 @@ casadi_linspace__1 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_linspace__2" c_casadi_linspace__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> CLLong -> IO (Ptr IM')
 
 casadi_linspace__2
   :: IM -> IM -> Int -> IO IM
@@ -8641,7 +10952,7 @@ casadi_linspace__2 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_linspace__3" c_casadi_linspace__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> CLLong -> IO (Ptr MX')
 
 casadi_linspace__3
   :: MX -> MX -> Int -> IO MX
@@ -9253,17 +11564,18 @@ casadi_matrix_expand__5 x0 x1 x2 = do
 
 
 
-foreign import ccall unsafe "casadi_max__0" c_casadi_max__0
-  :: Ptr (Ptr StdString) -> CDouble -> CDouble -> IO CDouble
+foreign import ccall unsafe "casadi_minor__0" c_casadi_minor__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr SX')
 
-casadi_max__0
-  :: Double -> Double -> IO Double
-casadi_max__0 x0 x1 = do
+casadi_minor__0
+  :: SX -> Int -> Int -> IO SX
+casadi_minor__0 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
+  x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_max__0 errStrPtrP x0' x1'
+  ret0 <- c_casadi_minor__0 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -9271,22 +11583,24 @@ casadi_max__0 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
+  marshalFree x2 x2'
 
   return ret
 
 
 
-foreign import ccall unsafe "casadi_max__1" c_casadi_max__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
+foreign import ccall unsafe "casadi_minor__1" c_casadi_minor__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr DM')
 
-casadi_max__1
-  :: SX -> SX -> IO SX
-casadi_max__1 x0 x1 = do
+casadi_minor__1
+  :: DM -> Int -> Int -> IO DM
+casadi_minor__1 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
+  x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_max__1 errStrPtrP x0' x1'
+  ret0 <- c_casadi_minor__1 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -9294,22 +11608,24 @@ casadi_max__1 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
+  marshalFree x2 x2'
 
   return ret
 
 
 
-foreign import ccall unsafe "casadi_max__2" c_casadi_max__2
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+foreign import ccall unsafe "casadi_minor__2" c_casadi_minor__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr IM')
 
-casadi_max__2
-  :: DM -> DM -> IO DM
-casadi_max__2 x0 x1 = do
+casadi_minor__2
+  :: IM -> Int -> Int -> IO IM
+casadi_minor__2 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
+  x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_max__2 errStrPtrP x0' x1'
+  ret0 <- c_casadi_minor__2 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -9317,167 +11633,7 @@ casadi_max__2 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_max__3" c_casadi_max__3
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
-
-casadi_max__3
-  :: IM -> IM -> IO IM
-casadi_max__3 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_max__3 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_max__4" c_casadi_max__4
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
-
-casadi_max__4
-  :: MX -> MX -> IO MX
-casadi_max__4 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_max__4 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_min__0" c_casadi_min__0
-  :: Ptr (Ptr StdString) -> CDouble -> CDouble -> IO CDouble
-
-casadi_min__0
-  :: Double -> Double -> IO Double
-casadi_min__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_min__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_min__1" c_casadi_min__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
-
-casadi_min__1
-  :: SX -> SX -> IO SX
-casadi_min__1 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_min__1 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_min__2" c_casadi_min__2
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
-
-casadi_min__2
-  :: DM -> DM -> IO DM
-casadi_min__2 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_min__2 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_min__3" c_casadi_min__3
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
-
-casadi_min__3
-  :: IM -> IM -> IO IM
-casadi_min__3 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_min__3 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_min__4" c_casadi_min__4
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
-
-casadi_min__4
-  :: MX -> MX -> IO MX
-casadi_min__4 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_min__4 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
+  marshalFree x2 x2'
 
   return ret
 
@@ -9685,6 +11841,174 @@ casadi_mldivide__3 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmax__0" c_casadi_mmax__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
+
+casadi_mmax__0
+  :: SX -> IO SX
+casadi_mmax__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmax__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmax__1" c_casadi_mmax__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_mmax__1
+  :: DM -> IO DM
+casadi_mmax__1 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmax__1 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmax__2" c_casadi_mmax__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+
+casadi_mmax__2
+  :: IM -> IO IM
+casadi_mmax__2 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmax__2 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmax__3" c_casadi_mmax__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_mmax__3
+  :: MX -> IO MX
+casadi_mmax__3 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmax__3 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmin__0" c_casadi_mmin__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
+
+casadi_mmin__0
+  :: SX -> IO SX
+casadi_mmin__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmin__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmin__1" c_casadi_mmin__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
+
+casadi_mmin__1
+  :: DM -> IO DM
+casadi_mmin__1 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmin__1 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmin__2" c_casadi_mmin__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
+
+casadi_mmin__2
+  :: IM -> IO IM
+casadi_mmin__2 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmin__2 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_mmin__3" c_casadi_mmin__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
+
+casadi_mmin__3
+  :: MX -> IO MX
+casadi_mmin__3 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_mmin__3 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
 
   return ret
 
@@ -9990,7 +12314,7 @@ casadi_mrdivide__3 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_mtaylor__0" c_casadi_mtaylor__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CInt -> Ptr (StdVec CInt) -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CLLong -> Ptr (StdVec CLLong) -> IO (Ptr SX')
 
 casadi_mtaylor__0
   :: SX -> SX -> SX -> Int -> Vector Int -> IO SX
@@ -10044,7 +12368,7 @@ casadi_mtaylor__1 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_mtaylor__2" c_casadi_mtaylor__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CLLong -> IO (Ptr SX')
 
 casadi_mtaylor__2
   :: SX -> SX -> SX -> Int -> IO SX
@@ -10071,7 +12395,7 @@ casadi_mtaylor__2 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_mtaylor__3" c_casadi_mtaylor__3
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CInt -> Ptr (StdVec CInt) -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CLLong -> Ptr (StdVec CLLong) -> IO (Ptr DM')
 
 casadi_mtaylor__3
   :: DM -> DM -> DM -> Int -> Vector Int -> IO DM
@@ -10125,7 +12449,7 @@ casadi_mtaylor__4 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_mtaylor__5" c_casadi_mtaylor__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CLLong -> IO (Ptr DM')
 
 casadi_mtaylor__5
   :: DM -> DM -> DM -> Int -> IO DM
@@ -10152,7 +12476,7 @@ casadi_mtaylor__5 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "casadi_mtaylor__6" c_casadi_mtaylor__6
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CInt -> Ptr (StdVec CInt) -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CLLong -> Ptr (StdVec CLLong) -> IO (Ptr IM')
 
 casadi_mtaylor__6
   :: IM -> IM -> IM -> Int -> Vector Int -> IO IM
@@ -10206,7 +12530,7 @@ casadi_mtaylor__7 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_mtaylor__8" c_casadi_mtaylor__8
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CLLong -> IO (Ptr IM')
 
 casadi_mtaylor__8
   :: IM -> IM -> IM -> Int -> IO IM
@@ -10453,7 +12777,7 @@ casadi_mtimes__9 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_n_nodes__0" c_casadi_n_nodes__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO CLLong
 
 casadi_n_nodes__0
   :: SX -> IO Int
@@ -10474,7 +12798,7 @@ casadi_n_nodes__0 x0 = do
 
 
 foreign import ccall unsafe "casadi_n_nodes__1" c_casadi_n_nodes__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO CLLong
 
 casadi_n_nodes__1
   :: DM -> IO Int
@@ -10495,7 +12819,7 @@ casadi_n_nodes__1 x0 = do
 
 
 foreign import ccall unsafe "casadi_n_nodes__2" c_casadi_n_nodes__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO CLLong
 
 casadi_n_nodes__2
   :: IM -> IO Int
@@ -10516,7 +12840,7 @@ casadi_n_nodes__2 x0 = do
 
 
 foreign import ccall unsafe "casadi_n_nodes__3" c_casadi_n_nodes__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi_n_nodes__3
   :: MX -> IO Int
@@ -10652,7 +12976,7 @@ casadi_ne__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_norm_0_mul__0" c_casadi_norm_0_mul__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO CLLong
 
 casadi_norm_0_mul__0
   :: SX -> SX -> IO Int
@@ -10675,7 +12999,7 @@ casadi_norm_0_mul__0 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_norm_0_mul__1" c_casadi_norm_0_mul__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO CLLong
 
 casadi_norm_0_mul__1
   :: DM -> DM -> IO Int
@@ -10698,7 +13022,7 @@ casadi_norm_0_mul__1 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_norm_0_mul__2" c_casadi_norm_0_mul__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO CLLong
 
 casadi_norm_0_mul__2
   :: IM -> IM -> IO Int
@@ -10721,7 +13045,7 @@ casadi_norm_0_mul__2 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_norm_0_mul__3" c_casadi_norm_0_mul__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO CLLong
 
 casadi_norm_0_mul__3
   :: MX -> MX -> IO Int
@@ -10744,7 +13068,7 @@ casadi_norm_0_mul__3 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_norm_0_mul__4" c_casadi_norm_0_mul__4
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr Sparsity' -> IO CLLong
 
 casadi_norm_0_mul__4
   :: Sparsity -> Sparsity -> IO Int
@@ -11361,7 +13685,7 @@ casadi_nullspace__3 x0 = do
 
 
 foreign import ccall unsafe "casadi_offset__0" c_casadi_offset__0
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr SX')) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr SX')) -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__0
   :: Vector SX -> IO (Vector Int)
@@ -11382,7 +13706,7 @@ casadi_offset__0 x0 = do
 
 
 foreign import ccall unsafe "casadi_offset__1" c_casadi_offset__1
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr SX')) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr SX')) -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__1
   :: Vector SX -> Bool -> IO (Vector Int)
@@ -11405,7 +13729,7 @@ casadi_offset__1 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_offset__2" c_casadi_offset__2
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr DM')) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr DM')) -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__2
   :: Vector DM -> IO (Vector Int)
@@ -11426,7 +13750,7 @@ casadi_offset__2 x0 = do
 
 
 foreign import ccall unsafe "casadi_offset__3" c_casadi_offset__3
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr DM')) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr DM')) -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__3
   :: Vector DM -> Bool -> IO (Vector Int)
@@ -11449,7 +13773,7 @@ casadi_offset__3 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_offset__4" c_casadi_offset__4
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr IM')) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr IM')) -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__4
   :: Vector IM -> IO (Vector Int)
@@ -11470,7 +13794,7 @@ casadi_offset__4 x0 = do
 
 
 foreign import ccall unsafe "casadi_offset__5" c_casadi_offset__5
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr IM')) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr IM')) -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__5
   :: Vector IM -> Bool -> IO (Vector Int)
@@ -11493,7 +13817,7 @@ casadi_offset__5 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_offset__6" c_casadi_offset__6
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr MX')) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr MX')) -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__6
   :: Vector MX -> IO (Vector Int)
@@ -11514,7 +13838,7 @@ casadi_offset__6 x0 = do
 
 
 foreign import ccall unsafe "casadi_offset__7" c_casadi_offset__7
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr MX')) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr MX')) -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__7
   :: Vector MX -> Bool -> IO (Vector Int)
@@ -11537,7 +13861,7 @@ casadi_offset__7 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_offset__8" c_casadi_offset__8
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr Sparsity')) -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr Sparsity')) -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__8
   :: Vector Sparsity -> IO (Vector Int)
@@ -11558,7 +13882,7 @@ casadi_offset__8 x0 = do
 
 
 foreign import ccall unsafe "casadi_offset__9" c_casadi_offset__9
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr Sparsity')) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr Sparsity')) -> CInt -> IO (Ptr (StdVec CLLong))
 
 casadi_offset__9
   :: Vector Sparsity -> Bool -> IO (Vector Int)
@@ -12934,6 +15258,506 @@ casadi_qr__2 x0 x1 x2 = do
 
 
 
+foreign import ccall unsafe "casadi_qr_solve__0" c_casadi_qr_solve__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr SX')
+
+casadi_qr_solve__0
+  :: SX -> SX -> SX -> SX -> Vector Int -> Vector Int -> IO SX
+casadi_qr_solve__0 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_solve__0 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_qr_solve__1" c_casadi_qr_solve__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr SX')
+
+casadi_qr_solve__1
+  :: SX -> SX -> SX -> SX -> Vector Int -> Vector Int -> Bool -> IO SX
+casadi_qr_solve__1 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_solve__1 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_qr_solve__2" c_casadi_qr_solve__2
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr DM')
+
+casadi_qr_solve__2
+  :: DM -> DM -> DM -> DM -> Vector Int -> Vector Int -> IO DM
+casadi_qr_solve__2 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_solve__2 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_qr_solve__3" c_casadi_qr_solve__3
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr DM')
+
+casadi_qr_solve__3
+  :: DM -> DM -> DM -> DM -> Vector Int -> Vector Int -> Bool -> IO DM
+casadi_qr_solve__3 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_solve__3 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_qr_solve__4" c_casadi_qr_solve__4
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO (Ptr IM')
+
+casadi_qr_solve__4
+  :: IM -> IM -> IM -> IM -> Vector Int -> Vector Int -> IO IM
+casadi_qr_solve__4 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_solve__4 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_qr_solve__5" c_casadi_qr_solve__5
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr IM')
+
+casadi_qr_solve__5
+  :: IM -> IM -> IM -> IM -> Vector Int -> Vector Int -> Bool -> IO IM
+casadi_qr_solve__5 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_solve__5 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_qr_sparse__0" c_casadi_qr_sparse__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO ()
+
+casadi_qr_sparse__0
+  :: SX -> SX -> SX -> SX -> Vector Int -> Vector Int -> IO ()
+casadi_qr_sparse__0 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_sparse__0 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_qr_sparse__1" c_casadi_qr_sparse__1
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO ()
+
+casadi_qr_sparse__1
+  :: SX -> SX -> SX -> SX -> Vector Int -> Vector Int -> Bool -> IO ()
+casadi_qr_sparse__1 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_sparse__1 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_qr_sparse__2" c_casadi_qr_sparse__2
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO ()
+
+casadi_qr_sparse__2
+  :: DM -> DM -> DM -> DM -> Vector Int -> Vector Int -> IO ()
+casadi_qr_sparse__2 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_sparse__2 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_qr_sparse__3" c_casadi_qr_sparse__3
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO ()
+
+casadi_qr_sparse__3
+  :: DM -> DM -> DM -> DM -> Vector Int -> Vector Int -> Bool -> IO ()
+casadi_qr_sparse__3 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_sparse__3 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_qr_sparse__4" c_casadi_qr_sparse__4
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO ()
+
+casadi_qr_sparse__4
+  :: IM -> IM -> IM -> IM -> Vector Int -> Vector Int -> IO ()
+casadi_qr_sparse__4 x0 x1 x2 x3 x4 x5 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_sparse__4 errStrPtrP x0' x1' x2' x3' x4' x5'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_qr_sparse__5" c_casadi_qr_sparse__5
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> CInt -> IO ()
+
+casadi_qr_sparse__5
+  :: IM -> IM -> IM -> IM -> Vector Int -> Vector Int -> Bool -> IO ()
+casadi_qr_sparse__5 x0 x1 x2 x3 x4 x5 x6 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+  x5' <- marshal x5
+  x6' <- marshal x6
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_qr_sparse__5 errStrPtrP x0' x1' x2' x3' x4' x5' x6'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+  marshalFree x5 x5'
+  marshalFree x6 x6'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_quadratic_coeff__0" c_casadi_quadratic_coeff__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> Ptr SX' -> IO ()
+
+casadi_quadratic_coeff__0
+  :: SX -> SX -> SX -> SX -> SX -> IO ()
+casadi_quadratic_coeff__0 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_quadratic_coeff__0 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_quadratic_coeff__1" c_casadi_quadratic_coeff__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> Ptr DM' -> IO ()
+
+casadi_quadratic_coeff__1
+  :: DM -> DM -> DM -> DM -> DM -> IO ()
+casadi_quadratic_coeff__1 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_quadratic_coeff__1 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_quadratic_coeff__2" c_casadi_quadratic_coeff__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> Ptr IM' -> IO ()
+
+casadi_quadratic_coeff__2
+  :: IM -> IM -> IM -> IM -> IM -> IO ()
+casadi_quadratic_coeff__2 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_quadratic_coeff__2 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ()
+
+
+
+foreign import ccall unsafe "casadi_quadratic_coeff__3" c_casadi_quadratic_coeff__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> Ptr MX' -> Ptr MX' -> Ptr MX' -> IO ()
+
+casadi_quadratic_coeff__3
+  :: MX -> MX -> MX -> MX -> MX -> IO ()
+casadi_quadratic_coeff__3 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_quadratic_coeff__3 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ()
+
+
+
 foreign import ccall unsafe "casadi_ramp__0" c_casadi_ramp__0
   :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
 
@@ -13284,7 +16108,7 @@ casadi_rectangle__2 x0 = do
 
 
 foreign import ccall unsafe "casadi_repmat__0" c_casadi_repmat__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdPair CInt CInt) -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr SX')
 
 casadi_repmat__0
   :: SX -> (Int, Int) -> IO SX
@@ -13307,7 +16131,7 @@ casadi_repmat__0 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__1" c_casadi_repmat__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr SX')
 
 casadi_repmat__1
   :: SX -> Int -> IO SX
@@ -13330,7 +16154,7 @@ casadi_repmat__1 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__2" c_casadi_repmat__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr SX')
 
 casadi_repmat__2
   :: SX -> Int -> Int -> IO SX
@@ -13355,7 +16179,7 @@ casadi_repmat__2 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repmat__3" c_casadi_repmat__3
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdPair CInt CInt) -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr DM')
 
 casadi_repmat__3
   :: DM -> (Int, Int) -> IO DM
@@ -13378,7 +16202,7 @@ casadi_repmat__3 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__4" c_casadi_repmat__4
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr DM')
 
 casadi_repmat__4
   :: DM -> Int -> IO DM
@@ -13401,7 +16225,7 @@ casadi_repmat__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__5" c_casadi_repmat__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr DM')
 
 casadi_repmat__5
   :: DM -> Int -> Int -> IO DM
@@ -13426,7 +16250,7 @@ casadi_repmat__5 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repmat__6" c_casadi_repmat__6
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdPair CInt CInt) -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr IM')
 
 casadi_repmat__6
   :: IM -> (Int, Int) -> IO IM
@@ -13449,7 +16273,7 @@ casadi_repmat__6 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__7" c_casadi_repmat__7
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr IM')
 
 casadi_repmat__7
   :: IM -> Int -> IO IM
@@ -13472,7 +16296,7 @@ casadi_repmat__7 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__8" c_casadi_repmat__8
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr IM')
 
 casadi_repmat__8
   :: IM -> Int -> Int -> IO IM
@@ -13497,7 +16321,7 @@ casadi_repmat__8 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repmat__9" c_casadi_repmat__9
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdPair CInt CInt) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr MX')
 
 casadi_repmat__9
   :: MX -> (Int, Int) -> IO MX
@@ -13520,7 +16344,7 @@ casadi_repmat__9 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__10" c_casadi_repmat__10
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr MX')
 
 casadi_repmat__10
   :: MX -> Int -> IO MX
@@ -13543,7 +16367,7 @@ casadi_repmat__10 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__11" c_casadi_repmat__11
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi_repmat__11
   :: MX -> Int -> Int -> IO MX
@@ -13568,7 +16392,7 @@ casadi_repmat__11 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repmat__12" c_casadi_repmat__12
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdPair CInt CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr Sparsity')
 
 casadi_repmat__12
   :: Sparsity -> (Int, Int) -> IO Sparsity
@@ -13591,7 +16415,7 @@ casadi_repmat__12 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__13" c_casadi_repmat__13
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr Sparsity')
 
 casadi_repmat__13
   :: Sparsity -> Int -> IO Sparsity
@@ -13614,7 +16438,7 @@ casadi_repmat__13 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repmat__14" c_casadi_repmat__14
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi_repmat__14
   :: Sparsity -> Int -> Int -> IO Sparsity
@@ -13639,7 +16463,7 @@ casadi_repmat__14 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repsum__0" c_casadi_repsum__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr SX')
 
 casadi_repsum__0
   :: SX -> Int -> IO SX
@@ -13662,7 +16486,7 @@ casadi_repsum__0 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repsum__1" c_casadi_repsum__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr SX')
 
 casadi_repsum__1
   :: SX -> Int -> Int -> IO SX
@@ -13687,7 +16511,7 @@ casadi_repsum__1 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repsum__2" c_casadi_repsum__2
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr DM')
 
 casadi_repsum__2
   :: DM -> Int -> IO DM
@@ -13710,7 +16534,7 @@ casadi_repsum__2 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repsum__3" c_casadi_repsum__3
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr DM')
 
 casadi_repsum__3
   :: DM -> Int -> Int -> IO DM
@@ -13735,7 +16559,7 @@ casadi_repsum__3 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repsum__4" c_casadi_repsum__4
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr IM')
 
 casadi_repsum__4
   :: IM -> Int -> IO IM
@@ -13758,7 +16582,7 @@ casadi_repsum__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repsum__5" c_casadi_repsum__5
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr IM')
 
 casadi_repsum__5
   :: IM -> Int -> Int -> IO IM
@@ -13783,7 +16607,7 @@ casadi_repsum__5 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_repsum__6" c_casadi_repsum__6
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr MX')
 
 casadi_repsum__6
   :: MX -> Int -> IO MX
@@ -13806,7 +16630,7 @@ casadi_repsum__6 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_repsum__7" c_casadi_repsum__7
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi_repsum__7
   :: MX -> Int -> Int -> IO MX
@@ -13854,7 +16678,7 @@ casadi_reshape__0 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__1" c_casadi_reshape__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdPair CInt CInt) -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr SX')
 
 casadi_reshape__1
   :: SX -> (Int, Int) -> IO SX
@@ -13877,7 +16701,7 @@ casadi_reshape__1 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__2" c_casadi_reshape__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> CLLong -> IO (Ptr SX')
 
 casadi_reshape__2
   :: SX -> Int -> Int -> IO SX
@@ -13925,7 +16749,7 @@ casadi_reshape__3 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__4" c_casadi_reshape__4
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdPair CInt CInt) -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr DM')
 
 casadi_reshape__4
   :: DM -> (Int, Int) -> IO DM
@@ -13948,7 +16772,7 @@ casadi_reshape__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__5" c_casadi_reshape__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> CLLong -> IO (Ptr DM')
 
 casadi_reshape__5
   :: DM -> Int -> Int -> IO DM
@@ -13996,7 +16820,7 @@ casadi_reshape__6 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__7" c_casadi_reshape__7
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdPair CInt CInt) -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr IM')
 
 casadi_reshape__7
   :: IM -> (Int, Int) -> IO IM
@@ -14019,7 +16843,7 @@ casadi_reshape__7 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__8" c_casadi_reshape__8
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> CLLong -> IO (Ptr IM')
 
 casadi_reshape__8
   :: IM -> Int -> Int -> IO IM
@@ -14067,7 +16891,7 @@ casadi_reshape__9 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__10" c_casadi_reshape__10
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdPair CInt CInt) -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr MX')
 
 casadi_reshape__10
   :: MX -> (Int, Int) -> IO MX
@@ -14090,7 +16914,7 @@ casadi_reshape__10 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__11" c_casadi_reshape__11
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> CLLong -> IO (Ptr MX')
 
 casadi_reshape__11
   :: MX -> Int -> Int -> IO MX
@@ -14138,7 +16962,7 @@ casadi_reshape__12 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__13" c_casadi_reshape__13
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdPair CInt CInt) -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdPair CLLong CLLong) -> IO (Ptr Sparsity')
 
 casadi_reshape__13
   :: Sparsity -> (Int, Int) -> IO Sparsity
@@ -14161,7 +16985,7 @@ casadi_reshape__13 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_reshape__14" c_casadi_reshape__14
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> CInt -> IO (Ptr Sparsity')
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> CLLong -> IO (Ptr Sparsity')
 
 casadi_reshape__14
   :: Sparsity -> Int -> Int -> IO Sparsity
@@ -15245,6 +18069,98 @@ casadi_skew__3 x0 = do
 
 
 
+foreign import ccall unsafe "casadi_soc__0" c_casadi_soc__0
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> IO (Ptr SX')
+
+casadi_soc__0
+  :: SX -> SX -> IO SX
+casadi_soc__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_soc__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_soc__1" c_casadi_soc__1
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> IO (Ptr DM')
+
+casadi_soc__1
+  :: DM -> DM -> IO DM
+casadi_soc__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_soc__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_soc__2" c_casadi_soc__2
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> IO (Ptr IM')
+
+casadi_soc__2
+  :: IM -> IM -> IO IM
+casadi_soc__2 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_soc__2 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_soc__3" c_casadi_soc__3
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> IO (Ptr MX')
+
+casadi_soc__3
+  :: MX -> MX -> IO MX
+casadi_soc__3 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_soc__3 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
 foreign import ccall unsafe "casadi_solve__0" c_casadi_solve__0
   :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr StdString -> IO (Ptr SX')
 
@@ -15678,7 +18594,7 @@ casadi_sparsify__5 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_sprank__0" c_casadi_sprank__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr SX' -> IO CLLong
 
 casadi_sprank__0
   :: SX -> IO Int
@@ -15699,7 +18615,7 @@ casadi_sprank__0 x0 = do
 
 
 foreign import ccall unsafe "casadi_sprank__1" c_casadi_sprank__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr DM' -> IO CLLong
 
 casadi_sprank__1
   :: DM -> IO Int
@@ -15720,7 +18636,7 @@ casadi_sprank__1 x0 = do
 
 
 foreign import ccall unsafe "casadi_sprank__2" c_casadi_sprank__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr IM' -> IO CLLong
 
 casadi_sprank__2
   :: IM -> IO Int
@@ -15741,7 +18657,7 @@ casadi_sprank__2 x0 = do
 
 
 foreign import ccall unsafe "casadi_sprank__3" c_casadi_sprank__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr MX' -> IO CLLong
 
 casadi_sprank__3
   :: MX -> IO Int
@@ -15762,7 +18678,7 @@ casadi_sprank__3 x0 = do
 
 
 foreign import ccall unsafe "casadi_sprank__4" c_casadi_sprank__4
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO CLLong
 
 casadi_sprank__4
   :: Sparsity -> IO Int
@@ -16379,6 +19295,27 @@ casadi_sum1__3 x0 = do
 
 
 
+foreign import ccall unsafe "casadi_sum1__4" c_casadi_sum1__4
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr Sparsity')
+
+casadi_sum1__4
+  :: Sparsity -> IO Sparsity
+casadi_sum1__4 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_sum1__4 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
 foreign import ccall unsafe "casadi_sum2__0" c_casadi_sum2__0
   :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
 
@@ -16463,16 +19400,37 @@ casadi_sum2__3 x0 = do
 
 
 
-foreign import ccall unsafe "casadi_sum_square__0" c_casadi_sum_square__0
+foreign import ccall unsafe "casadi_sum2__4" c_casadi_sum2__4
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> IO (Ptr Sparsity')
+
+casadi_sum2__4
+  :: Sparsity -> IO Sparsity
+casadi_sum2__4 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi_sum2__4 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "casadi_sumsqr__0" c_casadi_sumsqr__0
   :: Ptr (Ptr StdString) -> Ptr SX' -> IO (Ptr SX')
 
-casadi_sum_square__0
+casadi_sumsqr__0
   :: SX -> IO SX
-casadi_sum_square__0 x0 = do
+casadi_sumsqr__0 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_sum_square__0 errStrPtrP x0'
+  ret0 <- c_casadi_sumsqr__0 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -16484,16 +19442,16 @@ casadi_sum_square__0 x0 = do
 
 
 
-foreign import ccall unsafe "casadi_sum_square__1" c_casadi_sum_square__1
+foreign import ccall unsafe "casadi_sumsqr__1" c_casadi_sumsqr__1
   :: Ptr (Ptr StdString) -> Ptr DM' -> IO (Ptr DM')
 
-casadi_sum_square__1
+casadi_sumsqr__1
   :: DM -> IO DM
-casadi_sum_square__1 x0 = do
+casadi_sumsqr__1 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_sum_square__1 errStrPtrP x0'
+  ret0 <- c_casadi_sumsqr__1 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -16505,16 +19463,16 @@ casadi_sum_square__1 x0 = do
 
 
 
-foreign import ccall unsafe "casadi_sum_square__2" c_casadi_sum_square__2
+foreign import ccall unsafe "casadi_sumsqr__2" c_casadi_sumsqr__2
   :: Ptr (Ptr StdString) -> Ptr IM' -> IO (Ptr IM')
 
-casadi_sum_square__2
+casadi_sumsqr__2
   :: IM -> IO IM
-casadi_sum_square__2 x0 = do
+casadi_sumsqr__2 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_sum_square__2 errStrPtrP x0'
+  ret0 <- c_casadi_sumsqr__2 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -16526,16 +19484,16 @@ casadi_sum_square__2 x0 = do
 
 
 
-foreign import ccall unsafe "casadi_sum_square__3" c_casadi_sum_square__3
+foreign import ccall unsafe "casadi_sumsqr__3" c_casadi_sumsqr__3
   :: Ptr (Ptr StdString) -> Ptr MX' -> IO (Ptr MX')
 
-casadi_sum_square__3
+casadi_sumsqr__3
   :: MX -> IO MX
-casadi_sum_square__3 x0 = do
+casadi_sumsqr__3 x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_sum_square__3 errStrPtrP x0'
+  ret0 <- c_casadi_sumsqr__3 errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -16982,7 +19940,7 @@ casadi_taylor__1 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_taylor__2" c_casadi_taylor__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CInt -> IO (Ptr SX')
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> Ptr SX' -> CLLong -> IO (Ptr SX')
 
 casadi_taylor__2
   :: SX -> SX -> SX -> Int -> IO SX
@@ -17057,7 +20015,7 @@ casadi_taylor__4 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_taylor__5" c_casadi_taylor__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CInt -> IO (Ptr DM')
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> Ptr DM' -> CLLong -> IO (Ptr DM')
 
 casadi_taylor__5
   :: DM -> DM -> DM -> Int -> IO DM
@@ -17132,7 +20090,7 @@ casadi_taylor__7 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "casadi_taylor__8" c_casadi_taylor__8
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CInt -> IO (Ptr IM')
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> Ptr IM' -> CLLong -> IO (Ptr IM')
 
 casadi_taylor__8
   :: IM -> IM -> IM -> Int -> IO IM
@@ -18562,7 +21520,7 @@ casadi_vertsplit__0 x0 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__1" c_casadi_vertsplit__1
-  :: Ptr (Ptr StdString) -> Ptr SX' -> CInt -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> CLLong -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_vertsplit__1
   :: SX -> Int -> IO (Vector SX)
@@ -18585,7 +21543,7 @@ casadi_vertsplit__1 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__2" c_casadi_vertsplit__2
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr SX')))
+  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr SX')))
 
 casadi_vertsplit__2
   :: SX -> Vector Int -> IO (Vector SX)
@@ -18629,7 +21587,7 @@ casadi_vertsplit__3 x0 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__4" c_casadi_vertsplit__4
-  :: Ptr (Ptr StdString) -> Ptr DM' -> CInt -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> CLLong -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_vertsplit__4
   :: DM -> Int -> IO (Vector DM)
@@ -18652,7 +21610,7 @@ casadi_vertsplit__4 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__5" c_casadi_vertsplit__5
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr DM')))
+  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr DM')))
 
 casadi_vertsplit__5
   :: DM -> Vector Int -> IO (Vector DM)
@@ -18696,7 +21654,7 @@ casadi_vertsplit__6 x0 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__7" c_casadi_vertsplit__7
-  :: Ptr (Ptr StdString) -> Ptr IM' -> CInt -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> CLLong -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_vertsplit__7
   :: IM -> Int -> IO (Vector IM)
@@ -18719,7 +21677,7 @@ casadi_vertsplit__7 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__8" c_casadi_vertsplit__8
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr IM')))
+  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr IM')))
 
 casadi_vertsplit__8
   :: IM -> Vector Int -> IO (Vector IM)
@@ -18763,7 +21721,7 @@ casadi_vertsplit__9 x0 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__10" c_casadi_vertsplit__10
-  :: Ptr (Ptr StdString) -> Ptr MX' -> CInt -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> CLLong -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_vertsplit__10
   :: MX -> Int -> IO (Vector MX)
@@ -18786,7 +21744,7 @@ casadi_vertsplit__10 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__11" c_casadi_vertsplit__11
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr MX')))
 
 casadi_vertsplit__11
   :: MX -> Vector Int -> IO (Vector MX)
@@ -18830,7 +21788,7 @@ casadi_vertsplit__12 x0 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__13" c_casadi_vertsplit__13
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CInt -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> CLLong -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_vertsplit__13
   :: Sparsity -> Int -> IO (Vector Sparsity)
@@ -18853,7 +21811,7 @@ casadi_vertsplit__13 x0 x1 = do
 
 
 foreign import ccall unsafe "casadi_vertsplit__14" c_casadi_vertsplit__14
-  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CInt) -> IO (Ptr (StdVec (Ptr Sparsity')))
+  :: Ptr (Ptr StdString) -> Ptr Sparsity' -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec (Ptr Sparsity')))
 
 casadi_vertsplit__14
   :: Sparsity -> Vector Int -> IO (Vector Sparsity)
@@ -18870,114 +21828,6 @@ casadi_vertsplit__14 x0 x1 = do
 
   marshalFree x0 x0'
   marshalFree x1 x1'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_which_depends__0" c_casadi_which_depends__0
-  :: Ptr (Ptr StdString) -> Ptr SX' -> Ptr SX' -> CInt -> CInt -> IO (Ptr (StdVec CInt))
-
-casadi_which_depends__0
-  :: SX -> SX -> Int -> Bool -> IO (Vector Bool)
-casadi_which_depends__0 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_which_depends__0 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_which_depends__1" c_casadi_which_depends__1
-  :: Ptr (Ptr StdString) -> Ptr DM' -> Ptr DM' -> CInt -> CInt -> IO (Ptr (StdVec CInt))
-
-casadi_which_depends__1
-  :: DM -> DM -> Int -> Bool -> IO (Vector Bool)
-casadi_which_depends__1 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_which_depends__1 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_which_depends__2" c_casadi_which_depends__2
-  :: Ptr (Ptr StdString) -> Ptr IM' -> Ptr IM' -> CInt -> CInt -> IO (Ptr (StdVec CInt))
-
-casadi_which_depends__2
-  :: IM -> IM -> Int -> Bool -> IO (Vector Bool)
-casadi_which_depends__2 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_which_depends__2 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
-foreign import ccall unsafe "casadi_which_depends__3" c_casadi_which_depends__3
-  :: Ptr (Ptr StdString) -> Ptr MX' -> Ptr MX' -> CInt -> CInt -> IO (Ptr (StdVec CInt))
-
-casadi_which_depends__3
-  :: MX -> MX -> Int -> Bool -> IO (Vector Bool)
-casadi_which_depends__3 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi_which_depends__3 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
 
   return ret
 
@@ -19013,7 +21863,7 @@ collocation_interpolators x0 = do
 
 
 foreign import ccall unsafe "collocation_points__0" c_collocation_points__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr (StdVec CDouble))
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr (StdVec CDouble))
 
 collocation_points__0
   :: Int -> IO (Vector Double)
@@ -19034,7 +21884,7 @@ collocation_points__0 x0 = do
 
 
 foreign import ccall unsafe "collocation_points__1" c_collocation_points__1
-  :: Ptr (Ptr StdString) -> CInt -> Ptr StdString -> IO (Ptr (StdVec CDouble))
+  :: Ptr (Ptr StdString) -> CLLong -> Ptr StdString -> IO (Ptr (StdVec CDouble))
 
 collocation_points__1
   :: Int -> String -> IO (Vector Double)
@@ -19057,7 +21907,7 @@ collocation_points__1 x0 x1 = do
 
 
 foreign import ccall unsafe "complement" c_complement
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> CInt -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> CLLong -> IO (Ptr (StdVec CLLong))
 
 complement
   :: Vector Int -> Int -> IO (Vector Int)
@@ -19131,8 +21981,31 @@ conic__1 x0 x1 x2 x3 = do
 
 
 
+foreign import ccall unsafe "conic_debug" c_conic_debug
+  :: Ptr (Ptr StdString) -> Ptr Function' -> Ptr StdString -> IO ()
+
+conic_debug
+  :: Function -> String -> IO ()
+conic_debug x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_conic_debug errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
 foreign import ccall unsafe "conic_in__0" c_conic_in__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 conic_in__0
   :: Int -> IO String
@@ -19174,7 +22047,7 @@ conic_in__1  = do
 
 
 foreign import ccall unsafe "conic_n_in" c_conic_n_in
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 conic_n_in
   :: IO Int
@@ -19195,7 +22068,7 @@ conic_n_in  = do
 
 
 foreign import ccall unsafe "conic_n_out" c_conic_n_out
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 conic_n_out
   :: IO Int
@@ -19215,8 +22088,75 @@ conic_n_out  = do
 
 
 
+foreign import ccall unsafe "conic_option_info" c_conic_option_info
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr StdString)
+
+conic_option_info
+  :: String -> String -> IO String
+conic_option_info x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_conic_option_info errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "conic_option_type" c_conic_option_type
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr StdString)
+
+conic_option_type
+  :: String -> String -> IO String
+conic_option_type x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_conic_option_type errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "conic_options" c_conic_options
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr (StdVec (Ptr StdString)))
+
+conic_options
+  :: String -> IO (Vector String)
+conic_options x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_conic_options errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
 foreign import ccall unsafe "conic_out__0" c_conic_out__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 conic_out__0
   :: Int -> IO String
@@ -19299,6 +22239,27 @@ doc_dple x0 = do
 
 
 
+foreign import ccall unsafe "doc_expm" c_doc_expm
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr StdString)
+
+doc_expm
+  :: String -> IO String
+doc_expm x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_doc_expm errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
 foreign import ccall unsafe "doc_integrator" c_doc_integrator
   :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr StdString)
 
@@ -19330,6 +22291,27 @@ doc_interpolant x0 = do
 
   errStrPtrP <- new nullPtr
   ret0 <- c_doc_interpolant errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "doc_linsol" c_doc_linsol
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr StdString)
+
+doc_linsol
+  :: String -> IO String
+doc_linsol x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_doc_linsol errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -19384,7 +22366,7 @@ doc_rootfinder x0 = do
 
 
 foreign import ccall unsafe "dple_in__0" c_dple_in__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 dple_in__0
   :: Int -> IO String
@@ -19426,7 +22408,7 @@ dple_in__1  = do
 
 
 foreign import ccall unsafe "dple_n_in" c_dple_n_in
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 dple_n_in
   :: IO Int
@@ -19447,7 +22429,7 @@ dple_n_in  = do
 
 
 foreign import ccall unsafe "dple_n_out" c_dple_n_out
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 dple_n_out
   :: IO Int
@@ -19468,7 +22450,7 @@ dple_n_out  = do
 
 
 foreign import ccall unsafe "dple_out__0" c_dple_out__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 dple_out__0
   :: Int -> IO String
@@ -19717,6 +22699,100 @@ dplesol__7 x0 x1 x2 x3 = do
 
 
 
+foreign import ccall unsafe "expm_n_in" c_expm_n_in
+  :: Ptr (Ptr StdString) -> IO CLLong
+
+expm_n_in
+  :: IO Int
+expm_n_in  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_expm_n_in errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+foreign import ccall unsafe "expm_n_out" c_expm_n_out
+  :: Ptr (Ptr StdString) -> IO CLLong
+
+expm_n_out
+  :: IO Int
+expm_n_out  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_expm_n_out errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+foreign import ccall unsafe "expmsol__0" c_expmsol__0
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr Sparsity' -> IO (Ptr Function')
+
+expmsol__0
+  :: String -> String -> Sparsity -> IO Function
+expmsol__0 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_expmsol__0 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "expmsol__1" c_expmsol__1
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr Sparsity' -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+expmsol__1
+  :: String -> String -> Sparsity -> M.Map String GenericType -> IO Function
+expmsol__1 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_expmsol__1 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
 foreign import ccall unsafe "external__0" c_external__0
   :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr Importer' -> IO (Ptr Function')
 
@@ -19899,6 +22975,27 @@ has_dple x0 = do
 
 
 
+foreign import ccall unsafe "has_expm" c_has_expm
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO CInt
+
+has_expm
+  :: String -> IO Bool
+has_expm x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_has_expm errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
 foreign import ccall unsafe "has_integrator" c_has_integrator
   :: Ptr (Ptr StdString) -> Ptr StdString -> IO CInt
 
@@ -19930,6 +23027,27 @@ has_interpolant x0 = do
 
   errStrPtrP <- new nullPtr
   ret0 <- c_has_interpolant errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "has_linsol" c_has_linsol
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO CInt
+
+has_linsol
+  :: String -> IO Bool
+has_linsol x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_has_linsol errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -19984,7 +23102,7 @@ has_rootfinder x0 = do
 
 
 foreign import ccall unsafe "hash_combine" c_hash_combine
-  :: Ptr (Ptr StdString) -> CSize -> Ptr (StdVec CInt) -> IO ()
+  :: Ptr (Ptr StdString) -> CSize -> Ptr (StdVec CLLong) -> IO ()
 
 hash_combine
   :: CSize -> Vector Int -> IO ()
@@ -20007,7 +23125,7 @@ hash_combine x0 x1 = do
 
 
 foreign import ccall unsafe "hash_sparsity" c_hash_sparsity
-  :: Ptr (Ptr StdString) -> CInt -> CInt -> Ptr (StdVec CInt) -> Ptr (StdVec CInt) -> IO CSize
+  :: Ptr (Ptr StdString) -> CLLong -> CLLong -> Ptr (StdVec CLLong) -> Ptr (StdVec CLLong) -> IO CSize
 
 hash_sparsity
   :: Int -> Int -> Vector Int -> Vector Int -> IO CSize
@@ -20028,6 +23146,54 @@ hash_sparsity x0 x1 x2 x3 = do
   marshalFree x1 x1'
   marshalFree x2 x2'
   marshalFree x3 x3'
+
+  return ret
+
+
+
+foreign import ccall unsafe "index_interp1d__0" c_index_interp1d__0
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CDouble) -> CDouble -> IO CDouble
+
+index_interp1d__0
+  :: Vector Double -> Double -> IO Double
+index_interp1d__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_index_interp1d__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "index_interp1d__1" c_index_interp1d__1
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CDouble) -> CDouble -> CInt -> IO CDouble
+
+index_interp1d__1
+  :: Vector Double -> Double -> Bool -> IO Double
+index_interp1d__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_index_interp1d__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
 
   return ret
 
@@ -20138,7 +23304,7 @@ integrator__3 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "integrator_in__0" c_integrator_in__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 integrator_in__0
   :: Int -> IO String
@@ -20180,7 +23346,7 @@ integrator_in__1  = do
 
 
 foreign import ccall unsafe "integrator_n_in" c_integrator_n_in
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 integrator_n_in
   :: IO Int
@@ -20201,7 +23367,7 @@ integrator_n_in  = do
 
 
 foreign import ccall unsafe "integrator_n_out" c_integrator_n_out
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 integrator_n_out
   :: IO Int
@@ -20222,7 +23388,7 @@ integrator_n_out  = do
 
 
 foreign import ccall unsafe "integrator_out__0" c_integrator_out__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 integrator_out__0
   :: Int -> IO String
@@ -20364,7 +23530,7 @@ is_slice__1 x0 x1 = do
 
 
 foreign import ccall unsafe "is_slice__2" c_is_slice__2
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> IO CInt
 
 is_slice__2
   :: Vector Int -> IO Bool
@@ -20385,7 +23551,7 @@ is_slice__2 x0 = do
 
 
 foreign import ccall unsafe "is_slice__3" c_is_slice__3
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> CInt -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> CInt -> IO CInt
 
 is_slice__3
   :: Vector Int -> Bool -> IO Bool
@@ -20408,7 +23574,7 @@ is_slice__3 x0 x1 = do
 
 
 foreign import ccall unsafe "is_slice2" c_is_slice2
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> IO CInt
 
 is_slice2
   :: Vector Int -> IO Bool
@@ -20423,62 +23589,6 @@ is_slice2 x0 = do
   ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
 
   marshalFree x0 x0'
-
-  return ret
-
-
-
-foreign import ccall unsafe "jit__0" c_jit__0
-  :: Ptr (Ptr StdString) -> Ptr StdString -> CInt -> CInt -> Ptr StdString -> IO (Ptr Function')
-
-jit__0
-  :: String -> Int -> Int -> String -> IO Function
-jit__0 x0 x1 x2 x3 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_jit__0 errStrPtrP x0' x1' x2' x3'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-
-  return ret
-
-
-
-foreign import ccall unsafe "jit__1" c_jit__1
-  :: Ptr (Ptr StdString) -> Ptr StdString -> CInt -> CInt -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
-
-jit__1
-  :: String -> Int -> Int -> String -> M.Map String GenericType -> IO Function
-jit__1 x0 x1 x2 x3 x4 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-  x2' <- marshal x2
-  x3' <- marshal x3
-  x4' <- marshal x4
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_jit__1 errStrPtrP x0' x1' x2' x3' x4'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-  marshalFree x2 x2'
-  marshalFree x3 x3'
-  marshalFree x4 x4'
 
   return ret
 
@@ -20515,6 +23625,27 @@ load_dple x0 = do
 
   errStrPtrP <- new nullPtr
   ret0 <- c_load_dple errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ()
+
+
+
+foreign import ccall unsafe "load_expm" c_load_expm
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO ()
+
+load_expm
+  :: String -> IO ()
+load_expm x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_load_expm errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -20568,6 +23699,27 @@ load_interpolant x0 = do
 
 
 
+foreign import ccall unsafe "load_linsol" c_load_linsol
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO ()
+
+load_linsol
+  :: String -> IO ()
+load_linsol x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_load_linsol errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ()
+
+
+
 foreign import ccall unsafe "load_nlpsol" c_load_nlpsol
   :: Ptr (Ptr StdString) -> Ptr StdString -> IO ()
 
@@ -20610,17 +23762,38 @@ load_rootfinder x0 = do
 
 
 
-foreign import ccall unsafe "lookupvector" c_lookupvector
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> CInt -> IO (Ptr (StdVec CInt))
+foreign import ccall unsafe "lookupvector__0" c_lookupvector__0
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> IO (Ptr (StdVec CLLong))
 
-lookupvector
+lookupvector__0
+  :: Vector Int -> IO (Vector Int)
+lookupvector__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_lookupvector__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "lookupvector__1" c_lookupvector__1
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> CLLong -> IO (Ptr (StdVec CLLong))
+
+lookupvector__1
   :: Vector Int -> Int -> IO (Vector Int)
-lookupvector x0 x1 = do
+lookupvector__1 x0 x1 = do
   x0' <- marshal x0
   x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_lookupvector errStrPtrP x0' x1'
+  ret0 <- c_lookupvector__1 errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -20915,7 +24088,7 @@ nlpsol_default_in__0  = do
 
 
 foreign import ccall unsafe "nlpsol_default_in__1" c_nlpsol_default_in__1
-  :: Ptr (Ptr StdString) -> CInt -> IO CDouble
+  :: Ptr (Ptr StdString) -> CLLong -> IO CDouble
 
 nlpsol_default_in__1
   :: Int -> IO Double
@@ -20936,7 +24109,7 @@ nlpsol_default_in__1 x0 = do
 
 
 foreign import ccall unsafe "nlpsol_in__0" c_nlpsol_in__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 nlpsol_in__0
   :: Int -> IO String
@@ -20978,7 +24151,7 @@ nlpsol_in__1  = do
 
 
 foreign import ccall unsafe "nlpsol_n_in" c_nlpsol_n_in
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 nlpsol_n_in
   :: IO Int
@@ -20999,7 +24172,7 @@ nlpsol_n_in  = do
 
 
 foreign import ccall unsafe "nlpsol_n_out" c_nlpsol_n_out
-  :: Ptr (Ptr StdString) -> IO CInt
+  :: Ptr (Ptr StdString) -> IO CLLong
 
 nlpsol_n_out
   :: IO Int
@@ -21019,8 +24192,75 @@ nlpsol_n_out  = do
 
 
 
+foreign import ccall unsafe "nlpsol_option_info" c_nlpsol_option_info
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr StdString)
+
+nlpsol_option_info
+  :: String -> String -> IO String
+nlpsol_option_info x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_nlpsol_option_info errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "nlpsol_option_type" c_nlpsol_option_type
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr StdString)
+
+nlpsol_option_type
+  :: String -> String -> IO String
+nlpsol_option_type x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_nlpsol_option_type errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "nlpsol_options" c_nlpsol_options
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr (StdVec (Ptr StdString)))
+
+nlpsol_options
+  :: String -> IO (Vector String)
+nlpsol_options x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_nlpsol_options errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
 foreign import ccall unsafe "nlpsol_out__0" c_nlpsol_out__0
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr StdString)
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
 
 nlpsol_out__0
   :: Int -> IO String
@@ -21217,6 +24457,303 @@ rootfinder__1 x0 x1 x2 x3 = do
 
 
 
+foreign import ccall unsafe "rootfinder__2" c_rootfinder__2
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr MX')) -> IO (Ptr Function')
+
+rootfinder__2
+  :: String -> String -> M.Map String MX -> IO Function
+rootfinder__2 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder__2 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder__3" c_rootfinder__3
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr MX')) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+rootfinder__3
+  :: String -> String -> M.Map String MX -> M.Map String GenericType -> IO Function
+rootfinder__3 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder__3 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder__4" c_rootfinder__4
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr SX')) -> IO (Ptr Function')
+
+rootfinder__4
+  :: String -> String -> M.Map String SX -> IO Function
+rootfinder__4 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder__4 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder__5" c_rootfinder__5
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr SX')) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+rootfinder__5
+  :: String -> String -> M.Map String SX -> M.Map String GenericType -> IO Function
+rootfinder__5 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder__5 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_in__0" c_rootfinder_in__0
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
+
+rootfinder_in__0
+  :: Int -> IO String
+rootfinder_in__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_in__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_in__1" c_rootfinder_in__1
+  :: Ptr (Ptr StdString) -> IO (Ptr (StdVec (Ptr StdString)))
+
+rootfinder_in__1
+  :: IO (Vector String)
+rootfinder_in__1  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_in__1 errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_n_in" c_rootfinder_n_in
+  :: Ptr (Ptr StdString) -> IO CLLong
+
+rootfinder_n_in
+  :: IO Int
+rootfinder_n_in  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_n_in errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_n_out" c_rootfinder_n_out
+  :: Ptr (Ptr StdString) -> IO CLLong
+
+rootfinder_n_out
+  :: IO Int
+rootfinder_n_out  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_n_out errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_option_info" c_rootfinder_option_info
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr StdString)
+
+rootfinder_option_info
+  :: String -> String -> IO String
+rootfinder_option_info x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_option_info errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_option_type" c_rootfinder_option_type
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr StdString)
+
+rootfinder_option_type
+  :: String -> String -> IO String
+rootfinder_option_type x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_option_type errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_options" c_rootfinder_options
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr (StdVec (Ptr StdString)))
+
+rootfinder_options
+  :: String -> IO (Vector String)
+rootfinder_options x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_options errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_out__0" c_rootfinder_out__0
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr StdString)
+
+rootfinder_out__0
+  :: Int -> IO String
+rootfinder_out__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_out__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+foreign import ccall unsafe "rootfinder_out__1" c_rootfinder_out__1
+  :: Ptr (Ptr StdString) -> IO (Ptr (StdVec (Ptr StdString)))
+
+rootfinder_out__1
+  :: IO (Vector String)
+rootfinder_out__1  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_rootfinder_out__1 errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
 foreign import ccall unsafe "simpleIRK__0" c_simpleIRK__0
   :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr Function')
 
@@ -21239,7 +24776,7 @@ simpleIRK__0 x0 = do
 
 
 foreign import ccall unsafe "simpleIRK__1" c_simpleIRK__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Function')
 
 simpleIRK__1
   :: Function -> Int -> IO Function
@@ -21262,7 +24799,7 @@ simpleIRK__1 x0 x1 = do
 
 
 foreign import ccall unsafe "simpleIRK__2" c_simpleIRK__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> IO (Ptr Function')
 
 simpleIRK__2
   :: Function -> Int -> Int -> IO Function
@@ -21287,7 +24824,7 @@ simpleIRK__2 x0 x1 x2 = do
 
 
 foreign import ccall unsafe "simpleIRK__3" c_simpleIRK__3
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> Ptr StdString -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> Ptr StdString -> IO (Ptr Function')
 
 simpleIRK__3
   :: Function -> Int -> Int -> String -> IO Function
@@ -21314,7 +24851,7 @@ simpleIRK__3 x0 x1 x2 x3 = do
 
 
 foreign import ccall unsafe "simpleIRK__4" c_simpleIRK__4
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> Ptr StdString -> Ptr StdString -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> Ptr StdString -> Ptr StdString -> IO (Ptr Function')
 
 simpleIRK__4
   :: Function -> Int -> Int -> String -> String -> IO Function
@@ -21343,7 +24880,7 @@ simpleIRK__4 x0 x1 x2 x3 x4 = do
 
 
 foreign import ccall unsafe "simpleIRK__5" c_simpleIRK__5
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> Ptr StdString -> Ptr StdString -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
 
 simpleIRK__5
   :: Function -> Int -> Int -> String -> String -> M.Map String GenericType -> IO Function
@@ -21464,7 +25001,7 @@ simpleRK__0 x0 = do
 
 
 foreign import ccall unsafe "simpleRK__1" c_simpleRK__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> IO (Ptr Function')
 
 simpleRK__1
   :: Function -> Int -> IO Function
@@ -21487,7 +25024,7 @@ simpleRK__1 x0 x1 = do
 
 
 foreign import ccall unsafe "simpleRK__2" c_simpleRK__2
-  :: Ptr (Ptr StdString) -> Ptr Function' -> CInt -> CInt -> IO (Ptr Function')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> CLLong -> CLLong -> IO (Ptr Function')
 
 simpleRK__2
   :: Function -> Int -> Int -> IO Function
@@ -21506,6 +25043,29 @@ simpleRK__2 x0 x1 x2 = do
   marshalFree x0 x0'
   marshalFree x1 x1'
   marshalFree x2 x2'
+
+  return ret
+
+
+
+foreign import ccall unsafe "temporary_file" c_temporary_file
+  :: Ptr (Ptr StdString) -> Ptr StdString -> Ptr StdString -> IO (Ptr StdString)
+
+temporary_file
+  :: String -> String -> IO String
+temporary_file x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_temporary_file errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
 
   return ret
 
@@ -21556,7 +25116,7 @@ to_slice__1 x0 x1 = do
 
 
 foreign import ccall unsafe "to_slice__2" c_to_slice__2
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO (Ptr Slice')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> IO (Ptr Slice')
 
 to_slice__2
   :: Vector Int -> IO Slice
@@ -21577,7 +25137,7 @@ to_slice__2 x0 = do
 
 
 foreign import ccall unsafe "to_slice__3" c_to_slice__3
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> CInt -> IO (Ptr Slice')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> CInt -> IO (Ptr Slice')
 
 to_slice__3
   :: Vector Int -> Bool -> IO Slice
@@ -21600,7 +25160,7 @@ to_slice__3 x0 x1 = do
 
 
 foreign import ccall unsafe "to_slice2" c_to_slice2
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO (Ptr (StdPair (Ptr Slice') (Ptr Slice')))
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> IO (Ptr (StdPair (Ptr Slice') (Ptr Slice')))
 
 to_slice2
   :: Vector Int -> IO (Slice, Slice)

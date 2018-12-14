@@ -19,16 +19,16 @@ import WriteBindings.ParseJSON
 import System.Process ( CreateProcess(..), createProcess, shell, waitForProcess )
 
 version :: String
-version = "3.1.0.22"
+version = "3.4.5.0"
 
 internalVersion :: String
-internalVersion = "0.1.5.0"
+internalVersion = "0.1.6.0"
 
 jsonpath :: FilePath
-jsonpath = "/home/greghorn/casadi/build/swig/json/casadi.json"
+jsonpath = "/home/greg/casadi/build/swig/json/casadi.json"
 
 writepath :: FilePath
-writepath = "/home/greghorn/hslibs/casadi-bindings/genpath"
+writepath = "/home/greg/hslibs/casadi-bindings/genpath"
 
 writeFile' :: FilePath -> String -> IO ()
 writeFile' path txt = do
@@ -107,7 +107,7 @@ toPackage mod' =
                HS.writeDataModule allclasses inherit)
   , pStack = ( "stack.yaml"
              , unlines
-               [ "resolver: lts-7.14"
+               [ "resolver: lts-12.21"
                , ""
                , "compiler-check: newer-minor"
                , ""

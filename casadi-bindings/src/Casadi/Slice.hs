@@ -9,7 +9,7 @@ import System.IO.Unsafe ( unsafePerformIO )
 import Casadi.Core.Classes.Slice
 
 instance Show Slice where
-  show x = unsafePerformIO (slice_getDescription x)
+  show x = unsafePerformIO (slice_get_str__0 x)
   {-# NOINLINE show #-}
 
 -- | slice start stop step
@@ -19,5 +19,5 @@ slice x y z = unsafePerformIO (slice__1 x y z)
 
 -- | Slice()
 slice' :: Slice
-slice' = unsafePerformIO slice__4
+slice' = unsafePerformIO slice__10
 {-# NOINLINE slice' #-}

@@ -1,5 +1,5 @@
 name:                casadi-bindings
-version:             3.1.0.23
+version:             3.4.5.0
 synopsis:            mid-level bindings to CasADi
 category:            Numerical, Math
 description:
@@ -62,13 +62,13 @@ library
                        cereal,
                        binary,
                        vector-binary-instances,
-                       casadi-bindings-internal == 0.1.5.0,
-                       casadi-bindings-core     == 3.1.0.22
+                       casadi-bindings-internal == 0.1.6.0,
+                       casadi-bindings-core     == 3.4.5.0
   default-language:    Haskell2010
 
   C-sources:           cbits/casadi_bindings.cpp
   extra-libraries:     stdc++ casadi
-  cc-options:          -Wall -Wno-sign-compare -std=c++11
+  cc-options:          -Wall -Wextra -Werror -std=c++11
   ghc-prof-options:    -O2
   ghc-options:         -O2 -Wall -Werror
 

@@ -10,23 +10,26 @@ module Casadi.Core.Classes.DaeBuilder
          DaeBuilder,
          DaeBuilderClass(..),
          daeBuilder,
-         daeBuilder_add_alg__0,
-         daeBuilder_add_alg__1,
-         daeBuilder_add_d__0,
-         daeBuilder_add_d__1,
-         daeBuilder_add_dae__0,
-         daeBuilder_add_dae__1,
+         daeBuilder_add_alg,
+         daeBuilder_add_aux__0,
+         daeBuilder_add_aux__1,
+         daeBuilder_add_aux__2,
+         daeBuilder_add_d,
+         daeBuilder_add_dae,
+         daeBuilder_add_fun__0,
+         daeBuilder_add_fun__1,
+         daeBuilder_add_fun__2,
+         daeBuilder_add_fun__3,
+         daeBuilder_add_fun__4,
          daeBuilder_add_lc,
-         daeBuilder_add_ode__0,
-         daeBuilder_add_ode__1,
+         daeBuilder_add_ode,
          daeBuilder_add_p__0,
          daeBuilder_add_p__1,
          daeBuilder_add_p__2,
          daeBuilder_add_q__0,
          daeBuilder_add_q__1,
          daeBuilder_add_q__2,
-         daeBuilder_add_quad__0,
-         daeBuilder_add_quad__1,
+         daeBuilder_add_quad,
          daeBuilder_add_s__0,
          daeBuilder_add_s__1,
          daeBuilder_add_s__2,
@@ -40,8 +43,7 @@ module Casadi.Core.Classes.DaeBuilder
          daeBuilder_add_x__0,
          daeBuilder_add_x__1,
          daeBuilder_add_x__2,
-         daeBuilder_add_y__0,
-         daeBuilder_add_y__1,
+         daeBuilder_add_y,
          daeBuilder_add_z__0,
          daeBuilder_add_z__1,
          daeBuilder_add_z__2,
@@ -55,12 +57,14 @@ module Casadi.Core.Classes.DaeBuilder
          daeBuilder_eliminate_alg,
          daeBuilder_eliminate_d,
          daeBuilder_eliminate_quad,
-         daeBuilder_getDescription,
-         daeBuilder_getRepresentation,
+         daeBuilder_fun,
+         daeBuilder_get_str__0,
+         daeBuilder_get_str__1,
          daeBuilder_guess__0,
          daeBuilder_guess__1,
          daeBuilder_guess__2,
          daeBuilder_guess__3,
+         daeBuilder_has_fun,
          daeBuilder_make_explicit,
          daeBuilder_make_semi_explicit,
          daeBuilder_max__0,
@@ -110,8 +114,10 @@ module Casadi.Core.Classes.DaeBuilder
          daeBuilder_start__1,
          daeBuilder_start__2,
          daeBuilder_start__3,
+         daeBuilder_type_name,
          daeBuilder_unit__0,
          daeBuilder_unit__1,
+         daeBuilder_var,
          daeBuilder_variable__0,
          daeBuilder_variable__1,
        ) where
@@ -162,47 +168,18 @@ daeBuilder = casadi__DaeBuilder__CONSTRUCTOR
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_alg__0" c_casadi__DaeBuilder__add_alg__0
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO ()
+foreign import ccall unsafe "casadi__DaeBuilder__add_alg" c_casadi__DaeBuilder__add_alg
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr MX' -> IO ()
 
-casadi__DaeBuilder__add_alg__0
-  :: DaeBuilder -> MX -> IO ()
-casadi__DaeBuilder__add_alg__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_alg__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ()
-
-
-
--- classy wrapper
-daeBuilder_add_alg__0 :: DaeBuilderClass a => a -> MX -> IO ()
-daeBuilder_add_alg__0 x = casadi__DaeBuilder__add_alg__0 (castDaeBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_alg__1" c_casadi__DaeBuilder__add_alg__1
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> Ptr StdString -> IO ()
-
-casadi__DaeBuilder__add_alg__1
-  :: DaeBuilder -> MX -> String -> IO ()
-casadi__DaeBuilder__add_alg__1 x0 x1 x2 = do
+casadi__DaeBuilder__add_alg
+  :: DaeBuilder -> String -> MX -> IO ()
+casadi__DaeBuilder__add_alg x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_alg__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__DaeBuilder__add_alg errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -217,22 +194,49 @@ casadi__DaeBuilder__add_alg__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-daeBuilder_add_alg__1 :: DaeBuilderClass a => a -> MX -> String -> IO ()
-daeBuilder_add_alg__1 x = casadi__DaeBuilder__add_alg__1 (castDaeBuilder x)
+daeBuilder_add_alg :: DaeBuilderClass a => a -> String -> MX -> IO ()
+daeBuilder_add_alg x = casadi__DaeBuilder__add_alg (castDaeBuilder x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_d__0" c_casadi__DaeBuilder__add_d__0
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO (Ptr MX')
+foreign import ccall unsafe "casadi__DaeBuilder__add_aux__0" c_casadi__DaeBuilder__add_aux__0
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> IO (Ptr MX')
 
-casadi__DaeBuilder__add_d__0
-  :: DaeBuilder -> MX -> IO MX
-casadi__DaeBuilder__add_d__0 x0 x1 = do
+casadi__DaeBuilder__add_aux__0
+  :: DaeBuilder -> IO MX
+casadi__DaeBuilder__add_aux__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__add_aux__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_add_aux__0 :: DaeBuilderClass a => a -> IO MX
+daeBuilder_add_aux__0 x = casadi__DaeBuilder__add_aux__0 (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__add_aux__1" c_casadi__DaeBuilder__add_aux__1
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> IO (Ptr MX')
+
+casadi__DaeBuilder__add_aux__1
+  :: DaeBuilder -> String -> IO MX
+casadi__DaeBuilder__add_aux__1 x0 x1 = do
   x0' <- marshal x0
   x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_d__0 errStrPtrP x0' x1'
+  ret0 <- c_casadi__DaeBuilder__add_aux__1 errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -246,23 +250,23 @@ casadi__DaeBuilder__add_d__0 x0 x1 = do
 
 
 -- classy wrapper
-daeBuilder_add_d__0 :: DaeBuilderClass a => a -> MX -> IO MX
-daeBuilder_add_d__0 x = casadi__DaeBuilder__add_d__0 (castDaeBuilder x)
+daeBuilder_add_aux__1 :: DaeBuilderClass a => a -> String -> IO MX
+daeBuilder_add_aux__1 x = casadi__DaeBuilder__add_aux__1 (castDaeBuilder x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_d__1" c_casadi__DaeBuilder__add_d__1
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> Ptr StdString -> IO (Ptr MX')
+foreign import ccall unsafe "casadi__DaeBuilder__add_aux__2" c_casadi__DaeBuilder__add_aux__2
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
-casadi__DaeBuilder__add_d__1
-  :: DaeBuilder -> MX -> String -> IO MX
-casadi__DaeBuilder__add_d__1 x0 x1 x2 = do
+casadi__DaeBuilder__add_aux__2
+  :: DaeBuilder -> String -> Int -> IO MX
+casadi__DaeBuilder__add_aux__2 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_d__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__DaeBuilder__add_aux__2 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -277,52 +281,54 @@ casadi__DaeBuilder__add_d__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-daeBuilder_add_d__1 :: DaeBuilderClass a => a -> MX -> String -> IO MX
-daeBuilder_add_d__1 x = casadi__DaeBuilder__add_d__1 (castDaeBuilder x)
+daeBuilder_add_aux__2 :: DaeBuilderClass a => a -> String -> Int -> IO MX
+daeBuilder_add_aux__2 x = casadi__DaeBuilder__add_aux__2 (castDaeBuilder x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_dae__0" c_casadi__DaeBuilder__add_dae__0
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO ()
+foreign import ccall unsafe "casadi__DaeBuilder__add_d" c_casadi__DaeBuilder__add_d
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr MX' -> IO (Ptr MX')
 
-casadi__DaeBuilder__add_dae__0
-  :: DaeBuilder -> MX -> IO ()
-casadi__DaeBuilder__add_dae__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_dae__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ()
-
-
-
--- classy wrapper
-daeBuilder_add_dae__0 :: DaeBuilderClass a => a -> MX -> IO ()
-daeBuilder_add_dae__0 x = casadi__DaeBuilder__add_dae__0 (castDaeBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_dae__1" c_casadi__DaeBuilder__add_dae__1
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> Ptr StdString -> IO ()
-
-casadi__DaeBuilder__add_dae__1
-  :: DaeBuilder -> MX -> String -> IO ()
-casadi__DaeBuilder__add_dae__1 x0 x1 x2 = do
+casadi__DaeBuilder__add_d
+  :: DaeBuilder -> String -> MX -> IO MX
+casadi__DaeBuilder__add_d x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_dae__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__DaeBuilder__add_d errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_add_d :: DaeBuilderClass a => a -> String -> MX -> IO MX
+daeBuilder_add_d x = casadi__DaeBuilder__add_d (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__add_dae" c_casadi__DaeBuilder__add_dae
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr MX' -> IO ()
+
+casadi__DaeBuilder__add_dae
+  :: DaeBuilder -> String -> MX -> IO ()
+casadi__DaeBuilder__add_dae x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__add_dae errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -337,8 +343,169 @@ casadi__DaeBuilder__add_dae__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-daeBuilder_add_dae__1 :: DaeBuilderClass a => a -> MX -> String -> IO ()
-daeBuilder_add_dae__1 x = casadi__DaeBuilder__add_dae__1 (castDaeBuilder x)
+daeBuilder_add_dae :: DaeBuilderClass a => a -> String -> MX -> IO ()
+daeBuilder_add_dae x = casadi__DaeBuilder__add_dae (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__add_fun__0" c_casadi__DaeBuilder__add_fun__0
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr Importer' -> IO (Ptr Function')
+
+casadi__DaeBuilder__add_fun__0
+  :: DaeBuilder -> String -> Importer -> IO Function
+casadi__DaeBuilder__add_fun__0 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__add_fun__0 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_add_fun__0 :: DaeBuilderClass a => a -> String -> Importer -> IO Function
+daeBuilder_add_fun__0 x = casadi__DaeBuilder__add_fun__0 (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__add_fun__1" c_casadi__DaeBuilder__add_fun__1
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr Importer' -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__DaeBuilder__add_fun__1
+  :: DaeBuilder -> String -> Importer -> M.Map String GenericType -> IO Function
+casadi__DaeBuilder__add_fun__1 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__add_fun__1 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_add_fun__1 :: DaeBuilderClass a => a -> String -> Importer -> M.Map String GenericType -> IO Function
+daeBuilder_add_fun__1 x = casadi__DaeBuilder__add_fun__1 (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__add_fun__2" c_casadi__DaeBuilder__add_fun__2
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr Function' -> IO (Ptr Function')
+
+casadi__DaeBuilder__add_fun__2
+  :: DaeBuilder -> Function -> IO Function
+casadi__DaeBuilder__add_fun__2 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__add_fun__2 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_add_fun__2 :: DaeBuilderClass a => a -> Function -> IO Function
+daeBuilder_add_fun__2 x = casadi__DaeBuilder__add_fun__2 (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__add_fun__3" c_casadi__DaeBuilder__add_fun__3
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr Function')
+
+casadi__DaeBuilder__add_fun__3
+  :: DaeBuilder -> String -> Vector String -> Vector String -> IO Function
+casadi__DaeBuilder__add_fun__3 x0 x1 x2 x3 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__add_fun__3 errStrPtrP x0' x1' x2' x3'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_add_fun__3 :: DaeBuilderClass a => a -> String -> Vector String -> Vector String -> IO Function
+daeBuilder_add_fun__3 x = casadi__DaeBuilder__add_fun__3 (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__add_fun__4" c_casadi__DaeBuilder__add_fun__4
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdVec (Ptr StdString)) -> Ptr (StdMap StdString (Ptr GenericType')) -> IO (Ptr Function')
+
+casadi__DaeBuilder__add_fun__4
+  :: DaeBuilder -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+casadi__DaeBuilder__add_fun__4 x0 x1 x2 x3 x4 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+  x3' <- marshal x3
+  x4' <- marshal x4
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__add_fun__4 errStrPtrP x0' x1' x2' x3' x4'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+  marshalFree x3 x3'
+  marshalFree x4 x4'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_add_fun__4 :: DaeBuilderClass a => a -> String -> Vector String -> Vector String -> M.Map String GenericType -> IO Function
+daeBuilder_add_fun__4 x = casadi__DaeBuilder__add_fun__4 (castDaeBuilder x)
 
 
 -- direct wrapper
@@ -373,47 +540,18 @@ daeBuilder_add_lc x = casadi__DaeBuilder__add_lc (castDaeBuilder x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_ode__0" c_casadi__DaeBuilder__add_ode__0
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO ()
+foreign import ccall unsafe "casadi__DaeBuilder__add_ode" c_casadi__DaeBuilder__add_ode
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr MX' -> IO ()
 
-casadi__DaeBuilder__add_ode__0
-  :: DaeBuilder -> MX -> IO ()
-casadi__DaeBuilder__add_ode__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_ode__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ()
-
-
-
--- classy wrapper
-daeBuilder_add_ode__0 :: DaeBuilderClass a => a -> MX -> IO ()
-daeBuilder_add_ode__0 x = casadi__DaeBuilder__add_ode__0 (castDaeBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_ode__1" c_casadi__DaeBuilder__add_ode__1
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> Ptr StdString -> IO ()
-
-casadi__DaeBuilder__add_ode__1
-  :: DaeBuilder -> MX -> String -> IO ()
-casadi__DaeBuilder__add_ode__1 x0 x1 x2 = do
+casadi__DaeBuilder__add_ode
+  :: DaeBuilder -> String -> MX -> IO ()
+casadi__DaeBuilder__add_ode x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_ode__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__DaeBuilder__add_ode errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -428,8 +566,8 @@ casadi__DaeBuilder__add_ode__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-daeBuilder_add_ode__1 :: DaeBuilderClass a => a -> MX -> String -> IO ()
-daeBuilder_add_ode__1 x = casadi__DaeBuilder__add_ode__1 (castDaeBuilder x)
+daeBuilder_add_ode :: DaeBuilderClass a => a -> String -> MX -> IO ()
+daeBuilder_add_ode x = casadi__DaeBuilder__add_ode (castDaeBuilder x)
 
 
 -- direct wrapper
@@ -490,7 +628,7 @@ daeBuilder_add_p__1 x = casadi__DaeBuilder__add_p__1 (castDaeBuilder x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__add_p__2" c_casadi__DaeBuilder__add_p__2
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
 casadi__DaeBuilder__add_p__2
   :: DaeBuilder -> String -> Int -> IO MX
@@ -577,7 +715,7 @@ daeBuilder_add_q__1 x = casadi__DaeBuilder__add_q__1 (castDaeBuilder x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__add_q__2" c_casadi__DaeBuilder__add_q__2
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
 casadi__DaeBuilder__add_q__2
   :: DaeBuilder -> String -> Int -> IO MX
@@ -607,47 +745,18 @@ daeBuilder_add_q__2 x = casadi__DaeBuilder__add_q__2 (castDaeBuilder x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_quad__0" c_casadi__DaeBuilder__add_quad__0
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO ()
+foreign import ccall unsafe "casadi__DaeBuilder__add_quad" c_casadi__DaeBuilder__add_quad
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr MX' -> IO ()
 
-casadi__DaeBuilder__add_quad__0
-  :: DaeBuilder -> MX -> IO ()
-casadi__DaeBuilder__add_quad__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_quad__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ()
-
-
-
--- classy wrapper
-daeBuilder_add_quad__0 :: DaeBuilderClass a => a -> MX -> IO ()
-daeBuilder_add_quad__0 x = casadi__DaeBuilder__add_quad__0 (castDaeBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_quad__1" c_casadi__DaeBuilder__add_quad__1
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> Ptr StdString -> IO ()
-
-casadi__DaeBuilder__add_quad__1
-  :: DaeBuilder -> MX -> String -> IO ()
-casadi__DaeBuilder__add_quad__1 x0 x1 x2 = do
+casadi__DaeBuilder__add_quad
+  :: DaeBuilder -> String -> MX -> IO ()
+casadi__DaeBuilder__add_quad x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_quad__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__DaeBuilder__add_quad errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -662,8 +771,8 @@ casadi__DaeBuilder__add_quad__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-daeBuilder_add_quad__1 :: DaeBuilderClass a => a -> MX -> String -> IO ()
-daeBuilder_add_quad__1 x = casadi__DaeBuilder__add_quad__1 (castDaeBuilder x)
+daeBuilder_add_quad :: DaeBuilderClass a => a -> String -> MX -> IO ()
+daeBuilder_add_quad x = casadi__DaeBuilder__add_quad (castDaeBuilder x)
 
 
 -- direct wrapper
@@ -724,7 +833,7 @@ daeBuilder_add_s__1 x = casadi__DaeBuilder__add_s__1 (castDaeBuilder x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__add_s__2" c_casadi__DaeBuilder__add_s__2
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CInt -> IO (Ptr (StdPair (Ptr MX') (Ptr MX')))
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr (StdPair (Ptr MX') (Ptr MX')))
 
 casadi__DaeBuilder__add_s__2
   :: DaeBuilder -> String -> Int -> IO (MX, MX)
@@ -811,7 +920,7 @@ daeBuilder_add_u__1 x = casadi__DaeBuilder__add_u__1 (castDaeBuilder x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__add_u__2" c_casadi__DaeBuilder__add_u__2
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
 casadi__DaeBuilder__add_u__2
   :: DaeBuilder -> String -> Int -> IO MX
@@ -902,7 +1011,7 @@ daeBuilder_add_variable__1 x = casadi__DaeBuilder__add_variable__1 (castDaeBuild
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__add_variable__2" c_casadi__DaeBuilder__add_variable__2
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
 casadi__DaeBuilder__add_variable__2
   :: DaeBuilder -> String -> Int -> IO MX
@@ -1020,7 +1129,7 @@ daeBuilder_add_x__1 x = casadi__DaeBuilder__add_x__1 (castDaeBuilder x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__add_x__2" c_casadi__DaeBuilder__add_x__2
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
 casadi__DaeBuilder__add_x__2
   :: DaeBuilder -> String -> Int -> IO MX
@@ -1050,47 +1159,18 @@ daeBuilder_add_x__2 x = casadi__DaeBuilder__add_x__2 (castDaeBuilder x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_y__0" c_casadi__DaeBuilder__add_y__0
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO (Ptr MX')
+foreign import ccall unsafe "casadi__DaeBuilder__add_y" c_casadi__DaeBuilder__add_y
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> Ptr MX' -> IO (Ptr MX')
 
-casadi__DaeBuilder__add_y__0
-  :: DaeBuilder -> MX -> IO MX
-casadi__DaeBuilder__add_y__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_y__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ret
-
-
-
--- classy wrapper
-daeBuilder_add_y__0 :: DaeBuilderClass a => a -> MX -> IO MX
-daeBuilder_add_y__0 x = casadi__DaeBuilder__add_y__0 (castDaeBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__add_y__1" c_casadi__DaeBuilder__add_y__1
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> Ptr StdString -> IO (Ptr MX')
-
-casadi__DaeBuilder__add_y__1
-  :: DaeBuilder -> MX -> String -> IO MX
-casadi__DaeBuilder__add_y__1 x0 x1 x2 = do
+casadi__DaeBuilder__add_y
+  :: DaeBuilder -> String -> MX -> IO MX
+casadi__DaeBuilder__add_y x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__add_y__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__DaeBuilder__add_y errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -1105,8 +1185,8 @@ casadi__DaeBuilder__add_y__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-daeBuilder_add_y__1 :: DaeBuilderClass a => a -> MX -> String -> IO MX
-daeBuilder_add_y__1 x = casadi__DaeBuilder__add_y__1 (castDaeBuilder x)
+daeBuilder_add_y :: DaeBuilderClass a => a -> String -> MX -> IO MX
+daeBuilder_add_y x = casadi__DaeBuilder__add_y (castDaeBuilder x)
 
 
 -- direct wrapper
@@ -1167,7 +1247,7 @@ daeBuilder_add_z__1 x = casadi__DaeBuilder__add_z__1 (castDaeBuilder x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__add_z__2" c_casadi__DaeBuilder__add_z__2
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CInt -> IO (Ptr MX')
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> CLLong -> IO (Ptr MX')
 
 casadi__DaeBuilder__add_z__2
   :: DaeBuilder -> String -> Int -> IO MX
@@ -1489,6 +1569,91 @@ daeBuilder_eliminate_quad x = casadi__DaeBuilder__eliminate_quad (castDaeBuilder
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__fun" c_casadi__DaeBuilder__fun
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> IO (Ptr Function')
+
+casadi__DaeBuilder__fun
+  :: DaeBuilder -> String -> IO Function
+casadi__DaeBuilder__fun x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__fun errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_fun :: DaeBuilderClass a => a -> String -> IO Function
+daeBuilder_fun x = casadi__DaeBuilder__fun (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__get_str__0" c_casadi__DaeBuilder__get_str__0
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> IO (Ptr StdString)
+
+casadi__DaeBuilder__get_str__0
+  :: DaeBuilder -> IO String
+casadi__DaeBuilder__get_str__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__get_str__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_get_str__0 :: DaeBuilderClass a => a -> IO String
+daeBuilder_get_str__0 x = casadi__DaeBuilder__get_str__0 (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__get_str__1" c_casadi__DaeBuilder__get_str__1
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> CInt -> IO (Ptr StdString)
+
+casadi__DaeBuilder__get_str__1
+  :: DaeBuilder -> Bool -> IO String
+casadi__DaeBuilder__get_str__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__get_str__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_get_str__1 :: DaeBuilderClass a => a -> Bool -> IO String
+daeBuilder_get_str__1 x = casadi__DaeBuilder__get_str__1 (castDaeBuilder x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__guess__0" c_casadi__DaeBuilder__guess__0
   :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO (Ptr (StdVec CDouble))
 
@@ -1606,6 +1771,35 @@ casadi__DaeBuilder__guess__3 x0 x1 x2 = do
 -- classy wrapper
 daeBuilder_guess__3 :: DaeBuilderClass a => a -> String -> Bool -> IO Double
 daeBuilder_guess__3 x = casadi__DaeBuilder__guess__3 (castDaeBuilder x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__has_fun" c_casadi__DaeBuilder__has_fun
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> IO CInt
+
+casadi__DaeBuilder__has_fun
+  :: DaeBuilder -> String -> IO Bool
+casadi__DaeBuilder__has_fun x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__has_fun errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_has_fun :: DaeBuilderClass a => a -> String -> IO Bool
+daeBuilder_has_fun x = casadi__DaeBuilder__has_fun (castDaeBuilder x)
 
 
 -- direct wrapper
@@ -3088,6 +3282,33 @@ daeBuilder_start__3 x = casadi__DaeBuilder__start__3 (castDaeBuilder x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__type_name" c_casadi__DaeBuilder__type_name
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> IO (Ptr StdString)
+
+casadi__DaeBuilder__type_name
+  :: DaeBuilder -> IO String
+casadi__DaeBuilder__type_name x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__type_name errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_type_name :: DaeBuilderClass a => a -> IO String
+daeBuilder_type_name x = casadi__DaeBuilder__type_name (castDaeBuilder x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__unit__0" c_casadi__DaeBuilder__unit__0
   :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr MX' -> IO (Ptr StdString)
 
@@ -3146,6 +3367,35 @@ daeBuilder_unit__1 x = casadi__DaeBuilder__unit__1 (castDaeBuilder x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__DaeBuilder__var" c_casadi__DaeBuilder__var
+  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> IO (Ptr MX')
+
+casadi__DaeBuilder__var
+  :: DaeBuilder -> String -> IO MX
+casadi__DaeBuilder__var x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__DaeBuilder__var errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+daeBuilder_var :: DaeBuilderClass a => a -> String -> IO MX
+daeBuilder_var x = casadi__DaeBuilder__var (castDaeBuilder x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__DaeBuilder__variable__0" c_casadi__DaeBuilder__variable__0
   :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> Ptr StdString -> IO (Ptr Variable')
 
@@ -3201,58 +3451,4 @@ casadi__DaeBuilder__variable__1 x0 x1 = do
 -- classy wrapper
 daeBuilder_variable__1 :: DaeBuilderClass a => a -> String -> IO Variable
 daeBuilder_variable__1 x = casadi__DaeBuilder__variable__1 (castDaeBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__getRepresentation" c_casadi__DaeBuilder__getRepresentation
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> IO (Ptr StdString)
-
-casadi__DaeBuilder__getRepresentation
-  :: DaeBuilder -> IO String
-casadi__DaeBuilder__getRepresentation x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__getRepresentation errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-daeBuilder_getRepresentation :: DaeBuilderClass a => a -> IO String
-daeBuilder_getRepresentation x = casadi__DaeBuilder__getRepresentation (castDaeBuilder x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__DaeBuilder__getDescription" c_casadi__DaeBuilder__getDescription
-  :: Ptr (Ptr StdString) -> Ptr DaeBuilder' -> IO (Ptr StdString)
-
-casadi__DaeBuilder__getDescription
-  :: DaeBuilder -> IO String
-casadi__DaeBuilder__getDescription x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__DaeBuilder__getDescription errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-daeBuilder_getDescription :: DaeBuilderClass a => a -> IO String
-daeBuilder_getDescription x = casadi__DaeBuilder__getDescription (castDaeBuilder x)
 

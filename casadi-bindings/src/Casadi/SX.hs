@@ -20,7 +20,7 @@ import Casadi.Overloading ( Fmod(..), ArcTan2(..), SymOrd(..), Erf(..) )
 import Casadi.Viewable ( Viewable(..) )
 
 instance Show SX where
-  show x = unsafePerformIO (sx_getDescription x)
+  show x = unsafePerformIO (sx_get_str__0 x)
   {-# NOINLINE show #-}
 
 instance Eq SX where
@@ -40,7 +40,7 @@ instance Viewable SX where
 instance CMatrix SX where
   blocksplit x ix iy = unsafePerformIO (C.casadi_blocksplit__3 x ix iy)
   {-# NOINLINE blocksplit #-}
-  blockcat x = unsafePerformIO (C.casadi_blockcat__1 x)
+  blockcat x = unsafePerformIO (C.casadi_blockcat__0 x)
   {-# NOINLINE blockcat #-}
   veccat x = unsafePerformIO (C.casadi_veccat__0 x)
   {-# NOINLINE veccat #-}
@@ -114,15 +114,15 @@ instance CMatrix SX where
   {-# NOINLINE conditional #-}
   conditional' x0 x1 x2 x3 = unsafePerformIO (C.casadi_conditional__1 x0 x1 x2 x3)
   {-# NOINLINE conditional' #-}
-  inv x = unsafePerformIO (C.casadi_inv__0 x)
+  inv x = unsafePerformIO (C.casadi_inv__2 x)
   {-# NOINLINE inv #-}
   pinv x = unsafePerformIO (C.casadi_pinv__2 x)
   {-# NOINLINE pinv #-}
   pinv' x n o = unsafePerformIO (mapM fromGType o >>= C.casadi_pinv__1 x n)
   {-# NOINLINE pinv' #-}
-  cmax x y = unsafePerformIO (C.casadi_max__1 x y)
+  cmax x y = unsafePerformIO (C.casadi_fmax__1 x y)
   {-# NOINLINE cmax #-}
-  cmin x y = unsafePerformIO (C.casadi_min__1 x y)
+  cmin x y = unsafePerformIO (C.casadi_fmin__1 x y)
   {-# NOINLINE cmin #-}
   cand x y = unsafePerformIO (C.casadi_and__1 x y)
   {-# NOINLINE cand #-}
@@ -133,7 +133,7 @@ instance CMatrix SX where
   printme x y = unsafePerformIO (sx_printme x y)
   {-# NOINLINE printme #-}
 
-  sumSquare x = unsafePerformIO (C.casadi_sum_square__0 x)
+  sumSquare x = unsafePerformIO (C.casadi_sumsqr__0 x)
   {-# NOINLINE sumSquare #-}
   invSkew x = unsafePerformIO (C.casadi_inv_skew__0 x)
   {-# NOINLINE invSkew #-}

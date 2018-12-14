@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wall #-}
+{-# OPTIONS_GHC -Wall -Werror #-}
 
 module WriteBindings.TypeMaps
        ( hsType
@@ -54,6 +54,7 @@ hsType _ CSize = "CSize"
 hsType _ CUChar = "CUChar"
 hsType _ CChar = "CChar"
 hsType _ CLong = "Int"
+hsType _ CLongLong = "Int"
 hsType _ (UserType _ (Name x)) = uppercase x
 hsType p (StdVec x) = maybeParens p ("Vector " ++ hsType True x)
 hsType p (Ref x) = hsType p x
@@ -76,6 +77,7 @@ ffiType p' (t', SwigOutput swigOutput)
     ffiType' _ CVoid = "()"
     ffiType' _ CSize = "CSize"
     ffiType' _ CLong = "CLong"
+    ffiType' _ CLongLong = "CLLong"
     ffiType' _ CUChar = "CUChar"
     ffiType' _ CChar = "CChar"
     ffiType' _ CBool = "CInt"
@@ -110,6 +112,7 @@ cppType CBool = "bool"
 cppType CVoid = "void"
 cppType CSize = "size_t"
 cppType CLong = "long"
+cppType CLongLong = "long long"
 cppType CUChar = "unsigned char"
 cppType CChar = "char"
 cppType StdOstream = "std::ostream"
@@ -136,6 +139,7 @@ cWrapperType (t', SwigOutput swigOutput)
     cWrapperType' CVoid = "void"
     cWrapperType' CSize = "size_t"
     cWrapperType' CLong = "long"
+    cWrapperType' CLongLong = "long long"
     cWrapperType' CUChar = "unsigned char"
     cWrapperType' CChar = "char"
     cWrapperType' x@(UserType {}) = cppType x ++ "*"

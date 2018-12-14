@@ -13,6 +13,10 @@ module Casadi.Core.Classes.GenericType
          genericType__1,
          genericType__10,
          genericType__11,
+         genericType__12,
+         genericType__13,
+         genericType__14,
+         genericType__15,
          genericType__2,
          genericType__3,
          genericType__4,
@@ -26,7 +30,9 @@ module Casadi.Core.Classes.GenericType
          genericType_as_dict,
          genericType_as_double,
          genericType_as_double_vector,
+         genericType_as_double_vector_vector,
          genericType_as_function,
+         genericType_as_function_vector,
          genericType_as_int,
          genericType_as_int_vector,
          genericType_as_int_vector_vector,
@@ -40,8 +46,10 @@ module Casadi.Core.Classes.GenericType
          genericType_is_dict,
          genericType_is_double,
          genericType_is_double_vector,
+         genericType_is_double_vector_vector,
          genericType_is_empty_vector,
          genericType_is_function,
+         genericType_is_function_vector,
          genericType_is_int,
          genericType_is_int_vector,
          genericType_is_int_vector_vector,
@@ -55,13 +63,17 @@ module Casadi.Core.Classes.GenericType
          genericType_to_dict,
          genericType_to_double,
          genericType_to_double_vector,
+         genericType_to_double_vector_vector,
          genericType_to_function,
+         genericType_to_function_vector,
          genericType_to_int,
+         genericType_to_int_type_vector,
          genericType_to_int_vector,
          genericType_to_int_vector_vector,
          genericType_to_string,
          genericType_to_string_vector,
          genericType_to_void_pointer,
+         genericType_type_name,
        ) where
 
 
@@ -111,10 +123,10 @@ genericType__0 = casadi__GenericType__CONSTRUCTOR__0
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__1" c_casadi__GenericType__CONSTRUCTOR__1
-  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr Function')) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__1
-  :: Function -> IO GenericType
+  :: Vector Function -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__1 x0 = do
   x0' <- marshal x0
 
@@ -132,16 +144,16 @@ casadi__GenericType__CONSTRUCTOR__1 x0 = do
 
 
 -- classy wrapper
-genericType__1 :: Function -> IO GenericType
+genericType__1 :: Vector Function -> IO GenericType
 genericType__1 = casadi__GenericType__CONSTRUCTOR__1
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__2" c_casadi__GenericType__CONSTRUCTOR__2
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr Function' -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__2
-  :: Vector String -> IO GenericType
+  :: Function -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__2 x0 = do
   x0' <- marshal x0
 
@@ -159,16 +171,16 @@ casadi__GenericType__CONSTRUCTOR__2 x0 = do
 
 
 -- classy wrapper
-genericType__2 :: Vector String -> IO GenericType
+genericType__2 :: Function -> IO GenericType
 genericType__2 = casadi__GenericType__CONSTRUCTOR__2
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__3" c_casadi__GenericType__CONSTRUCTOR__3
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CDouble) -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr StdString)) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__3
-  :: Vector Double -> IO GenericType
+  :: Vector String -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__3 x0 = do
   x0' <- marshal x0
 
@@ -186,16 +198,16 @@ casadi__GenericType__CONSTRUCTOR__3 x0 = do
 
 
 -- classy wrapper
-genericType__3 :: Vector Double -> IO GenericType
+genericType__3 :: Vector String -> IO GenericType
 genericType__3 = casadi__GenericType__CONSTRUCTOR__3
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__4" c_casadi__GenericType__CONSTRUCTOR__4
-  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec CInt))) -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec CDouble))) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__4
-  :: Vector (Vector Int) -> IO GenericType
+  :: Vector (Vector Double) -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__4 x0 = do
   x0' <- marshal x0
 
@@ -213,16 +225,16 @@ casadi__GenericType__CONSTRUCTOR__4 x0 = do
 
 
 -- classy wrapper
-genericType__4 :: Vector (Vector Int) -> IO GenericType
+genericType__4 :: Vector (Vector Double) -> IO GenericType
 genericType__4 = casadi__GenericType__CONSTRUCTOR__4
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__5" c_casadi__GenericType__CONSTRUCTOR__5
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CDouble) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__5
-  :: Vector Int -> IO GenericType
+  :: Vector Double -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__5 x0 = do
   x0' <- marshal x0
 
@@ -240,16 +252,16 @@ casadi__GenericType__CONSTRUCTOR__5 x0 = do
 
 
 -- classy wrapper
-genericType__5 :: Vector Int -> IO GenericType
+genericType__5 :: Vector Double -> IO GenericType
 genericType__5 = casadi__GenericType__CONSTRUCTOR__5
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__6" c_casadi__GenericType__CONSTRUCTOR__6
-  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec (Ptr (StdVec CLLong))) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__6
-  :: Vector Bool -> IO GenericType
+  :: Vector (Vector Int) -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__6 x0 = do
   x0' <- marshal x0
 
@@ -267,16 +279,16 @@ casadi__GenericType__CONSTRUCTOR__6 x0 = do
 
 
 -- classy wrapper
-genericType__6 :: Vector Bool -> IO GenericType
+genericType__6 :: Vector (Vector Int) -> IO GenericType
 genericType__6 = casadi__GenericType__CONSTRUCTOR__6
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__7" c_casadi__GenericType__CONSTRUCTOR__7
-  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__7
-  :: String -> IO GenericType
+  :: Vector Int -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__7 x0 = do
   x0' <- marshal x0
 
@@ -294,16 +306,16 @@ casadi__GenericType__CONSTRUCTOR__7 x0 = do
 
 
 -- classy wrapper
-genericType__7 :: String -> IO GenericType
+genericType__7 :: Vector Int -> IO GenericType
 genericType__7 = casadi__GenericType__CONSTRUCTOR__7
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__8" c_casadi__GenericType__CONSTRUCTOR__8
-  :: Ptr (Ptr StdString) -> CDouble -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CLLong) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__8
-  :: Double -> IO GenericType
+  :: Vector Int -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__8 x0 = do
   x0' <- marshal x0
 
@@ -321,16 +333,16 @@ casadi__GenericType__CONSTRUCTOR__8 x0 = do
 
 
 -- classy wrapper
-genericType__8 :: Double -> IO GenericType
+genericType__8 :: Vector Int -> IO GenericType
 genericType__8 = casadi__GenericType__CONSTRUCTOR__8
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__9" c_casadi__GenericType__CONSTRUCTOR__9
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr (StdVec CInt) -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__9
-  :: Int -> IO GenericType
+  :: Vector Bool -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__9 x0 = do
   x0' <- marshal x0
 
@@ -348,16 +360,16 @@ casadi__GenericType__CONSTRUCTOR__9 x0 = do
 
 
 -- classy wrapper
-genericType__9 :: Int -> IO GenericType
+genericType__9 :: Vector Bool -> IO GenericType
 genericType__9 = casadi__GenericType__CONSTRUCTOR__9
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__10" c_casadi__GenericType__CONSTRUCTOR__10
-  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> Ptr StdString -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__10
-  :: Bool -> IO GenericType
+  :: String -> IO GenericType
 casadi__GenericType__CONSTRUCTOR__10 x0 = do
   x0' <- marshal x0
 
@@ -375,21 +387,129 @@ casadi__GenericType__CONSTRUCTOR__10 x0 = do
 
 
 -- classy wrapper
-genericType__10 :: Bool -> IO GenericType
+genericType__10 :: String -> IO GenericType
 genericType__10 = casadi__GenericType__CONSTRUCTOR__10
 
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__11" c_casadi__GenericType__CONSTRUCTOR__11
-  :: Ptr (Ptr StdString) -> IO (Ptr GenericType')
+  :: Ptr (Ptr StdString) -> CDouble -> IO (Ptr GenericType')
 
 casadi__GenericType__CONSTRUCTOR__11
+  :: Double -> IO GenericType
+casadi__GenericType__CONSTRUCTOR__11 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__CONSTRUCTOR__11 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType__11 :: Double -> IO GenericType
+genericType__11 = casadi__GenericType__CONSTRUCTOR__11
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__12" c_casadi__GenericType__CONSTRUCTOR__12
+  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr GenericType')
+
+casadi__GenericType__CONSTRUCTOR__12
+  :: Int -> IO GenericType
+casadi__GenericType__CONSTRUCTOR__12 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__CONSTRUCTOR__12 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType__12 :: Int -> IO GenericType
+genericType__12 = casadi__GenericType__CONSTRUCTOR__12
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__13" c_casadi__GenericType__CONSTRUCTOR__13
+  :: Ptr (Ptr StdString) -> CLLong -> IO (Ptr GenericType')
+
+casadi__GenericType__CONSTRUCTOR__13
+  :: Int -> IO GenericType
+casadi__GenericType__CONSTRUCTOR__13 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__CONSTRUCTOR__13 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType__13 :: Int -> IO GenericType
+genericType__13 = casadi__GenericType__CONSTRUCTOR__13
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__14" c_casadi__GenericType__CONSTRUCTOR__14
+  :: Ptr (Ptr StdString) -> CInt -> IO (Ptr GenericType')
+
+casadi__GenericType__CONSTRUCTOR__14
+  :: Bool -> IO GenericType
+casadi__GenericType__CONSTRUCTOR__14 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__CONSTRUCTOR__14 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType__14 :: Bool -> IO GenericType
+genericType__14 = casadi__GenericType__CONSTRUCTOR__14
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__CONSTRUCTOR__15" c_casadi__GenericType__CONSTRUCTOR__15
+  :: Ptr (Ptr StdString) -> IO (Ptr GenericType')
+
+casadi__GenericType__CONSTRUCTOR__15
   :: IO GenericType
-casadi__GenericType__CONSTRUCTOR__11  = do
+casadi__GenericType__CONSTRUCTOR__15  = do
 
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__GenericType__CONSTRUCTOR__11 errStrPtrP 
+  ret0 <- c_casadi__GenericType__CONSTRUCTOR__15 errStrPtrP 
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -402,8 +522,8 @@ casadi__GenericType__CONSTRUCTOR__11  = do
 
 
 -- classy wrapper
-genericType__11 :: IO GenericType
-genericType__11 = casadi__GenericType__CONSTRUCTOR__11
+genericType__15 :: IO GenericType
+genericType__15 = casadi__GenericType__CONSTRUCTOR__15
 
 
 -- direct wrapper
@@ -435,7 +555,7 @@ genericType_as_bool x = casadi__GenericType__as_bool (castGenericType x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__as_bool_vector" c_casadi__GenericType__as_bool_vector
-  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec CLLong))
 
 casadi__GenericType__as_bool_vector
   :: GenericType -> IO (Vector Int)
@@ -542,6 +662,33 @@ genericType_as_double_vector x = casadi__GenericType__as_double_vector (castGene
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__as_double_vector_vector" c_casadi__GenericType__as_double_vector_vector
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr (StdVec CDouble))))
+
+casadi__GenericType__as_double_vector_vector
+  :: GenericType -> IO (Vector (Vector Double))
+casadi__GenericType__as_double_vector_vector x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__as_double_vector_vector errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_as_double_vector_vector :: GenericTypeClass a => a -> IO (Vector (Vector Double))
+genericType_as_double_vector_vector x = casadi__GenericType__as_double_vector_vector (castGenericType x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__as_function" c_casadi__GenericType__as_function
   :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr Function')
 
@@ -569,8 +716,35 @@ genericType_as_function x = casadi__GenericType__as_function (castGenericType x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__as_function_vector" c_casadi__GenericType__as_function_vector
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr Function')))
+
+casadi__GenericType__as_function_vector
+  :: GenericType -> IO (Vector Function)
+casadi__GenericType__as_function_vector x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__as_function_vector errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_as_function_vector :: GenericTypeClass a => a -> IO (Vector Function)
+genericType_as_function_vector x = casadi__GenericType__as_function_vector (castGenericType x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__as_int" c_casadi__GenericType__as_int
-  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO CLLong
 
 casadi__GenericType__as_int
   :: GenericType -> IO Int
@@ -597,7 +771,7 @@ genericType_as_int x = casadi__GenericType__as_int (castGenericType x)
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__as_int_vector" c_casadi__GenericType__as_int_vector
-  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec CInt))
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec CLLong))
 
 casadi__GenericType__as_int_vector
   :: GenericType -> IO (Vector Int)
@@ -624,7 +798,7 @@ genericType_as_int_vector x = casadi__GenericType__as_int_vector (castGenericTyp
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__as_int_vector_vector" c_casadi__GenericType__as_int_vector_vector
-  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr (StdVec CInt))))
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr (StdVec CLLong))))
 
 casadi__GenericType__as_int_vector_vector
   :: GenericType -> IO (Vector (Vector Int))
@@ -920,6 +1094,33 @@ genericType_is_double_vector x = casadi__GenericType__is_double_vector (castGene
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__is_double_vector_vector" c_casadi__GenericType__is_double_vector_vector
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO CInt
+
+casadi__GenericType__is_double_vector_vector
+  :: GenericType -> IO Bool
+casadi__GenericType__is_double_vector_vector x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__is_double_vector_vector errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_is_double_vector_vector :: GenericTypeClass a => a -> IO Bool
+genericType_is_double_vector_vector x = casadi__GenericType__is_double_vector_vector (castGenericType x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__is_empty_vector" c_casadi__GenericType__is_empty_vector
   :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO CInt
 
@@ -971,6 +1172,33 @@ casadi__GenericType__is_function x0 = do
 -- classy wrapper
 genericType_is_function :: GenericTypeClass a => a -> IO Bool
 genericType_is_function x = casadi__GenericType__is_function (castGenericType x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__is_function_vector" c_casadi__GenericType__is_function_vector
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO CInt
+
+casadi__GenericType__is_function_vector
+  :: GenericType -> IO Bool
+casadi__GenericType__is_function_vector x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__is_function_vector errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_is_function_vector :: GenericTypeClass a => a -> IO Bool
+genericType_is_function_vector x = casadi__GenericType__is_function_vector (castGenericType x)
 
 
 -- direct wrapper
@@ -1329,6 +1557,33 @@ genericType_to_double_vector x = casadi__GenericType__to_double_vector (castGene
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__to_double_vector_vector" c_casadi__GenericType__to_double_vector_vector
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr (StdVec CDouble))))
+
+casadi__GenericType__to_double_vector_vector
+  :: GenericType -> IO (Vector (Vector Double))
+casadi__GenericType__to_double_vector_vector x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__to_double_vector_vector errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_to_double_vector_vector :: GenericTypeClass a => a -> IO (Vector (Vector Double))
+genericType_to_double_vector_vector x = casadi__GenericType__to_double_vector_vector (castGenericType x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__to_function" c_casadi__GenericType__to_function
   :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr Function')
 
@@ -1356,8 +1611,35 @@ genericType_to_function x = casadi__GenericType__to_function (castGenericType x)
 
 
 -- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__to_function_vector" c_casadi__GenericType__to_function_vector
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr Function')))
+
+casadi__GenericType__to_function_vector
+  :: GenericType -> IO (Vector Function)
+casadi__GenericType__to_function_vector x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__to_function_vector errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_to_function_vector :: GenericTypeClass a => a -> IO (Vector Function)
+genericType_to_function_vector x = casadi__GenericType__to_function_vector (castGenericType x)
+
+
+-- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__to_int" c_casadi__GenericType__to_int
-  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO CInt
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO CLLong
 
 casadi__GenericType__to_int
   :: GenericType -> IO Int
@@ -1383,8 +1665,35 @@ genericType_to_int x = casadi__GenericType__to_int (castGenericType x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__GenericType__to_int_vector" c_casadi__GenericType__to_int_vector
+foreign import ccall unsafe "casadi__GenericType__to_int_type_vector" c_casadi__GenericType__to_int_type_vector
   :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec CInt))
+
+casadi__GenericType__to_int_type_vector
+  :: GenericType -> IO (Vector Int)
+casadi__GenericType__to_int_type_vector x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__to_int_type_vector errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_to_int_type_vector :: GenericTypeClass a => a -> IO (Vector Int)
+genericType_to_int_type_vector x = casadi__GenericType__to_int_type_vector (castGenericType x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__to_int_vector" c_casadi__GenericType__to_int_vector
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec CLLong))
 
 casadi__GenericType__to_int_vector
   :: GenericType -> IO (Vector Int)
@@ -1411,7 +1720,7 @@ genericType_to_int_vector x = casadi__GenericType__to_int_vector (castGenericTyp
 
 -- direct wrapper
 foreign import ccall unsafe "casadi__GenericType__to_int_vector_vector" c_casadi__GenericType__to_int_vector_vector
-  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr (StdVec CInt))))
+  :: Ptr (Ptr StdString) -> Ptr GenericType' -> IO (Ptr (StdVec (Ptr (StdVec CLLong))))
 
 casadi__GenericType__to_int_vector_vector
   :: GenericType -> IO (Vector (Vector Int))
@@ -1515,4 +1824,31 @@ casadi__GenericType__to_void_pointer x0 = do
 -- classy wrapper
 genericType_to_void_pointer :: GenericTypeClass a => a -> IO ()
 genericType_to_void_pointer x = casadi__GenericType__to_void_pointer (castGenericType x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__GenericType__type_name" c_casadi__GenericType__type_name
+  :: Ptr (Ptr StdString) -> IO (Ptr StdString)
+
+casadi__GenericType__type_name
+  :: IO String
+casadi__GenericType__type_name  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__GenericType__type_name errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+genericType_type_name :: IO String
+genericType_type_name = casadi__GenericType__type_name
 

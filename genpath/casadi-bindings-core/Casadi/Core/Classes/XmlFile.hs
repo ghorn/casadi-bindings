@@ -13,6 +13,7 @@ module Casadi.Core.Classes.XmlFile
          xmlFile__1,
          xmlFile_doc,
          xmlFile_load_plugin,
+         xmlFile_type_name,
        ) where
 
 
@@ -139,4 +140,31 @@ casadi__XmlFile__load_plugin x0 = do
 -- classy wrapper
 xmlFile_load_plugin :: String -> IO ()
 xmlFile_load_plugin = casadi__XmlFile__load_plugin
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__XmlFile__type_name" c_casadi__XmlFile__type_name
+  :: Ptr (Ptr StdString) -> IO (Ptr StdString)
+
+casadi__XmlFile__type_name
+  :: IO String
+casadi__XmlFile__type_name  = do
+
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__XmlFile__type_name errStrPtrP 
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+
+
+  return ret
+
+
+
+-- classy wrapper
+xmlFile_type_name :: IO String
+xmlFile_type_name = casadi__XmlFile__type_name
 

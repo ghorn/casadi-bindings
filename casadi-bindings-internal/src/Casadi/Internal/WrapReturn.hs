@@ -31,6 +31,8 @@ instance WrapReturn CDouble Double where
   wrapReturn = return . realToFrac
 instance WrapReturn CLong Int where
   wrapReturn = return . fromIntegral
+instance WrapReturn CLLong Int where
+  wrapReturn = return . fromIntegral
 instance WrapReturn CInt Bool where
   wrapReturn 0 = return False
   wrapReturn _ = return True
@@ -66,14 +68,14 @@ instance (WrapReturn (Ptr pa) a, WrapReturn (Ptr pb) b)
     c_deleteStdPair stdPair
     return (x, y)
 
-instance (WrapReturn CInt a, WrapReturn CInt b)
-         => WrapReturn (Ptr (StdPair CInt CInt)) (a, b) where
+instance (WrapReturn CLLong a, WrapReturn CLLong b)
+         => WrapReturn (Ptr (StdPair CLLong CLLong)) (a, b) where
   wrapReturn stdPair = do
-    px <- c_stdPairFstInt stdPair
-    py <- c_stdPairSndInt stdPair
+    px <- c_stdPairFstLLong stdPair
+    py <- c_stdPairSndLLong stdPair
     x <- wrapReturn px
     y <- wrapReturn py
-    c_deleteStdPairInt stdPair
+    c_deleteStdPairLLong stdPair
     return (x, y)
 
 
@@ -108,6 +110,9 @@ wrapReturnVec vecSize vecCopy vecDel cToHs vecPtr = do
   free arr
   vecDel vecPtr
   fmap V.fromList (mapM cToHs ret)
+
+instance WrapReturn (Ptr (StdVec CLLong)) (V.Vector Int) where
+  wrapReturn = wrapReturnVec c_sizeVecCLLong c_copyVecCLLong c_deleteVecLLong wrapReturn
 
 instance WrapReturn (Ptr (StdVec CInt)) (V.Vector Int) where
   wrapReturn = wrapReturnVec c_sizeVecCInt c_copyVecCInt c_deleteVecCInt wrapReturn

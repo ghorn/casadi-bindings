@@ -10,10 +10,11 @@ module Casadi.Core.Classes.SharedObject
          SharedObject,
          SharedObjectClass(..),
          sharedObject___hash__,
-         sharedObject_getDescription,
-         sharedObject_getRepresentation,
+         sharedObject_class_name,
+         sharedObject_get_str__0,
+         sharedObject_get_str__1,
          sharedObject_is_null,
-         sharedObject_printPtr,
+         sharedObject_print_ptr,
        ) where
 
 
@@ -36,10 +37,10 @@ import Casadi.Core.Data
 import Casadi.Core.Enums
 -- direct wrapper
 foreign import ccall unsafe "casadi__SharedObject____hash__" c_casadi__SharedObject____hash__
-  :: Ptr (Ptr StdString) -> Ptr SharedObject' -> IO CSize
+  :: Ptr (Ptr StdString) -> Ptr SharedObject' -> IO CLLong
 
 casadi__SharedObject____hash__
-  :: SharedObject -> IO CSize
+  :: SharedObject -> IO Int
 casadi__SharedObject____hash__ x0 = do
   x0' <- marshal x0
 
@@ -57,8 +58,91 @@ casadi__SharedObject____hash__ x0 = do
 
 
 -- classy wrapper
-sharedObject___hash__ :: SharedObjectClass a => a -> IO CSize
+sharedObject___hash__ :: SharedObjectClass a => a -> IO Int
 sharedObject___hash__ x = casadi__SharedObject____hash__ (castSharedObject x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__SharedObject__class_name" c_casadi__SharedObject__class_name
+  :: Ptr (Ptr StdString) -> Ptr SharedObject' -> IO (Ptr StdString)
+
+casadi__SharedObject__class_name
+  :: SharedObject -> IO String
+casadi__SharedObject__class_name x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__SharedObject__class_name errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sharedObject_class_name :: SharedObjectClass a => a -> IO String
+sharedObject_class_name x = casadi__SharedObject__class_name (castSharedObject x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__SharedObject__get_str__0" c_casadi__SharedObject__get_str__0
+  :: Ptr (Ptr StdString) -> Ptr SharedObject' -> IO (Ptr StdString)
+
+casadi__SharedObject__get_str__0
+  :: SharedObject -> IO String
+casadi__SharedObject__get_str__0 x0 = do
+  x0' <- marshal x0
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__SharedObject__get_str__0 errStrPtrP x0'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+
+  return ret
+
+
+
+-- classy wrapper
+sharedObject_get_str__0 :: SharedObjectClass a => a -> IO String
+sharedObject_get_str__0 x = casadi__SharedObject__get_str__0 (castSharedObject x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__SharedObject__get_str__1" c_casadi__SharedObject__get_str__1
+  :: Ptr (Ptr StdString) -> Ptr SharedObject' -> CInt -> IO (Ptr StdString)
+
+casadi__SharedObject__get_str__1
+  :: SharedObject -> Bool -> IO String
+casadi__SharedObject__get_str__1 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__SharedObject__get_str__1 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ret
+
+
+
+-- classy wrapper
+sharedObject_get_str__1 :: SharedObjectClass a => a -> Bool -> IO String
+sharedObject_get_str__1 x = casadi__SharedObject__get_str__1 (castSharedObject x)
 
 
 -- direct wrapper
@@ -89,16 +173,16 @@ sharedObject_is_null x = casadi__SharedObject__is_null (castSharedObject x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__SharedObject__printPtr" c_casadi__SharedObject__printPtr
+foreign import ccall unsafe "casadi__SharedObject__print_ptr" c_casadi__SharedObject__print_ptr
   :: Ptr (Ptr StdString) -> Ptr SharedObject' -> IO ()
 
-casadi__SharedObject__printPtr
+casadi__SharedObject__print_ptr
   :: SharedObject -> IO ()
-casadi__SharedObject__printPtr x0 = do
+casadi__SharedObject__print_ptr x0 = do
   x0' <- marshal x0
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__SharedObject__printPtr errStrPtrP x0'
+  ret0 <- c_casadi__SharedObject__print_ptr errStrPtrP x0'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -111,60 +195,6 @@ casadi__SharedObject__printPtr x0 = do
 
 
 -- classy wrapper
-sharedObject_printPtr :: SharedObjectClass a => a -> IO ()
-sharedObject_printPtr x = casadi__SharedObject__printPtr (castSharedObject x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__SharedObject__getRepresentation" c_casadi__SharedObject__getRepresentation
-  :: Ptr (Ptr StdString) -> Ptr SharedObject' -> IO (Ptr StdString)
-
-casadi__SharedObject__getRepresentation
-  :: SharedObject -> IO String
-casadi__SharedObject__getRepresentation x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__SharedObject__getRepresentation errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-sharedObject_getRepresentation :: SharedObjectClass a => a -> IO String
-sharedObject_getRepresentation x = casadi__SharedObject__getRepresentation (castSharedObject x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__SharedObject__getDescription" c_casadi__SharedObject__getDescription
-  :: Ptr (Ptr StdString) -> Ptr SharedObject' -> IO (Ptr StdString)
-
-casadi__SharedObject__getDescription
-  :: SharedObject -> IO String
-casadi__SharedObject__getDescription x0 = do
-  x0' <- marshal x0
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__SharedObject__getDescription errStrPtrP x0'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  ret <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-
-  return ret
-
-
-
--- classy wrapper
-sharedObject_getDescription :: SharedObjectClass a => a -> IO String
-sharedObject_getDescription x = casadi__SharedObject__getDescription (castSharedObject x)
+sharedObject_print_ptr :: SharedObjectClass a => a -> IO ()
+sharedObject_print_ptr x = casadi__SharedObject__print_ptr (castSharedObject x)
 

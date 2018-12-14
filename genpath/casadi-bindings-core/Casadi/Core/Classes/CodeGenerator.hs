@@ -11,10 +11,11 @@ module Casadi.Core.Classes.CodeGenerator
          CodeGeneratorClass(..),
          codeGenerator__0,
          codeGenerator__1,
-         codeGenerator_add,
-         codeGenerator_addInclude__0,
-         codeGenerator_addInclude__1,
-         codeGenerator_addInclude__2,
+         codeGenerator_add__0,
+         codeGenerator_add__1,
+         codeGenerator_add_include__0,
+         codeGenerator_add_include__1,
+         codeGenerator_add_include__2,
          codeGenerator_dump,
          codeGenerator_generate__0,
          codeGenerator_generate__1,
@@ -95,17 +96,17 @@ codeGenerator__1 = casadi__CodeGenerator__CONSTRUCTOR__1
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__CodeGenerator__add" c_casadi__CodeGenerator__add
+foreign import ccall unsafe "casadi__CodeGenerator__add__0" c_casadi__CodeGenerator__add__0
   :: Ptr (Ptr StdString) -> Ptr CodeGenerator' -> Ptr Function' -> IO ()
 
-casadi__CodeGenerator__add
+casadi__CodeGenerator__add__0
   :: CodeGenerator -> Function -> IO ()
-casadi__CodeGenerator__add x0 x1 = do
+casadi__CodeGenerator__add__0 x0 x1 = do
   x0' <- marshal x0
   x1' <- marshal x1
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__CodeGenerator__add errStrPtrP x0' x1'
+  ret0 <- c_casadi__CodeGenerator__add__0 errStrPtrP x0' x1'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -119,52 +120,23 @@ casadi__CodeGenerator__add x0 x1 = do
 
 
 -- classy wrapper
-codeGenerator_add :: CodeGeneratorClass a => a -> Function -> IO ()
-codeGenerator_add x = casadi__CodeGenerator__add (castCodeGenerator x)
+codeGenerator_add__0 :: CodeGeneratorClass a => a -> Function -> IO ()
+codeGenerator_add__0 x = casadi__CodeGenerator__add__0 (castCodeGenerator x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__CodeGenerator__addInclude__0" c_casadi__CodeGenerator__addInclude__0
-  :: Ptr (Ptr StdString) -> Ptr CodeGenerator' -> Ptr StdString -> IO ()
+foreign import ccall unsafe "casadi__CodeGenerator__add__1" c_casadi__CodeGenerator__add__1
+  :: Ptr (Ptr StdString) -> Ptr CodeGenerator' -> Ptr Function' -> CInt -> IO ()
 
-casadi__CodeGenerator__addInclude__0
-  :: CodeGenerator -> String -> IO ()
-casadi__CodeGenerator__addInclude__0 x0 x1 = do
-  x0' <- marshal x0
-  x1' <- marshal x1
-
-  errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__CodeGenerator__addInclude__0 errStrPtrP x0' x1'
-  errStrPtr <- peek errStrPtrP
-  free errStrPtrP
-
-  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
-
-  marshalFree x0 x0'
-  marshalFree x1 x1'
-
-  return ()
-
-
-
--- classy wrapper
-codeGenerator_addInclude__0 :: CodeGeneratorClass a => a -> String -> IO ()
-codeGenerator_addInclude__0 x = casadi__CodeGenerator__addInclude__0 (castCodeGenerator x)
-
-
--- direct wrapper
-foreign import ccall unsafe "casadi__CodeGenerator__addInclude__1" c_casadi__CodeGenerator__addInclude__1
-  :: Ptr (Ptr StdString) -> Ptr CodeGenerator' -> Ptr StdString -> CInt -> IO ()
-
-casadi__CodeGenerator__addInclude__1
-  :: CodeGenerator -> String -> Bool -> IO ()
-casadi__CodeGenerator__addInclude__1 x0 x1 x2 = do
+casadi__CodeGenerator__add__1
+  :: CodeGenerator -> Function -> Bool -> IO ()
+casadi__CodeGenerator__add__1 x0 x1 x2 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__CodeGenerator__addInclude__1 errStrPtrP x0' x1' x2'
+  ret0 <- c_casadi__CodeGenerator__add__1 errStrPtrP x0' x1' x2'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -179,24 +151,84 @@ casadi__CodeGenerator__addInclude__1 x0 x1 x2 = do
 
 
 -- classy wrapper
-codeGenerator_addInclude__1 :: CodeGeneratorClass a => a -> String -> Bool -> IO ()
-codeGenerator_addInclude__1 x = casadi__CodeGenerator__addInclude__1 (castCodeGenerator x)
+codeGenerator_add__1 :: CodeGeneratorClass a => a -> Function -> Bool -> IO ()
+codeGenerator_add__1 x = casadi__CodeGenerator__add__1 (castCodeGenerator x)
 
 
 -- direct wrapper
-foreign import ccall unsafe "casadi__CodeGenerator__addInclude__2" c_casadi__CodeGenerator__addInclude__2
+foreign import ccall unsafe "casadi__CodeGenerator__add_include__0" c_casadi__CodeGenerator__add_include__0
+  :: Ptr (Ptr StdString) -> Ptr CodeGenerator' -> Ptr StdString -> IO ()
+
+casadi__CodeGenerator__add_include__0
+  :: CodeGenerator -> String -> IO ()
+casadi__CodeGenerator__add_include__0 x0 x1 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__CodeGenerator__add_include__0 errStrPtrP x0' x1'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+
+  return ()
+
+
+
+-- classy wrapper
+codeGenerator_add_include__0 :: CodeGeneratorClass a => a -> String -> IO ()
+codeGenerator_add_include__0 x = casadi__CodeGenerator__add_include__0 (castCodeGenerator x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__CodeGenerator__add_include__1" c_casadi__CodeGenerator__add_include__1
+  :: Ptr (Ptr StdString) -> Ptr CodeGenerator' -> Ptr StdString -> CInt -> IO ()
+
+casadi__CodeGenerator__add_include__1
+  :: CodeGenerator -> String -> Bool -> IO ()
+casadi__CodeGenerator__add_include__1 x0 x1 x2 = do
+  x0' <- marshal x0
+  x1' <- marshal x1
+  x2' <- marshal x2
+
+  errStrPtrP <- new nullPtr
+  ret0 <- c_casadi__CodeGenerator__add_include__1 errStrPtrP x0' x1' x2'
+  errStrPtr <- peek errStrPtrP
+  free errStrPtrP
+
+  () <- if errStrPtr == nullPtr then wrapReturn ret0 else wrapReturn errStrPtr >>= (error . formatException)
+
+  marshalFree x0 x0'
+  marshalFree x1 x1'
+  marshalFree x2 x2'
+
+  return ()
+
+
+
+-- classy wrapper
+codeGenerator_add_include__1 :: CodeGeneratorClass a => a -> String -> Bool -> IO ()
+codeGenerator_add_include__1 x = casadi__CodeGenerator__add_include__1 (castCodeGenerator x)
+
+
+-- direct wrapper
+foreign import ccall unsafe "casadi__CodeGenerator__add_include__2" c_casadi__CodeGenerator__add_include__2
   :: Ptr (Ptr StdString) -> Ptr CodeGenerator' -> Ptr StdString -> CInt -> Ptr StdString -> IO ()
 
-casadi__CodeGenerator__addInclude__2
+casadi__CodeGenerator__add_include__2
   :: CodeGenerator -> String -> Bool -> String -> IO ()
-casadi__CodeGenerator__addInclude__2 x0 x1 x2 x3 = do
+casadi__CodeGenerator__add_include__2 x0 x1 x2 x3 = do
   x0' <- marshal x0
   x1' <- marshal x1
   x2' <- marshal x2
   x3' <- marshal x3
 
   errStrPtrP <- new nullPtr
-  ret0 <- c_casadi__CodeGenerator__addInclude__2 errStrPtrP x0' x1' x2' x3'
+  ret0 <- c_casadi__CodeGenerator__add_include__2 errStrPtrP x0' x1' x2' x3'
   errStrPtr <- peek errStrPtrP
   free errStrPtrP
 
@@ -212,8 +244,8 @@ casadi__CodeGenerator__addInclude__2 x0 x1 x2 x3 = do
 
 
 -- classy wrapper
-codeGenerator_addInclude__2 :: CodeGeneratorClass a => a -> String -> Bool -> String -> IO ()
-codeGenerator_addInclude__2 x = casadi__CodeGenerator__addInclude__2 (castCodeGenerator x)
+codeGenerator_add_include__2 :: CodeGeneratorClass a => a -> String -> Bool -> String -> IO ()
+codeGenerator_add_include__2 x = casadi__CodeGenerator__add_include__2 (castCodeGenerator x)
 
 
 -- direct wrapper

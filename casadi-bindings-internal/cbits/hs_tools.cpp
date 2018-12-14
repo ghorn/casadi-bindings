@@ -42,20 +42,20 @@ void hs_delete_stdpair(std::pair<void*,void*> * pair){
     delete pair;
 }
 
-extern "C" std::pair<int,int> * hs_new_stdpair_int(int x, int y);
-std::pair<int,int> * hs_new_stdpair_int(int x, int y) {
-    return new std::pair<int,int>(x, y);
+extern "C" std::pair<long long,long long> * hs_new_stdpair_long_long(long long x, long long y);
+std::pair<long long,long long> * hs_new_stdpair_long_long(long long x, long long y) {
+    return new std::pair<long long,long long>(x, y);
 }
-extern "C" int hs_stdpair_fst_int(std::pair<int,int> * stdpair);
-int hs_stdpair_fst_int(std::pair<int,int> * stdpair) {
+extern "C" long long hs_stdpair_fst_long_long(std::pair<long long,long long> * stdpair);
+long long hs_stdpair_fst_long_long(std::pair<long long,long long> * stdpair) {
     return stdpair->first;
 }
-extern "C" int hs_stdpair_snd_int(std::pair<int,int> * stdpair);
-int hs_stdpair_snd_int(std::pair<int,int> * stdpair) {
+extern "C" long long hs_stdpair_snd_long_long(std::pair<long long,long long> * stdpair);
+long long hs_stdpair_snd_long_long(std::pair<long long,long long> * stdpair) {
     return stdpair->second;
 }
-extern "C" void hs_delete_stdpair_int(std::pair<int,int> * pair);
-void hs_delete_stdpair_int(std::pair<int,int> * pair){
+extern "C" void hs_delete_stdpair_long_long(std::pair<long long,long long> * pair);
+void hs_delete_stdpair_long_long(std::pair<long long,long long> * pair){
     delete pair;
 }
 
@@ -133,6 +133,8 @@ vector<T> * hs_new_vec_T(T inputs[], int length){
     int hs_size_vec_##name(vector<type> * vec){ return vec->size(); }
 
 WRITE_STUFF(int,int)
+typedef long long longlong;
+WRITE_STUFF(llong,longlong)
 WRITE_STUFF(voidp, void*)
 WRITE_STUFF(uchar, unsigned char)
 WRITE_STUFF(double, double)

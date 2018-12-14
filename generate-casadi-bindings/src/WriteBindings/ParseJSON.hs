@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wall -fno-warn-orphans #-}
+{-# OPTIONS_GHC -Wall -Wextra -Werror -Wno-unused-top-binds -fno-warn-orphans #-}
 {-# Language DeriveGeneric #-}
 {-# Language DeriveFunctor #-}
 {-# Language FlexibleInstances #-}
@@ -26,7 +26,7 @@ module WriteBindings.ParseJSON
 
 import GHC.Generics ( Generic )
 import Control.Arrow ( first )
-import Data.Aeson
+import qualified Data.Aeson as Aeson
 import Data.Aeson.Types ( typeMismatch )
 import qualified Data.ByteString.Lazy as BS
 import qualified Data.Text as Text
@@ -42,8 +42,8 @@ toSwigOutput "Output" = SwigOutput True
 toSwigOutput "Normal" = SwigOutput False
 toSwigOutput r = error $ "while reading SwigOutput, got unexpected string: " ++ show r
 
-instance FromJSON ClassType where
-  parseJSON (String txt) =
+instance Aeson.FromJSON ClassType where
+  parseJSON (Aeson.String txt) =
     case parse (typeParser (const False) <* eof) "" str of
       Right x@(UserType {})    -> return (ClassType x)
       Right x@(StdVec _)       -> return (ClassType x)
@@ -70,7 +70,7 @@ parseType isEnum str = case parse ((typeParser isEnum) <* eof) "" str of
 p :: String -> Type -> Parsec String u Type
 p name tp = try $ do
   _ <- string name
-  notFollowedBy alphaNum
+  notFollowedBy (alphaNum <|> space)
   return tp
 
 ps :: [String] -> Type -> Parsec String u Type
@@ -150,17 +150,21 @@ arrayp isEnum = try $ do
 typeParser :: IsEnum -> Parsec String u Type
 typeParser isEnum = do
   let genericType = UserType (Namespace ["casadi"]) (Name "GenericType")
-      sx       = UserType (Namespace ["casadi"]) (Name "SX")
-      mx       = UserType (Namespace ["casadi"]) (Name "MX")
-      dmatrix  = UserType (Namespace ["casadi"]) (Name "DM")
-      sparsity = UserType (Namespace ["casadi"]) (Name "Sparsity")
+      sx          = UserType (Namespace ["casadi"]) (Name "SX")
+      mx          = UserType (Namespace ["casadi"]) (Name "MX")
+      dmatrix     = UserType (Namespace ["casadi"]) (Name "DM")
+      im          = UserType (Namespace ["casadi"]) (Name "IM")
+      sparsity    = UserType (Namespace ["casadi"]) (Name "Sparsity")
   x <- choice
        [ p "bool" CBool
        , p "int" CInt
        , p "double" CDouble
+       , p "casadi_int" CLongLong
+       , p "casadi_index" CLongLong -- really casadi_int
        , p "long" CLong
+       , p "long long" CLongLong
        , p "void" CVoid
-       , p "unsigned char" CUChar
+--       , p "unsigned char" CUChar
        , p "char" CChar
        , p "std::string" StdString
        , p "std::size_t" CSize
@@ -182,17 +186,20 @@ typeParser isEnum = do
          -- some literals
        , ps [ "casadi::Matrix<(double)>"
             ,         "Matrix<(double)>"
+            , "casadi::native_DM"
             ]
-         (UserType (Namespace ["casadi"]) (Name "DM"))
+         dmatrix
 
        , ps [ "casadi::Matrix<(casadi::SXElem)>"
             ,         "Matrix<(casadi::SXElem)>"
             ]
          sx
-       , ps [ "casadi::Matrix<(int)>"
-            ,         "Matrix<(int)>"
+       , ps [ "casadi::Matrix<(casadi_int)>"
+            ,         "Matrix<(casadi_int)>"
+            , "casadi::Matrix<(long long)>"
+            ,         "Matrix<(long long)>"
             ]
-         (UserType (Namespace ["casadi"]) (Name "IM"))
+         im
 
          
        , constp isEnum
@@ -211,16 +218,16 @@ typeParser isEnum = do
   return x
 
 newtype Doc = Doc String deriving (Generic, Eq, Ord, Show)
-instance FromJSON Doc
+instance Aeson.FromJSON Doc
 
 newtype DocLink = DocLink String deriving (Generic, Eq, Ord, Show)
-instance FromJSON DocLink
+instance Aeson.FromJSON DocLink
 
 data MethodKind = Constructor | Static | Normal deriving (Generic, Eq, Ord, Show)
-instance FromJSON MethodKind
+instance Aeson.FromJSON MethodKind
 
 newtype Name = Name String deriving (Generic, Show, Eq, Ord)
-instance FromJSON Name
+instance Aeson.FromJSON Name
 unName :: Name -> String
 unName (Name x) = x
 
@@ -232,6 +239,7 @@ data Type = CInt
           | CVoid
           | CSize
           | CLong
+          | CLongLong
           | CUChar
           | CChar
           | CArray Type
@@ -256,7 +264,6 @@ data Class' a =
   { classType :: ClassType
   , classMethods :: [Method' a]
   , classDocs :: Doc
-  , classDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Functor, Show)
 
 data Class =
@@ -264,27 +271,20 @@ data Class =
   { clType :: ClassType
   , clMethods :: [Methods]
   , clDocs :: Doc
-  , clDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Show)
 
 classUnion :: Class' Type -> Class' Type -> Class' Type
 classUnion x y
   | ctx /= cty = error $ "classUnion: got different types\n" ++ show (ctx, cty)
-  | classDocslink x /= classDocslink y = error $ "classUnion: got different docslink\n"
-                                         ++ show (ctx, cty)
   | otherwise = ret
   where
     ret = x { classMethods = classMethods x ++ classMethods y
             , classDocs = docs
-            , classDocslink = docslink
             }
     -- lets go with no docs for now
     docs
 --      | classDocs x == classDocs y = classDocs x
       | otherwise = Doc ""
-    docslink
---      | classDocslink x == classDocslink y = classDocslink x
-      | otherwise = DocLink ""
 
     ctx = classType x
     cty = classType y
@@ -301,7 +301,6 @@ data Method' a =
   , methodParams :: [(a, String)]
   , methodKind :: MethodKind
   , methodDocs :: Doc
-  , methodDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Functor, Show)
 instance GetTypes (Method' Type) where
   getTypes m = S.fromList (methodReturn m : map fst (methodParams m))
@@ -314,7 +313,6 @@ data Method =
   , mParams :: [(Type, SwigOutput)]
   , mKind :: MethodKind
   , mDocs :: Doc
-  , mDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Show)
 instance GetTypes Method where
   getTypes m = S.fromList (mReturn m : map fst (mParams m))
@@ -330,7 +328,6 @@ data CppFunction' a =
   , funFriendwrap :: Bool
   , funParams :: [(a, String)]
   , funDocs :: Doc
-  , funDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Functor, Show)
 instance GetTypes (CppFunction' Type) where
   getTypes f = S.fromList (funReturn f : map fst (funParams f))
@@ -343,7 +340,6 @@ data CppFunction =
   , fFriendwrap :: Bool
   , fParams :: [(Type, SwigOutput)]
   , fDocs :: Doc
-  , fDocslink :: DocLink
   } deriving (Generic, Eq, Ord, Show)
 instance GetTypes CppFunction where
   getTypes f = S.fromList (fReturn f : map fst (fParams f))
@@ -351,14 +347,12 @@ instance GetTypes CppFunction where
 data Enum' =
   Enum'
   { enumDocs :: Doc
-  , enumDocslink :: DocLink
   , enumEntries :: M.Map String EnumEntry
   } deriving (Generic, Eq, Ord, Show)
 
 data EnumEntry =
   EnumEntry
   { enumEntryDocs :: Doc
-  , enumEntryDocslink :: DocLink
   , enumEntryVal :: Int
   } deriving (Generic, Eq, Ord, Show)
 
@@ -389,12 +383,12 @@ instance GetTypes Module where
                ]
 
 
-instance FromJSON a => FromJSON (CppFunction' a)
-instance FromJSON Enum'
-instance FromJSON EnumEntry
-instance FromJSON a => FromJSON (Tree a)
-instance FromJSON a => FromJSON (Method' a)
-instance FromJSON a => FromJSON (Class' a)
+instance Aeson.FromJSON a => Aeson.FromJSON (CppFunction' a)
+instance Aeson.FromJSON Enum'
+instance Aeson.FromJSON EnumEntry
+instance Aeson.FromJSON a => Aeson.FromJSON (Tree a)
+instance Aeson.FromJSON a => Aeson.FromJSON (Method' a)
+instance Aeson.FromJSON a => Aeson.FromJSON (Class' a)
 
 getAllTypes :: Type -> S.Set Type
 getAllTypes x@(StdPair tx ty) = S.insert x $ S.union (getAllTypes tx) (getAllTypes ty)
@@ -410,6 +404,7 @@ getAllTypes x@CBool                = S.singleton x
 getAllTypes x@CVoid                = S.singleton x
 getAllTypes x@CSize                = S.singleton x
 getAllTypes x@CLong                = S.singleton x
+getAllTypes x@CLongLong            = S.singleton x
 getAllTypes x@CUChar               = S.singleton x
 getAllTypes x@CChar                = S.singleton x
 getAllTypes x@StdOstream           = S.singleton x
@@ -452,7 +447,6 @@ overloadMethods c =
   { clType = classType c
   , clMethods = map m2ms (M.toList ms)
   , clDocs = Doc "" -- classDocs c
-  , clDocslink = DocLink "" -- classDocslink c
   }
   where
     ms :: M.Map Name [Method' Type]
@@ -472,7 +466,6 @@ overloadMethods c =
       , mReturn = methodReturn f
       , mParams = map (\(x,y) -> (x, toSwigOutput y)) (methodParams f)
       , mDocs = Doc "" -- methodDocs f
-      , mDocslink = DocLink "" -- methodDocslink f
       }
 
 type CppFunctions = Either [CppFunction] CppFunction
@@ -483,7 +476,7 @@ instance GetTypes (Either [CppFunction] CppFunction) where
 readModule :: FilePath -> IO Module
 readModule jsonpath = do
   putStrLn $ "parsing " ++ jsonpath
-  eitherTree <- fmap eitherDecode' (BS.readFile jsonpath) :: IO (Either String (Tree String))
+  eitherTree <- fmap Aeson.eitherDecode' (BS.readFile jsonpath) :: IO (Either String (Tree String))
   tree0 <- case eitherTree of
     Left err -> error $ "module parsing failure: " ++ err
     Right ret -> return ret
@@ -539,7 +532,6 @@ readModule jsonpath = do
                          , mParams = []
                          , mKind = Normal
                          , mDocs = Doc ""
-                         , mDocslink = DocLink ""
                          }
 
           isPrintableObject (ClassType (PrintableObject {})) = True
@@ -560,7 +552,7 @@ readModule jsonpath = do
             $ M.fromListWith (++) $ map (\x -> (funName x, [x])) $ treeFunctions tree
 
           f2fs :: (String, [CppFunction' Type]) -> CppFunctions
-          f2fs (name, []) = Left [] -- error $ "function '" ++ name ++ "' has zero instances"
+          f2fs (_name, []) = Left [] -- error $ "function '" ++ name ++ "' has zero instances"
           f2fs (_, [f]) = Right (f2f f Nothing)
           f2fs (_, fs) = Left $ zipWith (\f k -> f2f f (Just k)) fs [0..]
 
@@ -573,7 +565,6 @@ readModule jsonpath = do
             , fFriendwrap = funFriendwrap f
             , fParams = map (\(x,y) -> (x, toSwigOutput y)) (funParams f)
             , fDocs = Doc "" -- funDocs f
-            , fDocslink = DocLink "" -- funDocslink f
             }
 
       module0 = treeToModule tree'

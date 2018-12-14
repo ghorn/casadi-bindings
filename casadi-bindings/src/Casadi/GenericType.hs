@@ -47,17 +47,21 @@ data GType
   | GString String
   | GBoolVec (Vector Bool)
   | GDoubleVec (Vector Double)
+  | GDoubleVecVec (Vector (Vector Double))
   | GIntVec (Vector Int)
   | GIntVecVec (Vector (Vector Int))
   | GStringVec (Vector String)
 --  | GGenericType GenericType
   | GFunction Function
+  | GFunctionVec (Vector Function)
   | GDict (Map String GType)
   deriving Show
 
 instance Eq GType where
   (==) (GFunction _) _ = error "can't compare GFunctions"
   (==) _ (GFunction _) = error "can't compare GFunctions"
+  (==) (GFunctionVec _) _ = error "can't compare GFunctions"
+  (==) _ (GFunctionVec _) = error "can't compare GFunctionsVec"
   (==) (GBool x) (GBool y) = x == y
   (==) (GBool _) _ = False
   (==) (GDouble x) (GDouble y)
@@ -71,6 +75,8 @@ instance Eq GType where
   (==) (GBoolVec _) _ = False
   (==) (GDoubleVec x) (GDoubleVec y) = x == y
   (==) (GDoubleVec _) _ = False
+  (==) (GDoubleVecVec x) (GDoubleVecVec y) = x == y
+  (==) (GDoubleVecVec _) _ = False
   (==) (GIntVec x) (GIntVec y) = x == y
   (==) (GIntVec _) _ = False
   (==) (GIntVecVec x) (GIntVecVec y) = x == y
@@ -88,23 +94,25 @@ instance Eq GType where
   (==) (GDict _) _ = False
 
 fromGType :: GType -> IO GenericType
-fromGType (GBool r) = genericType__10 r
-fromGType (GDouble r) = genericType__8 r
-fromGType (GInt r) = genericType__9 r
-fromGType (GString r) = genericType__7 r
+fromGType (GDict r) = T.mapM fromGType r >>= genericType__0
+fromGType (GFunctionVec r) = genericType__1 r
+fromGType (GFunction r) = genericType__2 r
+fromGType (GStringVec r) = genericType__3 r
+fromGType (GDoubleVecVec r) = genericType__4 r
+fromGType (GDoubleVec r) = genericType__5 r
+fromGType (GIntVecVec r) = genericType__6 r
+fromGType (GIntVec r) = genericType__7 r
 fromGType (GBoolVec r) = do
-  gt <- genericType__6 r
+  gt <- genericType__9 r
   gtype <- getType gt
   case gtype of
     OT_BOOLVECTOR -> error "fromGType GBoolVec got OT_BOOLVECTOR, which means a casadi issue was fixed and this special casing code should be removed"
     OT_INTVECTOR -> return gt
     other -> error $ "fromGType GBoolVec got " ++ show other ++ ", which is really weird"
-fromGType (GDoubleVec r) = genericType__3 r
-fromGType (GIntVec r) = genericType__5 r
-fromGType (GIntVecVec r) = genericType__4 r
-fromGType (GStringVec r) = genericType__2 r
-fromGType (GFunction r) = genericType__1 r
-fromGType (GDict r) = T.mapM fromGType r >>= genericType__0
+fromGType (GString r) = genericType__10 r
+fromGType (GDouble r) = genericType__11 r
+fromGType (GInt r) = genericType__12 r
+fromGType (GBool r) = genericType__14 r
 
 toGType :: GenericType -> IO GType
 toGType gt = do
@@ -129,7 +137,9 @@ toGType' gt = do
       return (fmap GDict (sequenceA dict1))
     OT_DOUBLE -> Right . GDouble <$> genericType_to_double gt
     OT_DOUBLEVECTOR -> Right . GDoubleVec <$> genericType_to_double_vector gt
+    OT_DOUBLEVECTORVECTOR -> Right . GDoubleVecVec <$> genericType_to_double_vector_vector gt
     OT_FUNCTION -> Right . GFunction <$> genericType_to_function gt
+    OT_FUNCTIONVECTOR -> Right . GFunctionVec <$> genericType_to_function_vector gt
     OT_INT -> Right . GInt <$> genericType_to_int gt
     OT_INTVECTOR -> Right . GIntVec <$> genericType_to_int_vector gt
     OT_INTVECTORVECTOR -> Right . GIntVecVec <$> genericType_to_int_vector_vector gt
