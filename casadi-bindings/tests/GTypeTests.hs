@@ -20,6 +20,8 @@ gtypes =
     gtypes' :: [(String, GType)]
     gtypes' = gtypes'' ++ [("a map lol", GDict (M.fromList gtypes''))]
 
+    doubleVec = V.fromList [42, 0, read "Infinity"]
+
     gtypes'' :: [(String, GType)]
     gtypes'' =
         [ ("GBool True", GBool True)
@@ -36,7 +38,8 @@ gtypes =
 --        , ("GBoolVec V.empty", GBoolVec V.empty)
 --        , ("GBoolVec V.singleton True", GBoolVec (V.singleton True))
 --        , ("GBoolVec V.fromList [True, False]", GBoolVec (V.fromList [True, False]))
-        , ("GDoubleVec [42, 0, read \"Infinity\"]", GDoubleVec (V.fromList ([42, 0, read "Infinity"])))
+        , ("GDoubleVec [42, 0, read \"Infinity\"]", GDoubleVec doubleVec)
+        , ("GDoubleVecVec", GDoubleVecVec (V.fromList [doubleVec, V.singleton 22.2, doubleVec]))
         , ("GIntVec [42, 0]", GIntVec (V.fromList [42, 0]))
         , ("GIntVecVec", GIntVecVec (V.fromList [V.fromList [42, 0], V.singleton 2, V.empty]))
         , ("GStringVec [\"\", \"yolo\"]", GStringVec (V.fromList ["", "yolo"]))

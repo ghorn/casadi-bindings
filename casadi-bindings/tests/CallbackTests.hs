@@ -26,7 +26,7 @@ simpleCallbackTest = testCase "simple callback test" $ HUnit.assert $ do
           [x] -> return (V.singleton (x*x))
           _ -> error $ "callback got wrong number of args: " ++ show xs
 
-  fun <- makeCallback (V.singleton (dense 1 1)) (V.singleton (dense 1 1)) cb
+  fun <- makeCallback "test_callback" (V.singleton (dense 1 1)) (V.singleton (dense 1 1)) cb
 
   putStrLn "calling callback"
   outs <- callDM fun (V.singleton 2.2)
