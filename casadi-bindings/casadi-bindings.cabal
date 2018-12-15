@@ -70,7 +70,7 @@ library
   extra-libraries:     stdc++ casadi
   cc-options:          -Wall -Wextra -Werror -std=c++11
   ghc-prof-options:    -O2
-  ghc-options:         -O2 -Wall -Werror
+  ghc-options:         -O2 -Wall
 
 source-repository head
   type: git
