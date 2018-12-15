@@ -22,7 +22,7 @@ version :: String
 version = "3.4.5.0"
 
 internalVersion :: String
-internalVersion = "0.1.6.0"
+internalVersion = "0.1.6.1"
 
 jsonpath :: FilePath
 jsonpath = "/home/greg/casadi/build/swig/json/casadi.json"
@@ -130,7 +130,7 @@ toPackage mod' =
               , "license:             LGPL-3"
               , "license-file:        LICENSE"
               , "category:            Numerical, Math"
-              , "copyright:           (c) 2013-2017 Greg Horn"
+              , "copyright:           (c) 2013-2018 Greg Horn"
               , "author:              Greg Horn"
               , "maintainer:          gregmainland@gmail.com"
               , "build-type:          Simple"

@@ -1,9 +1,9 @@
 name:                casadi-bindings-internal
-version:             0.1.6.0
+version:             0.1.6.1
 license:             LGPL-3
 license-file:        LICENSE
 category:            Numerical, Math
-copyright:           (c) 2013-2016 Greg Horn
+copyright:           (c) 2013-2018 Greg Horn
 author:              Greg Horn
 maintainer:          gregmainland@gmail.com
 build-type:          Simple
